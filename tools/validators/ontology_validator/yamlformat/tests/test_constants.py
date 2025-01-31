@@ -1,4 +1,5 @@
 """Constants for the ontology validator application tests."""
+
 from os import path
 
 from yamlformat import constants

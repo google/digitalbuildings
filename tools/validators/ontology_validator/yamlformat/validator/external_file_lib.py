@@ -14,7 +14,7 @@
 
 """external_file_lib relies on external python libraries non-dependent on g3.
 
- It contains helper methods to run this validator outside of g3.
+It contains helper methods to run this validator outside of g3.
 """
 
 from __future__ import absolute_import
@@ -28,11 +28,13 @@ from yamlformat.validator import findings_lib
 from yamlformat.validator import presubmit_validate_types_lib
 
 
-def Validate(filter_text,
-             original_directory,
-             changed_directory,
-             interactive=True,
-             require_type_guids=True):
+def Validate(
+    filter_text,
+    original_directory,
+    changed_directory,
+    interactive=True,
+    require_type_guids=True,
+):
   """Validates two directory paths of a diff of ontology versions.
 
   if the user didn't provide a changed directory, treat as a new ontology by
@@ -43,9 +45,10 @@ def Validate(filter_text,
     original_directory: the original directory with ontology yaml files.
     changed_directory: the changed directory with ontology yaml files.
     interactive: flag to run validator in interactive mode or presubmit mode.
-    require_type_guids: whether type guids are required to be present.
-       This is needed to bypass write permission issues on the ontology
-       validator GitHub Action.
+    require_type_guids: whether type guids are required to be present. This is
+      needed to bypass write permission issues on the ontology validator GitHub
+      Action.
+
   Raises:
     Exception: The Ontology is not valid.
   """
@@ -57,15 +60,13 @@ def Validate(filter_text,
   modified_client = RecursiveDirWalk(changed_directory)
 
   if interactive:
-    presubmit_validate_types_lib.RunInteractive(filter_text,
-                                                modified_base,
-                                                modified_client,
-                                                require_type_guids)
+    presubmit_validate_types_lib.RunInteractive(
+        filter_text, modified_base, modified_client, require_type_guids
+    )
   else:
-    findings = presubmit_validate_types_lib.RunPresubmit([],
-                                                         modified_base,
-                                                         modified_client,
-                                                         require_type_guids)
+    findings = presubmit_validate_types_lib.RunPresubmit(
+        [], modified_base, modified_client, require_type_guids
+    )
     presubmit_validate_types_lib.PrintFindings(findings, '')
     # TODO(charbelk): add diff files in the presubmit in modified base
     findings_class = findings_lib.Findings()
@@ -98,6 +99,7 @@ def RecursiveDirWalk(directory):
       else:
         relative_path_yaml = yaml_file
       path_parts.append(
-          base_lib.PathParts(root=directory, relative_path=relative_path_yaml))
+          base_lib.PathParts(root=directory, relative_path=relative_path_yaml)
+      )
 
   return path_parts

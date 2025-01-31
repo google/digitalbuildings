@@ -34,7 +34,7 @@ def CreateParser() -> argparse.ArgumentParser:
       default=None,
       help='Modified ontology types filepath',
       required=False,
-      metavar='MODIFIED_TYPE_FILEPATH'
+      metavar='MODIFIED_TYPE_FILEPATH',
   )
 
   parser.add_argument(
@@ -44,7 +44,7 @@ def CreateParser() -> argparse.ArgumentParser:
       default=None,
       help='path of the original ontology files',
       required=True,
-      metavar='ORIGINAL_FILE_PATH'
+      metavar='ORIGINAL_FILE_PATH',
   )
 
   parser.add_argument(
@@ -54,7 +54,7 @@ def CreateParser() -> argparse.ArgumentParser:
       default='False',
       help='interactive mode',
       required=False,
-      metavar='interactive mode'
+      metavar='interactive mode',
   )
 
   parser.add_argument(
@@ -62,8 +62,7 @@ def CreateParser() -> argparse.ArgumentParser:
       '--allow_missing_type_guids',
       action='store_true',
       dest='allow_missing_type_guids',
-      help='if the validator should not require entity type guids'
+      help='if the validator should not require entity type guids',
   )
 
   return parser
-

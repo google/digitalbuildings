@@ -18,14 +18,13 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from absl.testing import absltest
+from rdfformat.generator import constants
+from rdfformat.generator import rdf_helper
 import rdflib
 from rdflib import compare
 from rdflib import namespace
 from rdflib.extras import infixowl
-
-from rdfformat.generator import constants
-from rdfformat.generator import rdf_helper
-from absl.testing import absltest
 
 
 class RdfHelperLibTest(absltest.TestCase):
@@ -36,17 +35,22 @@ class RdfHelperLibTest(absltest.TestCase):
         graph=graph,
         class_name='class_name',
         class_description='description',
-        parent_clazz=rdflib.OWL.Thing)
+        parent_clazz=rdflib.OWL.Thing,
+    )
     clazz = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['class_name'])
     clazz_object_test = (clazz, rdflib.RDF.type, rdflib.OWL.Class)
     self.assertEqual(clazz_object, clazz_object_test)
     self.assertIn(clazz_object_test, updated_graph)
-    self.assertIn((clazz, rdflib.RDFS.subClassOf, rdflib.OWL.Thing),
-                  updated_graph)
-    self.assertIn((clazz, rdflib.RDFS.label, rdflib.Literal('class_name')),
-                  updated_graph)
-    self.assertIn((clazz, rdflib.RDFS.comment, rdflib.Literal('description')),
-                  updated_graph)
+    self.assertIn(
+        (clazz, rdflib.RDFS.subClassOf, rdflib.OWL.Thing), updated_graph
+    )
+    self.assertIn(
+        (clazz, rdflib.RDFS.label, rdflib.Literal('class_name')), updated_graph
+    )
+    self.assertIn(
+        (clazz, rdflib.RDFS.comment, rdflib.Literal('description')),
+        updated_graph,
+    )
 
   def testClassHelperNoDescription(self):
     graph = rdflib.Graph()
@@ -54,17 +58,21 @@ class RdfHelperLibTest(absltest.TestCase):
         graph=graph,
         class_name='class_name',
         class_description=None,
-        parent_clazz=rdflib.OWL.Thing)
+        parent_clazz=rdflib.OWL.Thing,
+    )
     clazz = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['class_name'])
     clazz_object_test = (clazz, rdflib.RDF.type, rdflib.OWL.Class)
     self.assertEqual(clazz_object, clazz_object_test)
     self.assertIn(clazz_object_test, updated_graph)
-    self.assertIn((clazz, rdflib.RDFS.subClassOf, rdflib.OWL.Thing),
-                  updated_graph)
-    self.assertIn((clazz, rdflib.RDFS.label, rdflib.Literal('class_name')),
-                  updated_graph)
-    self.assertNotIn((clazz, rdflib.RDFS.comment, rdflib.Literal('')),
-                     updated_graph)
+    self.assertIn(
+        (clazz, rdflib.RDFS.subClassOf, rdflib.OWL.Thing), updated_graph
+    )
+    self.assertIn(
+        (clazz, rdflib.RDFS.label, rdflib.Literal('class_name')), updated_graph
+    )
+    self.assertNotIn(
+        (clazz, rdflib.RDFS.comment, rdflib.Literal('')), updated_graph
+    )
 
   def testInstanceHelper(self):
     graph = rdflib.Graph()
@@ -72,25 +80,32 @@ class RdfHelperLibTest(absltest.TestCase):
         graph=graph,
         class_name='class_name',
         class_description='description',
-        parent_clazz=rdflib.OWL.Thing)
+        parent_clazz=rdflib.OWL.Thing,
+    )
 
     updated_graph, instance_object = rdf_helper.CreateInstanceInGraph(
         graph=updated_graph,
         instance_name='instance_name',
         instance_description='description',
-        parent_clazz=clazz_object)
+        parent_clazz=clazz_object,
+    )
     instance = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['instance_name'])
-    instance_object_test = (instance, rdflib.RDF.type,
-                            rdflib.OWL.NamedIndividual)
+    instance_object_test = (
+        instance,
+        rdflib.RDF.type,
+        rdflib.OWL.NamedIndividual,
+    )
     self.assertEqual(instance_object, instance_object_test)
     self.assertIn(instance_object_test, updated_graph)
     self.assertIn((instance, rdflib.RDF.type, clazz_object[0]), updated_graph)
     self.assertIn(
         (instance, rdflib.RDFS.label, rdflib.Literal('instance_name')),
-        updated_graph)
+        updated_graph,
+    )
     self.assertIn(
         (instance, rdflib.RDFS.comment, rdflib.Literal('description')),
-        updated_graph)
+        updated_graph,
+    )
 
   def testInstanceHelperNoDescription(self):
     graph = rdflib.Graph()
@@ -98,64 +113,102 @@ class RdfHelperLibTest(absltest.TestCase):
         graph=graph,
         class_name='class_name',
         class_description='description',
-        parent_clazz=rdflib.OWL.Thing)
+        parent_clazz=rdflib.OWL.Thing,
+    )
     updated_graph, instance_object = rdf_helper.CreateInstanceInGraph(
         graph=updated_graph,
         instance_name='instance_name',
         instance_description=None,
-        parent_clazz=clazz_object)
+        parent_clazz=clazz_object,
+    )
     instance = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['instance_name'])
-    instance_object_test = (instance, rdflib.RDF.type,
-                            rdflib.OWL.NamedIndividual)
+    instance_object_test = (
+        instance,
+        rdflib.RDF.type,
+        rdflib.OWL.NamedIndividual,
+    )
     self.assertEqual(instance_object, instance_object_test)
     self.assertIn(instance_object_test, updated_graph)
     self.assertIn((instance, rdflib.RDF.type, clazz_object[0]), updated_graph)
     self.assertIn(
         (instance, rdflib.RDFS.label, rdflib.Literal('instance_name')),
-        updated_graph)
-    self.assertNotIn((instance, rdflib.RDFS.comment, rdflib.Literal('')),
-                     updated_graph)
+        updated_graph,
+    )
+    self.assertNotIn(
+        (instance, rdflib.RDFS.comment, rdflib.Literal('')), updated_graph
+    )
 
   def testDataPropertyHelper(self):
     data_property_name_test = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['property_name'])
-    data_property_object = (data_property_name_test, rdflib.RDF.type,
-                            rdflib.OWL.DatatypeProperty)
+        constants.DIGITAL_BUILDINGS_NS['property_name']
+    )
+    data_property_object = (
+        data_property_name_test,
+        rdflib.RDF.type,
+        rdflib.OWL.DatatypeProperty,
+    )
 
     graph = rdflib.Graph()
-    updated_graph, data_property_object_returned = \
+    updated_graph, data_property_object_returned = (
         rdf_helper.CreateDataPropertyInGraph(
             graph,
             data_property_name='property_name',
-            data_property_description='description')
+            data_property_description='description',
+        )
+    )
 
     self.assertEqual(data_property_object_returned, data_property_object)
     self.assertIn(data_property_object, updated_graph)
-    self.assertIn((data_property_name_test, rdflib.RDFS.label,
-                   rdflib.Literal('property_name')), updated_graph)
-    self.assertIn((data_property_name_test, rdflib.RDFS.comment,
-                   rdflib.Literal('description')), updated_graph)
+    self.assertIn(
+        (
+            data_property_name_test,
+            rdflib.RDFS.label,
+            rdflib.Literal('property_name'),
+        ),
+        updated_graph,
+    )
+    self.assertIn(
+        (
+            data_property_name_test,
+            rdflib.RDFS.comment,
+            rdflib.Literal('description'),
+        ),
+        updated_graph,
+    )
 
   def testDataPropertyHelperNoDescription(self):
     data_property_name_test = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['property_name'])
-    data_property_object = (data_property_name_test, rdflib.RDF.type,
-                            rdflib.OWL.DatatypeProperty)
+        constants.DIGITAL_BUILDINGS_NS['property_name']
+    )
+    data_property_object = (
+        data_property_name_test,
+        rdflib.RDF.type,
+        rdflib.OWL.DatatypeProperty,
+    )
 
     graph = rdflib.Graph()
-    updated_graph, data_property_object_returned = \
+    updated_graph, data_property_object_returned = (
         rdf_helper.CreateDataPropertyInGraph(
             graph,
             data_property_name='property_name',
-            data_property_description=None)
+            data_property_description=None,
+        )
+    )
 
     self.assertEqual(data_property_object_returned, data_property_object)
     self.assertIn(data_property_object, updated_graph)
-    self.assertIn((data_property_name_test, rdflib.RDFS.label,
-                   rdflib.Literal('property_name')), updated_graph)
+    self.assertIn(
+        (
+            data_property_name_test,
+            rdflib.RDFS.label,
+            rdflib.Literal('property_name'),
+        ),
+        updated_graph,
+    )
     self.assertNotIn(
         (data_property_name_test, rdflib.RDFS.comment, rdflib.Literal('')),
-        updated_graph)
+        updated_graph,
+    )
 
   def testHandlesStandardFieldName(self):
     standard_field_name = 'run_command'
@@ -184,17 +237,23 @@ class RdfHelperLibTest(absltest.TestCase):
         graph=graph,
         class_name='Application',
         class_description=None,
-        parent_clazz=rdflib.OWL.Thing)
+        parent_clazz=rdflib.OWL.Thing,
+    )
 
     graph, clazz_object = rdf_helper.CreateClassInGraph(
         graph=graph,
         class_name='clazz',
         class_description='description',
-        parent_clazz=application_class[0])
+        parent_clazz=application_class[0],
+    )
 
     graph, applications_set = rdf_helper.CreatesImplementsInGraph(
-        graph, implements_list, applications_set, application_class,
-        clazz_object)
+        graph,
+        implements_list,
+        applications_set,
+        application_class,
+        clazz_object,
+    )
 
     # Assertions that the applications_set is updated
     self.assertIn('Control', applications_set)
@@ -202,17 +261,43 @@ class RdfHelperLibTest(absltest.TestCase):
 
     # Assertions for the class relations creations
     self.assertIn(
-        (application_class[0], rdflib.RDFS.subClassOf, rdflib.OWL.Thing), graph)
+        (application_class[0], rdflib.RDFS.subClassOf, rdflib.OWL.Thing), graph
+    )
     self.assertIn(
-        (clazz_object[0], rdflib.RDFS.subClassOf, application_class[0]), graph)
-    self.assertIn((clazz_object[0], rdflib.RDFS.subClassOf,
-                   constants.DIGITAL_BUILDINGS_NS['Control']), graph)
-    self.assertIn((clazz_object[0], rdflib.RDFS.subClassOf,
-                   constants.DIGITAL_BUILDINGS_NS['Control']), graph)
-    self.assertIn((constants.DIGITAL_BUILDINGS_NS['Control'],
-                   rdflib.RDFS.subClassOf, application_class[0]), graph)
-    self.assertIn((constants.DIGITAL_BUILDINGS_NS['Monitoring'],
-                   rdflib.RDFS.subClassOf, application_class[0]), graph)
+        (clazz_object[0], rdflib.RDFS.subClassOf, application_class[0]), graph
+    )
+    self.assertIn(
+        (
+            clazz_object[0],
+            rdflib.RDFS.subClassOf,
+            constants.DIGITAL_BUILDINGS_NS['Control'],
+        ),
+        graph,
+    )
+    self.assertIn(
+        (
+            clazz_object[0],
+            rdflib.RDFS.subClassOf,
+            constants.DIGITAL_BUILDINGS_NS['Control'],
+        ),
+        graph,
+    )
+    self.assertIn(
+        (
+            constants.DIGITAL_BUILDINGS_NS['Control'],
+            rdflib.RDFS.subClassOf,
+            application_class[0],
+        ),
+        graph,
+    )
+    self.assertIn(
+        (
+            constants.DIGITAL_BUILDINGS_NS['Monitoring'],
+            rdflib.RDFS.subClassOf,
+            application_class[0],
+        ),
+        graph,
+    )
 
   def testCreatesStandardFieldNameCompositionInGraph(self):
     # Prepare data
@@ -229,26 +314,31 @@ class RdfHelperLibTest(absltest.TestCase):
     is_composed_of_property = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['isComposedOf'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=graph)
+        graph=graph,
+    )
     point_type = infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Point_type'], graph=graph)
+        identifier=constants.SUBFIELDS_NS['Point_type'], graph=graph
+    )
 
     infixowl.Class(
         identifier=constants.SUBFIELDS_NS['Sensor'],
         graph=graph,
-        subClassOf=[point_type])
+        subClassOf=[point_type],
+    )
 
     field = infixowl.Class(identifier=constants.FIELDS_NS['Field'], graph=graph)
 
     infixowl.Class(
         identifier=constants.FIELDS_NS['Cooling_air_flowrate_sensor_1'],
         graph=graph,
-        subClassOf=[field])
+        subClassOf=[field],
+    )
     graph = rdf_helper.CreatesStandardFieldNameCompositionInGraph(
         list_composition=list_composition,
         standard_field_name=standard_field_name,
         is_composed_of_property=is_composed_of_property,
-        graph=graph)
+        graph=graph,
+    )
 
     # Build a second graph that is expected
     expected_graph = rdflib.Graph()
@@ -258,27 +348,35 @@ class RdfHelperLibTest(absltest.TestCase):
     namespace_manager_expected.bind('db', constants.DIGITAL_BUILDINGS_NS)
     expected_graph.namespace_manager = namespace_manager_expected
     field_expected = infixowl.Class(
-        identifier=constants.FIELDS_NS['Field'], graph=expected_graph)
+        identifier=constants.FIELDS_NS['Field'], graph=expected_graph
+    )
     point_type_expected = infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Point_type'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Point_type'], graph=expected_graph
+    )
     cooling_expected = infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Cooling'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Cooling'], graph=expected_graph
+    )
     air_expected = infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Air'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Air'], graph=expected_graph
+    )
     flowrate_expected = infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Flowrate'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Flowrate'], graph=expected_graph
+    )
     sensor_expected = infixowl.Class(
         identifier=constants.SUBFIELDS_NS['Sensor'],
         graph=expected_graph,
-        subClassOf=[point_type_expected])
+        subClassOf=[point_type_expected],
+    )
     sfn_expected = infixowl.Class(
         identifier=constants.FIELDS_NS['Cooling_air_flowrate_sensor_1'],
         graph=expected_graph,
-        subClassOf=[field_expected])
+        subClassOf=[field_expected],
+    )
     is_composed_of_property_expected = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['isComposedOf'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
 
     concat = sensor_expected & flowrate_expected
     concat += air_expected
@@ -304,9 +402,11 @@ class RdfHelperLibTest(absltest.TestCase):
     uses_property = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=graph)
+        graph=graph,
+    )
     class_owl = infixowl.Class(
-        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=graph
+    )
 
     graph = rdf_helper.CreateCompositionInGraph(
         composition_operator='&',
@@ -314,7 +414,8 @@ class RdfHelperLibTest(absltest.TestCase):
         restriction=infixowl.only,
         composition_property=uses_property,
         class_owl=class_owl,
-        graph=graph)
+        graph=graph,
+    )
 
     # Build a second graph that is expected
     expected_graph = rdflib.Graph()
@@ -324,19 +425,24 @@ class RdfHelperLibTest(absltest.TestCase):
     namespace_manager_expected.bind('db', constants.DIGITAL_BUILDINGS_NS)
     expected_graph.namespace_manager = namespace_manager_expected
     class_owl_expected = infixowl.Class(
-        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=expected_graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=expected_graph
+    )
 
     sfn1_expected = infixowl.Class(
-        identifier=constants
-        .DIGITAL_BUILDINGS_NS['Cooling_air_flowrate_sensor_1'],
-        graph=expected_graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS[
+            'Cooling_air_flowrate_sensor_1'
+        ],
+        graph=expected_graph,
+    )
     sfn2_expected = infixowl.Class(
         identifier=constants.DIGITAL_BUILDINGS_NS['Run_command'],
-        graph=expected_graph)
+        graph=expected_graph,
+    )
     uses_property_expected = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
 
     concat = sfn1_expected & sfn2_expected
     class_owl_expected.subClassOf = [
@@ -360,9 +466,11 @@ class RdfHelperLibTest(absltest.TestCase):
     uses_property = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=graph)
+        graph=graph,
+    )
     class_owl = infixowl.Class(
-        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=graph
+    )
 
     graph = rdf_helper.CreateCompositionInGraph(
         composition_operator='|',
@@ -370,7 +478,8 @@ class RdfHelperLibTest(absltest.TestCase):
         restriction=infixowl.only,
         composition_property=uses_property,
         class_owl=class_owl,
-        graph=graph)
+        graph=graph,
+    )
 
     # Build a second graph that is expected
     expected_graph = rdflib.Graph()
@@ -380,19 +489,24 @@ class RdfHelperLibTest(absltest.TestCase):
     namespace_manager_expected.bind('db', constants.DIGITAL_BUILDINGS_NS)
     expected_graph.namespace_manager = namespace_manager_expected
     class_owl_expected = infixowl.Class(
-        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=expected_graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=expected_graph
+    )
 
     sfn1_expected = infixowl.Class(
-        identifier=constants
-        .DIGITAL_BUILDINGS_NS['Cooling_air_flowrate_sensor_1'],
-        graph=expected_graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS[
+            'Cooling_air_flowrate_sensor_1'
+        ],
+        graph=expected_graph,
+    )
     sfn2_expected = infixowl.Class(
         identifier=constants.DIGITAL_BUILDINGS_NS['Run_command'],
-        graph=expected_graph)
+        graph=expected_graph,
+    )
     uses_property_expected = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
 
     concat = sfn1_expected | sfn2_expected
     class_owl_expected.subClassOf = [
@@ -416,9 +530,11 @@ class RdfHelperLibTest(absltest.TestCase):
     uses_property = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=graph)
+        graph=graph,
+    )
     class_owl = infixowl.Class(
-        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=graph
+    )
 
     graph = rdf_helper.CreateCompositionInGraph(
         composition_operator='|',
@@ -426,7 +542,8 @@ class RdfHelperLibTest(absltest.TestCase):
         restriction=infixowl.some,
         composition_property=uses_property,
         class_owl=class_owl,
-        graph=graph)
+        graph=graph,
+    )
 
     # Build a second graph that is expected
     expected_graph = rdflib.Graph()
@@ -436,19 +553,24 @@ class RdfHelperLibTest(absltest.TestCase):
     namespace_manager_expected.bind('db', constants.DIGITAL_BUILDINGS_NS)
     expected_graph.namespace_manager = namespace_manager_expected
     class_owl_expected = infixowl.Class(
-        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=expected_graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS['DFSS'], graph=expected_graph
+    )
 
     sfn1_expected = infixowl.Class(
-        identifier=constants
-        .DIGITAL_BUILDINGS_NS['Cooling_air_flowrate_sensor_1'],
-        graph=expected_graph)
+        identifier=constants.DIGITAL_BUILDINGS_NS[
+            'Cooling_air_flowrate_sensor_1'
+        ],
+        graph=expected_graph,
+    )
     sfn2_expected = infixowl.Class(
         identifier=constants.DIGITAL_BUILDINGS_NS['Run_command'],
-        graph=expected_graph)
+        graph=expected_graph,
+    )
     uses_property_expected = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
 
     concat = sfn1_expected | sfn2_expected
     class_owl_expected.subClassOf = [

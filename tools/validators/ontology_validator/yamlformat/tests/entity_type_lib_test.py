@@ -46,7 +46,8 @@ class EntityTypeLibTest(absltest.TestCase):
     namespace.AddFinding(findings_lib.InvalidTypenameError('two', context))
     # This will generate a MissingDescriptionWarning on itself
     entity_type = entity_type_lib.EntityType(
-        typename='one', filepath=filepath, guid=_GUID_1)
+        typename='one', filepath=filepath, guid=_GUID_1
+    )
     namespace.InsertType(entity_type)
 
     types_universe = entity_type_lib.EntityTypeUniverse([folder])
@@ -57,8 +58,9 @@ class EntityTypeLibTest(absltest.TestCase):
         types_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
             findings_lib.InvalidTypenameError,
-            findings_lib.MissingEntityTypeDescriptionWarning
-        ]))
+            findings_lib.MissingEntityTypeDescriptionWarning,
+        ])
+    )
     self.assertFalse(types_universe.IsValid())
 
   def testEntityTypeUniverseFindsDupGuids(self):
@@ -67,13 +69,16 @@ class EntityTypeLibTest(absltest.TestCase):
     namespace = folder.local_namespace
 
     entity_type1 = entity_type_lib.EntityType(
-        typename='one', filepath=filepath, description='hi', guid=_GUID_1)
+        typename='one', filepath=filepath, description='hi', guid=_GUID_1
+    )
     namespace.InsertType(entity_type1)
     entity_type1a = entity_type_lib.EntityType(
-        typename='oneA', filepath=filepath, description='hi', guid=_GUID_1)
+        typename='oneA', filepath=filepath, description='hi', guid=_GUID_1
+    )
     namespace.InsertType(entity_type1a)
     entity_type2 = entity_type_lib.EntityType(
-        typename='two', filepath=filepath, description='hi', guid=_GUID_2)
+        typename='two', filepath=filepath, description='hi', guid=_GUID_2
+    )
     namespace.InsertType(entity_type2)
 
     types_universe = entity_type_lib.EntityTypeUniverse([folder])
@@ -81,11 +86,14 @@ class EntityTypeLibTest(absltest.TestCase):
     findings = types_universe.GetFindings()
     self.assertLen(findings, 2)
     self.assertTrue(
-        types_universe.HasFindingTypes([findings_lib.DuplicateGuidsError]))
+        types_universe.HasFindingTypes([findings_lib.DuplicateGuidsError])
+    )
     self.assertTrue(
-        entity_type1.HasFindingTypes([findings_lib.DuplicateGuidsError]))
+        entity_type1.HasFindingTypes([findings_lib.DuplicateGuidsError])
+    )
     self.assertTrue(
-        entity_type1a.HasFindingTypes([findings_lib.DuplicateGuidsError]))
+        entity_type1a.HasFindingTypes([findings_lib.DuplicateGuidsError])
+    )
     self.assertFalse(entity_type2.GetFindings())
 
   def testEntityTypeUniverseFindsInvalidGuids(self):
@@ -94,10 +102,12 @@ class EntityTypeLibTest(absltest.TestCase):
     namespace = folder.local_namespace
 
     entity_type1 = entity_type_lib.EntityType(
-        typename='one', filepath=filepath, description='hi', guid='1')
+        typename='one', filepath=filepath, description='hi', guid='1'
+    )
     namespace.InsertType(entity_type1)
     entity_type2 = entity_type_lib.EntityType(
-        typename='two', filepath=filepath, description='hi', guid=_GUID_1)
+        typename='two', filepath=filepath, description='hi', guid=_GUID_1
+    )
     namespace.InsertType(entity_type2)
 
     types_universe = entity_type_lib.EntityTypeUniverse([folder])
@@ -105,9 +115,11 @@ class EntityTypeLibTest(absltest.TestCase):
     findings = types_universe.GetFindings()
     self.assertLen(findings, 1)
     self.assertTrue(
-        types_universe.HasFindingTypes([findings_lib.InvalidTypeGuidError]))
+        types_universe.HasFindingTypes([findings_lib.InvalidTypeGuidError])
+    )
     self.assertTrue(
-        entity_type1.HasFindingTypes([findings_lib.InvalidTypeGuidError]))
+        entity_type1.HasFindingTypes([findings_lib.InvalidTypeGuidError])
+    )
     self.assertFalse(entity_type2.GetFindings())
 
   def testEntityTypeUniverseFindsMissingGuids(self):
@@ -116,10 +128,12 @@ class EntityTypeLibTest(absltest.TestCase):
     namespace = folder.local_namespace
 
     entity_type1 = entity_type_lib.EntityType(
-        typename='one', filepath=filepath, description='hi', guid=_GUID_1)
+        typename='one', filepath=filepath, description='hi', guid=_GUID_1
+    )
     namespace.InsertType(entity_type1)
     entity_type2 = entity_type_lib.EntityType(
-        typename='two', filepath=filepath, description='hi')
+        typename='two', filepath=filepath, description='hi'
+    )
     namespace.InsertType(entity_type2)
 
     types_universe = entity_type_lib.EntityTypeUniverse([folder])
@@ -127,9 +141,11 @@ class EntityTypeLibTest(absltest.TestCase):
     findings = types_universe.GetFindings()
     self.assertLen(findings, 1)
     self.assertTrue(
-        types_universe.HasFindingTypes([findings_lib.MissingTypeGuidError]))
+        types_universe.HasFindingTypes([findings_lib.MissingTypeGuidError])
+    )
     self.assertTrue(
-        entity_type2.HasFindingTypes([findings_lib.MissingTypeGuidError]))
+        entity_type2.HasFindingTypes([findings_lib.MissingTypeGuidError])
+    )
     self.assertFalse(entity_type1.GetFindings())
 
   def testEntityTypeUniverseHandlesNamespaceMovesWithGuids(self):
@@ -142,10 +158,12 @@ class EntityTypeLibTest(absltest.TestCase):
     namespace2 = folder2.local_namespace
 
     entity_type1 = entity_type_lib.EntityType(
-        typename='one', filepath=filepath, description='hi', guid=_GUID_1)
+        typename='one', filepath=filepath, description='hi', guid=_GUID_1
+    )
     namespace.InsertType(entity_type1)
     entity_type1a = entity_type_lib.EntityType(
-        typename='oneA', filepath=filepath2, description='hi', guid=_GUID_1)
+        typename='oneA', filepath=filepath2, description='hi', guid=_GUID_1
+    )
     namespace2.InsertType(entity_type1a)
 
     types_universe = entity_type_lib.EntityTypeUniverse([folder, folder2])
@@ -153,11 +171,14 @@ class EntityTypeLibTest(absltest.TestCase):
     findings = types_universe.GetFindings()
     self.assertLen(findings, 2)
     self.assertTrue(
-        types_universe.HasFindingTypes([findings_lib.DuplicateGuidsError]))
+        types_universe.HasFindingTypes([findings_lib.DuplicateGuidsError])
+    )
     self.assertTrue(
-        entity_type1.HasFindingTypes([findings_lib.DuplicateGuidsError]))
+        entity_type1.HasFindingTypes([findings_lib.DuplicateGuidsError])
+    )
     self.assertTrue(
-        entity_type1a.HasFindingTypes([findings_lib.DuplicateGuidsError]))
+        entity_type1a.HasFindingTypes([findings_lib.DuplicateGuidsError])
+    )
 
   # -------------------------------------------------------------------------- #
   # Tests for EntityTypeFolder class
@@ -192,13 +213,14 @@ class EntityTypeLibTest(absltest.TestCase):
             'description': 'feline animal',
             'uses': ['meow', 'claws'],
             'implements': ['fuzzy'],
-            'notakey': 'stuff'
+            'notakey': 'stuff',
         }
     }
 
     type_folder.AddFromConfig([yaml_doc], good_filepath)
     self.assertTrue(
-        type_folder.HasFindingTypes([findings_lib.UnrecognizedKeyError]))
+        type_folder.HasFindingTypes([findings_lib.UnrecognizedKeyError])
+    )
 
   def testAddFromConfig(self):
     folderpath = 'ANIMAL/entity_types'
@@ -214,7 +236,7 @@ class EntityTypeLibTest(absltest.TestCase):
             'description': 'feline animal',
             'uses': ['meow', 'claws'],
             'opt_uses': ['cuddle'],
-            'implements': ['fuzzy']
+            'implements': ['fuzzy'],
         }
     }
 
@@ -223,8 +245,9 @@ class EntityTypeLibTest(absltest.TestCase):
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
     new_type = type_folder.local_namespace.valid_types_map['cat']
-    self.assertCountEqual(['/meow', '/claws', '/cuddle'],
-                          new_type.local_field_names)
+    self.assertCountEqual(
+        ['/meow', '/claws', '/cuddle'], new_type.local_field_names
+    )
     self.assertCountEqual(['fuzzy'], new_type.unqualified_parent_names)
     self.assertEqual('feline animal', new_type.description)
     self.assertEqual(good_filepath, new_type.file_context.filepath)
@@ -238,14 +261,15 @@ class EntityTypeLibTest(absltest.TestCase):
     type_folder.AddFromConfig([], bad_typepath)
     self.assertTrue(
         type_folder.HasFindingTypes(
-            [findings_lib.InconsistentFileLocationError]))
+            [findings_lib.InconsistentFileLocationError]
+        )
+    )
 
   def testAddGoodType(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
         '': [field_lib.Field('animal')],
-        'ANIMAL': [field_lib.Field('meow'),
-                   field_lib.Field('claws')]
+        'ANIMAL': [field_lib.Field('meow'), field_lib.Field('claws')],
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -257,23 +281,25 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', 'ANIMAL/claws', '/animal']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     type_folder._AddType(entity_type)
 
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
-    self.assertIn(entity_type.typename,
-                  type_folder.local_namespace.valid_types_map)
+    self.assertIn(
+        entity_type.typename, type_folder.local_namespace.valid_types_map
+    )
     self.assertEqual(
         type_folder.local_namespace.valid_types_map.get(entity_type.typename),
-        entity_type)
+        entity_type,
+    )
 
   def testAddGoodTypeWithIncrementedFields(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
         '': [field_lib.Field('animal')],
-        'ANIMAL': [field_lib.Field('meow'),
-                   field_lib.Field('claws')]
+        'ANIMAL': [field_lib.Field('meow'), field_lib.Field('claws')],
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -286,24 +312,28 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(
-            ['ANIMAL/meow_1', 'ANIMAL/claws_1_1', '/animal_2_1']),
-        guid=_GUID_1)
+            ['ANIMAL/meow_1', 'ANIMAL/claws_1_1', '/animal_2_1']
+        ),
+        guid=_GUID_1,
+    )
     type_folder._AddType(entity_type)
 
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
-    self.assertIn(entity_type.typename,
-                  type_folder.local_namespace.valid_types_map)
+    self.assertIn(
+        entity_type.typename, type_folder.local_namespace.valid_types_map
+    )
     self.assertEqual(
         type_folder.local_namespace.valid_types_map.get(entity_type.typename),
-        entity_type)
+        entity_type,
+    )
 
   def testAddTypeWithNamespacedField(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
         '': [field_lib.Field('animal')],
         'ANIMAL': [field_lib.Field('meow')],
-        'ATTACK': [field_lib.Field('claws')]
+        'ATTACK': [field_lib.Field('claws')],
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -317,22 +347,25 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', 'ATTACK/claws', '/animal']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     type_folder._AddType(entity_type)
 
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
-    self.assertIn(entity_type.typename,
-                  type_folder.local_namespace.valid_types_map)
+    self.assertIn(
+        entity_type.typename, type_folder.local_namespace.valid_types_map
+    )
     self.assertEqual(
         type_folder.local_namespace.valid_types_map.get(entity_type.typename),
-        entity_type)
+        entity_type,
+    )
 
   def testAddTypeUndefinedFields(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
         '': [field_lib.Field('animal')],
-        'ANIMAL': [field_lib.Field('meow')]
+        'ANIMAL': [field_lib.Field('meow')],
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -346,18 +379,21 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', 'ANIMAL/claws', '/animal']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     type_folder._AddType(entity_type)
     self.assertTrue(
         type_folder.local_namespace.HasFindingTypes(
-            [findings_lib.UndefinedFieldError]))
+            [findings_lib.UndefinedFieldError]
+        )
+    )
     self.assertFalse(type_folder.local_namespace.valid_types_map)
 
   def testAddMultipleTypes(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
         '': [field_lib.Field('animal')],
-        'ANIMAL': [field_lib.Field('meow')]
+        'ANIMAL': [field_lib.Field('meow')],
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -370,32 +406,38 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', 'ANIMAL/claws', '/animal']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     # good entity type
     good_type = entity_type_lib.EntityType(
         filepath=rel_typepath,
         typename='kitty',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', '/animal']),
-        guid=_GUID_2)
+        guid=_GUID_2,
+    )
     type_folder._AddType(good_type)
     type_folder._AddType(bad_type)
 
     self.assertTrue(
         type_folder.local_namespace.HasFindingTypes(
-            [findings_lib.UndefinedFieldError]))
+            [findings_lib.UndefinedFieldError]
+        )
+    )
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
-    self.assertIn(good_type.typename,
-                  type_folder.local_namespace.valid_types_map)
+    self.assertIn(
+        good_type.typename, type_folder.local_namespace.valid_types_map
+    )
     self.assertEqual(
         type_folder.local_namespace.valid_types_map.get(good_type.typename),
-        good_type)
+        good_type,
+    )
 
   def testAddDuplicateTypes(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
         '': [field_lib.Field('animal')],
-        'ANIMAL': [field_lib.Field('meow')]
+        'ANIMAL': [field_lib.Field('meow')],
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -408,27 +450,33 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='kitty',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', '/animal']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     # duplicate type
     dup_type = entity_type_lib.EntityType(
         filepath=rel_typepath,
         typename='kitty',
         description='feline animal',
         local_field_tuples=_FS(['ANIMAL/meow', '/animal']),
-        guid=_GUID_2)
+        guid=_GUID_2,
+    )
 
     type_folder._AddType(entity_type)
     type_folder._AddType(dup_type)
 
     self.assertTrue(
         type_folder.local_namespace.HasFindingTypes(
-            [findings_lib.DuplicateEntityTypeDefinitionError]))
+            [findings_lib.DuplicateEntityTypeDefinitionError]
+        )
+    )
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
-    self.assertIn(entity_type.typename,
-                  type_folder.local_namespace.valid_types_map)
+    self.assertIn(
+        entity_type.typename, type_folder.local_namespace.valid_types_map
+    )
     self.assertEqual(
         type_folder.local_namespace.valid_types_map.get(entity_type.typename),
-        entity_type)
+        entity_type,
+    )
 
   # -------------------------------------------------------------------------- #
   # Tests for EntityType class
@@ -441,7 +489,8 @@ class EntityTypeLibTest(absltest.TestCase):
         description='canine animal',
         local_field_tuples=_FS(['/woof', '/wag']),
         parents=['wolf', 'ANIMAL', 'dingo'],
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     self.assertFalse(entity_type.GetFindings())
     self.assertTrue(entity_type.IsValid())
@@ -455,14 +504,16 @@ class EntityTypeLibTest(absltest.TestCase):
         local_field_tuples=[
             _F('/meow', True),
             _F('/claws', False),
-            _F('/meow', False)
+            _F('/meow', False),
         ],
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.DuplicateFieldError]))
+        entity_type.HasFindingTypes([findings_lib.DuplicateFieldError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testDuplicateFieldsWithDifferentCaps(self):
@@ -471,12 +522,14 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(['/mEow', '/claws', '/meow']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.DuplicateFieldError]))
+        entity_type.HasFindingTypes([findings_lib.DuplicateFieldError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testBadFieldFormat(self):
@@ -485,13 +538,14 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='cat',
         description='feline animal',
         local_field_tuples=_FS(['/meow', 'NS/wrong/claws']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.UnrecognizedFieldFormatError
-                                    ]))
+        entity_type.HasFindingTypes([findings_lib.UnrecognizedFieldFormatError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testDuplicateParents(self):
@@ -500,12 +554,14 @@ class EntityTypeLibTest(absltest.TestCase):
         typename='dog',
         description='canine animal',
         parents=['wolf', 'wolf'],
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.DuplicateParentError]))
+        entity_type.HasFindingTypes([findings_lib.DuplicateParentError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testMissingTypename(self):
@@ -513,12 +569,14 @@ class EntityTypeLibTest(absltest.TestCase):
         filepath='path/to/ANIMAL/mammal',
         description='canine animal',
         local_field_tuples=_FS(['/woof', '/wag']),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.MissingTypenameError]))
+        entity_type.HasFindingTypes([findings_lib.MissingTypenameError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testIllegalTypenameType(self):
@@ -526,23 +584,28 @@ class EntityTypeLibTest(absltest.TestCase):
         filepath='path/to/ANIMAL/mammal',
         typename=True,
         description='false',
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.IllegalKeyTypeError]))
+        entity_type.HasFindingTypes([findings_lib.IllegalKeyTypeError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testMissingDescription(self):
     entity_type = entity_type_lib.EntityType(
-        filepath='path/to/ANIMAL/mammal', typename='dog', guid=_GUID_1)
+        filepath='path/to/ANIMAL/mammal', typename='dog', guid=_GUID_1
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
         entity_type.HasFindingTypes(
-            [findings_lib.MissingEntityTypeDescriptionWarning]))
+            [findings_lib.MissingEntityTypeDescriptionWarning]
+        )
+    )
     self.assertTrue(entity_type.IsValid())
 
   def testIllegalAbstractPassthroughType(self):
@@ -552,13 +615,14 @@ class EntityTypeLibTest(absltest.TestCase):
         description='canine animal',
         is_abstract=True,
         allow_undefined_fields=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.AbstractPassthroughTypeError
-                                    ]))
+        entity_type.HasFindingTypes([findings_lib.AbstractPassthroughTypeError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testInheritedFieldsSet(self):
@@ -568,12 +632,14 @@ class EntityTypeLibTest(absltest.TestCase):
         description='canine animal',
         local_field_tuples=_FS(['/woof', '/wag']),
         inherited_fields_expanded=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.InheritedFieldsSetError]))
+        entity_type.HasFindingTypes([findings_lib.InheritedFieldsSetError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testMultipleErrors(self):
@@ -582,28 +648,34 @@ class EntityTypeLibTest(absltest.TestCase):
         description='canine animal',
         local_field_tuples=_FS(['/woof', '/wag', '/woof']),
         parents=['wolf', 'wolf'],
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     errors = entity_type.GetFindings()
     self.assertLen(errors, 3)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.MissingTypenameError]))
+        entity_type.HasFindingTypes([findings_lib.MissingTypenameError])
+    )
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.DuplicateFieldError]))
+        entity_type.HasFindingTypes([findings_lib.DuplicateFieldError])
+    )
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.DuplicateParentError]))
+        entity_type.HasFindingTypes([findings_lib.DuplicateParentError])
+    )
     self.assertFalse(entity_type.IsValid())
 
   def testParseFieldWithIncrement(self):
     field_name, increment = entity_type_lib.SeparateFieldIncrement(
-        'zone_occupancy_status_1')
+        'zone_occupancy_status_1'
+    )
 
     self.assertEqual(field_name, 'zone_occupancy_status')
     self.assertEqual(increment, '_1')
 
   def testParseFieldWithoutIncrement(self):
     field_name, increment = entity_type_lib.SeparateFieldIncrement(
-        'zone_occupancy_status')
+        'zone_occupancy_status'
+    )
 
     self.assertEqual(field_name, 'zone_occupancy_status')
     self.assertEqual(increment, '')
@@ -614,7 +686,8 @@ class EntityTypeLibTest(absltest.TestCase):
         description='canine animal',
         local_field_tuples=_FS(['HAPPY/wag']),
         inherited_fields_expanded=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     entity_type.inherited_field_names['/woof'] = _F('/woof')
 
     self.assertTrue(entity_type.HasField('HAPPY/wag'))
@@ -628,7 +701,8 @@ class EntityTypeLibTest(absltest.TestCase):
         local_field_tuples=_FS(['HAPPY/wag', '/woof', 'ANIMALS/fuzzy']),
         inherited_fields_expanded=True,
         namespace=entity_type_lib.TypeNamespace('ANIMALS'),
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
 
     self.assertTrue(entity_type.HasFieldAsWritten('fuzzy'))
     self.assertTrue(entity_type.HasFieldAsWritten('ANIMALS/fuzzy'))
@@ -646,22 +720,27 @@ class EntityTypeLibTest(absltest.TestCase):
         local_field_tuples=_FS(['HAPPY/wag', '/woof', 'ANIMALS/fuzzy']),
         inherited_fields_expanded=True,
         namespace=entity_type_lib.TypeNamespace('ANIMALS'),
-        guid=_GUID_1)
-    self.assertEqual('fuzzy',
-                     entity_type.GetFieldFromConfigText('fuzzy').field.field)
+        guid=_GUID_1,
+    )
     self.assertEqual(
-        'fuzzy',
-        entity_type.GetFieldFromConfigText('ANIMALS/fuzzy').field.field)
+        'fuzzy', entity_type.GetFieldFromConfigText('fuzzy').field.field
+    )
     self.assertEqual(
-        'wag',
-        entity_type.GetFieldFromConfigText('HAPPY/wag').field.field)
-    self.assertEqual('woof',
-                     entity_type.GetFieldFromConfigText('woof').field.field)
-    self.assertEqual('woof',
-                     entity_type.GetFieldFromConfigText('/woof').field.field)
+        'fuzzy', entity_type.GetFieldFromConfigText('ANIMALS/fuzzy').field.field
+    )
+    self.assertEqual(
+        'wag', entity_type.GetFieldFromConfigText('HAPPY/wag').field.field
+    )
+    self.assertEqual(
+        'woof', entity_type.GetFieldFromConfigText('woof').field.field
+    )
+    self.assertEqual(
+        'woof', entity_type.GetFieldFromConfigText('/woof').field.field
+    )
 
     self.assertIsNone(entity_type.GetFieldFromConfigText('/wag'))
     self.assertIsNone(entity_type.GetFieldFromConfigText('wag'))
+
 
 if __name__ == '__main__':
   absltest.main()

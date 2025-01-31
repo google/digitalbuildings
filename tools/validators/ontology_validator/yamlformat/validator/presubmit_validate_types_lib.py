@@ -43,9 +43,17 @@ from yamlformat.validator import unit_lib
 # All attributes should be tuples.
 # Each property is a tuple of base_lib.PathParts tuples
 
-Config = NamedTuple('Config', [('fields', tuple), ('subfields', tuple),
-                               ('states', tuple), ('type_defs', tuple),
-                               ('units', tuple), ('connections', tuple)])
+Config = NamedTuple(
+    'Config',
+    [
+        ('fields', tuple),
+        ('subfields', tuple),
+        ('states', tuple),
+        ('type_defs', tuple),
+        ('units', tuple),
+        ('connections', tuple),
+    ],
+)
 
 
 class ConfigUniverse(findings_lib.Findings):
@@ -61,8 +69,15 @@ class ConfigUniverse(findings_lib.Findings):
     unit_universe: config for units
   """
 
-  def __init__(self, entity_type_universe, field_universe, subfield_universe,
-               state_universe, connection_universe, unit_universe):
+  def __init__(
+      self,
+      entity_type_universe,
+      field_universe,
+      subfield_universe,
+      state_universe,
+      connection_universe,
+      unit_universe,
+  ):
     super().__init__()
     self.entity_type_universe = entity_type_universe
     self.field_universe = field_universe
@@ -144,8 +159,9 @@ class ConfigUniverse(findings_lib.Findings):
       return None
     return self.entity_type_universe.GetEntityType(namespace_name, typename)
 
-  def GetUnitsForMeasurement(self,
-                             as_written_field_name: str) -> Optional[List[str]]:
+  def GetUnitsForMeasurement(
+      self, as_written_field_name: str
+  ) -> Optional[List[str]]:
     """Returns a List of possible unit strings by a measurement_field.
 
     This method is not namespace aware because units are currently only
@@ -154,6 +170,7 @@ class ConfigUniverse(findings_lib.Findings):
     Args:
       as_written_field_name: qualified or unqualified field name. Can be
         incremented.
+
     Returns: a string representing the unit or None if units are defined.
     """
     if not self.unit_universe:
@@ -164,7 +181,12 @@ class ConfigUniverse(findings_lib.Findings):
       subfields.pop()
 
     if subfields[-1] not in [
-        'status', 'label', 'mode', 'counter', 'timestamp', 'alarm'
+        'status',
+        'label',
+        'mode',
+        'counter',
+        'timestamp',
+        'alarm',
     ]:
       # access measurement subfield.  In case of a two-subfield field with a
       # namespace attached, chop off the namespace.
@@ -198,9 +220,9 @@ def BuildUniverse(config, require_type_guids=True):
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
-    require_type_guids: whether type guids are required to be present.
-       This is needed to bypass write permission issues on the ontology
-       validator GitHub Action.
+    require_type_guids: whether type guids are required to be present. This is
+      needed to bypass write permission issues on the ontology validator GitHub
+      Action.
 
   Returns:
      A ConfigUniverse that is fully populated with all content specified in the
@@ -215,7 +237,8 @@ def BuildUniverse(config, require_type_guids=True):
   connections_universe = None
   if config.connections:
     connection_folders = parse.ParseConnectionFoldersFromFiles(
-        config.connections)
+        config.connections
+    )
     connections_universe = connection_lib.ConnectionUniverse(connection_folders)
 
   # Parse subfield files
@@ -227,8 +250,9 @@ def BuildUniverse(config, require_type_guids=True):
   # Parse unit files
   unit_universe = None
   if config.units:
-    unit_folders = parse.ParseUnitFoldersFromFiles(config.units,
-                                                   subfields_universe)
+    unit_folders = parse.ParseUnitFoldersFromFiles(
+        config.units, subfields_universe
+    )
     unit_universe = unit_lib.UnitUniverse(unit_folders)
     if subfields_universe:
       subfields_universe.ValidateUnits(unit_universe)
@@ -236,20 +260,26 @@ def BuildUniverse(config, require_type_guids=True):
   # Parse fields files
   fields_universe = None
   if config.fields:
-    field_folders = parse.ParseFieldFoldersFromFiles(config.fields,
-                                                     subfields_universe,
-                                                     state_universe)
+    field_folders = parse.ParseFieldFoldersFromFiles(
+        config.fields, subfields_universe, state_universe
+    )
     fields_universe = field_lib.FieldUniverse(field_folders)
 
   # Parse typedef files
-  type_folders = parse.ParseTypeFoldersFromFiles(config.type_defs,
-                                                 fields_universe,
-                                                 require_type_guids)
+  type_folders = parse.ParseTypeFoldersFromFiles(
+      config.type_defs, fields_universe, require_type_guids
+  )
   types_universe = entity_type_lib.EntityTypeUniverse(type_folders)
 
   # return findings_list, result_namespaces
-  return ConfigUniverse(types_universe, fields_universe, subfields_universe,
-                        state_universe, connections_universe, unit_universe)
+  return ConfigUniverse(
+      types_universe,
+      fields_universe,
+      subfields_universe,
+      state_universe,
+      connections_universe,
+      unit_universe,
+  )
 
 
 def OrganizeFindingsByFile(findings_list):
@@ -283,7 +313,7 @@ def _AddPrefix(path, prefix):
 
 def _RemovePrefix(path, prefix):
   """Removes prefix from path if path starts with prefix. Returns path."""
-  return path[len(prefix):] if path.startswith(prefix) else path
+  return path[len(prefix) :] if path.startswith(prefix) else path
 
 
 def SeparateConfigFiles(path_tuples):
@@ -337,15 +367,18 @@ def SeparateConfigFiles(path_tuples):
       states=tuple(states),
       type_defs=tuple(type_defs),
       units=tuple(units),
-      connections=tuple(connections))
+      connections=tuple(connections),
+  )
 
 
 # pylint: disable=consider-using-f-string
-def _ValidateConfigInner(unmodified,
-                         modified_base,
-                         modified_client,
-                         interactive=False,
-                         require_type_guids=True):
+def _ValidateConfigInner(
+    unmodified,
+    modified_base,
+    modified_client,
+    interactive=False,
+    require_type_guids=True,
+):
   """Runs config validation and finding filtration.
 
   Args:
@@ -370,13 +403,15 @@ def _ValidateConfigInner(unmodified,
   end_time = time.time()
 
   if interactive:
-    print('New universe build: {0} seconds.\n'.format(
-        str(end_time - start_time)))
+    print(
+        'New universe build: {0} seconds.\n'.format(str(end_time - start_time))
+    )
     start_time = end_time
 
   if not new_universe.IsValid():
     findings = [
-        f for f in new_universe.GetFindings()
+        f
+        for f in new_universe.GetFindings()
         if isinstance(f, findings_lib.ValidationError)
     ]
     return findings, new_universe
@@ -384,11 +419,13 @@ def _ValidateConfigInner(unmodified,
   # Validate across the type namespaces. Short-circuit if validation fails and
   # return any breaking findings.
   cl_validator = namespace_validator.NamespaceValidator(
-      new_universe.GetEntityTypeNamespaces())
+      new_universe.GetEntityTypeNamespaces()
+  )
   if not cl_validator.IsValid():
     universe_errors = []
     universe_errors = [
-        f for f in new_universe.GetFindings()
+        f
+        for f in new_universe.GetFindings()
         if isinstance(f, findings_lib.ValidationError)
     ]
     # Technically there should never be universe errors if we get here. Better
@@ -426,8 +463,9 @@ def _ValidateConfigInner(unmodified,
     print('Type analysis: {0} seconds.\n'.format(str(end_time - start_time)))
     start_time = end_time
 
-  CheckBackwardsCompatibility(new_universe.entity_type_universe,
-                              old_universe.entity_type_universe)
+  CheckBackwardsCompatibility(
+      new_universe.entity_type_universe, old_universe.entity_type_universe
+  )
 
   if interactive:
     end_time = time.time()
@@ -438,10 +476,12 @@ def _ValidateConfigInner(unmodified,
   # cl_path_set = set(cl_paths)
   if new_universe.entity_type_universe:
     _SetTypeFolderChanges(
-        list(new_universe.entity_type_universe.namespace_folder_map.values()))
+        list(new_universe.entity_type_universe.namespace_folder_map.values())
+    )
   _SetFieldChanges(new_universe.field_universe, old_universe.field_universe)
-  _SetSubfieldChanges(new_universe.subfield_universe,
-                      old_universe.subfield_universe)
+  _SetSubfieldChanges(
+      new_universe.subfield_universe, old_universe.subfield_universe
+  )
   _SetStateChanges(new_universe.state_universe, old_universe.state_universe)
   _SetUnitChanges(new_universe.unit_universe, old_universe.unit_universe)
 
@@ -563,9 +603,11 @@ def CheckBackwardsCompatibility(new_universe, old_universe):
         if old_ns.valid_types_map[old_type_name].is_abstract:
           continue
         context = findings_lib.FileContext(
-            old_universe.namespace_folder_map[ns_name].GetFolderpath())
-        finding = findings_lib.RemovedNamespaceWarning(context, ns_name,
-                                                       list(old_types))
+            old_universe.namespace_folder_map[ns_name].GetFolderpath()
+        )
+        finding = findings_lib.RemovedNamespaceWarning(
+            context, ns_name, list(old_types)
+        )
         new_universe.AddFinding(finding)
         findings.append(finding)
         break
@@ -580,12 +622,15 @@ def CheckBackwardsCompatibility(new_universe, old_universe):
       if old_type.guid:
         new_type_guid_entry = new_universe.type_guids_map.get(old_type.guid)
         if new_type_guid_entry:
-          if (new_type_guid_entry.namespace == ns_name and
-              new_type_guid_entry.typename == type_name):
+          if (
+              new_type_guid_entry.namespace == ns_name
+              and new_type_guid_entry.typename == type_name
+          ):
             new_type = new_ns_types.pop(type_name)
           else:
-            new_type = new_universe.GetEntityType(new_type_guid_entry.namespace,
-                                                  new_type_guid_entry.typename)
+            new_type = new_universe.GetEntityType(
+                new_type_guid_entry.namespace, new_type_guid_entry.typename
+            )
         else:
           # type has been removed
           if not old_type.is_abstract:
@@ -609,10 +654,12 @@ def CheckBackwardsCompatibility(new_universe, old_universe):
       old_fields = old_type.GetAllFields()
       new_fields = new_type.GetAllFields()
       if old_fields == new_fields:
-        if (new_type.description != old_type.description or
-            new_type.typename != old_type.typename or
-            new_type.is_abstract != old_type.is_abstract or
-            new_type.is_canonical != old_type.is_canonical):
+        if (
+            new_type.description != old_type.description
+            or new_type.typename != old_type.typename
+            or new_type.is_abstract != old_type.is_abstract
+            or new_type.is_canonical != old_type.is_canonical
+        ):
           new_type.SetChanged()
           new_ns.SetChanged()
         continue
@@ -654,10 +701,9 @@ def CheckBackwardsCompatibility(new_universe, old_universe):
   return findings
 
 
-def RunPresubmit(unmodified,
-                 modified_base,
-                 modified_client,
-                 require_type_guids=True):
+def RunPresubmit(
+    unmodified, modified_base, modified_client, require_type_guids=True
+):
   """Top level runner for presubmit.
 
   Args:
@@ -668,11 +714,11 @@ def RunPresubmit(unmodified,
 
   Returns:
       findings: from the validate configuration results.
-
   """
 
-  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client,
-                                     False, require_type_guids)
+  findings, _ = _ValidateConfigInner(
+      unmodified, modified_base, modified_client, False, require_type_guids
+  )
   return findings
 
 
@@ -713,7 +759,7 @@ def PrintFindings(findings, filter_text):
     findings: a list of Finding objects.
     filter_text: command line arguments. The only available argument is
       'match:<value>' which will simply perform a simple string 'contains' on
-        the finding output and cause only matching findings to print.
+      the finding output and cause only matching findings to print.
   """
   findings_by_file = OrganizeFindingsByFile(findings)
   for filepath in findings_by_file:
@@ -729,10 +775,9 @@ def PrintFindings(findings, filter_text):
   print('\n' + str(len(findings)) + ' findings.\n')
 
 
-def RunInteractive(filter_text,
-                   modified_base,
-                   modified_client,
-                   require_type_guids=True):
+def RunInteractive(
+    filter_text, modified_base, modified_client, require_type_guids=True
+):
   """Runs interactive mode when presubmit is run as a standalone application.
 
   This will run all files in the ontology as if they were new.
@@ -740,7 +785,7 @@ def RunInteractive(filter_text,
   Args:
     filter_text: command line arguments. The only available argument is
       'match:<value>' which will simply perform a simple string 'contains' on
-        the finding output and cause only matching findings to print.
+      the finding output and cause only matching findings to print.
     modified_base: paths to original versions of changed files in validation.
     modified_client: the list of modified files to validate.
     require_type_guids: whether entity type guids are required.
@@ -750,8 +795,9 @@ def RunInteractive(filter_text,
   """
   print('Analyzing...')
   start_time = time.time()
-  findings, universe = _ValidateConfigInner([], modified_base, modified_client,
-                                            True, require_type_guids)
+  findings, universe = _ValidateConfigInner(
+      [], modified_base, modified_client, True, require_type_guids
+  )
 
   PrintFindings(findings, filter_text)
 
@@ -796,13 +842,13 @@ def RunInteractive(filter_text,
 
     if not first_type or not type_dict:
       continue
-    first_field_set = (
-        set(first_type.inherited_field_names)
-        | set(first_type.local_field_names))
+    first_field_set = set(first_type.inherited_field_names) | set(
+        first_type.local_field_names
+    )
     print('Checking fields against ' + first_type_name)
     for name in type_dict:
       et = type_dict[name]
-      field_set = (set(et.inherited_field_names) | set(et.local_field_names))
+      field_set = set(et.inherited_field_names) | set(et.local_field_names)
       outer = first_field_set.symmetric_difference(field_set)
 
       if not outer:

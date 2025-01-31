@@ -37,7 +37,8 @@ class ConnectionLibTest(absltest.TestCase):
     connection_universe = connection_lib.ConnectionUniverse([folder])
 
     connections = connection_universe.GetConnectionsMap(
-        base_lib.GLOBAL_NAMESPACE)
+        base_lib.GLOBAL_NAMESPACE
+    )
 
     self.assertIn('FEEDS', connections)
     self.assertIn('CONTAINS', connections)
@@ -58,10 +59,13 @@ class ConnectionLibTest(absltest.TestCase):
     namespace = folder.local_namespace
     namespace.AddFinding(
         findings_lib.DuplicateConnectionDefinitionError(
-            namespace, connection_lib.Connection('FEEDS'), context))
+            namespace, connection_lib.Connection('FEEDS'), context
+        )
+    )
     connection = connection_lib.Connection('FEEDS', 'description')
     connection.AddFinding(
-        findings_lib.MissingConnectionDescriptionWarning(connection))
+        findings_lib.MissingConnectionDescriptionWarning(connection)
+    )
     namespace.InsertConnection(connection)
     connection_universe = connection_lib.ConnectionUniverse([folder])
 
@@ -72,8 +76,9 @@ class ConnectionLibTest(absltest.TestCase):
         connection_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
             findings_lib.DuplicateConnectionDefinitionError,
-            findings_lib.MissingConnectionDescriptionWarning
-        ]))
+            findings_lib.MissingConnectionDescriptionWarning,
+        ])
+    )
     self.assertFalse(connection_universe.IsValid())
 
   def testConnectionFolderAddValidConnection(self):
@@ -85,16 +90,16 @@ class ConnectionLibTest(absltest.TestCase):
   def testConnectionFolderNonGlobalNamespace(self):
     folder = connection_lib.ConnectionFolder(_BAD_PATH)
     self.assertTrue(
-        folder.HasFindingTypes([
-            findings_lib.InvalidConnectionNamespaceError
-        ]))
+        folder.HasFindingTypes([findings_lib.InvalidConnectionNamespaceError])
+    )
 
   def testConnectionFolderAddInvalidConnectionFails(self):
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
     folder.AddConnection(connection_lib.Connection('bad-connection', 'invalid'))
     self.assertNotIn('bad-connection', folder.local_namespace.connections)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidConnectionNameError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidConnectionNameError
+    )
 
   def testConnectionFolderAddDuplicateConnectionFails(self):
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
@@ -102,8 +107,10 @@ class ConnectionLibTest(absltest.TestCase):
     self.assertIn('FEEDS', folder.local_namespace.connections)
     self.assertEmpty(folder.local_namespace.GetFindings())
     folder.AddConnection(connection_lib.Connection('FEEDS', 'duplicate'))
-    self.assertIsInstance(folder.local_namespace.GetFindings()[0],
-                          findings_lib.DuplicateConnectionDefinitionError)
+    self.assertIsInstance(
+        folder.local_namespace.GetFindings()[0],
+        findings_lib.DuplicateConnectionDefinitionError,
+    )
 
   def testConnectionFolderAddFromConfig(self):
     doc = {
@@ -113,30 +120,36 @@ class ConnectionLibTest(absltest.TestCase):
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
     folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
 
-    self.assertCountEqual(['FEEDS', 'CONTAINS'],
-                          folder.local_namespace.connections)
+    self.assertCountEqual(
+        ['FEEDS', 'CONTAINS'], folder.local_namespace.connections
+    )
     self.assertEmpty(folder.GetFindings())
 
   def testConnectionFolderAddFromConfigNotYamlFails(self):
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
     folder.AddFromConfig([{}], f'{_GOOD_PATH}/file.txt')
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InconsistentFileLocationError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InconsistentFileLocationError
+    )
 
   def testConnectionWithIllegalKeyTypeHasFindings(self):
     connection = connection_lib.Connection(False, 'invalid')
-    self.assertIsInstance(connection.GetFindings()[0],
-                          findings_lib.IllegalKeyTypeError)
+    self.assertIsInstance(
+        connection.GetFindings()[0], findings_lib.IllegalKeyTypeError
+    )
 
   def testConnectionWithIllegalNameHasFindings(self):
     connection = connection_lib.Connection('bad-connection', 'invalid')
-    self.assertIsInstance(connection.GetFindings()[0],
-                          findings_lib.InvalidConnectionNameError)
+    self.assertIsInstance(
+        connection.GetFindings()[0], findings_lib.InvalidConnectionNameError
+    )
 
   def testConnectionWithNoDescriptionHasFindings(self):
     connection = connection_lib.Connection('FEEDS', '')
-    self.assertIsInstance(connection.GetFindings()[0],
-                          findings_lib.MissingConnectionDescriptionWarning)
+    self.assertIsInstance(
+        connection.GetFindings()[0],
+        findings_lib.MissingConnectionDescriptionWarning,
+    )
 
   def testConnectionEquals(self):
     connection_one = connection_lib.Connection('FEEDS', 'description')

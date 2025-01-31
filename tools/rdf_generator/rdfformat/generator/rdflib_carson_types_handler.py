@@ -16,14 +16,12 @@
 
 Takes as input any Carson yaml file such as VAV, PUMP, FCU, etc and populate the
 RDF graph with the yaml content.
-
 """
+from rdfformat.generator import constants
+from rdfformat.generator import rdf_helper
 import rdflib
 from rdflib import namespace
 from rdflib.extras import infixowl
-
-from rdfformat.generator import constants
-from rdfformat.generator import rdf_helper
 
 
 def GenerateGraph(yaml_object, graph, entity_namespace):
@@ -42,22 +40,28 @@ def GenerateGraph(yaml_object, graph, entity_namespace):
 
   # Ignore entities implementing the following keywords in their definition
   ignore_generation_set = {
-      "DEPRECATED", "INCOMPLETE", "IGNORE", "REMAP_REQUIRED"
+      "DEPRECATED",
+      "INCOMPLETE",
+      "IGNORE",
+      "REMAP_REQUIRED",
   }
   field = rdflib.URIRef(constants.FIELDS_NS["Field"])
   # Prepare properties to be added to the graph and not in the yaml
   uses_property = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["uses"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
   uses_property_optionally = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["usesOptional"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
   is_composed_of_property = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["isComposedOf"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
   infixowl.Class(identifier=constants.SUBFIELDS_NS["Point_type"], graph=graph)
 
   # Traverse the yaml content
@@ -79,19 +83,24 @@ def GenerateGraph(yaml_object, graph, entity_namespace):
     # Create the class
     parent = (
         entity_namespace[implements[0].capitalize()]
-        if implements is not None else namespace.OWL.Thing)
+        if implements is not None
+        else namespace.OWL.Thing
+    )
     graph, _ = rdf_helper.CreateClassInGraph(
         graph=graph,
         class_name=class_name,
         class_description=clazz_content.get("description"),
         parent_clazz=parent,
-        entity_namespace=entity_namespace)
+        entity_namespace=entity_namespace,
+    )
     # update parents only if implements is not None
     if implements is not None:
       for implements_item in implements[1:]:
-        graph.add(
-            (entity_namespace[class_name.capitalize()], rdflib.RDFS.subClassOf,
-             entity_namespace[implements_item.capitalize()]))
+        graph.add((
+            entity_namespace[class_name.capitalize()],
+            rdflib.RDFS.subClassOf,
+            entity_namespace[implements_item.capitalize()],
+        ))
 
     # check the mandatory fields
     uses = clazz_content.get("uses")
@@ -102,11 +111,13 @@ def GenerateGraph(yaml_object, graph, entity_namespace):
             graph=graph,
             list_composition=list_composition,
             standard_field_name=each_item,
-            is_composed_of_property=is_composed_of_property)
+            is_composed_of_property=is_composed_of_property,
+        )
         class_owl = infixowl.Class(
             identifier=entity_namespace[class_name],
             graph=graph,
-            subClassOf=[parent])
+            subClassOf=[parent],
+        )
         graph = rdf_helper.CreateCompositionInGraph(
             list_standard_field_names=uses,
             composition_operator="&",
@@ -115,7 +126,8 @@ def GenerateGraph(yaml_object, graph, entity_namespace):
             class_owl=class_owl,
             graph=graph,
             entity_namespace=constants.FIELDS_NS,
-            sub_class_of=[field])
+            sub_class_of=[field],
+        )
 
     # check the optional fields
     opt_uses = clazz_content.get("opt_uses")
@@ -126,11 +138,13 @@ def GenerateGraph(yaml_object, graph, entity_namespace):
             graph=graph,
             list_composition=list_composition,
             standard_field_name=each_item,
-            is_composed_of_property=is_composed_of_property)
+            is_composed_of_property=is_composed_of_property,
+        )
         class_owl = infixowl.Class(
             identifier=entity_namespace[class_name],
             graph=graph,
-            subClassOf=[parent])
+            subClassOf=[parent],
+        )
         graph = rdf_helper.CreateCompositionInGraph(
             list_standard_field_names=opt_uses,
             composition_operator="|",
@@ -139,5 +153,6 @@ def GenerateGraph(yaml_object, graph, entity_namespace):
             class_owl=class_owl,
             graph=graph,
             entity_namespace=constants.FIELDS_NS,
-            sub_class_of=[field])
+            sub_class_of=[field],
+        )
   return graph

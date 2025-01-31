@@ -68,11 +68,17 @@ TEST_STANDARD_FIELD_NAME_NO_UNITS = 'cooling_stage_run_count'
 TEST_BAD_MULTISTATE_FIELD_NAME = 'bad_mulistate_field'
 TEST_DIMENSIONAL_REPORTING_FIELD_NAME = 'supply_water_temperature_sensor_1'
 TEST_MULTISTATE_REPORTING_FIELD_NAME = 'fire_alarm_5'
-TEST_DIMENSIONAL_VALUE_RAW_FIELD_NAME = 'points.supply_water_temperature_sensor.present_value'
+TEST_DIMENSIONAL_VALUE_RAW_FIELD_NAME = (
+    'points.supply_water_temperature_sensor.present_value'
+)
 TEST_MULTISTATE_RAW_FIELD_NAME = 'points.fire_alarm_5.present_value'
-TEST_MISSING_RAW_FIELD_NAME = 'points.return_water_temperature_sensor.present_value'
+TEST_MISSING_RAW_FIELD_NAME = (
+    'points.return_water_temperature_sensor.present_value'
+)
 TEST_RAW_FIELD_NAME_NO_UNITS = 'points.cooling_stage_run_count.present_value'
-TEST_BAD_MULTISTATE_FIELD_RAW_FIELD_NAME = 'points.bad_multistate_field.present_value'
+TEST_BAD_MULTISTATE_FIELD_RAW_FIELD_NAME = (
+    'points.bad_multistate_field.present_value'
+)
 TEST_RAW_UNIT_PATH = 'pointset.points.supply_water_temperature_sensor.units'
 TEST_RAW_UNIT_PATH_NO_UNITS = 'pointset.points.cooling_stage_run_count.units'
 TEST_STANDARD_UNIT_VALUE = 'degrees-celsius'
@@ -91,7 +97,7 @@ TEST_ETAG = '1234567'
 TEST_SITE_DICT = {
     BUILDING_CODE: 'UK-LON-S2',
     BC_GUID: 'test_site_guid',
-    ETAG: '1234567'
+    ETAG: '1234567',
 }
 
 # Test Entity instances

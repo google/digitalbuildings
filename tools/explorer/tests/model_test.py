@@ -18,7 +18,6 @@ from lib.model import EntityTypeField
 from lib.model import Match
 from lib.model import StandardField
 from lib.model import StandardizeField
-
 from validate.universe_helper.config_universe import create_simplified_universe
 from yamlformat.validator import namespace_validator as nv
 from yamlformat.validator.entity_type_lib import EntityType
@@ -31,7 +30,8 @@ class StandardFieldTest(absltest.TestCase):
     self.test_standard_field = StandardField(
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
-        increment='_1_12')
+        increment='_1_12',
+    )
 
   def testGetIncrement(self):
     expected_output = '_1_12'
@@ -58,19 +58,20 @@ class StandardFieldTest(absltest.TestCase):
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
         is_optional=False,
-        increment='_1_12')
+        increment='_1_12',
+    )
 
     self.assertEqual(test_entity_type_field, self.test_standard_field)
 
   def testStandardFieldNameWithoutIncrement(self):
     test_unincremented_standard_field = StandardField(
-        namespace_name='',
-        standard_field_name='water_temperature_sensor'
+        namespace_name='', standard_field_name='water_temperature_sensor'
     )
 
     self.assertEqual(
         test_unincremented_standard_field.GetStandardFieldName(),
-        'water_temperature_sensor')
+        'water_temperature_sensor',
+    )
 
   def testIncorrectSFNRaisesValueError(self):
     # Standard field names cannot start with numbers
@@ -79,7 +80,7 @@ class StandardFieldTest(absltest.TestCase):
       StandardField(
           namespace_name='',
           standard_field_name=incorrect_standard_field_name,
-          increment='_1'
+          increment='_1',
       )
 
 
@@ -91,14 +92,16 @@ class EntityTypeFieldTest(absltest.TestCase):
     self.test_entity_type_field = EntityTypeField(
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
-        is_optional=False)
+        is_optional=False,
+    )
 
   def testIsOptional(self):
     self.assertFalse(self.test_entity_type_field.IsOptional())
 
   def testStandardizeField(self):
     expected_output = StandardField(
-        namespace_name='', standard_field_name='supply_air_flowrate_sensor')
+        namespace_name='', standard_field_name='supply_air_flowrate_sensor'
+    )
 
     function_output = StandardizeField(self.test_entity_type_field)
 
@@ -106,7 +109,8 @@ class EntityTypeFieldTest(absltest.TestCase):
 
   def testEqualityWithStandardField(self):
     test_standard_field = StandardField(
-        namespace_name='', standard_field_name='supply_air_flowrate_sensor')
+        namespace_name='', standard_field_name='supply_air_flowrate_sensor'
+    )
 
     self.assertEqual(test_standard_field, self.test_entity_type_field)
 
@@ -118,23 +122,29 @@ class ModelTest(absltest.TestCase):
     self.universe = create_simplified_universe()
     nv.NamespaceValidator(self.universe.GetEntityTypeNamespaces())
     test_entity_type = self.universe.entity_type_universe.GetEntityType(
-        namespace_name='HVAC', typename='DMP_EDM')
+        namespace_name='HVAC', typename='DMP_EDM'
+    )
     test_field_list = [
-        EntityTypeField(optwrapper.field.namespace, optwrapper.field.field[0:],
-                        optwrapper.optional, optwrapper.field.increment)
+        EntityTypeField(
+            optwrapper.field.namespace,
+            optwrapper.field.field[0:],
+            optwrapper.optional,
+            optwrapper.field.increment,
+        )
         for optwrapper in test_entity_type.GetAllFields().values()
     ]
     self.test_match = Match(
         field_list=test_field_list,
         entity_type=test_entity_type,
-        match_score=1.0)
+        match_score=1.0,
+    )
 
   def testGetFieldList(self):
     expected_output = [
         EntityTypeField('', 'manufacturer_label', True),
         EntityTypeField('', 'model_label', True),
         EntityTypeField('', 'exhaust_air_damper_command', False),
-        EntityTypeField('', 'exhaust_air_damper_status', False)
+        EntityTypeField('', 'exhaust_air_damper_status', False),
     ]
 
     function_output = self.test_match.GetFieldList()

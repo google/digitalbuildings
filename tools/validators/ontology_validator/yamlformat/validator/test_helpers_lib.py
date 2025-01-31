@@ -48,8 +48,10 @@ def Field(fq_name: str, optional: bool = False) -> entity_type_lib.OptWrapper:
     increment = match.group(2)
   return entity_type_lib.OptWrapper(
       field=entity_type_lib.FieldParts(
-          namespace=namespace, field=field, increment=increment),
-      optional=optional)
+          namespace=namespace, field=field, increment=increment
+      ),
+      optional=optional,
+  )
 
 
 def Fields(fq_fields: List[str]) -> List[entity_type_lib.OptWrapper]:

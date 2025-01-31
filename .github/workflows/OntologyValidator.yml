@@ -20,17 +20,17 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: github.event_name == 'pull_request'
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Checkout head if push
       if: github.event_name == 'push'
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
@@ -44,7 +44,7 @@ jobs:
     - name: Get modified entity type files
       id: changed-entity-type-files
       if: github.event_name == 'push'
-      uses: tj-actions/changed-files@v41
+      uses: tj-actions/changed-files@v45
       with:
         files: '**/ontology/yaml/**/entity_types/*.yaml'
 

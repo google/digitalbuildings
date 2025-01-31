@@ -61,8 +61,11 @@ class UniqueKeyLoader(yaml.SafeLoader):
 
     if not isinstance(node, yaml.nodes.MappingNode):
       raise yaml.constructor.ConstructorError(
-          None, None, f'Expected a mapping node, but found {node.id}',
-          node.start_mark)
+          None,
+          None,
+          f'Expected a mapping node, but found {node.id}',
+          node.start_mark,
+      )
     mapping = {}
     for key_node, value_node in node.value:
       key = self.construct_object(key_node, deep=deep)
@@ -84,8 +87,9 @@ class UniqueKeyLoader(yaml.SafeLoader):
     return mapping
 
 
-UniqueKeyLoader.add_constructor('tag:yaml.org,2002:bool',
-                                UniqueKeyLoader.construct_yaml_bool)
+UniqueKeyLoader.add_constructor(
+    'tag:yaml.org,2002:bool', UniqueKeyLoader.construct_yaml_bool
+)
 
 
 def _ParseFoldersFromFiles(files, component_type, create_folder_fn):
@@ -107,18 +111,29 @@ def _ParseFoldersFromFiles(files, component_type, create_folder_fn):
   # be up-leveled.
   global_namespace = None
   global_path = component_type.value
-  if (global_path in files_by_folder or
-      component_type == base_lib.ComponentType.FIELD):
-    global_folder = _CreateFolder(global_path, None, create_folder_fn,
-                                  files_by_folder.get(global_path, []))
+  if (
+      global_path in files_by_folder
+      or component_type == base_lib.ComponentType.FIELD
+  ):
+    global_folder = _CreateFolder(
+        global_path,
+        None,
+        create_folder_fn,
+        files_by_folder.get(global_path, []),
+    )
     folders.append(global_folder)
     global_namespace = global_folder.local_namespace
     files_by_folder.pop(global_path, None)
 
   for folderpath in files_by_folder:
     folders.append(
-        _CreateFolder(folderpath, global_namespace, create_folder_fn,
-                      files_by_folder.get(folderpath)))
+        _CreateFolder(
+            folderpath,
+            global_namespace,
+            create_folder_fn,
+            files_by_folder.get(folderpath),
+        )
+    )
   return folders
 
 
@@ -126,8 +141,9 @@ def _CreateFolder(folderpath, global_namespace, create_folder_fn, file_tuples):
   """Creates a ConfigFolder for the given folderpath."""
   folder = create_folder_fn(folderpath, global_namespace)
   for ft in file_tuples:
-    with open(os.path.join(ft.root, ft.relative_path),
-              'r', encoding='utf-8') as f:
+    with open(
+        os.path.join(ft.root, ft.relative_path), 'r', encoding='utf-8'
+    ) as f:
       try:
         documents = yaml.load_all(f, Loader=UniqueKeyLoader)
         folder.AddFromConfig(documents, ft.relative_path)
@@ -137,9 +153,9 @@ def _CreateFolder(folderpath, global_namespace, create_folder_fn, file_tuples):
   return folder
 
 
-def ParseFieldFoldersFromFiles(field_files,
-                               subfield_universe=None,
-                               state_universe=None):
+def ParseFieldFoldersFromFiles(
+    field_files, subfield_universe=None, state_universe=None
+):
   """Returns list of FieldFolder objects parsed from field_files.
 
   Args:
@@ -155,19 +171,22 @@ def ParseFieldFoldersFromFiles(field_files,
     namespace = field_folder.local_namespace.namespace
     if subfield_universe:
       field_folder.local_namespace.subfields = (
-          subfield_universe.GetSubfieldsMap(namespace))
+          subfield_universe.GetSubfieldsMap(namespace)
+      )
     if state_universe:
-      field_folder.local_namespace.states = (
-          state_universe.GetStatesMap(namespace))
+      field_folder.local_namespace.states = state_universe.GetStatesMap(
+          namespace
+      )
     return field_folder
 
-  return _ParseFoldersFromFiles(field_files, base_lib.ComponentType.FIELD,
-                                CreateFieldFolder)
+  return _ParseFoldersFromFiles(
+      field_files, base_lib.ComponentType.FIELD, CreateFieldFolder
+  )
 
 
-def ParseTypeFoldersFromFiles(types_files,
-                              field_universe=None,
-                              guid_required=True):
+def ParseTypeFoldersFromFiles(
+    types_files, field_universe=None, guid_required=True
+):
   """Returns list of EntityTypeFolder objects parsed from types_files.
 
   Args:
@@ -178,12 +197,13 @@ def ParseTypeFoldersFromFiles(types_files,
 
   def CreateEntityTypeFolder(folderpath, parent_namespace):
     del parent_namespace  # Unused by EntityTypeFolder.
-    return entity_type_lib.EntityTypeFolder(folderpath,
-                                            field_universe,
-                                            guid_required)
+    return entity_type_lib.EntityTypeFolder(
+        folderpath, field_universe, guid_required
+    )
 
-  return _ParseFoldersFromFiles(types_files, base_lib.ComponentType.ENTITY_TYPE,
-                                CreateEntityTypeFolder)
+  return _ParseFoldersFromFiles(
+      types_files, base_lib.ComponentType.ENTITY_TYPE, CreateEntityTypeFolder
+  )
 
 
 def ParseSubfieldFoldersFromFiles(subfield_files):
@@ -197,8 +217,9 @@ def ParseSubfieldFoldersFromFiles(subfield_files):
     del parent_namespace  # Unused by SubfieldFolder.
     return subfield_lib.SubfieldFolder(folderpath)
 
-  return _ParseFoldersFromFiles(subfield_files, base_lib.ComponentType.SUBFIELD,
-                                CreateSubfieldFolder)
+  return _ParseFoldersFromFiles(
+      subfield_files, base_lib.ComponentType.SUBFIELD, CreateSubfieldFolder
+  )
 
 
 def ParseStateFoldersFromFiles(state_files):
@@ -212,8 +233,9 @@ def ParseStateFoldersFromFiles(state_files):
     del parent_namespace  # Unused by StateFolder.
     return state_lib.StateFolder(folderpath)
 
-  return _ParseFoldersFromFiles(state_files, base_lib.ComponentType.MULTI_STATE,
-                                CreateStateFolder)
+  return _ParseFoldersFromFiles(
+      state_files, base_lib.ComponentType.MULTI_STATE, CreateStateFolder
+  )
 
 
 def ParseConnectionFoldersFromFiles(connection_files):
@@ -227,9 +249,11 @@ def ParseConnectionFoldersFromFiles(connection_files):
     del parent_namespace  # Unused by ConnectionFolder.
     return connection_lib.ConnectionFolder(folderpath)
 
-  return _ParseFoldersFromFiles(connection_files,
-                                base_lib.ComponentType.CONNECTION,
-                                CreateConnectionFolder)
+  return _ParseFoldersFromFiles(
+      connection_files,
+      base_lib.ComponentType.CONNECTION,
+      CreateConnectionFolder,
+  )
 
 
 def ParseUnitFoldersFromFiles(unit_files, subfield_universe=None):
@@ -244,13 +268,14 @@ def ParseUnitFoldersFromFiles(unit_files, subfield_universe=None):
   def CreateUnitFolder(folderpath, parent_namespace):
     unit_folder = unit_lib.UnitFolder(folderpath, parent_namespace)
     if subfield_universe:
-      unit_folder.local_namespace.subfields = (
-          subfield_universe.GetSubfieldsMap(
-              unit_folder.local_namespace.namespace))
+      unit_folder.local_namespace.subfields = subfield_universe.GetSubfieldsMap(
+          unit_folder.local_namespace.namespace
+      )
     return unit_folder
 
-  return _ParseFoldersFromFiles(unit_files, base_lib.ComponentType.UNIT,
-                                CreateUnitFolder)
+  return _ParseFoldersFromFiles(
+      unit_files, base_lib.ComponentType.UNIT, CreateUnitFolder
+  )
 
 
 def _OrganizeConfigFilesByFolder(config_tuples):

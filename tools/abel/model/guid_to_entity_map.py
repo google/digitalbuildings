@@ -48,7 +48,8 @@ class GuidToEntityMap(object):
       self._guid_to_entity_map.update({site.guid: site})
     else:
       raise KeyError(
-          f'{site.guid} maps to {self._guid_to_entity_map[site.guid]}')
+          f'{site.guid} maps to {self._guid_to_entity_map[site.guid]}'
+      )
 
   def AddEntity(self, entity: ...) -> None:
     """Adds an entity by guid to the mapping.
@@ -77,7 +78,7 @@ class GuidToEntityMap(object):
           f'{entity.bc_guid} maps to {self._guid_to_entity_map[entity.bc_guid]}'
       )
 
-  def GetEntityByGuid(self, guid: str) ->...:
+  def GetEntityByGuid(self, guid: str) -> ...:
     """Gets an Entity instance mapped to the input guid.
 
     Args:

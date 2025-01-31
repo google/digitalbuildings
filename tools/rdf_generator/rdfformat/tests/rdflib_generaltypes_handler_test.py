@@ -13,13 +13,12 @@
 # limitations under the License.
 
 """Tests for generator.rdflib_generaltypes_handler_test."""
-import rdflib
-
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
 from rdfformat.generator import rdflib_generaltypes_handler
 from rdfformat.generator import yaml_handler
-from absl.testing import absltest
+import rdflib
 
 
 class RdfFunctionHandlerTest(absltest.TestCase):
@@ -42,7 +41,8 @@ class RdfFunctionHandlerTest(absltest.TestCase):
     graph.namespace_manager = namespace_manager
 
     g_general_types = rdflib_generaltypes_handler.GenerateGraph(
-        yaml_general_types, graph)
+        yaml_general_types, graph
+    )
 
     # Check that the following are present
     # EQUIPMENT:
@@ -72,8 +72,10 @@ class RdfFunctionHandlerTest(absltest.TestCase):
     # Class assertions
     self.assertIn(equipment_class, g_general_types)
     self.assertIn(vav_class, g_general_types)
-    self.assertIn((vav, rdflib.RDFS.comment, rdflib.Literal(vav_description)),
-                  g_general_types)
+    self.assertIn(
+        (vav, rdflib.RDFS.comment, rdflib.Literal(vav_description)),
+        g_general_types,
+    )
 
     # SubClasses assertions
     self.assertIn((vav, rdflib.RDFS.subClassOf, equipment), g_general_types)

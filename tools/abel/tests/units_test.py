@@ -26,7 +26,8 @@ class UnitsTest(absltest.TestCase):
     test_units = Units(_TEST_UNIT_PATH, _TEST_UNIT_MAP)
     self.assertEqual(
         test_units.raw_unit_path,
-        'pointset.points.filter_differential_pressure_setpoint.units')
+        'pointset.points.filter_differential_pressure_setpoint.units',
+    )
     self.assertEqual(test_units.standard_to_raw_unit_map, {'pascals': 'Pa'})
 
 

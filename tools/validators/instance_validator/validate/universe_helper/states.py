@@ -56,4 +56,5 @@ STATE_FOLDER.AddFromConfig(
         'STANDBY': 'foobar',
         'REMOTE': 'foobar',
         'LOCAL': 'foobar',
-    }])
+    }],
+)

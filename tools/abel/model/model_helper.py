@@ -72,14 +72,11 @@ def DetermineReportingEntityUpdateMask(
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.add(
-        entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
-    )
-  if (sorted(updated_entity.translations, key=lambda x: x.std_field_name) !=
-      sorted(current_entity.translations, key=lambda x: x.std_field_name)):
-    update_mask.add(
-        entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
-    )
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS)
+  if sorted(
+      updated_entity.translations, key=lambda x: x.std_field_name
+  ) != sorted(current_entity.translations, key=lambda x: x.std_field_name):
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION)
   else:
     for updated_field in updated_entity.translations:
       current_translation = {
@@ -146,9 +143,7 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.add(
-        entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
-    )
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS)
   # Facilities entities don't have links but are virtual so do the following
   # check to ensure a division by zero error is not thrown.
   if (

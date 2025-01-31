@@ -40,6 +40,7 @@ def main(parsed_args: ParseArgs) -> None:
     print('Bye bye')
     sys.exit()
 
+
 if __name__ == '__main__':
   args = ParseArgs().parse_args(sys.argv[1:])
   main(args)

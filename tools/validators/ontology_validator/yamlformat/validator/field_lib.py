@@ -18,7 +18,6 @@ from __future__ import division
 from __future__ import print_function
 
 import re
-
 from typing import Dict, List, NamedTuple, Optional
 
 from yamlformat.validator import base_lib
@@ -87,8 +86,9 @@ class FieldUniverse(findings_lib.FindingsUniverse):
         field.name for field in self._namespace_map.get(namespace_name, [])
     }
 
-  def GetFieldsMap(self,
-                   namespace_name: Optional[str] = None) -> Dict[str, 'Field']:
+  def GetFieldsMap(
+      self, namespace_name: Optional[str] = None
+  ) -> Dict[str, 'Field']:
     """Returns the fields defined within namespace, keyed by qualified std name.
 
     Args:
@@ -122,11 +122,13 @@ class FieldFolder(config_folder_lib.ConfigFolder):
     An instance of the FieldFolder class.
   """
 
-  def __init__(self,
-               folderpath,
-               parent_namespace=None,
-               local_subfields=None,
-               local_states=None):
+  def __init__(
+      self,
+      folderpath,
+      parent_namespace=None,
+      local_subfields=None,
+      local_states=None,
+  ):
     """Init.
 
     Args:
@@ -142,8 +144,9 @@ class FieldFolder(config_folder_lib.ConfigFolder):
         namespace.
     """
     super().__init__(folderpath, base_lib.ComponentType.FIELD)
-    self.local_namespace = FieldNamespace(self._namespace_name, local_subfields,
-                                          local_states, parent_namespace)
+    self.local_namespace = FieldNamespace(
+        self._namespace_name, local_subfields, local_states, parent_namespace
+    )
     self.parent_namespace = parent_namespace
 
   def AddField(self, field):
@@ -191,11 +194,13 @@ class FieldFolder(config_folder_lib.ConfigFolder):
             default_value_range = field_details
           else:
             self.AddFinding(
-                findings_lib.InvalidFieldFormatError(field_name, context))
+                findings_lib.InvalidFieldFormatError(field_name, context)
+            )
         else:
           field_name = next(iter(field_spec), '(Blank)')
           self.AddFinding(
-              findings_lib.InvalidFieldFormatError(field_name, context))
+              findings_lib.InvalidFieldFormatError(field_name, context)
+          )
           continue
       else:
         field_name = field_spec
@@ -223,8 +228,9 @@ class _FieldValidationStateMachine(object):
 
   _POINT_TYPES_NEEDING_MEASUREMENTS = ['setpoint', 'sensor', 'accumulator']
 
-  _CAT_SPEC = NamedTuple('CAT_SPEC', [('cat', str), ('required', bool),
-                                      ('max', int)])
+  _CAT_SPEC = NamedTuple(
+      'CAT_SPEC', [('cat', str), ('required', bool), ('max', int)]
+  )
 
   # Represents parameters for each subfield category.
   # Subfields are in the array in the order they should appear in the field.
@@ -232,21 +238,28 @@ class _FieldValidationStateMachine(object):
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR,
           required=False,
-          max=1),
+          max=1,
+      ),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
+          cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1
+      ),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.DESCRIPTOR, required=False, max=10),
+          cat=subfield_lib.SubfieldCategory.DESCRIPTOR, required=False, max=10
+      ),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.COMPONENT, required=False, max=1),
+          cat=subfield_lib.SubfieldCategory.COMPONENT, required=False, max=1
+      ),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.MEASUREMENT_DESCRIPTOR,
           required=False,
-          max=1),
+          max=1,
+      ),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.MEASUREMENT, required=False, max=1),
+          cat=subfield_lib.SubfieldCategory.MEASUREMENT, required=False, max=1
+      ),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.POINT_TYPE, required=True, max=1)
+          cat=subfield_lib.SubfieldCategory.POINT_TYPE, required=True, max=1
+      ),
   ]
 
   def ValidateNext(self, subfield):
@@ -315,10 +328,10 @@ class FieldNamespace(findings_lib.Findings):
   """Class representing a namespace of fields.
 
   Attributes:
-    fields: a dictionary of Field keys to field objects for fields added to
-      this namespace.  NB: a field key is a permutation of the field name with
-        subfields alpha-ordered (and-de-duped, but fields with dup-fields are
-        invalid)
+    fields: a dictionary of Field keys to field objects for fields added to this
+      namespace.  NB: a field key is a permutation of the field name with
+      subfields alpha-ordered (and-de-duped, but fields with dup-fields are
+      invalid)
     subfields: a dictionary of subfield strings to Subfield objects defined in
       this namespace.
     states: a map from state names to State objects defined in this namespace
@@ -330,11 +343,9 @@ class FieldNamespace(findings_lib.Findings):
     An instance of the FieldNamespace class.
   """
 
-  def __init__(self,
-               namespace,
-               subfields=None,
-               states=None,
-               parent_namespace=None):
+  def __init__(
+      self, namespace, subfields=None, states=None, parent_namespace=None
+  ):
     """Init.
 
     Args:
@@ -358,7 +369,8 @@ class FieldNamespace(findings_lib.Findings):
     if self.subfields is not None:
       if self.parent_namespace and self.parent_namespace.subfields is None:
         raise RuntimeError(
-            'Subfields are defined for the child, but not the parent')
+            'Subfields are defined for the child, but not the parent'
+        )
 
   def _GetDynamicFindings(self, filter_old_warnings):
     findings = []
@@ -454,8 +466,9 @@ class FieldNamespace(findings_lib.Findings):
       True if the field uses any subfields from the local namespace.
     """
     pns = self.parent_namespace
-    if not self.SubfieldsAreDefined() or (pns is not None and
-                                          not pns.SubfieldsAreDefined()):
+    if not self.SubfieldsAreDefined() or (
+        pns is not None and not pns.SubfieldsAreDefined()
+    ):
       # If subfields are undefined on any relevant namespace, proper subfield
       # validation is impossible. Note that an empty subfield list is still a
       # defined subfield list.
@@ -469,10 +482,12 @@ class FieldNamespace(findings_lib.Findings):
       elif pns is None or subfield not in pns.subfields:
         missing_fields = True
         field.AddFinding(
-            findings_lib.UnrecognizedSubfieldError(subfield, field))
+            findings_lib.UnrecognizedSubfieldError(subfield, field)
+        )
 
     if not missing_fields and not self._IsValidConstruction(
-        field, construction_validator):
+        field, construction_validator
+    ):
       field.AddFinding(findings_lib.InvalidFieldConstructionError(field))
 
     return uses_local_subfields
@@ -531,15 +546,18 @@ class FieldNamespace(findings_lib.Findings):
     old_field = insert_ns.PutIfAbsent(field)
     if old_field is not None:
       insert_ns.AddFinding(
-          findings_lib.DuplicateFieldDefinitionError(insert_ns, field,
-                                                     old_field.file_context))
+          findings_lib.DuplicateFieldDefinitionError(
+              insert_ns, field, old_field.file_context
+          )
+      )
 
     if self.SubfieldsAreDefined():
       is_numeric = field.IsNumeric(
-          construction_validator.HasMeasurementSubfield())
+          construction_validator.HasMeasurementSubfield()
+      )
       if is_numeric and not field.HasDefaultValueRange():
         self.AddFinding(findings_lib.NumericFieldMissingValueRangeError(field))
-      elif (not is_numeric and field.HasDefaultValueRange()):
+      elif not is_numeric and field.HasDefaultValueRange():
         self.AddFinding(findings_lib.NonNumericFieldWithValueRangeError(field))
 
 
@@ -559,11 +577,9 @@ class Field(findings_lib.Findings):
     An instance of the Field class.
   """
 
-  def __init__(self,
-               name,
-               states=None,
-               default_value_range=None,
-               file_context=None):
+  def __init__(
+      self, name, states=None, default_value_range=None, file_context=None
+  ):
     """Init.
 
     Args:
@@ -616,8 +632,10 @@ class Field(findings_lib.Findings):
       return
     if len(self.default_value_range) != 2:
       self.AddFinding(
-          findings_lib.InvalidDefaultValueRangeError(self.default_value_range,
-                                                     self))
+          findings_lib.InvalidDefaultValueRangeError(
+              self.default_value_range, self
+          )
+      )
     min_value = None
     max_value = None
     for range_key, range_value in self.default_value_range.items():
@@ -627,18 +645,26 @@ class Field(findings_lib.Findings):
         max_value = range_value
       else:
         self.AddFinding(
-            findings_lib.InvalidDefaultValueRangeError(self.default_value_range,
-                                                       self))
+            findings_lib.InvalidDefaultValueRangeError(
+                self.default_value_range, self
+            )
+        )
     if min_value is None or max_value is None:
       self.AddFinding(
-          findings_lib.InvalidDefaultValueRangeError(self.default_value_range,
-                                                     self))
-    if ((not isinstance(min_value, int) and not isinstance(min_value, float))
+          findings_lib.InvalidDefaultValueRangeError(
+              self.default_value_range, self
+          )
+      )
+    if (
+        (not isinstance(min_value, int) and not isinstance(min_value, float))
         or (not isinstance(max_value, int) and not isinstance(max_value, float))
-        or float(min_value) >= float(max_value)):
+        or float(min_value) >= float(max_value)
+    ):
       self.AddFinding(
-          findings_lib.InvalidDefaultValueRangeValueError(min_value, max_value,
-                                                          self))
+          findings_lib.InvalidDefaultValueRangeValueError(
+              min_value, max_value, self
+          )
+      )
 
   def HasDefaultValueRange(self):
     return self.default_value_range is not None
@@ -667,7 +693,10 @@ class Field(findings_lib.Findings):
     if self.name == 'scene_index_command':
       return True
     if 'command' in self.subfields and not (
-        'percentage_command' in self.name or 'frequency_command' in self.name or 'voltage_command' in self.name):
+        'percentage_command' in self.name
+        or 'frequency_command' in self.name
+        or 'voltage_command' in self.name
+    ):
       return False
     if has_measurement_subfield:
       return True

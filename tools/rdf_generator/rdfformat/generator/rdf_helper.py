@@ -26,11 +26,13 @@ import rdflib
 from rdflib.extras import infixowl
 
 
-def CreateClassInGraph(graph,
-                       class_name,
-                       class_description,
-                       parent_clazz,
-                       entity_namespace=constants.DIGITAL_BUILDINGS_NS):
+def CreateClassInGraph(
+    graph,
+    class_name,
+    class_description,
+    parent_clazz,
+    entity_namespace=constants.DIGITAL_BUILDINGS_NS,
+):
   """Utility function to create an RDF OWL Class and adds to the provided graph.
 
   Creates an RDF OWL Class with the input parameters
@@ -62,12 +64,15 @@ def CreateClassInGraph(graph,
   return graph, clazz_tuple
 
 
-def CreateInstanceInGraph(graph,
-                          instance_name,
-                          instance_description,
-                          parent_clazz,
-                          entity_namespace=constants.DIGITAL_BUILDINGS_NS):
+def CreateInstanceInGraph(
+    graph,
+    instance_name,
+    instance_description,
+    parent_clazz,
+    entity_namespace=constants.DIGITAL_BUILDINGS_NS,
+):
   """Utility function to create an RDF OWL Instance
+
   and adds to the provided graph.
 
   Creates an RDF OWL Instance with the input parameters
@@ -94,17 +99,21 @@ def CreateInstanceInGraph(graph,
   graph.add((instance, rdflib.RDFS.label, rdflib.Literal(instance_name)))
   if instance_description is not None:
     graph.add(
-        (instance, rdflib.RDFS.comment, rdflib.Literal(instance_description)))
+        (instance, rdflib.RDFS.comment, rdflib.Literal(instance_description))
+    )
   graph.commit()
 
   return graph, instance_tuple
 
 
-def CreateDataPropertyInGraph(graph,
-                              data_property_name,
-                              data_property_description,
-                              entity_namespace=constants.DIGITAL_BUILDINGS_NS):
+def CreateDataPropertyInGraph(
+    graph,
+    data_property_name,
+    data_property_description,
+    entity_namespace=constants.DIGITAL_BUILDINGS_NS,
+):
   """Utility function to create an OWL Data Property relation
+
   and adds to the provided graph.
 
   Creates an RDF OWL Data Property with the input parameters
@@ -124,14 +133,21 @@ def CreateDataPropertyInGraph(graph,
   data_property = rdflib.URIRef(entity_namespace[data_property_name])
 
   # Add the OWL data to the graph
-  data_property_tuple = (data_property, rdflib.RDF.type,
-                         rdflib.OWL.DatatypeProperty)
+  data_property_tuple = (
+      data_property,
+      rdflib.RDF.type,
+      rdflib.OWL.DatatypeProperty,
+  )
   graph.add(data_property_tuple)
   graph.add(
-      (data_property, rdflib.RDFS.label, rdflib.Literal(data_property_name)))
+      (data_property, rdflib.RDFS.label, rdflib.Literal(data_property_name))
+  )
   if data_property_description is not None:
-    graph.add((data_property, rdflib.RDFS.comment,
-               rdflib.Literal(data_property_description)))
+    graph.add((
+        data_property,
+        rdflib.RDFS.comment,
+        rdflib.Literal(data_property_description),
+    ))
   graph.commit()
 
   return graph, data_property_tuple
@@ -141,8 +157,10 @@ def CreateObjectPropertyInGraph(
     graph,
     object_property_name,
     object_property_description,
-    entity_namespace=constants.DIGITAL_BUILDINGS_NS):
+    entity_namespace=constants.DIGITAL_BUILDINGS_NS,
+):
   """Utility function to create an OWL Object Property relation
+
    and adds to the provided graph.
 
   Creates an RDF OWL Object Property with the input parameters
@@ -152,8 +170,8 @@ def CreateObjectPropertyInGraph(
   Args:
      graph: the global graph where the ontology is being built in RDF.
      object_property_name: name of the OWL Data Property
-     object_property_description: the RDF Instance description.
-     entity_namespace : the entity_namespace of the RDF Instance
+     object_property_description: the RDF Instance description. entity_namespace
+       : the entity_namespace of the RDF Instance
 
   Returns:
     a graph with the newly built class
@@ -162,23 +180,31 @@ def CreateObjectPropertyInGraph(
   object_property = rdflib.URIRef(entity_namespace[object_property_name])
 
   # Add the OWL data to the graph
-  object_property_tuple = (object_property, rdflib.RDF.type,
-                           rdflib.ObjectProperty)
+  object_property_tuple = (
+      object_property,
+      rdflib.RDF.type,
+      rdflib.ObjectProperty,
+  )
   graph.add(object_property_tuple)
-  graph.add((object_property, rdflib.RDFS.label,
-             rdflib.Literal(object_property_name)))
+  graph.add(
+      (object_property, rdflib.RDFS.label, rdflib.Literal(object_property_name))
+  )
   if object_property_description is not None:
-    graph.add((object_property, rdflib.RDFS.comment,
-               rdflib.Literal(object_property_description)))
+    graph.add((
+        object_property,
+        rdflib.RDFS.comment,
+        rdflib.Literal(object_property_description),
+    ))
   graph.commit()
 
   return graph, object_property_tuple
 
 
-def CreatesStandardFieldNameCompositionInGraph(list_composition,
-                                               standard_field_name,
-                                               is_composed_of_property, graph):
+def CreatesStandardFieldNameCompositionInGraph(
+    list_composition, standard_field_name, is_composed_of_property, graph
+):
   """Utility function takes a standard_field_name from the ontology
+
    and returns its composition constraint.
 
   Args:
@@ -197,7 +223,8 @@ def CreatesStandardFieldNameCompositionInGraph(list_composition,
   """
   class_owl = infixowl.Class(
       identifier=constants.FIELDS_NS[standard_field_name.capitalize()],
-      graph=graph)
+      graph=graph,
+  )
   graph = CreateCompositionInGraph(
       list_standard_field_names=list_composition,
       composition_operator="&",
@@ -205,20 +232,24 @@ def CreatesStandardFieldNameCompositionInGraph(list_composition,
       restriction=infixowl.only,
       class_owl=class_owl,
       graph=graph,
-      entity_namespace=constants.SUBFIELDS_NS)
+      entity_namespace=constants.SUBFIELDS_NS,
+  )
 
   return graph
 
 
-def CreateCompositionInGraph(list_standard_field_names,
-                             composition_operator,
-                             composition_property,
-                             restriction,
-                             class_owl,
-                             graph,
-                             entity_namespace=constants.DIGITAL_BUILDINGS_NS,
-                             sub_class_of=None):
+def CreateCompositionInGraph(
+    list_standard_field_names,
+    composition_operator,
+    composition_property,
+    restriction,
+    class_owl,
+    graph,
+    entity_namespace=constants.DIGITAL_BUILDINGS_NS,
+    sub_class_of=None,
+):
   """Utility function that creates composition from a given list
+
   based on a composition operator and a restriction.
 
      the created composition is conform to the following pattern:
@@ -248,9 +279,11 @@ def CreateCompositionInGraph(list_standard_field_names,
     # Prepare the first element
     first_element = infixowl.Class(
         identifier=entity_namespace[
-            list_standard_field_names[index].capitalize()],
+            list_standard_field_names[index].capitalize()
+        ],
         graph=graph,
-        subClassOf=sub_class_of)
+        subClassOf=sub_class_of,
+    )
     index += 1
     # Prepare the second element since the "&" operator is needed to determine
     # the nature of the composition
@@ -258,21 +291,26 @@ def CreateCompositionInGraph(list_standard_field_names,
       if composition_operator == "&":
         concat = first_element & infixowl.Class(
             identifier=entity_namespace[
-                list_standard_field_names[index].capitalize()],
+                list_standard_field_names[index].capitalize()
+            ],
             graph=graph,
-            subClassOf=sub_class_of)
+            subClassOf=sub_class_of,
+        )
       elif composition_operator == "|":
         concat = first_element | infixowl.Class(
             identifier=entity_namespace[
-                list_standard_field_names[index].capitalize()],
+                list_standard_field_names[index].capitalize()
+            ],
             graph=graph,
-            subClassOf=sub_class_of)
+            subClassOf=sub_class_of,
+        )
       else:
         logging.error("Unknown operator %s", composition_operator)
         return graph
     else:  # there is only one element
       class_owl.subClassOf = [
-          composition_property | restriction | first_element ]  # pylint: disable=E1131
+          composition_property | restriction | first_element
+      ]  # pylint: disable=E1131
       return graph
 
     index += 1
@@ -280,9 +318,11 @@ def CreateCompositionInGraph(list_standard_field_names,
     while index < len(list_standard_field_names):
       concat += infixowl.Class(
           identifier=entity_namespace[
-              list_standard_field_names[index].capitalize()],
+              list_standard_field_names[index].capitalize()
+          ],
           graph=graph,
-          subClassOf=sub_class_of)
+          subClassOf=sub_class_of,
+      )
       index += 1
     # pylint: disable=E1131
     class_owl.subClassOf = [composition_property | restriction | concat]
@@ -292,6 +332,7 @@ def CreateCompositionInGraph(list_standard_field_names,
 
 def DecomposeStandardFieldName(standard_field_name):
   """Utility function takes a standard_field_name from the ontology
+
    and returns its composition.
 
   Example: [run_command_1] -> ["Run", "Command"]
@@ -309,9 +350,11 @@ def DecomposeStandardFieldName(standard_field_name):
   return filtered_list
 
 
-def CreatesImplementsInGraph(graph, implements_list, applications_set,
-                             application_class, class_object):
+def CreatesImplementsInGraph(
+    graph, implements_list, applications_set, application_class, class_object
+):
   """Utility function to handle the inheritance of types
+
   when the implements relation is used in the yaml file.
 
   Example: class_object subClassOf implements_list["CONTROL", "MONITORING"].
@@ -338,16 +381,18 @@ def CreatesImplementsInGraph(graph, implements_list, applications_set,
           graph=graph,
           class_name=application_sub_item,
           class_description=None,
-          parent_clazz=application_class[0]
+          parent_clazz=application_class[0],
       )  # getting the name of the class from the tuple
     application_sub_class = constants.DIGITAL_BUILDINGS_NS[
-        implements_item.capitalize()]
+        implements_item.capitalize()
+    ]
     graph.add((class_object[0], rdflib.RDFS.subClassOf, application_sub_class))
   return graph, applications_set
 
 
 def GetTimeNow():
   """Utility function returns the time in the
+
    following format %Y/%m/%d-%H:%M:%S.
 
   Returns:

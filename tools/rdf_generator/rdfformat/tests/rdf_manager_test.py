@@ -14,11 +14,10 @@
 
 """Tests for generator.rdf_manager."""
 
-import rdflib
-
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_manager
-from absl.testing import absltest
+import rdflib
 
 # Override the Facilities.yaml file
 rdf_manager.FACILITIES = '/Facilities.yaml'
@@ -32,7 +31,10 @@ rdf_manager.PMP = '/PUMP.yaml'
 rdf_manager.FCU = '/FCU.yaml'
 rdf_manager.VAV = '/VAV.yaml'
 rdf_manager.carson_types = {
-    rdf_manager.FAN, rdf_manager.PMP, rdf_manager.FCU, rdf_manager.VAV
+    rdf_manager.FAN,
+    rdf_manager.PMP,
+    rdf_manager.FCU,
+    rdf_manager.VAV,
 }
 
 
@@ -46,26 +48,34 @@ class RdfManagerTest(absltest.TestCase):
     # Main Types
     entity_type = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['EntityType'])
     physical_location = rdflib.URIRef(
-        constants.FACILITIES_NS['PhysicalLocation'])
+        constants.FACILITIES_NS['PhysicalLocation']
+    )
     has_physical_location = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['hasPhysicalLocation'])
+        constants.DIGITAL_BUILDINGS_NS['hasPhysicalLocation']
+    )
 
     # Main Classes
-    physical_location_class = (physical_location, rdflib.RDF.type,
-                               rdflib.OWL.Class)
+    physical_location_class = (
+        physical_location,
+        rdflib.RDF.type,
+        rdflib.OWL.Class,
+    )
 
     # Assertions
     # Class assertions
     self.assertIn(physical_location_class, generated_graph)
 
     # SubClasses assertions
-    self.assertIn((physical_location, rdflib.RDFS.subClassOf, entity_type),
-                  generated_graph)
+    self.assertIn(
+        (physical_location, rdflib.RDFS.subClassOf, entity_type),
+        generated_graph,
+    )
 
     # Relations assertions
     self.assertIn(
         (has_physical_location, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-        generated_graph)
+        generated_graph,
+    )
 
     ## Make sure Units are generated in the graph
     # Main Types
@@ -73,21 +83,31 @@ class RdfManagerTest(absltest.TestCase):
     temperature = rdflib.URIRef(constants.UNITS_NS['Temperature'])
     degrees_celsius = rdflib.URIRef(constants.UNITS_NS['degrees_celsius'])
     is_standard_unit = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['is_standard_unit'])
-    is_standard_unit_degrees_celsius = (degrees_celsius, is_standard_unit,
-                                        rdflib.Literal(False))
+        constants.DIGITAL_BUILDINGS_NS['is_standard_unit']
+    )
+    is_standard_unit_degrees_celsius = (
+        degrees_celsius,
+        is_standard_unit,
+        rdflib.Literal(False),
+    )
 
     # Classes Under Test
     unit_class = (unit, rdflib.RDF.type, rdflib.OWL.Class)
     temperature_class = (temperature, rdflib.RDF.type, rdflib.OWL.Class)
 
     # Data Properties Under Test
-    is_standard_unit_object = (is_standard_unit, rdflib.RDF.type,
-                               rdflib.OWL.DatatypeProperty)
+    is_standard_unit_object = (
+        is_standard_unit,
+        rdflib.RDF.type,
+        rdflib.OWL.DatatypeProperty,
+    )
 
     # Instances Under Test
-    degrees_celsius_object = (degrees_celsius, rdflib.RDF.type,
-                              rdflib.OWL.NamedIndividual)
+    degrees_celsius_object = (
+        degrees_celsius,
+        rdflib.RDF.type,
+        rdflib.OWL.NamedIndividual,
+    )
 
     # Assertions
     # Class assertions
@@ -95,14 +115,16 @@ class RdfManagerTest(absltest.TestCase):
     self.assertIn(temperature_class, generated_graph)
 
     # SubClass assertions
-    self.assertIn((unit, rdflib.RDFS.subClassOf, rdflib.OWL.Thing),
-                  generated_graph)
+    self.assertIn(
+        (unit, rdflib.RDFS.subClassOf, rdflib.OWL.Thing), generated_graph
+    )
     self.assertIn((temperature, rdflib.RDFS.subClassOf, unit), generated_graph)
 
     # Instance assertions
     self.assertIn(degrees_celsius_object, generated_graph)
-    self.assertIn((degrees_celsius, rdflib.RDF.type, temperature),
-                  generated_graph)
+    self.assertIn(
+        (degrees_celsius, rdflib.RDF.type, temperature), generated_graph
+    )
 
     # Data Property assertions
     self.assertIn(is_standard_unit_object, generated_graph)
@@ -115,12 +137,15 @@ class RdfManagerTest(absltest.TestCase):
     max_ref = rdflib.URIRef(constants.SUBFIELDS_NS['Max'])
     min_ref = rdflib.URIRef(constants.SUBFIELDS_NS['Min'])
 
-    self.assertIn((aggregation, rdflib.RDFS.subClassOf, subfield),
-                  generated_graph)
-    self.assertIn((min_ref, rdflib.RDFS.subClassOf, aggregation),
-                  generated_graph)
-    self.assertIn((max_ref, rdflib.RDFS.subClassOf, aggregation),
-                  generated_graph)
+    self.assertIn(
+        (aggregation, rdflib.RDFS.subClassOf, subfield), generated_graph
+    )
+    self.assertIn(
+        (min_ref, rdflib.RDFS.subClassOf, aggregation), generated_graph
+    )
+    self.assertIn(
+        (max_ref, rdflib.RDFS.subClassOf, aggregation), generated_graph
+    )
 
     ## Make sure Abstract are generated in the graph
     # Main types
@@ -129,25 +154,35 @@ class RdfManagerTest(absltest.TestCase):
     point_type = rdflib.URIRef(constants.SUBFIELDS_NS['Point_type'])
     sensor = rdflib.URIRef(constants.SUBFIELDS_NS['Sensor'])
     is_composed_of = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['isComposedOf'])
+        constants.DIGITAL_BUILDINGS_NS['isComposedOf']
+    )
     uses = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['uses'])
     uses_optional = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['usesOptional'])
+        constants.DIGITAL_BUILDINGS_NS['usesOptional']
+    )
 
-    self.assertIn((application, rdflib.RDFS.subClassOf, entity_type),
-                  generated_graph)
-    self.assertIn((functionality, rdflib.RDFS.subClassOf, entity_type),
-                  generated_graph)
-    self.assertIn((point_type, rdflib.RDFS.subClassOf, subfield),
-                  generated_graph)
+    self.assertIn(
+        (application, rdflib.RDFS.subClassOf, entity_type), generated_graph
+    )
+    self.assertIn(
+        (functionality, rdflib.RDFS.subClassOf, entity_type), generated_graph
+    )
+    self.assertIn(
+        (point_type, rdflib.RDFS.subClassOf, subfield), generated_graph
+    )
     self.assertIn((sensor, rdflib.RDFS.subClassOf, point_type), generated_graph)
     # Relations assertions
-    self.assertIn((is_composed_of, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-                  generated_graph)
-    self.assertIn((uses, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-                  generated_graph)
-    self.assertIn((uses_optional, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-                  generated_graph)
+    self.assertIn(
+        (is_composed_of, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
+        generated_graph,
+    )
+    self.assertIn(
+        (uses, rdflib.RDF.type, rdflib.OWL.ObjectProperty), generated_graph
+    )
+    self.assertIn(
+        (uses_optional, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
+        generated_graph,
+    )
 
     ## Make sure GeneralTypes are generated in the graph
     # Main types
@@ -160,8 +195,10 @@ class RdfManagerTest(absltest.TestCase):
     # Assertions
     # Class assertions that the VAV has been created
     self.assertIn(vav_class, generated_graph)
-    self.assertIn((vav, rdflib.RDFS.comment, rdflib.Literal(vav_description)),
-                  generated_graph)
+    self.assertIn(
+        (vav, rdflib.RDFS.comment, rdflib.Literal(vav_description)),
+        generated_graph,
+    )
 
     ## Make sure FANs are generated in the graph
     fan_ss_refm_csp = rdflib.URIRef(constants.HVAC_NS['Fan_ss_refm_csp'])
@@ -195,7 +232,8 @@ class RdfManagerTest(absltest.TestCase):
 
     ## Make sure an FCU with incomplete is not generated in the graph
     fcu = rdflib.URIRef(
-        constants.HVAC_NS['FCU_DFST_VSC_DSP_CH_DTC'.capitalize()])
+        constants.HVAC_NS['FCU_DFST_VSC_DSP_CH_DTC'.capitalize()]
+    )
 
     # Main Classes
     fcu_class = (fcu, rdflib.RDF.type, rdflib.OWL.Class)

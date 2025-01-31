@@ -14,12 +14,12 @@
 """Types representing field translations."""
 
 import enum
-
 from typing import Dict, List, Optional, Tuple, Union
 
 
 class PresenceMode(enum.Enum):
   """Presence modes for a field in a translation."""
+
   PRESENT = 'PRESENT'  # Typical mode for a field
   MISSING = 'MISSING'  # Use when a device is missing a required field
 
@@ -98,8 +98,12 @@ class MultiStateValue(DefinedField):
     raw_values: Dictionary from telemetry states to standard states.
   """
 
-  def __init__(self, std_field_name: str, raw_field_name: str,
-               states: Dict[str, Union[str, List[str]]]):
+  def __init__(
+      self,
+      std_field_name: str,
+      raw_field_name: str,
+      states: Dict[str, Union[str, List[str]]],
+  ):
     super().__init__(std_field_name, raw_field_name)
     if not states:
       raise ValueError('states cannot be empty')
@@ -130,9 +134,14 @@ class DimensionalValue(DefinedField):
       the field, expressed in the given unit.
   """
 
-  def __init__(self, std_field_name: str, raw_field_name: str,
-               unit_field_name: str, unit_mapping: Dict[str, str],
-               value_range: Optional[Tuple[float, float]] = None):
+  def __init__(
+      self,
+      std_field_name: str,
+      raw_field_name: str,
+      unit_field_name: str,
+      unit_mapping: Dict[str, str],
+      value_range: Optional[Tuple[float, float]] = None,
+  ):
     super().__init__(std_field_name, raw_field_name)
     if not unit_field_name:
       raise ValueError('unit_field_name cannot be empty')

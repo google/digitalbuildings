@@ -15,12 +15,10 @@
 """Subfields Yaml Ontology RDF handler.
 
 Takes a subfields.yaml input and populate the RDF graph with the yaml content.
-
 """
-import rdflib
-
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
+import rdflib
 
 
 def GenerateGraph(yaml_object, graph):
@@ -41,14 +39,16 @@ def GenerateGraph(yaml_object, graph):
       class_name='SubField',
       class_description=None,
       parent_clazz=rdflib.OWL.Thing,
-      entity_namespace=constants.SUBFIELDS_NS)
+      entity_namespace=constants.SUBFIELDS_NS,
+  )
   for clazz in yaml_object.keys():
     graph, clazz_object = rdf_helper.CreateClassInGraph(
         graph=graph,
         class_name=clazz.capitalize(),
         class_description=None,
         parent_clazz=subfield[0],
-        entity_namespace=constants.SUBFIELDS_NS)
+        entity_namespace=constants.SUBFIELDS_NS,
+    )
     clazz_content = yaml_object.get(clazz)
     for each_item in clazz_content:
       graph, _ = rdf_helper.CreateClassInGraph(
@@ -56,5 +56,6 @@ def GenerateGraph(yaml_object, graph):
           class_name=each_item.capitalize(),
           class_description=clazz_content[each_item],
           parent_clazz=clazz_object[0],
-          entity_namespace=constants.SUBFIELDS_NS)
+          entity_namespace=constants.SUBFIELDS_NS,
+      )
   return graph

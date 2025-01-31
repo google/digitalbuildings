@@ -19,33 +19,39 @@ from typing import List, Optional
 from yamlformat.validator.entity_type_lib import EntityType
 
 FQ_FIELD_NAME = re.compile(
-    r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)?$')
+    r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)?$'
+)
 
 
 class StandardField(object):
   """A class to represent a generic field without increment or optionality.
 
-    Args:
-        namespace_name: a field's defined namespace as a string.
-        standard_field_name: the un-incremented name of the field as a string.
-          must be lower-case and properly formatted.
-        increment: [Optional] a field's enumerated value suffixed onto the
-          field name.
-    Attributes:
-        namespace: the name of the namespace as a string
-        name: the field name as a string.
-        increment: a field's enumerated value suffixed onto the field name.
-    returns: An instance of the StandardField class.
+  Args:
+      namespace_name: a field's defined namespace as a string.
+      standard_field_name: the un-incremented name of the field as a string.
+        must be lower-case and properly formatted.
+      increment: [Optional] a field's enumerated value suffixed onto the field
+        name.
+
+  Attributes:
+      namespace: the name of the namespace as a string
+      name: the field name as a string.
+      increment: a field's enumerated value suffixed onto the field name.
+
+  returns: An instance of the StandardField class.
   """
 
-  def __init__(self,
-               namespace_name: str,
-               standard_field_name: str,
-               increment: Optional[str] = ''):
+  def __init__(
+      self,
+      namespace_name: str,
+      standard_field_name: str,
+      increment: Optional[str] = '',
+  ):
     super().__init__()
     if not FQ_FIELD_NAME.match(standard_field_name + increment):
       raise ValueError(
-          f'{namespace_name}/{standard_field_name}{increment} format error')
+          f'{namespace_name}/{standard_field_name}{increment} format error'
+      )
 
     else:
       self._namespace = namespace_name
@@ -97,24 +103,28 @@ class EntityTypeField(StandardField):
       An instance of the EntityTypeField class.
   """
 
-  def __init__(self,
-               namespace_name: str,
-               standard_field_name: str,
-               is_optional: bool,
-               increment: Optional[str] = ''):
+  def __init__(
+      self,
+      namespace_name: str,
+      standard_field_name: str,
+      is_optional: bool,
+      increment: Optional[str] = '',
+  ):
     super().__init__(namespace_name, standard_field_name, increment)
     self._is_optional = is_optional
 
   def __hash__(self):
     return hash(
-        (self._namespace, self._name, self._increment, self._is_optional))
+        (self._namespace, self._name, self._increment, self._is_optional)
+    )
 
   def __eq__(self, other):
     if isinstance(other, StandardField):
       return super().__eq__(other)
     elif not isinstance(other, self.__class__):
       raise TypeError(
-          '{str(other)} and {str(self)} must be EntityTypeField objects')
+          '{str(other)} and {str(self)} must be EntityTypeField objects'
+      )
     else:
       standard_eq = super().__eq__(other)
       optional_eq = self._is_optional == other.IsOptional()
@@ -145,15 +155,19 @@ class Match(object):
     An instance of the Match class
   """
 
-  def __init__(self, field_list: List[StandardField], entity_type: EntityType,
-               match_score: float):
+  def __init__(
+      self,
+      field_list: List[StandardField],
+      entity_type: EntityType,
+      match_score: float,
+  ):
     """Init.
 
     Args:
       field_list: a list of StandardField objects
       entity_type: an entity type which implements a subset of field_list
       match_score: the closeness of a match between field_list and entity type,
-      integer in [0, 100].
+        integer in [0, 100].
     """
     super().__init__()
     self._field_list = field_list
@@ -183,6 +197,8 @@ class Match(object):
 
 
 def StandardizeField(field: EntityTypeField) -> StandardField:
-  return StandardField(field.GetNamespaceName(),
-                       field.GetStandardFieldName(),
-                       field.GetIncrement())
+  return StandardField(
+      field.GetNamespaceName(),
+      field.GetStandardFieldName(),
+      field.GetIncrement(),
+  )

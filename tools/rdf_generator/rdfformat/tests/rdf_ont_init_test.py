@@ -18,12 +18,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import rdflib
-from rdflib import namespace
-
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_ont_init
-from absl.testing import absltest
+import rdflib
+from rdflib import namespace
 
 
 class RdfOntInitTest(absltest.TestCase):
@@ -44,7 +43,8 @@ class RdfOntInitTest(absltest.TestCase):
     # Main Types
     entity_type = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS["EntityType"])
     physical_location = rdflib.URIRef(
-        constants.FACILITIES_NS["PhysicalLocation"])
+        constants.FACILITIES_NS["PhysicalLocation"]
+    )
     state = rdflib.URIRef(constants.STATES_NS["State"])
     field = rdflib.URIRef(constants.FIELDS_NS["Field"])
     application = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS["Application"])
@@ -54,8 +54,11 @@ class RdfOntInitTest(absltest.TestCase):
     # Main Classes
     entity_type_class = (entity_type, rdflib.RDF.type, rdflib.OWL.Class)
     multi_state_class = (state, rdflib.RDF.type, rdflib.OWL.Class)
-    physical_location_class = (physical_location, rdflib.RDF.type,
-                               rdflib.OWL.Class)
+    physical_location_class = (
+        physical_location,
+        rdflib.RDF.type,
+        rdflib.OWL.Class,
+    )
     field_class = (field, rdflib.RDF.type, rdflib.OWL.Class)
     application_class = (application, rdflib.RDF.type, rdflib.OWL.Class)
     equipment_class = (equipment, rdflib.RDF.type, rdflib.OWL.Class)
@@ -72,44 +75,58 @@ class RdfOntInitTest(absltest.TestCase):
     self.assertIn(functionality_class, g_ont_init)
 
     # SubClasses assertions
-    self.assertIn((entity_type, rdflib.RDFS.subClassOf, rdflib.OWL.Thing),
-                  g_ont_init)
-    self.assertIn((physical_location, rdflib.RDFS.subClassOf, entity_type),
-                  g_ont_init)
+    self.assertIn(
+        (entity_type, rdflib.RDFS.subClassOf, rdflib.OWL.Thing), g_ont_init
+    )
+    self.assertIn(
+        (physical_location, rdflib.RDFS.subClassOf, entity_type), g_ont_init
+    )
     self.assertIn((state, rdflib.RDFS.subClassOf, rdflib.OWL.Thing), g_ont_init)
     self.assertIn((field, rdflib.RDFS.subClassOf, rdflib.OWL.Thing), g_ont_init)
-    self.assertIn((application, rdflib.RDFS.subClassOf, entity_type),
-                  g_ont_init)
+    self.assertIn(
+        (application, rdflib.RDFS.subClassOf, entity_type), g_ont_init
+    )
     self.assertIn((equipment, rdflib.RDFS.subClassOf, entity_type), g_ont_init)
-    self.assertIn((functionality, rdflib.RDFS.subClassOf, entity_type),
-                  g_ont_init)
+    self.assertIn(
+        (functionality, rdflib.RDFS.subClassOf, entity_type), g_ont_init
+    )
 
     # Disjoint assertions
     self.assertIn((application, rdflib.OWL.disjointWith, equipment), g_ont_init)
-    self.assertIn((application, rdflib.OWL.disjointWith, functionality),
-                  g_ont_init)
-    self.assertIn((application, rdflib.OWL.disjointWith, physical_location),
-                  g_ont_init)
+    self.assertIn(
+        (application, rdflib.OWL.disjointWith, functionality), g_ont_init
+    )
+    self.assertIn(
+        (application, rdflib.OWL.disjointWith, physical_location), g_ont_init
+    )
 
     self.assertIn((equipment, rdflib.OWL.disjointWith, application), g_ont_init)
-    self.assertIn((equipment, rdflib.OWL.disjointWith, functionality),
-                  g_ont_init)
-    self.assertIn((equipment, rdflib.OWL.disjointWith, physical_location),
-                  g_ont_init)
+    self.assertIn(
+        (equipment, rdflib.OWL.disjointWith, functionality), g_ont_init
+    )
+    self.assertIn(
+        (equipment, rdflib.OWL.disjointWith, physical_location), g_ont_init
+    )
 
-    self.assertIn((functionality, rdflib.OWL.disjointWith, application),
-                  g_ont_init)
-    self.assertIn((functionality, rdflib.OWL.disjointWith, equipment),
-                  g_ont_init)
-    self.assertIn((functionality, rdflib.OWL.disjointWith, physical_location),
-                  g_ont_init)
+    self.assertIn(
+        (functionality, rdflib.OWL.disjointWith, application), g_ont_init
+    )
+    self.assertIn(
+        (functionality, rdflib.OWL.disjointWith, equipment), g_ont_init
+    )
+    self.assertIn(
+        (functionality, rdflib.OWL.disjointWith, physical_location), g_ont_init
+    )
 
-    self.assertIn((physical_location, rdflib.OWL.disjointWith, application),
-                  g_ont_init)
-    self.assertIn((physical_location, rdflib.OWL.disjointWith, functionality),
-                  g_ont_init)
-    self.assertIn((physical_location, rdflib.OWL.disjointWith, equipment),
-                  g_ont_init)
+    self.assertIn(
+        (physical_location, rdflib.OWL.disjointWith, application), g_ont_init
+    )
+    self.assertIn(
+        (physical_location, rdflib.OWL.disjointWith, functionality), g_ont_init
+    )
+    self.assertIn(
+        (physical_location, rdflib.OWL.disjointWith, equipment), g_ont_init
+    )
 
 
 if __name__ == "__main__":

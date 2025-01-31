@@ -24,7 +24,11 @@ setup(
     author='Travis Welch',
     packages=find_packages(),
     install_requires=[
-        'absl-py', 'pyfiglet', 'argparse', 'termcolor', 'colorama'
+        'absl-py',
+        'pyfiglet',
+        'argparse',
+        'termcolor',
+        'colorama',
     ],
     python_requires='>=3.9',
 )

@@ -84,7 +84,8 @@ def BuildUniverse(
     universe = presubmit_validate_types_lib.BuildUniverse(config)
 
   namespace_validation = namespace_validator.NamespaceValidator(
-      universe.GetEntityTypeNamespaces())
+      universe.GetEntityTypeNamespaces()
+  )
 
   if not namespace_validation.IsValid():
     print(

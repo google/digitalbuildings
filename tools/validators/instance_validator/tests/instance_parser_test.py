@@ -48,13 +48,15 @@ class ParserTest(absltest.TestCase):
     expected = syaml.Regex('^(ADD) | (UPDATE)$')
     actual = instance_parser.EnumToRegex(
         instance_parser.EntityOperation,
-        [instance_parser.EntityOperation.DELETE])
+        [instance_parser.EntityOperation.DELETE],
+    )
     self.assertEqual(str(expected), str(actual))
 
   def testInstanceValidator_DetectDuplicateKeys_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_keys.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_keys.yaml')]
+      )
       del parser
 
   def testInstanceValidator_DetectMissingColon_Fails(self):
@@ -78,17 +80,20 @@ class ParserTest(absltest.TestCase):
 
   def testInstanceValidator_ParseProperConnections_Success(self):
     parser = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'building_connections.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'building_connections.yaml')]
+    )
     del parser
 
   def testInstanceValidator_ParseProperConnectionList_Success(self):
     parser = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'building_connection_list.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'building_connection_list.yaml')]
+    )
     del parser
 
   def testInstanceValidator_ParseMultipleEntities_Success(self):
     parser = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'multi_instances.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'multi_instances.yaml')]
+    )
 
     self.assertLen(parser.keys(), 3)
     self.assertIn('AHU-11-GUID', parser.keys())
@@ -98,26 +103,30 @@ class ParserTest(absltest.TestCase):
   def testInstanceValidator_DetectImproperTranslationCompliance(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'translation_compliant.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'translation_compliant.yaml')]
+      )
       del parser
 
   def testInstanceValidator_DetectImproperTranslationKeys(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'translation_keys.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'translation_keys.yaml')]
+      )
       del parser
 
   def testInstanceValidator_DetectImproperUnitsKeys(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'translation_units_format.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'translation_units_format.yaml')]
+      )
       del parser
 
   def testInstanceValidator_CloudDeviceIdNotSetWithTranslation(self):
     with self.assertRaises(KeyError):
       parser = _Helper([
-          path.join(_TESTCASE_PATH, 'BAD',
-                    'translation_missing_cloud_device_id.yaml')
+          path.join(
+              _TESTCASE_PATH, 'BAD', 'translation_missing_cloud_device_id.yaml'
+          )
       ])
       del parser
 
@@ -129,13 +138,15 @@ class ParserTest(absltest.TestCase):
   def testInstanceValidator_DetectDuplicateMetadata(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_metadata.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_metadata.yaml')]
+      )
       del parser
 
   def testInstanceValidator_RejectsOperationOnInitialize(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'entity_operation.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'entity_operation.yaml')]
+      )
       del parser
 
   def testInstanceValidator_RejectsMaskOnInitialize(self):
@@ -146,7 +157,8 @@ class ParserTest(absltest.TestCase):
   def testInstanceValidator_RejectsMaskOnAdd(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'entity_add_mask.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'entity_add_mask.yaml')]
+      )
       del parser
 
   def testInstanceValidator_RejectsUpdateWithoutEtag(self):
@@ -156,70 +168,84 @@ class ParserTest(absltest.TestCase):
 
   def testInstanceValidator_ReadsMetadata_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'with_metadata.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'with_metadata.yaml')]
+    )
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertEqual(parser.GetConfigMode(), instance_parser.ConfigMode.UPDATE)
 
   def testInstanceValidator_ReadsMetadataAtEnd_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'with_metadata_at_end.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'with_metadata_at_end.yaml')]
+    )
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertEqual(parser.GetConfigMode(), instance_parser.ConfigMode.UPDATE)
 
   def testInstanceValidator_HandlesUpdateMode_Success(self):
     parser = _ParserHelper([
-        path.join(_TESTCASE_PATH, 'GOOD',
-                  'update_change_subset_of_entities.yaml')
+        path.join(
+            _TESTCASE_PATH, 'GOOD', 'update_change_subset_of_entities.yaml'
+        )
     ])
     self.assertLen(parser.GetEntities().keys(), 4)
 
   def testInstanceValidator_RejectsUpdateMaskWithoutUpdateMode_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper([
-          path.join(_TESTCASE_PATH, 'BAD',
-                    'update_with_incorrect_metadata.yaml')
+          path.join(
+              _TESTCASE_PATH, 'BAD', 'update_with_incorrect_metadata.yaml'
+          )
       ])
       del parser
 
   def testInstanceValidator_UsesDefaultMode_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')])
-    self.assertEqual(parser.GetConfigMode(),
-                     instance_parser.ConfigMode.Default())
+        [path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')]
+    )
+    self.assertEqual(
+        parser.GetConfigMode(), instance_parser.ConfigMode.Default()
+    )
 
   def testInstanceValidator_InvalidConfigModeExport_RaisesKeyError(self):
     with self.assertWarns(Warning):
       parser = _ParserHelper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')]
+      )
       del parser
 
   def testEntityBlock_NewFormatSingleton_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'new_format_singleton.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'new_format_singleton.yaml')]
+    )
     self.assertEqual(
         list(parser.GetEntities().keys()).pop(),
-        '9a86a19b-b687-4db1-888e-2cf34d04b74c')
+        '9a86a19b-b687-4db1-888e-2cf34d04b74c',
+    )
 
   def testEntityBlock_CodeWithSpace_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'code_with_spaces.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'code_with_spaces.yaml')]
+    )
     self.assertEqual(
-        list(parser.GetEntities().keys()).pop(), 'SDC_EXT 2-1 / Rm 2D2-GUID')
+        list(parser.GetEntities().keys()).pop(), 'SDC_EXT 2-1 / Rm 2D2-GUID'
+    )
 
   def testEntityBlock_ValidUpdateMaskValueTypes_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'update_mask.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'update_mask.yaml')]
+    )
     self.assertLen(parser.GetEntities().keys(), 1)
 
   def testEntityBlock_InvalidUpdateMaskInconsistentTypes_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_value.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_value.yaml')]
+      )
       del parser
 
   def testEntityBlock_ValidUpdateMaskValue_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'update_mask.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'update_mask.yaml')]
+    )
     expected = {
         'SDC_EXT-17-GUID': {
             'type': 'HVAC/SDC_EXT',
@@ -229,17 +255,15 @@ class ParserTest(absltest.TestCase):
             'update_mask': ['translation', 'connection'],
             'translation': {
                 'shade_extent_percentage_command': {
-                    'present_value':
-                        'points.shade_extent_percentage_command.present_value',
+                    'present_value': (
+                        'points.shade_extent_percentage_command.present_value'
+                    ),
                     'units': {
                         'key': 'points.shade_extent_percentage_command.units',
-                        'values': {
-                            'percent': '%',
-                            'type': 'HVAC/SDC_EXT'
-                        }
-                    }
+                        'values': {'percent': '%', 'type': 'HVAC/SDC_EXT'},
+                    },
                 }
-            }
+            },
         }
     }
 
@@ -248,7 +272,8 @@ class ParserTest(absltest.TestCase):
 
   def testGoodEntity_DefaultExportOperationParses_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'entity_export_operation.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'entity_export_operation.yaml')]
+    )
 
     parsed = parser.GetEntities()
     _, entity = next(iter(parsed.items()))
@@ -262,23 +287,27 @@ class ParserTest(absltest.TestCase):
   def testEntityBlock_InvalidExportOperation_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'entity_export_operation.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'entity_export_operation.yaml')]
+      )
       del parser
 
   def testEntityBlock_InvalidUpdateMaskAndOperation_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')]
+      )
       del parser
 
   def testInstanceValidator_translationFieldStatesCaseInsensitive_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_insensitive.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_insensitive.yaml')]
+    )
     self.assertLen(parser.GetEntities().keys(), 2)
 
   def testEntityBlock_EntityWithId_Success(self):
     parser = _ParserHelper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')]
+    )
 
     parsed = parser.GetEntities()
     iterator = iter(parsed.items())
@@ -289,7 +318,9 @@ class ParserTest(absltest.TestCase):
     self.assertIsNone(entity_1.get(instance_parser.ENTITY_ID_KEY))
     self.assertEqual(
         entity_2.get(instance_parser.ENTITY_ID_KEY),
-        "deprecated-but-doesn't-break")
+        "deprecated-but-doesn't-break",
+    )
+
 
 if __name__ == '__main__':
   absltest.main()

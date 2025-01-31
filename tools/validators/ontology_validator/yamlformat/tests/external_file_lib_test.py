@@ -46,12 +46,14 @@ class ExternalFileLibTest(absltest.TestCase):
     path_part_modified_base = path_parts[0]
     self.assertNotEmpty(path_part_modified_base)
     self.assertEqual(path_part_modified_base.root, DIR_ONE_LEVEL)
-    self.assertEqual(path_part_modified_base.relative_path,
-                     path.join('entity_types', FAN))
+    self.assertEqual(
+        path_part_modified_base.relative_path, path.join('entity_types', FAN)
+    )
     path_part_modified_base = path_parts[1]
     self.assertEqual(path_part_modified_base.root, DIR_ONE_LEVEL)
-    self.assertEqual(path_part_modified_base.relative_path,
-                     path.join('entity_types', FAN_2))
+    self.assertEqual(
+        path_part_modified_base.relative_path, path.join('entity_types', FAN_2)
+    )
 
   def test_RecursiveDirWalk_multiLevel(self):
     path_parts = external_file_lib.RecursiveDirWalk(DIR_MULTI_DIR)
@@ -64,18 +66,24 @@ class ExternalFileLibTest(absltest.TestCase):
 
     path_part_modified_client_fan = path_parts[1]
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
-    self.assertEqual(path_part_modified_client_fan.relative_path,
-                     path.join('entity_types', FAN))
+    self.assertEqual(
+        path_part_modified_client_fan.relative_path,
+        path.join('entity_types', FAN),
+    )
 
     path_part_modified_client_fan = path_parts[2]
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
-    self.assertEqual(path_part_modified_client_fan.relative_path,
-                     path.join('entity_types', 'another_entity_types', FAN))
+    self.assertEqual(
+        path_part_modified_client_fan.relative_path,
+        path.join('entity_types', 'another_entity_types', FAN),
+    )
 
     path_part_modified_client_fan = path_parts[3]
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
-    self.assertEqual(path_part_modified_client_fan.relative_path,
-                     path.join('entity_types', 'another_entity_types2', FAN))
+    self.assertEqual(
+        path_part_modified_client_fan.relative_path,
+        path.join('entity_types', 'another_entity_types2', FAN),
+    )
 
 
 if __name__ == '__main__':

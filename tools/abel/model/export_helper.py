@@ -130,31 +130,25 @@ class BuildingConfigExport(object):
     for operation in operations:
       entity = operation.entity
       if isinstance(entity, ReportingEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity, operation
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                entity, operation
+            )
+        })
       elif isinstance(entity, VirtualEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
-                    entity, operation
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                entity, operation
+            )
+        })
 
-    entity_yaml_dict.update(
-        {
-            site.guid: {
-                CONFIG_CODE: site.code,
-                CONFIG_TYPE: site.namespace + '/' + site.type_name,
-                CONFIG_ETAG: site.etag,
-            }
+    entity_yaml_dict.update({
+        site.guid: {
+            CONFIG_CODE: site.code,
+            CONFIG_TYPE: site.namespace + '/' + site.type_name,
+            CONFIG_ETAG: site.etag,
         }
-    )
+    })
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
@@ -182,31 +176,25 @@ class BuildingConfigExport(object):
     for entity_guid in site.entities:
       entity = self.model.guid_to_entity_map.GetEntityByGuid(entity_guid)
       if isinstance(entity, ReportingEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity=entity,
-                    operation=None,
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                entity=entity,
+                operation=None,
+            )
+        })
       elif isinstance(entity, VirtualEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
-                    entity=entity, operation=None
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                entity=entity, operation=None
+            )
+        })
 
-    entity_yaml_dict.update(
-        {
-            site.guid: {
-                CONFIG_CODE: site.code,
-                CONFIG_TYPE: site.namespace + '/' + site.type_name,
-            }
+    entity_yaml_dict.update({
+        site.guid: {
+            CONFIG_CODE: site.code,
+            CONFIG_TYPE: site.namespace + '/' + site.type_name,
         }
-    )
+    })
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
@@ -251,25 +239,21 @@ class BuildingConfigExport(object):
       reporting_entity_yaml[CONFIG_TRANSLATION] = {}
       for field in entity.translations:
         if field.reporting_entity_field_name:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {
-                  field.reporting_entity_field_name: (
-                      BC_MISSING
-                      if isinstance(field, MissingField)
-                      else self._TranslateField(field)
-                  )
-              }
-          )
+          reporting_entity_yaml[CONFIG_TRANSLATION].update({
+              field.reporting_entity_field_name: (
+                  BC_MISSING
+                  if isinstance(field, MissingField)
+                  else self._TranslateField(field)
+              )
+          })
         else:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {
-                  field.std_field_name: (
-                      BC_MISSING
-                      if isinstance(field, MissingField)
-                      else self._TranslateField(field)
-                  )
-              }
-          )
+          reporting_entity_yaml[CONFIG_TRANSLATION].update({
+              field.std_field_name: (
+                  BC_MISSING
+                  if isinstance(field, MissingField)
+                  else self._TranslateField(field)
+              )
+          })
     reporting_entity_yaml.update(
         {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )

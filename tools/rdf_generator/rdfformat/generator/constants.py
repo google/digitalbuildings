@@ -27,18 +27,21 @@ FIELDS_NS = rdflib.Namespace(BASE + '/fields#')
 HVAC_NS = rdflib.Namespace(BASE + '/hvac#')
 
 SUBFOLDER_NAMES = frozenset(
-    {'subfields', 'states', 'fields', 'entity_types', 'units'})
+    {'subfields', 'states', 'fields', 'entity_types', 'units'}
+)
 
 
 # Ontology Metadata information
 DCTERMS = rdflib.Namespace('http://purl.org/dc/terms#')
-AUTHORS = ('Keith Berkoben, Trevor Sodorff')
-CONTRIBUTORS = ('Charbel El Kaed')
-ONT_DESCRIPTION = ('The Digital Buildings ontology is an open-source, '
-                   'Apache-licensed development effort to create a uniform '
-                   'schema for representing metadata in Google\'s buildings '
-                   'real estate portfolio. It is inspired from Project Haystack'
-                   ' and BrickSchema.')
+AUTHORS = 'Keith Berkoben, Trevor Sodorff'
+CONTRIBUTORS = 'Charbel El Kaed'
+ONT_DESCRIPTION = (
+    'The Digital Buildings ontology is an open-source, '
+    'Apache-licensed development effort to create a uniform '
+    "schema for representing metadata in Google's buildings "
+    'real estate portfolio. It is inspired from Project Haystack'
+    ' and BrickSchema.'
+)
 
 GITHUB = 'https://github.com/google/digitalbuildings/'
 GITHUB_LICENSE = GITHUB + 'license'
