@@ -16,6 +16,7 @@ from __future__ import print_function
 
 from typing import Any, Dict
 import uuid
+
 import strictyaml as syaml
 
 from validate import instance_parser
@@ -25,13 +26,14 @@ class GuidGenerator(object):
   """Class for generator entity GUIDs."""
 
   @staticmethod
-  def WriteYamlToFile(filename: str, entity_yaml_dict: Dict[str,
-                                                            object]) -> None:
+  def WriteYamlToFile(
+      filename: str, entity_yaml_dict: Dict[str, object]
+  ) -> None:
     """Converts a dictionary of entity instances to yaml file.
 
     Args:
       filename: path to import/export building config yaml file; input building
-      config file is overwritten with entities keyed by guid.
+        config file is overwritten with entities keyed by guid.
       entity_yaml_dict: Dictionary with entity yaml blocks keyed by entity
         instance code or GUID.
     """
@@ -91,8 +93,9 @@ class GuidGenerator(object):
       entity_yaml_dict.update(guid_key_entities)
       for entity_code, entity_yaml in code_key_entities.items():
         entity_guid = entity_yaml[instance_parser.ENTITY_GUID_KEY]
-        cls._ConvertEntityToGuidFormat(entity_code, entity_yaml,
-                                       code_to_guid_map)
+        cls._ConvertEntityToGuidFormat(
+            entity_code, entity_yaml, code_to_guid_map
+        )
         entity_yaml_dict[entity_guid] = entity_yaml
     else:
       entity_yaml_dict.update(code_key_entities)
@@ -100,8 +103,11 @@ class GuidGenerator(object):
     cls.WriteYamlToFile(file_path, entity_yaml_dict)
 
   @staticmethod
-  def _ConvertEntityToGuidFormat(entity_code: str, entity_yaml: Dict[str, Any],
-                                 code_to_guid_map: Dict[str, str]) -> None:
+  def _ConvertEntityToGuidFormat(
+      entity_code: str,
+      entity_yaml: Dict[str, Any],
+      code_to_guid_map: Dict[str, str],
+  ) -> None:
     """Converts an entity from code-based to GUID-based format."""
     del entity_yaml[instance_parser.ENTITY_GUID_KEY]
     entity_yaml[instance_parser.ENTITY_CODE_KEY] = entity_code
@@ -110,8 +116,9 @@ class GuidGenerator(object):
       old_connections = entity_yaml[instance_parser.CONNECTIONS_KEY].items()
       new_connections = {}
       for source_entity_code, connection_type in old_connections:
-        source_entity_guid = code_to_guid_map.get(source_entity_code,
-                                                  source_entity_code)
+        source_entity_guid = code_to_guid_map.get(
+            source_entity_code, source_entity_code
+        )
         new_connections[source_entity_guid] = connection_type
       entity_yaml[instance_parser.CONNECTIONS_KEY] = new_connections
 
@@ -119,7 +126,8 @@ class GuidGenerator(object):
       old_links = entity_yaml[instance_parser.LINKS_KEY].items()
       new_links = {}
       for source_entity_code, field_map in old_links:
-        source_entity_guid = code_to_guid_map.get(source_entity_code,
-                                                  source_entity_code)
+        source_entity_guid = code_to_guid_map.get(
+            source_entity_code, source_entity_code
+        )
         new_links[source_entity_guid] = field_map
       entity_yaml[instance_parser.LINKS_KEY] = new_links

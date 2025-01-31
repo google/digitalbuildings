@@ -15,6 +15,7 @@
 """Testing module for arg_parser.py."""
 import argparse
 import ast
+
 from absl.testing import absltest
 
 from yamlformat import arg_parser
@@ -47,36 +48,28 @@ class ArgParserTest(absltest.TestCase):
       self.parser.parse_args(['-m', './test/path'])
 
   def testInteractiveIsTrue(self):
-    parsed = self.parser.parse_args([
-        '--original',
-        './my/path/to/foo',
-        '--interactive',
-        'True'
-    ])
+    parsed = self.parser.parse_args(
+        ['--original', './my/path/to/foo', '--interactive', 'True']
+    )
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertIsNone(parsed.modified_types_filepath)
     self.assertTrue(ast.literal_eval(parsed.interactive))
 
   def testNoInteractiveFlag(self):
-    parsed = self.parser.parse_args([
-        '--original',
-        './my/path/to/foo'
-    ])
+    parsed = self.parser.parse_args(['--original', './my/path/to/foo'])
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertIsNone(parsed.modified_types_filepath)
     self.assertFalse(ast.literal_eval(parsed.interactive))
 
   def testNoAllowMissingTypeGuidsFlag(self):
-    parsed = self.parser.parse_args([
-        '--original',
-        './my/path/to/foo',
-        '--interactive',
-        'True'
-    ])
+    parsed = self.parser.parse_args(
+        ['--original', './my/path/to/foo', '--interactive', 'True']
+    )
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertIsNone(parsed.modified_types_filepath)
     self.assertTrue(ast.literal_eval(parsed.interactive))
     self.assertFalse(parsed.allow_missing_type_guids)
+
 
 if __name__ == '__main__':
   absltest.main()

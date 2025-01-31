@@ -13,76 +13,79 @@
 # limitations under the License.
 """File parser for the configuration scoring tool."""
 
-from typing import Dict, Optional, List, Any
+from typing import Any, Dict, List, Optional
+
+from score.constants import DimensionCategories, FileTypes
+from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, entity_type_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
+from score.dimensions.dimension import Dimension
+from score.scorer_types import DeserializedFile, DeserializedFilesDict, DimensionName, TranslationsDict
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
-
-from score.dimensions.dimension import Dimension
-from score.scorer_types import DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict
-from score.constants import FileTypes, DimensionCategories
-from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, entity_type_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfig:
-  """
-    Attributes:
-      args: Dictionary containing instance arguments
-      universe: Built from the input ontology
-      deserialized_files: Parsed configuration files
-      results: Dictionary containing results for output
+  """Attributes:
 
-    Returns:
-      An instance of the ParseConfig class.
+    args: Dictionary containing instance arguments
+    universe: Built from the input ontology
+    deserialized_files: Parsed configuration files
+    results: Dictionary containing results for output
+
+  Returns:
+    An instance of the ParseConfig class.
   """
-  def __init__(self,
-               *,
-               ontology: str,
-               solution: str,
-               proposed: str,
-               verbose: Optional[bool] = False):
-    """
-      Arguments:
-        ontology: Path to the ontology
-        solution: Path to the solution config
-        proposed: Path to the config to be evaluated
-        verbose: Print specifics of missing types and translations (optional)
+
+  def __init__(
+      self,
+      *,
+      ontology: str,
+      solution: str,
+      proposed: str,
+      verbose: Optional[bool] = False,
+  ):
+    """Arguments:
+
+    ontology: Path to the ontology
+    solution: Path to the solution config
+    proposed: Path to the config to be evaluated
+    verbose: Print specifics of missing types and translations (optional)
     """
     self.args = {
         'ontology': ontology,
         SOLUTION: solution,
         PROPOSED: proposed,
-        'verbose': verbose
+        'verbose': verbose,
     }
     print('Scoring — building universe')
     self.universe = BuildUniverse(modified_types_filepath=ontology)
     print('Scoring — deserializing files')
     self.deserialized_files = {
         PROPOSED: validator.Deserialize([proposed])[0],
-        SOLUTION: validator.Deserialize([solution])[0]
+        SOLUTION: validator.Deserialize([solution])[0],
     }
     self.results = {}
 
   @staticmethod
   def append_types(
-      *, universe: ConfigUniverse,
-      deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
-    """
-      Appends types to deserialized files for purposes
-      of filtering entities and for evaluating "complex" dimensions.
+      *, universe: ConfigUniverse, deserialized_files: DeserializedFilesDict
+  ) -> DeserializedFilesDict:
+    """Appends types to deserialized files for purposes
 
-      Args:
-        universe: The ontology universe to reference
-        deserialized_files: Dictionary with deserialized configuration files
-          keyed under their respective file type ("proposed" or "solution").
+    of filtering entities and for evaluating "complex" dimensions.
 
-      Returns:
-        The deserialized files dictionary with types
-        appended to each entity in the respective files.
+    Args:
+      universe: The ontology universe to reference
+      deserialized_files: Dictionary with deserialized configuration files keyed
+        under their respective file type ("proposed" or "solution").
+
+    Returns:
+      The deserialized files dictionary with types
+      appended to each entity in the respective files.
     """
     print('Scoring — appending entity types')
     for file_type, file in deserialized_files.items():
@@ -100,8 +103,9 @@ class ParseConfig:
             source = file[link.source] if link.source in file else None
             if source:
               if not getattr(source, 'type', None):
-                source.type = universe.GetEntityType(source.namespace,
-                                                     source.type_name)
+                source.type = universe.GetEntityType(
+                    source.namespace, source.type_name
+                )
                 if source.type is None:
                   types_absent.append(getattr(source, type_or_name))
               link.source_type = source.type
@@ -109,43 +113,52 @@ class ParseConfig:
                 if target_field != source_field:
                   try:
                     source.translation[target_field] = source.translation[
-                        source_field]
-                    source.translation[
-                        target_field].std_field_name = target_field
+                        source_field
+                    ]
+                    source.translation[target_field].std_field_name = (
+                        target_field
+                    )
                     del source.translation[source_field]
                   except KeyError:
                     translations_absent.append(
-                        f'{link.source}.translation.{source_field}')
+                        f'{link.source}.translation.{source_field}'
+                    )
 
-      print(f'    {file_type} translations absent: ' +
-            f'{len(set(translations_absent))} ' +
-            f'(from {len(translations_absent)} links)')
+      print(
+          f'    {file_type} translations absent: '
+          + f'{len(set(translations_absent))} '
+          + f'(from {len(translations_absent)} links)'
+      )
 
-      print(f'    {file_type} types absent: {len(set(types_absent))} ' +
-            f'({len(types_absent)} instances)')
+      print(
+          f'    {file_type} types absent: {len(set(types_absent))} '
+          + f'({len(types_absent)} instances)'
+      )
 
     return deserialized_files
 
   @staticmethod
   def retrieve_reporting_translations(
-      *, proposed_entities: DeserializedFile,
-      solution_entities: DeserializedFile) -> TranslationsDict:
-    """
-      Retrieves proposed and solution translations
-      for all matched reporting entities.
+      *,
+      proposed_entities: DeserializedFile,
+      solution_entities: DeserializedFile,
+  ) -> TranslationsDict:
+    """Retrieves proposed and solution translations
 
-      Args:
-        matches: List of `cloud_device_id`s which have corresponding
-          proposed and solution entities
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
+    for all matched reporting entities.
 
-      Returns:
-        Dictionary with `cloud_device_id`s as keys
-        and values which are dictionaries containing lists
-        of translations for the device, keyed under the file type
+    Args:
+      matches: List of `cloud_device_id`s which have corresponding proposed and
+        solution entities
+      proposed_entities: Dictionary of proposed entity names and
+        `EntityInstance`s
+      solution_entities: Dictionary of solution entity names and
+        `EntityInstance`s
+
+    Returns:
+      Dictionary with `cloud_device_id`s as keys
+      and values which are dictionaries containing lists
+      of translations for the device, keyed under the file type
     """
 
     translations = {}
@@ -167,12 +180,17 @@ class ParseConfig:
           List of matching entities.
         """
         matches = [
-            proposed_entity for proposed_entity in proposed_entities.values()
-            if proposed_entity.cloud_device_id == cdid]
+            proposed_entity
+            for proposed_entity in proposed_entities.values()
+            if proposed_entity.cloud_device_id == cdid
+        ]
         return matches
 
-      proposed_entity = find_matches(cloud_device_id)[0] if find_matches(
-          cloud_device_id) else {}
+      proposed_entity = (
+          find_matches(cloud_device_id)[0]
+          if find_matches(cloud_device_id)
+          else {}
+      )
 
       def aggregate_translations(entity) -> List[Any]:
         """Isolate translation of an entity pairing."""
@@ -182,31 +200,32 @@ class ParseConfig:
 
       translations[cloud_device_id] = {
           PROPOSED: aggregate_translations(proposed_entity),
-          SOLUTION: aggregate_translations(solution_entity)
+          SOLUTION: aggregate_translations(solution_entity),
       }
 
     return translations
 
   @staticmethod
   def aggregate_results(
-      *, dimensions: List[Dimension], translations: TranslationsDict,
-      deserialized_files: DeserializedFilesDict
+      *,
+      dimensions: List[Dimension],
+      translations: TranslationsDict,
+      deserialized_files: DeserializedFilesDict,
   ) -> Dict[DimensionName, Dimension]:
-    """
-      Wrapper which outputs a dictionary of results by invoking each
-      specified `Dimension` with the appropriate argument based on its category
+    """Wrapper which outputs a dictionary of results by invoking each
 
-      Args:
-        dimensions: List of `Dimension`s to be evaluated
-        translations: Dictionary with `cloud_device_id`s as keys
-          and lists of translation tuples as values. Used as argument for
-          "simple" dimensions.
-        deserialized_files: Dictionary with deserialized configuration files
-          keyed under their respective file type ("proposed" or "solution").
-          Used as argument for "complex" dimensions.
+    specified `Dimension` with the appropriate argument based on its category
 
-      Returns:
-        Dictionary with dimension names as keys and `Dimension`s as values
+    Args:
+      dimensions: List of `Dimension`s to be evaluated
+      translations: Dictionary with `cloud_device_id`s as keys and lists of
+        translation tuples as values. Used as argument for "simple" dimensions.
+      deserialized_files: Dictionary with deserialized configuration files keyed
+        under their respective file type ("proposed" or "solution"). Used as
+        argument for "complex" dimensions.
+
+    Returns:
+      Dictionary with dimension names as keys and `Dimension`s as values
     """
     results = {}
 
@@ -221,38 +240,40 @@ class ParseConfig:
     return results
 
   def execute(self) -> Dict[DimensionName, str]:
-    """
-      Wrapper for all functionality herein.
+    """Wrapper for all functionality herein.
 
-      Returns:
-        Dictionary containing human-readable
-        represenation of every scored dimension.
+    Returns:
+      Dictionary containing human-readable
+      represenation of every scored dimension.
     """
     deserialized_files_appended = self.append_types(
-        universe=self.universe, deserialized_files=self.deserialized_files)
+        universe=self.universe, deserialized_files=self.deserialized_files
+    )
 
     translations = self.retrieve_reporting_translations(
         proposed_entities=deserialized_files_appended[PROPOSED],
-        solution_entities=deserialized_files_appended[SOLUTION])
+        solution_entities=deserialized_files_appended[SOLUTION],
+    )
 
     dimensions = [
         raw_field_selection.RawFieldSelection,
-        standard_field_naming.StandardFieldNaming, state_mapping.StateMapping,
+        standard_field_naming.StandardFieldNaming,
+        state_mapping.StateMapping,
         unit_mapping.UnitMapping,
         entity_connection_identification.EntityConnectionIdentification,
         entity_identification.EntityIdentification,
         entity_point_identification.EntityPointIdentification,
-        entity_type_identification.EntityTypeIdentification
+        entity_type_identification.EntityTypeIdentification,
     ]
 
     self.results = self.aggregate_results(
         dimensions=dimensions,
         translations=translations,
-        deserialized_files=deserialized_files_appended)
+        deserialized_files=deserialized_files_appended,
+    )
 
     readable = {
-        name: str(dimension)
-        for name, dimension in self.results.items()
+        name: str(dimension) for name, dimension in self.results.items()
     }
 
     return readable

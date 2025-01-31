@@ -15,11 +15,11 @@
 
 import argparse
 from absl.testing import absltest
-
 import scorer
 
 
 class CliTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
     self.cli = scorer.parse_args()
@@ -29,9 +29,14 @@ class CliTest(absltest.TestCase):
 
   def testVerboseInputArgsExist(self):
     parsed = self.cli.parse_args([
-        '--modified-ontology-types', 'path/to/ontology/yaml/resources',
-        '--solution', 'path/to/solution/file.yaml', '--proposed',
-        'path/to/proposed/file.yaml', '--verbose', 'True'
+        '--modified-ontology-types',
+        'path/to/ontology/yaml/resources',
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        'True',
     ])
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
     self.assertEqual(parsed.solution, 'path/to/solution/file.yaml')
@@ -40,9 +45,14 @@ class CliTest(absltest.TestCase):
 
   def testConciseInputArgsExist(self):
     parsed = self.cli.parse_args([
-        '-m', 'path/to/ontology/yaml/resources', '-sol',
-        'path/to/solution/file.yaml', '-prop', 'path/to/proposed/file.yaml',
-        '-v', 'True'
+        '-m',
+        'path/to/ontology/yaml/resources',
+        '-sol',
+        'path/to/solution/file.yaml',
+        '-prop',
+        'path/to/proposed/file.yaml',
+        '-v',
+        'True',
     ])
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
     self.assertEqual(parsed.solution, 'path/to/solution/file.yaml')
@@ -59,33 +69,51 @@ class CliTest(absltest.TestCase):
 
   def testOntologyArgDefaultsPath(self):
     parsed = self.cli.parse_args([
-        '--solution', 'path/to/solution/file.yaml', '--proposed',
-        'path/to/proposed/file.yaml'
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
     ])
     self.assertEqual(parsed.ontology, 'ontology/yaml/resources')
 
   def testVerboseArgIsTrue(self):
     parsed = self.cli.parse_args([
-        '--solution', 'path/to/solution/file.yaml', '--proposed',
-        'path/to/proposed/file.yaml', '--verbose', 'True'
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        'True',
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--solution', 'path/to/solution/file.yaml', '--proposed',
-        'path/to/proposed/file.yaml', '--verbose', 'true'
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        'true',
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--solution', 'path/to/solution/file.yaml', '--proposed',
-        'path/to/proposed/file.yaml', '--verbose', 'yes'
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        'yes',
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--solution', 'path/to/solution/file.yaml', '--proposed',
-        'path/to/proposed/file.yaml', '--verbose', '1'
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        '1',
     ])
     self.assertTrue(parsed.verbose)
 
