@@ -29,7 +29,6 @@ def parse_args() -> argparse.ArgumentParser:
       '--modified-ontology-types',
       dest='ontology',
       required=False,
-      default='ontology/yaml/resources',
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology',
   )

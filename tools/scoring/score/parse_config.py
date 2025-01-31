@@ -62,7 +62,7 @@ class ParseConfig:
         'verbose': verbose,
     }
     print('Scoring — building universe')
-    self.universe = BuildUniverse(modified_types_filepath=ontology)
+    self.universe = BuildUniverse(default_types_filepath=ontology)
     print('Scoring — deserializing files')
     self.deserialized_files = {
         PROPOSED: validator.Deserialize([proposed])[0],
