@@ -128,6 +128,16 @@ HX_CWDT_PRWDT_CWSISOVPM:
   - PRWDT
   - CWSISOVPM
 
+HX_CWDT_PRWDT_CWSISOVPM_CWBYPVPM:
+  description: 'Condenser/chilled water heat exchanger.'
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - PRWDT
+  - CWSISOVPM
+  - CWBYPVPM
+
 HX_CWDT_CHWDT_SCHWFRC_CWRISOVPM_CHWSWISOVM_CHWBYPVBC_CHWDPM_CWDPM:
   guid: "85759c09-edea-4ef6-b328-e23e285a8236"
   description: 'Condenser/chilled water heat exchanger.'

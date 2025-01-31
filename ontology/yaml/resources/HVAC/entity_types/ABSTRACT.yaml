@@ -1337,7 +1337,6 @@ CWDT:
   - low_condensing_return_water_temperature_alarm
   - high_condensing_supply_water_temperature_alarm
   - low_condensing_supply_water_temperature_alarm
-  - failed_condensing_supply_water_temperature_alarm
   uses:
   - condensing_return_water_temperature_sensor
   - condensing_supply_water_temperature_sensor
@@ -2850,6 +2849,7 @@ DX4SC:
   - supply_air_specificenthalpy_sensor
   - return_air_specificenthalpy_sensor
   - supply_air_relative_humidity_sensor
+  - failed_supply_air_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
