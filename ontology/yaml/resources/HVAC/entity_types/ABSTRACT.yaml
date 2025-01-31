@@ -1188,7 +1188,6 @@ STC:
   - heating_request_count
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
-  - failed_supply_air_temperature_alarm
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
