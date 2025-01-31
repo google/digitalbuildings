@@ -74,7 +74,7 @@ class CliTest(absltest.TestCase):
         '--proposed',
         'path/to/proposed/file.yaml',
     ])
-    self.assertEqual(parsed.ontology, 'ontology/yaml/resources')
+    self.assertEqual(parsed.ontology, None)
 
   def testVerboseArgIsTrue(self):
     parsed = self.cli.parse_args([
