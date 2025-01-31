@@ -868,12 +868,6 @@ literals:
 - primary_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
-- low_primary_water_differential_pressure_alarm:
-  - ACTIVE
-  - INACTIVE
-- high_primary_water_differential_pressure_alarm:
-  - ACTIVE
-  - INACTIVE
 - secondary_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -3508,9 +3502,6 @@ literals:
 - failed_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
-- failed_condensing_supply_water_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
 - failed_condensing_water_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -3593,9 +3584,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_zone_air_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
-- failed_zone_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - failed_ultraviolet_lamp_alarm:

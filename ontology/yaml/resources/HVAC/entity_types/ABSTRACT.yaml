@@ -1463,12 +1463,6 @@ PRSWTC:
   guid: "26e7feb6-34d7-4eca-8118-ad200649161c"
   description: "Primary loop water temperature control."
   is_abstract: true
-  opt_uses:
-  - primary_return_water_temperature_sensor
-  - high_primary_supply_water_temperature_alarm
-  - low_primary_supply_water_temperature_alarm
-  - low_primary_return_water_temperature_alarm
-  - run_command
   uses:
   - primary_supply_water_temperature_sensor
   - primary_supply_water_temperature_setpoint
@@ -2142,7 +2136,6 @@ ZSPC:
   - exhaust_air_damper_percentage_command
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
-  - failed_zone_air_static_pressure_alarm
   uses:
   - zone_air_static_pressure_sensor
   - zone_air_static_pressure_setpoint
@@ -2689,7 +2682,6 @@ DX3ZC:
   - compressor_speed_percentage_command
   - failed_compressor_alarm
   - cooling_percentage_command
-  - cooling_run_command
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
@@ -6372,7 +6364,6 @@ SWTCSCM:
   opt_uses:
   - supervisor_alarm
 
-
 SESWTC:
   guid: "ac0191bf-f1ba-4dd9-ba81-d31515589c2c"
   description: "Secondary loop supply water temperature control."
@@ -6394,20 +6385,15 @@ SESWTC:
   - secondary_supply_water_temperature_sensor
   - secondary_supply_water_temperature_setpoint
 
-
 PRWDPC:
   guid: "3279876b-0bcd-4fc1-8e9a-273cff67c69e"
   description: "Primary water loop differential pressure control."
   is_abstract: true
   implements:
   - OPERATIONAL
-  opt_uses:
-  - high_primary_water_differential_pressure_alarm
-  - low_primary_water_differential_pressure_alarm
   uses:
   - primary_water_differential_pressure_sensor
   - primary_water_differential_pressure_setpoint
-
 
 SEWDPC:
   guid: "6b3687c0-a8c1-4df4-8f2b-05eaccfbdf45"
