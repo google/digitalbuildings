@@ -152,7 +152,7 @@ CDWS_CLPM_SWTC_WDPM_WFRC:
 
 CDWS_SWTC_WDPC_WFRC_RWISOVM_MWFRM_BWFRM:
   guid: "d59e0ced-f678-43b0-96cd-8c92951c1cb7"
-  description: "Condensing water system with supply temperature and flowrate control as well as thermal power and differential pressure control."
+  description: "Condensing water system with supply temperature, flowrate, and differential pressure control."
   is_canonical: true
   implements:
   - CDWS

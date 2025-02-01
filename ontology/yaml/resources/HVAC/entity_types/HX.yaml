@@ -120,7 +120,7 @@ HX_CWDT_CHWDT_CWRISOVPM:
 
 HX_CWDT_PRWDT_CWSISOVPM:
   guid: "6f180176-dde9-4321-a198-9f1ab3d637de"
-  description: 'Condenser/chilled water heat exchanger.'
+  description: 'Condenser/process water heat exchanger.'
   is_canonical: true
   implements:
   - HX
@@ -130,7 +130,7 @@ HX_CWDT_PRWDT_CWSISOVPM:
 
 HX_CWDT_PRWDT_CWSISOVPM_CWBYPVPM:
   guid: "e8d28beb-539f-404e-9af8-96e9d6926908"
-  description: 'Condenser/chilled water heat exchanger.'
+  description: 'Condenser/process water heat exchanger.'
   is_canonical: true
   implements:
   - HX

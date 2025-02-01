@@ -254,7 +254,7 @@ HWS_SWTC_BYPVPM_WDPC_WFRC:
 
 HWS_SWTC_WDPC_BYPVFRC:
   guid: "67154932-688a-4c74-b797-62b6c5fa29ae"
-  description: "Heating water system (temp/pressure control) with bypass control and flow monitoring."
+  description: "Heating water system (temp/pressure control) with bypass valve flow control."
   is_canonical: true
   implements:
   - HWS
