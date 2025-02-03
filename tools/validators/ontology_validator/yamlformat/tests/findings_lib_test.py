@@ -74,9 +74,11 @@ class FindingsLibTest(absltest.TestCase):
   def testValidationWarningEqualityKey(self):
     key = object()
     finding1 = findings_lib.ValidationWarning(
-        'm', self.file_context, equality_key=key)
+        'm', self.file_context, equality_key=key
+    )
     finding2 = findings_lib.ValidationWarning(
-        'm', self.file_context, equality_key=key)
+        'm', self.file_context, equality_key=key
+    )
     self.assertEqual(finding1, finding2)
 
   def testSmallDeviationFindingEqualityKey(self):
@@ -84,33 +86,48 @@ class FindingsLibTest(absltest.TestCase):
     entity_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
-        description='canine animal')
+        description='canine animal',
+    )
     key = object()
     finding1 = findings_lib.SmallFieldDeviationWarning(
-        entity_type, parents, 3, _F(['a', 'b']), key)
+        entity_type, parents, 3, _F(['a', 'b']), key
+    )
     finding2 = findings_lib.SmallFieldDeviationWarning(
-        entity_type, parents, 3, _F(['a', 'b']), key)
+        entity_type, parents, 3, _F(['a', 'b']), key
+    )
     self.assertEqual(finding1, finding2)
 
   def testFindingsAddValidationError(self):
-    self.findings_class.AddFinding(findings_lib.ValidationError(
-        'message', findings_lib.FileContext('filepath')))
+    self.findings_class.AddFinding(
+        findings_lib.ValidationError(
+            'message', findings_lib.FileContext('filepath')
+        )
+    )
     findings = self.findings_class.GetFindings()
     self.assertLen(findings, 1)
     self.assertFalse(self.findings_class.IsValid())
 
   def testFindingsAddValidationWarning(self):
-    self.findings_class.AddFinding(findings_lib.ValidationWarning(
-        'message', findings_lib.FileContext('filepath')))
+    self.findings_class.AddFinding(
+        findings_lib.ValidationWarning(
+            'message', findings_lib.FileContext('filepath')
+        )
+    )
     findings = self.findings_class.GetFindings()
     self.assertLen(findings, 1)
     self.assertTrue(self.findings_class.IsValid())
 
   def testFindingsAddMultiple(self):
-    self.findings_class.AddFinding(findings_lib.ValidationError(
-        'message', findings_lib.FileContext('filepath')))
-    self.findings_class.AddFinding(findings_lib.ValidationWarning(
-        'message', findings_lib.FileContext('filepath')))
+    self.findings_class.AddFinding(
+        findings_lib.ValidationError(
+            'message', findings_lib.FileContext('filepath')
+        )
+    )
+    self.findings_class.AddFinding(
+        findings_lib.ValidationWarning(
+            'message', findings_lib.FileContext('filepath')
+        )
+    )
     findings = self.findings_class.GetFindings()
     self.assertLen(findings, 2)
     self.assertFalse(self.findings_class.IsValid())
@@ -122,9 +139,12 @@ class FindingsLibTest(absltest.TestCase):
   def testFindingsAddGoodList(self):
     good_list = [
         findings_lib.ValidationError(
-            'message', findings_lib.FileContext('filepath')),
+            'message', findings_lib.FileContext('filepath')
+        ),
         findings_lib.ValidationWarning(
-            'message', findings_lib.FileContext('filepath'))]
+            'message', findings_lib.FileContext('filepath')
+        ),
+    ]
     self.findings_class.AddFindings(good_list)
     findings = self.findings_class.GetFindings()
     self.assertLen(findings, 2)
@@ -133,40 +153,56 @@ class FindingsLibTest(absltest.TestCase):
   def testFindingsAddBadList(self):
     bad_list = [
         findings_lib.ValidationError(
-            'message', findings_lib.FileContext('filepath')),
+            'message', findings_lib.FileContext('filepath')
+        ),
         'some string',
         findings_lib.ValidationWarning(
-            'message', findings_lib.FileContext('filepath'))]
+            'message', findings_lib.FileContext('filepath')
+        ),
+    ]
 
     with self.assertRaises(TypeError):
       self.findings_class.AddFindings(bad_list)
 
   def testFindingsHasFindingTypes(self):
-    self.assertFalse(self.findings_class.HasFindingTypes(
-        [findings_lib.ValidationError]))
+    self.assertFalse(
+        self.findings_class.HasFindingTypes([findings_lib.ValidationError])
+    )
 
-    self.findings_class.AddFinding(findings_lib.ValidationError(
-        'message', findings_lib.FileContext('filepath')))
+    self.findings_class.AddFinding(
+        findings_lib.ValidationError(
+            'message', findings_lib.FileContext('filepath')
+        )
+    )
 
-    self.assertTrue(self.findings_class.HasFindingTypes(
-        [findings_lib.ValidationError]))
-    self.assertFalse(self.findings_class.HasFindingTypes(
-        [findings_lib.ValidationWarning]))
-    self.assertTrue(self.findings_class.HasFindingTypes(
-        [findings_lib.ValidationError,
-         findings_lib.ValidationWarning]))
+    self.assertTrue(
+        self.findings_class.HasFindingTypes([findings_lib.ValidationError])
+    )
+    self.assertFalse(
+        self.findings_class.HasFindingTypes([findings_lib.ValidationWarning])
+    )
+    self.assertTrue(
+        self.findings_class.HasFindingTypes(
+            [findings_lib.ValidationError, findings_lib.ValidationWarning]
+        )
+    )
 
   def testFindingsHandlesDeduplication(self):
     high = findings_lib.Finding(
-        'high', findings_lib.FileContext('f'), 2, 2, 2, 'key', False)
+        'high', findings_lib.FileContext('f'), 2, 2, 2, 'key', False
+    )
     med = findings_lib.Finding(
-        'med', findings_lib.FileContext('f'), 3, 2, 2, 'key', False)
+        'med', findings_lib.FileContext('f'), 3, 2, 2, 'key', False
+    )
     low = findings_lib.Finding(
-        'low', findings_lib.FileContext('f'), 3, 3, 2, 'key', False)
+        'low', findings_lib.FileContext('f'), 3, 3, 2, 'key', False
+    )
     bottom = findings_lib.Finding(
-        'bottom', findings_lib.FileContext('f'), 3, 3, 3, 'key', False)
+        'bottom', findings_lib.FileContext('f'), 3, 3, 3, 'key', False
+    )
     master = findings_lib.Finding(
-        'master', findings_lib.FileContext('f'), 3, 3, 3, 'key', True)
+        'master', findings_lib.FileContext('f'), 3, 3, 3, 'key', True
+    )
     # Check each paired sort, working from lowest to highest
     self.findings_class.AddFinding(master)
     self.findings_class.AddFinding(bottom)
