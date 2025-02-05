@@ -4,12 +4,14 @@ Connections are a type of relationship between two entities that describe
 the how the entities are associated. This may be a physical (e.g., `FEEDS`) 
 or logical (e.g., `HAS_PART`) association. This document details the definitions
 of the various supported connections and in what scenarios each should be used.
+When onboarding virtual devices the connections should be made on the virtual
+device and not on the gateway.
 
 ## Contains
 
 #### Definition: Source physically encapsulates at least part of Target.
 
-The contains connection should be used when one entity, or at least a component of it,
+The Contains connection should be used when one entity, or at least a component of it,
 exists physically within another. This connection is commonly used to represent the 
 location of an entity within a building. For example, a building may contain a floor 
 which contains a room or zone, which contains a `VAV`. In this instance the connection
@@ -31,11 +33,14 @@ VAV-GUID:
     - CONTAINS
 ```
 
+The Contains connection source entities must be in the `FACILITIES` namespaces. Devices 
+or systems that have sub-devices should use the Has Part connection instead.
+
 ## Controls
 
 #### Definition: Source determines or affects the internal state or behavior of Target.
 
-The controls connection should be used when one entity impacts the behavior of another.
+The Controls connection should be used when one entity impacts the behavior of another.
 An example of when this connection may be used would be where a lighting control 
 module, `LCM`, controls one or more luminaires, `LT`. In this example the connection should
 be set on the `LT` entity as follows:
@@ -48,11 +53,14 @@ LT-GUID:
     - CONTROLS
 ```
 
+The target entity of a Controls connection must be one that performs an action. This
+excludes `FACILITIES` entities.
+
 ## Feeds
 
 #### Definition: Source provides some media (ex: water or air) to Target.
 
-The feeds connection should be used when one entity is located pysically upstream of 
+The Feeds connection should be used when one entity is located pysically upstream of 
 another in regards to its media, so that one device supplies the media to the other.
 A very common use case for this connections is when an `AHU` feeds air to a `VAV`.
 In this example the connection should be set on the `VAV` entity as follows:
@@ -65,11 +73,14 @@ VAV-GUID:
     - FEEDS
 ```
 
+Feeds connections source entities must be devices that provide a medium. These devices
+will typically be in the `HVAC` or `PLUMBING` namespaces.
+
 ## Has Part
 
 #### Definition: Source has some component or part defined by Target.
 
-The has part connection should be used to represent which system a component belongs to.
+The Has Part connection should be used to represent which system a component belongs to.
 This can be used to represent something like a pump, `PMP`, that belongs to a chilled 
 water system, `CHWS`. In this example the connection should be set on the `PMP` entity as follows:
 
@@ -80,6 +91,10 @@ PMP-GUID:
     CHWS-GUID:
     - HAS_PART
 ```
+
+The Has Part connection source entities must not be in the `FACILITIES` namespaces. `FACILITIES`
+entities that have smaller `FACILITIES` entities or devices/systems within them should use the
+Contains connection instead.
 
 ## Has Range
 
@@ -98,6 +113,9 @@ ROOM-GUID:
     - HAS_RANGE
 ```
 
+The source entity for the Has Range connection must be a device that performs detection.
+This typically includes `SENSORS`.
+
 ## Measures
 
 #### Definition: Source quantifies attributes of the Target.
@@ -114,3 +132,6 @@ LOADTYPE-GUID:
     METER-GUID:
     - MEASURES
 ```
+
+The source entity for the Measures connection must be a device that performs quantification.
+This typically includes `METERS`.
