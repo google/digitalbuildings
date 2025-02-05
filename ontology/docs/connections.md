@@ -33,9 +33,6 @@ VAV-GUID:
     - CONTAINS
 ```
 
-The Contains connection source entities must be in the `FACILITIES` namespaces. Devices 
-or systems that have sub-devices should use the Has Part connection instead.
-
 ## Controls
 
 #### Definition: Source determines or affects the internal state or behavior of Target.
@@ -91,10 +88,6 @@ PMP-GUID:
     CHWS-GUID:
     - HAS_PART
 ```
-
-The Has Part connection source entities must not be in the `FACILITIES` namespaces. `FACILITIES`
-entities that have smaller `FACILITIES` entities or devices/systems within them should use the
-Contains connection instead.
 
 ## Has Range
 
