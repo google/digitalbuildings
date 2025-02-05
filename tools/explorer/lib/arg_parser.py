@@ -23,7 +23,8 @@ def ParseArgs() -> argparse.ArgumentParser:
     An instance of ArgumentParser class.
   """
   parser = argparse.ArgumentParser(
-      description='Instantiate an ontology explorer')
+      description='Instantiate an ontology explorer'
+  )
 
   parser.add_argument(
       '-m',
@@ -31,6 +32,7 @@ def ParseArgs() -> argparse.ArgumentParser:
       dest='modified_types_filepath',
       required=False,
       help='Filepath to modified ontology filepaths',
-      metavar='FILE')
+      metavar='FILE',
+  )
 
   return parser

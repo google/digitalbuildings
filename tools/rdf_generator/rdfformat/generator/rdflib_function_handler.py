@@ -15,17 +15,16 @@
 """Function RDF handler.
 
 Takes an Abstract.yaml input and populate the RDF graph with the yaml content.
-
 """
-import rdflib
-from rdflib.extras import infixowl
-
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
+import rdflib
+from rdflib.extras import infixowl
 
 
 def GenerateGraph(yaml_object, graph):
   """Utility function updates an RDF graph with
+
   the yaml content of the Abstract.yaml.
 
   The content of each object is similar to the following:
@@ -65,27 +64,32 @@ def GenerateGraph(yaml_object, graph):
       class_name="Functionality",
       class_description=None,
       parent_clazz=entity_type,
-      entity_namespace=constants.HVAC_NS)
+      entity_namespace=constants.HVAC_NS,
+  )
 
   graph, application_class = rdf_helper.CreateClassInGraph(
       graph=graph,
       class_name="Application",
       class_description=None,
-      parent_clazz=entity_type)
+      parent_clazz=entity_type,
+  )
 
   # Prepare properties to be added to the graph and not in the yaml
   uses_property = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["uses"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
   uses_property_optionally = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["usesOptional"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
   is_composed_of_property = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["isComposedOf"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
 
   # Traverse the yaml content
   for clazz, clazz_content in yaml_object.items():
@@ -95,7 +99,8 @@ def GenerateGraph(yaml_object, graph):
         class_name=class_name,
         class_description=clazz_content.get("description"),
         parent_clazz=functionality,
-        entity_namespace=constants.HVAC_NS)
+        entity_namespace=constants.HVAC_NS,
+    )
 
     implements = clazz_content.get("implements")
     if implements is not None:
@@ -104,7 +109,8 @@ def GenerateGraph(yaml_object, graph):
           implements_list=implements,
           applications_set=applications_set,
           application_class=application_class,
-          class_object=clazz_object)
+          class_object=clazz_object,
+      )
 
     uses = clazz_content.get("uses")
     if uses is not None:
@@ -115,11 +121,13 @@ def GenerateGraph(yaml_object, graph):
               graph=graph,
               list_composition=list_composition,
               standard_field_name=each_item,
-              is_composed_of_property=is_composed_of_property)
+              is_composed_of_property=is_composed_of_property,
+          )
         class_owl = infixowl.Class(
             identifier=constants.HVAC_NS[class_name],
             graph=graph,
-            subClassOf=[functionality])
+            subClassOf=[functionality],
+        )
         graph = rdf_helper.CreateCompositionInGraph(
             list_standard_field_names=uses,
             composition_operator="&",
@@ -128,7 +136,8 @@ def GenerateGraph(yaml_object, graph):
             class_owl=class_owl,
             graph=graph,
             entity_namespace=constants.FIELDS_NS,
-            sub_class_of=[field])
+            sub_class_of=[field],
+        )
 
     opt_uses = clazz_content.get("opt_uses")
     if opt_uses is not None:
@@ -139,11 +148,13 @@ def GenerateGraph(yaml_object, graph):
               graph=graph,
               list_composition=list_composition,
               standard_field_name=each_item,
-              is_composed_of_property=is_composed_of_property)
+              is_composed_of_property=is_composed_of_property,
+          )
         class_owl = infixowl.Class(
             identifier=constants.HVAC_NS[class_name],
             graph=graph,
-            subClassOf=[functionality])
+            subClassOf=[functionality],
+        )
         graph = rdf_helper.CreateCompositionInGraph(
             list_standard_field_names=opt_uses,
             composition_operator="|",
@@ -152,6 +163,7 @@ def GenerateGraph(yaml_object, graph):
             class_owl=class_owl,
             graph=graph,
             entity_namespace=constants.FIELDS_NS,
-            sub_class_of=[field])
+            sub_class_of=[field],
+        )
 
   return graph

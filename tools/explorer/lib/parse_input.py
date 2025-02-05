@@ -179,9 +179,5 @@ def GetFieldsForSubfieldList(ontology):
       complete_match_list.append(field[1:])
 
   print(f'\nComplete matches for {subfields}:')
-  for field in sorted(
-    complete_match_list,
-    key=lambda x: x,
-    reverse=False
-  ):
+  for field in sorted(complete_match_list, key=lambda x: x, reverse=False):
     print(colored(field, 'green'))

@@ -18,14 +18,13 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import rdflib
-from rdflib import namespace
-
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
 from rdfformat.generator import rdflib_carson_types_handler
 from rdfformat.generator import yaml_handler
-from absl.testing import absltest
+import rdflib
+from rdflib import namespace
 
 
 class RdfCarsonTypesHandlerTest(absltest.TestCase):
@@ -47,8 +46,9 @@ class RdfCarsonTypesHandlerTest(absltest.TestCase):
     namespace_manager.bind('db', constants.DIGITAL_BUILDINGS_NS)
     graph.namespace_manager = namespace_manager
 
-    g_fan = rdflib_carson_types_handler.GenerateGraph(yaml_fans, graph,
-                                                      constants.HVAC_NS)
+    g_fan = rdflib_carson_types_handler.GenerateGraph(
+        yaml_fans, graph, constants.HVAC_NS
+    )
 
     # Main Types
     fan_ss_refm_csp = rdflib.URIRef(constants.HVAC_NS['Fan_ss_refm_csp'])
