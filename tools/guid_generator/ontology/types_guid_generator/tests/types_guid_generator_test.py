@@ -15,8 +15,8 @@
 """Tests for types_guid_generator."""
 
 import os
-
 import tempfile
+
 from absl.testing import absltest
 import strictyaml as syaml
 
@@ -34,11 +34,13 @@ class TypesGuidGeneratorTest(absltest.TestCase):
     self.temp_file_path = os.path.join(self.temp_dir, 'test.yaml')
 
   def testAllTypesHaveGuidsFileUnchanged(self):
-    input_file_path = os.path.join(_TEST_INSTANCES_PATH,
-                                   'entity_types_with_guids.yaml')
+    input_file_path = os.path.join(
+        _TEST_INSTANCES_PATH, 'entity_types_with_guids.yaml'
+    )
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
-        self.temp_file_path, 'w', encoding='utf-8') as temp_file:
+        self.temp_file_path, 'w', encoding='utf-8'
+    ) as temp_file:
       input_file_content = input_file.read()
       temp_file.write(input_file_content)
 
@@ -50,11 +52,13 @@ class TypesGuidGeneratorTest(absltest.TestCase):
     self.assertEqual(input_file_content, output_file_content)
 
   def testGenerateGuidsGeneratesGuidsWhenMissing(self):
-    input_file_path = os.path.join(_TEST_INSTANCES_PATH,
-                                   'entity_types_with_missing_guids.yaml')
+    input_file_path = os.path.join(
+        _TEST_INSTANCES_PATH, 'entity_types_with_missing_guids.yaml'
+    )
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
-        self.temp_file_path, 'w', encoding='utf-8') as temp_file:
+        self.temp_file_path, 'w', encoding='utf-8'
+    ) as temp_file:
       temp_file.write(input_file.read())
 
     GenerateGuids(os.path.abspath(self.temp_file_path))

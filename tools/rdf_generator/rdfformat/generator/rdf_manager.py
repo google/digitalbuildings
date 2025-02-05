@@ -18,10 +18,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import rdflib
-from rdflib import namespace
-from rdflib.extras import infixowl
-
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
 from rdfformat.generator import rdf_ont_init
@@ -33,6 +29,9 @@ from rdfformat.generator import rdflib_states_handler
 from rdfformat.generator import rdflib_subfields_handler
 from rdfformat.generator import rdflib_units_handler
 from rdfformat.generator import yaml_handler
+import rdflib
+from rdflib import namespace
+from rdflib.extras import infixowl
 
 FACILITIES = '/FACILITIES/entity_types/Facilities.yaml'
 UNITS = '/units/units.yaml'
@@ -63,8 +62,26 @@ UH = '/HVAC/entity_types/UH.yaml'
 ZONE = '/HVAC/entity_types/ZONE.yaml'
 
 carson_types = {
-    FAN, PMP, FCU, VAV, DH, AHU, BLR, CDWS, CH, CHWS, CT, DC, DFR, DMP, HWS, HX,
-    MAU, SDC, UH, ZONE
+    FAN,
+    PMP,
+    FCU,
+    VAV,
+    DH,
+    AHU,
+    BLR,
+    CDWS,
+    CH,
+    CHWS,
+    CT,
+    DC,
+    DFR,
+    DMP,
+    HWS,
+    HX,
+    MAU,
+    SDC,
+    UH,
+    ZONE,
 }
 
 
@@ -91,25 +108,50 @@ def Generate(resource_path):
 
   # Initialize the ontology headers
   digital_building_ont = infixowl.Ontology(
-      identifier=rdflib.URIRef(constants.DB), graph=graph)
+      identifier=rdflib.URIRef(constants.DB), graph=graph
+  )
   digital_building_ont.label = rdflib.Literal('Digital Buildings')
 
-  graph.add((digital_building_ont.identifier, constants.DCTERMS['title'],
-             rdflib.Literal('Digital Buildings Ontology')))
-  graph.add((digital_building_ont.identifier, constants.DCTERMS['license'],
-             rdflib.Literal(constants.GITHUB_LICENSE)))
-  graph.add((digital_building_ont.identifier, constants.DCTERMS['modified'],
-             rdflib.Literal(rdf_helper.GetTimeNow())))
-  graph.add((digital_building_ont.identifier, rdflib.OWL['versionInfo'],
-             rdflib.Literal(constants.ONT_VERSION)))
-  graph.add((digital_building_ont.identifier, constants.DCTERMS['creator'],
-             rdflib.Literal(constants.AUTHORS)))
-  graph.add((digital_building_ont.identifier, constants.DCTERMS['contributor'],
-             rdflib.Literal(constants.CONTRIBUTORS)))
-  graph.add((digital_building_ont.identifier, rdflib.OWL['seeAlso'],
-             rdflib.Literal(constants.GITHUB)))
-  graph.add((digital_building_ont.identifier, constants.DCTERMS['description'],
-             rdflib.Literal(constants.ONT_DESCRIPTION)))
+  graph.add((
+      digital_building_ont.identifier,
+      constants.DCTERMS['title'],
+      rdflib.Literal('Digital Buildings Ontology'),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      constants.DCTERMS['license'],
+      rdflib.Literal(constants.GITHUB_LICENSE),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      constants.DCTERMS['modified'],
+      rdflib.Literal(rdf_helper.GetTimeNow()),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      rdflib.OWL['versionInfo'],
+      rdflib.Literal(constants.ONT_VERSION),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      constants.DCTERMS['creator'],
+      rdflib.Literal(constants.AUTHORS),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      constants.DCTERMS['contributor'],
+      rdflib.Literal(constants.CONTRIBUTORS),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      rdflib.OWL['seeAlso'],
+      rdflib.Literal(constants.GITHUB),
+  ))
+  graph.add((
+      digital_building_ont.identifier,
+      constants.DCTERMS['description'],
+      rdflib.Literal(constants.ONT_DESCRIPTION),
+  ))
 
   # Initialize the main classes
   graph = rdf_ont_init.GenerateGraph(graph)
@@ -143,8 +185,9 @@ def Generate(resource_path):
   for hvac_type in carson_types:
     type_file = rdf_helper.ReadFile(resource_path + hvac_type)
     yaml_type = yaml_handler.ImportYamlFiles(type_file)
-    graph = rdflib_carson_types_handler.GenerateGraph(yaml_type, graph,
-                                                      constants.HVAC_NS)
+    graph = rdflib_carson_types_handler.GenerateGraph(
+        yaml_type, graph, constants.HVAC_NS
+    )
 
   return graph
 

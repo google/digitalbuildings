@@ -2127,10 +2127,19 @@ literals:
 - high_supply_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- high_discharge_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_supply_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- low_discharge_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_discharge_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
 - failed_discharge_air_static_pressure_alarm:
@@ -4025,6 +4034,36 @@ literals:
 - heating_return_water_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- bypass_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- bypass_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- outside_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- outside_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- exhaust_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- exhaust_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- return_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- return_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- supply_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- supply_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
 - exhaust_air_relative_humidity_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -4052,3 +4091,6 @@ literals:
 - zone_air_dewpoint_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 310.9259259
+- discharge_air_dewpoint_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
