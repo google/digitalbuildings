@@ -5349,6 +5349,7 @@ CWRISOVPM:
   is_abstract: true
   opt_uses:
   - failed_condensing_return_water_isolation_valve_alarm
+  - condensing_return_water_isolation_valve_status
   uses:
   - condensing_return_water_isolation_valve_percentage_command
   - condensing_return_water_isolation_valve_percentage_sensor
@@ -5374,7 +5375,6 @@ CWSISOVPM:
   is_abstract: true
   opt_uses:
   - failed_condensing_supply_water_isolation_valve_alarm
-  - condensing_supply_water_isolation_valve_status
   uses:
   - condensing_supply_water_isolation_valve_percentage_command
   - condensing_supply_water_isolation_valve_percentage_sensor
