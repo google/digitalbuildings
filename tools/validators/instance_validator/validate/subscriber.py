@@ -71,7 +71,8 @@ class Subscriber(object):
         ) from err
       except MutualTLSChannelError as err:
         raise MutualTLSChannelError(
-            'Instance Validator cannot authenticate against GCP.') from err
+            'Instance Validator cannot authenticate against GCP.'
+        ) from err
     else:
       print(
           '[INFO]\tNo GCP client credential. Using application default'

@@ -46,9 +46,10 @@ class StateLibTest(absltest.TestCase):
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
     namespace.AddFinding(
-        findings_lib.DuplicateStateDefinitionError(namespace,
-                                                   state_lib.State('STATE'),
-                                                   context))
+        findings_lib.DuplicateStateDefinitionError(
+            namespace, state_lib.State('STATE'), context
+        )
+    )
     state = state_lib.State('STATE', 'description')
     state.AddFinding(findings_lib.MissingStateDescriptionWarning(state))
     namespace.InsertState(state)
@@ -61,8 +62,9 @@ class StateLibTest(absltest.TestCase):
         state_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
             findings_lib.DuplicateStateDefinitionError,
-            findings_lib.MissingStateDescriptionWarning
-        ]))
+            findings_lib.MissingStateDescriptionWarning,
+        ])
+    )
     self.assertFalse(state_universe.IsValid())
 
   def testStateFolderAddValidState(self):
@@ -75,8 +77,9 @@ class StateLibTest(absltest.TestCase):
     folder = state_lib.StateFolder(_GOOD_PATH)
     folder.AddState(state_lib.State('bad-state', 'invalid'))
     self.assertNotIn('bad-state', folder.local_namespace.states)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidStateNameError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidStateNameError
+    )
 
   def testStateFolderAddDuplicateStateFails(self):
     folder = state_lib.StateFolder(_GOOD_PATH)
@@ -84,8 +87,10 @@ class StateLibTest(absltest.TestCase):
     self.assertIn('STATE', folder.local_namespace.states)
     self.assertEmpty(folder.local_namespace.GetFindings())
     folder.AddState(state_lib.State('STATE', 'duplicate'))
-    self.assertIsInstance(folder.local_namespace.GetFindings()[0],
-                          findings_lib.DuplicateStateDefinitionError)
+    self.assertIsInstance(
+        folder.local_namespace.GetFindings()[0],
+        findings_lib.DuplicateStateDefinitionError,
+    )
 
   def testStateFolderAddFromConfig(self):
     doc = {
@@ -95,30 +100,35 @@ class StateLibTest(absltest.TestCase):
     folder = state_lib.StateFolder(_GOOD_PATH)
     folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
 
-    self.assertCountEqual(['STATE_ONE', 'STATE_TWO'],
-                          folder.local_namespace.states)
+    self.assertCountEqual(
+        ['STATE_ONE', 'STATE_TWO'], folder.local_namespace.states
+    )
     self.assertEmpty(folder.GetFindings())
 
   def testStateFolderAddFromConfigNotYamlFails(self):
     folder = state_lib.StateFolder(_GOOD_PATH)
     folder.AddFromConfig([{}], f'{_GOOD_PATH}/file.txt')
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InconsistentFileLocationError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InconsistentFileLocationError
+    )
 
   def testStateWithIllegalKeyTypeHasFindings(self):
     state = state_lib.State(False, 'invalid')
-    self.assertIsInstance(state.GetFindings()[0],
-                          findings_lib.IllegalKeyTypeError)
+    self.assertIsInstance(
+        state.GetFindings()[0], findings_lib.IllegalKeyTypeError
+    )
 
   def testStateWithIllegalNameHasFindings(self):
     state = state_lib.State('bad-state', 'invalid')
-    self.assertIsInstance(state.GetFindings()[0],
-                          findings_lib.InvalidStateNameError)
+    self.assertIsInstance(
+        state.GetFindings()[0], findings_lib.InvalidStateNameError
+    )
 
   def testStateWithNoDescriptionHasFindings(self):
     state = state_lib.State('STATE', '')
-    self.assertIsInstance(state.GetFindings()[0],
-                          findings_lib.MissingStateDescriptionWarning)
+    self.assertIsInstance(
+        state.GetFindings()[0], findings_lib.MissingStateDescriptionWarning
+    )
 
   def testStateEquals(self):
     state_one = state_lib.State('STATE_ONE', 'description')

@@ -22,11 +22,13 @@ from googleapiclient.errors import HttpError
 class SpreadsheetAuthorizationError(HttpError):
   """Extension of HttpError that adds a custom error message."""
 
-  def __init__(self,
-               resp: Any,
-               content: Any,
-               uri: Optional[Any] = None,
-               spreadsheet_id: Optional[str] = None):
+  def __init__(
+      self,
+      resp: Any,
+      content: Any,
+      uri: Optional[Any] = None,
+      spreadsheet_id: Optional[str] = None,
+  ):
     """Init.
 
     Args:

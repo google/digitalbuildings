@@ -13,16 +13,19 @@
 # limitations under the License.
 """Core component base class."""
 
-from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType, MappingType
-from score.constants import MappingTypes
-from validate.entity_instance import EntityInstance
-from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
+from typing import Dict, List, NamedTuple, Set, Tuple
+from score.constants import MappingTypes
+from score.scorer_types import DeserializedFilesDict, EntityType, FileType, MappingType, PointsVirtualList, RawFieldName, TranslationsDict
+from validate.entity_instance import EntityInstance
 
 
 class _VirtualEntityMatch(NamedTuple):
   """Reference for metrics by which subscores were
-  calculated to find the closest corellating virtual entities."""
+
+  calculated to find the closest corellating virtual entities.
+  """
+
   correct: int
   correct_ceiling: int
   incorrect: int
@@ -36,7 +39,10 @@ class _VirtualEntityMatch(NamedTuple):
 
 class _FieldsSubscore(NamedTuple):
   """Calculates a subscore which is used in finding
-  the closest corellating virtual entities."""
+
+  the closest corellating virtual entities.
+  """
+
   proposed_raw_field_names: Set[RawFieldName]
   solution_raw_field_names: Set[RawFieldName]
 
@@ -44,7 +50,9 @@ class _FieldsSubscore(NamedTuple):
   def correct(self) -> int:
     return len(
         self.proposed_raw_field_names.intersection(
-            self.solution_raw_field_names))
+            self.solution_raw_field_names
+        )
+    )
 
   @property
   def correct_ceiling(self) -> int:
@@ -53,26 +61,38 @@ class _FieldsSubscore(NamedTuple):
   @property
   def incorrect(self) -> int:
     return len(
-        self.solution_raw_field_names.difference(self.proposed_raw_field_names))
+        self.solution_raw_field_names.difference(self.proposed_raw_field_names)
+    )
 
   @property
   def tally(self) -> float:
-    return ((self.correct - self.incorrect) /
-            self.correct_ceiling) if self.correct_ceiling != 0 else 0
+    return (
+        ((self.correct - self.incorrect) / self.correct_ceiling)
+        if self.correct_ceiling != 0
+        else 0
+    )
 
 
 class _TypesSubscore(NamedTuple):
   """Calculates a type score which is used in finding
-  the closest corellating virtual entities."""
+
+  the closest corellating virtual entities.
+  """
+
   proposed_entity_type: EntityType
   solution_entity_type: EntityType
 
   @property
   def correct(self) -> int:
-    return len(
-        set(self.proposed_entity_type.parent_names.keys()).intersection(
-            set(self.solution_entity_type.parent_names.keys()))
-    ) if self.proposed_entity_type is not None else 0
+    return (
+        len(
+            set(self.proposed_entity_type.parent_names.keys()).intersection(
+                set(self.solution_entity_type.parent_names.keys())
+            )
+        )
+        if self.proposed_entity_type is not None
+        else 0
+    )
 
   @property
   def correct_ceiling(self) -> int:
@@ -80,40 +100,48 @@ class _TypesSubscore(NamedTuple):
 
   @property
   def incorrect(self) -> int:
-    return len(
-        set(self.solution_entity_type.parent_names.keys()).difference(
-            set(self.proposed_entity_type.parent_names.keys()))
-    ) if self.proposed_entity_type is not None else self.correct_ceiling
+    return (
+        len(
+            set(self.solution_entity_type.parent_names.keys()).difference(
+                set(self.proposed_entity_type.parent_names.keys())
+            )
+        )
+        if self.proposed_entity_type is not None
+        else self.correct_ceiling
+    )
 
   @property
   def tally(self) -> float:
-    return ((self.correct - self.incorrect) /
-            self.correct_ceiling) if self.correct_ceiling != 0 else 0
+    return (
+        ((self.correct - self.incorrect) / self.correct_ceiling)
+        if self.correct_ceiling != 0
+        else 0
+    )
 
 
 class Dimension:
   """Container for floating-point results which
+
   quantify success in each dimension.
 
   Attributes:
-    translations: Proposed and solution translations
-      for all matched reporting entities. Assigned via argument
-    deserialized_files: Parsed proposed and solution
-      configuration files containing all entities.  Assigned via argument
-
+    translations: Proposed and solution translations for all matched reporting
+      entities. Assigned via argument
+    deserialized_files: Parsed proposed and solution configuration files
+      containing all entities.  Assigned via argument
     correct_virtual: Number of successful attempts within virtual devices
     correct_reporting: Number of successful attempts within reporting devices
-    correct_ceiling_virtual: Number of attempts possible
-      within virtual devices
-    correct_ceiling_reporting: Number of attempts possible
-      within reporting devices
+    correct_ceiling_virtual: Number of attempts possible within virtual devices
+    correct_ceiling_reporting: Number of attempts possible within reporting
+      devices
     incorrect_virtual: Number of failed attempts within virtual devices
     incorrect_reporting: Number of failed attempts within reporting devices
 
   Properties:
     result_all: Calculated result for all devices
     result_virtual: Calculated result for virtual devices
-    result_reporting: Calculated result for reporting devices"""
+    result_reporting: Calculated result for reporting devices
+  """
 
   # `category` indicates which argument a dimension is invoked with:
   # "simple" dimensions receive translations whereas "complex" dimensions
@@ -122,10 +150,12 @@ class Dimension:
   # arguments are specified with default values of `None`.
   category = None
 
-  def __init__(self,
-               *,
-               translations: TranslationsDict = None,
-               deserialized_files: DeserializedFilesDict = None):
+  def __init__(
+      self,
+      *,
+      translations: TranslationsDict = None,
+      deserialized_files: DeserializedFilesDict = None,
+  ):
     self.translations = translations
     self.deserialized_files = deserialized_files
 
@@ -142,7 +172,8 @@ class Dimension:
 
     # Allow for gate below to be passed in case of no matched reporting entities
     translations_truthy_or_empty = translations or isinstance(
-        translations, dict)
+        translations, dict
+    )
 
     if not translations_truthy_or_empty and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
@@ -150,10 +181,12 @@ class Dimension:
       # are passed to "complex" dimensions which typically build a multi-map
       # of virtual entities prior to calculating scores.
       raise Exception(
-          '`translations` xor `deserialized_files` argument is required')
+          '`translations` xor `deserialized_files` argument is required'
+      )
     elif translations_truthy_or_empty and deserialized_files:
       raise Exception(
-          '`translations` or `deserialized_files` argument must be exclusive')
+          '`translations` or `deserialized_files` argument must be exclusive'
+      )
 
   def correct_total(self) -> int:
     """Number of successful attempts within all devices."""
@@ -201,8 +234,14 @@ class Dimension:
   @property
   def result_all(self) -> float:
     """Calculated result for all devices."""
-    return ((self.correct_total() - self.incorrect_total()) /
-            self.correct_ceiling()) if self.correct_ceiling() != 0 else None
+    return (
+        (
+            (self.correct_total() - self.incorrect_total())
+            / self.correct_ceiling()
+        )
+        if self.correct_ceiling() != 0
+        else None
+    )
 
   @property
   def result_virtual(self) -> float:
@@ -211,8 +250,10 @@ class Dimension:
     correct_virtual = self.correct_virtual or 0
     incorrect_virtual = self.incorrect_virtual or 0
     return (
-        (correct_virtual - incorrect_virtual) /
-        self.correct_ceiling_virtual) if self.correct_ceiling_virtual else None
+        ((correct_virtual - incorrect_virtual) / self.correct_ceiling_virtual)
+        if self.correct_ceiling_virtual
+        else None
+    )
 
   @property
   def result_reporting(self) -> float:
@@ -220,21 +261,28 @@ class Dimension:
     # Allow for value to be returned even if either is not set
     correct_reporting = self.correct_reporting or 0
     incorrect_reporting = self.incorrect_reporting or 0
-    return ((correct_reporting - incorrect_reporting) /
-            self.correct_ceiling_reporting
-            ) if self.correct_ceiling_reporting else None
+    return (
+        (
+            (correct_reporting - incorrect_reporting)
+            / self.correct_ceiling_reporting
+        )
+        if self.correct_ceiling_reporting
+        else None
+    )
 
   @staticmethod
   def is_entity_canonical(entity: EntityInstance) -> bool:
     """Utility for determining whether an entity is canonical.
+
     Used in "complex" dimensions to filter sets for comparison.
 
     Args:
-      entity: An entity instance which has been appended
-      with a `type` attribute equal to its type from the universe
+      entity: An entity instance which has been appended with a `type` attribute
+        equal to its type from the universe
 
     Returns:
-      Boolean indicating whether the entity's `type.is_canonical`"""
+      Boolean indicating whether the entity's `type.is_canonical`
+    """
     # NOTE: when passed to filter(), this will silently omit
     # entities whose appended type is `None` (e.g. it was not found)
     return getattr(entity.type, 'is_canonical', False)
@@ -242,48 +290,56 @@ class Dimension:
   @staticmethod
   def is_entity_reporting(entity: EntityInstance) -> bool:
     """Utility for determining whether an entity is reporting.
+
     Used in "complex" dimensions to filter sets for comparison.
 
     Args:
       entity: A standard entity instance
 
     Returns:
-      Boolean indicating whether the entity has a `cloud_device_id`"""
+      Boolean indicating whether the entity has a `cloud_device_id`
+    """
     return entity.cloud_device_id is not None
 
   @staticmethod
   def is_entity_virtual(entity: EntityInstance) -> bool:
     """Utility for determining whether an entity is virtual.
+
     Used in "complex" dimensions to filter sets for comparison.
 
     Args:
       entity: A standard entity instance
 
     Returns:
-      Boolean indicating whether the entity has `links`"""
+      Boolean indicating whether the entity has `links`
+    """
     return entity.links is not None
 
   @staticmethod
   def _match_virtual_entities(
-      *, solution_points_virtual: PointsVirtualList,
+      *,
+      solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
-      sort_candidates_by_key: str) -> Dict[float, List[_VirtualEntityMatch]]:
+      sort_candidates_by_key: str,
+  ) -> Dict[float, List[_VirtualEntityMatch]]:
     """Finds the closest correlating virtual entities between two files
+
     by comparing the intersections of raw field names contained therein.
 
     Args:
-      solution_points_virtual: Raw field names and entity types
-        for all virtual entities in a file
-      proposed_points_virtual: Raw field names and entity types
-        for all virtual entities in a file
-      sort_candidates_by_key: Parameter by which to "break a tie"
-        if there are multiple matches with the same subscore.
+      solution_points_virtual: Raw field names and entity types for all virtual
+        entities in a file
+      proposed_points_virtual: Raw field names and entity types for all virtual
+        entities in a file
+      sort_candidates_by_key: Parameter by which to "break a tie" if there are
+        multiple matches with the same subscore.
 
     Returns:
       Dictionary whose keys are floats representing the extent to which the
       provided entities correlated and whose values are lists of
       _VirtualEntityMatch instances containing the metrics
-      by which those floats were calculated."""
+      by which those floats were calculated.
+    """
     # Final pairings
     matches_virtual = {None: []}
 
@@ -303,11 +359,14 @@ class Dimension:
         # and resulting subscore
         subscore = _FieldsSubscore(
             proposed_raw_field_names=proposed_raw_field_names,
-            solution_raw_field_names=solution_raw_field_names)
+            solution_raw_field_names=solution_raw_field_names,
+        )
 
         # Meanwhile, calculate a similar metric for overlap of types
-        types_score = _TypesSubscore(proposed_entity_type=proposed_entity_type,
-                                     solution_entity_type=solution_entity_type)
+        types_score = _TypesSubscore(
+            proposed_entity_type=proposed_entity_type,
+            solution_entity_type=solution_entity_type,
+        )
 
         # If the current iteration matches better than the last,
         # take note of its score for later lookup
@@ -323,18 +382,24 @@ class Dimension:
             types_correct=types_score.correct,
             types_correct_ceiling=types_score.correct_ceiling,
             types_incorrect=types_score.incorrect,
-            types_score=types_score.tally)
+            types_score=types_score.tally,
+        )
 
         # Add record of the evaluation for sorting
         # after considering all the candidates
         candidates[subscore.tally].append(subscore_reference)
 
       # Choose the closest match
-      selected = sorted(
-          candidates[best],
-          # Use `._asdict()` to reference index by string
-          key=lambda params: params._asdict()[sort_candidates_by_key],
-          reverse=True)[0] if len(candidates[best]) else None
+      selected = (
+          sorted(
+              candidates[best],
+              # Use `._asdict()` to reference index by string
+              key=lambda params: params._asdict()[sort_candidates_by_key],
+              reverse=True,
+          )[0]
+          if len(candidates[best])
+          else None
+      )
 
       if selected:
         if best in matches_virtual:
@@ -353,25 +418,30 @@ class Dimension:
             solution=solution_parameters,
             types_correct=0,
             types_correct_ceiling=len(
-                set(solution_entity_type.parent_names.keys())),
+                set(solution_entity_type.parent_names.keys())
+            ),
             types_incorrect=len(set(solution_entity_type.parent_names.keys())),
-            types_score=-1.0)
+            types_score=-1.0,
+        )
 
         matches_virtual[None].append(none_subscore_reference)
 
     return matches_virtual
 
   @staticmethod
-  def _isolate_mappings(translations, *,
-                        mapping_type: MappingType) -> Set[Tuple[str, Tuple]]:
+  def _isolate_mappings(
+      translations, *, mapping_type: MappingType
+  ) -> Set[Tuple[str, Tuple]]:
     """Distills mappings from each entity into a set for global comparison"""
     mappings = set()
     for translation in translations:
       # (standard_field_name: str, field: obj)
       field = translation[1]
       if type(field).__name__ == mapping_type:
-        if mapping_type == MappingTypes.STATE: attribute = 'states'
-        if mapping_type == MappingTypes.UNIT: attribute = 'unit_mapping'
+        if mapping_type == MappingTypes.STATE:
+          attribute = 'states'
+        if mapping_type == MappingTypes.UNIT:
+          attribute = 'unit_mapping'
         for item in getattr(field, attribute).items():
           mappings.add((field.raw_field_name, item))
     return mappings
@@ -382,6 +452,8 @@ class Dimension:
 
   def __str__(self) -> str:
     """Human-readable representation of the calculated properties."""
-    return (f'{{result_all: {self._format_score(self.result_all)}, '
-            f'result_virtual: {self._format_score(self.result_virtual)}, '
-            f'result_reporting: {self._format_score(self.result_reporting)}}}')
+    return (
+        f'{{result_all: {self._format_score(self.result_all)}, '
+        f'result_virtual: {self._format_score(self.result_virtual)}, '
+        f'result_reporting: {self._format_score(self.result_reporting)}}}'
+    )

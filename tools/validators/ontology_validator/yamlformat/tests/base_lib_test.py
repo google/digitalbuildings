@@ -18,6 +18,7 @@ from __future__ import division
 from __future__ import print_function
 
 from absl.testing import absltest
+
 from yamlformat.validator import base_lib
 
 
@@ -45,7 +46,8 @@ class BaseLibTest(absltest.TestCase):
   def testComponentTypeFromString(self):
     self.assertEqual(
         base_lib.ComponentType.FromString('fields'),
-        base_lib.ComponentType.FIELD)
+        base_lib.ComponentType.FIELD,
+    )
 
   def testComponentTypeFromStringBadValue(self):
     with self.assertRaises(LookupError):
@@ -84,6 +86,7 @@ class BaseLibTest(absltest.TestCase):
     testpath = 'bad/HVAC/fields'
     with self.assertRaises(ValueError):
       _, _ = base_lib.GetTreeLocation(testpath)
+
 
 if __name__ == '__main__':
   absltest.main()
