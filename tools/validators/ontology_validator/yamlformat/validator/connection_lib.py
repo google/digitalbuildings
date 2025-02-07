@@ -18,7 +18,7 @@ from __future__ import division
 from __future__ import print_function
 
 import re
-from typing import Optional, Dict, List
+from typing import Dict, List, Optional
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
@@ -34,8 +34,8 @@ class ConnectionUniverse(findings_lib.FindingsUniverse):
   """
 
   def _GetNamespaceMapValue(
-      self,
-      namespace: 'ConnectionNamespace') -> Dict[str, Dict[str, 'Connection']]:
+      self, namespace: 'ConnectionNamespace'
+  ) -> Dict[str, Dict[str, 'Connection']]:
     """Helper method for FindingsUniverse._MakeNamespaceMap.
 
     Used to create a map from namespace names to connection maps.
@@ -51,7 +51,8 @@ class ConnectionUniverse(findings_lib.FindingsUniverse):
   def IsDefined(
       self,
       connection_name: str,
-      namespace_name: Optional[str] = base_lib.GLOBAL_NAMESPACE) -> bool:
+      namespace_name: Optional[str] = base_lib.GLOBAL_NAMESPACE,
+  ) -> bool:
     return connection_name in self.GetConnectionsMap(namespace_name)
 
   def GetConnectionsMap(self, namespace_name: str) -> Dict[str, 'Connection']:
@@ -80,15 +81,18 @@ class ConnectionFolder(config_folder_lib.ConfigFolder):
     Args:
       folderpath: required str with full path to folder containing connections.
     """
-    super(ConnectionFolder, self).__init__(folderpath,
-                                           base_lib.ComponentType.CONNECTION)
+    super(ConnectionFolder, self).__init__(
+        folderpath, base_lib.ComponentType.CONNECTION
+    )
     self.local_namespace = ConnectionNamespace(self._namespace_name)
 
     if base_lib.GLOBAL_NAMESPACE != self.local_namespace.namespace:
       self.local_namespace.AddFinding(
           findings_lib.InvalidConnectionNamespaceError(
               self.local_namespace.namespace,
-              findings_lib.FileContext(folderpath)))
+              findings_lib.FileContext(folderpath),
+          )
+      )
 
   def AddConnection(self, connection: 'Connection'):
     """Validates a connection and adds it to the correct namespace.
@@ -105,8 +109,9 @@ class ConnectionFolder(config_folder_lib.ConfigFolder):
       return
     self.local_namespace.InsertConnection(connection)
 
-  def _AddFromConfigHelper(self, document: object,
-                           context: findings_lib.FileContext) -> None:
+  def _AddFromConfigHelper(
+      self, document: object, context: findings_lib.FileContext
+  ) -> None:
     """Reads a single yaml document and adds all connections found.
 
     Args:
@@ -132,7 +137,8 @@ class ConnectionNamespace(findings_lib.Findings):
     self.connections = {}
 
   def _GetDynamicFindings(
-      self, filter_old_warnings: bool) -> List[findings_lib.Finding]:
+      self, filter_old_warnings: bool
+  ) -> List[findings_lib.Finding]:
     findings = []
     for connection in self.connections.values():
       findings += connection.GetFindings(filter_old_warnings)
@@ -152,7 +158,9 @@ class ConnectionNamespace(findings_lib.Findings):
       prev_context = self.connections[connection.name].file_context
       self.AddFinding(
           findings_lib.DuplicateConnectionDefinitionError(
-              self, connection, prev_context))
+              self, connection, prev_context
+          )
+      )
       return
     self.connections[connection.name] = connection
 
@@ -166,10 +174,12 @@ class Connection(findings_lib.Findings):
     file_context: the config file context for where this connection was defined
   """
 
-  def __init__(self,
-               name: str,
-               description: str = None,
-               file_context: findings_lib.FileContext = None):
+  def __init__(
+      self,
+      name: str,
+      description: str = None,
+      file_context: findings_lib.FileContext = None,
+  ):
     super(Connection, self).__init__()
     self.name = name
     self.description = description
@@ -179,7 +189,8 @@ class Connection(findings_lib.Findings):
       self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not CONNECTION_NAME_VALIDATOR.match(name):
       self.AddFinding(
-          findings_lib.InvalidConnectionNameError(name, file_context))
+          findings_lib.InvalidConnectionNameError(name, file_context)
+      )
     if not description:
       self.AddFinding(findings_lib.MissingConnectionDescriptionWarning(self))
 

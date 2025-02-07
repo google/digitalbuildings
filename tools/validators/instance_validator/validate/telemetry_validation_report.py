@@ -281,7 +281,7 @@ class TelemetryMessageValidationBlock(object):
 
 
 def _TelemetryPointListToDict(
-    point_tuple_list: List[Tuple[str, str]]
+    point_tuple_list: List[Tuple[str, str]],
 ) -> Dict[str, str]:
   """Returns a dictionary representation of a tuple of point and value."""
 

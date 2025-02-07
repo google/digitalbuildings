@@ -9170,7 +9170,7 @@ ODVM:
   - outside_air_damper_voltage_sensor
   implements:
   - MONITORING
-  
+
 EDVM:
   guid: "7bf2a5f7-1674-4e81-85cf-98752835499b"
   description: "Exhaust Air Damper Voltage Monitoring."
@@ -9179,7 +9179,7 @@ EDVM:
   - exhaust_air_damper_voltage_command
   - exhaust_air_damper_voltage_sensor
   implements:
-  - MONITORING  
+  - MONITORING
 
 RDVM:
   guid: "00667556-8a75-46ff-a46d-b33e336fef54"

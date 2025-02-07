@@ -14,7 +14,6 @@
 """Test to detect regressions to the tool's output."""
 
 from absl.testing import absltest
-
 from score import parse_config
 
 
@@ -28,22 +27,24 @@ class CompleteOutputTest(absltest.TestCase):
     solution = 'tests/samples/solution/real_world_solution.yaml'
     # This circumvents the CLI but it is much more
     # straightforward than invoking via a subprocess
-    scorer = parse_config.ParseConfig(ontology=ontolgy,
-                                      proposed=proposed,
-                                      solution=solution)
+    scorer = parse_config.ParseConfig(
+        ontology=ontolgy, proposed=proposed, solution=solution
+    )
     cls.output = scorer.execute()
 
   def testEntityConnectionIdentification(self):
     score = self.output['EntityConnectionIdentification']
     self.assertEqual(
         score,
-        '{result_all: 1.00, result_virtual: None, result_reporting: None}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: None}',
+    )
 
   def testEntityIdentification(self):
     score = self.output['EntityIdentification']
     self.assertEqual(
         score,
-        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}',
+    )
 
   def testEntityPointIdentification(self):
     # NOTE: this score is known to vary slightly due to the way the matching
@@ -51,7 +52,8 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['EntityPointIdentification']
     self.assertEqual(
         score,
-        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}',
+    )
 
   def testEntityTypeIdentification(self):
     score = self.output['EntityTypeIdentification']
@@ -59,31 +61,36 @@ class CompleteOutputTest(absltest.TestCase):
     # algorithm works. If the test fails here, try running it again…
     self.assertEqual(
         score,
-        '{result_all: 0.33, result_virtual: None, result_reporting: 0.33}')
+        '{result_all: 0.33, result_virtual: None, result_reporting: 0.33}',
+    )
 
   def testRawFieldSelection(self):
     score = self.output['RawFieldSelection']
     self.assertEqual(
         score,
-        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}',
+    )
 
   def testStandardFieldNaming(self):
     score = self.output['StandardFieldNaming']
     self.assertEqual(
         score,
-        '{result_all: 0.95, result_virtual: None, result_reporting: 0.95}')
+        '{result_all: 0.95, result_virtual: None, result_reporting: 0.95}',
+    )
 
   def testStateMapping(self):
     score = self.output['StateMapping']
     self.assertEqual(
         score,
-        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}',
+    )
 
   def testUnitMapping(self):
     score = self.output['UnitMapping']
     self.assertEqual(
         score,
-        '{result_all: 0.69, result_virtual: None, result_reporting: 0.69}')
+        '{result_all: 0.69, result_virtual: None, result_reporting: 0.69}',
+    )
 
 
 if __name__ == '__main__':

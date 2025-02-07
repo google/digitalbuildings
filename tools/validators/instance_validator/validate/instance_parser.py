@@ -177,13 +177,11 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
     }),
 )
 
-_METADATA_SCHEMA = syaml.Map(
-    {
-        syaml.Optional(_CONFIG_MODE_KEY): EnumToRegex(
-            ConfigMode, [ConfigMode.EXPORT]
-        )
-    }
-)
+_METADATA_SCHEMA = syaml.Map({
+    syaml.Optional(_CONFIG_MODE_KEY): EnumToRegex(
+        ConfigMode, [ConfigMode.EXPORT]
+    )
+})
 
 _ENTITY_IDS_SCHEMA = {
     # this is the entity instance global primary key, used to identify instances

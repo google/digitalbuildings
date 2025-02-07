@@ -69,12 +69,10 @@ def _ImportSheetFromGoogleSheets(
     headers = dict(enumerate(values[0]))
     for row_index in range(1, len(values)):
       row = values[row_index]
-      spreadsheet_rows.append(
-          {
-              headers[i]: row[i] if i < len(row) else []
-              for i in range(len(headers))
-          }
-      )
+      spreadsheet_rows.append({
+          headers[i]: row[i] if i < len(row) else []
+          for i in range(len(headers))
+      })
   return spreadsheet_rows
 
 

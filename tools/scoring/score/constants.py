@@ -18,6 +18,7 @@ from enum import Enum
 
 class FileTypes(str, Enum):
   """The file which is being scored."""
+
   PROPOSED = 'proposed'
   """The file which is being compared against."""
   SOLUTION = 'solution'
@@ -28,7 +29,10 @@ class FileTypes(str, Enum):
 
 class DimensionCategories(str, Enum):
   """Dimensions in this category receive `translations`
-  and score only reporting entities in bulk."""
+
+  and score only reporting entities in bulk.
+  """
+
   SIMPLE = 'simple'
   """Dimensions in this category receive `deserialized_files`
   to typically build a multi-map of virtual entities prior to
