@@ -4430,6 +4430,7 @@ PWISOVM:
   - MONITORING
 
 PSWISOVPM:
+  guid: "e30d558a-61c5-4b9f-8511-9fc460117f7a"
   description: "Process supply water iso valve control."
   is_abstract: true
   opt_uses:
@@ -4441,6 +4442,7 @@ PSWISOVPM:
   - MONITORING
 
 PRWISOVPM:
+  guid: "c87142d1-ffef-45ea-ab22-6e81b8393de4"
   description: "Process return water iso valve control."
   is_abstract: true
   opt_uses:

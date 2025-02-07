@@ -103,6 +103,7 @@ CHWS_SWTC_WDPC_MMCWDPC_WFRM: # disk replacement
   - WFRM
 
 CHWS_SWTC_WDPC2X_MMCWDPC_WSEBYPVPM_WFRM:
+  guid: "2f840d9d-461f-4a74-a660-c9a88b13bb5a"
   description: "Chilled water system with supply temperature control, differential pressure and min mechanical cooling differential pressure control, waterside economizing, and flow monitoring."
   is_canonical: true
   implements:
@@ -619,6 +620,7 @@ CHWS_SESWTC_SEWDPC_SEWFRM_WSEBYPVM:
   - WSEBYPVM
 
 CHWS_SWTC_WDPC2X_WFRM_WSEBYPVPM:
+  guid: "85ca9a77-bf43-4247-a7e2-b1f25f5fb563"
   description: "Chilled water system with dual differential pressure control, flowrate monitoring and waterside economizer bypass."
   is_canonical: true
   implements:

@@ -243,6 +243,7 @@ CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
   - MWFRM
 
 CDWS_SWTC_WFRM_MWFRM_BWFRM:
+  guid: "30b52a03-a020-4d65-8c57-bb9cb43e8b15"
   description: "Condensing water system with flowrate control, blowdown and makeup water flowrate control."
   is_canonical: true
   implements:

@@ -300,6 +300,7 @@ HX_PSWTC_CHWDT_CHWRWISOVM:
     - CHWRWISOVPM
 
 HX_SCHWTC_CHWFRM_CWDT:
+  guid: "7249d972-281a-498a-92b6-2d12ff02e6a2"
   description: "Condensing/chilled water heat exchanger with chilled water flowrate monitoring."
   is_canonical: true
   implements:
@@ -309,6 +310,7 @@ HX_SCHWTC_CHWFRM_CWDT:
   - CWDT
 
 HX_PSWTC_PWFRM_CWDT_CWSISOVPM:
+  guid: "94c725f7-e46c-4b41-9c7d-0b44d90f2ef8"
   description: "Condensing/process water heat exchanger with process water flowrate monitoring and isolation on condensing return side."
   is_canonical: true
   implements:
