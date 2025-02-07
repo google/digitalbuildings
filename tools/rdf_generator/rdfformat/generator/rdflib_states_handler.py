@@ -15,12 +15,10 @@
 """States Yaml Ontology RDF handler.
 
 Takes a states.yaml input and populate the RDF graph with the yaml content.
-
 """
-import rdflib
-
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
+import rdflib
 
 
 def GenerateGraph(yaml_object, graph):
@@ -33,7 +31,6 @@ def GenerateGraph(yaml_object, graph):
 
   Returns:
     a graph with the newly built class
-
   """
   # Create the node to add to the Graph
   # Construct the classes and the subclasses
@@ -42,12 +39,14 @@ def GenerateGraph(yaml_object, graph):
       class_name='State',
       class_description=None,
       parent_clazz=rdflib.OWL.Thing,
-      entity_namespace=constants.STATES_NS)
+      entity_namespace=constants.STATES_NS,
+  )
   for clazz, clazz_content in yaml_object.items():
     graph, _ = rdf_helper.CreateClassInGraph(
         graph=graph,
         class_name=clazz.capitalize(),
         class_description=clazz_content,
         parent_clazz=multi_state[0],
-        entity_namespace=constants.STATES_NS)
+        entity_namespace=constants.STATES_NS,
+    )
   return graph

@@ -19,14 +19,15 @@ Classes representing ontology components parsed from files should use these.
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+import enum
 import os
 import re
-import enum
 import typing
 
 # Holds the root path to the ontology and relative path to a file from the root
-PathParts = typing.NamedTuple('PathParts', [('root', str),
-                                            ('relative_path', str)])
+PathParts = typing.NamedTuple(
+    'PathParts', [('root', str), ('relative_path', str)]
+)
 
 GOOGLE3_REGEX = re.compile(r'^.*google3/(.*$)')
 # Isolates the first segment of a typename, typically the equipment class
@@ -34,13 +35,18 @@ EQUIPMENT_CLASS_REGEX = re.compile(r'^(.*/)?([a-zA-Z]+)(_.*)*$')
 GLOBAL_NAMESPACE = ''
 
 DEPRECATED_TYPES = frozenset([
-    'DEPRECATED', '/DEPRECATED', 'HVAC/DEPRECATED', 'INCOMPLETE', '/INCOMPLETE',
-    'HVAC/INCOMPLETE'
+    'DEPRECATED',
+    '/DEPRECATED',
+    'HVAC/DEPRECATED',
+    'INCOMPLETE',
+    '/INCOMPLETE',
+    'HVAC/INCOMPLETE',
 ])
 
 
 class ComponentType(enum.Enum):
   """Possible component types for a folder to contain."""
+
   SUBFIELD = 'subfields'
   MULTI_STATE = 'states'
   FIELD = 'fields'

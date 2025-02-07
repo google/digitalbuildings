@@ -3492,6 +3492,23 @@ HWRWC:
   implements:
   - CONTROL
 
+PHWVVSC:
+  guid: "b1fecf41-bedf-48e6-9e8c-ab0705c4c6d2"
+  description: "Preheating water valve voltage monitoring on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  - leaving_air_preheating_coil_temperature_sensor
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - preheating_run_command
+  uses:
+  - preheating_water_valve_voltage_command
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
 PHWSC:
   guid: "0f2f9a53-6aab-4c9c-801f-bb11b021e42a"
   description: "Preheating water valve control on supply air side."
@@ -4353,6 +4370,17 @@ BYPVPM:
   implements:
   - MONITORING
 
+BYPVVM:
+  guid: "043e2922-f9df-4442-9bc0-b1e68eb41008"
+  description: "Bypass water valve voltage monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_bypass_valve_alarm
+  uses:
+  - bypass_valve_voltage_sensor
+  - bypass_valve_voltage_command
+  implements:
+  - MONITORING
 
 MWVPM:
   guid: "bd83e820-585d-4e03-9142-7d4355b41574"
@@ -4362,7 +4390,16 @@ MWVPM:
   - makeup_water_valve_percentage_command
   implements:
   - MONITORING
-
+  
+MWVVM:
+  guid: "0e4215df-3401-4cf0-bdfe-9e03d6c69a48"
+  description: "Make-up water valve voltage monitoring."
+  is_abstract: true
+  uses:
+  - makeup_water_valve_voltage_command
+  - makeup_water_valve_voltage_sensor
+  implements:
+  - MONITORING
 
 HXSWISOVPM:
   guid: "04a7805d-e8ff-4b53-9513-d88ede4635ff"
@@ -4374,6 +4411,15 @@ HXSWISOVPM:
   implements:
   - MONITORING
 
+HXSWISOVVM:
+  guid: "f1c95b51-7b96-4bf9-a4e4-b47e72f9834f"
+  description: "Heat exchanger supply isolation water valve voltage monitoring."
+  is_abstract: true
+  uses:
+  - heat_exchange_supply_water_isolation_valve_voltage_command
+  - heat_exchange_supply_water_isolation_valve_voltage_sensor
+  implements:
+  - MONITORING 
 
 HXRWISOVPM:
   guid: "789cd63d-8168-43fe-9245-c54a8527482c"
@@ -5687,6 +5733,17 @@ HWVM:
   implements:
   - OPERATIONAL
 
+HWVVM:
+  guid: "3e193668-77e3-454e-9153-fdc3475d9012"
+  description: "Heating water valve voltage monitoring."
+  is_abstract: true
+  opt_uses:
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_voltage_sensor
+  - heating_water_valve_voltage_command
+  implements:
+  - OPERATIONAL
 
 CHWVM:
   guid: "73411f3e-5c42-40cb-8d6c-82f1e2358844"
@@ -5703,7 +5760,19 @@ CHWVM:
   implements:
   - OPERATIONAL
 
-
+CHWVVM:
+  guid: "cd1be55d-85bc-4e0b-82b0-f3e38c427521"
+  description: "Chilled water valve voltage monitoring."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_flowrate_sensor
+  - failed_chilled_water_valve_alarm
+  uses:
+  - chilled_water_valve_voltage_command
+  - chilled_water_valve_voltage_sensor
+  implements:
+  - OPERATIONAL
+  
 RMM:
   guid: "162df361-7593-4e36-bf41-e7fa667244dd"
   description: "Run mode monitoring."
@@ -8800,6 +8869,14 @@ FPHC:
   uses:
   - heating_water_valve_percentage_command
   - chilled_water_valve_percentage_command
+
+SVVM:
+  guid: "9b702772-2303-4648-bc88-4f23d97c0349"
+  description: "Steam valve voltage monitoring."
+  is_abstract: true
+  uses:
+  - steam_valve_voltage_command
+  - steam_valve_voltage_sensor
 
 SSTC:
   guid: "3aefe568-b8eb-485e-a3d9-38ac3bb9906d"

@@ -42,7 +42,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
     ArgumentParser object
   """
   parser = argparse.ArgumentParser(
-      description='Validate a YAML building configuration file')
+      description='Validate a YAML building configuration file'
+  )
 
   parser.add_argument(
       '-i',
@@ -51,7 +52,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='filenames',
       required=True,
       help='Filepaths to YAML building configurations',
-      metavar='FILE')
+      metavar='FILE',
+  )
 
   parser.add_argument(
       '-m',
@@ -59,7 +61,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='modified_types_filepath',
       required=False,
       help='Filepath to modified type filepaths',
-      metavar='MODIFIED_TYPE_FILEPATHS')
+      metavar='MODIFIED_TYPE_FILEPATHS',
+  )
 
   parser.add_argument(
       '-s',
@@ -67,7 +70,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='subscription',
       required=False,
       help='Pubsub subscription for telemetry to validate',
-      metavar='subscription')
+      metavar='subscription',
+  )
 
   parser.add_argument(
       '-t',
@@ -76,7 +80,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=DEFAULT_TIMEOUT,
       help='Timeout duration (in seconds) for telemetry validation test',
-      metavar='timeout')
+      metavar='timeout',
+  )
 
   parser.add_argument(
       '-d',
@@ -85,7 +90,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=None,
       help='Absolute path to report output directory',
-      metavar='report-directory',)
+      metavar='report-directory',
+  )
 
   parser.add_argument(
       '--udmi',
