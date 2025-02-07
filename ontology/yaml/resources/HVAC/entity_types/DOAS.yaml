@@ -269,3 +269,12 @@ DOAS_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_VOADM_HTWHLSTC:
   - SARC
   - VOADM
   - HTWHLSTC
+
+DOAS_SFSS_DXSC_SSPC:
+  description: "DOAS with supply air static pressure control and supply air temperature control"
+  is_canonical: true
+  implements:
+  - DOAS
+  - SFSS
+  - DXSC
+  - SSPC

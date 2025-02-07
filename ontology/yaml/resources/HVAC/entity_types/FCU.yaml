@@ -1760,6 +1760,86 @@ FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
   - CHWZTC
   - ZHM
 
+FCU_DSP_DFSS_DFVSMC_HTRC_RMM:
+  description: "Fan coil unit with zone temperature and return air temperature control and electric heater."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTRC
+  - RMM
+
+FCU_DSP_DFSS_DFVSMC_HTZC_MTC_RMM:
+  description: "Fan coil unit with zone temperature and mixed air temperature control and electric heater."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTZC
+  - MTC
+  - RMM
+
+FCU_DSP_DFSS_DFVSMC_HTRC_RMM_DAIDC:
+  description: "Fan coil unit with zone temperature and return air temperature control and electric heater and isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTRC
+  - RMM
+  - DAIDC
+
+FCU_DSP_DFSS_DFVSMC_HTRC_RMM_DAIDPC:
+  description: "Fan coil unit with zone temperature and return air temperature control and electric heater and isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTRC
+  - RMM
+  - DAIDPC
+
+FCU_DFSS_DFVSC_CHWRC_RHC:
+  description: "Fan coil unit withreturn air humidity control and chilled water return air temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHC
+
+FCU_CSP_DFSS_DFVSC_CHWRC_RHC:
+  description: "Fan coil unit with zone temperature control, return air humidity control and chilled water return air temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHC
+
+FCU_CSP_DFSS_DFVSC_CHWRC_RHC_DAIDC:
+  description: "Fan coil unit with zone temperature control, return air humidity control, chilled water return air temperature control and isolation."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHC
+  - DAIDC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

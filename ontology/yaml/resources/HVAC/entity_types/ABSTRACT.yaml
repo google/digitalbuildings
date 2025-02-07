@@ -1610,7 +1610,11 @@ MMCWDPC:
   guid: "71874ee4-5596-4e90-ad14-8716a6b6de3a"
   description: "Minimum water differential pressure control for mechanical cooling in a hydronic system."
   is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
   uses:
+  - bypass_valve_percentage_command
   - low_limit_mechanical_cooling_differential_pressure_sensor
   - low_limit_mechanical_cooling_differential_pressure_setpoint
   implements:
@@ -1638,6 +1642,8 @@ WDPC2X:
   opt_uses:
   - pressurization_request_count
   - run_command
+  - high_differential_pressure_alarm
+  - low_differential_pressure_alarm
   uses:
   - differential_pressure_sensor_1
   - differential_pressure_sensor_2
@@ -2450,6 +2456,7 @@ CHWRC:
   opt_uses:
   - chilled_water_flowrate_sensor
   - chilled_water_valve_percentage_sensor
+  - cooling_request_count
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
@@ -4372,6 +4379,8 @@ HXRWISOVPM:
   guid: "789cd63d-8168-43fe-9245-c54a8527482c"
   description: "Heat exchanger return isolation water valve percentage control."
   is_abstract: true
+  opt_uses:
+  - failed_heat_exchange_return_water_isolation_valve_alarm
   uses:
   - heat_exchange_return_water_isolation_valve_percentage_command
   - heat_exchange_return_water_isolation_valve_percentage_sensor
@@ -4417,6 +4426,28 @@ PWISOVM:
   is_abstract: true
   uses:
   - process_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+PSWISOVPM:
+  description: "Process supply water iso valve control."
+  is_abstract: true
+  opt_uses:
+  - failed_process_supply_water_isolation_valve_alarm
+  uses:
+  - process_supply_water_isolation_valve_percentage_command
+  - process_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+PRWISOVPM:
+  description: "Process return water iso valve control."
+  is_abstract: true
+  opt_uses:
+  - failed_process_return_water_isolation_valve_alarm
+  uses:
+  - process_return_water_isolation_valve_percentage_command
+  - process_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
 
@@ -7429,6 +7460,7 @@ DAIDC:
   - MONITORING
   opt_uses:
   - failed_discharge_air_isolation_damper_alarm
+  - discharge_air_isolation_damper_percentage_sensor
 
 
 RAIDC4X:
@@ -8501,6 +8533,7 @@ BYPVFRC:
   is_abstract: true
   opt_uses:
   - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
   uses:
   - bypass_valve_percentage_command
   - flowrate_sensor

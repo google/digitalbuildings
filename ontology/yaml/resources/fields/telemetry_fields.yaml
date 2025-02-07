@@ -1284,6 +1284,24 @@ literals:
 - process_water_isolation_valve_command:
   - OPEN
   - CLOSED
+- process_supply_water_isolation_valve_percentage_command:
+  - OPEN
+  - CLOSED
+- process_supply_water_isolation_valve_percentage_sensor:
+  - OPEN
+  - CLOSED
+- failed_process_supply_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- process_return_water_isolation_valve_percentage_command:
+  - OPEN
+  - CLOSED
+- process_return_water_isolation_valve_percentage_sensor:
+  - OPEN
+  - CLOSED
+- failed_process_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - process_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1597,6 +1615,9 @@ literals:
 - heat_exchange_return_water_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- failed_heat_exchange_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - heat_exchange_supply_water_isolation_valve_status:
   - OPEN
   - CLOSED
