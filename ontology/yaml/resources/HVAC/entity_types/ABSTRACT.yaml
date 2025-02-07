@@ -4368,7 +4368,6 @@ BYPVVM:
   description: "Bypass water valve voltage monitoring."
   is_abstract: true
   opt_uses:
-
   - failed_bypass_valve_alarm
   uses:
   - bypass_valve_voltage_sensor
