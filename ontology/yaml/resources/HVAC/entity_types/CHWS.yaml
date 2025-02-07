@@ -619,16 +619,17 @@ CHWS_SESWTC_SEWDPC_SEWFRM_WSEBYPVM:
   - SEWFRM
   - WSEBYPVM
 
-CHWS_SWTC_WDPC2X_WFRM_WSEBYPVPM:
+CHWS_SWTC_WDPC2X_WSEBYPVPM_WFRM_REFM:
   guid: "85ca9a77-bf43-4247-a7e2-b1f25f5fb563"
-  description: "Chilled water system with dual differential pressure control, flowrate monitoring and waterside economizer bypass."
+  description: "Chilled water system with dual differential pressure control, waterside economizer bypass, flowrate monitoring and refrigerant leak monitoring."
   is_canonical: true
   implements:
   - CHWS
   - SWTC
   - WDPC2X
-  - WFRM
   - WSEBYPVPM
+  - WFRM
+  - REFM
 
 ###################################
 ### Existing Non-standard Types ###

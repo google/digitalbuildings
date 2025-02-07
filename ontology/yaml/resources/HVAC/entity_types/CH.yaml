@@ -1015,7 +1015,7 @@ CH_SS_SWTC_DX2SWC_WDPM_RWISOVM_REFSM_REFPM:
 
 CH_SS_SCHWTC_CHWDPC_CHWSWISOVPM_CWDT_CWDPM_CWRISOVPM_HXRWISOVPM_CLPM:
   guid: "c51bcdbe-1899-4e9e-9722-0b786b4dcdaf"
-  description: "."
+  description: "Water cooled chiller with isolation on chilled and condensing water side, heat exchange isolation and cooling thermal power monitoring."
   is_canonical: true
   implements:
   - CH
@@ -1031,7 +1031,7 @@ CH_SS_SCHWTC_CHWDPC_CHWSWISOVPM_CWDT_CWDPM_CWRISOVPM_HXRWISOVPM_CLPM:
 
 CH_SS_SCHWTC_CHWDPC_CWDT_CWDPM_CHWSWISOVPM_CHWRWISOVPM_PSWISOVPM_PRWISOVPM_CWRISOVPM_HXRWISOVPM_CLPM:
   guid: "75203ebf-976f-4fef-84a1-7dec7f47c8a5"
-  description: "."
+  description: "Water cooled chiller supplying water for chilled and process water systems, with isolation on chilled, process and condensing water side, heat exchange isolation and cooling thermal power monitoring."
   is_canonical: true
   implements:
   - CH
@@ -1051,7 +1051,7 @@ CH_SS_SCHWTC_CHWDPC_CWDT_CWDPM_CHWSWISOVPM_CHWRWISOVPM_PSWISOVPM_PRWISOVPM_CWRIS
   
 CH_SS_PSWTC_PWDPC_CWDT_CWDPM_PSWISOVPM_CWRISOVPM_CLPM:
   guid: "8defc678-ce17-427c-8800-5a0bbe953bd4"
-  description: "."
+  description: "Water cooled process chiller with isolation on condensing and process sides, and cooling thermal power monitoring."
   is_canonical: true
   implements:
   - CH
