@@ -193,6 +193,7 @@ descriptor:
   ozone: "Highly reactive gaseous compound comprised of three oxygen atoms."
   panel: "An interface to control a device."
   particle: "A very fine clump of solid matter."
+  ph: "pH (potential of hydrogen) measure of how acidic or basic water is."
   phase: "A phase of three-phase power distribution systems."
   phase1: "The first (nominally A) phase of three-phase power distribution systems."
   phase2: "The second (nominally B) phase of three-phase power distribution systems."

@@ -60,6 +60,9 @@ concentration:
   parts_per_billion:
     multiplier: 0.000000001
     offset: 0
+  ph:
+    multiplier: 0.001
+    offset: 0
   grams_per_kilogram: # Can convert approximately using Avogadro
     multiplier: 0.001
     offset: 0
