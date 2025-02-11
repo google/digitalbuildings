@@ -1285,20 +1285,20 @@ literals:
   - OPEN
   - CLOSED
 - process_supply_water_isolation_valve_percentage_command:
-  - OPEN
-  - CLOSED
+    fixed_min: 0.0
+    fixed_max: 100.0
 - process_supply_water_isolation_valve_percentage_sensor:
-  - OPEN
-  - CLOSED
+    fixed_min: 0.0
+    fixed_max: 100.0
 - failed_process_supply_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - process_return_water_isolation_valve_percentage_command:
-  - OPEN
-  - CLOSED
+    fixed_min: 0.0
+    fixed_max: 100.0
 - process_return_water_isolation_valve_percentage_sensor:
-  - OPEN
-  - CLOSED
+    fixed_min: 0.0
+    fixed_max: 100.0
 - failed_process_return_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
