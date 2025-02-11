@@ -1461,6 +1461,8 @@ PRSWTC:
   guid: "26e7feb6-34d7-4eca-8118-ad200649161c"
   description: "Primary loop water temperature control."
   is_abstract: true
+  opt_uses:
+  - primary_return_water_temperature_sensor
   uses:
   - primary_supply_water_temperature_sensor
   - primary_supply_water_temperature_setpoint
