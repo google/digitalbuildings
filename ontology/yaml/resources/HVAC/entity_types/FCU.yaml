@@ -1771,6 +1771,7 @@ FCU_CSP_DX2ZC_ZHC:
   - ZHC
 
 FCU_CSP_DFSS_DXDDC_RMM:
+  guid: "c95e1f61-ebfc-4ae0-9000-20fb946149f3"
   description: "Single zone FCU."
   is_canonical: true
   implements:
