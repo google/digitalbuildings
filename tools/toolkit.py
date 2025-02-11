@@ -48,7 +48,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='filenames',
       required=True,
       help='Filepath(s) or directory path for Building Configurations',
-      metavar='FILE')
+      metavar='FILE',
+  )
 
   parser.add_argument(
       '-g',
@@ -56,7 +57,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       action='store_true',
       dest='generate_guids',
       required=False,
-      help='Provide this flag if GUIDs need to be generated')
+      help='Provide this flag if GUIDs need to be generated',
+  )
 
   parser.add_argument(
       '-v',
@@ -64,7 +66,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       action='store_true',
       dest='validate_instance',
       required=False,
-      help='Provide this flag to validate a set if Building Configurations')
+      help='Provide this flag to validate a set if Building Configurations',
+  )
 
   parser.add_argument(
       '-m',
@@ -82,7 +85,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='subscription',
       required=False,
       help='Pubsub subscription for telemetry to validate',
-      metavar='subscription')
+      metavar='subscription',
+  )
 
   parser.add_argument(
       '-c',
@@ -90,7 +94,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='gcp_credential',
       required=False,
       help='gcp credential used to authenticate against pubsub api',
-      metavar='gcp credential')
+      metavar='gcp credential',
+  )
 
   parser.add_argument(
       '-t',
@@ -99,7 +104,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=DEFAULT_TIMEOUT,
       help='Timeout duration (in seconds) for telemetry validation test',
-      metavar='timeout')
+      metavar='timeout',
+  )
 
   parser.add_argument(
       '-d',
@@ -120,7 +126,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=False,
       action='store_true',
-      help='Parse messages as UDMI')
+      help='Parse messages as UDMI',
+  )
 
   return parser
 
