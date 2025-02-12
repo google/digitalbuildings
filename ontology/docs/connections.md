@@ -71,7 +71,8 @@ VAV-GUID:
 ```
 
 Feeds connections source entities must be devices that provide a medium. These devices
-will typically be in the `HVAC` or `PLUMBING` namespaces.
+will typically be in the `HVAC` or `PLUMBING` namespaces. The target entity can be 
+another device or can be a `FACILITIES` entity.
 
 ## Has Part
 
