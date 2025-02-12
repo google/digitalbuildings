@@ -321,6 +321,7 @@ measurement:
   massflow: "Movement of fluids down a pressure or temperature gradient."
   obscuration: "Degree of shading."
   percentage: "Measurement per hundred."
+  ph: "pH (potential of hydrogen) measure of how acidic or basic water is."
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
   powerflux: "Energy emitted, reflected, transmitted or received per unit time."
