@@ -39,7 +39,7 @@ PH:
   description: "Ph level for water."
   is_abstract: true
   uses:
-  - ph_concentration_sensor
+  - ph_sensor
 
 WVCM:
   guid: "2e7ee11e-a205-4ade-b46c-5721ef0a7746"
