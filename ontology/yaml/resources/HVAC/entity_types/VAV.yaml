@@ -157,6 +157,17 @@ VAV_SD_DSP_HWZC:
   - DSP
   - HWZC
 
+VAV_SD_DSP_HWZC_ZSPM:
+  guid: "c8340b79-25be-43b1-8d4b-afd404d0ebc5"
+  description: "Single duct reheat VAV with dual setpoint control and zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWZC
+  - ZSPM
+
 VAV_SD_DSP_HTZC:
   guid: "47b47e69-d873-4976-b578-a07cb3d85176"
   description: "Single duct reheat VAV with electric heat."
