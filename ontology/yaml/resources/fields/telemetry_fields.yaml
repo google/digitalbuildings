@@ -4165,5 +4165,5 @@ literals:
     flexible_max: 338.7037037
 - ph_sensor:
     fixed_min: 0.0
-    flexible_max: 14.0
+    fixed_max: 14.0
 
