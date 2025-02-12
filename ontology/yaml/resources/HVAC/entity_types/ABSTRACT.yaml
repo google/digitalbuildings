@@ -352,6 +352,7 @@ CO2C:
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
   - zone_air_co2_deadband_concentration_setpoint
+  - ventilation_request_count
 
 
 CO2CMAX:
@@ -773,6 +774,7 @@ ZHM:
   opt_uses:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
+  - low_zone_air_relative_humidity_alarm
   - zone_air_dewpoint_temperature_sensor
   - zone_air_dewpoint_temperature_setpoint
 
@@ -1343,6 +1345,8 @@ CWDT:
   opt_uses:
   - high_condensing_return_water_temperature_alarm
   - low_condensing_return_water_temperature_alarm
+  - high_condensing_supply_water_temperature_alarm
+  - low_condensing_supply_water_temperature_alarm
   uses:
   - condensing_return_water_temperature_sensor
   - condensing_supply_water_temperature_sensor
@@ -1589,6 +1593,7 @@ WDPC:
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
   - suction_pressure_sensor
+  - failed_differential_pressure_alarm
   uses:
   - differential_pressure_sensor
   - differential_pressure_setpoint
@@ -2684,6 +2689,7 @@ DX2ZC:
   - discharge_air_relative_humidity_sensor
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
+  - cooling_stage_run_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2701,6 +2707,7 @@ DX3ZC:
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
+  - failed_compressor_alarm
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
@@ -2871,6 +2878,7 @@ DX4SC:
   - supply_air_specificenthalpy_sensor
   - return_air_specificenthalpy_sensor
   - supply_air_relative_humidity_sensor
+  - failed_supply_air_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4522,6 +4530,8 @@ CHWBYPVBC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - failed_chilled_water_bypass_valve_alarm
   uses:
   - chilled_water_bypass_valve_command
   - chilled_water_bypass_valve_status
@@ -4548,6 +4558,7 @@ WFRM:
   - MONITORING
   opt_uses:
   - low_flowrate_alarm
+  - failed_flowrate_alarm
 
 
 CMSWFRM:
@@ -4571,6 +4582,7 @@ WFRC:
   - OPERATIONAL
   opt_uses:
   - low_flowrate_alarm
+  - failed_flowrate_alarm
 
 
 MWFRC:
@@ -4748,6 +4760,9 @@ CO2C2X:
   guid: "4f712687-0690-485d-9e73-4880d30eebf4"
   description: "Carbon dioxide control with dual zone sensors."
   is_abstract: true
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  - ventilation_request_count
   uses:
   - zone_air_co2_concentration_sensor_1
   - zone_air_co2_concentration_sensor_2
@@ -5422,6 +5437,7 @@ CWRISOVPM:
   is_abstract: true
   opt_uses:
   - failed_condensing_return_water_isolation_valve_alarm
+  - condensing_return_water_isolation_valve_status
   uses:
   - condensing_return_water_isolation_valve_percentage_command
   - condensing_return_water_isolation_valve_percentage_sensor
@@ -5440,7 +5456,6 @@ CWRISOVM:
   - condensing_return_water_isolation_valve_status
   implements:
   - MONITORING
-
 
 CWSISOVPM:
   guid: "3221aa75-8df4-4964-82dd-9a5c59c3a73b"
@@ -6049,6 +6064,10 @@ DX4DC:
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - heating_request_count
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -6455,7 +6474,6 @@ SWTCSCM:
   opt_uses:
   - supervisor_alarm
 
-
 SESWTC:
   guid: "ac0191bf-f1ba-4dd9-ba81-d31515589c2c"
   description: "Secondary loop supply water temperature control."
@@ -6477,7 +6495,6 @@ SESWTC:
   - secondary_supply_water_temperature_sensor
   - secondary_supply_water_temperature_setpoint
 
-
 PRWDPC:
   guid: "3279876b-0bcd-4fc1-8e9a-273cff67c69e"
   description: "Primary water loop differential pressure control."
@@ -6487,7 +6504,6 @@ PRWDPC:
   uses:
   - primary_water_differential_pressure_sensor
   - primary_water_differential_pressure_setpoint
-
 
 SEWDPC:
   guid: "6b3687c0-a8c1-4df4-8f2b-05eaccfbdf45"
@@ -7149,6 +7165,16 @@ CC2XM:
   uses:
   - compressor_current_sensor_1
   - compressor_current_sensor_2
+  - compressor_run_command_1
+  - compressor_run_command_2
+
+CP2XM:
+  guid: "350ad77f-5f4f-44cd-bd9f-ea45bec43d3a"
+  description: "Compressor power monitoring for 2 compressors."
+  is_abstract: true
+  uses:
+  - compressor_power_sensor_1
+  - compressor_power_sensor_2
   - compressor_run_command_1
   - compressor_run_command_2
 
@@ -8559,8 +8585,18 @@ MCBYPVM:
   - economizer_mode
   - sync_economizer_mechanical_cooling_mode
   - mechanical_cooling_bypass_valve_status
+  - failed_mechanical_cooling_bypass_valve_alarm
   uses:
   - mechanical_cooling_bypass_valve_command
+  implements:
+  - MONITORING
+
+MCSWFRM:
+  guid: "1ec7d8ae-503c-4efb-aeae-5a64354b225d"
+  description: "Mechanical cooling supply flow monitoring."
+  is_abstract: true
+  uses:
+  - mechanical_cooling_supply_water_flowrate_sensor
   implements:
   - MONITORING
 
@@ -8570,6 +8606,7 @@ BYPVFRC:
   is_abstract: true
   opt_uses:
   - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
   uses:
   - bypass_valve_percentage_command
   - flowrate_sensor
@@ -8592,6 +8629,18 @@ FRWISOVM:
   is_abstract: true
   uses:
   - filtration_return_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+FWISOVM:
+  guid: "56ccdbe7-f974-4b6e-b28d-89e46401e17e"
+  description: "Generic filtration isolation valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_filtration_water_valve_alarm
+  uses:
+  - filtration_water_valve_command
+  - filtration_water_valve_status
   implements:
   - MONITORING
 
