@@ -48,6 +48,9 @@ literals:
 - chilled_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- mechanical_cooling_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - chilled_return_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
@@ -173,6 +176,9 @@ literals:
 - torque_sensor:
     fixed_min: 0.0
     flexible_max: 678.0
+- failed_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -287,6 +293,9 @@ literals:
 - flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- failed_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - cooldown_run_command:
   - ON
   - OFF
@@ -387,6 +396,9 @@ literals:
     flexible_min: 0.0
     flexible_max: 0.005
 - power_sensor:
+    flexible_min: 0.0
+    flexible_max: 10000000.0
+- compressor_power_sensor:
     flexible_min: 0.0
     flexible_max: 10000000.0
 - return_air_relative_humidity_sensor:
@@ -649,6 +661,9 @@ literals:
 - mechanical_cooling_bypass_valve_percentage_sensor:
     fixed_min: 0
     fixed_max: 100
+- failed_mechanical_cooling_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - chilled_water_isolation_valve_status:
   - OPEN
   - CLOSED
@@ -1543,6 +1558,15 @@ literals:
 - filtration_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
+- filtration_water_valve_command:
+  - OPEN
+  - CLOSED
+- filtration_water_valve_status:
+  - OPEN
+  - CLOSED
+- failed_filtration_water_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - return_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -3616,6 +3640,9 @@ literals:
 - high_condensing_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_condensing_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_economizer_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3698,6 +3725,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_condensing_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_condensing_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - low_economizer_return_water_temperature_alarm:
@@ -4034,6 +4064,45 @@ literals:
 - heating_return_water_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- bypass_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- bypass_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- chilled_water_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- chilled_water_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- heat_exchange_supply_water_isolation_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- heat_exchange_supply_water_isolation_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- heating_water_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- heating_water_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- makeup_water_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- makeup_water_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- preheating_water_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- steam_valve_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- steam_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
 - bypass_air_damper_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
