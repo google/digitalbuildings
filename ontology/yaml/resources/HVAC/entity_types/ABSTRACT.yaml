@@ -4391,7 +4391,7 @@ MWVPM:
   - makeup_water_valve_percentage_command
   implements:
   - MONITORING
-  
+
 MWVVM:
   guid: "0e4215df-3401-4cf0-bdfe-9e03d6c69a48"
   description: "Make-up water valve voltage monitoring."
@@ -4420,7 +4420,7 @@ HXSWISOVVM:
   - heat_exchange_supply_water_isolation_valve_voltage_command
   - heat_exchange_supply_water_isolation_valve_voltage_sensor
   implements:
-  - MONITORING 
+  - MONITORING
 
 HXRWISOVPM:
   guid: "789cd63d-8168-43fe-9245-c54a8527482c"
@@ -5754,7 +5754,7 @@ CHWVVM:
   - chilled_water_valve_voltage_sensor
   implements:
   - OPERATIONAL
-  
+
 RMM:
   guid: "162df361-7593-4e36-bf41-e7fa667244dd"
   description: "Run mode monitoring."
