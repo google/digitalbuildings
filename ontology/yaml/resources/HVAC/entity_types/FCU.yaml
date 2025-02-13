@@ -1670,6 +1670,7 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC_ZTM:
   - ZTM
 
 FCU_DFSS_RHDHC_HTRC_DX2RC:
+  guid: "03f029b3-ce64-457b-96fe-e8c64a471730"
   description: "Fan coil with return temp and humidity control, dx cooling with two stages, single stage heating, and dehumidication and humidifcation modes."
   is_canonical: true
   implements:
