@@ -93,6 +93,7 @@ CHWS_SWTC_WDPC_MMCWDPC_BYPVPM_WFRM:
   - WFRM
 
 CHWS_SWTC_WDPC_MMCWDPC_WFRM:
+  guid: "3141b35a-b4ae-4937-8f23-26ca97054a0d"
   description: "Chilled water system with supply temperature control, differential pressure and min mechanical cooling differential pressure control and flow monitoring."
   is_canonical: true
   implements:
