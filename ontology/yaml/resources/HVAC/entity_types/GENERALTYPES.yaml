@@ -406,6 +406,7 @@ DOAS:
   - failed_communication_alarm
   - smoke_alarm
   - filter_alarm
+  - run_mode
   implements:
   - EQUIPMENT
 

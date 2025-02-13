@@ -245,7 +245,7 @@ CDWS_SWTC_WSEBYPVPM:
 
 CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
   guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"
-  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
+  description: "Condensing water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
   is_canonical: true
   implements:
   - CDWS
@@ -254,6 +254,17 @@ CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
   - CLPM
   - WFRM
   - MWFRM
+
+CDWS_SWTC_WFRM_MWFRM_BWFRM:
+  guid: "30b52a03-a020-4d65-8c57-bb9cb43e8b15"
+  description: "Condensing water system with flowrate control, blowdown and makeup water flowrate control."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WFRM
+  - MWFRM
+  - BWFRM
 
 ###################################
 ### Existing Non-standard Types ###
