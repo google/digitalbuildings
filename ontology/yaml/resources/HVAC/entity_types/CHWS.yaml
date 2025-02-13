@@ -92,7 +92,7 @@ CHWS_SWTC_WDPC_MMCWDPC_BYPVPM_WFRM:
   - BYPVPM
   - WFRM
 
-CHWS_SWTC_WDPC_MMCWDPC_WFRM: # disk replacement
+CHWS_SWTC_WDPC_MMCWDPC_WFRM:
   description: "Chilled water system with supply temperature control, differential pressure and min mechanical cooling differential pressure control and flow monitoring."
   is_canonical: true
   implements:
