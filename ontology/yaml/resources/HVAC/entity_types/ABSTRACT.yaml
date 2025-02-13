@@ -4460,6 +4460,7 @@ HXRWISOVM:
   - MONITORING
 
 HXCRWISOVPM:
+  guid: "7fd2b89b-013d-4bad-833c-2b307a63cda5"
   description: "Heat exchanger condensing return water isolation valve percentage control."
   is_abstract: true
   opt_uses:

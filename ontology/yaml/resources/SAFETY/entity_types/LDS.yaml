@@ -117,6 +117,7 @@ LDS_WLCC:
   - broken_cable_alarm
 
 LDS_REFM:
+  guid: "3e43f901-2d8c-4e69-9356-f755780b0f2b"
   description: "Refrigerant leak detection."
   is_canonical: true
   implements:
