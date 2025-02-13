@@ -1847,6 +1847,27 @@ FCU_CSP_DFSS_DFVSC_CHWRC_RHC_DAIDC:
   - RHC
   - DAIDC
 
+FCU_CSP_DX2ZC_ZHC:
+  guid: "4f6dbf06-0b03-4537-9d53-78855aabea49"
+  description: "Single zone FCU."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DX2ZC
+  - ZHC
+
+FCU_CSP_DFSS_DXDDC_RMM:
+  guid: "c95e1f61-ebfc-4ae0-9000-20fb946149f3"
+  description: "Single zone FCU."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DXDDC
+  - RMM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

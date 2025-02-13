@@ -16,24 +16,10 @@
 ### Canonical Types  ###
 ########################
 
-HOOD_EFSS3X_EFVSC3X_ETM3X_EFM3X_EDPM3X:
-  guid: "13dc65c9-67af-45ad-a7b5-2e412514374d"
-  description: "Hood with three variable speed exhaust fans and variable position dampers. Temperature and flowrate monitoring for each"
+SENSOR_PH:
+  guid: "991be073-dbf2-4850-913c-8e6887f2e821"
+  description: "Ph sensor."
   is_canonical: true
   implements:
-  - HOOD
-  - EFSS3X
-  - EFVSC3X
-  - ETM3X
-  - EFM3X
-  - EDPM3X
-
-HOOD_PDSCV_EDPM:
-  guid: "7cbab41c-ab07-4944-ac41-f5940710d400"
-  description: "Kitchen Hood with Hood Status (Manual) and Exhaust & Fresh Air Damper Control and Monitoring"
-  is_canonical: true
-  implements:
-  - HOOD
-  - PDSCV
-  - EDPM
-
+  - /SENSOR
+  - PH
