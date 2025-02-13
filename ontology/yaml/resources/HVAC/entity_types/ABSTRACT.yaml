@@ -4425,14 +4425,11 @@ HXRWISOVPM:
   guid: "789cd63d-8168-43fe-9245-c54a8527482c"
   description: "Heat exchanger return isolation water valve percentage control."
   is_abstract: true
-  opt_uses:
-  - failed_heat_exchange_return_water_isolation_valve_alarm
   uses:
   - heat_exchange_return_water_isolation_valve_percentage_command
   - heat_exchange_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
-
 
 HXSWISOVM:
   guid: "3a617a80-2ab5-4eb5-9cf5-c327359a03c6"
@@ -4444,7 +4441,6 @@ HXSWISOVM:
   implements:
   - MONITORING
 
-
 HXRWISOVM:
   guid: "48cee686-e728-4996-be87-0a280ecf9733"
   description: "Heat exchanger return isolation water valve control."
@@ -4452,6 +4448,17 @@ HXRWISOVM:
   uses:
   - heat_exchange_return_water_isolation_valve_command
   - heat_exchange_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+HXCRWISOVPM:
+  description: "Heat exchanger condensing return water isolation valve percentage control."
+  is_abstract: true
+  opt_uses:
+  - failed_heat_exchange_condensing_return_water_isolation_valve_alarm
+  uses:
+  - heat_exchange_condensing_return_water_isolation_valve_percentage_command
+  - heat_exchange_condensing_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
 

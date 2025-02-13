@@ -102,3 +102,12 @@ LM:
   is_abstract: true
   uses:
   - level_status
+
+REFM:
+  description: "Refrigerant leak monitoring."
+  is_abstract: true
+  opt_uses:
+  - high_zone_air_refrigerant_concentration_alarm
+  - failed_zone_air_refrigerant_concentration_alarm
+  uses:
+  - zone_air_refrigerant_concentration_sensor

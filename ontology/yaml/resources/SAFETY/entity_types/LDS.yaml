@@ -108,10 +108,16 @@ LDS_WLA_BCM:
 
 LDS_WLCC:
   guid: "1bc59b7b-cef7-4c39-b7b2-efaae420bf9f"
-  description: Leak detection sensor with array of leak cable-based sensors."
+  description: "Leak detection sensor with array of leak cable-based sensors."
   is_canonical: true
   uses:
   - water_leak_detection_alarm
   - water_leak_alarm
   - water_leak_cable_distance_sensor
   - broken_cable_alarm
+
+LDS_REFM:
+  description: "Refrigerant leak detection."
+  is_canonical: true
+  implements:
+    - REFM
