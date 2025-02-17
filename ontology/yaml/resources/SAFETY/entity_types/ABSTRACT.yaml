@@ -104,6 +104,7 @@ LM:
   - level_status
 
 REFM:
+  guid: "591f8a31-dc4b-45a2-8ac1-b0478b7ceaa5"
   description: "Refrigerant leak monitoring."
   is_abstract: true
   opt_uses:
