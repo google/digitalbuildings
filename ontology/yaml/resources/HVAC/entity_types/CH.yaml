@@ -1066,7 +1066,6 @@ CH_SS_SCHWTC_CHWDPC_CWDT_CWDPM_CHWSWISOVPM_CHWRWISOVPM_PSWISOVPM_PRWISOVPM_CWRIS
   - HXCRWISOVPM
   - CLPM
 
-  
 CH_SS_PSWTC_PWDPC_CWDT_CWDPM_PSWISOVPM_CWRISOVPM_CLPM:
   guid: "8defc678-ce17-427c-8800-5a0bbe953bd4"
   description: "Water cooled process chiller with isolation on condensing and process sides, and cooling thermal power monitoring."
