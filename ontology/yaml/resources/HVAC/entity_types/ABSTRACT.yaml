@@ -265,6 +265,8 @@ DX2RC:
   description: "Compressor run control on retun side (RC)."
   is_abstract: true
   opt_uses:
+  - overload_compressor_alarm_1
+  - overload_compressor_alarm_2
   - compressor_speed_percentage_command
   - cooling_percentage_command
   - cooling_thermal_power_capacity
