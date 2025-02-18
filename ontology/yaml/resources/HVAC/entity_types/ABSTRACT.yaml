@@ -1617,7 +1617,11 @@ MMCWDPC:
   guid: "71874ee4-5596-4e90-ad14-8716a6b6de3a"
   description: "Minimum water differential pressure control for mechanical cooling in a hydronic system."
   is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
   uses:
+  - bypass_valve_percentage_command
   - low_limit_mechanical_cooling_differential_pressure_sensor
   - low_limit_mechanical_cooling_differential_pressure_setpoint
   implements:
@@ -1645,6 +1649,8 @@ WDPC2X:
   opt_uses:
   - pressurization_request_count
   - run_command
+  - high_differential_pressure_alarm
+  - low_differential_pressure_alarm
   uses:
   - differential_pressure_sensor_1
   - differential_pressure_sensor_2
@@ -2457,6 +2463,7 @@ CHWRC:
   opt_uses:
   - chilled_water_flowrate_sensor
   - chilled_water_valve_percentage_sensor
+  - cooling_request_count
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
@@ -4434,7 +4441,6 @@ HXRWISOVPM:
   implements:
   - MONITORING
 
-
 HXSWISOVM:
   guid: "3a617a80-2ab5-4eb5-9cf5-c327359a03c6"
   description: "Heat exchanger supply isolation water valve control."
@@ -4445,7 +4451,6 @@ HXSWISOVM:
   implements:
   - MONITORING
 
-
 HXRWISOVM:
   guid: "48cee686-e728-4996-be87-0a280ecf9733"
   description: "Heat exchanger return isolation water valve control."
@@ -4453,6 +4458,18 @@ HXRWISOVM:
   uses:
   - heat_exchange_return_water_isolation_valve_command
   - heat_exchange_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+HXCRWISOVPM:
+  guid: "7fd2b89b-013d-4bad-833c-2b307a63cda5"
+  description: "Heat exchanger condensing return water isolation valve percentage control."
+  is_abstract: true
+  opt_uses:
+  - failed_heat_exchange_condensing_return_water_isolation_valve_alarm
+  uses:
+  - heat_exchange_condensing_return_water_isolation_valve_percentage_command
+  - heat_exchange_condensing_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
 
@@ -4473,6 +4490,30 @@ PWISOVM:
   is_abstract: true
   uses:
   - process_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+PSWISOVPM:
+  guid: "e30d558a-61c5-4b9f-8511-9fc460117f7a"
+  description: "Process supply water iso valve control."
+  is_abstract: true
+  opt_uses:
+  - failed_process_supply_water_isolation_valve_alarm
+  uses:
+  - process_supply_water_isolation_valve_percentage_command
+  - process_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+PRWISOVPM:
+  guid: "c87142d1-ffef-45ea-ab22-6e81b8393de4"
+  description: "Process return water iso valve control."
+  is_abstract: true
+  opt_uses:
+  - failed_process_return_water_isolation_valve_alarm
+  uses:
+  - process_return_water_isolation_valve_percentage_command
+  - process_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
 
@@ -7526,6 +7567,7 @@ DAIDC:
   - MONITORING
   opt_uses:
   - failed_discharge_air_isolation_damper_alarm
+  - discharge_air_isolation_damper_percentage_sensor
 
 
 RAIDC4X:
