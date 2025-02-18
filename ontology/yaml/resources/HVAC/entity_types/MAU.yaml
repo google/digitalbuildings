@@ -903,6 +903,16 @@ MAU_DFSS2X_DFVSC2X_DXDC_HWDC:
   - DXDC
   - HWDC
 
+MAU_SFSS_DXSC_SSPC:
+  guid: "e05424bf-c8c0-40c9-9875-8903dce9bffc"
+  description: "MAU with supply air static pressure control and supply air temperature control"
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - DXSC
+  - SSPC
+
 ############################
 ###   Remap These Types  ###
 ############################
@@ -1100,13 +1110,3 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
   - DEPRECATED
   uses:
   - humidification_run_command
-
-MAU_SFSS_DXSC_SSPC:
-  guid: "e05424bf-c8c0-40c9-9875-8903dce9bffc"
-  description: "MAU with supply air static pressure control and supply air temperature control"
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS
-  - DXSC
-  - SSPC
