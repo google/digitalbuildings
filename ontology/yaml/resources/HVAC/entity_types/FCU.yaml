@@ -1782,6 +1782,93 @@ FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
   - CHWZTC
   - ZHM
 
+FCU_DSP_DFSS_DFVSMC_HTRC_RMM:
+  guid: "73330804-8365-4169-b5ae-0965b0c0b0dc"
+  description: "Fan coil unit with zone temperature and return air temperature control and electric heater."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTRC
+  - RMM
+
+FCU_DSP_DFSS_DFVSMC_HTZC_MTC_RMM:
+  guid: "7c88378f-6a35-41d1-84d7-dfc064160120"
+  description: "Fan coil unit with zone temperature and mixed air temperature control and electric heater."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTZC
+  - MTC
+  - RMM
+
+FCU_DSP_DFSS_DFVSMC_HTRC_RMM_DAIDC:
+  guid: "f7376d4d-d476-4e39-8fc8-732ba9f91d38"
+  description: "Fan coil unit with zone temperature and return air temperature control and electric heater and isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTRC
+  - RMM
+  - DAIDC
+
+FCU_DSP_DFSS_DFVSMC_HTRC_RMM_DAIDPC:
+  guid: "b8e47243-0626-461f-ae68-e690baa3d606"
+  description: "Fan coil unit with zone temperature and return air temperature control and electric heater and isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DSP
+  - DFSS
+  - DFVSMC
+  - HTRC
+  - RMM
+  - DAIDPC
+
+FCU_DFSS_DFVSC_CHWRC_RHC:
+  guid: "a3c64f5f-487f-4c52-b785-2e4ef329443f"
+  description: "Fan coil unit withreturn air humidity control and chilled water return air temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHC
+
+FCU_CSP_DFSS_DFVSC_CHWRC_RHC:
+  guid: "453f5dd3-14f4-4d37-aac9-2009345d9761"
+  description: "Fan coil unit with zone temperature control, return air humidity control and chilled water return air temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHC
+
+FCU_CSP_DFSS_DFVSC_CHWRC_RHC_DAIDC:
+  guid: "cf43b4e3-b516-491f-9d4b-eaaa37e7e209"
+  description: "Fan coil unit with zone temperature control, return air humidity control, chilled water return air temperature control and isolation."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHC
+  - DAIDC
+
 FCU_CSP_DX2ZC_ZHC:
   guid: "4f6dbf06-0b03-4537-9d53-78855aabea49"
   description: "Single zone FCU."
