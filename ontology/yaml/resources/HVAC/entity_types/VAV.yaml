@@ -309,6 +309,18 @@ VAV_SD_DSP_DFSS_DFVSC:
   - DFSS
   - DFVSC
 
+VAV_SD_DSP_DFSS_DFVSC_HT3ZC:
+  guid: "a553d112-7be2-478a-8d47-a68b2704149f"
+  description: "Fan powered VAV with variable speed control and 3 stage electric heater."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - DFSS
+  - DFVSC
+  - HT3ZC
+
 VAV_SD_DSP_CO2C_DFSS_DFVSC:
   guid: "bc81486d-d20e-4f56-9485-b15b2e3584d3"
   description: "Fan powered VAV with variable speed control and CO2 control."
