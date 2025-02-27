@@ -60,6 +60,15 @@ CDWS_SWTC_BYPVPM:
   - SWTC
   - BYPVPM
 
+CDWS_SWTC_WSEBYPVM:
+  guid: "ba9bfbcf-43b2-42ef-ac60-0fff9a4f4a13"
+  description: "Condenser water system with supply temperature control and waterside economizing bypass."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WSEBYPVM
+
 CDWS_SWTC_WDPC_WFRC_HXSWISOVPM:
   guid: "6f9f09c8-9ccf-4204-a3c8-e24efea95dde"
   description: "Condenser water system with supply temperature control and isolation valves connected to a heat exchanger."
@@ -220,6 +229,18 @@ CDWS_SWTC_WSEBYPVPM:
   - CDWS
   - SWTC
   - WSEBYPVPM
+
+CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
+  guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"
+  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+  - MWFRM
 
 ###################################
 ### Existing Non-standard Types ###
