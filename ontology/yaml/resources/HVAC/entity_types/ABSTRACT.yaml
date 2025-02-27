@@ -8994,3 +8994,21 @@ HWPM:
   - heating_return_water_pressure_sensor
   uses:
   - heating_supply_water_pressure_sensor
+
+ZHM5X:
+  description: "Five sensor zones humidity monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm_1
+  - failed_zone_air_relative_humidity_alarm_2
+  - failed_zone_air_relative_humidity_alarm_3
+  - failed_zone_air_relative_humidity_alarm_4
+  - failed_zone_air_relative_humidity_alarm_5
+  uses:
+  - zone_air_relative_humidity_sensor_1
+  - zone_air_relative_humidity_sensor_2
+  - zone_air_relative_humidity_sensor_3
+  - zone_air_relative_humidity_sensor_4
+  - zone_air_relative_humidity_sensor_5
