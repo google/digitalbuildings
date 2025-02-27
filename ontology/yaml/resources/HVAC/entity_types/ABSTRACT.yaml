@@ -9023,6 +9023,7 @@ HWPM:
   - heating_supply_water_pressure_sensor
 
 ZHM5X:
+  guid: "3a6c4bc7-f7e3-457e-9720-52997dfac118"
   description: "Five sensor zones humidity monitoring"
   is_abstract: true
   implements:
