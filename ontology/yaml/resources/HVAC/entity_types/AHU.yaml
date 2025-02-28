@@ -510,6 +510,20 @@ AHU_DFSS_DSP_DXZC_ECONZ_HTZC:
   - DXZC
   - ECONZ
   - HTZC
+AHU_DSP_DFSS_DFVSC_EFSS_DX4DC_BSPC_ECONM_DSPM_ZHM5X:
+  description: "Multi-zone AHU with five sensor zone humidity monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFSS
+  - DFVSC
+  - EFSS
+  - DX4DC
+  - BSPC
+  - ECONM
+  - DSPM
+  - ZHM5X
 
 AHU_CO2C2X_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "78f56bbf-1f81-4a20-a2a5-ab24a0f4091e"
