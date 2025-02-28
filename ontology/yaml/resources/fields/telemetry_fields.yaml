@@ -271,7 +271,7 @@ literals:
 - exhaust_fan_run_command:
   - ON
   - OFF
-  - UNKNOW
+  - UNKNOWN
 - exhaust_fan_run_status:
   - ON
   - OFF
