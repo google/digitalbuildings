@@ -9295,6 +9295,7 @@ SDVM:
   - MONITORING
 
 ZHM5X:
+  guid: "6aa8ece3-5ec0-4c66-9d90-e397bab9d15b"
   description: "Five sensor zones humidity monitoring"
   is_abstract: true
   implements:
