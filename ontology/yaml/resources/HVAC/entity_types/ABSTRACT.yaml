@@ -8320,10 +8320,13 @@ ACO2C:
 
 ZOC:
   guid: "822b78b6-1eb4-4d4b-9f4e-089ef57011aa"
-  description: "Occupancy counter monitoring"
+  description: "Occupancy counter monitoring, count number of people in and number of people out."
   is_abstract: true
   uses:
   - zone_occupancy_count
+  opt_uses:
+  - zone_occupancy_count_in
+  - zone_occupancy_count_out
   implements:
   - MONITORING
 
