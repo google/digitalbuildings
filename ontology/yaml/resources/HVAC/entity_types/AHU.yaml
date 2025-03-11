@@ -690,6 +690,19 @@ AHU_DFSS_DSP_DXDC_ECOND_HWDC_MTC:
   - HWDC
   - MTC
 
+AHU_DSP_DFSS_DFVSC_EFSS_EFVSC_DXZC_ECOND:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DXZC
+  - ECOND
+
 AHU_BPC_CHWDC_DFSS_DSP_ECOND_HTDC_ZSPC:
   guid: "107d5f1c-c12f-4d0a-8358-a5ee7ad56289"
   description: "Single zone AHU."
