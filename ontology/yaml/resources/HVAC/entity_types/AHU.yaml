@@ -691,6 +691,7 @@ AHU_DFSS_DSP_DXDC_ECOND_HWDC_MTC:
   - MTC
 
 AHU_DSP_DFSS_DFVSC_EFSS_EFVSC_DXZC_ECOND:
+  guid: "12e251d6-66ef-42b4-8071-f3d537cfbaf4"
   description: "Single zone AHU."
   is_canonical: true
   implements:
