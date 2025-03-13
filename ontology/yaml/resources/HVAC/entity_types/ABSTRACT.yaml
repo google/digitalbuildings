@@ -3601,7 +3601,6 @@ HT2DC:
   - CONTROL
 
 HT3DC:
-  guid: "6ca8cf93-24b1-4479-9cbc-d3506a496d3b"
   description: "Three gas or electric heater control on discharge side."
   is_abstract: true
   opt_uses:
