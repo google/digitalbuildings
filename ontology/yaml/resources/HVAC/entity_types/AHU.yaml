@@ -511,6 +511,22 @@ AHU_DFSS_DSP_DXZC_ECONZ_HTZC:
   - ECONZ
   - HTZC
 
+AHU_DSP_DFSS_DFVSC_EFSS_DX4DC_BSPC_ECONM_DSPM_ZHM5X:
+  guid: "75d0683f-1255-4278-913c-262a619872f5"
+  description: "Single zone AHU with five sensor zone humidity monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFSS
+  - DFVSC
+  - EFSS
+  - DX4DC
+  - BSPC
+  - ECONM
+  - DSPM
+  - ZHM5X
+
 AHU_CO2C2X_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "78f56bbf-1f81-4a20-a2a5-ab24a0f4091e"
   description: "Single zone AHU"
@@ -673,6 +689,20 @@ AHU_DFSS_DSP_DXDC_ECOND_HWDC_MTC:
   - ECOND
   - HWDC
   - MTC
+
+AHU_DSP_DFSS_DFVSC_EFSS_EFVSC_DXZC_ECOND:
+  guid: "12e251d6-66ef-42b4-8071-f3d537cfbaf4"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DXZC
+  - ECOND
 
 AHU_BPC_CHWDC_DFSS_DSP_ECOND_HTDC_ZSPC:
   guid: "107d5f1c-c12f-4d0a-8358-a5ee7ad56289"
