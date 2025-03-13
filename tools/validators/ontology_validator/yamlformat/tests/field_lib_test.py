@@ -48,14 +48,15 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
     namespace.AddFinding(
-        findings_lib.UnrecognizedSubfieldError(['any'],
-                                               field_lib.Field(
-                                                   'two',
-                                                   file_context=context)))
+        findings_lib.UnrecognizedSubfieldError(
+            ['any'], field_lib.Field('two', file_context=context)
+        )
+    )
     field = field_lib.Field('one', file_context=context)
     # Currently there are no warnings for fields, so using a subfield warning
     field.AddFinding(
-        findings_lib.MissingSubfieldDescriptionWarning('one', context))
+        findings_lib.MissingSubfieldDescriptionWarning('one', context)
+    )
     namespace.InsertField(field)
 
     fields_universe = field_lib.FieldUniverse([folder])
@@ -66,8 +67,9 @@ class FieldLibTest(absltest.TestCase):
         fields_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
             findings_lib.UnrecognizedSubfieldError,
-            findings_lib.MissingSubfieldDescriptionWarning
-        ]))
+            findings_lib.MissingSubfieldDescriptionWarning,
+        ])
+    )
     self.assertFalse(fields_universe.IsValid())
 
   def testFieldUniverse(self):
@@ -120,8 +122,9 @@ class FieldLibTest(absltest.TestCase):
     self.assertEmpty(folder.GetFindings())
     folder.AddField(field_lib.Field(field_dup, file_context=context))
     self.assertLen(folder.GetFindings(), 1)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.DuplicateSubfieldError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.DuplicateSubfieldError
+    )
 
   def testInsertFieldRejectsReversals(self):
     ns = field_lib.FieldNamespace('')
@@ -131,8 +134,9 @@ class FieldLibTest(absltest.TestCase):
     ns.InsertField(field)
     self.assertEmpty(ns.GetFindings())
     ns.InsertField(field_rev)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.DuplicateFieldDefinitionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.DuplicateFieldDefinitionError
+    )
 
   def testInsertFieldInGlobalNamespaceNoSubfields(self):
     ns = field_lib.FieldNamespace('')
@@ -145,7 +149,7 @@ class FieldLibTest(absltest.TestCase):
   def testInsertFieldInGlobalNamespaceMatchSubfields(self):
     sf_dict = {
         'field': subfield_lib.Subfield('field', DESCRIPTOR),
-        'name': subfield_lib.Subfield('name', POINT_TYPE)
+        'name': subfield_lib.Subfield('name', POINT_TYPE),
     }
 
     ns = field_lib.FieldNamespace('', subfields=sf_dict)
@@ -165,8 +169,9 @@ class FieldLibTest(absltest.TestCase):
     ns.InsertField(field)
     self.assertEqual(ns.fields, {})
     self.assertLen(ns.GetFindings(), 1)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.UnrecognizedSubfieldError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.UnrecognizedSubfieldError
+    )
 
   def testInsertDuplicateFieldInGlobalNamespace(self):
     ns = field_lib.FieldNamespace('')
@@ -180,8 +185,9 @@ class FieldLibTest(absltest.TestCase):
     self.assertEqual(ns.fields, {frozenset({'field', 'name'}): field})
     self.assertEqual(id(ns.fields[frozenset({'field', 'name'})]), id(field))
     self.assertLen(ns.GetFindings(), 1)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.DuplicateFieldDefinitionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.DuplicateFieldDefinitionError
+    )
 
   def testInsertFieldInLocalNamespaceCanUpLevel(self):
     global_ns = field_lib.FieldNamespace('')
@@ -197,7 +203,8 @@ class FieldLibTest(absltest.TestCase):
     sf_glob_dict = {'name': subfield_lib.Subfield('name', POINT_TYPE)}
     global_ns = field_lib.FieldNamespace('', subfields=sf_glob_dict)
     ns = field_lib.FieldNamespace(
-        'local', subfields=sf_dict, parent_namespace=global_ns)
+        'local', subfields=sf_dict, parent_namespace=global_ns
+    )
     field = field_lib.Field('field_name')
 
     ns.InsertField(field)
@@ -209,7 +216,8 @@ class FieldLibTest(absltest.TestCase):
     sf_glob_dict = {'name': subfield_lib.Subfield('name', POINT_TYPE)}
     global_ns = field_lib.FieldNamespace('', subfields=sf_glob_dict)
     ns = field_lib.FieldNamespace(
-        'local', subfields=sf_dict, parent_namespace=global_ns)
+        'local', subfields=sf_dict, parent_namespace=global_ns
+    )
 
     field = field_lib.Field('field_name')
     field_clone = field_lib.Field('field_name')
@@ -220,15 +228,17 @@ class FieldLibTest(absltest.TestCase):
     self.assertEqual(ns.fields, {frozenset({'field', 'name'}): field})
     self.assertEqual(id(ns.fields[frozenset({'field', 'name'})]), id(field))
     self.assertLen(ns.GetFindings(), 1)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.DuplicateFieldDefinitionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.DuplicateFieldDefinitionError
+    )
 
   def testInsertFieldInLocalNamespaceMatchesGlobalSubs(self):
     sf_dict = {'field': subfield_lib.Subfield('field', DESCRIPTOR)}
     sf_glob_dict = {'name': subfield_lib.Subfield('name', POINT_TYPE)}
     global_ns = field_lib.FieldNamespace('', subfields=sf_glob_dict)
     ns = field_lib.FieldNamespace(
-        'local', subfields=sf_dict, parent_namespace=global_ns)
+        'local', subfields=sf_dict, parent_namespace=global_ns
+    )
 
     field = field_lib.Field('field_name')
     bad_field = field_lib.Field('field_name_unmatched')
@@ -238,8 +248,9 @@ class FieldLibTest(absltest.TestCase):
     ns.InsertField(bad_field)
     self.assertEqual(ns.fields, {frozenset({'field', 'name'}): field})
     self.assertLen(ns.GetFindings(), 1)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.UnrecognizedSubfieldError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.UnrecognizedSubfieldError
+    )
 
   def testInsertFieldValidatesCorrectConstruction(self):
     sf_dict = {
@@ -249,12 +260,13 @@ class FieldLibTest(absltest.TestCase):
         'fourth': subfield_lib.Subfield('fourth', COMPONENT),
         'fifth': subfield_lib.Subfield('fifth', MEASUREMENT_DESCRIPTOR),
         'sixth': subfield_lib.Subfield('sixth', MEASUREMENT),
-        'seventh': subfield_lib.Subfield('seventh', POINT_TYPE)
+        'seventh': subfield_lib.Subfield('seventh', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field(
         'first_second_third_fourth_fifth_sixth_seventh',
-        default_value_range={'fixed_min': 0, 'fixed_max': 1})
+        default_value_range={'fixed_min': 0, 'fixed_max': 1},
+    )
 
     ns.InsertField(field)
     self.assertEmpty(ns.GetFindings())
@@ -263,7 +275,7 @@ class FieldLibTest(absltest.TestCase):
     sf_dict = {
         'first': subfield_lib.Subfield('first', DESCRIPTOR),
         'second': subfield_lib.Subfield('second', DESCRIPTOR),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
+        'third': subfield_lib.Subfield('third', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second_third')
@@ -272,43 +284,45 @@ class FieldLibTest(absltest.TestCase):
     self.assertEmpty(ns.GetFindings())
 
   def testAggregationDescriptorFailsWithoutAggregation(self):
-    """Check that aggregation descriptors fail without associated aggregation.
-    """
+    """Check that aggregation descriptors fail without associated aggregation."""
 
     sf_dict = {
         'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
-        'second': subfield_lib.Subfield('second', POINT_TYPE)
+        'second': subfield_lib.Subfield('second', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRespectsAggregationDescriptorCount(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', AGGREGATION_DESCRIPTOR),
         'third': subfield_lib.Subfield('third', AGGREGATION),
-        'fourth': subfield_lib.Subfield('fourth', POINT_TYPE)
+        'fourth': subfield_lib.Subfield('fourth', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second_third_fourth')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertFieldValidatesSubfieldsInMultipleNamespaces(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', DESCRIPTOR),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
+        'third': subfield_lib.Subfield('third', POINT_TYPE),
     }
     sf_glob_dict = {'second': subfield_lib.Subfield('second', DESCRIPTOR)}
     global_ns = field_lib.FieldNamespace('', subfields=sf_glob_dict)
     ns = field_lib.FieldNamespace(
-        'local', subfields=sf_dict, parent_namespace=global_ns)
+        'local', subfields=sf_dict, parent_namespace=global_ns
+    )
     field = field_lib.Field('first_second_third')
 
     ns.InsertField(field)
@@ -323,61 +337,66 @@ class FieldLibTest(absltest.TestCase):
     field = field_lib.Field('first_second')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRespectsComponentCount(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', COMPONENT),
         'second': subfield_lib.Subfield('second', COMPONENT),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
+        'third': subfield_lib.Subfield('third', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second_third')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRespectsMeasurementCount(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', MEASUREMENT),
         'second': subfield_lib.Subfield('second', MEASUREMENT),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
+        'third': subfield_lib.Subfield('third', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second_third')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRespectsPointTypeCount(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', MEASUREMENT),
         'second': subfield_lib.Subfield('second', POINT_TYPE),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
+        'third': subfield_lib.Subfield('third', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second_third')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRespectsMeasurementDescriptorCount(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', MEASUREMENT_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', MEASUREMENT_DESCRIPTOR),
         'third': subfield_lib.Subfield('third', MEASUREMENT),
-        'fourth': subfield_lib.Subfield('fourth', POINT_TYPE)
+        'fourth': subfield_lib.Subfield('fourth', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second_third_fourth')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRespectsDescriptorLimit(self):
     sf_dict = {
@@ -392,34 +411,36 @@ class FieldLibTest(absltest.TestCase):
         'i': subfield_lib.Subfield('i', DESCRIPTOR),
         'j': subfield_lib.Subfield('j', DESCRIPTOR),
         'k': subfield_lib.Subfield('k', DESCRIPTOR),
-        'l': subfield_lib.Subfield('l', POINT_TYPE)
+        'l': subfield_lib.Subfield('l', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('a_b_c_d_e_f_g_h_i_j_k_l')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRejectsBadOrder(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', DESCRIPTOR),
         'second': subfield_lib.Subfield('second', COMPONENT),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
+        'third': subfield_lib.Subfield('third', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('second_first_third')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
 
   def testInsertRejectsSetXWithNoMeasurement(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', COMPONENT),
         'sensor': subfield_lib.Subfield('sensor', POINT_TYPE),
         'setpoint': subfield_lib.Subfield('setpoint', POINT_TYPE),
-        'accumulator': subfield_lib.Subfield('accumulator', POINT_TYPE)
+        'accumulator': subfield_lib.Subfield('accumulator', POINT_TYPE),
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_sensor')
@@ -427,14 +448,17 @@ class FieldLibTest(absltest.TestCase):
     field3 = field_lib.Field('first_accumulator')
 
     ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[0], findings_lib.InvalidFieldConstructionError
+    )
     ns.InsertField(field2)
-    self.assertIsInstance(ns.GetFindings()[1],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[1], findings_lib.InvalidFieldConstructionError
+    )
     ns.InsertField(field3)
-    self.assertIsInstance(ns.GetFindings()[1],
-                          findings_lib.InvalidFieldConstructionError)
+    self.assertIsInstance(
+        ns.GetFindings()[1], findings_lib.InvalidFieldConstructionError
+    )
 
   def testAddFromConfig(self):
     yaml = {'literals': ['field_name']}
@@ -453,9 +477,9 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFromConfig([yaml], rel_filepath)
 
     self.assertSameElements(
-        [frozenset({'f', 'n'}),
-         frozenset({'n2'}),
-         frozenset({'n'})], folder.local_namespace.fields)
+        [frozenset({'f', 'n'}), frozenset({'n2'}), frozenset({'n'})],
+        folder.local_namespace.fields,
+    )
 
   def testAddFromConfigBadYamlFilename(self):
     yaml = {'literals': ['field_name']}
@@ -465,9 +489,11 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFromConfig([yaml], bad_filepath)
 
     self.assertNotIn(
-        frozenset({'field', 'name'}), folder.local_namespace.fields)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InconsistentFileLocationError)
+        frozenset({'field', 'name'}), folder.local_namespace.fields
+    )
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InconsistentFileLocationError
+    )
 
   def testAddFromConfigWithStateList(self):
     yaml = {'literals': [{'field_name': ['A', 'B']}]}
@@ -476,8 +502,10 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFromConfig([yaml], rel_filepath)
 
     self.assertEmpty(folder.GetFindings())
-    self.assertCountEqual(['A', 'B'], folder.local_namespace.fields[frozenset(
-        {'field', 'name'})].states)
+    self.assertCountEqual(
+        ['A', 'B'],
+        folder.local_namespace.fields[frozenset({'field', 'name'})].states,
+    )
 
   def testAddFromConfigWithStateListInvalidFieldFormat(self):
     yaml = {'literals': [{'field_name': ['A', 'B'], 'bad': ['WHOOPS']}]}
@@ -485,8 +513,9 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidFieldFormatError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidFieldFormatError
+    )
 
   def testAddFromConfigWithInvalidFieldFormat(self):
     yaml = {'literals': [{'field_name': 2}]}
@@ -494,8 +523,9 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidFieldFormatError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidFieldFormatError
+    )
 
   def testAddFromConfigWithDefaultValueRange(self):
     sf_dict = {
@@ -555,7 +585,7 @@ class FieldLibTest(absltest.TestCase):
                     'fixed_min': 0,
                     'fixed_max': 5,
                 }
-            }
+            },
         ]
     }
     folder = field_lib.FieldFolder('/fields', local_subfields=sf_dict)
@@ -598,22 +628,21 @@ class FieldLibTest(absltest.TestCase):
 
   def testAddFromConfigWithInvalidDefaultValueRangeMap(self):
     yaml = {
-        'literals': [
-            {
-                'zone_air_temperature_sensor': {
-                    'flexible_min': 0,
-                    'fixed_max': 1,
-                    'flexible_max': 2,
-                }
+        'literals': [{
+            'zone_air_temperature_sensor': {
+                'flexible_min': 0,
+                'fixed_max': 1,
+                'flexible_max': 2,
             }
-        ]
+        }]
     }
     folder = field_lib.FieldFolder('/fields')
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidDefaultValueRangeError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidDefaultValueRangeError
+    )
 
   def testAddFromConfigWithInvalidDefaultValueRangeKey(self):
     yaml = {
@@ -625,26 +654,26 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidDefaultValueRangeError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidDefaultValueRangeError
+    )
 
   def testAddFromConfigWithInvalidDefaultValueRangeValue(self):
     yaml = {
-        'literals': [
-            {
-                'zone_air_temperature_sensor': {
-                    'flexible_min': 0,
-                    'fixed_max': 'invalid',
-                }
+        'literals': [{
+            'zone_air_temperature_sensor': {
+                'flexible_min': 0,
+                'fixed_max': 'invalid',
             }
-        ]
+        }]
     }
     folder = field_lib.FieldFolder('/fields')
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidDefaultValueRangeValueError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidDefaultValueRangeValueError
+    )
 
   def testAddFromConfigWithInvalidDefaultValueRangeValues(self):
     yaml = {
@@ -656,8 +685,9 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidDefaultValueRangeValueError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidDefaultValueRangeValueError
+    )
 
   def testAddFromConfigNumericFieldMissingDefaultValueRange(self):
     sf_dict = {
@@ -671,8 +701,9 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.NumericFieldMissingValueRangeError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.NumericFieldMissingValueRangeError
+    )
 
   def testAddFromConfigNonNumericFieldWithDefaultValueRange(self):
     sf_dict = {
@@ -688,8 +719,9 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     folder.AddFromConfig([yaml], rel_filepath)
 
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.NonNumericFieldWithValueRangeError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.NonNumericFieldWithValueRangeError
+    )
 
   def testAddFromConfigIllegalKeyType(self):
     yaml = {'literals': [False]}
@@ -698,8 +730,9 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFromConfig([yaml], rel_filepath)
 
     self.assertNotIn(False, folder.local_namespace.fields)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.IllegalKeyTypeError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.IllegalKeyTypeError
+    )
 
   def testAddFromConfigIllegalCharactersInName(self):
     yaml = {'literals': ['field_!ame']}
@@ -708,8 +741,9 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFromConfig([yaml], rel_filepath)
 
     self.assertNotIn('field_!ame', folder.local_namespace.fields)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.InvalidFieldNameError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.InvalidFieldNameError
+    )
 
   def testAddFromBadConfigFormat(self):
     yaml = {'literaaaals': ['field_one']}
@@ -720,8 +754,9 @@ class FieldLibTest(absltest.TestCase):
 
     self.assertNotIn(frozenset({'field', 'one'}), folder.local_namespace.fields)
     self.assertIn(frozenset({'field', 'two'}), folder.local_namespace.fields)
-    self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.UnrecognizedKeyError)
+    self.assertIsInstance(
+        folder.GetFindings()[0], findings_lib.UnrecognizedKeyError
+    )
 
 
 if __name__ == '__main__':

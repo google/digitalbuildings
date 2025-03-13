@@ -268,10 +268,12 @@ class GraphValidator(object):
               is_valid = False
               continue
           except AttributeError:
-            print(f'[ERROR]\tentity: {source_entity.guid} '
-                  f'({source_entity.code}) does not contain a translation '
-                  f'even though it is mapped to by links is {entity.guid} ('
-                  f'{entity.code})')
+            print(
+                f'[ERROR]\tentity: {source_entity.guid} '
+                f'({source_entity.code}) does not contain a translation '
+                f'even though it is mapped to by links is {entity.guid} ('
+                f'{entity.code})'
+            )
       elif (
           self.entity_instances[link_inst.source].operation
           == parse.EntityOperation.DELETE
@@ -474,12 +476,10 @@ class InstanceValidator(object):
       true if all translation fields are marked missing.
     """
     # pylint: disable=use-a-generator
-    if all(
-        [
-            translation_field.mode == ft_lib.PresenceMode.MISSING
-            for translation_field in entity.translation.values()
-        ]
-    ):
+    if all([
+        translation_field.mode == ft_lib.PresenceMode.MISSING
+        for translation_field in entity.translation.values()
+    ]):
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) has all field '
           'translations marked as MISSING. This is not allowed.'
@@ -494,7 +494,6 @@ class InstanceValidator(object):
       entity: Instance of EntityInstance.
 
     Returns:
-
     """
     entity_translation = entity.translation
     enumeration_map = {}
@@ -502,9 +501,10 @@ class InstanceValidator(object):
     for written_field_name in entity_translation:
       field_enumeration_pattern = r'(?:.(?!\_))[1-9]+$'
       try:
-        enumeration = re.search(field_enumeration_pattern,
-                                written_field_name).group(0)
-        base_field_name = written_field_name[:-len(enumeration)]
+        enumeration = re.search(
+            field_enumeration_pattern, written_field_name
+        ).group(0)
+        base_field_name = written_field_name[: -len(enumeration)]
       except AttributeError:
         enumeration = None
         base_field_name = written_field_name
@@ -520,9 +520,11 @@ class InstanceValidator(object):
         enumeration_map[base_field_name] = [1, 0]
       for base_field_mapping, enum_list in enumeration_map.items():
         if enum_list[0] > enum_list[1] and enum_list != [1, 0]:
-          print(f'[ERROR]\t {entity.guid}: {entity.code} has field name'
-                f' {base_field_name} which is enumerated and '
-                'not enumerated in the same translation block.')
+          print(
+              f'[ERROR]\t {entity.guid}: {entity.code} has field name'
+              f' {base_field_name} which is enumerated and '
+              'not enumerated in the same translation block.'
+          )
           is_valid = False
     return is_valid
 
@@ -1112,14 +1114,16 @@ class InstanceValidator(object):
       is_valid = False
 
     entity_type = self.universe.GetEntityType(
-      entity.namespace, entity.type_name
+        entity.namespace, entity.type_name
     )
     if entity_type:
       if entity_type.GetAllFields():
         if not entity.translation and not entity.links:
-          print(f'[ERROR]\tEntity ({entity.guid}: {entity.code}) Has a type '
-                'which has defined fields but this instance has neither links '
-                'nor a translation.')
+          print(
+              f'[ERROR]\tEntity ({entity.guid}: {entity.code}) Has a type '
+              'which has defined fields but this instance has neither links '
+              'nor a translation.'
+          )
           is_valid = False
 
     if not self._EntityOperationAndConfigModeValid(entity):
@@ -1287,7 +1291,7 @@ def _ParseUnitsAndValueRange(
 
 
 def _ParseConnections(
-    connections_body: List[Tuple[str, Any]]
+    connections_body: List[Tuple[str, Any]],
 ) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
 

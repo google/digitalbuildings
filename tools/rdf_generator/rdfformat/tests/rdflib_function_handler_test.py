@@ -18,15 +18,14 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import rdflib
-from rdflib import compare
-from rdflib.extras import infixowl
-
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
 from rdfformat.generator import rdflib_function_handler
 from rdfformat.generator import yaml_handler
-from absl.testing import absltest
+import rdflib
+from rdflib import compare
+from rdflib.extras import infixowl
 
 
 class RdfFunctionHandlerTest(absltest.TestCase):
@@ -66,65 +65,82 @@ class RdfFunctionHandlerTest(absltest.TestCase):
     dd_expected = infixowl.Class(
         identifier=constants.HVAC_NS['Dd'],
         graph=expected_graph,
-        subClassOf=[functionality])
+        subClassOf=[functionality],
+    )
     expected_graph, _ = rdf_helper.CreateClassInGraph(
         graph=expected_graph,
         class_name='Dd',
         class_description=dd_description,
         parent_clazz=functionality,
-        entity_namespace=constants.HVAC_NS)
+        entity_namespace=constants.HVAC_NS,
+    )
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Point_type'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Point_type'], graph=expected_graph
+    )
 
     uses_property = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['uses'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
 
     is_composed_of_property = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['isComposedOf'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
     uses_property_optionally = infixowl.Property(
         identifier=constants.DIGITAL_BUILDINGS_NS['usesOptional'],
         baseType=infixowl.OWL_NS.ObjectProperty,
-        graph=expected_graph)
+        graph=expected_graph,
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Air'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Air'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Flowrate'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Flowrate'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Heating'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Heating'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Run'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Run'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Command'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Command'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Discharge'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Discharge'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Temperature'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Temperature'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.SUBFIELDS_NS['Sensor'], graph=expected_graph)
+        identifier=constants.SUBFIELDS_NS['Sensor'], graph=expected_graph
+    )
 
     infixowl.Class(
-        identifier=constants.FIELDS_NS['Field'], graph=expected_graph)
+        identifier=constants.FIELDS_NS['Field'], graph=expected_graph
+    )
 
     heating_air_flowrate_sensor = infixowl.Class(
         identifier=constants.FIELDS_NS['Heating_air_flowrate_sensor'],
         graph=expected_graph,
-        subClassOf=[constants.FIELDS_NS['Field']])
+        subClassOf=[constants.FIELDS_NS['Field']],
+    )
     heating_air_flowrate_setpoint = infixowl.Class(
         identifier=constants.FIELDS_NS['Heating_air_flowrate_setpoint'],
         graph=expected_graph,
-        subClassOf=[constants.FIELDS_NS['Field']])
+        subClassOf=[constants.FIELDS_NS['Field']],
+    )
 
     concat = heating_air_flowrate_sensor & heating_air_flowrate_setpoint
     dd_expected.subClassOf = [uses_property | infixowl.only | concat]
@@ -132,11 +148,13 @@ class RdfFunctionHandlerTest(absltest.TestCase):
     discharge_air_temperature_sensor = infixowl.Class(
         identifier=constants.FIELDS_NS['Discharge_air_temperature_sensor'],
         graph=expected_graph,
-        subClassOf=[constants.FIELDS_NS['Field']])
+        subClassOf=[constants.FIELDS_NS['Field']],
+    )
     run_command = infixowl.Class(
         identifier=constants.FIELDS_NS['Run_command'],
         graph=expected_graph,
-        subClassOf=[constants.FIELDS_NS['Field']])
+        subClassOf=[constants.FIELDS_NS['Field']],
+    )
 
     concat2 = discharge_air_temperature_sensor | run_command
     dd_expected.subClassOf = [
@@ -144,68 +162,80 @@ class RdfFunctionHandlerTest(absltest.TestCase):
     ]
 
     list_composition = rdf_helper.DecomposeStandardFieldName(
-        'Discharge_air_temperature_sensor')
+        'Discharge_air_temperature_sensor'
+    )
     expected_graph = rdf_helper.CreatesStandardFieldNameCompositionInGraph(
         graph=expected_graph,
         list_composition=list_composition,
         standard_field_name='Discharge_air_temperature_sensor',
-        is_composed_of_property=is_composed_of_property)
+        is_composed_of_property=is_composed_of_property,
+    )
 
     list_composition = rdf_helper.DecomposeStandardFieldName('Run_command')
     expected_graph = rdf_helper.CreatesStandardFieldNameCompositionInGraph(
         graph=expected_graph,
         list_composition=list_composition,
         standard_field_name='Run_command',
-        is_composed_of_property=is_composed_of_property)
+        is_composed_of_property=is_composed_of_property,
+    )
 
     list_composition = rdf_helper.DecomposeStandardFieldName(
-        'Heating_air_flowrate_sensor')
+        'Heating_air_flowrate_sensor'
+    )
     expected_graph = rdf_helper.CreatesStandardFieldNameCompositionInGraph(
         graph=expected_graph,
         list_composition=list_composition,
         standard_field_name='Heating_air_flowrate_sensor',
-        is_composed_of_property=is_composed_of_property)
+        is_composed_of_property=is_composed_of_property,
+    )
 
     list_composition = rdf_helper.DecomposeStandardFieldName(
-        'Heating_air_flowrate_setpoint')
+        'Heating_air_flowrate_setpoint'
+    )
     expected_graph = rdf_helper.CreatesStandardFieldNameCompositionInGraph(
         graph=expected_graph,
         list_composition=list_composition,
         standard_field_name='Heating_air_flowrate_setpoint',
-        is_composed_of_property=is_composed_of_property)
+        is_composed_of_property=is_composed_of_property,
+    )
 
     expected_graph, functionality_class = rdf_helper.CreateClassInGraph(
         graph=expected_graph,
         class_name='Functionality',
         class_description=None,
         parent_clazz=entity_type,
-        entity_namespace=constants.HVAC_NS)
+        entity_namespace=constants.HVAC_NS,
+    )
 
     expected_graph, application = rdf_helper.CreateClassInGraph(
         graph=expected_graph,
         class_name='Application',
         class_description=None,
-        parent_clazz=entity_type)
+        parent_clazz=entity_type,
+    )
 
     expected_graph, control = rdf_helper.CreateClassInGraph(
         graph=expected_graph,
         class_name='Control',
         class_description=None,
-        parent_clazz=application[0])
+        parent_clazz=application[0],
+    )
 
     expected_graph, _ = rdf_helper.CreateClassInGraph(
         graph=expected_graph,
         class_name='Dd',
         class_description=dd_description,
         parent_clazz=functionality_class[0],
-        entity_namespace=constants.HVAC_NS)
+        entity_namespace=constants.HVAC_NS,
+    )
 
     expected_graph, _ = rdf_helper.CreateClassInGraph(
         graph=expected_graph,
         class_name='Dd',
         class_description=dd_description,
         parent_clazz=control[0],
-        entity_namespace=constants.HVAC_NS)
+        entity_namespace=constants.HVAC_NS,
+    )
 
     # Check if they are similar
     self.assertTrue(compare.similar(graph, expected_graph))

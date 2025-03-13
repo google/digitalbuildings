@@ -34,6 +34,13 @@ LVLM:
   opt_uses:
   - percentage_sensor
 
+PH:
+  guid: "4d5f4328-0bee-44eb-ba51-0723292f9bb5"
+  description: "Ph level for water."
+  is_abstract: true
+  uses:
+  - ph_sensor
+
 WVCM:
   guid: "2e7ee11e-a205-4ade-b46c-5721ef0a7746"
   description: "Water valve control and monitoring."

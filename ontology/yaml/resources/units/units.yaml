@@ -404,6 +404,8 @@ power:
   megavolt_amperes_apparent:
     multiplier: 1000000
     offset: 0
+ph:
+  no_units: STANDARD
 powerfactor:
   no_units: STANDARD
 powerflux:

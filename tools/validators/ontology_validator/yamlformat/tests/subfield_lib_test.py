@@ -37,13 +37,18 @@ class SubfieldLibTest(absltest.TestCase):
     namespace.AddFinding(
         findings_lib.DuplicateSubfieldDefinitionError(
             namespace,
-            subfield_lib.Subfield('two',
-                                  subfield_lib.SubfieldCategory.POINT_TYPE),
-            context))
+            subfield_lib.Subfield(
+                'two', subfield_lib.SubfieldCategory.POINT_TYPE
+            ),
+            context,
+        )
+    )
     subfield_one = subfield_lib.Subfield(
-        'one', subfield_lib.SubfieldCategory.POINT_TYPE, 'thing')
+        'one', subfield_lib.SubfieldCategory.POINT_TYPE, 'thing'
+    )
     subfield_one.AddFinding(
-        findings_lib.MissingSubfieldDescriptionWarning('one', context))
+        findings_lib.MissingSubfieldDescriptionWarning('one', context)
+    )
     namespace.InsertSubfield(subfield_one)
 
     subfields_universe = subfield_lib.SubfieldUniverse([folder])
@@ -54,18 +59,21 @@ class SubfieldLibTest(absltest.TestCase):
         subfields_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
             findings_lib.DuplicateSubfieldDefinitionError,
-            findings_lib.MissingSubfieldDescriptionWarning
-        ]))
+            findings_lib.MissingSubfieldDescriptionWarning,
+        ])
+    )
     self.assertFalse(subfields_universe.IsValid())
 
   def testSubfieldUniverseGetSubfieldsMap(self):
     # Create field folders
     folder = subfield_lib.SubfieldFolder(_GOOD_PATH)
     namespace = folder.local_namespace
-    namespace.InsertSubfield(subfield_lib.Subfield(
-        'one', subfield_lib.SubfieldCategory.POINT_TYPE))
-    namespace.InsertSubfield(subfield_lib.Subfield(
-        'two', subfield_lib.SubfieldCategory.POINT_TYPE))
+    namespace.InsertSubfield(
+        subfield_lib.Subfield('one', subfield_lib.SubfieldCategory.POINT_TYPE)
+    )
+    namespace.InsertSubfield(
+        subfield_lib.Subfield('two', subfield_lib.SubfieldCategory.POINT_TYPE)
+    )
     subfields_universe = subfield_lib.SubfieldUniverse([folder])
 
     subfields_map = subfields_universe.GetSubfieldsMap('mynamespace')
@@ -87,64 +95,61 @@ class SubfieldLibTest(absltest.TestCase):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
     sff.AddSubfield(
-        subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
-                              'hi', ctx))
+        subfield_lib.Subfield(
+            'good', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+        )
+    )
     self.assertIn('good', sff.local_namespace.subfields)
 
   def testAddInvalidSubfieldFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     ctx = findings_lib.FileContext('{_GOOSD_PATH}/file.yaml')
     sff.AddSubfield(
-        subfield_lib.Subfield('1-bad', subfield_lib.SubfieldCategory.DESCRIPTOR,
-                              'hi', ctx))
-    self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.InvalidSubfieldNameError)
+        subfield_lib.Subfield(
+            '1-bad', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+        )
+    )
+    self.assertIsInstance(
+        sff.GetFindings()[0], findings_lib.InvalidSubfieldNameError
+    )
 
   def testAddDuplicateSubfieldFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
-    sf = subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
-                               'hi', ctx)
+    sf = subfield_lib.Subfield(
+        'good', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+    )
     sf2 = subfield_lib.Subfield(
-        'good', subfield_lib.SubfieldCategory.POINT_TYPE, 'hi2', ctx)
+        'good', subfield_lib.SubfieldCategory.POINT_TYPE, 'hi2', ctx
+    )
     sff.AddSubfield(sf)
     self.assertEmpty(sff.local_namespace.GetFindings())
     sff.AddSubfield(sf2)
-    self.assertIsInstance(sff.local_namespace.GetFindings()[0],
-                          findings_lib.DuplicateSubfieldDefinitionError)
+    self.assertIsInstance(
+        sff.local_namespace.GetFindings()[0],
+        findings_lib.DuplicateSubfieldDefinitionError,
+    )
 
   def testAddSubfieldWithUpperFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
-    sf = subfield_lib.Subfield('gOod', subfield_lib.SubfieldCategory.DESCRIPTOR,
-                               'hi', ctx)
+    sf = subfield_lib.Subfield(
+        'gOod', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+    )
     sff.AddSubfield(sf)
-    self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.InvalidSubfieldNameError)
+    self.assertIsInstance(
+        sff.GetFindings()[0], findings_lib.InvalidSubfieldNameError
+    )
 
   def testAddFromConfig(self):
     doc = {
-        'aggregation': {
-            'agg': 'aggD'
-        },
-        'aggregation_descriptor': {
-            'aggdesc': 'aggDescD'
-        },
-        'component': {
-            'comp': 'compD'
-        },
-        'descriptor': {
-            'desc': 'descD'
-        },
-        'measurement_descriptor': {
-            'mdesc': 'mdescD'
-        },
-        'measurement': {
-            'meas': 'measD'
-        },
-        'point_type': {
-            'ptype': 'ptypeD'
-        }
+        'aggregation': {'agg': 'aggD'},
+        'aggregation_descriptor': {'aggdesc': 'aggDescD'},
+        'component': {'comp': 'compD'},
+        'descriptor': {'desc': 'descD'},
+        'measurement_descriptor': {'mdesc': 'mdescD'},
+        'measurement': {'meas': 'measD'},
+        'point_type': {'ptype': 'ptypeD'},
     }
 
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
@@ -152,21 +157,21 @@ class SubfieldLibTest(absltest.TestCase):
     ns = sff.local_namespace
     self.assertCountEqual(
         ['agg', 'aggdesc', 'comp', 'desc', 'mdesc', 'meas', 'ptype'],
-        ns.subfields)
+        ns.subfields,
+    )
     self.assertEmpty(sff.GetFindings())
 
   def testAddFromConfigNotYaml(self):
     doc = {
-        'aggregation': {
-            'agg': 'aggD'
-        },
+        'aggregation': {'agg': 'aggD'},
     }
 
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     sff.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaaaml')
 
-    self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.InconsistentFileLocationError)
+    self.assertIsInstance(
+        sff.GetFindings()[0], findings_lib.InconsistentFileLocationError
+    )
 
   def testAddFromConfigEmptyBlock(self):
     doc = {'aggregation': {}}
@@ -178,28 +183,34 @@ class SubfieldLibTest(absltest.TestCase):
 
   def testCreateSubfieldNoDescription(self):
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
-    sf = subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
-                               '', ctx)
-    self.assertIsInstance(sf.GetFindings()[0],
-                          findings_lib.MissingSubfieldDescriptionWarning)
+    sf = subfield_lib.Subfield(
+        'good', subfield_lib.SubfieldCategory.DESCRIPTOR, '', ctx
+    )
+    self.assertIsInstance(
+        sf.GetFindings()[0], findings_lib.MissingSubfieldDescriptionWarning
+    )
 
   def testCreateSubfieldIllegalKeyType(self):
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
-    sf = subfield_lib.Subfield(False, subfield_lib.SubfieldCategory.DESCRIPTOR,
-                               'hi', ctx)
+    sf = subfield_lib.Subfield(
+        False, subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+    )
     self.assertIsInstance(sf.GetFindings()[0], findings_lib.IllegalKeyTypeError)
 
   def testCreateSubfieldIllegalName(self):
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
     sf = subfield_lib.Subfield(
-        'goo-1d', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx)
-    self.assertIsInstance(sf.GetFindings()[0],
-                          findings_lib.InvalidSubfieldNameError)
+        'goo-1d', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+    )
+    self.assertIsInstance(
+        sf.GetFindings()[0], findings_lib.InvalidSubfieldNameError
+    )
 
   def testCreateSubfield(self):
     ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
-    sf = subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
-                               'hi', ctx)
+    sf = subfield_lib.Subfield(
+        'good', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx
+    )
     self.assertEmpty(sf.GetFindings())
 
 
