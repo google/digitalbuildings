@@ -3600,6 +3600,25 @@ HT2DC:
   implements:
   - CONTROL
 
+HT3DC:
+  guid: "6ca8cf93-24b1-4479-9cbc-d3506a496d3b"
+  description: "Three gas or electric heater control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  - failed_discharge_air_temperature_alarm
+  - failed_heater_alarm
+  uses:
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  implements:
+  - CONTROL
+
 
 HTSC:
   guid: "bf18254f-acb9-4497-9d54-a7920879f5e5"
