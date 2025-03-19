@@ -211,6 +211,9 @@ flowrate:
   us_gallons_per_minute:
     multiplier: 0.0000630901964
     offset: 0
+  us_gallons_per_hour:
+    multiplier: 0.000001051503277778
+    offset: 0
 force:
   newton: STANDARD
 frequency:
