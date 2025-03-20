@@ -44,7 +44,7 @@ jobs:
     - name: Get modified entity type files
       id: changed-entity-type-files
       if: github.event_name == 'push'
-      uses: tj-actions/changed-files@v45
+      uses: tj-actions/changed-files@45fb12d7a8bedb4da42342e52fe054c6c2c3fd73 # 46.0.1
       with:
         files: '**/ontology/yaml/**/entity_types/*.yaml'
 
