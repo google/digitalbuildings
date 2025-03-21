@@ -16,6 +16,12 @@
 ### Canonical Types  ###
 ########################
 
+HUM_RHHC:
+  guid: "44f8269a-c7ad-4405-9c93-5312a1c69b65"
+  description: "Standard humidifier."
+  implements:
+  - HUM
+  - RHHC
 
 ###################################
 ### Existing Non-standard Types ###
