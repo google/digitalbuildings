@@ -16,6 +16,11 @@
 ### Canonical Types  ###
 ########################
 
+HUM_RHHC:
+  description: "Standard humidifier."
+  implements:
+  - HUM
+  - RHHC
 
 ###################################
 ### Existing Non-standard Types ###

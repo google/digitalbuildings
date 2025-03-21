@@ -538,7 +538,7 @@ BSPC:
 
 BSPC4X:
   guid: "ceba44bb-d69f-4651-ba9a-b7abdf188996"
-  description: "Building static pressure control (as part of a composite device)."
+  description: "Four exhaust fan building static pressure control (as part of a composite device)."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_command
@@ -1889,7 +1889,7 @@ RHC:
   - low_return_air_relative_humidity_alarm
   - humidification_run_command
   - humidification_run_status
-  - humidifier_percentage_command
+  - humidification_percentage_command
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
