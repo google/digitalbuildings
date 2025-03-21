@@ -258,6 +258,7 @@ SENSOR_PCM:
   - PCM
 
 SENSOR_HATM:
+  guid: "a0c88aaf-6125-4eb5-9197-d7ef411ea169"
   description: "Cold aisle temperature matter monitoring"
   is_canonical: true
   implements:
@@ -265,6 +266,7 @@ SENSOR_HATM:
   - HATM
 
 SENSOR_CATM:
+  guid: "17eaa9a0-6657-44c0-b495-4fefd243eac9"
   description: "Cold aisle temperature matter monitoring"
   is_canonical: true
   implements:

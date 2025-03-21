@@ -84,6 +84,7 @@ DHWT_HWTTC:
   - HWTTC
 
 DHWT_SS_HWTTC:
+  guid: "13bbe03f-e01e-43f5-8232-6950ada48055"
   description: "Domestic hot water tank."
   is_canonical: true
   implements:

@@ -537,6 +537,7 @@ BSPC:
   - CONTROL
 
 BSPC4X:
+  guid: "ceba44bb-d69f-4651-ba9a-b7abdf188996"
   description: "Building static pressure control (as part of a composite device)."
   is_abstract: true
   opt_uses:
@@ -1180,6 +1181,7 @@ RTM:
   - return_air_temperature_sensor
 
 HATM:
+  guid: "6addca4d-030f-4f7f-96c5-ffa710ceb14f"
   description: "Single sensor hot aisle temperature monitoring"
   is_abstract: true
   implements:
@@ -1203,6 +1205,7 @@ HATM2X:
   - hot_aisle_air_temperature_sensor_2
 
 CATM:
+  guid: "0051d3b6-b74d-45fb-aaba-827b61145b46"
   description: "Single sensor cold aisle temperature monitoring"
   is_abstract: true
   implements:
