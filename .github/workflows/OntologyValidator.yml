@@ -13,24 +13,24 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: github.event_name == 'pull_request'
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Checkout head if push
       if: github.event_name == 'push'
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # 5.4.0
       with:
         python-version: '3.11'
 
@@ -44,7 +44,7 @@ jobs:
     - name: Get modified entity type files
       id: changed-entity-type-files
       if: github.event_name == 'push'
-      uses: tj-actions/changed-files@v45
+      uses: tj-actions/changed-files@2f7c5bfce28377bc069a65ba478de0a74aa0ca32 # 46.0.1
       with:
         files: '**/ontology/yaml/**/entity_types/*.yaml'
 
@@ -59,7 +59,7 @@ jobs:
 
     - name: Commit files changed by types GUID generator
       if: github.event_name == 'push' && steps.changed-entity-type-files.outputs.any_changed == 'true'
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # 9.1.4
       with:
         author_name: db-robot
         author_email: db-robot@google.com
@@ -70,7 +70,7 @@ jobs:
       run: |
         python validator.py --original=../../../../ontology/yaml/resources  --interactive=False
       working-directory: ./tools/validators/ontology_validator/yamlformat
-      
+
     ### End of type guid generation ###
 
     - name: Run ontology YAML validator without type guid checks if PR

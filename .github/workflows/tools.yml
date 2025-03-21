@@ -21,8 +21,8 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
-    - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
+    - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # 3.0.2
       id: changes
       with:
         filters: |
@@ -43,7 +43,7 @@ jobs:
           scoring:
             - 'tools/scoring/**'
     - name: Set up Python 3.11
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # 5.4.0
       with:
         python-version: '3.11'
     - name: Install PyInk
