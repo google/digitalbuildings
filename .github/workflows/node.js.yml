@@ -8,12 +8,14 @@ on:
     paths:
       - '**.js'
       - ibr/**
+      - .github/workflows/node.js.yml
     branches: [ master ]
     tags: [ ibr ]
   pull_request:
     paths:
       - '**.js'
       - ibr/**
+      - .github/workflows/node.js.yml
     branches: [ master ]
     tags: [ ibr ]
 
