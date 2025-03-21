@@ -8,11 +8,13 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
+      - .github/workflows/OntologyValidator.yml
 
   pull_request:
     branches: [ master ]
     paths:
       - ontology/yaml/**
+      - .github/workflows/OntologyValidator.yml
 
 jobs:
   build:

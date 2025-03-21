@@ -8,10 +8,12 @@ on:
     branches: [ master ]
     paths:
       - 'tools/**'
+      - .github/workflows/tools.yml
   pull_request:
     branches: [ master ]
     paths:
       - 'tools/**'
+      - .github/workflows/tools.yml
 
 jobs:
   build:
