@@ -1622,7 +1622,7 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
 
 FCU_DFSS_CHWDC_ZTM:
   guid: "79e8f113-e1e0-4dfd-9eb1-d773f0788b9b"
-  description: "Typical DX FCU with cooling-only (discharge control), and zone temperature monitoring"
+  description: "FCU with cooling-only chilled water discharge air temperature control, and zone temperature monitoring."
   is_canonical: true
   implements:
   - FCU

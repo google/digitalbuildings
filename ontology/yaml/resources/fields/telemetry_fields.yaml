@@ -1118,12 +1118,6 @@ literals:
 - heat_exchange_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-- humidifier_run_command:
-  - ON
-  - OFF
-- humidifier_run_status:
-  - ON
-  - OFF
 - humidifier_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0

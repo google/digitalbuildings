@@ -1182,7 +1182,7 @@ RTM:
 
 HATM:
   guid: "6addca4d-030f-4f7f-96c5-ffa710ceb14f"
-  description: "Single sensor hot aisle temperature monitoring"
+  description: "Single sensor hot aisle temperature monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -1206,7 +1206,7 @@ HATM2X:
 
 CATM:
   guid: "0051d3b6-b74d-45fb-aaba-827b61145b46"
-  description: "Single sensor cold aisle temperature monitoring"
+  description: "Single sensor cold aisle temperature monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -1887,8 +1887,8 @@ RHC:
   - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
-  - humidifier_run_command
-  - humidifier_run_status
+  - humidification_run_command
+  - humidification_run_status
   - humidifier_percentage_command
   uses:
   - return_air_relative_humidity_sensor
