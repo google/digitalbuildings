@@ -175,6 +175,7 @@ REFM:
   - MONITORING
   opt_uses:
   - high_zone_air_refrigerant_concentration_alarm
+  - low_zone_air_refrigerant_concentration_alarm
   - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
@@ -535,6 +536,34 @@ BSPC:
   implements:
   - CONTROL
 
+BSPC4X:
+  description: "Building static pressure control (as part of a composite device)."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_status_2
+  - exhaust_fan_run_status_3
+  - exhaust_fan_run_status_4
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_speed_percentage_command_2
+  - exhaust_fan_speed_percentage_command_3
+  - exhaust_fan_speed_percentage_command_4
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
+  - failed_exhaust_fan_alarm_3
+  - failed_exhaust_fan_alarm_4
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_command_3
+  - exhaust_fan_run_command_4
+  implements:
+  - CONTROL
 
 VSC:
   guid: "5ac998b4-d72e-40f1-9c8f-c905ec8b5cc6"
@@ -923,6 +952,7 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
+  - zone_occupancy_status
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -1149,6 +1179,15 @@ RTM:
   uses:
   - return_air_temperature_sensor
 
+HATM:
+  description: "Single sensor hot aisle temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_hot_aisle_air_temperature_alarm
+  uses:
+  - hot_aisle_air_temperature_sensor
 
 HATM2X:
   guid: "9e1b1915-866a-4a9d-b4e2-cc74071f84b7"
@@ -1163,6 +1202,15 @@ HATM2X:
   - hot_aisle_air_temperature_sensor_1
   - hot_aisle_air_temperature_sensor_2
 
+CATM:
+  description: "Single sensor cold aisle temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_cold_aisle_air_temperature_alarm
+  uses:
+  - cold_aisle_air_temperature_sensor
 
 CATM2X:
   guid: "35cd8ffc-f4c5-433e-9c42-b0127ad841da"
@@ -1364,6 +1412,8 @@ SWTC:
   - cooling_request_count
   - heating_request_count
   - return_water_temperature_sensor
+  - return_water_temperature_sensor_1
+  - return_water_temperature_sensor_2
   - low_return_water_temperature_alarm
   - high_return_water_temperature_alarm
   - run_command
@@ -1834,6 +1884,9 @@ RHC:
   - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
+  - humidifier_run_command
+  - humidifier_run_status
+  - humidifier_percentage_command
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
@@ -2333,6 +2386,7 @@ CHWDC:
   - low_discharge_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
+  - cooling_request_count
   uses:
   - chilled_water_valve_percentage_command
   - discharge_air_temperature_sensor
@@ -2495,6 +2549,7 @@ CHWZC:
   - chilled_water_valve_percentage_sensor
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
+  - high_discharge_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
@@ -2503,6 +2558,7 @@ CHWZC:
   - low_zone_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
+  - cooling_request_count
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_cooling_temperature_setpoint

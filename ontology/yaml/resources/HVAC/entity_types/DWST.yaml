@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DWST_SWTC:
+  description: "Domestic water system with supply water temperature control"
+  implements:
+  - DWST
+  - SWTC
 
 DWST_CWDT_SWTC_CPC:
   guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"

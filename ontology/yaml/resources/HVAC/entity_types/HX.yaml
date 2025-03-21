@@ -49,6 +49,15 @@ HX_CHWDT_PRWDT:
   - CHWDT
   - PRWDT
 
+HX_CHWDT_PSWTC_PSWISOVPM:
+  description: 'Chilled/process water heat exchanger with isolation.'
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - PSWTC
+  - PSWISOVPM
+
 HX_CHWDT_CHWRWISOVM:
   guid: "fb065fab-e208-4bad-b5fc-a373d8e91566"
   description: 'Chilled water heat exchanger with isolation.'

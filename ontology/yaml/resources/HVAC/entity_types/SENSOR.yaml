@@ -257,6 +257,20 @@ SENSOR_PCM:
   - /SENSOR
   - PCM
 
+SENSOR_HATM:
+  description: "Cold aisle temperature matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - HATM
+
+SENSOR_CATM:
+  description: "Cold aisle temperature matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - CATM
+
 SENSOR_ZTM_ZHM_CO2M_PMM_HCHO:
   guid: "9e1b054e-3ae8-4c8c-9393-ba2c855dc8b6"
   description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"

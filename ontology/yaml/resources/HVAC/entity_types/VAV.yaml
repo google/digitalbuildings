@@ -127,6 +127,16 @@ VAV_SD_DSP_HWDC_ZHM:
   - HWDC
   - ZHM
 
+VAV_SD_DSP_HWDC_RHC:
+  description: "Single duct reheat VAV with dual setpoint control and return air humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - RHC
+
 VAV_SD_DSP_CO2M:
   guid: "0de6754a-9094-4f93-a32a-af2ccee4f495"
   description: "VAV with zone CO2 monitoring."
