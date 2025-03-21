@@ -3656,6 +3656,25 @@ HT2DC:
   implements:
   - CONTROL
 
+HT3DC:
+  guid: "714b7382-3743-49b1-957a-e12b234ef441"
+  description: "Three gas or electric heater control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  - failed_discharge_air_temperature_alarm
+  - failed_heater_alarm
+  uses:
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  implements:
+  - CONTROL
+
 
 HTSC:
   guid: "bf18254f-acb9-4497-9d54-a7920879f5e5"
@@ -9349,3 +9368,27 @@ SDVM:
   - supply_air_damper_voltage_sensor
   implements:
   - MONITORING
+
+ZHM5X:
+  guid: "6aa8ece3-5ec0-4c66-9d90-e397bab9d15b"
+  description: "Five sensor zone humidity monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm_1
+  - failed_zone_air_relative_humidity_alarm_2
+  - failed_zone_air_relative_humidity_alarm_3
+  - failed_zone_air_relative_humidity_alarm_4
+  - failed_zone_air_relative_humidity_alarm_5
+  - high_zone_air_relative_humidity_alarm_1
+  - high_zone_air_relative_humidity_alarm_2
+  - high_zone_air_relative_humidity_alarm_3
+  - high_zone_air_relative_humidity_alarm_4
+  - high_zone_air_relative_humidity_alarm_5
+  uses:
+  - zone_air_relative_humidity_sensor_1
+  - zone_air_relative_humidity_sensor_2
+  - zone_air_relative_humidity_sensor_3
+  - zone_air_relative_humidity_sensor_4
+  - zone_air_relative_humidity_sensor_5

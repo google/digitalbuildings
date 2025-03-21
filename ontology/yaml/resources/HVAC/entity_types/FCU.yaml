@@ -82,6 +82,17 @@ FCU_DFSS_CSP_CHWZC:
   - CSP
   - CHWZC
 
+FCU_CSP_DFSS_CHWZC_DAIDC:
+  guid: "4b1fb22d-7cb7-43e6-9131-4f43e6fe978e"
+  description: "Typical chilled water FCU with cooling-only (zone control) and isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - CHWZC
+  - DAIDC
+
 FCU_DFSS_CSP_DXZC:
   guid: "c11786df-af5d-4459-88b2-b1483fdb3e24"
   description: "Typical DX FCU with cooling-only (discharge control)."
