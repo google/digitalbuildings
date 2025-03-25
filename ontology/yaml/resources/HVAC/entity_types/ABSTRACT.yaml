@@ -175,7 +175,6 @@ REFM:
   - MONITORING
   opt_uses:
   - high_zone_air_refrigerant_concentration_alarm
-  - low_zone_air_refrigerant_concentration_alarm
   - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
@@ -2561,7 +2560,6 @@ CHWZC:
   - low_zone_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
-  - cooling_request_count
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_cooling_temperature_setpoint
