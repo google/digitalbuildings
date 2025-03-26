@@ -914,6 +914,7 @@ MAU_SFSS_DXSC_SSPC:
   - SSPC
 
 MAU_DFSS_DFVSC_BPC_DSP_ECDDC_HTDDC_OA:
+  guid: "06410904-1349-4031-a1f8-0d5a08252890"
   description: "MAU with evaporative cooling and gas heater"
   is_canonical: true
   implements:

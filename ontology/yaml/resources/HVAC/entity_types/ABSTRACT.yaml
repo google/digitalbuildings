@@ -1376,6 +1376,7 @@ SWTC:
   - supply_water_temperature_setpoint
 
 SWTC2X:
+  guid: "3a0b4e8e-e398-43d9-b03e-267c87cec73f"
   description: "supply water temperature control with two sensors"
   is_abstract: true
   implements:
