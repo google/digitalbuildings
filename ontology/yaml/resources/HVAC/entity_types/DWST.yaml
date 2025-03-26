@@ -55,6 +55,13 @@ DWST_WDT:
   - DWST
   - WDT
 
+DWST_SWTC2X:
+  description: "Domestic water system with two sensors supply water temperature control."
+  is_canonical: true
+  implements:
+  - DWST
+  - SWTC2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -63,8 +70,7 @@ DWST_WDT:
 DWST_SWTC_CPVSC2X_WSHP2X:
   guid: "7f92f630-cd94-40a0-aa48-9d702bc50b30"
   description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps.
-  The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a
-  common setpoint."
+  The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a common setpoint."
   is_canonical: false
   implements:
   - DWST

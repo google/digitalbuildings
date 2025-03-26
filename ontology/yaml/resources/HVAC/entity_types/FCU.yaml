@@ -1890,6 +1890,40 @@ FCU_CSP_DFSS_DXDDC_RMM:
   - DXDDC
   - RMM
 
+FCU_DFSS_CSP_DXZC_DAIDC_RTM:
+  description: "FCU with compressor and discharge fan"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - DAIDC
+  - RTM
+
+FCU_DFSS_DFVSC_DSP_CHWDC_RTM:
+  description: "FCU with chilled water valve control and return air temperature monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - RTM
+
+FCU_DFSS_DFVSC_DSP_CHWDC_RTM_FDPM:
+  description: "FCU with chilled water valve control and filter pressure monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - RTM
+  - FDPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -2299,6 +2333,21 @@ FCU_NON_CANONICAL_TYPE_4:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
   - return_air_temperature_setpoint
+
+FCU_DFSS_CSP_CHWZC_NONCANONICAL:
+  description: "Cooling only FCU with discharge fan variable speed control for five fans and common S/S control, and chilled water valve control"
+  is_canonical: false
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - CHWZC
+  opt_uses:
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_speed_percentage_command_3
+  - discharge_fan_speed_percentage_command_4
+  - discharge_fan_speed_percentage_command_5
 
 FCU_LPA_FA:
   guid: "563b6474-859e-4698-aafa-bc976920fb48"

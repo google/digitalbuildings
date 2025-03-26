@@ -3717,6 +3717,18 @@ literals:
 - low_building_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- high_chilled_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_chilled_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE

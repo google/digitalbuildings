@@ -913,6 +913,19 @@ MAU_SFSS_DXSC_SSPC:
   - DXSC
   - SSPC
 
+MAU_DFSS_DFVSC_BPC_DSP_ECDDC_HTDDC_OA:
+  description: "MAU with evaporative cooling and gas heater"
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - BPC
+  - DSP
+  - ECDDC
+  - HTDDC
+  - OA
+
 ############################
 ###   Remap These Types  ###
 ############################
