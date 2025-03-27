@@ -2385,7 +2385,6 @@ CHWDC:
   - low_discharge_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
-  - cooling_request_count
   uses:
   - chilled_water_valve_percentage_command
   - discharge_air_temperature_sensor
