@@ -1886,9 +1886,6 @@ RHC:
   - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
-  - humidification_run_command
-  - humidification_run_status
-  - humidification_percentage_command
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint

@@ -3717,9 +3717,6 @@ literals:
 - low_building_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
-- low_zone_air_refrigerant_concentration_alarm:
-  - ACTIVE
-  - INACTIVE
 - low_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
