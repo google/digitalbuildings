@@ -1620,6 +1620,16 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   - filter_alarm
   - run_mode
 
+FCU_DFSS_CHWDC_ZTM:
+  guid: "79e8f113-e1e0-4dfd-9eb1-d773f0788b9b"
+  description: "FCU with cooling-only chilled water discharge air temperature control, and zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - ZTM
+
 FCU_SS_HTRC_DTM_ZTM:
   guid: "3d9b6b87-0770-4ae6-9bfc-8f729341ccac"
   description: "FCU with return temperature control, discharge temperature monitoring, zone temperature monitorning and start/stop control."
@@ -1891,6 +1901,7 @@ FCU_CSP_DFSS_DXDDC_RMM:
   - RMM
 
 FCU_DFSS_CSP_DXZC_DAIDC_RTM:
+  guid: "32735993-c15e-41ee-a6a2-b951e9e607c0"
   description: "FCU with compressor and discharge fan"
   is_canonical: true
   implements:
@@ -1902,6 +1913,7 @@ FCU_DFSS_CSP_DXZC_DAIDC_RTM:
   - RTM
 
 FCU_DFSS_DFVSC_DSP_CHWDC_RTM:
+  guid: "3b1f9f59-1838-4b98-af1a-ccfdfbf14a02"
   description: "FCU with chilled water valve control and return air temperature monitoring"
   is_canonical: true
   implements:
@@ -1913,6 +1925,7 @@ FCU_DFSS_DFVSC_DSP_CHWDC_RTM:
   - RTM
 
 FCU_DFSS_DFVSC_DSP_CHWDC_RTM_FDPM:
+  guid: "cac4432f-19de-41e7-a587-c318df260b29"
   description: "FCU with chilled water valve control and filter pressure monitoring"
   is_canonical: true
   implements:
@@ -2335,6 +2348,7 @@ FCU_NON_CANONICAL_TYPE_4:
   - return_air_temperature_setpoint
 
 FCU_DFSS_CSP_CHWZC_NONCANONICAL:
+  guid: "1c511da7-ff7d-4459-a911-fb5553716469"
   description: "Cooling only FCU with discharge fan variable speed control for five fans and common S/S control, and chilled water valve control"
   is_canonical: false
   implements:

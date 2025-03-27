@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DWST_SWTC:
+  guid: "5f4e3653-79ab-4017-96fd-92167ae1594c"
+  description: "Domestic water system with supply water temperature control."
+  implements:
+  - DWST
+  - SWTC
 
 DWST_CWDT_SWTC_CPC:
   guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"
@@ -56,6 +62,7 @@ DWST_WDT:
   - WDT
 
 DWST_SWTC2X:
+  guid: "c964ac91-0557-4545-b237-2d5156fe4a42"
   description: "Domestic water system with two sensors supply water temperature control."
   is_canonical: true
   implements:
