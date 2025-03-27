@@ -1902,7 +1902,7 @@ FCU_CSP_DFSS_DXDDC_RMM:
 
 FCU_DFSS_CSP_DXZC_DAIDC_RTM:
   guid: "32735993-c15e-41ee-a6a2-b951e9e607c0"
-  description: "FCU with compressor and discharge fan"
+  description: "FCU with compressor and discharge fan."
   is_canonical: true
   implements:
   - FCU
@@ -1914,7 +1914,7 @@ FCU_DFSS_CSP_DXZC_DAIDC_RTM:
 
 FCU_DFSS_DFVSC_DSP_CHWDC_RTM:
   guid: "3b1f9f59-1838-4b98-af1a-ccfdfbf14a02"
-  description: "FCU with chilled water valve control and return air temperature monitoring"
+  description: "FCU with chilled water valve control and return air temperature monitoring."
   is_canonical: true
   implements:
   - FCU
@@ -1926,7 +1926,7 @@ FCU_DFSS_DFVSC_DSP_CHWDC_RTM:
 
 FCU_DFSS_DFVSC_DSP_CHWDC_RTM_FDPM:
   guid: "cac4432f-19de-41e7-a587-c318df260b29"
-  description: "FCU with chilled water valve control and filter pressure monitoring"
+  description: "FCU with chilled water valve control and filter pressure monitoring."
   is_canonical: true
   implements:
   - FCU
@@ -2349,7 +2349,7 @@ FCU_NON_CANONICAL_TYPE_4:
 
 FCU_DFSS_CSP_CHWZC_NONCANONICAL:
   guid: "1c511da7-ff7d-4459-a911-fb5553716469"
-  description: "Cooling only FCU with discharge fan variable speed control for five fans and common S/S control, and chilled water valve control"
+  description: "Cooling only FCU with discharge fan variable speed control for five fans and common S/S control, and chilled water valve control."
   is_canonical: false
   implements:
   - FCU
