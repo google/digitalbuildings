@@ -1620,6 +1620,16 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   - filter_alarm
   - run_mode
 
+FCU_DFSS_CHWDC_ZTM:
+  guid: "79e8f113-e1e0-4dfd-9eb1-d773f0788b9b"
+  description: "FCU with cooling-only chilled water discharge air temperature control, and zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - ZTM
+
 FCU_SS_HTRC_DTM_ZTM:
   guid: "3d9b6b87-0770-4ae6-9bfc-8f729341ccac"
   description: "FCU with return temperature control, discharge temperature monitoring, zone temperature monitorning and start/stop control."

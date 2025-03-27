@@ -46,6 +46,9 @@ FCU:
   is_abstract: true
   opt_uses:
   - return_air_temperature_sensor
+  - low_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - return_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
   - failed_communication_alarm
