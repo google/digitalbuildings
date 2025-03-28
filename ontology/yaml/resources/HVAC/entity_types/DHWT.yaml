@@ -83,15 +83,6 @@ DHWT_HWTTC:
   - DHWT
   - HWTTC
 
-DHWT_SS_HWTTC:
-  guid: "13bbe03f-e01e-43f5-8232-6950ada48055"
-  description: "Domestic hot water tank."
-  is_canonical: true
-  implements:
-  - DHWT
-  - SS
-  - HWTTC
-
 DHWT_PHWTTC:
   guid: "1bf4aee2-1f3b-462a-9ccd-12eac4494eb3"
   description: "Preheating domestic hot water tank."
@@ -99,3 +90,12 @@ DHWT_PHWTTC:
   implements:
   - DHWT
   - PHWTTC
+
+DHWT_SS_HWTTC:
+  guid: "13bbe03f-e01e-43f5-8232-6950ada48055"
+  description: "Domestic hot water tank with run status and command."
+  is_canonical: true
+  implements:
+  - DHWT
+  - SS
+  - HWTTC
