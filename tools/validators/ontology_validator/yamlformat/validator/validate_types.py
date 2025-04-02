@@ -28,8 +28,9 @@ from yamlformat.validator import presubmit_validate_types_lib
 
 FLAGS = flags.FLAGS
 
-flags.DEFINE_string('input', None,
-                    'The path of the directory of the yaml files')
+flags.DEFINE_string(
+    'input', None, 'The path of the directory of the yaml files'
+)
 
 
 def main(args):
@@ -45,7 +46,8 @@ def main(args):
   if FLAGS.input is None:
     # Get depot filepaths of all config files currently in g3.
     src_depot_paths = internal_file_lib.GetSrcDepotPaths(
-        os.path.join('google3', internal_file_lib.RESOURCE_PATH))
+        os.path.join('google3', internal_file_lib.RESOURCE_PATH)
+    )
     files_list = internal_file_lib.GetSrcAbsPaths(src_depot_paths)
 
   # Preparing another option for github export
@@ -60,7 +62,8 @@ def main(args):
     files_list = internal_file_lib.GetSrcAbsPaths(src_depot_paths)
 
   return presubmit_validate_types_lib.RunInteractive(
-      filter_text, modified_base=[], modified_client=files_list)
+      filter_text, modified_base=[], modified_client=files_list
+  )
 
 
 if __name__ == '__main__':

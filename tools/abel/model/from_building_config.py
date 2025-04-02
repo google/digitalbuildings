@@ -198,12 +198,12 @@ def _TranslateStatesToABEL(
     elif isinstance(raw_state_value, list):
       for value in raw_state_value:
         states.append(
-          State(
-            std_field_name=field.std_field_name,
-            reporting_entity_guid=entity_guid,
-            standard_state=std_state_value,
-            raw_state=value,
-          )
+            State(
+                std_field_name=field.std_field_name,
+                reporting_entity_guid=entity_guid,
+                standard_state=std_state_value,
+                raw_state=value,
+            )
         )
     else:
       pass

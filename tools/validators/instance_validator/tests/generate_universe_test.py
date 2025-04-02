@@ -24,8 +24,9 @@ from absl.testing import absltest
 from tests import test_constants
 from validate import generate_universe
 
-_BAD_MODIFIED_ONTOLOGY = path.join(test_constants.TEST_RESOURCES, 'BAD',
-                                   'BAD_FORMAT')
+_BAD_MODIFIED_ONTOLOGY = path.join(
+    test_constants.TEST_RESOURCES, 'BAD', 'BAD_FORMAT'
+)
 _NONEXISTENT_LOCATION = path.join(test_constants.TEST_ROOT, 'nonexistent')
 _EMPTY_FOLDER = path.join(test_constants.TEST_RESOURCES, 'BAD', 'BAD_EMPTY')
 
@@ -43,19 +44,23 @@ class GenerateUniverseTest(absltest.TestCase):
   def testCatchInvalidModifiedOntology(self):
     with self.assertRaises(Exception) as context:
       generate_universe.BuildUniverse(
-          modified_types_filepath=_BAD_MODIFIED_ONTOLOGY)
+          modified_types_filepath=_BAD_MODIFIED_ONTOLOGY
+      )
     self.assertIn('no longer valid', str(context.exception))
 
   def testModifiedTypesCatchesNonexistent(self):
     self.assertRaises(
         Exception,
         generate_universe.BuildUniverse(
-            modified_types_filepath=_NONEXISTENT_LOCATION))
+            modified_types_filepath=_NONEXISTENT_LOCATION
+        ),
+    )
 
   def testModifiedTypesCatchesEmpty(self):
     self.assertRaises(
         Exception,
-        generate_universe.BuildUniverse(modified_types_filepath=_EMPTY_FOLDER))
+        generate_universe.BuildUniverse(modified_types_filepath=_EMPTY_FOLDER),
+    )
 
 
 if __name__ == '__main__':

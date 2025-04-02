@@ -211,13 +211,11 @@ def _CreateEntityInstances(yaml_filename):
 
   parsed_entities = {}
   for key, value in parsed_yaml.items():
-    parsed_entities.update(
-        {
-            key: entity_instance.EntityInstance.FromYaml(
-                key, value, default_operation=default_operation
-            )
-        }
-    )
+    parsed_entities.update({
+        key: entity_instance.EntityInstance.FromYaml(
+            key, value, default_operation=default_operation
+        )
+    })
   return parsed_entities
 
 

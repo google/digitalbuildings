@@ -13,8 +13,8 @@
 # limitations under the License.
 """Core component."""
 
+from score.constants import DimensionCategories, FileTypes, MappingTypes
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories, MappingTypes
 
 STATE, UNIT = MappingTypes
 PROPOSED, SOLUTION = FileTypes
@@ -22,7 +22,9 @@ PROPOSED, SOLUTION = FileTypes
 
 class StateMapping(Dimension):
   """Quantifies how accurately the proposed file
-  mapped multi-state values for relevant fields."""
+
+  mapped multi-state values for relevant fields.
+  """
 
   # SIMPLE category indicates this dimension receives `translations`
   # rather than `deserialized_files` to do its calculations
@@ -32,18 +34,22 @@ class StateMapping(Dimension):
     """Calculates and assigns properties necessary for generating a score."""
 
     proposed_translations, solution_translations = map(
-        self._condense_translations, (PROPOSED, SOLUTION))
+        self._condense_translations, (PROPOSED, SOLUTION)
+    )
 
-    proposed_mappings = self._isolate_mappings(proposed_translations,
-                                               mapping_type=STATE)
-    solution_mappings = self._isolate_mappings(solution_translations,
-                                               mapping_type=STATE)
+    proposed_mappings = self._isolate_mappings(
+        proposed_translations, mapping_type=STATE
+    )
+    solution_mappings = self._isolate_mappings(
+        solution_translations, mapping_type=STATE
+    )
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 
     self.correct_reporting = len(correct_mappings)
     self.correct_ceiling_reporting = len(solution_mappings)
-    self.incorrect_reporting = (self.correct_ceiling_reporting -
-                                self.correct_reporting)
+    self.incorrect_reporting = (
+        self.correct_ceiling_reporting - self.correct_reporting
+    )
 
     return self
