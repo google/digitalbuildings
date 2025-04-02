@@ -4366,6 +4366,8 @@ SARC:
   opt_uses:
   - heating_request_count
   - supply_air_flowrate_sensor
+  - warmup_run_command
+  - warmup_request_count
   uses:
   - cooling_request_count
   - pressurization_request_count
@@ -5025,6 +5027,7 @@ SFSS2X:
   - supply_fan_power_sensor_2
   - failed_supply_fan_alarm_1
   - failed_supply_fan_alarm_2
+  - schedule_run_command
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
