@@ -4049,3 +4049,10 @@ literals:
 - zone_air_dewpoint_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 310.9259259
+- zone_entering_count:
+    fixed_min: 0.0
+    flexible_max: 1000.0
+- zone_leaving_count:
+    fixed_min: 0.0
+    flexible_max: 1000.0
+
