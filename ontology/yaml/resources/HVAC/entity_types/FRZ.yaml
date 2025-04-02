@@ -39,7 +39,7 @@ FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
   - run_time_accumulator
   - master_alarm
 
-FRZ_DXZTC_DFSS:
+FRZ_CDPM:
   description: "Freezer with chilled water coil and differential pressure monitoring."
   is_canonical: true
   implements:
