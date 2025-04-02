@@ -8,12 +8,14 @@ on:
     paths:
       - '**.js'
       - ibr/**
+      - .github/workflows/node.js.yml
     branches: [ master ]
     tags: [ ibr ]
   pull_request:
     paths:
       - '**.js'
       - ibr/**
+      - .github/workflows/node.js.yml
     branches: [ master ]
     tags: [ ibr ]
 
@@ -27,9 +29,9 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # 4.3.0
       with:
         node-version: ${{ matrix.node-version }}
 

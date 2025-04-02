@@ -90,3 +90,12 @@ DHWT_PHWTTC:
   implements:
   - DHWT
   - PHWTTC
+
+DHWT_SS_HWTTC:
+  guid: "13bbe03f-e01e-43f5-8232-6950ada48055"
+  description: "Domestic hot water tank with run status and command."
+  is_canonical: true
+  implements:
+  - DHWT
+  - SS
+  - HWTTC

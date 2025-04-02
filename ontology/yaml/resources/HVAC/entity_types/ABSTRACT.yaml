@@ -535,6 +535,35 @@ BSPC:
   implements:
   - CONTROL
 
+BSPC4X:
+  guid: "ceba44bb-d69f-4651-ba9a-b7abdf188996"
+  description: "Four exhaust fan building static pressure control (as part of a composite device)."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_status_2
+  - exhaust_fan_run_status_3
+  - exhaust_fan_run_status_4
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_speed_percentage_command_2
+  - exhaust_fan_speed_percentage_command_3
+  - exhaust_fan_speed_percentage_command_4
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
+  - failed_exhaust_fan_alarm_3
+  - failed_exhaust_fan_alarm_4
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_command_3
+  - exhaust_fan_run_command_4
+  implements:
+  - CONTROL
 
 VSC:
   guid: "5ac998b4-d72e-40f1-9c8f-c905ec8b5cc6"
@@ -923,6 +952,7 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
+  - zone_occupancy_status
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -1149,6 +1179,16 @@ RTM:
   uses:
   - return_air_temperature_sensor
 
+HATM:
+  guid: "6addca4d-030f-4f7f-96c5-ffa710ceb14f"
+  description: "Single sensor hot aisle temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_hot_aisle_air_temperature_alarm
+  uses:
+  - hot_aisle_air_temperature_sensor
 
 HATM2X:
   guid: "9e1b1915-866a-4a9d-b4e2-cc74071f84b7"
@@ -1163,6 +1203,16 @@ HATM2X:
   - hot_aisle_air_temperature_sensor_1
   - hot_aisle_air_temperature_sensor_2
 
+CATM:
+  guid: "0051d3b6-b74d-45fb-aaba-827b61145b46"
+  description: "Single sensor cold aisle temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_cold_aisle_air_temperature_alarm
+  uses:
+  - cold_aisle_air_temperature_sensor
 
 CATM2X:
   guid: "35cd8ffc-f4c5-433e-9c42-b0127ad841da"
@@ -1364,6 +1414,8 @@ SWTC:
   - cooling_request_count
   - heating_request_count
   - return_water_temperature_sensor
+  - return_water_temperature_sensor_1
+  - return_water_temperature_sensor_2
   - low_return_water_temperature_alarm
   - high_return_water_temperature_alarm
   - run_command
@@ -1373,6 +1425,24 @@ SWTC:
   - low_supply_water_temperature_alarm
   uses:
   - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+
+SWTC2X:
+  guid: "3a0b4e8e-e398-43d9-b03e-267c87cec73f"
+  description: "supply water temperature control with two sensors."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - return_water_temperature_sensor
+  - run_command
+  - failed_supply_water_temperature_alarm_1
+  - failed_supply_water_temperature_alarm_2
+  - low_supply_water_temperature_alarm
+  - failed_return_water_temperature_alarm
+  uses:
+  - supply_water_temperature_sensor_1
+  - supply_water_temperature_sensor_2
   - supply_water_temperature_setpoint
 
 SWCHVVM:
@@ -2495,6 +2565,7 @@ CHWZC:
   - chilled_water_valve_percentage_sensor
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
+  - high_discharge_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
@@ -3597,6 +3668,25 @@ HT2DC:
   - discharge_air_temperature_sensor
   - heater_run_command_1
   - heater_run_command_2
+  implements:
+  - CONTROL
+
+HT3DC:
+  guid: "714b7382-3743-49b1-957a-e12b234ef441"
+  description: "Three gas or electric heater control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  - failed_discharge_air_temperature_alarm
+  - failed_heater_alarm
+  uses:
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
   implements:
   - CONTROL
 
@@ -5572,6 +5662,9 @@ CHWDPC:
   uses:
   - chilled_water_differential_pressure_sensor
   - chilled_water_differential_pressure_setpoint
+  opt_uses:
+  - high_chilled_water_differential_pressure_alarm
+  - low_chilled_water_differential_pressure_alarm
 
 CHWHRDPC:
   guid: "54ad7c4b-917d-4194-b888-954bf6553838"
@@ -8654,6 +8747,7 @@ BYPVFRC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
+  - low_flowrate_alarm
   uses:
   - bypass_valve_percentage_command
   - flowrate_sensor
@@ -9296,3 +9390,27 @@ SDVM:
   - supply_air_damper_voltage_sensor
   implements:
   - MONITORING
+
+ZHM5X:
+  guid: "6aa8ece3-5ec0-4c66-9d90-e397bab9d15b"
+  description: "Five sensor zone humidity monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm_1
+  - failed_zone_air_relative_humidity_alarm_2
+  - failed_zone_air_relative_humidity_alarm_3
+  - failed_zone_air_relative_humidity_alarm_4
+  - failed_zone_air_relative_humidity_alarm_5
+  - high_zone_air_relative_humidity_alarm_1
+  - high_zone_air_relative_humidity_alarm_2
+  - high_zone_air_relative_humidity_alarm_3
+  - high_zone_air_relative_humidity_alarm_4
+  - high_zone_air_relative_humidity_alarm_5
+  uses:
+  - zone_air_relative_humidity_sensor_1
+  - zone_air_relative_humidity_sensor_2
+  - zone_air_relative_humidity_sensor_3
+  - zone_air_relative_humidity_sensor_4
+  - zone_air_relative_humidity_sensor_5
