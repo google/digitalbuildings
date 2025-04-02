@@ -40,6 +40,7 @@ FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
   - master_alarm
 
 FRZ_CDPM:
+  guid: "ef8d6d48-a797-4540-b0a4-539c29a53eef"
   description: "Freezer with chilled water coil and differential pressure monitoring."
   is_canonical: true
   implements:
