@@ -9414,3 +9414,15 @@ ZHM5X:
   - zone_air_relative_humidity_sensor_3
   - zone_air_relative_humidity_sensor_4
   - zone_air_relative_humidity_sensor_5
+
+CDPM:
+  guid: "aa290cb3-8e21-4205-9a42-0d9aa3521374"
+  description: "Cooling coil differential pressure monitoring with low limit for alarm"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - low_chilled_water_differential_pressure_alarm
+  - low_limit_chilled_water_differential_pressure_setpoint
+  uses:
+  - chilled_water_differential_pressure_sensor
