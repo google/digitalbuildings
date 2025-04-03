@@ -4213,7 +4213,7 @@ literals:
 - zone_entering_accumulator:
     fixed_min: 0.0
     flexible_max: 1000000.0
-- zone_exiting_accumulator:
+- zone_leaving_accumulator:
     fixed_min: 0.0
     flexible_max: 1000000.0
 

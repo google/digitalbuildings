@@ -8614,7 +8614,7 @@ ZOC:
   - zone_occupancy_count
   opt_uses:
   - zone_entering_accumulator
-  - zone_exiting_accumulator
+  - zone_leaving_accumulator
   implements:
   - MONITORING
 
