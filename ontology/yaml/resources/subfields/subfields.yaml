@@ -154,7 +154,7 @@ descriptor:
   inter: "Represents something in between references (e.g. average_inter_line_voltage, the average voltage between lines)."
   isolation: "Process of isolating one component or process from another."
   leak: "Media leaving the system abnormally."
-  leaving: "Area where media leaves process."
+  leaving: "The process of exiting a thing or area where media leaves process (e.g., water leaving a heat exchanger)."
   lighting: "Illumination of a room."
   limit: "A boundary condition for a control (e.g., low limit)."
   line: "Refers to the incoming electrical feed (e.g., line current)."

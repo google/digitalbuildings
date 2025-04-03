@@ -4210,4 +4210,10 @@ literals:
 - ph_sensor:
     fixed_min: 0.0
     fixed_max: 14.0
+- zone_entering_count:
+    fixed_min: 0.0
+    flexible_max: 1000000.0
+- zone_leaving_count:
+    fixed_min: 0.0
+    flexible_max: 1000000.0
 
