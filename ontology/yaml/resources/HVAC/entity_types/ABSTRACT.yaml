@@ -8610,8 +8610,8 @@ ZOC:
   uses:
   - zone_occupancy_count
   opt_uses:
-  - zone_entering_count
-  - zone_leaving_count
+  - zone_entering_accumulator
+  - zone_exiting_accumulator
   implements:
   - MONITORING
 
