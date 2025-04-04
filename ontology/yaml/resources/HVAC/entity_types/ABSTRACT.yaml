@@ -4435,8 +4435,6 @@ SHWISOVPM:
   description: "Heating supply water isolation valve percentage control."
   is_abstract: true
   opt_uses:
-  - run_command
-  - local_override_isolation_valve_alarm
   - heating_supply_water_flowrate_sensor
   uses:
   - heating_supply_water_isolation_valve_percentage_command
