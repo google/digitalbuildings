@@ -365,3 +365,13 @@ HX_PSWTC_PWFRM_CWDT_CWSISOVPM:
   - PWFRM
   - CWDT
   - CWSISOVPM
+
+HX_PRWDT_SHWISOVPM_HWDT:
+  guid: "09cbff27-4408-401b-afe3-eba082282ffd"
+  description: "Heating/process water heat exchanger with differential temperature monitoring and isolation on heating water supply side."
+  is_canonical: true
+  implements:
+  - HX
+  - PRWDT
+  - SHWISOVPM
+  - HWDT

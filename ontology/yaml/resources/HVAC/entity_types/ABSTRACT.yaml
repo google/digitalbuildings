@@ -4430,6 +4430,19 @@ CDWISOVPM:
   - MONITORING
 
 
+SHWISOVPM:
+  guid: "b56edb43-bde9-49f3-9437-d7a6b6e6fdea"
+  description: "Heating supply water isolation valve percentage control."
+  is_abstract: true
+  opt_uses:
+  - heating_supply_water_flowrate_sensor
+  uses:
+  - heating_supply_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+
 CDWPVM:
   guid: "588692e6-84a9-4a31-8cc6-09eb599cbe54"
   description: "Condensing water pressure valve command and position monitoring (without regard to what controls it)."
