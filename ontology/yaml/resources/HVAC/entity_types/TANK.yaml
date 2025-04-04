@@ -76,3 +76,11 @@ TK_LM:
   implements:
   - /TK # Inherits from global namespace
   - LM
+
+TK_RWTC_SWISOVM:
+  description: "Tank with return water temp control and supply water isolation valve."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - RWTC
+  - SWISOVM
