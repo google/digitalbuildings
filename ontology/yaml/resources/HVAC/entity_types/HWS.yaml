@@ -449,6 +449,15 @@ HWS_SWTC_WDPM_WFRM_HLPM:
   - WFRM
   - HLPM
 
+HWS_RWTC_WSEBYPVM:
+  guid: "d1f34ca4-b18f-4df2-bf2c-0be8a5980e22"
+  description: "Heating water system for freezer underslab heating with return temp control and bypass valve for economizing."
+  is_canonical: true
+  implements:
+  - HWS
+  - RWTC
+  - WSEBYPVM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
