@@ -33,6 +33,7 @@ ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   - high_refrigerant_pressure_alarm_2
 
 ASHP_SS_SWTC_DX6SWC_WDPM_CPC2X_RWISOVM:
+  guid: "4b60ffd9-b068-49bd-b6d7-36890e9b7955"
   description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
   is_canonical: true
   implements:
