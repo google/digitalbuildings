@@ -418,6 +418,16 @@ FCU_DFSS_DFVSC_DSP_CHWDC:
   - DFVSC
   - DSP
   - CHWDC
+  
+FCU_DFSS2X_DFVSC2X_DSP_CHWDC:
+  description: "Hydronic variable speed fan coil with cooling (zone temp control) and two fans."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS2X
+  - DFVSC2X
+  - DSP
+  - CHWDC
 
 FCU_DFSS_DFVSC_CSP_CHWZC:
   guid: "e835b367-8ae9-4a12-9682-d9c1fa8d1d85"
