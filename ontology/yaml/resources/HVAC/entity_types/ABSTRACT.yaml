@@ -101,6 +101,7 @@ OADM:
   opt_uses:
   - failed_outside_air_damper_alarm
   - outside_air_damper_status
+  - ventilation_request_count
   uses:
   - outside_air_damper_command
 
@@ -524,6 +525,7 @@ BSPC:
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_command
+  - exhaust_air_damper_command
   - exhaust_fan_run_status
   - failed_exhaust_fan_alarm
   - high_building_air_static_pressure_alarm
@@ -4373,6 +4375,22 @@ SARC:
   - pressurization_request_count
   - supply_air_static_pressure_setpoint
   - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DARC:
+  description: "AHU discharge air reset control."
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  - discharge_air_flowrate_sensor
+  - warmup_run_command
+  - warmup_request_count
+  uses:
+  - cooling_request_count
+  - pressurization_request_count
+  - discharge_air_static_pressure_setpoint
+  - discharge_air_temperature_setpoint
   implements:
   - CONTROL
 
