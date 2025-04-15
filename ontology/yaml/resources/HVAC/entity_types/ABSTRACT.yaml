@@ -4379,6 +4379,7 @@ SARC:
   - CONTROL
 
 DARC:
+  guid: "df2a457b-bb11-4d97-9837-0984f7ad9301"
   description: "AHU discharge air reset control."
   is_abstract: true
   opt_uses:
