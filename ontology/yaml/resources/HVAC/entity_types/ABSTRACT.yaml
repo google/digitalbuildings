@@ -101,6 +101,7 @@ OADM:
   opt_uses:
   - failed_outside_air_damper_alarm
   - outside_air_damper_status
+  - ventilation_request_count
   uses:
   - outside_air_damper_command
 
@@ -524,6 +525,7 @@ BSPC:
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_command
+  - exhaust_air_damper_command
   - exhaust_fan_run_status
   - failed_exhaust_fan_alarm
   - high_building_air_static_pressure_alarm
@@ -4375,7 +4377,6 @@ SARC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
-
 
 RWISOVPC:
   guid: "8741bbd4-d41e-4313-9c71-85995078216d"
