@@ -5783,6 +5783,7 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
   - SARC
 
 AHU_DFSS_DFVSC_DFFC_CHWDC_DSPM_OADM:
+  guid: "a6372e62-9325-4a3c-b564-891de48b67e6"
   description: "Single zone AHU with discharge fan, chilled water coil, and discharge air flowrate control."
   is_canonical: true
   implements:
@@ -5795,6 +5796,7 @@ AHU_DFSS_DFVSC_DFFC_CHWDC_DSPM_OADM:
   - OADM
 
 AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
+  guid: "f551cd99-5bbb-48d0-9772-7eac4839c8d2"
   description: "Single zone AHU with discharge and exhaust fans, chilled water coil, building and discharge air static pressure control, discharge air flowrate control."
   is_canonical: true
   implements:
