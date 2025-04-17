@@ -4378,6 +4378,23 @@ SARC:
   implements:
   - CONTROL
 
+DARC:
+  description: "AHU discharge air reset control."
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  - discharge_air_flowrate_sensor
+  - warmup_run_command
+  - warmup_request_count
+  uses:
+  - cooling_request_count
+  - pressurization_request_count
+  - discharge_air_static_pressure_setpoint
+  - discharge_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+
 RWISOVPC:
   guid: "8741bbd4-d41e-4313-9c71-85995078216d"
   description: "Return water isolation valve percentage control."

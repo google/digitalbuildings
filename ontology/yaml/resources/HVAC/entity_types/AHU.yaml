@@ -5794,7 +5794,7 @@ AHU_DFSS_DFVSC_DFFC_CHWDC_DSPM_OADM:
   - DSPM
   - OADM
 
-AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
+AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_DARC_OADM_OAFM_RDC:
   description: "Single zone AHU with discharge and exhaust fans, chilled water coil, building and discharge air static pressure control, discharge air flowrate control."
   is_canonical: true
   implements:
@@ -5807,6 +5807,7 @@ AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
   - CHWDC
   - DSPC
   - BSPC
+  - DARC
   - OADM
   - OAFM
   - RDC

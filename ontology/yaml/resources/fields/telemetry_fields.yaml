@@ -3915,6 +3915,9 @@ literals:
 - high_discharge_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
+- low_discharge_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_heater_alarm:
   - ACTIVE
   - INACTIVE
