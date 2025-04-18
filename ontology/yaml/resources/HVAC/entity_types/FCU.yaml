@@ -420,6 +420,7 @@ FCU_DFSS_DFVSC_DSP_CHWDC:
   - CHWDC
 
 FCU_DFSS_DFVSC_DSP_CHWDC_RADM:
+  guid: "a3e78ad9-90ee-4da8-ae0d-944ee73b61b2"
   description: "Hydronic variable speed fan coil with cooling (zone temp control) and return air damper."
   is_canonical: true
   implements:
@@ -431,6 +432,7 @@ FCU_DFSS_DFVSC_DSP_CHWDC_RADM:
   - RADM
 
 FCU_DFSS_DFVSC_DSP_CHWDC_MTM:
+  guid: "93566e9e-1774-4f08-b97f-111e85f14795"
   description: "Hydronic variable speed fan coil and mixed air temperature monitoring with cooling (zone temp control)."
   is_canonical: true
   implements:
