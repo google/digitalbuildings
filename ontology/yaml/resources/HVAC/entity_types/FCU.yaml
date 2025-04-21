@@ -1948,6 +1948,17 @@ FCU_DFSS_DFVSC_DSP_CHWDC_RTM_FDPM:
   - RTM
   - FDPM
 
+FCU_DFSS_DFVSC_CHWDC_CATM_HATM
+  description: "FCU with chilled water valve control and cold/hot aisle temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - CATM
+  - HATM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
