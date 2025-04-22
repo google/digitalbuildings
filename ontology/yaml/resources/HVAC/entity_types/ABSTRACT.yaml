@@ -1142,6 +1142,7 @@ SFSS:
   - supply_fan_lost_power_alarm
   - schedule_run_command
   - optimal_stop_command
+  - zone_occupancy_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
