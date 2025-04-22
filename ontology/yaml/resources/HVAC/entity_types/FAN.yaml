@@ -343,6 +343,15 @@ FAN_SS_VSC_COC:
   - VSC
   - COC
 
+FAN_SS_VSC_COCMAX:
+  description: "Variable speed ventilation fan (for controlling to maximum carbon monoxide concentration)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - COCMAX
+
 FAN_SS_VSC_ETM:
   guid: "506ff5b9-c55a-4d4e-8c91-a040871a9b40"
   description: "Fan with exhaust air temp sensor."
