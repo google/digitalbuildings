@@ -9003,6 +9003,28 @@ HP6SWC:
   implements:
   - CONTROL
 
+HP3SWC:
+  guid: "e0eef5e0-4510-49f5-991c-5ff13cbb14d7"
+  description: "Three-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 CPC2X:
   guid: "a45b771d-0bc2-49a4-8a4f-5e3287f65ff0"
   description: "Circulation control for 2 pumps."
