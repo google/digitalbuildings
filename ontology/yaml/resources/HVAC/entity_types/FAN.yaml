@@ -344,6 +344,7 @@ FAN_SS_VSC_COC:
   - COC
 
 FAN_SS_VSC_COCMAX:
+  guid: "d7c1b80c-e982-4ce5-9fc4-2bf59d0f9d4e"
   description: "Variable speed ventilation fan (for controlling to maximum carbon monoxide concentration)."
   is_canonical: true
   implements:

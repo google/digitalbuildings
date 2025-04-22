@@ -400,6 +400,7 @@ COC:
   - failed_zone_air_co_concentration_alarm
 
 COCMAX:
+  guid: "5d8f0f34-247b-4a2d-bbcf-c0ae84019489"
   description: "Multi-zone carbon monoxide control to the maximum zone concentration."
   is_abstract: true
   implements:
