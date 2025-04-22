@@ -399,6 +399,19 @@ COC:
   - high_zone_air_co_concentration_alarm
   - failed_zone_air_co_concentration_alarm
 
+COCMAX:
+  guid: "5d8f0f34-247b-4a2d-bbcf-c0ae84019489"
+  description: "Multi-zone carbon monoxide control to the maximum zone concentration."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - max_zone_air_co_concentration_sensor
+  - zone_air_co_concentration_setpoint
+  opt_uses:
+  - high_zone_air_co_concentration_alarm
+  - failed_zone_air_co_concentration_alarm
+
 COM:
   guid: "bd9a1e2d-0710-4c58-8a56-3890af55f6b3"
   description: "Carbon monoxide monitoring."
