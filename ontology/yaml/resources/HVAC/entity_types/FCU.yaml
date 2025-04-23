@@ -442,7 +442,7 @@ FCU_DFSS_DFVSC_DSP_CHWDC_MTM:
   - DSP
   - CHWDC
   - MTM
-  
+
 FCU_DFSS2X_DFVSC2X_DSP_CHWDC:
   guid: "c1a36d91-05d3-42d0-862c-65b1c0b9b143"
   description: "Hydronic variable speed fan coil with cooling (zone temp control) and two fans."
@@ -1971,6 +1971,18 @@ FCU_DFSS_DFVSC_DSP_CHWDC_RTM_FDPM:
   - CHWDC
   - RTM
   - FDPM
+
+FCU_DFSS_DFVSC_CHWDC_CATM_HATM:
+  guid: "8f7f6eef-d562-4f8a-96e9-cb8ece5fed46"
+  description: "FCU with chilled water valve control, cold and hot aisle temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - CATM
+  - HATM
 
 ###################################
 ### Existing Non-standard Types ###

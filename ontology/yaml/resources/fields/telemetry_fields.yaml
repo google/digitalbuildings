@@ -569,6 +569,9 @@ literals:
 - max_zone_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
+- max_zone_air_co_concentration_sensor:
+    flexible_min: 0.00035
+    flexible_max: 0.0015
 - average_zone_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
