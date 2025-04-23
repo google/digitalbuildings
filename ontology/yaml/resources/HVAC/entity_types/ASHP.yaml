@@ -16,6 +16,15 @@
 ### Canonical Types  ###
 ########################
 
+ASHP_SS_HP6SW:
+  guid: "51a90281-6675-4ccb-87e0-f20346cc3869"
+  description: "Six-stage air source heat pump."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP6SWC
+
 ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   guid: "11ecef31-d11d-496b-9d39-f35fe9307a82"
   description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
