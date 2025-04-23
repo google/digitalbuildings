@@ -16,7 +16,7 @@
 ### Canonical Types  ###
 ########################
 
-ASHP_SS_HP6SW:
+ASHP_SS_HP6SWC:
   guid: "51a90281-6675-4ccb-87e0-f20346cc3869"
   description: "Six-stage air source heat pump."
   is_canonical: true
