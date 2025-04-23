@@ -362,6 +362,31 @@ CU_DFSS_DFVSC_CHWDC_HTDC_FDPM_RTM_MTM_CAM:
   - MTM
   - CAM
 
+CU_DFSS_DFVSC_DSP_CHWDC_RADM_MTM:
+  guid: "7928e7e7-8c3c-4589-a2c6-d2d67bfabab6"
+  description: "Compartment unit with cooling (zone temp control) and return air damper."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - RADM
+  - MTM
+
+CU_DFSS_DFVSC_DSP_CHWDC_MTM:
+  guid: "6ab60d3a-7265-4af4-8a1a-8c501f87f484"
+  description: "Compartment unit and mixed air temperature monitoring with cooling (zone temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - MTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
