@@ -380,7 +380,7 @@ CU_DFSS_DFVSC_DSP_CHWDC_MTM:
   description: "Compartment unit and mixed air temperature monitoring with cooling (zone temp control)."
   is_canonical: true
   implements:
-  - FCU
+  - CU
   - DFSS
   - DFVSC
   - DSP
