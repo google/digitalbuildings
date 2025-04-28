@@ -1142,7 +1142,6 @@ SFSS:
   - supply_fan_lost_power_alarm
   - schedule_run_command
   - optimal_stop_command
-  - ventilation_request_count
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -4052,6 +4051,7 @@ ECON:
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - ventilation_request_count
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
