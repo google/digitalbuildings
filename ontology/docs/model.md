@@ -4,7 +4,7 @@ In addition to providing a general syntax and primitives for building a
 smart-building ontology, Digital Buildings provides an abstract model with the
 types generated when modeling Google's own buildings. This document describes
 the conventions used in the concrete model and provides additional explanations
-of individual types[^1]
+of individual types.[^1]
 
 *   For a conceptual explanation of the ontology see [ontology](ontology.md)
 *   For an explanation of the model configuration files see
@@ -41,42 +41,42 @@ added to the model in a future revision.
 
 The first of these is the concept of a **General Type**. A general type is
 simply a broad category of types for which there may be many variations. An
-example might be an Air-Handler or Heat Exchanger. Each of these general types
+example might be an air handling unit (AHU) or a heat exchanger (HX). Each of these general types
 is instantiated as an entity type (sometimes with no fields) and inherited by
 any type that represents a specific variation on the class.
 
-Umbrella types are given 1-4 character abbreviations as names (ex: AHU or HX),
-and each child class begins its name with `<general type>_`.
+General types are given 1-4 character abbreviations as names (e.g., `AHU`, `HX`, `VAV`, etc.),
+and each child (entity) type begins its name with `<general type>_` (e.g., `VAV_SD_...`).
 
-Almost all general types are `abstract` or `canonical` and inherit from
+Almost all general types are tagged as `is_abstract: true` and inherit from
 `EQUIPMENT` (with the exception of systems, which are themselves general
-types). [^2]
+types).[^2] General types can also inherit individual fields.
 
-General types, by convention, are kept in a file called `GENERALTYPES.yaml`
+General types, by convention, are kept in a file called `GENERALTYPES.yaml` that is scoped to a particular namespace (e.g., `HVAC`, `METERS`, etc.).
 
 ### Abstract Functional Groups
 
-Abstract functional groups are sets of fields required for understanding a
+Abstract functional groups (aka abstract types) are sets of fields required for understanding a
 particular discrete device function. For example, airflow control would have a
-field for the flow setpoint and, flow sensor and damper command. These field
-sets are given short names, like `SD` (supply damper) and marked `abstract` so
+field for the flow setpoint, flow sensor, and damper command. These field
+sets are given short names, like `SD` (short for "supply damper") and marked as `is_abstract: true` so
 they cannot be assigned directly to entities.
 
 Functional groups, by convention, are contained in a file called
-`ABSTRACT.yaml`.
+`ABSTRACT.yaml` that is scoped to a particular namespace.
 
 ### Use of optional fields
 
 Optional fields are used for fields that provide nice-to-have information in a
 type. For instance, a device may have an additional sensor that is used for
-monitoring only. Adding these fields as optional to the equipment or functional
+monitoring only. Adding these fields as optional to the general type or functional
 groups they're likely to be seen with decreases the diversity of types without
 affecting analysis.
 
 ### Type Composition and Naming
 
 For the most part, types have one level of inheritance hierarchy below abstract
-types. A typical type will implement its general type and the functional group
+types. A typical type will implement its general type and the functional group(s)
 that represent its functionality. Ideally, the constructed type will have no
 fields directly assigned to it.
 
@@ -86,7 +86,7 @@ somewhat subjective; the order is not inherently meaningful, but for readability
 some type of ordering should be used (an alternative might be alphabetically).
 
 Specific types are, by convention, organized into files by general type, named
-by that class (ex: `VAV.yaml`)
+by that class (ex: `VAV.yaml`).
 
 ## Specific Model Details
 
