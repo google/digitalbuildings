@@ -790,7 +790,7 @@ FCU_DFSS_DSP_DXZC_DAIDC:
   - DAIDC
 
 FCU_DFSS_DSP_CHWZC_DAIDC:
-  guid: "660d5103-1bb0-4a59-ac97-93aa02d1d07b"
+  guid: "63ed2983-9cf2-4e5a-ab0d-ed69f74e9af4"
   description: "Chilled water dual-setpoint fan coil with discharge isolation damper control."
   is_canonical: true
   implements:
