@@ -273,6 +273,17 @@ BLR_SS_SWTC_CPC_HT2SWC:
   - CPC
   - HT2SWC
 
+BLR_SS_SWTC_RWISOVPM_WDPM:
+  guid: "31b471b9-24a9-4bc7-abc9-9aadcab03a52"
+  description: "Boiler with supply water temperature control, differential pressure monitoring, and return isolation valve percentage control."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - RWISOVPM
+  - WDPM
+
 BLR_SS_SWTC_WDPC:
   guid: "f9307528-e827-4f25-be91-4ef3caa19d94"
   description: "Boiler with supply water temperature control and differential pressure control."

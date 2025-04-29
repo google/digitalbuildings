@@ -9122,6 +9122,19 @@ NO2C2XDSP:
   implements:
   - CONTROL
 
+POTHWM:
+  guid: "6b3b1e36-e9d4-4301-841a-e474228db321"
+  description: "Potable hot water with return and supply water monitoring."
+  is_abstract: true
+  opt_uses:
+  - low_potable_supply_water_temperature_alarm
+  - high_potable_supply_water_temperature_alarm
+  uses:
+  - potable_hot_supply_water_temperature_sensor
+  - potable_hot_return_water_temperature_sensor
+  implements:
+  - MONITORING
+
 POTHWSC:
   guid: "ef91c1f1-cc85-4690-b4dd-69a4678f7cb3"
   description: "Potable hot water with return monitoring and supply water control."
