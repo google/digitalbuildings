@@ -822,6 +822,20 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   opt_uses:
   - smoke_alarm
 
+MAU_DFSS_DFVSC_HT2DC_CHWDDC_ZSPC:
+  guid: "c2abe98a-c709-4caf-ac21-08c04b807f94"
+  description: "Single zone make-up air unit with electric heating and chilled water control on discharge side and zone static pressure control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HT2DC
+  - CHWDDC
+  - ZSPC
+  opt_uses:
+  - smoke_alarm
+
 MAU_DFSS_DFVSC_DSP_HWDDC_CHWDDC_OADM:
   guid: "95b46062-7f18-4c42-a121-779afddff714"
   description: "Single zone make-up air unit with  heating and cooling on discharge side and outside air damper monitoring."

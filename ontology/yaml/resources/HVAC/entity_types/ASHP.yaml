@@ -25,6 +25,15 @@ ASHP_SS_HP6SWC:
   - SS
   - HP6SWC
 
+ASHP_SS_HP8SWC:
+  guid: "b9add02d-0330-493c-a5b6-6f7dc83ac2c2"
+  description: "Eight-stage air source heat pump."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP8SWC
+
 ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   guid: "11ecef31-d11d-496b-9d39-f35fe9307a82"
   description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."

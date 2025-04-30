@@ -3927,6 +3927,9 @@ literals:
 - low_potable_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_potable_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - potable_hot_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704

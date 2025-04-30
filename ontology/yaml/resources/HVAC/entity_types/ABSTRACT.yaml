@@ -4053,6 +4053,7 @@ ECON:
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - ventilation_request_count
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -9118,6 +9119,38 @@ HP6SWC:
   implements:
   - CONTROL
 
+HP8SWC:
+  guid: "0d0ae4db-0a8b-40d6-8b55-b085657d9f15"
+  description: "Eight-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_command_7
+  - compressor_run_command_8
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
+  - compressor_run_status_7
+  - compressor_run_status_8
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 CPC2X:
   guid: "a45b771d-0bc2-49a4-8a4f-5e3287f65ff0"
   description: "Circulation control for 2 pumps."
@@ -9236,6 +9269,19 @@ NO2C2XDSP:
   - zone_air_no2_concentration_sensor_2
   implements:
   - CONTROL
+
+POTHWM:
+  guid: "6b3b1e36-e9d4-4301-841a-e474228db321"
+  description: "Potable hot water with return and supply water monitoring."
+  is_abstract: true
+  opt_uses:
+  - low_potable_supply_water_temperature_alarm
+  - high_potable_supply_water_temperature_alarm
+  uses:
+  - potable_hot_supply_water_temperature_sensor
+  - potable_hot_return_water_temperature_sensor
+  implements:
+  - MONITORING
 
 POTHWSC:
   guid: "ef91c1f1-cc85-4690-b4dd-69a4678f7cb3"

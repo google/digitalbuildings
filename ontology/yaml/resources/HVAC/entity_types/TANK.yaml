@@ -60,6 +60,15 @@ TK_SWTC_PHWTC:
   - SWTC
   - PHWTC
 
+TK_SWTC_POTHWM:
+  guid: "34c7d9cc-84e9-4215-8f06-f74632258de5"
+  description: "Tank with supply water temperature control and potable water supply and return temperature monitoring."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - SWTC
+  - POTHWM
+
 TK_LM_PLPM:
   guid: "b523b52b-ee5d-42a8-95dd-cf64ccd87488"
   description: "Tank with water level and pipeline pressure monitoring."
