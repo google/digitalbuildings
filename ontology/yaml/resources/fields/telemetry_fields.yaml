@@ -1725,6 +1725,9 @@ literals:
 - refrigerant_discharge_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
+- refrigerant_vapor_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
 - low_limit_outside_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -4219,4 +4222,30 @@ literals:
 - zone_leaving_count:
     fixed_min: 0.0
     flexible_max: 1000000.0
-
+- failed_primary_supply_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_secondary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_secondary_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_secondary_supply_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_secondary_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_primary_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_primary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_primary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_occupancy_alarm:
+  - ACTIVE
+  - INACTIVE
