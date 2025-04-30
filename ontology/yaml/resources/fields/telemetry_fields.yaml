@@ -4246,6 +4246,3 @@ literals:
 - failed_primary_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
-- failed_primary_return_water_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
