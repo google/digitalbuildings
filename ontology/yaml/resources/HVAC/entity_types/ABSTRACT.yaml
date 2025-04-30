@@ -4962,6 +4962,7 @@ DSP3X:
   - OPERATIONAL
 
 DSP2X:
+  guid: "852eae80-19b2-4dcf-b2ce-df0db924f762"
   description: "Dual setpoint zone temp control with 2 temp sensors."
   is_abstract: true
   opt_uses:
@@ -8168,6 +8169,7 @@ CO2M4X:
 
 
 CO2M2X:
+  guid: "94e36b0a-1e0e-4a40-9611-a772365b69ce"
   description: "Basic carbon dioxide monitoring for 2 Zones that controls to maximum CO2 concentration."
   is_abstract: true
   opt_uses:
@@ -8715,6 +8717,7 @@ ZOS:
   - MONITORING
 
 ZOS2X:
+  guid: "f268ff68-ba7a-47f3-8633-0f27825a975f"
   description: "Occupancy status monitoring for two sensors. For space/desk/seat occupancy status (occupied and unoccupied)"
   is_abstract: true
   opt_uses:
@@ -8727,6 +8730,7 @@ ZOS2X:
   - MONITORING
 
 ZOS3X:
+  guid: "b0a8a56d-f324-4755-a1e8-f4ab500c9dc2"
   description: "Occupancy status monitoring for two sensors. For space/desk/seat occupancy status (occupied and unoccupied)"
   is_abstract: true
   opt_uses:
@@ -9066,6 +9070,7 @@ HWDTC:
   - heating_water_differential_temperature_setpoint
 
 HP4SWC:
+  guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
   description: "Four-compressor heat pump control for two circuits on supply water side."
   is_abstract: true
   opt_uses:

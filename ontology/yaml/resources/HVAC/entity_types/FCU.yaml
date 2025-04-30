@@ -1972,6 +1972,7 @@ FCU_DFSS_DFVSC_CHWDC_CATM_HATM:
   - HATM
 
 FCU_DFSS_DFVSC_CHWDC_HATM:
+  guid: "55fc46fb-c08a-413c-ae71-c09f45d9e070"
   description: "FCU with chilled water valve control and hot aisle temperature monitoring."
   is_canonical: true
   implements:
@@ -1982,6 +1983,7 @@ FCU_DFSS_DFVSC_CHWDC_HATM:
   - HATM
 
 FCU_DFSS_DFVSC_CHWDC_CATM:
+  guid: "84d1e5bc-d565-40ed-80b3-9416c97c8fb5"
   description: "FCU with chilled water valve control and cold aisle temperature monitoring."
   is_canonical: true
   implements:
