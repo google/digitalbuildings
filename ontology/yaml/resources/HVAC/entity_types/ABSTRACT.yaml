@@ -7546,7 +7546,6 @@ HWRWISOVM:
   opt_uses:
   - failed_heating_return_water_isolation_valve_alarm
   - heating_return_water_isolation_valve_percentage_sensor
-  - heating_return_water_isolation_valve_percentage_command
   uses:
   - heating_return_water_isolation_valve_command
   - heating_return_water_isolation_valve_status
