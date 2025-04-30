@@ -385,6 +385,7 @@ HWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
   - SEWFRM
 
 HWS_PWDT_PRSWFRC_SESWTC_SEWDPC_SEWFRM:
+  guid: "63eef895-74c3-412e-a807-68c81b2ab977"
   description: "Primary/secondary heating water system with secondary loop temperature and differential pressure control and primary flowrate control."
   is_canonical: true
   implements:

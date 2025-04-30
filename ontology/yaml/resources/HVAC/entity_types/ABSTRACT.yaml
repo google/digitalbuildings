@@ -4952,7 +4952,6 @@ DSP3X:
   implements:
   - OPERATIONAL
 
-
 EFSS2X:
   guid: "2088a8dd-7821-4782-be8c-6396601bff6e"
   description: "Exhaust fan start-stop and feedback with two fans."
@@ -8136,7 +8135,6 @@ CO2M4X:
   implements:
   - MONITORING
 
-
 CO2M6X:
   guid: "3bea6d49-a70b-42c4-bd0c-592991dbf0f5"
   description: "Basic carbon dioxide monitoring for 6 Zones."
@@ -8994,6 +8992,7 @@ HWDTC:
   - heating_water_differential_temperature_setpoint
 
 HP4SWC:
+  guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
   description: "Four-compressor heat pump control for two circuits on supply water side."
   is_abstract: true
   opt_uses:

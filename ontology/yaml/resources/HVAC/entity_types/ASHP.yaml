@@ -136,6 +136,7 @@ ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_HWDPM_REFPM2X:
   - refrigerant_suction_temperature_sensor_2
 
 ASHP_SS_HP4SWC_HWRWISOVPM_CPC2X_RCKTM2X:
+  guid: "94f4cecf-8908-4c6b-9d70-94d3ed0bbc3e"
   description: "Air source heat pump for a hot water system with a four-stage air source heat pump, return water isolation valve, and two circulation pumps."
   is_canonical: true
   implements:
