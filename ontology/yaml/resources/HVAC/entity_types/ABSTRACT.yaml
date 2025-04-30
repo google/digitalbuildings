@@ -4943,15 +4943,6 @@ DSP3X:
   opt_uses:
   - discharge_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
-  - failed_zone_air_temperature_alarm_1
-  - failed_zone_air_temperature_alarm_2
-  - failed_zone_air_temperature_alarm_3
-  - high_zone_air_temperature_alarm
-  - low_zone_air_temperature_alarm
-  - average_zone_air_temperature_sensor
-  - warmup_request_count
-  - cooling_request_count
-  - heating_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -4961,27 +4952,6 @@ DSP3X:
   implements:
   - OPERATIONAL
 
-DSP2X:
-  description: "Dual setpoint zone temp control with 2 temp sensors."
-  is_abstract: true
-  opt_uses:
-  - discharge_air_temperature_sensor
-  - failed_discharge_air_temperature_alarm
-  - failed_zone_air_temperature_alarm_1
-  - failed_zone_air_temperature_alarm_2
-  - high_zone_air_temperature_alarm
-  - low_zone_air_temperature_alarm
-  - average_zone_air_temperature_sensor
-  - warmup_request_count
-  - cooling_request_count
-  - heating_request_count
-  uses:
-  - zone_air_cooling_temperature_setpoint
-  - zone_air_heating_temperature_setpoint
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_sensor_2
-  implements:
-  - OPERATIONAL
 
 EFSS2X:
   guid: "2088a8dd-7821-4782-be8c-6396601bff6e"
@@ -8167,22 +8137,6 @@ CO2M4X:
   - MONITORING
 
 
-CO2M2X:
-  description: "Basic carbon dioxide monitoring for 2 Zones that controls to maximum CO2 concentration."
-  is_abstract: true
-  opt_uses:
-  - max_zone_air_co2_concentration_sensor
-  - zone_air_co2_concentration_setpoint
-  - high_zone_air_co2_concentration_alarm
-  - failed_zone_air_co2_concentration_alarm_1
-  - failed_zone_air_co2_concentration_alarm_2
-  uses:
-  - zone_air_co2_concentration_sensor_1
-  - zone_air_co2_concentration_sensor_2
-  implements:
-  - MONITORING
-
-
 CO2M6X:
   guid: "3bea6d49-a70b-42c4-bd0c-592991dbf0f5"
   description: "Basic carbon dioxide monitoring for 6 Zones."
@@ -8711,32 +8665,6 @@ ZOS:
   is_abstract: true
   uses:
   - zone_occupancy_status
-  implements:
-  - MONITORING
-
-ZOS2X:
-  description: "Occupancy status monitoring for two sensors. For space/desk/seat occupancy status (occupied and unoccupied)"
-  is_abstract: true
-  opt_uses:
-  - failed_zone_occupancy_alarm_1
-  - failed_zone_occupancy_alarm_2
-  uses:
-  - zone_occupancy_status_1
-  - zone_occupancy_status_2
-  implements:
-  - MONITORING
-
-ZOS3X:
-  description: "Occupancy status monitoring for two sensors. For space/desk/seat occupancy status (occupied and unoccupied)"
-  is_abstract: true
-  opt_uses:
-  - failed_zone_occupancy_alarm_1
-  - failed_zone_occupancy_alarm_2
-  - failed_zone_occupancy_alarm_3
-  uses:
-  - zone_occupancy_status_1
-  - zone_occupancy_status_2
-  - zone_occupancy_status_3
   implements:
   - MONITORING
 
