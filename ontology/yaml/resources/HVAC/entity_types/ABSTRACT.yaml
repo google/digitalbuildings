@@ -1438,6 +1438,8 @@ SWTC:
   - heating_percentage_command
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - failed_return_water_temperature_alarm
+  - failed_supply_water_temperature_alarm
   uses:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
