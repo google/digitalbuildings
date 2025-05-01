@@ -2330,6 +2330,8 @@ PWDT:
   - high_primary_supply_water_temperature_alarm
   - low_primary_return_water_temperature_alarm
   - low_primary_supply_water_temperature_alarm
+  - failed_primary_supply_water_temperature_alarm
+  - failed_primary_return_water_temperature_alarm
 
 CHPM:
   guid: "83b25b74-a334-4297-89b3-30ce005e12fe"
@@ -4053,6 +4055,7 @@ ECON:
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - ventilation_request_count
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -4950,7 +4953,6 @@ DSP3X:
   - zone_air_temperature_sensor_3
   implements:
   - OPERATIONAL
-
 
 EFSS2X:
   guid: "2088a8dd-7821-4782-be8c-6396601bff6e"
@@ -6659,6 +6661,8 @@ SESWTC:
   - low_secondary_supply_water_temperature_alarm
   - secondary_water_heating_thermal_power_sensor
   - secondary_water_cooling_thermal_power_sensor
+  - failed_secondary_return_water_temperature_alarm
+  - failed_secondary_supply_water_temperature_alarm
   uses:
   - secondary_supply_water_temperature_sensor
   - secondary_supply_water_temperature_setpoint
@@ -6682,6 +6686,7 @@ SEWDPC:
   opt_uses:
   - high_secondary_water_differential_pressure_alarm
   - low_secondary_water_differential_pressure_alarm
+  - failed_secondary_water_differential_pressure_alarm
   uses:
   - secondary_water_differential_pressure_sensor
   - secondary_water_differential_pressure_setpoint
@@ -7277,6 +7282,8 @@ RCKTM:
   guid: "8ea49daa-0f94-46fe-a919-8614752b1f9f"
   description: "Refrigeration circuit monitoring for a DX compressor loop."
   is_abstract: true
+  opt_uses:
+  - refrigerant_vapor_temperature_sensor
   uses:
   - refrigerant_discharge_pressure_sensor
   - refrigerant_discharge_temperature_sensor
@@ -7294,6 +7301,9 @@ RCKTM2X:
   guid: "c8303789-9f0f-4a0f-9f27-474771b554a3"
   description: "Refrigeration circuits (2x) monitoring for a DX compressor loop."
   is_abstract: true
+  opt_uses:
+  - refrigerant_vapor_temperature_sensor_1
+  - refrigerant_vapor_temperature_sensor_2
   uses:
   - refrigerant_discharge_pressure_sensor_1
   - refrigerant_discharge_pressure_sensor_2
@@ -7562,6 +7572,8 @@ HWRWISOVPM:
   guid: "b02b1e0e-ca30-4fb0-8700-84225bf8d635"
   description: "Heating return side isolation valve percentage control."
   is_abstract: true
+  opt_uses:
+    - failed_heating_return_water_isolation_valve_alarm
   uses:
   - heating_return_water_isolation_valve_percentage_command
   - heating_return_water_isolation_valve_percentage_sensor
@@ -8123,7 +8135,6 @@ CO2M4X:
   - zone_air_co2_concentration_sensor_4
   implements:
   - MONITORING
-
 
 CO2M6X:
   guid: "3bea6d49-a70b-42c4-bd0c-592991dbf0f5"
@@ -8828,6 +8839,8 @@ PRWFRM:
 PRSWFRC:
   guid: "71821a9c-2600-4123-b474-dbe2816e8f6c"
   description: "Primary supply water flowrate control"
+  opt_uses:
+  - failed_primary_supply_water_flowrate_alarm
   uses:
   - primary_supply_water_flowrate_sensor
   - primary_supply_water_flowrate_setpoint
@@ -8837,6 +8850,8 @@ PRSWFRC:
 SEWFRM:
   guid: "de0de0fc-e634-4bbc-8ecc-4d413614c84d"
   description: "Secondary supply water flowrate monitoring"
+  opt_uses:
+  - failed_secondary_supply_water_flowrate_alarm
   uses:
   - secondary_supply_water_flowrate_sensor
   implements:
@@ -8977,6 +8992,33 @@ HWDTC:
   - heating_water_differential_temperature_sensor
   - heating_water_differential_temperature_setpoint
 
+HP4SWC:
+  guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
+  description: "Four-compressor heat pump control for two circuits on supply water side."
+  is_abstract: true
+  opt_uses:
+  - load_percentage_sensor_1
+  - load_percentage_sensor_2
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - reversing_valve_command_1
+  - reversing_valve_command_2
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 HP6SWC:
   guid: "5d2c6d94-ad64-41ef-bce0-78a9b40532b1"
   description: "Six-compressor heat pump control on supply water side."
@@ -9000,6 +9042,38 @@ HP6SWC:
   - compressor_run_status_4
   - compressor_run_status_5
   - compressor_run_status_6
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+HP8SWC:
+  guid: "0d0ae4db-0a8b-40d6-8b55-b085657d9f15"
+  description: "Eight-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_command_7
+  - compressor_run_command_8
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
+  - compressor_run_status_7
+  - compressor_run_status_8
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
   implements:
@@ -9123,6 +9197,19 @@ NO2C2XDSP:
   - zone_air_no2_concentration_sensor_2
   implements:
   - CONTROL
+
+POTHWM:
+  guid: "6b3b1e36-e9d4-4301-841a-e474228db321"
+  description: "Potable hot water with return and supply water monitoring."
+  is_abstract: true
+  opt_uses:
+  - low_potable_supply_water_temperature_alarm
+  - high_potable_supply_water_temperature_alarm
+  uses:
+  - potable_hot_supply_water_temperature_sensor
+  - potable_hot_return_water_temperature_sensor
+  implements:
+  - MONITORING
 
 POTHWSC:
   guid: "ef91c1f1-cc85-4690-b4dd-69a4678f7cb3"

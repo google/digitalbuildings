@@ -25,6 +25,15 @@ ASHP_SS_HP6SWC:
   - SS
   - HP6SWC
 
+ASHP_SS_HP8SWC:
+  guid: "b9add02d-0330-493c-a5b6-6f7dc83ac2c2"
+  description: "Eight-stage air source heat pump."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP8SWC
+
 ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   guid: "11ecef31-d11d-496b-9d39-f35fe9307a82"
   description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
@@ -126,4 +135,14 @@ ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_HWDPM_REFPM2X:
   - refrigerant_suction_temperature_sensor_1
   - refrigerant_suction_temperature_sensor_2
 
-
+ASHP_SS_HP4SWC_HWRWISOVPM_CPC2X_RCKTM2X:
+  guid: "94f4cecf-8908-4c6b-9d70-94d3ed0bbc3e"
+  description: "Air source heat pump for a hot water system with a four-stage air source heat pump, return water isolation valve, and two circulation pumps."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP4SWC
+  - HWRWISOVPM
+  - CPC2X
+  - RCKTM2X
