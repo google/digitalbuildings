@@ -5831,6 +5831,24 @@ AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
   - OAFM
   - RDC
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_OAFM_ECONM_DX4SC_SSPC_SARC_VOADM:
+  guid: "bad39606-6d9c-4de2-8688-3cebfec603ed"
+  description: "Multi zone AHU with supply and exhaust fans, building static pressure control with exhaust damper, economizer, and DX cooling with 4 stage compressor."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - EDBPC
+  - OAFM
+  - ECONM
+  - DX4SC
+  - SSPC
+  - SARC
+  - VOADM
+
 AHU_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
   guid: "68c643a4-5cf2-4ef4-beb1-7ffb9fced0c9"
   description: "AHU with supply and return fans, chilled water and heating water, building pressure control"
