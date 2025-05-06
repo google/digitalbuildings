@@ -2597,6 +2597,20 @@ AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "89bf9c59-7157-4445-9be6-c7cfdef626c7"
   description: "Multi-zone AHU."
