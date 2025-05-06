@@ -2598,6 +2598,7 @@ AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BSPC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
+  guid: "03f7b275-4220-4c60-b33f-56716dc9c7e5"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
