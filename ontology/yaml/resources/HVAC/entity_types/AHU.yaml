@@ -5831,6 +5831,29 @@ AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
   - OAFM
   - RDC
 
+AHU_SFVSC_STC_SDM_SSPC_SARC_EFSS_ECONM_BSPC:
+  description: "AHU with supply and exhaust fans, building and supply air static pressure control, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - STC
+  - SDM
+  - SSPC
+  - SARC
+  - EFSS
+  - ECONM
+  - BSPC
+
+AHU_DFSS_DXZC_HTZC:
+  description: "Single zone AHU with a supply fan, DX cooling coil, and heating coil."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXZC
+  - HTZC
+
 AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_OAFM_ECONM_DX4SC_SSPC_SARC_VOADM:
   guid: "bad39606-6d9c-4de2-8688-3cebfec603ed"
   description: "Multi zone AHU with supply and exhaust fans, building static pressure control with exhaust damper, economizer, and DX cooling with 4 stage compressor."

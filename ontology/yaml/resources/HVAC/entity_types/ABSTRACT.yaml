@@ -3160,6 +3160,8 @@ DXDC:
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
   - overload_compressor_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -3776,6 +3778,7 @@ HTZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
   - heater_run_status
   - heating_percentage_command
   - heating_thermal_power_capacity
@@ -3784,6 +3787,7 @@ HTZC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - failed_heater_alarm
+  - warmup_run_command
   uses:
   - heater_run_command
   - zone_air_heating_temperature_setpoint
@@ -4120,6 +4124,7 @@ ECONM:
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - ventilation_request_count
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
