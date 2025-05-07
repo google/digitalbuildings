@@ -5832,6 +5832,7 @@ AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
   - RDC
 
 AHU_SFVSC_STC_SDM_SSPC_SARC_EFSS_ECONM_BSPC:
+  guid: "63d56e73-d93a-40a9-9651-3074b3cb13f5"
   description: "AHU with supply and exhaust fans, building and supply air static pressure control, and economizer."
   is_canonical: true
   implements:
@@ -5846,6 +5847,7 @@ AHU_SFVSC_STC_SDM_SSPC_SARC_EFSS_ECONM_BSPC:
   - BSPC
 
 AHU_DFSS_DXZC_HTZC:
+  guid: "1ef244bd-808f-4f64-b827-7523752fd7d5"
   description: "Single zone AHU with a supply fan, DX cooling coil, and heating coil."
   is_canonical: true
   implements:
