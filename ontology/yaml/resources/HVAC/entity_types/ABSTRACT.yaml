@@ -4054,6 +4054,7 @@ ECON:
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - failed_return_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
