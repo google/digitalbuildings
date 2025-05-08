@@ -5831,7 +5831,7 @@ AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
   - OAFM
   - RDC
 
-AHU_SFVSC_STC_SDM_SSPC_SARC_EFSS_ECONM_BSPC:
+AHU_SFVSC_SDM_SSPC_SARC_EFSS_DX6SC_ECONM_BSPC:
   description: "AHU with supply and exhaust fans, building and supply air static pressure control, and economizer."
   is_canonical: true
   implements:
@@ -5842,6 +5842,7 @@ AHU_SFVSC_STC_SDM_SSPC_SARC_EFSS_ECONM_BSPC:
   - SSPC
   - SARC
   - EFSS
+  - DX6SC
   - ECONM
   - BSPC
 

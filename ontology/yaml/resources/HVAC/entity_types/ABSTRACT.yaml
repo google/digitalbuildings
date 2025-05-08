@@ -3778,7 +3778,6 @@ HTZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
-  - discharge_air_temperature_setpoint
   - heater_run_status
   - heating_percentage_command
   - heating_thermal_power_capacity
