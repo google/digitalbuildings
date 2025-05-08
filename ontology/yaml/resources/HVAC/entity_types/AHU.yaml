@@ -5847,6 +5847,7 @@ AHU_SFVSC_SDM_SSPC_SARC_EFSS_DX6SC_ECONM_BSPC:
   - BSPC
 
 AHU_DFSS_DXZC_HTZC:
+  guid: "1ef244bd-808f-4f64-b827-7523752fd7d5"
   description: "Single zone AHU with a supply fan, DX cooling coil, and heating coil."
   is_canonical: true
   implements:
