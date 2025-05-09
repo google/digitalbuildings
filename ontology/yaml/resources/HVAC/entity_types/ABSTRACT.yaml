@@ -9131,6 +9131,7 @@ HP8SWC:
   - CONTROL
 
 HP12SWC:
+  guid: "2f00743b-7fad-4efd-84a8-5ee6d23c11ce"
   description: "Twelve-compressor heat pump control on supply water side."
   is_abstract: true
   opt_uses:
