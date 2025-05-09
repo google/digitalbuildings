@@ -282,6 +282,16 @@ HWS_SWTM_WDPC_BYPVPM:
   - WDPC
   - BYPVPM
 
+HWS_SWTC_WDPC_BYPVPM_HLPM:
+  description: "Heating water system with supply temperature control, differential pressure control and bypass valve control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+  - HLPM
+
 HWS_SWTM_RWTM:
   guid: "91d467d7-cf98-4493-9408-f727ac08f847"
   description: "Heating water system with supply and return water temperature monitoring."
