@@ -34,6 +34,17 @@ ASHP_SS_HP8SWC:
   - SS
   - HP8SWC
 
+ASHP_SS_HP8SWC_SWISOVM_WDPM:
+  guid: "5f4f7f3a-2f07-4bba-8512-fff094b4529b"
+  description: "Eight-stage air source heat pump with isolation valve and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP8SWC
+  - SWISOVM
+  - WDPM
+
 ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   guid: "11ecef31-d11d-496b-9d39-f35fe9307a82"
   description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
