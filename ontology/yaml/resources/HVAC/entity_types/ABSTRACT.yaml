@@ -3546,7 +3546,7 @@ HWZTC:
   implements:
   - CONTROL
 
-HWBZC: # to do: swap abstract name with HWBZTC
+HWBZTC:
   guid: "5e92815b-5fe8-485c-ad47-1749aa085bf6"
   description: "Heating water valve command on zone side (ZTC)."
   is_abstract: true
@@ -3559,7 +3559,7 @@ HWBZC: # to do: swap abstract name with HWBZTC
   implements:
   - CONTROL
 
-HWBZTC: # to do: swap abstract name with HWBZC
+HWBZC:
   guid: "199d7bf5-02af-4c5d-80de-679155d82b61"
   description: "Heating water valve command on zone side (ZC)."
   is_abstract: true
