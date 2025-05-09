@@ -15,13 +15,13 @@
 ########################
 ### Canonical Types  ###
 ########################
-UH_HWBZC:
+UH_HWBZTC:
   guid: "49817fa9-042d-4a1f-b715-130423d5d840"
   description: "Heating water valve with zone temperature control."
   is_canonical: true
   implements:
   - UH
-  - HWBZC
+  - HWBZTC
 
 UH_SS_DSP_HWZC:
   guid: "d0df8758-bb8c-492a-b471-7654ddcfcbcc"

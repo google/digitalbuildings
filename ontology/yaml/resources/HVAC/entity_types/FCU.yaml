@@ -2483,7 +2483,7 @@ FCU_DFSS_DFRMM_CHWBZC_DAIDC_RAIDC:
   - DAIDC
   - RAIDC
 
-FCU_DFSS_DFVSC_DTC_CHWBZC_HWBZTC_RTM:
+FCU_DFSS_DFVSC_DTC_CHWBZC_HWBZC_RTM:
   guid: "b39ac17b-7a82-4778-a340-904381ec2bfa"
   description: "Chilled and heating water FCU with dual setpoint zone temp control and discharge temp control, rerturn temp monitoring, and variable speed discharge fan control."
   is_canonical: true
@@ -2493,7 +2493,7 @@ FCU_DFSS_DFVSC_DTC_CHWBZC_HWBZTC_RTM:
   - DFVSC
   - DTC
   - CHWBZC
-  - HWBZTC
+  - HWBZC
   - RTM
 
 FCU_DFSS_CHWBZTC:
