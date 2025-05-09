@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations.
+# TODO (tsodorff): change all alarm states to ALARM/NORMAL after determining how this can be done safely to existing translations.
 
 literals:
 - ac_voltage_sensor:
