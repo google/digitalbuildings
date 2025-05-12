@@ -9129,7 +9129,7 @@ HP8SWC:
   - supply_water_temperature_setpoint
   implements:
   - CONTROL
-  
+
 CPC2X:
   guid: "a45b771d-0bc2-49a4-8a4f-5e3287f65ff0"
   description: "Circulation control for 2 pumps."
