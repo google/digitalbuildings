@@ -387,7 +387,7 @@ power:
     multiplier: 293.07107
     offset: 0
   megabtus_per_hour:
-    multiplier: 2930.7107
+    multiplier: 293071.07
     offset: 0
   therms_per_hour:
     multiplier: 29300.1111
