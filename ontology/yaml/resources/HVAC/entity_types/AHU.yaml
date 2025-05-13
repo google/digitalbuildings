@@ -1958,6 +1958,22 @@ AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
+  guid: "584be242-4b39-4d4b-9e09-3dbfea64644d"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SFSS_SFVSC_SSPC:
   guid: "dbda21a6-a19b-4f56-a72d-15a61d4afc97"
   description: "Multi-zone AHU."
@@ -4976,6 +4992,23 @@ AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
   - RTM
   - ZHC
 
+AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2XD2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
+  guid: "1e01e73a-0d54-4d3a-babf-dd4540d1fef4"
+  description: "Multi zone AHU with variable speed supply and return fans, supply controlled chilled and heating water valves, supply and building static pressure control, filter differential pressure monitoring, and mixed temperature economizer control with two outside air dampers"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HWSC
+  - ECONM2XD2X
+  - EDBPC
+  - RFSS
+  - RFVSC
+  - SSPC
+  - FDPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -5830,6 +5863,24 @@ AHU_DFSS_DFVSC_DFFC_EFSS_EFVSC_CHWDC_DSPC_BSPC_OADM_OAFM_RDC:
   - OADM
   - OAFM
   - RDC
+
+AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_OAFM_ECONM_DX4SC_SSPC_SARC_VOADM:
+  guid: "bad39606-6d9c-4de2-8688-3cebfec603ed"
+  description: "Multi zone AHU with supply and exhaust fans, building static pressure control with exhaust damper, economizer, and DX cooling with 4 stage compressor."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - EDBPC
+  - OAFM
+  - ECONM
+  - DX4SC
+  - SSPC
+  - SARC
+  - VOADM
 
 AHU_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
   guid: "68c643a4-5cf2-4ef4-beb1-7ffb9fced0c9"
