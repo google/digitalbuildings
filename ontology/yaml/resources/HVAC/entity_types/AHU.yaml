@@ -40,6 +40,96 @@ AHU_CSP_DFSS_DX2ZC_ECONMD:
   - DX2ZC
   - ECONMD
 
+AHU_DFSS_DX4ZC_DTM_ECONZ:
+  description: "Single zone AHU with discharge fan, four stage compressor, and economizer"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DX4ZC
+  - DTM
+  - ECONZ
+
+AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
+  description: "Single zone AHU with discharge fan, chilled water coil, heating water coil, and economizer"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - CHWZC
+  - HWZC
+  - RTM
+  - DTM
+  - ECONZ
+
+AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_DSP_EDBPC_ECON_SHM_SSPM_RHHC:
+  description: "Multi zone AHU with supply fan, exhaust fan, chilled water coil, heating water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, economizer, supply air relative humidity monitoring, and return air relative humidity monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC2X
+  - CHWSC
+  - HWSC
+  - DSP
+  - EDBPC
+  - ECON
+  - SHM
+  - SSPM
+  - RHHC
+
+AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONM_FDPM_DSPC_DSP_DAIDC:
+  description: "Single zone AHU with supply fan, exhaust fan, chilled water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - EFVSC
+  - EDBPC
+  - CHWDC
+  - ECONM
+  - FDPM
+  - DSPC
+  - DSP
+  - DAIDC
+
+AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
+  description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFSS
+  - ECON
+  - EDBPC
+  - SSPC
+  - DX4SC
+  - OAFM
+
+AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_DX4SC:
+  description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - ECON
+  - EDBPC
+  - SSPC
+  - DX4SC
+
+AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_DX4SC:
+  description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - ECON
+  - EDBPC
+  - SSPC
+  - DX4SC
+
 AHU_CSP_DFSS_DXZC_ECONZ:
   guid: "52746623-e5aa-48d1-8cb7-422bb889a0e3"
   description: "Single zone AHU."
@@ -1954,6 +2044,22 @@ AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - ECON
   - EFSS
   - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
+  guid: "584be242-4b39-4d4b-9e09-3dbfea64644d"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SARC
   - SFSS
   - SFVSC
   - SSPC
@@ -4976,6 +5082,23 @@ AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
   - RTM
   - ZHC
 
+AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2XD2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
+  guid: "1e01e73a-0d54-4d3a-babf-dd4540d1fef4"
+  description: "Multi zone AHU with variable speed supply and return fans, supply controlled chilled and heating water valves, supply and building static pressure control, filter differential pressure monitoring, and mixed temperature economizer control with two outside air dampers"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HWSC
+  - ECONM2XD2X
+  - EDBPC
+  - RFSS
+  - RFVSC
+  - SSPC
+  - FDPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -5837,7 +5960,6 @@ AHU_SFVSC_SDM_SSPC_SARC_EFSS_DX6SC_ECONM_BSPC:
   implements:
   - AHU
   - SFVSC
-  - STC
   - SDM
   - SSPC
   - SARC
@@ -5848,7 +5970,7 @@ AHU_SFVSC_SDM_SSPC_SARC_EFSS_DX6SC_ECONM_BSPC:
 
 AHU_DFSS_DXZC_HTZC:
   guid: "1ef244bd-808f-4f64-b827-7523752fd7d5"
-  description: "Single zone AHU with a supply fan, DX cooling coil, and heating coil."
+  description: "Single zone AHU with a discharge fan, DX cooling coil, and heating coil."
   is_canonical: true
   implements:
   - AHU
