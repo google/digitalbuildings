@@ -222,13 +222,12 @@ CT_SS_VSC_SPSS_SWTC_RWISOVM:
   - SWTC
   - RWISOVM
 
-CT_SS_VSC_SWTC_RWISOVPM:
+CT_VSC_SWTC_RWISOVPM:
   guid: "14932589-23cd-4139-a29d-15617833dbdc"
   description: "Cooling tower with variable speed control, return isolation valve, and supply temp control."
   is_canonical: true
   implements:
   - CT
-  - SS
   - VSC
   - SWTC
   - RWISOVPM
