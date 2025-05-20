@@ -2163,14 +2163,6 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_2:
   - run_mode
   - exercise_mode
 
-# FCU_DFSS_CSP_DXZC_DAIDC_NONCANONICAL_1:
-#   description: "Non-standard type."
-#   # is_canonical: false
-#   implements:
-#   - FCU_DFSS_CSP_DXZC_DAIDC
-#   - DHM
-#   - INCOMPLETE
-
 FCU_NONCANONICAL_1:
   guid: "45cd4430-5899-47f3-9319-8f942c5c1ddb"
   description: "Non-standard type."
