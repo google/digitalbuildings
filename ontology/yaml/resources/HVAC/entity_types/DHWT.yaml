@@ -26,6 +26,15 @@ DHWT_HWTTC_CPC_HWRWC:
   - CPC
   - HWRWC
 
+DHWT_SS_SWTM_CPC:
+  description: "Standard calorifier with circulation pump, and supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - DHWT
+  - SS
+  - SWTM
+  - CPC
+
 DHWT_SS_HWTTC_CPC:
   guid: "0aab25ad-58e1-48df-ae95-a12804b7c765"
   description: "Standard calorifier with run control and return pump."

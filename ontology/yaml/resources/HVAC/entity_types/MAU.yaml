@@ -323,6 +323,18 @@ MAU_SFSS_SFVSC_SSPC_HWSC_CHWSC:
   - HWSC
   - CHWSC
 
+MAU_SFSS_SFVSC_SSPC_HWSDC_CHWSDC_OADM:
+  description: "Heating and cooling make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - HWSDC
+  - CHWSDC
+  - OADM
+
 MAU_SFSS_SFVSC_CHWSC_HTSC_BPC:
   guid: "eac5d682-5787-4ae2-ab3b-fe01764513a9"
   description: "Building static control heating and cooling make-up air unit."

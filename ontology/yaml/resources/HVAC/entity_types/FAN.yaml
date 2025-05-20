@@ -294,6 +294,15 @@ FAN_SS_VSC_EPC_EDPM:
   - EPC
   - EDPM
 
+FAN_SS_VSC_EDPM:
+  description: "Fan with run control, and exhaust damper monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EDPM
+
 FAN_SS_DSP_VSC:
   guid: "660d42d5-15b3-4cb4-9af1-506f31b0aa0e"
   description: "Fan with dual setpoint control and variable speed."

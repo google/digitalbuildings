@@ -48,15 +48,27 @@ CH_SS_SWTC_DXSWC_WDPM_RCKTM_RWISOVPM:
   - RCKTM
   - RWISOVPM
 
-CH_SS_SCHWTC_RWISOVPM:
+CH_SS_SWTC_RWISOVPM:
   guid: "69ac8219-82ca-46d1-88dc-7fc8ce0f16d3"
-  description: "Simple water-cooled chiller with condenser isolation."
+  description: "Simple air-cooled chiller with condenser isolation."
   is_canonical: true
   implements:
   - CH
   - SS
   - SWTC
   - RWISOVPM
+
+CH_SS_SCHWTC_RWISOVPM_REFPM_REFSM_CWDT:
+  description: "Simple water-cooled chiller with condenser isolation."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - RWISOVPM
+  - REFPM
+  - REFSM
+  - CWDT
 
 CH_SS_SWTC_DX4SWC_CHWDPM: # HERE
   guid: "29d217b2-a914-4495-9c6c-34684a73bdf6"

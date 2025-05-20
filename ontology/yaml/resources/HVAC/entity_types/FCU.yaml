@@ -473,6 +473,16 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - RTC
   - CHWRC
 
+FCU_DFSS_DFVSC_RTC_DXRC:
+  description: "Hydronic variable speed fan coil with cooling (return control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - RTC
+  - DXRC
+
 FCU_DFSS_DFVSC_DTM_RHC_CHWRC:
   guid: "5d32b824-a099-40d0-bff0-772de1ffe8bb"
   description: "Hydronic variable speed fan coil with return controlled cooling and humidity control."
@@ -2152,6 +2162,13 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_2:
   - run_mode
   - exercise_mode
 
+# FCU_DFSS_CSP_DXZC_DAIDC_NONCANONICAL_1:
+#   description: "Non-standard type."
+#   # is_canonical: false
+#   implements:
+#   - FCU_DFSS_CSP_DXZC_DAIDC
+#   - DHM
+#   - INCOMPLETE
 
 FCU_NONCANONICAL_1:
   guid: "45cd4430-5899-47f3-9319-8f942c5c1ddb"
@@ -2277,6 +2294,26 @@ FCU_NONCANONICAL_3:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
+
+FCU_NONCANONICAL_4:
+  description: "Non-standard type."
+  implements:
+  - FCU
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - cooling_request_count
+  - discharge_air_isolation_damper_percentage_command
+  - discharge_air_isolation_damper_percentage_sensor
+  - discharge_air_relative_humidity_sensor
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - failed_compressor_alarm
+  - failed_discharge_air_isolation_damper_alarm
+  - high_discharge_air_relative_humidity_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_relative_humidity_alarm
+
   
 FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
   guid: "025c2764-2de6-4839-ade6-0cf8551cd91c"
