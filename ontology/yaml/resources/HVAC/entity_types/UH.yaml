@@ -34,6 +34,7 @@ UH_SS_DSP_HWZC:
   - HWZC
 
 UH_DFSS_DSP_HWZC:
+  guid: "a58995e1-6089-445e-bc98-b9211ce145c3"
   description: "Heating water zone unit heater."
   is_canonical: true
   implements:

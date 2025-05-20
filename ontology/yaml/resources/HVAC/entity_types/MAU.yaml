@@ -324,6 +324,7 @@ MAU_SFSS_SFVSC_SSPC_HWSC_CHWSC:
   - CHWSC
 
 MAU_SFSS_SFVSC_SSPC_HWSDC_CHWSDC_OADM:
+  guid: "441d6994-1722-4780-8d38-5bc7ac169580"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:

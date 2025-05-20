@@ -474,6 +474,7 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - CHWRC
 
 FCU_DFSS_DFVSC_RTC_DXRC:
+  guid: "51f318e1-ccb3-451a-881a-8ca2885fda00"
   description: "Hydronic variable speed fan coil with cooling (return control)."
   is_canonical: true
   implements:
@@ -2296,6 +2297,7 @@ FCU_NONCANONICAL_3:
   - zone_occupancy_status_3
 
 FCU_NONCANONICAL_4:
+  guid: "9b75ffe5-358c-47d1-acc6-8f5df097f1e0"
   description: "Non-standard type."
   implements:
   - FCU

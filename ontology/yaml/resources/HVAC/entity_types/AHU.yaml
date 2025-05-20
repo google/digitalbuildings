@@ -4494,6 +4494,7 @@ AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_CHWSC_ECON2X_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC_SARC:
+  guid: "888554c0-92d3-4f61-b28f-07c7414550a9"
   description: "Multi-zone chilled water AHU with supply air static pressure control and building static pressure control."
   is_canonical: true
   implements:
@@ -4509,6 +4510,7 @@ AHU_CHWSC_ECON2X_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC_SARC:
   - SARC
 
 AHU_CHWDC_HWDC_ECOND_EDBPC_RFSS_RFVSC_DFSS_DFVSC_DSPM_DSP:
+  guid: "219a196e-fbef-464b-8963-4b45c5d9ef84"
   description: "Multi-zone chilled water AHU with discharge air static pressure control and building static pressure control."
   is_canonical: true
   implements:
@@ -4525,6 +4527,7 @@ AHU_CHWDC_HWDC_ECOND_EDBPC_RFSS_RFVSC_DFSS_DFVSC_DSPM_DSP:
   - DSP
 
 AHU_CHWSC_HWSC_ECON2X_EDBPC2X_RFSS_RFVSC_SFSS_SFVSC_SSPC_SARC:
+  guid: "54b27e82-3dc2-4eb4-96c3-199189abb992"
   description: "Multi-zone chilled water AHU with supply air static pressure control and building static pressure control."
   is_canonical: true
   implements:

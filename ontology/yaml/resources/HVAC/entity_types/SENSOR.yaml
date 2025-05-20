@@ -72,6 +72,7 @@ SENSOR_ZTM_ZHM:
   - ZHM
   
 SENSOR_ZTM2X:
+  guid: "e2f5e760-1181-4ab8-becd-3e94a853e2f5"
   description: "Outside air property sensor (humidity, temperature)."
   is_canonical: true
   implements:

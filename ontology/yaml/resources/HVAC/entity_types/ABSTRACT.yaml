@@ -168,6 +168,7 @@ ZTM:
   - MONITORING
 
 ZTM2X:
+  guid: "6d7fa302-16ce-442b-ae96-ee50e1f62994"
   description: "Zone temperature monitoring."
   is_abstract: true
   uses:
@@ -514,6 +515,7 @@ EDBPC:
   - CONTROL
 
 EDBPC2X:
+  guid: "852516de-6f2e-4852-b08e-ccde5350e0ad"
   description: "Building static pressure control with dual exhaust damper."
   is_abstract: true
   opt_uses:
@@ -3509,6 +3511,7 @@ HWSC:
   - CONTROL
 
 HWSDC:
+  guid: "59293e75-75a7-4e20-9d59-8a08404aa5a9"
   description: "Heating water valve dual setpoint control on supply side."
   is_abstract: true
   opt_uses:
@@ -4120,6 +4123,7 @@ ECON:
   - CONTROL
 
 ECON2X:
+  guid: "4c9fa88d-0162-4db5-aa1c-9c3cd8a66615"
   description: "Economizer mode control on supply side, with dual outside and return air dampers"
   is_abstract: true
   opt_uses:

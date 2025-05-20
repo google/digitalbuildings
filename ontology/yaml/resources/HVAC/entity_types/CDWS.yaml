@@ -33,6 +33,7 @@ CDWS_SWTC:
   - SWTC
 
 CDWS_SWTC_WFRM:
+  guid: "9ed71803-1584-4dc6-89e8-899b84deab11"
   description: "Simple condenser water system with supply control, and flowrate monitoring."
   is_canonical: true
   implements:

@@ -295,6 +295,7 @@ FAN_SS_VSC_EPC_EDPM:
   - EDPM
 
 FAN_SS_VSC_EDPM:
+  guid: "d75f0c74-822a-4436-8881-f68786d8e4ca"
   description: "Fan with run control, and exhaust damper monitoring."
   is_canonical: true
   implements:
