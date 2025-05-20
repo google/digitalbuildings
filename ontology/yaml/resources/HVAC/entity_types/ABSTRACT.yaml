@@ -3548,21 +3548,8 @@ HWZTC:
   implements:
   - CONTROL
 
-HWBZC: # to do: swap abstract name with HWBZTC
+HWBZC:
   guid: "5e92815b-5fe8-485c-ad47-1749aa085bf6"
-  description: "Heating water valve command on zone side (ZTC)."
-  is_abstract: true
-  opt_uses:
-  - heating_water_valve_status
-  uses:
-  - heating_water_valve_command
-  - zone_air_temperature_sensor
-  - zone_air_temperature_setpoint
-  implements:
-  - CONTROL
-
-HWBZTC: # to do: swap abstract name with HWBZC
-  guid: "199d7bf5-02af-4c5d-80de-679155d82b61"
   description: "Heating water valve command on zone side (ZC)."
   is_abstract: true
   opt_uses:
@@ -3571,6 +3558,19 @@ HWBZTC: # to do: swap abstract name with HWBZC
   - heating_water_valve_command
   - zone_air_temperature_sensor
   - zone_air_heating_temperature_setpoint
+  implements:
+  - CONTROL
+
+HWBZTC:
+  guid: "199d7bf5-02af-4c5d-80de-679155d82b61"
+  description: "Heating water valve command on zone side (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_status
+  uses:
+  - heating_water_valve_command
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
   implements:
   - CONTROL
 
