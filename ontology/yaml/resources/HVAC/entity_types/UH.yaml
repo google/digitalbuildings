@@ -51,7 +51,7 @@ UH_DFSS_DSP_HWZC:
   - DSP
   - HWZC
 
-UH_SS_DFSS_DSP_HTZC:
+UH_SS_DSP_HTZC:
   guid: "1ad15f10-19ee-4f8a-9d05-a4dd52d72cca"
   description: "Electric/gas zone unit heater."
   is_canonical: true

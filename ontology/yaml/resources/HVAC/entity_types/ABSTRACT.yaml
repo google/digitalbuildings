@@ -8457,6 +8457,7 @@ RFVSC:
   - return_fan_torque_sensor
   - return_fan_speed_frequency_sensor
   - return_fan_speed_percentage_sensor
+  - failed_return_fan_alarm
   uses:
   - return_fan_run_command
   - return_fan_run_status
