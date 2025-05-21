@@ -357,7 +357,6 @@ CO2C:
   - zone_air_co2_deadband_concentration_setpoint
   - ventilation_request_count
 
-
 CO2CMAX:
   guid: "6ce30064-7249-44be-8e6b-0f05f1f41715"
   description: "Multi-zone carbon dioxide control to the maximum zone concentration."
@@ -3161,6 +3160,8 @@ DXDC:
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
   - overload_compressor_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -3798,6 +3799,7 @@ HTZC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - failed_heater_alarm
+  - warmup_run_command
   uses:
   - heater_run_command
   - zone_air_heating_temperature_setpoint
@@ -4135,6 +4137,7 @@ ECONM:
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - ventilation_request_count
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -5187,6 +5190,8 @@ EFVSC2X:
   - exhaust_fan_speed_frequency_sensor_2
   - exhaust_fan_speed_percentage_sensor_1
   - exhaust_fan_speed_percentage_sensor_2
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
   uses:
   - exhaust_fan_run_command_1
   - exhaust_fan_run_command_2
@@ -5284,6 +5289,8 @@ SFVSC2X:
   - supply_fan_torque_sensor_2
   - supply_fan_voltage_sensor_1
   - supply_fan_voltage_sensor_2
+  - failed_supply_fan_alarm_1
+  - failed_supply_fan_alarm_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
