@@ -41,6 +41,7 @@ AHU_CSP_DFSS_DX2ZC_ECONMD:
   - ECONMD
 
 AHU_DFSS_DX4ZC_DTM_ECONZ:
+  guid: "24c3e7ce-cc05-4710-b316-930cade2f967"
   description: "Single zone AHU with discharge fan, four stage compressor, and economizer"
   is_canonical: true
   implements:
@@ -51,6 +52,7 @@ AHU_DFSS_DX4ZC_DTM_ECONZ:
   - ECONZ
 
 AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
+  guid: "79fec392-cfbe-4fdf-b937-6d52ebbb268d"
   description: "Single zone AHU with discharge fan, chilled water coil, heating water coil, and economizer"
   is_canonical: true
   implements:
@@ -63,6 +65,7 @@ AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
   - ECONZ
 
 AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_DSP_EDBPC_ECON_SHM_SSPM_RHHC:
+  guid: "fbcb1f7e-d1f8-4c3e-a19a-415b79c80a80"
   description: "Multi zone AHU with two supply fans, two exhaust fans, chilled water coil, heating water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, economizer, supply air relative humidity monitoring, and return air relative humidity monitoring"
   is_canonical: true
   implements:
@@ -79,6 +82,7 @@ AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_DSP_EDBPC_ECON_SHM_SSPM_RHHC:
   - RHHC
 
 AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONM_FDPM_DSPC_DSP_DAIDC:
+  guid: "9e0c9201-3b04-4173-ae3c-ea2b08b8530c"
   description: "Single zone AHU with supply fan, exhaust fan, chilled water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, and economizer."
   is_canonical: true
   implements:
@@ -94,6 +98,7 @@ AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONM_FDPM_DSPC_DSP_DAIDC:
   - DAIDC
 
 AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
+  guid: "b1e88227-cf9a-4c82-987e-0c5fd4de41bc"
   description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
   is_canonical: true
   implements:
@@ -107,6 +112,7 @@ AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
   - OAFM
 
 AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_DX4SC:
+  guid: "12c6cf2d-fed1-4f6d-9565-7c32ffdf3150"
   description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
   is_canonical: true
   implements:
