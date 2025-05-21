@@ -40,16 +40,6 @@ AHU_CSP_DFSS_DX2ZC_ECONMD:
   - DX2ZC
   - ECONMD
 
-AHU_DFSS_DX4ZC_DTM_ECONZ:
-  description: "Single zone AHU with discharge fan, four stage compressor, and economizer"
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DX4ZC
-  - DTM
-  - ECONZ
-
 AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
   description: "Single zone AHU with discharge fan, chilled water coil, heating water coil, and economizer"
   is_canonical: true
