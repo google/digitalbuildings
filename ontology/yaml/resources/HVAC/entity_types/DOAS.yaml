@@ -271,6 +271,7 @@ DOAS_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_VOADM_HTWHLSTC:
   - HTWHLSTC
 
 DOAS_DFSS_EFSS_DTM_ETM_RTM:
+  guid: "77d3e74d-2fdf-4b2c-a4fc-4b798348474d"
   description: "DOAS with dual supply and exhaust fans, exhaust and return air temperature, and schedule run command."
   is_canonical: true
   implements:

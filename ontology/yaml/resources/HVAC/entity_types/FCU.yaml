@@ -1748,6 +1748,7 @@ FCU_DSP_DFVSC_DTM_RTM:
   - RTM
 
 FCU_DSP_DFSS_DFMSC_DTM_RTM:
+  guid: "2abfc720-2b80-4924-9b12-1ba85f7bdbe9"
   is_canonical: true
   description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints."
   implements:
@@ -1760,6 +1761,7 @@ FCU_DSP_DFSS_DFMSC_DTM_RTM:
 
 
 FCU_DSP_DFSS_DFMSC_DTM_RTM_CO2M:
+  guid: "7658776a-31fd-4f77-a0d4-76c058635911"
   is_canonical: true
   description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, carbon dioxide monitoring."
   implements:

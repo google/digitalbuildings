@@ -5083,6 +5083,7 @@ AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2XD2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
   - FDPM
 
 AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
+  guid: "36b0540d-363d-49d0-b503-0858cef9e5f0"
   description: "Single zone AHU with dual compressor with building static pressure control, economizer, electric heater and weather station."
   is_canonical: true
   implements:
