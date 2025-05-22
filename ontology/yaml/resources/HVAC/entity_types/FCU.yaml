@@ -473,14 +473,13 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - RTC
   - CHWRC
 
-FCU_DFVSC_RTC_DXRC:
+FCU_DFVSC_DXRC:
   guid: "51f318e1-ccb3-451a-881a-8ca2885fda00"
   description: "Hydronic variable speed fan coil with cooling (return control)."
   is_canonical: true
   implements:
   - FCU
   - DFVSC
-  - RTC
   - DXRC
 
 FCU_DFSS_DFVSC_DTM_RHC_CHWRC:
@@ -2306,6 +2305,7 @@ FCU_NONCANONICAL_4:
   - high_discharge_air_relative_humidity_alarm
   - high_discharge_air_temperature_alarm
   - low_discharge_air_relative_humidity_alarm
+  - zone_occupancy_status
 
   
 FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:

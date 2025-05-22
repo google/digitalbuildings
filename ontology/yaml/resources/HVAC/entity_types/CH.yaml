@@ -49,8 +49,7 @@ CH_SS_SWTC_DXSWC_WDPM_RCKTM_RWISOVPM:
   - RWISOVPM
 
 CH_SS_SWTC_RWISOVPM:
-  guid: "69ac8219-82ca-46d1-88dc-7fc8ce0f16d3"
-  description: "Simple air-cooled chiller with condenser isolation."
+  description: "Simple air-cooled chiller with return water isolation."
   is_canonical: true
   implements:
   - CH

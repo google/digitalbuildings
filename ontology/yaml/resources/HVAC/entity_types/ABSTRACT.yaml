@@ -169,7 +169,7 @@ ZTM:
 
 ZTM2X:
   guid: "6d7fa302-16ce-442b-ae96-ee50e1f62994"
-  description: "Zone temperature monitoring."
+  description: "Dual zone temperature monitoring."
   is_abstract: true
   uses:
   - zone_air_temperature_sensor_1
@@ -516,7 +516,7 @@ EDBPC:
 
 EDBPC2X:
   guid: "852516de-6f2e-4852-b08e-ccde5350e0ad"
-  description: "Building static pressure control with dual exhaust damper."
+  description: "Building static pressure control with dual exhaust dampers."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_sensor_1
@@ -3158,6 +3158,8 @@ DXRC:
   opt_uses:
   - compressor_run_time_accumulator
   - compressor_speed_percentage_command
+  - refrigerant_suction_pressure_sensor
+  - refrigerant_discharge_pressure_sensor
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
@@ -9338,6 +9340,16 @@ COC2XDSP:
   uses:
   - high_limit_zone_air_co_concentration_setpoint
   - low_limit_zone_air_co_concentration_setpoint
+  - zone_air_co_concentration_sensor_1
+  - zone_air_co_concentration_sensor_2
+  implements:
+  - CONTROL
+
+COC2X:
+  description: "CO concentration control with 2 sensors."
+  is_abstract: true
+  uses:
+  - zone_air_co_concentration_setpoint
   - zone_air_co_concentration_sensor_1
   - zone_air_co_concentration_sensor_2
   implements:

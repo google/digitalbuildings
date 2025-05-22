@@ -47,6 +47,14 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_COC2X:
+  description: "Basic fan with start/stop and status."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - COC2X
+
 FAN_SS_VSC_EFM:
   guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
   description: "Fan with start/stop status, open-loop speed control and exhaust air flowrate monitoring."

@@ -4507,7 +4507,7 @@ AHU_CHWSC_ECON2X_EDBPC_RFVSC_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
-AHU_CHWDC_HWDC_ECOND_EDBPC_RFVSC_DFVSC_DSPM_DSP:
+AHU_CHWDC_HWDC_ECOND_EDBPC_RFVSC_DFVSC_DSP:
   guid: "219a196e-fbef-464b-8963-4b45c5d9ef84"
   description: "Multi-zone chilled water and heating water AHU with discharge air static pressure control and building static pressure control."
   is_canonical: true
@@ -4519,7 +4519,6 @@ AHU_CHWDC_HWDC_ECOND_EDBPC_RFVSC_DFVSC_DSPM_DSP:
   - EDBPC
   - RFVSC
   - DFVSC
-  - DSPM
   - DSP
 
 AHU_CHWSC_HWSC_ECON2X_EDBPC2X_RFVSC_SFVSC_SSPC_SARC:

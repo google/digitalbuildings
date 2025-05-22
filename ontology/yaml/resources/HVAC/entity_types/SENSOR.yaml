@@ -79,6 +79,13 @@ SENSOR_ZTM2X:
   - /SENSOR # Inherits from global namespace
   - ZTM2X
 
+SENSOR_COM:
+  description: "Zone CO monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - COM
+
 SENSOR_OA:
   guid: "93c71f11-56c3-4180-91b9-4aec7b4a8cd6"
   description: "Outside air property sensor (humidity, temperature)."
