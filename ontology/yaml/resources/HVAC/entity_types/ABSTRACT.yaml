@@ -9353,6 +9353,7 @@ COC2XDSP:
   - CONTROL
 
 COC2X:
+  guid: "8063062f-5b5c-47f7-a6c5-b8a1c4dfcd8b"
   description: "CO concentration control with 2 sensors."
   is_abstract: true
   uses:

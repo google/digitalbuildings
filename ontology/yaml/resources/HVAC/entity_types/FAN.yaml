@@ -48,6 +48,7 @@ FAN_SS_VSC:
   - VSC
 
 FAN_SS_COC2X:
+  guid: "2fd2e3b3-d87e-43d0-a915-f8b456d1f0a0"
   description: "Basic fan with start/stop and status."
   is_canonical: true
   implements:
