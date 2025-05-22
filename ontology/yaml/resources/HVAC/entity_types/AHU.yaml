@@ -5082,6 +5082,20 @@ AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2XD2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
   - SSPC
   - FDPM
 
+AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
+  description: "Single zone AHU with dual compressor with building static pressure control, economizer, electric heater and weather station."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFVSC
+  - EFSS
+  - DX2ZC
+  - HTZC
+  - BSPC
+  - ECOND
+  - SRC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
