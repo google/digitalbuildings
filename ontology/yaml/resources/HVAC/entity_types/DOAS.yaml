@@ -269,3 +269,14 @@ DOAS_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_VOADM_HTWHLSTC:
   - SARC
   - VOADM
   - HTWHLSTC
+
+DOAS_DFSS_EFSS_DTM_ETM_RTM:
+  description: "DOAS with dual supply and exhaust fans, exhaust and return air temperature, and schedule run command."
+  is_canonical: true
+  implements:
+  - DOAS
+  - DFSS
+  - EFSS
+  - DTM
+  - ETM
+  - RTM
