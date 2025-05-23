@@ -70,14 +70,6 @@ SENSOR_ZTM_ZHM:
   - /SENSOR # Inherits from global namespace
   - ZTM
   - ZHM
-  
-SENSOR_ZTM2X:
-  guid: "e2f5e760-1181-4ab8-becd-3e94a853e2f5"
-  description: "Outside air property sensor (humidity, temperature)."
-  is_canonical: true
-  implements:
-  - /SENSOR # Inherits from global namespace
-  - ZTM2X
 
 SENSOR_COM:
   guid: "b3d929e0-d934-4a6a-8c86-921fa7804cef"
