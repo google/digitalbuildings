@@ -411,6 +411,7 @@ DOAS:
   - smoke_alarm
   - filter_alarm
   - run_mode
+  - outside_air_temperature_sensor
   implements:
   - EQUIPMENT
 
