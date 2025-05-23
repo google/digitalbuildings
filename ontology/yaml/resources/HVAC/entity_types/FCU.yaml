@@ -475,7 +475,7 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
 
 FCU_DFVSC_DXRC:
   guid: "51f318e1-ccb3-451a-881a-8ca2885fda00"
-  description: "Hydronic variable speed fan coil with cooling (return control)."
+  description: "DX fan coil with return temperature control, and variable speed fan."
   is_canonical: true
   implements:
   - FCU
