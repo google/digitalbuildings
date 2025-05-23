@@ -70,7 +70,15 @@ SENSOR_ZTM_ZHM:
   - /SENSOR # Inherits from global namespace
   - ZTM
   - ZHM
-  
+
+SENSOR_COM:
+  guid: "b3d929e0-d934-4a6a-8c86-921fa7804cef"
+  description: "Zone CO monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - COM
+
 SENSOR_OA:
   guid: "93c71f11-56c3-4180-91b9-4aec7b4a8cd6"
   description: "Outside air property sensor (humidity, temperature)."

@@ -222,6 +222,16 @@ CT_SS_VSC_SPSS_SWTC_RWISOVM:
   - SWTC
   - RWISOVM
 
+CT_VSC_SWTC_RWISOVPM:
+  guid: "14932589-23cd-4139-a29d-15617833dbdc"
+  description: "Cooling tower with variable speed control, return isolation valve, and supply temp control."
+  is_canonical: true
+  implements:
+  - CT
+  - VSC
+  - SWTC
+  - RWISOVPM
+
 CT_SS_VSC_SPSS_SWTC_SWISOVM_BWFRM:
   guid: "368e7cef-75e2-407c-ac2b-3904a357b825"
   description: "Cooling tower with onboard spray pump, variable speed control, isolation on supply side and blowdown water flow monitoring."

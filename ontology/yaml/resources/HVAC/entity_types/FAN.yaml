@@ -47,6 +47,15 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_COC2X:
+  guid: "2fd2e3b3-d87e-43d0-a915-f8b456d1f0a0"
+  description: "Basic fan with start/stop and status, and carbon monxide control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - COC2X
+
 FAN_SS_VSC_EFM:
   guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
   description: "Fan with start/stop status, open-loop speed control and exhaust air flowrate monitoring."
@@ -292,6 +301,15 @@ FAN_SS_VSC_EPC_EDPM:
   - SS
   - VSC
   - EPC
+  - EDPM
+
+FAN_VSC_EDPM:
+  guid: "d75f0c74-822a-4436-8881-f68786d8e4ca"
+  description: "Fan with run control, and exhaust damper monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
   - EDPM
 
 FAN_SS_DSP_VSC:
