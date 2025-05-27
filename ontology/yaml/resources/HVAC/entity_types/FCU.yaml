@@ -1756,6 +1756,17 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_DFMSC_DSP_HPZC_CO2M:
+  guid: "8c787fe8-5c21-47ac-9de8-5c5c9d60a439"
+  is_canonical: true
+  description: "Heat pump fan coil with discharge and return air temperature monitoring, zone cooling and heating setpoints and carbon dioxide monitoring."
+  implements:
+  - FCU
+  - DFMSC
+  - DSP
+  - HPZC
+  - CO2M
+
 FCU_DFSS_DFSMC_HWRC:
   is_canonical: true
   guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
