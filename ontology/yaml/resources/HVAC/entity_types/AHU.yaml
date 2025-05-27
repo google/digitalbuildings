@@ -5065,7 +5065,7 @@ AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
   - RTM
   - ZHC
 
-AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
+AHU_SFSS_SFVSC_CHWSC_CHWSISOVM_HWSC_ECONM2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
   guid: "d202767a-c550-4a79-aef5-e84dfd6849fc"
   description: "Multi zone AHU with variable speed supply and return fans, supply controlled chilled and heating water valves, supply and building static pressure control, filter differential pressure monitoring, and mixed temperature economizer control"
   is_canonical: true
@@ -5074,6 +5074,7 @@ AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
   - SFSS
   - SFVSC
   - CHWSC
+  - CHWISOVM
   - HWSC
   - ECONM2X
   - EDBPC
