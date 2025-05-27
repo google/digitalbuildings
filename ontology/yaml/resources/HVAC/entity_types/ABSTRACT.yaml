@@ -2789,6 +2789,8 @@ DX2ZC:
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
   - cooling_stage_run_count
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4094,6 +4096,7 @@ ECOND:
   - outside_air_damper_percentage_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
   - return_air_damper_percentage_command
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
@@ -4104,6 +4107,7 @@ ECOND:
   - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - failed_outside_air_damper_alarm
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
