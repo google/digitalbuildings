@@ -4193,11 +4193,9 @@ ECOND:
   description: "Economizer mode control on discharge side - single zone"
   is_abstract: true
   opt_uses:
-  - outside_air_relative_humidity_sensor
   - outside_air_specificenthalpy_sensor
   - low_limit_outside_air_damper_percentage_command
   - mixed_air_temperature_sensor
-  - failed_outside_air_damper_alarm
   - outside_air_damper_percentage_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
