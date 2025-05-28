@@ -167,6 +167,15 @@ ZTM:
   implements:
   - MONITORING
 
+ZTM2X:
+  guid: "6d7fa302-16ce-442b-ae96-ee50e1f62994"
+  description: "Dual zone temperature monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  implements:
+  - MONITORING
 
 REFM:
   guid: "df97ad55-5e8f-4cc2-89b7-c07b7a6f28b4"
@@ -501,6 +510,26 @@ EDBPC:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
   - exhaust_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+EDBPC2X:
+  guid: "852516de-6f2e-4852-b08e-ccde5350e0ad"
+  description: "Building static pressure control with dual exhaust dampers."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_sensor_1
+  - exhaust_air_damper_percentage_sensor_2
+  - failed_exhaust_air_damper_alarm_1
+  - failed_exhaust_air_damper_alarm_2
+  - exhaust_air_differential_pressure_sensor
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_air_damper_percentage_command_1
+  - exhaust_air_damper_percentage_command_2
   implements:
   - CONTROL
 
@@ -866,6 +895,8 @@ SS:
   - power_capacity
   - power_sensor
   - powerfactor_sensor
+  - voltage_sensor
+  - energy_accumulator
   - run_time_accumulator
   - failed_alarm
   - local_override_alarm
@@ -3128,6 +3159,8 @@ DXRC:
   opt_uses:
   - compressor_run_time_accumulator
   - compressor_speed_percentage_command
+  - refrigerant_suction_pressure_sensor
+  - refrigerant_discharge_pressure_sensor
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
@@ -3480,6 +3513,29 @@ HWSC:
   - heating_water_valve_percentage_command
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+HWSDC:
+  guid: "59293e75-75a7-4e20-9d59-8a08404aa5a9"
+  description: "Heating water valve dual setpoint control on supply side."
+  is_abstract: true
+  opt_uses:
+  - heating_supply_water_temperature_sensor
+  - heating_request_count
+  - heating_thermal_power_capacity
+  - heating_water_valve_percentage_sensor
+  - leaving_heating_coil_temperature_sensor
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - warmup_request_count
+  - warmup_run_command
+  uses:
+  - heating_water_valve_percentage_command
+  - supply_air_temperature_sensor
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_heating_temperature_setpoint
   implements:
   - CONTROL
 
@@ -4061,6 +4117,7 @@ ECON:
   - outside_air_flowrate_setpoint
   - outside_air_relative_humidity_sensor
   - outside_air_specificenthalpy_sensor
+  - failed_return_air_damper_alarm
   - return_air_damper_percentage_command
   - return_air_damper_percentage_sensor
   - supply_air_temperature_sensor
@@ -4085,19 +4142,67 @@ ECON:
   implements:
   - CONTROL
 
+ECON2X:
+  guid: "4c9fa88d-0162-4db5-aa1c-9c3cd8a66615"
+  description: "Economizer mode control on supply side, with dual outside and return air dampers"
+  is_abstract: true
+  opt_uses:
+  - low_limit_outside_air_damper_percentage_command
+  - outside_air_damper_percentage_sensor
+  - failed_outside_air_damper_alarm_1
+  - failed_outside_air_damper_alarm_2
+  - failed_outside_air_flowrate_alarm
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
+  - outside_air_damper_percentage_sensor_1
+  - outside_air_damper_percentage_sensor_2
+  - return_air_damper_percentage_command_1
+  - return_air_damper_percentage_sensor_1
+  - return_air_damper_percentage_command_2
+  - return_air_damper_percentage_sensor_2
+  - failed_return_air_damper_alarm_1
+  - failed_return_air_damper_alarm_2
+  - supply_air_temperature_sensor
+  - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
+  - ventilation_request_count
+  uses:
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - outside_air_damper_percentage_command_1
+  - outside_air_damper_percentage_command_2
+  - outside_air_temperature_sensor
+  - return_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
 
 ECOND:
   guid: "2640d584-7b8e-4523-b894-beaf4b13e4c0"
   description: "Economizer mode control on discharge side - single zone"
   is_abstract: true
   opt_uses:
+  - outside_air_specificenthalpy_sensor
   - low_limit_outside_air_damper_percentage_command
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - failed_return_air_damper_alarm
   - outside_air_relative_humidity_sensor
   - return_air_damper_percentage_command
+  - return_air_damper_percentage_sensor
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
@@ -8363,6 +8468,7 @@ RFVSC:
   - return_fan_torque_sensor
   - return_fan_speed_frequency_sensor
   - return_fan_speed_percentage_sensor
+  - failed_return_fan_alarm
   uses:
   - return_fan_run_command
   - return_fan_run_status
@@ -9243,6 +9349,17 @@ COC2XDSP:
   uses:
   - high_limit_zone_air_co_concentration_setpoint
   - low_limit_zone_air_co_concentration_setpoint
+  - zone_air_co_concentration_sensor_1
+  - zone_air_co_concentration_sensor_2
+  implements:
+  - CONTROL
+
+COC2X:
+  guid: "8063062f-5b5c-47f7-a6c5-b8a1c4dfcd8b"
+  description: "CO concentration control with 2 sensors."
+  is_abstract: true
+  uses:
+  - zone_air_co_concentration_setpoint
   - zone_air_co_concentration_sensor_1
   - zone_air_co_concentration_sensor_2
   implements:
