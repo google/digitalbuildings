@@ -2318,7 +2318,6 @@ FCU_NONCANONICAL_4:
   - low_discharge_air_relative_humidity_alarm
   - zone_occupancy_status
 
-  
 FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
   guid: "025c2764-2de6-4839-ade6-0cf8551cd91c"
   description: "Non-standard type."
