@@ -244,6 +244,7 @@ CDWS_SWTC_WSEBYPVPM:
   - WSEBYPVPM
 
 CDWS_SWTC_WDPM_WSEBYPVPM_MCBYPVPM:
+  guid: "4082d1aa-40c1-4a96-8fb4-48bc93e79120"
   description: "Condensing water system with supply water temperature control, differential pressure monitoring, mechanical cooling bypass valve and water side economizer bypass valve."
   is_canonical: true
   implements:
