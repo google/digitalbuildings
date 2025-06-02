@@ -86,6 +86,53 @@ AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONM_FDPM_DSPC_DSP_DAIDC:
   - DSP
   - DAIDC
 
+AHU_DFSS_EFSS_DX2DC_ECOND_EDBPC:
+  description: "Single zone AHU with discharge fan, exhaust fan, DX cooling coil, building static pressure control with exhaust damper, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - EFSS
+  - DX2DC
+  - ECOND
+  - EDBPC
+
+AHU_DFVSC_EFSS_DX2DC_HTDC_ECOND_RTM_EDBPC_DSP:
+  description: "Single zone AHU with discharge fan, exhaust fan, two stage DX cooling coil, gas heating coil, economizer, return temperature monitoring, building static pressure control with exhaust damper, and dual setpoint control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - EFSS
+  - DX2DC
+  - HTDC
+  - ECOND
+  - RTM
+  - EDBPC
+  - DSP
+
+AHU_SFVSC_EFVSC_DX2SC_HTSC_EDBPC_ECON:
+  description: "Multi zone AHU with supply fan, exhaust fan, two stage DX cooling coil, heating coil, building static pressure control with exhaust damper, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX2SC
+  - HTSC
+  - EDBPC
+  - ECON
+
+AHU_SFVSC_HP2SC_ECON_SSPC:
+  description: "Multi zone AHU with supply fan, heat pump with two compressors, economizer, and supply static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - HP2SC
+  - ECON
+  - SSPC
+
 AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
   guid: "b1e88227-cf9a-4c82-987e-0c5fd4de41bc"
   description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
@@ -252,6 +299,15 @@ AHU_DFSS_DXZC_ECONZ_HT2ZC:
   - DXZC
   - ECONZ
   - HT2ZC
+
+AHU_DFSS_DXZC_HTZC:
+  description: "Single zone AHU with DX cooling coil and heating coil"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXZC
+  - HTZC
 
 AHU_DFSS_DX2ZTC_ECONZ_EFSS:
   guid: "f13031b8-5f69-4a51-b868-2f1a47bc1f22"
