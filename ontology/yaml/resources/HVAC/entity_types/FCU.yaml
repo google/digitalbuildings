@@ -473,6 +473,15 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - RTC
   - CHWRC
 
+FCU_DFVSC_DXRC:
+  guid: "51f318e1-ccb3-451a-881a-8ca2885fda00"
+  description: "DX fan coil with return temperature control, and variable speed fan."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - DXRC
+
 FCU_DFSS_DFVSC_DTM_RHC_CHWRC:
   guid: "5d32b824-a099-40d0-bff0-772de1ffe8bb"
   description: "Hydronic variable speed fan coil with return controlled cooling and humidity control."
@@ -1747,6 +1756,17 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_DFMSC_DSP_HPZC_CO2M:
+  guid: "8c787fe8-5c21-47ac-9de8-5c5c9d60a439"
+  is_canonical: true
+  description: "Heat pump fan coil with discharge and return air temperature monitoring, zone cooling and heating setpoints and carbon dioxide monitoring."
+  implements:
+  - FCU
+  - DFMSC
+  - DSP
+  - HPZC
+  - CO2M
+
 FCU_DFSS_DFSMC_HWRC:
   is_canonical: true
   guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
@@ -2152,7 +2172,6 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_2:
   - run_mode
   - exercise_mode
 
-
 FCU_NONCANONICAL_1:
   guid: "45cd4430-5899-47f3-9319-8f942c5c1ddb"
   description: "Non-standard type."
@@ -2277,7 +2296,28 @@ FCU_NONCANONICAL_3:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
-  
+
+FCU_NONCANONICAL_4:
+  guid: "9b75ffe5-358c-47d1-acc6-8f5df097f1e0"
+  description: "Non-standard type."
+  implements:
+  - FCU
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - cooling_request_count
+  - discharge_air_isolation_damper_percentage_command
+  - discharge_air_isolation_damper_percentage_sensor
+  - discharge_air_relative_humidity_sensor
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - failed_compressor_alarm
+  - failed_discharge_air_isolation_damper_alarm
+  - high_discharge_air_relative_humidity_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_relative_humidity_alarm
+  - zone_occupancy_status
+
 FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
   guid: "025c2764-2de6-4839-ade6-0cf8551cd91c"
   description: "Non-standard type."
