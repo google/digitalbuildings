@@ -236,12 +236,22 @@ CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
 
 CDWS_SWTC_WSEBYPVPM:
   guid: "473f0ee6-d2f8-46d8-a952-140a04a341fe"
-  description: "Condensing water system with bypass valve and water side economizer bypass valve."
+  description: "Condensing water system with supply water temperature control and water side economizer bypass valve."
   is_canonical: true
   implements:
   - CDWS
   - SWTC
   - WSEBYPVPM
+
+CDWS_SWTC_WDPM_WSEBYPVPM_MCBYPVPM:
+  description: "Condensing water system with supply water temperature control, differential pressure monitoring, mechanical cooling bypass valve and water side economizer bypass valve."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPM
+  - WSEBYPVPM
+  - MCBYPVPM
 
 CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
   guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"

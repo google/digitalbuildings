@@ -695,6 +695,23 @@ CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM_NONCANONICAL_1:
   - west_flowrate_sensor
   - east_flowrate_sensor
 
+CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM_MCBYPVPM_NONCANONICAL_1:
+  description: "Non-standard type."
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+  - WSEBYPVPM
+  - MCBYPVPM
+  opt_uses:
+  - west_supply_water_temperature_sensor
+  - east_supply_water_temperature_sensor
+  - west_differential_pressure_sensor
+  - east_differential_pressure_sensor
+  - west_flowrate_sensor
+  - east_flowrate_sensor
+
 CHWS_SWTC_WDPC2X_BYPVPM_WFRM_NONCANONICAL_1:
   guid: "b4e9ea71-b415-4fb8-a1b6-b282c1397b30"
   description: "Non-standard type."
