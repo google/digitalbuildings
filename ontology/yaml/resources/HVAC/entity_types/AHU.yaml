@@ -4627,6 +4627,49 @@ AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_CHWSC_ECON2X_EDBPC_RFVSC_SFVSC_SSPC_SARC:
+  guid: "888554c0-92d3-4f61-b28f-07c7414550a9"
+  description: "Multi-zone chilled water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON2X
+  - EDBPC
+  - RFVSC
+  - SFVSC
+  - SSPC
+  - SARC
+
+AHU_CHWDC_HWDC_ECOND_EDBPC_RFVSC_DFVSC_DSP:
+  guid: "219a196e-fbef-464b-8963-4b45c5d9ef84"
+  description: "Multi-zone chilled water and heating water AHU with discharge air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDC
+  - HWDC
+  - ECOND
+  - EDBPC
+  - RFVSC
+  - DFVSC
+  - DSP
+
+AHU_CHWSC_HWSC_ECON2X_EDBPC2X_RFVSC_SFVSC_SSPC_SARC:
+  guid: "54b27e82-3dc2-4eb4-96c3-199189abb992"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - ECON2X
+  - EDBPC2X
+  - RFVSC
+  - SFVSC
+  - SSPC
+  - SARC
+
 AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   guid: "4aaac7e3-e781-47ff-92a1-8a27d8cc868a"
   description: "Multi-zone chilled water and heating water AHU with supply air static pressure control and building static pressure control."
@@ -5126,6 +5169,24 @@ AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
   - RTM
   - ZHC
 
+AHU_SFSS_SFVSC_CHWSC_CHWSISOVM_HWSC_ECONM2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
+  guid: "d202767a-c550-4a79-aef5-e84dfd6849fc"
+  description: "Multi zone AHU with variable speed supply and return fans, supply controlled chilled and heating water valves, supply and building static pressure control, filter differential pressure monitoring, and mixed temperature economizer control"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - CHWISOVM
+  - HWSC
+  - ECONM2X
+  - EDBPC
+  - RFSS
+  - RFVSC
+  - SSPC
+  - FDPM
+
 AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2XD2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
   guid: "1e01e73a-0d54-4d3a-babf-dd4540d1fef4"
   description: "Multi zone AHU with variable speed supply and return fans, supply controlled chilled and heating water valves, supply and building static pressure control, filter differential pressure monitoring, and mixed temperature economizer control with two outside air dampers"
@@ -5142,6 +5203,21 @@ AHU_SFSS_SFVSC_CHWSC_HWSC_ECONM2XD2X_EDBPC_RFSS_RFVSC_SSPC_FDPM:
   - RFVSC
   - SSPC
   - FDPM
+
+AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
+  guid: "36b0540d-363d-49d0-b503-0858cef9e5f0"
+  description: "Single zone AHU with dual compressor with building static pressure control, economizer, electric heater and weather station."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFVSC
+  - EFSS
+  - DX2ZC
+  - HTZC
+  - BSPC
+  - ECOND
+  - SRC
 
 ###################################
 ### Existing Non-standard Types ###
