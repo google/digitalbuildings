@@ -157,3 +157,13 @@ ASHP_SS_HP4SWC_HWRWISOVPM_CPC2X_RCKTM2X:
   - HWRWISOVPM
   - CPC2X
   - RCKTM2X
+
+ASHP_SS_HP4SWC_HWRWISOVPM_RCKTM2X:
+  description: "Air source heat pump for a hot water system with a four-stage air source heat pump, return water isolation valve, and refrigerant circuit monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP4SWC
+  - HWRWISOVPM
+  - RCKTM2X
