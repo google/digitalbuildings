@@ -710,6 +710,7 @@ CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM_NONCANONICAL_1:
 CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM_MCBYPVPM_NONCANONICAL_1:
   guid: "d3a13531-cf51-4bad-a99e-9c49b4469cff"
   description: "Non-standard type."
+  is_canonical: false
   implements:
   - CHWS
   - SWTC
