@@ -36,7 +36,7 @@ edit a user's spreadsheet.
 
 ## Google Sheets template
 
-The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy#gid=980240783) has a strict format that must be adhered to.
+The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/15VRf_xdCBpklBpLra08MdgOz7c6uOgFwgM23WW8USRY/copy#gid=455639674) has a strict format that must be adhered to.
 
 Below is a definition of each table and column in the ABEL spreadsheet:
 - [Site](#site)
