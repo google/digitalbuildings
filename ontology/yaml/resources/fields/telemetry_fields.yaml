@@ -1162,6 +1162,9 @@ literals:
 - failed_flowrate_alarm:
   - ACTIVE
   - INACTIVE
+- low_chilled_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_heat_exchange_alarm:
   - ACTIVE
   - INACTIVE

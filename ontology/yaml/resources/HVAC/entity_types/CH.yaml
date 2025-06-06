@@ -301,6 +301,23 @@ CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM:
   - CWSISOVM
   - CHWFRM
 
+CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM_REFPM_REFSM_CLPM:
+  guid: "3f5c5c79-f2fd-4c87-860a-fd9e634cc057"
+  description: "Water-cooled chiller with isolation on both the condenser and chilled sides and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - CHWSWISOVM
+  - CWSISOVM
+  - CHWDPM
+  - CHWFRM
+  - REFPM
+  - REFSM
+  - CLPM
+
 CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   guid: "d05d0151-6a59-4526-92c9-9a827e70e34c"
   description: "Water-cooled chiller with pressure and refrigeration monitoring."
