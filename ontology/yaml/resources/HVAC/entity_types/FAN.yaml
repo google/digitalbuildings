@@ -785,6 +785,14 @@ FAN_SS_VSC_DSPM:
   - VSC
   - DSPM
 
+FAN_VSC_MO2C2X:
+  description: "Fan with variable speed which responds to low oxygen levels in the space using two oxygen sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - MO2C2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
