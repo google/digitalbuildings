@@ -5102,9 +5102,9 @@ CO2C2X:
   implements:
   - OPERATIONAL
 
-MO2C2X:
+MO2P2X:
   guid: "9c5e4dd9-b848-4fd0-bae2-0dc7fe9a78fc"
-  description: "Minimum oxygen control with dual zone sensors."
+  description: "Minimum oxygen pecentage control with dual zone sensors."
   is_abstract: true
   opt_uses:
   - low_zone_air_o2_percentage_alarm_1
