@@ -2304,7 +2304,7 @@ literals:
 - low_limit_zone_air_no2_concentration_setpoint:
     fixed_min: 0.0
     flexible_max: 0.0005
-- low_limit_zone_air_o2_concentration_setpoint:
+- low_limit_zone_air_o2_percentage_setpoint:
     flexible_min: 0.0
     flexible_max: 0.002
 - low_mixed_air_temperature_alarm:
@@ -2391,7 +2391,7 @@ literals:
 - low_water_level_alarm:
   - ACTIVE
   - INACTIVE
-- low_zone_air_o2_concentration_alarm:
+- low_zone_air_o2_percentage_alarm:
   - ACTIVE
   - INACTIVE
 - low_zone_air_relative_humidity_alarm:
@@ -4077,7 +4077,7 @@ literals:
 - zone_air_nox_aqi_sensor:
     fixed_min: 0
     flexible_max: 500
-- zone_air_o2_concentration_sensor:
+- zone_air_o2_percentage_sensor:
     flexible_min: 0.0
     flexible_max: 0.002
 - zone_air_occupied_deadband_temperature_setpoint:

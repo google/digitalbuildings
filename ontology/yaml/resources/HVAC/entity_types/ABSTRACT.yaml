@@ -5107,12 +5107,12 @@ MO2C2X:
   description: "Minimum oxygen control with dual zone sensors."
   is_abstract: true
   opt_uses:
-  - low_zone_air_o2_concentration_alarm_1
-  - low_zone_air_o2_concentration_alarm_2
+  - low_zone_air_o2_percentage_alarm_1
+  - low_zone_air_o2_percentage_alarm_2
   uses:
-  - zone_air_o2_concentration_sensor_1
-  - zone_air_o2_concentration_sensor_2
-  - low_limit_zone_air_o2_concentration_setpoint
+  - zone_air_o2_percentage_sensor_1
+  - zone_air_o2_percentage_sensor_2
+  - low_limit_zone_air_o2_percentage_setpoint
   implements:
   - OPERATIONAL
 
