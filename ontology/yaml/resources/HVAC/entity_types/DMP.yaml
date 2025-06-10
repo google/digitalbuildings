@@ -45,7 +45,7 @@ DMP_EDPM:
   is_canonical: true
   implements:
   - DMP
-  - OAFC
+  - EDPM
 
 DMP_ED:
   guid: "f94434b4-3b01-4a69-a31c-9cc6e1afbc64"
