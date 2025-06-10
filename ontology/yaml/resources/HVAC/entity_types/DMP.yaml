@@ -40,6 +40,7 @@ DMP_EDM:
   - EDM
 
 DMP_EDPM:
+  guid: "a1857e98-6e75-4b74-b1f0-d21bafbc1706"
   description: "Exhaust damper percentage monitoring."
   is_canonical: true
   implements:
