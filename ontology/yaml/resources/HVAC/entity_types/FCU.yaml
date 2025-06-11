@@ -2014,6 +2014,7 @@ FCU_DFSS_DFVSC_CHWDC_CATM:
   - CATM
 
 FCU_DFSS_DSP_CHWZC_HT2ZC_ZHC:
+  guid: "f5a640fb-d5a4-4f67-97d4-c82e85e0583f"
   description: "FCU with chilled water and two stage electric heat controling to zone temperature and humidity."
   is_canonical: true
   implements:
