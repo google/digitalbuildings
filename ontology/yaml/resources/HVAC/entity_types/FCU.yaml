@@ -2013,6 +2013,17 @@ FCU_DFSS_DFVSC_CHWDC_CATM:
   - CHWDC
   - CATM
 
+FCU_DFSS_DSP_CHWZC_HT2ZC_ZHC:
+  description: "FCU with chilled water and two stage electric heat controling to zone temperature and humidity."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - CHWZC
+  - HT2ZC
+  - ZHC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
