@@ -53,7 +53,7 @@ AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
   - DTM
   - ECONZ
 
-AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_EDBPC_ECON_DHM_DSPM_RHHC:
+AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_EDBPC_ECOND_DHM_DSPM_RHHC:
   guid: "fbcb1f7e-d1f8-4c3e-a19a-415b79c80a80"
   description: "Single zone AHU with two discharge fans, two exhaust fans, chilled water coil, heating water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, economizer, discharge air relative humidity monitoring, and return air relative humidity monitoring"
   is_canonical: true
@@ -65,7 +65,7 @@ AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_EDBPC_ECON_DHM_DSPM_RHHC:
   - HWDC
   - DSP
   - EDBPC
-  - ECON
+  - ECOND
   - DHM
   - DSPM
   - RHHC
@@ -146,6 +146,20 @@ AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
   - SSPC
   - DX4SC
   - OAFM
+
+AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_SARC_DX4SC_OAFC:
+  description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFSS
+  - ECON
+  - EDBPC
+  - SSPC
+  - SARC
+  - DX4SC
+  - OAFC
 
 AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_DX4SC:
   guid: "12c6cf2d-fed1-4f6d-9565-7c32ffdf3150"
