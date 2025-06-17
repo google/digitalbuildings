@@ -180,6 +180,7 @@ descriptor:
   no2: "Chemical formula and abbreviation for nitrogen dioxide."
   north: "Cardinal direction; opposite of south"
   nox: "Abbreviation for nitrogen oxides, which are a group of gases that are composed of nitrogen and oxygen."
+  o2: "Chemical formula and abbreviation for oxygen."
   occupancy: "State of being occupied."
   occupied: "State of being within scheduled (time of day or week) run-time parameters."
   oil: "A viscous liquid derived from petroleum, especially for use as a fuel or lubricant."
