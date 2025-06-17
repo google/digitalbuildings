@@ -436,8 +436,8 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 - condensing_return_water_isolation_valve_percentage_status:
-    fixed_min: 0.0
-    fixed_max: 100.0
+  - OPEN
+  - CLOSED
 - condensing_return_water_isolation_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -594,9 +594,6 @@ literals:
 - cooling_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
-- cooling_thermal_power_capacity:
-    flexible_min: 0.0
-    flexible_max: 3517000.0
 - cooling_thermalefficiency_sensor:
     flexible_min: 0.0
     flexible_max: 10.0
@@ -699,9 +696,6 @@ literals:
 - discharge_air_dehumidification_relative_humidity_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
-- discharge_air_humidification_relative_humidity_setpoint:
-    fixed_min: 0.0
-    fixed_max: 100.0
 - discharge_air_dewpoint_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
@@ -729,6 +723,9 @@ literals:
 - discharge_air_heating_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
+- discharge_air_humidification_relative_humidity_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - discharge_air_isolation_damper_closed_status:
   - OPEN
   - CLOSED
@@ -1025,12 +1022,12 @@ literals:
 - exhaust_fan_current_sensor:
     fixed_min: 0.0
     flexible_max: 100.0
-- exhaust_fan_power_sensor:
-    flexible_min: 0.0
-    flexible_max: 100000.0
 - exhaust_fan_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 36000000000000.0
+- exhaust_fan_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 100000.0
 - exhaust_fan_run_command:
   - ON
   - OFF
