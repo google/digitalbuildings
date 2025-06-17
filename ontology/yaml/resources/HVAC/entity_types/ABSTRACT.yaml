@@ -2068,6 +2068,7 @@ SHC:
   - OPERATIONAL
 
 DHC:
+  guid: "576b306c-8715-4969-9a67-74776d3e48f5"
   description: "Discharge air relative humidity control."
   is_abstract: true
   opt_uses:
@@ -3437,6 +3438,7 @@ HPHCZC:
   - CONTROL
 
 HPHC4ZC:
+  guid: "e3a2334c-f81a-4e80-891d-7e1a75259128"
   description: "Zone temperature cooling and heating heat pump control with 4 stage compressor."
   is_abstract: true
   opt_uses:
