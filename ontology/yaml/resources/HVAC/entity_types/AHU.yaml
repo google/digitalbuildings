@@ -152,6 +152,7 @@ AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
   - OAFM
 
 AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_SARC_DX4SC_OAFC:
+  guid: "2cba4cdd-6bbd-4655-8935-a5e61fc425bd"
   description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
   is_canonical: true
   implements:
