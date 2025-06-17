@@ -168,3 +168,14 @@ ASHP_SS_HP4SWC_HWRWISOVPM_RCKTM2X:
   - HP4SWC
   - HWRWISOVPM
   - RCKTM2X
+
+ASHP_SS_HP6SWC_CPVSC3X_SHWISOVPM_RCKTM6X:
+  description: "Air source heat pump for a hot water system with a six-stage air source heat pump, supply water isolation valve, and refrigerant circuit monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP6SWC
+  - CPVSC3X
+  - SHWISOVPM
+  - RCKTM6X
