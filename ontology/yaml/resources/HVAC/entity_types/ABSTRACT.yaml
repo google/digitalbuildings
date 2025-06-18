@@ -72,7 +72,6 @@ DD:
   - supply_air_heating_flowrate_capacity
   - supply_air_ventilation_flowrate_requirement
   - failed_discharge_air_temperature_alarm
-  - heating_percentage_command
   uses:
   - cooling_air_damper_percentage_command
   - cooling_air_flowrate_sensor
