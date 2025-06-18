@@ -7506,6 +7506,36 @@ CPVSC2X:
   implements:
   - OPERATIONAL
 
+CPVSC3X:
+  guid: "a4992381-936a-4521-9a65-305b703c938e"
+  description: "Circulation pump variable speed control with 3 circulation pumps."
+  is_abstract: true
+  opt_uses:
+  - circulation_pump_speed_frequency_sensor_1
+  - circulation_pump_speed_frequency_sensor_2
+  - circulation_pump_speed_frequency_sensor_3
+  - circulation_pump_current_sensor_1
+  - circulation_pump_current_sensor_2
+  - circulation_pump_current_sensor_3
+  - circulation_pump_energy_accumulator_1
+  - circulation_pump_energy_accumulator_2
+  - circulation_pump_energy_accumulator_3
+  - circulation_pump_power_sensor_1
+  - circulation_pump_power_sensor_2
+  - circulation_pump_power_sensor_3
+  uses:
+  - circulation_pump_run_command_1
+  - circulation_pump_run_command_2
+  - circulation_pump_run_command_3
+  - circulation_pump_run_status_1
+  - circulation_pump_run_status_2
+  - circulation_pump_run_status_3
+  - circulation_pump_speed_percentage_command_1
+  - circulation_pump_speed_percentage_command_2
+  - circulation_pump_speed_percentage_command_3
+  implements:
+  - OPERATIONAL
+
 HWTTC:
   guid: "141c33da-9691-4e45-a572-3b06402a54d7"
   description: "Hot water tank temperature control."
@@ -7578,6 +7608,80 @@ RCKTM2X:
   - refrigerant_suction_superheat_temperature_sensor_2
   - refrigerant_suction_temperature_sensor_1
   - refrigerant_suction_temperature_sensor_2
+
+RCKTM6X:
+  guid: "a5e8f04e-2d5f-4c78-89e6-12ef1cdc6267"
+  description: "Refrigeration circuits (6x) monitoring for a DX compressor loop."
+  is_abstract: true
+  opt_uses:
+  - refrigerant_vapor_temperature_sensor_1
+  - refrigerant_vapor_temperature_sensor_2
+  - refrigerant_vapor_temperature_sensor_3
+  - refrigerant_vapor_temperature_sensor_4
+  - refrigerant_vapor_temperature_sensor_5
+  - refrigerant_vapor_temperature_sensor_6
+  - refrigerant_discharge_pressure_sensor_1
+  - refrigerant_discharge_pressure_sensor_2
+  - refrigerant_discharge_pressure_sensor_3
+  - refrigerant_discharge_pressure_sensor_4
+  - refrigerant_discharge_pressure_sensor_5
+  - refrigerant_discharge_pressure_sensor_6
+  - refrigerant_discharge_temperature_sensor_1
+  - refrigerant_discharge_temperature_sensor_2
+  - refrigerant_discharge_temperature_sensor_3
+  - refrigerant_discharge_temperature_sensor_4
+  - refrigerant_discharge_temperature_sensor_5
+  - refrigerant_discharge_temperature_sensor_6
+  - refrigerant_liquid_pressure_sensor_1
+  - refrigerant_liquid_pressure_sensor_2
+  - refrigerant_liquid_pressure_sensor_3
+  - refrigerant_liquid_pressure_sensor_4
+  - refrigerant_liquid_pressure_sensor_5
+  - refrigerant_liquid_pressure_sensor_6
+  - refrigerant_liquid_saturation_temperature_sensor_1
+  - refrigerant_liquid_saturation_temperature_sensor_2
+  - refrigerant_liquid_saturation_temperature_sensor_3
+  - refrigerant_liquid_saturation_temperature_sensor_4
+  - refrigerant_liquid_saturation_temperature_sensor_5
+  - refrigerant_liquid_saturation_temperature_sensor_6
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
+  - refrigerant_liquid_temperature_sensor_3
+  - refrigerant_liquid_temperature_sensor_4
+  - refrigerant_liquid_temperature_sensor_5
+  - refrigerant_liquid_temperature_sensor_6
+  - refrigerant_subcooling_temperature_sensor_1
+  - refrigerant_subcooling_temperature_sensor_2
+  - refrigerant_subcooling_temperature_sensor_3
+  - refrigerant_subcooling_temperature_sensor_4
+  - refrigerant_subcooling_temperature_sensor_5
+  - refrigerant_subcooling_temperature_sensor_6
+  uses:
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_3
+  - refrigerant_suction_temperature_sensor_4
+  - refrigerant_suction_temperature_sensor_5
+  - refrigerant_suction_temperature_sensor_6
+  - refrigerant_suction_pressure_sensor_1
+  - refrigerant_suction_pressure_sensor_2
+  - refrigerant_suction_pressure_sensor_3
+  - refrigerant_suction_pressure_sensor_4
+  - refrigerant_suction_pressure_sensor_5
+  - refrigerant_suction_pressure_sensor_6
+  - refrigerant_suction_saturation_temperature_sensor_1
+  - refrigerant_suction_saturation_temperature_sensor_2
+  - refrigerant_suction_saturation_temperature_sensor_3
+  - refrigerant_suction_saturation_temperature_sensor_4
+  - refrigerant_suction_saturation_temperature_sensor_5
+  - refrigerant_suction_saturation_temperature_sensor_6
+  - refrigerant_suction_superheat_temperature_sensor_1
+  - refrigerant_suction_superheat_temperature_sensor_2
+  - refrigerant_suction_superheat_temperature_sensor_3
+  - refrigerant_suction_superheat_temperature_sensor_4
+  - refrigerant_suction_superheat_temperature_sensor_5
+  - refrigerant_suction_superheat_temperature_sensor_6
+
 
 
 CCM:
@@ -9284,6 +9388,14 @@ HP6SWC:
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   - return_water_temperature_sensor
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  - compressor_speed_frequency_sensor_1
+  - compressor_speed_frequency_sensor_2
+  - compressor_speed_frequency_sensor_3
+  - compressor_speed_frequency_sensor_4
+  - compressor_speed_frequency_sensor_5
+  - compressor_speed_frequency_sensor_6
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
