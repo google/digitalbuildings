@@ -7439,6 +7439,7 @@ CPVSC2X:
   - OPERATIONAL
 
 CPVSC3X:
+  guid: "a4992381-936a-4521-9a65-305b703c938e"
   description: "Circulation pump variable speed control with 3 circulation pumps."
   is_abstract: true
   opt_uses:
@@ -7541,6 +7542,7 @@ RCKTM2X:
   - refrigerant_suction_temperature_sensor_2
 
 RCKTM6X:
+  guid: "a5e8f04e-2d5f-4c78-89e6-12ef1cdc6267"
   description: "Refrigeration circuits (6x) monitoring for a DX compressor loop."
   is_abstract: true
   opt_uses:
