@@ -90,6 +90,7 @@ PMP:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
