@@ -205,7 +205,7 @@ During the conversion of the ABEL spreadsheet to a building configuration YAML f
 
 Note that because the building does not exist in the cloud, there is no option to generate a spreadsheet off of an initial building configuration file as in the [Create a Spreadsheet then Convert it to a Building Configuration File](#create-a-spreadsheet-then-convert-it-to-a-building-configuration-file) section for existing buildings. The spreadsheet template must be manually copied instead as shown in step one below.
 
-1. Create a spreadsheet for ABEL from the [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy#gid=980240783) by following the link and clicking “Make a copy”.
+1. Create a spreadsheet for ABEL from the [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/15VRf_xdCBpklBpLra08MdgOz7c6uOgFwgM23WW8USRY/copy#gid=455639674) by following the link and clicking “Make a copy”.
 
 2. Populate your spreadsheet. A well-defined guide on how to populate your spreadsheet can be found in the [spreadsheet docs](https://github.com/google/digitalbuildings/blob/master/tools/abel/validators/README.md).
 
