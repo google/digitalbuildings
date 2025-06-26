@@ -3363,6 +3363,7 @@ literals:
 - schedule_run_command:
   - ON
   - OFF
+  - UNKNOWN
 - scrubber_run_command:
   - ON
   - OFF
