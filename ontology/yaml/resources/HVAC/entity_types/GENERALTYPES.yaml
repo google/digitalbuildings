@@ -473,6 +473,7 @@ HOOD:
   - fire_alarm
 
 SENSOR:
+  guid: "4bae4f60-3abe-4396-9200-218494e5f615"
   description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
