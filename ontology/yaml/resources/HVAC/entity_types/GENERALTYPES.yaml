@@ -471,12 +471,3 @@ HOOD:
   opt_uses:
   - failed_communication_alarm
   - fire_alarm
-
-SENSOR:
-  description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-  opt_uses:
-  - failed_alarm
-  - failed_communication_alarm
