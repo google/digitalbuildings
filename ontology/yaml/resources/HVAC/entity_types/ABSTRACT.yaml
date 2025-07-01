@@ -3443,7 +3443,7 @@ HPHC4ZC:
   - low_zone_air_temperature_alarm
   - cooling_request_count
   - heating_request_count
-  - zone_conditioning_mode 
+  - zone_conditioning_mode
   - heating_percentage_command
   - cooling_percentage_command
   uses:
