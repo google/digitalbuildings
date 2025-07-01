@@ -5259,6 +5259,23 @@ AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
   - ECOND
   - SRC
 
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFHCM_SARC_SFSS_SFVSC_SSPC:
+  guid: "382bf134-5ba5-47df-986e-a6109fde49df"
+  description: "Multi-zone AHU with compressive cooling coil controlling to reset supply air temperature, variable speed supply and exhaust, and minimum ventilation control with ventilation air heating and cooling."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - MOAFHCM
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

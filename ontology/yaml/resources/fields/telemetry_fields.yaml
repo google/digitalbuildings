@@ -166,12 +166,18 @@ literals:
 - bypass_status:
   - BYPASS
   - INACTIVE
+- bypass_valve_command:
+  - OPEN
+  - CLOSED
 - bypass_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - bypass_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- bypass_valve_status:
+  - OPEN
+  - CLOSED
 - bypass_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
@@ -1132,6 +1138,9 @@ literals:
 - failed_cooling_alarm: # for ASHP
   - ACTIVE
   - INACTIVE
+- failed_defrost_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_dehumidifier_alarm:
   - ACTIVE
   - INACTIVE
@@ -1772,6 +1781,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_condensing_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_defrost_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - high_differential_pressure_alarm:
@@ -3913,6 +3925,15 @@ literals:
 - valve_status:
   - OPEN
   - CLOSED
+- ventilation_outside_air_heating_cooling_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- bypass_ventilation_outside_air_heating_cooling_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- ventilation_outside_air_cooling_run_command:
+  - ON
+  - OFF
 - ventilation_outside_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -3925,6 +3946,9 @@ literals:
 - ventilation_outside_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 47.19474432
+- ventilation_outside_air_heating_run_command:
+  - ON
+  - OFF
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
