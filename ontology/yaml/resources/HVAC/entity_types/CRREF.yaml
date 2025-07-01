@@ -37,6 +37,7 @@ CRREF_CREFM:
   - CREFM
 
 CRREF_CREFC:
+  guid: "7e4b405c-52e2-42eb-a423-a1a23aa56a5f"
   description: "Typical coldroom refrigerator monitoring."
   is_canonical: true
   implements:

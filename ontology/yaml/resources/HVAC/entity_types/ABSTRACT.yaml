@@ -133,6 +133,7 @@ MOAFC:
   - CONTROL
 
 MOAFHCM:
+  guid: "e3bd2cf7-d8ac-4c92-8719-9e32bc88c742"
   description: "Minimum (ventilation) outside air flow control with a heating and cooling coil for conditioning outside air controlled to mixed air."
   is_abstract: true
   opt_uses:
@@ -2166,6 +2167,7 @@ CREFM:
   - zone_air_temperature_sensor
 
 CREFC:
+  guid: "453511f8-81cb-4a40-86e3-a79c35ebb9e4"
   description: "Cold Room Refrigerator control."
   is_abstract: true
   opt_uses:
@@ -4765,6 +4767,7 @@ BYPVPM:
   - MONITORING
 
 BYPVM:
+  guid: "a85ff3c0-87e1-4aa9-9cdd-709b9f15b19e"
   description: "Bypass water valve monitoring."
   is_abstract: true
   opt_uses:
@@ -9238,6 +9241,7 @@ PRWFRM:
   - MONITORING
 
 PRWFRC:
+  guid: "c3cd62da-148d-4dc6-84a1-a84527dcacaa"
   description: "Primary supply water flowrate control"
   uses:
   - primary_supply_water_flowrate_sensor
@@ -9497,6 +9501,7 @@ HP8SWC:
   - CONTROL
 
 HP16SWC:
+  guid: "10a296de-4115-413f-a036-abcac89ea6a2"
   description: "Sixteen-compressor heat pump control on supply water side."
   is_abstract: true
   opt_uses:
@@ -10024,6 +10029,7 @@ CDPM:
   - chilled_water_differential_pressure_sensor
 
 OAHCCM:
+  guid: "99c9559b-ba1a-4a2a-b178-6e7b676f4b38"
   description: "Outside air coil heating and cooling coil controlled by mixed air"
   is_abstract: true
   implements:

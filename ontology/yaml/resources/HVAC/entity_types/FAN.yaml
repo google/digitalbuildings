@@ -77,6 +77,7 @@ FAN_SS_VSC_ZSPC:
   - ZSPC
 
 FAN_SS_VSC_ZSPC_ZTM:
+  guid: "ce1ab10f-bc6f-420e-8414-73982323bdd5"
   description: "Fan with start/stop status, open-loop speed control, zone static pressure control, and zone temperature monitoring."
   is_canonical: true
   implements:

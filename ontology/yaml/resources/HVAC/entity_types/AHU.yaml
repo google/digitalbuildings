@@ -6138,6 +6138,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - min_zone_air_relative_humidity_setpoint
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFHCM_SARC_SFSS_SFVSC_SSPC:
+  guid: "382bf134-5ba5-47df-986e-a6109fde49df"
   description: "Multi-zone AHU with minimum ventilation control and ventilation air heating and cooling."
   is_canonical: true
   implements:

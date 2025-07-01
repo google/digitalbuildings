@@ -240,6 +240,7 @@ BLR_SS_SWTC_CPC_BYPVPM:
   - BYPVPM
 
 BLR_SS_SWTC_SWISOVM_BYPVM:
+  guid: "bcdb2b65-97ae-4f10-8e04-f034a51dca09"
   description: "Simple boiler with isolation valve and bypass valve."
   is_canonical: true
   implements:

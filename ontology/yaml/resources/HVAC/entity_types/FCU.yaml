@@ -463,6 +463,7 @@ FCU_DFSS_DFVSC_DSP_CHWZC:
   - CHWZC
 
 FCU_DFSS_DFVSC_DSP_CHWZC_CO2M:
+  guid: "cc3cba8c-c892-4fa6-ac54-ddc6299900dc"
   description: "Hydronic variable speed fan coil with cooling (zone temp control) and co2 monitoring."
   is_canonical: true
   implements:

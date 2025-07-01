@@ -38,6 +38,7 @@ HOOD_PDSCV_EDPM:
   - EDPM
 
 HOOD_ZTM2X:
+  guid: "ba33a591-ed76-46b2-9a6d-506e8552e010"
   description: "Kitchen Hood with two temperature sensors for temperature monitoring"
   is_canonical: true
   implements:
@@ -45,6 +46,7 @@ HOOD_ZTM2X:
   - ZTM2X
 
 HOOD_ZTM:
+  guid: "c0dbbe12-06d1-44a1-811e-a1e9f40d1193"
   description: "Kitchen Hood with temperature monitoring"
   is_canonical: true
   implements:
