@@ -239,6 +239,16 @@ BLR_SS_SWTC_CPC_BYPVPM:
   - CPC
   - BYPVPM
 
+BLR_SS_SWTC_SWISOVM_BYPVM:
+  description: "Simple boiler with isolation valve and bypass valve."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVM
+  - BYPVM
+
 BLR_SS_SWTC_CPC_RWISOVPM:
   guid: "5bda5fb8-68ca-4ed2-afff-6e76e4008059"
   description: "Simple boiler with onboard circulation pump and return water isolation valve percentage monitoring."

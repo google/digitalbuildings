@@ -180,3 +180,12 @@ ASHP_SS_HP6SWC_CPVSC3X_SHWISOVPM_RCKTM6X:
   - CPVSC3X
   - SHWISOVPM
   - RCKTM6X
+
+ASHP_SS_HP16SWC:
+  guid: "b4931d87-f85e-4e7e-969f-0f13f894731a"
+  description: "Air source heat pump for a hot water system with a six-stage air source heat pump, supply water isolation valve, and refrigerant circuit monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP16SWC

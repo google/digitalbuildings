@@ -1125,6 +1125,18 @@ CH_SS_PSWTC_PWDPC_CWDT_CWDPM_PSWISOVPM_CWRISOVPM_CLPM:
   - CWRISOVPM
   - CLPM
 
+CH_SS_CLPM_DX6SWC_SWTC_WDPM:
+  description: "Six-stage air-cooled chiller with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CLPM
+  - DX6SWC
+  - SWTC
+  - WDPM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

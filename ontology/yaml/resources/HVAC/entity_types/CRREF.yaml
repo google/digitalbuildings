@@ -36,6 +36,13 @@ CRREF_CREFM:
   - CRREF
   - CREFM
 
+CRREF_CREFC:
+  description: "Typical coldroom refrigerator monitoring."
+  is_canonical: true
+  implements:
+  - CRREF
+  - CREFC
+
 CRREF_SS_CREFM:
   guid: "d5111ded-9762-46e2-8ab0-59be2ac8a9f3"
   description: "Coldroom refrigerator with start/stop."

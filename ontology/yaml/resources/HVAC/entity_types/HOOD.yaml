@@ -37,3 +37,16 @@ HOOD_PDSCV_EDPM:
   - PDSCV
   - EDPM
 
+HOOD_ZTM2X:
+  description: "Kitchen Hood with two temperature sensors for temperature monitoring"
+  is_canonical: true
+  implements:
+  - HOOD
+  - ZTM2X
+
+HOOD_ZTM:
+  description: "Kitchen Hood with temperature monitoring"
+  is_canonical: true
+  implements:
+  - HOOD
+  - ZTM

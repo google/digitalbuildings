@@ -462,6 +462,16 @@ HWS_PWDT_SESWTC_SEWDPC_SERWFRM_SEWTM:
   - SERWFRM
   - SEWTM
 
+HWS_PWDT_SESWTC_SEWDPC_PRWFRC:
+  description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and primary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - SESWTC
+  - SEWDPC
+  - PRWFRC
+
 HWS_PWDT_SESWTC_SEWDPC_SEWFRM_SEWTM:
   guid: "c4b12289-b658-4a9e-ad78-aedc76671d7e"
   description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and secondary supply flowrate monitoring."
