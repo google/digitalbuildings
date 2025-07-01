@@ -42,7 +42,7 @@ CRREF_DEFSTC:
   is_canonical: true
   implements:
   - CRREF
-  - CREFC
+  - DEFSTC
 
 CRREF_SS_CREFM:
   guid: "d5111ded-9762-46e2-8ab0-59be2ac8a9f3"
