@@ -88,6 +88,13 @@ HX_CHWDT_CWDT_CLPM:
   - CWDT
   - CLPM
 
+HX_CHWRWISOVPM:
+  description: "Chilled water heat exchanger."
+  is_canonical: true
+  implements:
+  - HX
+  - CHWRWISOVPM
+
 HX_CHWDT_CHWRWISOVPM:
   guid: "29bca835-c90f-4d75-bc1c-e3c6c449f476"
   description: "Chilled water heat exchanger."

@@ -771,6 +771,16 @@ CH_SS_SCHWTC_CHDXSC_CHWDPM_CHWFRM_CHWRWISOVM_CWDT_CDWFRM_CWRISOVM_REFPM_IGM:
   - REFPM
   - IGM
 
+CH_VSC_CHDX2SC_CHWSWISOVM_CWRISOVM:
+  description: "Water-cooled chiller with two compressors."
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - CHDX2SC
+  - CHWSWISOVM
+  - CWRISOVM
+
 CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
   guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
   description: "Water cooled chiller with condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled water differential pressure monitoring and single circuit refrigerant pressure and temperature monitoring."
