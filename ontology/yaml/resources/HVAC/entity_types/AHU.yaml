@@ -351,14 +351,14 @@ AHU_DFSS_DXZC_ECONM:
   - DXZC
   - ECONM
 
-AHU_DFSS_DX2ZC_ECONM:
+AHU_DFSS_DX2ZC_ECONMD:
   description: "Single zone AHU with dual stage compressor."
   is_canonical: true
   implements:
   - AHU
   - DFSS
   - DX2ZC
-  - ECONM
+  - ECONMD
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC:
   guid: "8b064238-63ae-4100-bafe-154ea86bef72"
