@@ -1127,7 +1127,7 @@ CH_SS_PSWTC_PWDPC_CWDT_CWDPM_PSWISOVPM_CWRISOVPM_CLPM:
 
 CH_SS_CLPM_DX6SWC_SWTC_WDPM:
   guid: "b35818cd-5618-4c59-8837-4dcb6874ecd9"
-  description: "Six-stage air-cooled chiller with differential pressure monitoring."
+  description: "Six-stage air-cooled chiller with differential pressure monitoring and cooling power and capacity sensors."
   is_canonical: true
   implements:
   - CH
