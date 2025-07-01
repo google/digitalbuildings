@@ -351,6 +351,16 @@ AHU_DFSS_DXZC_ECONM:
   - DXZC
   - ECONM
 
+AHU_DFSS_DX2ZC_ECONMD:
+  guid: "118f8010-f86a-4fbb-9434-f743bf28463b"
+  description: "Single zone AHU with dual stage compressor."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DX2ZC
+  - ECONMD
+
 AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC:
   guid: "8b064238-63ae-4100-bafe-154ea86bef72"
   description: "Single zone AHU."
@@ -2014,6 +2024,21 @@ AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SFVSC
   - SSPC
   - SARC
+
+AHU_DX2SC_HWSC_ECONM_EFVSC_SFVSC_SSPC_SARC_BSPC:
+  guid: "f6c2c54a-a89b-4475-9472-d9800e5a1784"
+  description: "Multi-zone AHU with two stage compressor cooling control and heating water valve control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX2SC
+  - HWSC
+  - ECONM
+  - EFVSC
+  - SFVSC
+  - SSPC
+  - SARC
+  - BSPC
 
 AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_HT2SC_SARC_SFSS_SFVSC_SSPC:
   guid: "f02c8b88-3a00-4477-b8b7-f629ccc7efcb"
