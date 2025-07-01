@@ -2354,6 +2354,7 @@ ZSPM:
   - low_zone_air_static_pressure_alarm
 
 ZSPM2X:
+  guid: "5422c0e2-a7d3-4837-b803-7c9bc8055f9c"
   description: "Zone static pressure monitoring for two sensors."
   is_abstract: true
   uses:
@@ -7366,6 +7367,7 @@ HPDDC:
   - CONTROL
 
 HP4DDC:
+  guid: "603aad13-8565-435e-96e6-5d480e1089d5"
   description: "Dual setpoint discharge side heat pump control with four compressors."
   is_abstract: true
   opt_uses:
