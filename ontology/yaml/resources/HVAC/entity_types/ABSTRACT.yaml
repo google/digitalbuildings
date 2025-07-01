@@ -9779,6 +9779,7 @@ CFVSC:
   - condensing_fan_speed_percentage_command
 
 CFVSC3X:
+  guid: "888cba96-f178-42b5-b2d9-5cd9efb63974"
   description: "Variable speed control for 3 condensing fans."
   is_abstract: true
   uses:
