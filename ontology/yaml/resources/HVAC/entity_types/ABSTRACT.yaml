@@ -10027,15 +10027,3 @@ CDPM:
   - low_limit_chilled_water_differential_pressure_setpoint
   uses:
   - chilled_water_differential_pressure_sensor
-
-OAHCCM:
-  guid: "99c9559b-ba1a-4a2a-b178-6e7b676f4b38"
-  description: "Outside air coil heating and cooling coil controlled by mixed air"
-  is_abstract: true
-  implements:
-  - MONITORING
-  opt_uses:
-  - low_chilled_water_differential_pressure_alarm
-  uses:
-  - chilled_water_differential_pressure_sensor
-
