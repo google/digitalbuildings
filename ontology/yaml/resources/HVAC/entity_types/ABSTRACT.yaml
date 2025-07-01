@@ -2166,17 +2166,6 @@ CREFM:
   - defrost_temperature_sensor
   - zone_air_temperature_sensor
 
-CREFC:
-  guid: "453511f8-81cb-4a40-86e3-a79c35ebb9e4"
-  description: "Cold Room Refrigerator control."
-  is_abstract: true
-  opt_uses:
-  - high_defrost_temperature_alarm
-  - failed_defrost_temperature_alarm
-  uses:
-  - defrost_temperature_sensor
-  - defrost_temperature_setpoint
-
 EPC:
   guid: "3d28895c-d30d-4316-bfb6-1dd70b8ad698"
   description: "Exhaust pressure control."
@@ -8004,7 +7993,8 @@ DEFSTC:
   - defrost_temperature_sensor
   - defrost_temperature_setpoint
   opt_uses:
-  - frost_alarm
+  - high_defrost_temperature_alarm
+  - failed_defrost_temperature_alarm
 
 
 VOADC2X:
@@ -9237,15 +9227,6 @@ PRWFRM:
   description: "Primary supply water flowrate monitoring"
   uses:
   - primary_supply_water_flowrate_sensor
-  implements:
-  - MONITORING
-
-PRWFRC:
-  guid: "c3cd62da-148d-4dc6-84a1-a84527dcacaa"
-  description: "Primary supply water flowrate control"
-  uses:
-  - primary_supply_water_flowrate_sensor
-  - primary_supply_water_flowrate_setpoint
   implements:
   - MONITORING
 

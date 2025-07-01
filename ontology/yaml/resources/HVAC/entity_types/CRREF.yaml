@@ -36,9 +36,9 @@ CRREF_CREFM:
   - CRREF
   - CREFM
 
-CRREF_CREFC:
+CRREF_DEFSTC:
   guid: "7e4b405c-52e2-42eb-a423-a1a23aa56a5f"
-  description: "Typical coldroom refrigerator monitoring."
+  description: "Coldroom refrigerator control to defrost temperature."
   is_canonical: true
   implements:
   - CRREF
