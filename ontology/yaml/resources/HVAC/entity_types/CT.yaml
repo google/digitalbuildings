@@ -54,6 +54,7 @@ CT_SS_VSC_SPSS:
   - SPSS
 
 CT_VSC_SWTC_RWISOVM:
+  guid: "bfa62d7b-a8f0-4682-bd17-e80090dd79f7"
   description: "Evaporative cooler with onboard spray pump."
   is_canonical: true
   implements:

@@ -266,6 +266,7 @@ CHWS_SWTC_WDPC_BYPVFRC_CLPM:
   - CLPM
 
 CHWS_SWTC_WDPC_CLPM_MINFC:
+  guid: "ee576902-b1bc-4e34-9940-5f8d0559d516"
   description: "Chilled water system with process water (typically used in lab applications)."
   is_canonical: true
   implements:
