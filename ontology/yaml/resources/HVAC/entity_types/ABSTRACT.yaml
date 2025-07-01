@@ -734,6 +734,7 @@ SFVSC:
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
   - failed_inverter_alarm
+  - schedule_run_command
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -2847,6 +2848,7 @@ DX2ZC:
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
   - cooling_stage_run_count
+  - failed_compressor_alarm
   - failed_compressor_alarm_1
   - failed_compressor_alarm_2
   uses:
@@ -9775,6 +9777,20 @@ CFVSC:
   - condensing_fan_run_command
   - condensing_fan_run_status
   - condensing_fan_speed_percentage_command
+
+CFVSC3X:
+  description: "Variable speed control for 3 condensing fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command_1
+  - condensing_fan_run_command_2
+  - condensing_fan_run_command_3
+  - condensing_fan_run_status_1
+  - condensing_fan_run_status_2
+  - condensing_fan_run_status_3
+  - condensing_fan_speed_percentage_command_1
+  - condensing_fan_speed_percentage_command_2
+  - condensing_fan_speed_percentage_command_3
 
 RVINJM2X:
   guid: "4bcc49eb-6a3c-450a-8357-5dd1f5a8ce4d"
