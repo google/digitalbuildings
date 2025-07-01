@@ -2353,6 +2353,15 @@ ZSPM:
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
 
+ZSPM2X:
+  description: "Zone static pressure monitoring for two sensors."
+  is_abstract: true
+  uses:
+  - zone_air_static_pressure_sensor_1
+  - zone_air_static_pressure_sensor_2
+  implements:
+  - MONITORING
+
 MSSPC:
   guid: "bd480ae4-6184-466e-ba95-3bd8bb2f76f3"
   description: "Minimum supply air static pressure control."
@@ -7354,6 +7363,30 @@ HPDDC:
   implements:
   - CONTROL
 
+HP4DDC:
+  description: "Dual setpoint discharge side heat pump control with four compressors."
+  is_abstract: true
+  opt_uses:
+  - cooling_percentage_command
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_lost_power_alarm
+  - failed_discharge_air_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - reversing_valve_command
+  implements:
+  - CONTROL
 
 EC2SC:
   guid: "6bf5cfa7-5659-4919-8c34-d60c8e931492"
