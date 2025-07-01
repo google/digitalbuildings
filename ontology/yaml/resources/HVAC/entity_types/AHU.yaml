@@ -351,7 +351,8 @@ AHU_DFSS_DXZC_ECONM:
   - DXZC
   - ECONM
 
-AHU_DFSS_DX2ZC_ECONMD:
+AHU_DFSS_DX2ZC_ECONM:
+  guid: "118f8010-f86a-4fbb-9434-f743bf28463b"
   description: "Single zone AHU with dual stage compressor."
   is_canonical: true
   implements:
@@ -2025,6 +2026,7 @@ AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SARC
 
 AHU_DX2SC_HWSC_ECONM_EFVSC_SFVSC_SSPC_SARC_BSPC:
+  guid: "f6c2c54a-a89b-4475-9472-d9800e5a1784"
   description: "Multi-zone AHU with two stage compressor cooling control and heating water valve control."
   is_canonical: true
   implements:
@@ -5256,6 +5258,23 @@ AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
   - BSPC
   - ECOND
   - SRC
+
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFHCM_SARC_SFSS_SFVSC_SSPC:
+  guid: "382bf134-5ba5-47df-986e-a6109fde49df"
+  description: "Multi-zone AHU with compressive cooling coil controlling to reset supply air temperature, variable speed supply and exhaust, and minimum ventilation control with ventilation air heating and cooling."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - MOAFHCM
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 ###################################
 ### Existing Non-standard Types ###

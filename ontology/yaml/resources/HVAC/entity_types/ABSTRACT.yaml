@@ -132,6 +132,29 @@ MOAFC:
   implements:
   - CONTROL
 
+MOAFHCM:
+  guid: "e3bd2cf7-d8ac-4c92-8719-9e32bc88c742"
+  description: "Minimum (ventilation) outside air flow control with a heating and cooling coil for conditioning outside air controlled to mixed air."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - ventilation_request_count
+  - low_ventilation_outside_air_flowrate_alarm
+  - failed_ventilation_outside_air_flowrate_alarm
+  - failed_ventilation_outside_air_damper_alarm
+  - ventilation_outside_air_damper_percentage_sensor
+  uses:
+  - ventilation_outside_air_damper_percentage_command
+  - ventilation_outside_air_flowrate_sensor
+  - ventilation_outside_air_flowrate_setpoint
+  - ventilation_outside_air_heating_run_command
+  - ventilation_outside_air_cooling_run_command
+  - ventilation_outside_air_heating_cooling_valve_percentage_command
+  - bypass_ventilation_outside_air_heating_cooling_damper_percentage_command
+  - mixed_air_temperature_sensor
+  - mixed_air_temperature_setpoint
+  implements:
+  - CONTROL
 
 OAFC:
   guid: "9a39e296-caaa-41d8-a1b2-af9255eb4019"
@@ -2144,7 +2167,6 @@ CREFM:
   - defrost_temperature_sensor
   - zone_air_temperature_sensor
 
-
 EPC:
   guid: "3d28895c-d30d-4316-bfb6-1dd70b8ad698"
   description: "Exhaust pressure control."
@@ -3445,7 +3467,7 @@ HPHC4ZC:
   - low_zone_air_temperature_alarm
   - cooling_request_count
   - heating_request_count
-  - zone_conditioning_mode 
+  - zone_conditioning_mode
   - heating_percentage_command
   - cooling_percentage_command
   uses:
@@ -4733,6 +4755,18 @@ BYPVPM:
   - economizer_mode
   uses:
   - bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+BYPVM:
+  guid: "a85ff3c0-87e1-4aa9-9cdd-709b9f15b19e"
+  description: "Bypass water valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_status
+  - failed_bypass_valve_alarm
+  uses:
+  - bypass_valve_command
   implements:
   - MONITORING
 
@@ -6912,6 +6946,7 @@ SESWTC:
   - high_secondary_return_water_temperature_alarm
   - low_secondary_return_water_temperature_alarm
   - run_command
+  - warmup_run_command
   - high_secondary_supply_water_temperature_alarm
   - low_secondary_supply_water_temperature_alarm
   - secondary_water_heating_thermal_power_sensor
@@ -7962,6 +7997,8 @@ DEFSTC:
   - defrost_temperature_setpoint
   opt_uses:
   - frost_alarm
+  - high_defrost_temperature_alarm
+  - failed_defrost_temperature_alarm
 
 
 VOADC2X:
@@ -9448,6 +9485,56 @@ HP8SWC:
   implements:
   - CONTROL
 
+HP16SWC:
+  guid: "10a296de-4115-413f-a036-abcac89ea6a2"
+  description: "Sixteen-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_command_7
+  - compressor_run_command_8
+  - compressor_run_command_9
+  - compressor_run_command_10
+  - compressor_run_command_11
+  - compressor_run_command_12
+  - compressor_run_command_13
+  - compressor_run_command_14
+  - compressor_run_command_15
+  - compressor_run_command_16
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
+  - compressor_run_status_7
+  - compressor_run_status_8
+  - compressor_run_status_9
+  - compressor_run_status_10
+  - compressor_run_status_11
+  - compressor_run_status_12
+  - compressor_run_status_13
+  - compressor_run_status_14
+  - compressor_run_status_15
+  - compressor_run_status_16
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 CPC2X:
   guid: "a45b771d-0bc2-49a4-8a4f-5e3287f65ff0"
   description: "Circulation control for 2 pumps."
@@ -9780,6 +9867,7 @@ CFVSC:
   - condensing_fan_speed_percentage_command
 
 CFVSC3X:
+  guid: "888cba96-f178-42b5-b2d9-5cd9efb63974"
   description: "Variable speed control for 3 condensing fans."
   is_abstract: true
   uses:

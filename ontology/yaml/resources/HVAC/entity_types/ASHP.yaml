@@ -47,6 +47,7 @@ ASHP_SS_HP8SWC_SWISOVM_WDPM:
 
 
 ASHP_SS_HP6SWC_CFVSC3X_CPC2X:
+  guid: "9757814e-187f-4c3f-9a53-99d8c28ec8e6"
   description: "Six-stage air source heat pump with 2 circulation pumps and 3 condensing fan variable speed control."
   is_canonical: true
   implements:
@@ -199,3 +200,12 @@ ASHP_SS_HP6SWC_CPVSC3X_SHWISOVPM_RCKTM6X:
   - CPVSC3X
   - SHWISOVPM
   - RCKTM6X
+
+ASHP_SS_HP16SWC:
+  guid: "84e46b3c-7f8c-4deb-8c50-dfdb09188d9a"
+  description: "Air source heat pump for a hot water system with a sixteen-stage air source heat pump controlling to supply water temperature."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP16SWC
