@@ -173,7 +173,6 @@ OAFC:
   implements:
   - CONTROL
 
-
 ZTM:
   guid: "869b8713-9b16-4ca0-b957-630c26e9e506"
   description: "Zone temperature monitoring."
