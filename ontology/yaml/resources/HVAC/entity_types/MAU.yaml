@@ -953,6 +953,22 @@ MAU_DFSS_DFVSC_BPC_DSP_ECDDC_HTDDC_OA:
   - HTDDC
   - OA
 
+MAU_DFVSC2X_HP4DDC_HTDDC_OA_ZSPM2X_ZTM:
+  guid: "58abd50b-2fe0-4458-876f-d43a961ea624"
+  description: "Single zone MAU with heat pump with four compressors on two circuits controlling to dual setpoint, auxillery electric heater, and zone pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFVSC2X
+  - HP4DDC
+  - HTDDC
+  - OA
+  - ZSPM2X
+  - ZTM
+  opt_uses:
+  - refrigerant_suction_pressure_sensor_1
+  - refrigerant_suction_pressure_sensor_2
+
 ############################
 ###   Remap These Types  ###
 ############################
