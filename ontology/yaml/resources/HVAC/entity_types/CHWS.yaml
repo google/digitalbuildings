@@ -266,7 +266,7 @@ CHWS_SWTC_WDPC_BYPVFRC_CLPM:
   - CLPM
 
 CHWS_SWTC_WDPC_CLPM_MINFC:
-  description: "Chilled water system with process water (typically used in lab applications)."
+  description: "Chilled water system with supply water temperature control, differential pressure control, cooling thermal monitoring, and minimum flow control."
   is_canonical: true
   implements:
   - CHWS

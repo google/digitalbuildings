@@ -54,7 +54,7 @@ CT_SS_VSC_SPSS:
   - SPSS
 
 CT_VSC_SWTC_RWISOVM:
-  description: "Evaporative cooler with onboard spray pump."
+  description: "Evaporative cooler with variable speed control, supply water temperature control, and return side isolation valve control."
   is_canonical: true
   implements:
   - CT

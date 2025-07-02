@@ -126,7 +126,7 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_EDBPC_ECONZ:
 
 AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
   guid: "9e0c9201-3b04-4173-ae3c-ea2b08b8530c"
-  description: "Single zone AHU with supply fan, exhaust fan, chilled water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, and economizer."
+  description: "Single zone AHU with discharge fan, exhaust fan, chilled water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, and economizer."
   is_canonical: true
   implements:
   - AHU
@@ -167,7 +167,7 @@ AHU_DFVSC_EFSS_DX2DC_HTDC_ECOND_RTM_EDBPC_DSP:
   - EDBPC
   - DSP
 
-AHU_DFVSC_EFSS_DX2DDC_HTDDC_ECONM_EDBPC_DSP:
+AHU_DFVSC_EFSS_DX2DDC_HTDDC_ECONMD_EDBPC_DSP:
   description: "Single zone AHU with discharge fan, exhaust fan, two stage DX cooling coil, gas heating coil, economizer, building static pressure control with exhaust damper, and dual setpoint control."
   is_canonical: true
   implements:
@@ -176,7 +176,7 @@ AHU_DFVSC_EFSS_DX2DDC_HTDDC_ECONM_EDBPC_DSP:
   - EFSS
   - DX2DDC
   - HTDDC
-  - ECONM
+  - ECONMD
   - EDBPC
   - DSP
 
@@ -194,7 +194,7 @@ AHU_SFVSC_EFVSC_DX2SC_HTSC_EDBPC_ECON:
   - ECON
 
 AHU_SFVSC_SFC_EFVSC_ECON_EDBPC_SSPC_DX4SC_SARC:
-  description: "Multi zone AHU with supply fan, exhaust fan, economizer, building static pressure control with exhaust damper, and four stage DX cooling coil."
+  description: "Multi zone AHU with supply fan, exhaust fan, economizer, building static pressure control with exhaust damper, four stage DX cooling coil, and supply air reset control."
   is_canonical: true
   implements:
   - AHU
@@ -219,19 +219,6 @@ AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_SARC_DX4SC:
   - SSPC
   - SARC
   - DX4SC
-
-AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_DX4SC_SARC:
-  description: "Multi zone AHU with supply fan, exhaust fan, economizer, building static pressure control with exhaust damper, and four stage DX cooling coil."
-  is_canonical: true
-  implements:
-  - AHU
-  - SFVSC
-  - EFVSC
-  - ECON
-  - EDBPC
-  - SSPC
-  - DX4SC
-  - SARC
 
 AHU_SFVSC_HP2SC_ECON_SSPC:
   guid: "a57b7145-ad60-4afb-a73f-9b7c2f81bcd5"
