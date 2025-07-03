@@ -72,3 +72,11 @@ WM_PULSE:
   - water_flowrate_counter
   opt_uses:
   - flowrate_sensor
+
+WM_LM:
+description: "Tank water level monitoring."
+is_canonical: true
+implements:
+- WM
+uses:
+- water_level_sensor
