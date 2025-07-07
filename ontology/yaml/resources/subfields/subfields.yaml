@@ -278,7 +278,6 @@ descriptor:
   zone: "Region of building which is conditioned."
 measurement:
   acceleration: "The rate of change of velocity per unit of time."
-  accuracy: "The degree of closeness of a measured or calculated value to its actual (true) value."
   angle: "The figure formed by two rays, sharing a common endpoint."
   angularmomentum: "The quantity of rotation of a body, which is the product of its moment of inertia and its angular velocity."
   aqi: "Abbreviation for air quality index, which is a set of special standard gradings for the pollution in air."
@@ -350,6 +349,7 @@ measurement:
   xvalue: "X-value of a matrix."
   yvalue: "Y-value of a matrix."
 measurement_descriptor:
+  accuracy: "The degree of closeness of a measured or calculated value to its actual (true) value."
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g., absolute temperature)."
   apparent: "The combination of reactive and real components (power)."
   brightness: "Giving out or reflecting light; overall level of light in a space."
