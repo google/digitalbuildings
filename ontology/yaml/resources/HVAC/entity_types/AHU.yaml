@@ -226,20 +226,6 @@ AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_SARC_DX4SC:
   - SARC
   - DX4SC
 
-AHU_SFVSC_EFVSC_ECON_EDBPC_SSPC_DX4SC_SARC:
-  guid: "2045be74-cba6-4028-80db-26fe511e023f"
-  description: "Multi zone AHU with supply fan, exhaust fan, economizer, building static pressure control with exhaust damper, and four stage DX cooling coil."
-  is_canonical: true
-  implements:
-  - AHU
-  - SFVSC
-  - EFVSC
-  - ECON
-  - EDBPC
-  - SSPC
-  - DX4SC
-  - SARC
-
 AHU_SFVSC_HP2SC_ECON_SSPC:
   guid: "a57b7145-ad60-4afb-a73f-9b7c2f81bcd5"
   description: "Multi zone AHU with supply fan, heat pump with two compressors, economizer, and supply static pressure control."
@@ -653,14 +639,14 @@ AHU_DFSS_DSP_ECONZ_HPZC_HTZC:
   - HPZC
   - HTZC
 
-AHU_DFSS_ECONM_HPZC_HT2ZC:
+AHU_DFSS_ECONMD_HPZC_HT2ZC:
   guid: "c5fe96b8-66b9-4267-8e7e-e4b2801755ff"
   description: "Single zone AHU with economizer, heat pump, and two stage heating coil."
   is_canonical: true
   implements:
   - AHU
   - DFSS
-  - ECONM
+  - ECONMD
   - HPZC
   - HT2ZC
 
