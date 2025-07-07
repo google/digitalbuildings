@@ -128,6 +128,7 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_BSPC_ECONZ:
   - ECONZ
 
 AHU_DFVSC_EFVSC_BSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
+  guid: "5d5e85e8-f331-4ab6-bfdb-930e049ed8b7"
   description: "Single zone AHU with discharge fan, exhaust fan, chilled water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, and economizer."
   is_canonical: true
   implements:
