@@ -169,12 +169,18 @@ literals:
 - bypass_status:
   - BYPASS
   - INACTIVE
+- bypass_valve_command:
+  - OPEN
+  - CLOSED
 - bypass_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - bypass_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- bypass_valve_status:
+  - OPEN
+  - CLOSED
 - bypass_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
@@ -340,6 +346,15 @@ literals:
 - circulation_changeover_isolation_valve_status:
   - OPEN
   - CLOSED
+- circulation_pump_current_sensor:
+    fixed_min: 0.0
+    flexible_max: 200.0
+- circulation_pump_energy_accumulator:
+    fixed_min: 0.0
+    flexible_max: 36000000000000.0
+- circulation_pump_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 10000000.0
 - circulation_pump_run_command:
   - ON
   - OFF
@@ -693,6 +708,9 @@ literals:
 - discharge_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- discharge_air_dehumidification_relative_humidity_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - discharge_air_dewpoint_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
@@ -720,6 +738,9 @@ literals:
 - discharge_air_heating_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
+- discharge_air_humidification_relative_humidity_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - discharge_air_isolation_damper_closed_status:
   - OPEN
   - CLOSED
@@ -1016,6 +1037,9 @@ literals:
 - exhaust_fan_current_sensor:
     fixed_min: 0.0
     flexible_max: 100.0
+- exhaust_fan_energy_accumulator:
+    fixed_min: 0.0
+    flexible_max: 36000000000000.0
 - exhaust_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
@@ -1115,6 +1139,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_cooling_alarm: # for ASHP
+  - ACTIVE
+  - INACTIVE
+- failed_defrost_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - failed_dehumidifier_alarm:
@@ -1757,6 +1784,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_condensing_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_defrost_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - high_differential_pressure_alarm:
@@ -3348,6 +3378,7 @@ literals:
 - schedule_run_command:
   - ON
   - OFF
+  - UNKNOWN
 - scrubber_run_command:
   - ON
   - OFF
@@ -3897,6 +3928,15 @@ literals:
 - valve_status:
   - OPEN
   - CLOSED
+- ventilation_outside_air_heating_cooling_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- bypass_ventilation_outside_air_heating_cooling_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- ventilation_outside_air_cooling_run_command:
+  - ON
+  - OFF
 - ventilation_outside_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -3909,6 +3949,9 @@ literals:
 - ventilation_outside_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 47.19474432
+- ventilation_outside_air_heating_run_command:
+  - ON
+  - OFF
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
