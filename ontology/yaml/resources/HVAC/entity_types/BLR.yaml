@@ -65,6 +65,17 @@ BLR_SS_SWTC_SWISOVM:
   - SWTC
   - SWISOVM
 
+BLR_SS_SWTC_SWISOVM_WDPM:
+  guid: "8950fb20-36e4-4c4d-857f-a4fd563e8616"
+  description: "Simple boiler with supply control, binary supply isolation, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVM
+  - WDPM
+
 BLR_CPC_SS_SWTC_SWISOVM:
   guid: "98a97286-b59a-43f0-852e-25c7d736408f"
   description: "Simple boiler with supply control, binary supply isolation, and an onboard circulation pump."
@@ -228,6 +239,17 @@ BLR_SS_SWTC_CPC_BYPVPM:
   - CPC
   - BYPVPM
 
+BLR_SS_SWTC_SWISOVM_BYPVM:
+  guid: "bcdb2b65-97ae-4f10-8e04-f034a51dca09"
+  description: "Simple boiler with isolation valve and bypass valve."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVM
+  - BYPVM
+
 BLR_SS_SWTC_CPC_RWISOVPM:
   guid: "5bda5fb8-68ca-4ed2-afff-6e76e4008059"
   description: "Simple boiler with onboard circulation pump and return water isolation valve percentage monitoring."
@@ -261,6 +283,17 @@ BLR_SS_SWTC_CPC_HT2SWC:
   - SWTC
   - CPC
   - HT2SWC
+
+BLR_SS_SWTC_RWISOVPM_WDPM:
+  guid: "31b471b9-24a9-4bc7-abc9-9aadcab03a52"
+  description: "Boiler with supply water temperature control, differential pressure monitoring, and return isolation valve percentage control."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - RWISOVPM
+  - WDPM
 
 BLR_SS_SWTC_WDPC:
   guid: "f9307528-e827-4f25-be91-4ef3caa19d94"

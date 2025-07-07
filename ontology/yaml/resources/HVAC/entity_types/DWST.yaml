@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DWST_SWTC:
+  guid: "5f4e3653-79ab-4017-96fd-92167ae1594c"
+  description: "Domestic water system with supply water temperature control."
+  implements:
+  - DWST
+  - SWTC
 
 DWST_CWDT_SWTC_CPC:
   guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"
@@ -55,6 +61,14 @@ DWST_WDT:
   - DWST
   - WDT
 
+DWST_SWTC2X:
+  guid: "c964ac91-0557-4545-b237-2d5156fe4a42"
+  description: "Domestic water system with two sensors supply water temperature control."
+  is_canonical: true
+  implements:
+  - DWST
+  - SWTC2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -63,8 +77,7 @@ DWST_WDT:
 DWST_SWTC_CPVSC2X_WSHP2X:
   guid: "7f92f630-cd94-40a0-aa48-9d702bc50b30"
   description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps.
-  The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a
-  common setpoint."
+  The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a common setpoint."
   is_canonical: false
   implements:
   - DWST
@@ -100,24 +113,6 @@ DWST_HWDT_CPC_SWTC2X_HWFM_HSWPM:
   - CPC
   - HLPM
   uses:
-  - supply_water_temperature_sensor_1
-  - supply_water_temperature_sensor_2
-  - supply_water_temperature_setpoint
-  - heating_water_flowrate_sensor
-
-DWST_HWDT_CPC2X_SWTC2X_HWFM_HSWPM:
-  guid: "21d3d1b0-ace7-4623-a103-58164929c6b6"
-  description: "Non-standard domestic water system with two heating water heat exhangers that are manually opened/closed, 
-  two circulation pumps, and heating water system flow and btu monitoring"
-  is_canonical: false
-  implements:
-  - DWST
-  - HWDT
-  - CPC2X
-  - HLPM
-  uses:
-  - return_water_temperature_sensor
-  - supply_water_temperature_sensor
   - supply_water_temperature_sensor_1
   - supply_water_temperature_sensor_2
   - supply_water_temperature_setpoint

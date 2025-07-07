@@ -180,7 +180,7 @@ class ModelHelperTest(absltest.TestCase):
     expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
-      self.current_model, self.updated_model, current_entity, updated_entity
+        self.current_model, self.updated_model, current_entity, updated_entity
     )
 
     self.assertEqual(actual_updated_mask, expected_updated_mask)

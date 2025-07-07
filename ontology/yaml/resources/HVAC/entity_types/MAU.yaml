@@ -323,6 +323,18 @@ MAU_SFSS_SFVSC_SSPC_HWSC_CHWSC:
   - HWSC
   - CHWSC
 
+MAU_SFVSC_SSPC_HWSDC_CHWSDC_OADM:
+  guid: "441d6994-1722-4780-8d38-5bc7ac169580"
+  description: "Heating and cooling make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC
+  - SSPC
+  - HWSDC
+  - CHWSDC
+  - OADM
+
 MAU_SFSS_SFVSC_CHWSC_HTSC_BPC:
   guid: "eac5d682-5787-4ae2-ab3b-fe01764513a9"
   description: "Building static control heating and cooling make-up air unit."
@@ -786,6 +798,26 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
   opt_uses:
   - smoke_alarm
 
+MAU_SS_SFSS2X_SFVSC2X_SFFM_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
+  guid: "9b0256de-6e1d-4fc0-abc2-c751c4e209c8"
+  description: "Multi-zone chilled water and heating water MAU with run control, supply air static pressure control, variable outside air damper and outside airflow monitoring, filter differential pressure monitoring, zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SS
+  - SFSS2X
+  - SFVSC2X
+  - SFFM
+  - CHWSC
+  - HWSC
+  - SSPC
+  - VOADM
+  - FDPM
+  - ZSPM
+  - OAFM
+  opt_uses:
+  - smoke_alarm
+
 MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   guid: "9ba6dc9b-1b5b-4f05-8be2-2ff4b0bb7390"
   description: "Single zone heating and cooling make-up air unit with zone static pressure control and outside air temperature monitoring."
@@ -799,6 +831,20 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   - HWDC
   - OADM
   - ZSPM
+  opt_uses:
+  - smoke_alarm
+
+MAU_DFSS_DFVSC_HT2DC_CHWDDC_ZSPC:
+  guid: "c2abe98a-c709-4caf-ac21-08c04b807f94"
+  description: "Single zone make-up air unit with electric heating and chilled water control on discharge side and zone static pressure control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HT2DC
+  - CHWDDC
+  - ZSPC
   opt_uses:
   - smoke_alarm
 
@@ -883,6 +929,46 @@ MAU_DFSS2X_DFVSC2X_DXDC_HWDC:
   - DXDC
   - HWDC
 
+MAU_SFSS_DXSC_SSPC:
+  guid: "e05424bf-c8c0-40c9-9875-8903dce9bffc"
+  description: "MAU with supply air static pressure control and supply air temperature control."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - DXSC
+  - SSPC
+
+MAU_DFSS_DFVSC_BPC_DSP_ECDDC_HTDDC_OA:
+  guid: "06410904-1349-4031-a1f8-0d5a08252890"
+  description: "MAU with evaporative cooling and gas heater."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - BPC
+  - DSP
+  - ECDDC
+  - HTDDC
+  - OA
+
+MAU_DFVSC2X_HP4DDC_HTDDC_OA_ZSPM2X_ZTM:
+  guid: "58abd50b-2fe0-4458-876f-d43a961ea624"
+  description: "Single zone MAU with heat pump with four compressors on two circuits controlling to dual setpoint, auxillery electric heater, and zone pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFVSC2X
+  - HP4DDC
+  - HTDDC
+  - OA
+  - ZSPM2X
+  - ZTM
+  opt_uses:
+  - refrigerant_suction_pressure_sensor_1
+  - refrigerant_suction_pressure_sensor_2
+
 ############################
 ###   Remap These Types  ###
 ############################
@@ -953,6 +1039,18 @@ MAU_DFSS2X_DFVSC2X_CHWZC_HWZC_VOADM:
   - CHWZC
   - HWZC
   - VOADM
+
+MAU_DFVSC_DSPM_CHWDDC_OAMC_OA:
+  guid: "1a52f54a-6e0f-4565-83cf-90be0d8f4d3c"
+  description: "Single zone MAU with damper, chilled water valve and discharge fan speed control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFVSC
+  - DSPM
+  - CHWDDC
+  - OAMC
+  - OA
 
 ###################################
 ### Existing Non-standard Types ###

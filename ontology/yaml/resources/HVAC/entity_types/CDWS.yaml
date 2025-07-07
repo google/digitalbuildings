@@ -32,6 +32,15 @@ CDWS_SWTC:
   - CDWS
   - SWTC
 
+CDWS_SWTC_WFRM:
+  guid: "9ed71803-1584-4dc6-89e8-899b84deab11"
+  description: "Simple condenser water system with supply control, and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WFRM
+
 CDWS_SWTC_WDPC:
   guid: "5bc2261e-6294-498a-b690-d673afb6da2e"
   description: "Condenser water system with supply temperature and differential pressure control."
@@ -41,6 +50,16 @@ CDWS_SWTC_WDPC:
   - SWTC
   - WDPC
 
+CDWS_SWTC_WDPC_BWFRM:
+  guid: "bf61bd11-b95e-4d94-98db-f0942b3b4987"
+  description: "Condenser water system with supply temperature, differential pressure control and blowdown water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - BWFRM
+
 CDWS_SWTC_BYPVPM:
   guid: "ce74369f-a6b2-4624-bf0f-543b8e00fb8b"
   description: "Condenser water system with supply temperature control and a bypass valve."
@@ -49,6 +68,15 @@ CDWS_SWTC_BYPVPM:
   - CDWS
   - SWTC
   - BYPVPM
+
+CDWS_SWTC_WSEBYPVM:
+  guid: "ba9bfbcf-43b2-42ef-ac60-0fff9a4f4a13"
+  description: "Condenser water system with supply temperature control and waterside economizing bypass."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WSEBYPVM
 
 CDWS_SWTC_WDPC_WFRC_HXSWISOVPM:
   guid: "6f9f09c8-9ccf-4204-a3c8-e24efea95dde"
@@ -110,6 +138,16 @@ CDWS_SWTC_WDPM_SWPSS:
   - WDPM
   - SWPSS
 
+CDWS_SWTC_WDPM_CLPM:
+  guid: "04503d61-feb3-43b1-9eea-57c2570610e3"
+  description: "Condenser water system with differential pressure monitoring and cooling thermal monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPM
+  - CLPM
+
 CDWS_CLPM_SWTC_WDPM_WFRC:
   guid: "571a238d-3540-4f4d-ba11-5b61e43e9b3b"
   description: "Condensing water system with supply temperature and flowrate control as well as thermal power and differential pressure monitoring."
@@ -121,15 +159,29 @@ CDWS_CLPM_SWTC_WDPM_WFRC:
   - WDPM
   - WFRC
 
-CDWS_CLPM_WDT_WFRM:
-  guid: "1dc03a2c-5bfd-4edc-ab95-97ebba7a716b"
-  description: "Condensing water system with delta-T, flowrate, and thermal power monitoring."
+CDWS_SWTC_WDPC_WFRC_RWISOVM_MWFRM_BWFRM:
+  guid: "d59e0ced-f678-43b0-96cd-8c92951c1cb7"
+  description: "Condensing water system with supply temperature, flowrate, and differential pressure control."
   is_canonical: true
   implements:
   - CDWS
+  - SWTC
+  - WDPC
+  - WFRC
+  - RWISOVM
+  - MWFRM
+  - BWFRM
+
+CDWS_SWTC_WFRC_CLPM_WDT:
+  guid: "1dc03a2c-5bfd-4edc-ab95-97ebba7a716b"
+  description: "Condensing water system with supply water temperature and flowrate control, delta-T monitoring, and thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WFRC
   - CLPM
   - WDT
-  - WFRM
 
 CDWS_CWDT_CDWISOVM_CDWFRSM:
   guid: "1314b4fb-8351-4b3f-9d6e-5a2aad3c71a1"
@@ -165,6 +217,19 @@ CDWS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
   - MWFRM
   - BWFRM
 
+CDWS_SS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
+  guid: "27d51584-886f-4142-8e8a-17af27aa9fec"
+  description: "Condensing water system (temp control) with bypass control, flow monitoring and basin water system"
+  is_canonical: true
+  implements:
+  - CDWS
+  - SS
+  - SWTC
+  - BYPVPM
+  - WFRM
+  - MWFRM
+  - BWFRM
+
 CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
   guid: "6454dd88-5857-4920-b438-fe8cb7f5a3bd"
   description: "Condensing water system with bypass valve, blowdown water valve electricconductivity control, makeup water flowrate monitoring and common water temperature differential monitoring."
@@ -180,12 +245,46 @@ CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
 
 CDWS_SWTC_WSEBYPVPM:
   guid: "473f0ee6-d2f8-46d8-a952-140a04a341fe"
-  description: "Condensing water system with bypass valve and water side economizer bypass valve."
+  description: "Condensing water system with supply water temperature control and water side economizer bypass valve."
   is_canonical: true
   implements:
   - CDWS
   - SWTC
   - WSEBYPVPM
+
+CDWS_SWTC_WDPM_WSEBYPVPM_MCBYPVPM:
+  guid: "4082d1aa-40c1-4a96-8fb4-48bc93e79120"
+  description: "Condensing water system with supply water temperature control, differential pressure monitoring, mechanical cooling bypass valve and water side economizer bypass valve."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPM
+  - WSEBYPVPM
+  - MCBYPVPM
+
+CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
+  guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"
+  description: "Condensing water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+  - MWFRM
+
+CDWS_SWTC_WFRM_MWFRM_BWFRM:
+  guid: "30b52a03-a020-4d65-8c57-bb9cb43e8b15"
+  description: "Condensing water system with flowrate control, blowdown and makeup water flowrate control."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WFRM
+  - MWFRM
+  - BWFRM
 
 ###################################
 ### Existing Non-standard Types ###

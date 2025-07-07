@@ -102,6 +102,8 @@ distance:
   inches:
     multiplier: 0.0254
     offset: 0
+thermalefficiency:
+  kilowatts_per_ton: STANDARD
 electriccapacitance:
   farads: STANDARD
 electricconductance:
@@ -208,6 +210,9 @@ flowrate:
     offset: 0
   us_gallons_per_minute:
     multiplier: 0.0000630901964
+    offset: 0
+  us_gallons_per_hour:
+    multiplier: 0.000001051503277778
     offset: 0
 force:
   newton: STANDARD
@@ -381,6 +386,9 @@ power:
   kilobtus_per_hour:
     multiplier: 293.07107
     offset: 0
+  megabtus_per_hour:
+    multiplier: 293071.07
+    offset: 0
   therms_per_hour:
     multiplier: 29300.1111
     offset: 0
@@ -402,6 +410,8 @@ power:
   megavolt_amperes_apparent:
     multiplier: 1000000
     offset: 0
+ph:
+  no_units: STANDARD
 powerfactor:
   no_units: STANDARD
 powerflux:

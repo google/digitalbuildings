@@ -47,6 +47,15 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_COC2X:
+  guid: "2fd2e3b3-d87e-43d0-a915-f8b456d1f0a0"
+  description: "Basic fan with start/stop and status, and carbon monxide control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - COC2X
+
 FAN_SS_VSC_EFM:
   guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
   description: "Fan with start/stop status, open-loop speed control and exhaust air flowrate monitoring."
@@ -66,6 +75,17 @@ FAN_SS_VSC_ZSPC:
   - SS
   - VSC
   - ZSPC
+
+FAN_SS_VSC_ZSPC_ZTM:
+  guid: "ce1ab10f-bc6f-420e-8414-73982323bdd5"
+  description: "Fan with start/stop status, open-loop speed control, zone static pressure control, and zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPC
+  - ZTM
 
 FAN_SS_VSC_ZSPM:
   guid: "9936851f-f434-407a-8671-941630a02883"
@@ -283,6 +303,26 @@ FAN_SS_VSC_EPC:
   - VSC
   - EPC
 
+FAN_SS_VSC_EPC_EDPM:
+  guid: "450f5cba-4c92-4aaf-b068-628a0cd7400d"
+  description: "Fan with run control, exhaust static pressure control and exhaust damper monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EPC
+  - EDPM
+
+FAN_VSC_EDPM:
+  guid: "d75f0c74-822a-4436-8881-f68786d8e4ca"
+  description: "Fan with run control, and exhaust damper monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - EDPM
+
 FAN_SS_DSP_VSC:
   guid: "660d42d5-15b3-4cb4-9af1-506f31b0aa0e"
   description: "Fan with dual setpoint control and variable speed."
@@ -331,6 +371,16 @@ FAN_SS_VSC_COC:
   - SS
   - VSC
   - COC
+
+FAN_SS_VSC_COCMAX:
+  guid: "d7c1b80c-e982-4ce5-9fc4-2bf59d0f9d4e"
+  description: "Variable speed ventilation fan (for controlling to maximum carbon monoxide concentration)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - COCMAX
 
 FAN_SS_VSC_ETM:
   guid: "506ff5b9-c55a-4d4e-8c91-a040871a9b40"
@@ -692,6 +742,16 @@ FAN_SS_VSC_REFC:
   - VSC
   - REFC
 
+FAN_SS_HLC_REFC:
+  guid: "b0ad4fce-417b-420c-afad-49dcd2268521"
+  description: "Fan with start/stop status, high/low speed control and refrigerant concentration control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+  - REFC
+
 FAN_SS_VSC_ZSPM_DWI:
   guid: "a1148f7d-4aa0-4560-b2cb-53b8eb949278"
   description: "Dishwasher-interlocked fan with start/stop status, open-loop speed control, and zone static pressure monitoring."
@@ -703,6 +763,47 @@ FAN_SS_VSC_ZSPM_DWI:
   - ZSPM
   uses:
   - dishwasher_run_status
+
+FAN_SS_VSC_INVOPWM:
+  guid: "1c48e087-c973-4907-8d6e-93417da15d5b"
+  description: "Basic fan with start/stop and status with inverter monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - INVOPWM
+  opt_uses:
+  - load_percentage_sensor
+
+FAN_SS_VSC_COM4X:
+  guid: "47942605-0c52-4308-9f55-33b5930d27ac"
+  description: "Basic fan with start/stop and status with carbon monoxide monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - COM4X
+
+FAN_SS_VSC_DSPM:
+  guid: "28e19a83-a3ce-429e-951f-34cdecd036f3"
+  description: "Basic fan with variable speed control and discharge static pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - DSPM
+
+FAN_VSC_MO2P2X:
+  guid: "1fa01f8e-9a46-4992-b1e4-040cc9c6b55f"
+  description: "Fan with variable speed which responds to low oxygen levels in the space using two oxygen sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - MO2P2X
 
 ###################################
 ### Existing Non-standard Types ###
@@ -949,3 +1050,25 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
+FAN_SS_NONCANONICAL_7:
+  guid: "32703a5c-7cad-4eb6-9605-08e92f1d2cdd"
+  description: "Non-standard type."
+  implements:
+    - FAN_SS
+  uses:
+  - discharge_air_isolation_damper_closed_status_1
+  - discharge_air_isolation_damper_open_status_1
+  - discharge_air_isolation_damper_closed_status_2
+  - discharge_air_isolation_damper_open_status_2
+  - discharge_air_isolation_damper_command_1
+  - discharge_air_isolation_damper_command_2
+
+FAN_SS_NONCANONICAL_8:
+  guid: "812965c4-c9cf-4a1a-af34-225ff7de5159"
+  description: "Non-standard type."
+  implements:
+    - FAN_SS
+  uses:
+  - discharge_air_isolation_damper_closed_status
+  - discharge_air_isolation_damper_command
+  - discharge_air_isolation_damper_open_status

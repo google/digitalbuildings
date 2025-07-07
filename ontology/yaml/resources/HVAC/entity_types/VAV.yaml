@@ -56,6 +56,16 @@ VAV_SD_HLSAFS:
   - SD
   - HLSAFS
 
+VAV_SD_HLSAFS_CO2C:
+  guid: "d9619dab-e8e8-4703-9d80-16eaad50a75e"
+  description: "Single duct VAV with CO2 concentration control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - HLSAFS
+  - CO2C
+
 VAV_SD_CSP_HLSAFS:
   guid: "ea3a576a-08af-40b2-ae0b-59451e0b88a4"
   description: "Simple cooling only VAV with occupancy."
@@ -106,6 +116,17 @@ VAV_SD_DSP_HWDC:
   - DSP
   - HWDC
 
+VAV_SD_DSP_HWDC_ZHM:
+  guid: "f344f1c3-b117-42e4-9b1e-41073687bd8f"
+  description: "Single duct reheat VAV with dual setpoint control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - ZHM
+
 VAV_SD_DSP_CO2M:
   guid: "0de6754a-9094-4f93-a32a-af2ccee4f495"
   description: "VAV with zone CO2 monitoring."
@@ -135,6 +156,17 @@ VAV_SD_DSP_HWZC:
   - SD
   - DSP
   - HWZC
+
+VAV_SD_DSP_HWZC_ZSPM:
+  guid: "c8340b79-25be-43b1-8d4b-afd404d0ebc5"
+  description: "Single duct reheat VAV with dual setpoint control and zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWZC
+  - ZSPM
 
 VAV_SD_DSP_HTZC:
   guid: "47b47e69-d873-4976-b578-a07cb3d85176"
@@ -177,6 +209,18 @@ VAV_SD_DSP_HWDC_CO2C:
   - DSP
   - HWDC
   - CO2C
+
+VAV_SD_DSP_HWDC_CO2C_ZHM:
+  guid: "33767e72-193c-48fe-8da8-2db988d261fa"
+  description: "Single duct reheat VAV with CO2, temp control, and humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - CO2C
+  - ZHM
 
 VAV_SD_DSP_HWDC_VOCC:
   guid: "f79768d5-31aa-4f42-a814-c0f901e36999"
@@ -264,6 +308,30 @@ VAV_SD_DSP_DFSS_DFVSC:
   - DSP
   - DFSS
   - DFVSC
+
+VAV_SD_DSP_DFSS_DFVSC_HT3ZC:
+  guid: "a553d112-7be2-478a-8d47-a68b2704149f"
+  description: "Fan powered VAV with variable speed control and 3 stage electric heater."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - DFSS
+  - DFVSC
+  - HT3ZC
+
+VAV_SD_DSP_DFSS_DFVSC_HT3DC:
+  guid: "33b77aa2-a873-43f1-8ff7-4a18926e74e1"
+  description: "Fan powered VAV with variable speed control and 3 stage electric heater."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - DFSS
+  - DFVSC
+  - HT3DC
 
 VAV_SD_DSP_CO2C_DFSS_DFVSC:
   guid: "bc81486d-d20e-4f56-9485-b15b2e3584d3"
@@ -603,6 +671,17 @@ VAV_DSP_PDSCV_CO2C:
   - PDSCV
   - CO2C
 
+VAV_DSP_PDSCV_CO2C_ZHM:
+  guid: "2f7f35cf-2984-4b3c-87fb-816a78f47553"
+  description: "VAV with pressure dependent supply valve control, CO2 control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - CO2C
+  - ZHM
+
 VAV_DSP_PDSCV_HTZC:
   guid: "3d727b03-e945-4af3-822e-b8da662a26f6"
   description: "Reheat VAV with pressure dependent supply damper control."
@@ -623,6 +702,18 @@ VAV_DSP_PDSCV_HTZC_CO2C:
   - PDSCV
   - HTZC
   - CO2C
+
+VAV_DSP_PDSCV_HTZC_CO2C_ZHM:
+  guid: "fb03179b-f73b-4f3b-b77c-57ca3ca6148c"
+  description: "Reheat VAV with pressure dependent supply valve control, CO2 control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+  - CO2C
+  - ZHM
 
 VAV_PDSCV_WDPC2X:
   guid: "cd3a50ce-83bf-4521-b67f-376eb8a2f336"
@@ -661,6 +752,16 @@ VAV_DSP_PDSCV:
   - VAV
   - DSP
   - PDSCV
+
+VAV_DSP_PDSCV_ZHM:
+  guid: "32639e96-d247-49c4-9ab5-229eb4573db5"
+  description: "VAV with pressure dependent supply valve control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - ZHM
 
 VAV_CSP_DFVSC_DAIDC:
   guid: "b7389975-b755-4a4f-aa7a-b80031990ee2"

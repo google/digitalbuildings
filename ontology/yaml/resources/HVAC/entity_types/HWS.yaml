@@ -105,6 +105,16 @@ HWS_RWTC_MXVPM:
   - RWTC
   - MXVPM
 
+HWS_SS_RWTC_MXVPM:
+  guid: "a78c552b-667d-43eb-9418-afe7486a7ee2"
+  description: "Heating water system with run control and mixed return temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - RWTC
+  - MXVPM
+
 HWS_SWTC_BYPVPM:
   guid: "8d8652a9-6814-413e-9aa1-8772a831d6a3"
   description: "Heating water system with supply temp control and bypass."
@@ -242,6 +252,16 @@ HWS_SWTC_BYPVPM_WDPC_WFRC:
   - WDPC
   - WFRC
 
+HWS_SWTC_WDPC_BYPVFRC:
+  guid: "67154932-688a-4c74-b797-62b6c5fa29ae"
+  description: "Heating water system (temp/pressure control) with bypass valve flow control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+
 HWS_SWTC_WDPC_MINFC:
   guid: "f13b4124-8003-4a9c-8730-edf62d83f614"
   description: "Heating water system (temp/pressure control) with bypass controlling to minimum flow sensor and setpoint."
@@ -261,6 +281,18 @@ HWS_SWTM_WDPC_BYPVPM:
   - SWTM
   - WDPC
   - BYPVPM
+
+HWS_SWTC_WDPC_WFRM_BYPVPM_HLPM:
+  guid: "86b9cad8-5aef-401e-a8fe-28d7bce11a0b"
+  description: "Heating water system with supply temperature control, flowrate monitoring, differential pressure control and bypass valve control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - BYPVPM
+  - HLPM
 
 HWS_SWTM_RWTM:
   guid: "91d467d7-cf98-4493-9408-f727ac08f847"
@@ -364,6 +396,31 @@ HWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
   - SEWDPC
   - SEWFRM
 
+HWS_PWDT_PRSWFRC_SESWTC_SEWDPC_SEWFRM:
+  guid: "63eef895-74c3-412e-a807-68c81b2ab977"
+  description: "Primary/secondary heating water system with secondary loop temperature and differential pressure control and primary flowrate control."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - PRSWFRC
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
+
+HWS_SS_PWDT_PRWDPC_PRWFRM_SESWTC_SEWDPC:
+  guid: "47def6c5-1ff6-493b-bbd8-de5c718f9888"
+  description: "Primary/secondary heating water system with secondary loop temperature control, primary/secondary loop differential pressure control, and primary loop flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - PWDT
+  - PRWDPC
+  - PRWFRM
+  - SESWTC
+  - SEWDPC
+
 HWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT_BYPVPM:
   guid: "cee39637-6b7b-404e-80a6-a5787ab4dff8"
   description: "Heating water system with secondary loop supply water temperature and differential pressure control, primary and secondary flowrate monitoring."
@@ -377,6 +434,22 @@ HWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT_BYPVPM:
   - PWDT
   - BYPVPM
 
+HWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM_SEWDPC_RWISOVM_SWISOVM:
+  guid: "1e93608a-b5ce-4ebf-9626-7dc8196b0e8f"
+  description: "The heating water system with thermally conditioned water valve, primary supply temperature and flowrate monitoring, boiler supply and return isolation valves, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - THCWDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM
+  - SEWDPC
+  - RWISOVM
+  - SWISOVM
+
 HWS_PWDT_SESWTC_SEWDPC_SERWFRM_SEWTM:
   guid: "0d0a9b91-81a7-4aa2-b80b-515109b275c1"
   description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and secondary flowrate monitoring."
@@ -388,6 +461,62 @@ HWS_PWDT_SESWTC_SEWDPC_SERWFRM_SEWTM:
   - SEWDPC
   - SERWFRM
   - SEWTM
+
+HWS_PWDT_SESWTC_SEWDPC_PRSWFRC:
+  guid: "c2c27aee-b0be-40f0-aba7-287c18a32458"
+  description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and primary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - SESWTC
+  - SEWDPC
+  - PRSWFRC
+
+HWS_PWDT_SESWTC_SEWDPC_SEWFRM_SEWTM:
+  guid: "c4b12289-b658-4a9e-ad78-aedc76671d7e"
+  description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and secondary supply flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
+  - SEWTM
+
+HWS_SS_SWTC_WDPC_WFRM_HWTTC_HLPM:
+  guid: "b203359c-877b-4c46-903e-57c4c5b4d634"
+  description: "Heating water system with schedule run command, heating thermal power monitoring, supply water temperature control, differential pressure control, flowrate monitoring, and hot water tank temperature control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - SWTC
+  - WDPC
+  - WFRM
+  - HWTTC
+  - HLPM
+
+HWS_SWTC_WDPM_WFRM_HLPM:
+  guid: "20f843b3-d602-411a-921a-4bb4b8f05b67"
+  description: "Heating water system with heating thermal power monitoring, supply water temperature control, differential pressure control, and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPM
+  - WFRM
+  - HLPM
+
+HWS_RWTC_WSEBYPVM:
+  guid: "d1f34ca4-b18f-4df2-bf2c-0be8a5980e22"
+  description: "Heating water system for freezer underslab heating with return temp control and bypass valve for economizing."
+  is_canonical: true
+  implements:
+  - HWS
+  - RWTC
+  - WSEBYPVM
 
 ###################################
 ### Existing Non-standard Types ###

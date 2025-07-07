@@ -1,0 +1,54 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+HOOD_EFSS3X_EFVSC3X_ETM3X_EFM3X_EDPM3X:
+  guid: "13dc65c9-67af-45ad-a7b5-2e412514374d"
+  description: "Hood with three variable speed exhaust fans and variable position dampers. Temperature and flowrate monitoring for each"
+  is_canonical: true
+  implements:
+  - HOOD
+  - EFSS3X
+  - EFVSC3X
+  - ETM3X
+  - EFM3X
+  - EDPM3X
+
+HOOD_PDSCV_EDPM:
+  guid: "7cbab41c-ab07-4944-ac41-f5940710d400"
+  description: "Kitchen Hood with Hood Status (Manual) and Exhaust & Fresh Air Damper Control and Monitoring"
+  is_canonical: true
+  implements:
+  - HOOD
+  - PDSCV
+  - EDPM
+
+HOOD_ZTM2X:
+  guid: "ba33a591-ed76-46b2-9a6d-506e8552e010"
+  description: "Kitchen Hood with two temperature sensors for temperature monitoring"
+  is_canonical: true
+  implements:
+  - HOOD
+  - ZTM2X
+
+HOOD_ZTM:
+  guid: "c0dbbe12-06d1-44a1-811e-a1e9f40d1193"
+  description: "Kitchen Hood with temperature monitoring"
+  is_canonical: true
+  implements:
+  - HOOD
+  - ZTM

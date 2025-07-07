@@ -34,6 +34,24 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_ZSPM_ZWVDM:
   uses:
   - illuminance_sensor
 
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_ZSPM_ZOC:
+  guid: "e9bc10ea-cfe6-4f90-9860-0f81a9672dd2"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, PM 1, 2.5, 4, 10, illuminance, air pressure, sound monitoring and occupant counter."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM
+  - ZAQIM
+  - ZSPM
+  - ZOC
+  uses:
+  - illuminance_sensor
+
 SENSOR_ZTM_ZHM_CO2M:
   guid: "bacb5335-16de-46d3-9d8f-da503ea38f8a"
   description: "Zone air property sensor (humidity, temperature, CO2 level)."
@@ -52,7 +70,15 @@ SENSOR_ZTM_ZHM:
   - /SENSOR # Inherits from global namespace
   - ZTM
   - ZHM
-  
+
+SENSOR_COM:
+  guid: "b3d929e0-d934-4a6a-8c86-921fa7804cef"
+  description: "Zone CO monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - COM
+
 SENSOR_OA:
   guid: "93c71f11-56c3-4180-91b9-4aec7b4a8cd6"
   description: "Outside air property sensor (humidity, temperature)."
@@ -239,6 +265,22 @@ SENSOR_PCM:
   - /SENSOR
   - PCM
 
+SENSOR_HATM:
+  guid: "a0c88aaf-6125-4eb5-9197-d7ef411ea169"
+  description: "Cold aisle temperature matter monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - HATM
+
+SENSOR_CATM:
+  guid: "17eaa9a0-6657-44c0-b495-4fefd243eac9"
+  description: "Cold aisle temperature matter monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - CATM
+
 SENSOR_ZTM_ZHM_CO2M_PMM_HCHO:
   guid: "9e1b054e-3ae8-4c8c-9393-ba2c855dc8b6"
   description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
@@ -354,3 +396,11 @@ SENSOR_SFM:
   implements:
   - /SENSOR
   - SFM
+
+SENSOR_ZOS:
+  guid: "5fd2fbbf-0076-48f3-ac34-a1dc07628847"
+  description: "Zone occupant status sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZOS

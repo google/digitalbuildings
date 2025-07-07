@@ -16,6 +16,55 @@
 ### Canonical Types  ###
 ########################
 
+ASHP_SS_HP6SWC:
+  guid: "51a90281-6675-4ccb-87e0-f20346cc3869"
+  description: "Six-stage air source heat pump."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP6SWC
+
+ASHP_SS_HP8SWC:
+  guid: "b9add02d-0330-493c-a5b6-6f7dc83ac2c2"
+  description: "Eight-stage air source heat pump."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP8SWC
+
+ASHP_SS_HP8SWC_SWISOVM_WDPM:
+  guid: "5f4f7f3a-2f07-4bba-8512-fff094b4529b"
+  description: "Eight-stage air source heat pump with isolation valve and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP8SWC
+  - SWISOVM
+  - WDPM
+
+
+ASHP_SS_HP6SWC_CFVSC3X_CPC2X:
+  guid: "9757814e-187f-4c3f-9a53-99d8c28ec8e6"
+  description: "Six-stage air source heat pump with 2 circulation pumps and 3 condensing fan variable speed control."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP6SWC
+  - CFVSC3X
+  - CPC2X
+  opt_uses:
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
+  - low_refrigerant_pressure_alarm_1
+  - low_refrigerant_pressure_alarm_2
+  - high_refrigerant_pressure_alarm_1
+  - high_refrigerant_pressure_alarm_2
+
+
 ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   guid: "11ecef31-d11d-496b-9d39-f35fe9307a82"
   description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
@@ -31,6 +80,19 @@ ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   - low_refrigerant_pressure_alarm_2
   - high_refrigerant_pressure_alarm_1
   - high_refrigerant_pressure_alarm_2
+
+ASHP_SS_SWTC_DX6SWC_WDPM_CPC2X_RWISOVM:
+  guid: "4b60ffd9-b068-49bd-b6d7-36890e9b7955"
+  description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - SWTC
+  - DX6SWC
+  - WDPM
+  - CPC2X
+  - RWISOVM
 
 ASHP_SS_HP6SWC_CPC2X_RWISOVM_WDT_WDPC:
   guid: "20764e8d-0c69-4bf7-ae58-8921504fed16"
@@ -81,3 +143,69 @@ ASHP_SS_CHWRISOVPM_CHWDT_CHDX2SC_CFVSC_RVINJM2X_CPC2X_CHWDPC_HWDPM_SHWTC_HWRWISO
   - CHWDPC
   - SHWTC
   - HWRWISOVPM
+
+
+ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_HWDPM_REFPM2X:
+  guid: "99952149-9f05-4c79-a8d1-cfeabfe09134"
+  description: "Air source heat pump for a hydronic system providing chilled and heating water, supply water temperature control."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - SWTC
+  - DX4SWC
+  - HWSWISOVM
+  - HWRWISOVM
+  - CHWRWISOVM
+  - CHWSWISOVM
+  - HWDPM
+  - REFPM2X
+  opt_uses:
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_2
+
+ASHP_SS_HP4SWC_HWRWISOVPM_CPC2X_RCKTM2X:
+  guid: "94f4cecf-8908-4c6b-9d70-94d3ed0bbc3e"
+  description: "Air source heat pump for a hot water system with a four-stage air source heat pump, return water isolation valve, and two circulation pumps."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP4SWC
+  - HWRWISOVPM
+  - CPC2X
+  - RCKTM2X
+
+ASHP_SS_HP4SWC_HWRWISOVPM_RCKTM2X:
+  guid: "34346904-4d6d-4a7d-9608-1d4f6f7efd9b"
+  description: "Air source heat pump for a hot water system with a four-stage air source heat pump, return water isolation valve, and refrigerant circuit monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP4SWC
+  - HWRWISOVPM
+  - RCKTM2X
+
+ASHP_SS_HP6SWC_CPVSC3X_SHWISOVPM_RCKTM6X:
+  guid: "b4931d87-f85e-4e7e-969f-0f13f894731a"
+  description: "Air source heat pump for a hot water system with a six-stage air source heat pump, supply water isolation valve, and refrigerant circuit monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP6SWC
+  - CPVSC3X
+  - SHWISOVPM
+  - RCKTM6X
+
+ASHP_SS_HP16SWC:
+  guid: "84e46b3c-7f8c-4deb-8c50-dfdb09188d9a"
+  description: "Air source heat pump for a hot water system with a sixteen-stage air source heat pump controlling to supply water temperature."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP16SWC

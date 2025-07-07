@@ -23,7 +23,8 @@ if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')
 else:
   REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..'))
+      path.dirname(path.realpath(__file__)), path.join('..', '..', '..')
+  )
 
 APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'explorer', 'lib')
 ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
