@@ -53,17 +53,6 @@ AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
   - DTM
   - ECONZ
 
-AHU_DFSS_CHWZTC_HWZTC_ECONZ:
-  guid: "c928d399-7ac9-4ad3-9a06-3231b135dbf2"
-  description: "Single zone AHU with discharge fan, chilled water coil, heating water coil, and economizer"
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - CHWZTC
-  - HWZTC
-  - ECONZ
-
 AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_EDBPC_ECOND_DHM_DSPM_RHHC:
   guid: "fbcb1f7e-d1f8-4c3e-a19a-415b79c80a80"
   description: "Single zone AHU with two discharge fans, two exhaust fans, chilled water coil, heating water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, economizer, discharge air relative humidity monitoring, and return air relative humidity monitoring"
@@ -81,7 +70,7 @@ AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_EDBPC_ECOND_DHM_DSPM_RHHC:
   - DSPM
   - RHHC
 
-AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_ZSPC_ECOND_DSPM_DHC_RHC:
+AHU_DFVSC2X_EFVSC2X_EDPM_CHW2XDC_HWDC_DSP_ZSPC_ECOND_DSPM_DHC_RHC:
   guid: "99b0bc67-9fad-4a8a-8548-b3b02d4a6e46"
   description: "Single zone AHU with two discharge fans, two exhaust fans, chilled water coil, heating water coil, dual setpoint zone temp control, zone static pressure control, economizer, discharge air relative humidity monitoring, and return air relative humidity monitoring"
   is_canonical: true
@@ -89,6 +78,7 @@ AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_ZSPC_ECOND_DSPM_DHC_RHC:
   - AHU
   - DFVSC2X
   - EFVSC2X
+  - EDPM
   - CHW2XDC
   - HWDC
   - DSP
@@ -114,7 +104,7 @@ AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONM_FDPM_DSPC_DSP_DAIDC:
   - DSP
   - DAIDC
 
-AHU_DFVSC_EFVSC_DX2ZC_HTZC_BSPC_ECONZ:
+AHU_DFVSC_EFVSC_DX2ZC_HTZC_ZSPC_EDPM_ECONZ:
   guid: "3b6f67eb-8a9a-4f01-9cd3-50542dd517a1"
   description: "Multi zone AHU with discharge fan, exhaust fan, two stage compressor, heating coil, building static pressure control, and economizer."
   is_canonical: true
@@ -124,7 +114,8 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_BSPC_ECONZ:
   - EFVSC
   - DX2ZC
   - HTZC
-  - BSPC
+  - ZSPC
+  - EDPM
   - ECONZ
 
 AHU_DFVSC_EFVSC_ZSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
@@ -170,9 +161,9 @@ AHU_DFVSC_EFSS_DX2DC_HTDC_ECOND_RTM_EDBPC_DSP:
   - EDBPC
   - DSP
 
-AHU_DFVSC_EFSS_DX2DDC_HTDDC_ECONMD_BSPC_DSP:
+AHU_DFVSC_EFSS_DX2DDC_HTDDC_ECONMD_ZSPC_DSP:
   guid: "19a052e4-53b4-4a22-bdb1-3e996e8c3fc9"
-  description: "Single zone AHU with discharge fan, exhaust fan, two stage DX cooling coil, gas heating coil, economizer, building static pressure control with exhaust damper, and dual setpoint control."
+  description: "Single zone AHU with discharge fan, exhaust fan, two stage DX cooling coil, gas heating coil, economizer, zone static pressure control, and dual setpoint control."
   is_canonical: true
   implements:
   - AHU
@@ -211,20 +202,6 @@ AHU_SFVSC_SFC_EFVSC_ECON_BSPC_SSPC_DX4SC_SARC:
   - SSPC
   - DX4SC
   - SARC
-
-AHU_SFVSC_EFVSC_ECON_BSPC_SSPC_SARC_DX4SC:
-  guid: "3bbbe823-9014-41f4-ba4a-a489cfcbc3f5"
-  description: "Multi zone AHU with supply fan, exhaust fan, economizer, building static pressure control with exhaust damper, and four stage DX cooling coil."
-  is_canonical: true
-  implements:
-  - AHU
-  - SFVSC
-  - EFVSC
-  - ECON
-  - BSPC
-  - SSPC
-  - SARC
-  - DX4SC
 
 AHU_SFVSC_HP2SC_ECON_SSPC:
   guid: "a57b7145-ad60-4afb-a73f-9b7c2f81bcd5"
