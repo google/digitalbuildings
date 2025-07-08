@@ -1108,6 +1108,9 @@ literals:
 - failed_chilled_water_circulation_pump_alarm:
   - ACTIVE
   - INACTIVE
+- failed_chilled_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_chilled_water_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -1211,6 +1214,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_heating_water_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heating_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - failed_heating_water_valve_alarm:
@@ -1735,6 +1741,12 @@ literals:
 - heating_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.0315451
+- heating_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - heating_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
