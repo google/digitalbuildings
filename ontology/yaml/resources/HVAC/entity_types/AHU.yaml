@@ -83,7 +83,7 @@ AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_EDBPC_ECOND_DHM_DSPM_RHHC:
 
 AHU_DFVSC2X_EFVSC2X_CHW2XDC_HWDC_DSP_ZSPC_ECOND_DSPM_DHC_RHC:
   guid: "99b0bc67-9fad-4a8a-8548-b3b02d4a6e46"
-  description: "Single zone AHU with two discharge fans, two exhaust fans, chilled water coil, heating water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, economizer, discharge air relative humidity monitoring, and return air relative humidity monitoring"
+  description: "Single zone AHU with two discharge fans, two exhaust fans, chilled water coil, heating water coil, dual setpoint zone temp control, zone static pressure control, economizer, discharge air relative humidity monitoring, and return air relative humidity monitoring"
   is_canonical: true
   implements:
   - AHU
@@ -116,7 +116,7 @@ AHU_DFVSC_EFVSC_EDBPC_CHWDC_ECONM_FDPM_DSPC_DSP_DAIDC:
 
 AHU_DFVSC_EFVSC_DX2ZC_HTZC_BSPC_ECONZ:
   guid: "3b6f67eb-8a9a-4f01-9cd3-50542dd517a1"
-  description: "Single zone AHU with discharge fan, exhaust fan, two stage compressor, heating coil, building static pressure control with exhaust damper, and economizer."
+  description: "Multi zone AHU with discharge fan, exhaust fan, two stage compressor, heating coil, building static pressure control, and economizer."
   is_canonical: true
   implements:
   - AHU
@@ -127,15 +127,15 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_BSPC_ECONZ:
   - BSPC
   - ECONZ
 
-AHU_DFVSC_EFVSC_BSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
+AHU_DFVSC_EFVSC_ZSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
   guid: "5d5e85e8-f331-4ab6-bfdb-930e049ed8b7"
-  description: "Single zone AHU with discharge fan, exhaust fan, chilled water coil, dual setpoint zone temp control, building static pressure control with exhaust damper, and economizer."
+  description: "Single zone AHU with discharge fan, exhaust fan, chilled water coil, dual setpoint zone temp control, zone static pressure control, and economizer."
   is_canonical: true
   implements:
   - AHU
   - DFVSC
   - EFVSC
-  - BSPC
+  - ZSPC
   - CHWDC
   - ECONZ
   - FDPM
@@ -264,7 +264,7 @@ AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_DX4SC_OAFM:
   - DX4SC
   - OAFM
 
-AHU_SFVSC_EFVSC_ECON_BSPC_SSPC_SARC_DX4SC_OAFC:
+AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_SARC_DX4SC_OAFC:
   guid: "2cba4cdd-6bbd-4655-8935-a5e61fc425bd"
   description: "AHU with supply fan, exhaust fan, 4 stage compressor, and economizer."
   is_canonical: true
@@ -273,7 +273,7 @@ AHU_SFVSC_EFVSC_ECON_BSPC_SSPC_SARC_DX4SC_OAFC:
   - SFVSC
   - EFVSC
   - ECON
-  - BSPC
+  - EDBPC
   - SSPC
   - SARC
   - DX4SC
