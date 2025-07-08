@@ -248,7 +248,7 @@ AHU_SFVSC_EFSS_ECON_EDBPC_SSPC_SARC_DX4SC_OAFC:
   implements:
   - AHU
   - SFVSC
-  - EFVSC
+  - EFSS
   - ECON
   - EDBPC
   - SSPC
