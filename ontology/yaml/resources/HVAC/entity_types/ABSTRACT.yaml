@@ -4683,6 +4683,18 @@ CHWISOVM:
   - chilled_water_isolation_valve_status
   implements:
   - MONITORING
+  
+HWISOVM:
+  guid: "4c24255f-af62-471a-8e0d-8161f5ffc3d4"
+  description: "Heating water isolation valve control."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  uses:
+  - heating_water_isolation_valve_command
+  - heating_water_isolation_valve_status
+  implements:
+  - MONITORING
 
 
 CDWISOVM:
