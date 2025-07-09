@@ -805,6 +805,22 @@ FAN_VSC_MO2P2X:
   - VSC
   - MO2P2X
 
+FAN_VSC_RAIDC:
+  description: "Fan with variable speed and return air isolation damper."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - RAIDC
+
+FAN_SS_OACSP:
+  description: "Single cooling setpoint fan using outside air for cooling."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - OACSP
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

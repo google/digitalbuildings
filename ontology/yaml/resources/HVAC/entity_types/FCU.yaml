@@ -1933,6 +1933,18 @@ FCU_CSP_DFSS_DFVSC_CHWRC_RHC_DAIDC:
   - RHC
   - DAIDC
 
+FCU_CSP_DFVSC_CHWDC_DAIDC:
+  description: "Fan coil unit with zone temperature control, return air humidity control, chilled water discharge air temperature control and isolation."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - DAIDC
+
+
 FCU_CSP_DX2ZC_ZHC:
   guid: "4f6dbf06-0b03-4537-9d53-78855aabea49"
   description: "Single zone FCU."
