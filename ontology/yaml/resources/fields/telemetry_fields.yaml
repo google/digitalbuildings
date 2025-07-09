@@ -1215,6 +1215,7 @@ literals:
   - INACTIVE
 - failed_heating_water_bypass_valve_alarm:
   - ACTIVE
+  - INACTIVE
 - failed_heating_water_valve_alarm:
   - ACTIVE
   - INACTIVE
