@@ -2799,6 +2799,26 @@ AHU_BPC_CHWSC_ECONM_EFSS4X_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_BSPC4X_CHWSC_CHWISOVM_ECONM_EFSS4X_EFVSC4X_FDPM2X_HWSC_HWISOVM_MOAFC_SFSS2X_SFVSC2X_SSPC:
+  guid: "ceafa2b8-65af-4672-874b-15e375b06b75"
+  description: "Multi-zone AHU with variable speed supply and exhaust fans, supply controlled chilled and heating water valves, supply and building status pressure control, filter differential monitoring, and mixed air temperature economizer control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC4X
+  - CHWSC
+  - CHWISOVM
+  - ECONM
+  - EFSS4X
+  - EFVSC4X
+  - FDPM2X
+  - HWSC
+  - HWISOVM
+  - MOAFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+
 AHU_SFSS2X_SFVSC2X_EFSS4X_EFVSC4X_ECON_CHWSC_MOAFC_BSPC4X_SSPC_SARC_FDPM:
   guid: "3606d81f-628c-4785-aac5-95c7c6a586ed"
   description: "Multi-zone AHU."

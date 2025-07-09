@@ -1108,6 +1108,9 @@ literals:
 - failed_chilled_water_circulation_pump_alarm:
   - ACTIVE
   - INACTIVE
+- failed_chilled_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_chilled_water_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -1807,9 +1810,6 @@ literals:
 - high_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
-- high_limit_return_air_co2_concentration_setpoint:
-    flexible_min: 0.00005
-    flexible_max: 0.005
 - high_discharge_fan_speed_command:
   - ON
   - OFF
@@ -1846,6 +1846,12 @@ literals:
 - high_limit_illuminance_setpoint:
     flexible_min: 0.0
     flexible_max: 5000.0
+- high_limit_outside_air_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 322.037037
+- high_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - high_limit_supply_air_cooling_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 94.38948864
