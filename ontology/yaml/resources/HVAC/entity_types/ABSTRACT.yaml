@@ -606,10 +606,10 @@ BSPC:
   - failed_exhaust_fan_alarm
   - high_building_air_static_pressure_alarm
   - low_building_air_static_pressure_alarm
-  - exhaust_fan_run_command
   uses:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
+  - exhaust_fan_run_command
   implements:
   - CONTROL
 
