@@ -235,6 +235,7 @@ CSP:
   - zone_air_temperature_sensor
 
 OACSP:
+  guid: "b006a998-ff00-4c09-a2ed-2cef5f8965e2"
   description: "Single cooling setpoint control for using outside air cooling."
   is_abstract: true
   implements:
