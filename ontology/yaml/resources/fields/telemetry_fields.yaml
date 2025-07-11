@@ -1585,6 +1585,7 @@ literals:
 - heater_run_command:
   - ON
   - OFF
+  - UNKNOWN
 - heater_run_status:
   - ON
   - OFF
@@ -4260,6 +4261,9 @@ literals:
   - COOLING
   - AUTO
   - OFF
+  - FAN_ONLY
+  - WARMUP
+  - UNKNOWN
 - zone_entering_count:
     fixed_min: 0.0
     flexible_max: 1000000.0
