@@ -1148,6 +1148,31 @@ CH_SS_CLPM_DX6SWC_SWTC_WDPM:
   - SWTC
   - WDPM
 
+CH_VSC_CHWDPC_CHWDT_CHWSWISOVM_CWDT_CWSISOVM_IGM_REFPM_REFSM_SCHWTC:
+  guid: "3f6b0ae8-3056-490f-a7f8-057f7b20b7d7"
+  description: "Water cooled variable load chiller controlling to chilled water supply temp and differential pressure, isolation valves on chilled and condensing water side, guidvane monitoring, refrigerent pressure and temperature sensors, and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - CHWDPC
+  - CHWSWISOVM
+  - CWDT
+  - CWSISOVM
+  - IGM
+  - REFPM
+  - REFSM
+  - SCHWTC
+
+CH_SS_RWISOVM_SWTC:
+  guid: "5399557e-f436-4d43-9834-4579b4ba598f"
+  description: "Simple air-cooled chiller with return water isolation valve."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - RWISOVM
+  - SWTC
 
 ###################################
 ### Existing Non-standard Types ###
