@@ -4268,6 +4268,7 @@ literals:
   - AUTO
   - OFF
   - UNKNOWN
+  - FAN_ONLY
 - zone_entering_count:
     fixed_min: 0.0
     flexible_max: 1000000.0
