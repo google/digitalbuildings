@@ -4261,8 +4261,6 @@ literals:
   - COOLING
   - AUTO
   - OFF
-  - FAN_ONLY
-  - WARMUP
   - UNKNOWN
 - zone_entering_count:
     fixed_min: 0.0
