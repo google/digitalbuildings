@@ -5423,6 +5423,7 @@ AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
   - SRC
 
 AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_ZSPC_ECOND_SRC:
+  guid: "5bc7d778-d530-49cd-bd14-88db3e8f0d26"
   description: "Single zone AHU with dual compressor with zone static pressure control, economizer, electric heater and weather station."
   is_canonical: true
   implements:
