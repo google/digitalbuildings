@@ -5422,6 +5422,21 @@ AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_BSPC_ECOND_SRC:
   - ECOND
   - SRC
 
+AHU_DSP_DFVSC_EFSS_DX2ZC_HTZC_ZSPC_ECOND_SRC:
+  guid: "5bc7d778-d530-49cd-bd14-88db3e8f0d26"
+  description: "Single zone AHU with dual compressor with zone static pressure control, economizer, electric heater and weather station."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFVSC
+  - EFSS
+  - DX2ZC
+  - HTZC
+  - ZSPC
+  - ECOND
+  - SRC
+
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFHCM_SARC_SFSS_SFVSC_SSPC:
   guid: "382bf134-5ba5-47df-986e-a6109fde49df"
   description: "Multi-zone AHU with compressive cooling coil controlling to reset supply air temperature, variable speed supply and exhaust, and minimum ventilation control with ventilation air heating and cooling."
