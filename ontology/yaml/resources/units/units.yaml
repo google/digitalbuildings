@@ -230,15 +230,6 @@ frequency:
   megahertz:
     multiplier: 0.000001
     offset: 0
-  per_hour:
-    multiplier: 3600
-    offset: 0
-  per_minute:
-    multiplier: 60
-    offset: 0
-  per_second:
-    multiplier: 1
-    offset: 0
 humidity:
   percent_relative_humidity: STANDARD
 illuminance:
