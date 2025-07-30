@@ -1725,6 +1725,7 @@ AHU_DX2SC_ECON_EFSS_FDPM_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_DX2SC_ECON_FDPM_SARC_SFSS_SFVSC_SSPC:
+  guid: "67370d3b-57c2-4cc4-90a3-b5bba216ea44"
   description: "Multi-zone AHU with two compressors, economizer, variable speed supply fan, and filter differential pressure monitoring."
   is_canonical: true
   implements:
