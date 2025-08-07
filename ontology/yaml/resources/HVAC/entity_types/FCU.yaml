@@ -129,6 +129,17 @@ FCU_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2M:
   - HWDC
   - CO2M
 
+FCU_DFSS_DFVSC_DSP_CHWDC_HWDC:
+  description: "Hydronic variable speed fan coil with heating and cooling (zone control, discharge coil control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - HWDC
+
 FCU_DFSS_DFVSC_DSP_CHWDC_CO2M:
   guid: "b020d2ce-f96b-4dd7-b431-32f417548f4d"
   description: "Hydronic variable speed fan coil with cooling (zone temp control, discharge coil control and CO2 monitoring)."
