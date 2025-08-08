@@ -518,6 +518,16 @@ HWS_RWTC_WSEBYPVM:
   - RWTC
   - WSEBYPVM
 
+HWS_SWTC_WDPC_MMHWDPC_WFRM:
+  description: "Heating water system with differential pressure control, bypass valve minimal mechanical heating differential pressure control and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - MMHWDPC
+  - WFRM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
