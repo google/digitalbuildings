@@ -3403,6 +3403,7 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SARC
 
 AHU_BSPC_DXSC_ECONM_EFVSC_SFVSC_SSPC_SARC:
+  guid: "183caae0-6eb0-4630-9dd8-066e028b664d"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:

@@ -95,6 +95,7 @@ ASHP_SS_SWTC_DX6SWC_WDPM_CPC2X_RWISOVM:
   - RWISOVM
 
 ASHP_SS_DX2SWC_WDT_WDPM_SWISOVM_RCKTM2X:
+  guid: "21e606d2-2349-44d3-b0dd-b28d8b1fd43f"
   description: "Two-stage air source heat pump with supply isolation valve and refrigerant circuit monitoring."
   is_canonical: true
   implements:

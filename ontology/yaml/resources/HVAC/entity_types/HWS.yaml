@@ -519,6 +519,7 @@ HWS_RWTC_WSEBYPVM:
   - WSEBYPVM
 
 HWS_SWTC_WDPC_MMHWDPC_WFRM:
+  guid: "e3d6c5e4-e1e1-4a41-8ada-3f95797a1a0c"
   description: "Heating water system with differential pressure control, bypass valve minimal mechanical heating differential pressure control and flowrate monitoring."
   is_canonical: true
   implements:

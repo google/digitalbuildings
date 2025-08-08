@@ -1790,6 +1790,7 @@ MMCWDPC:
   - OPERATIONAL
 
 MMHWDPC:
+  guid: "56fa586d-8c29-42b5-b641-483675f61dd5"
   description: "Minimum water differential pressure control for mechanical heating in a hydronic system."
   is_abstract: true
   opt_uses:
