@@ -1797,7 +1797,7 @@ MMHWDPC:
   - failed_bypass_valve_alarm
   uses:
   - bypass_valve_percentage_command
-  - low_limit_mechanical_heating_differential_pressure_sensor
+  - mechanical_heating_differential_pressure_sensor
   - low_limit_mechanical_heating_differential_pressure_setpoint
   implements:
   - OPERATIONAL
