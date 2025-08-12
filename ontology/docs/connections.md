@@ -127,6 +127,9 @@ LOADTYPE-GUID:
     - MEASURES
 ```
 
+The source entity for the Measures connection must be a device that performs quantification.
+This typically includes `METERS`.
+
 ## Fully Aggregates
 
 #### Definition: Source combines attributes of the Targets and the Targets' attributes fully account for the Source's attributes.
