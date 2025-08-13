@@ -18,9 +18,13 @@ CONTROLS:
   description: "Source determines or affects the internal state or behavior of Target."
 FEEDS:
   description: "Source provides some media (ex: water or air) to Target."
+FULLY_AGGREGATES:
+  description: "Source combines attributes of the Targets and the Targets' attributes fully account for the Source's attributes."
 HAS_PART:
   description: "Source has some component or part defined by Target."
 HAS_RANGE:
   description: "Source has a coverage or detection range defined by Target."
 MEASURES:
   description: "Source quantifies attributes of the Target."
+PARIALLY_AGGREGATES:
+  description: "Source combines attributes of the Targets but the Targets' attributes do not fully account for the Source's attributes."
