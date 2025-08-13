@@ -3402,6 +3402,20 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
+AHU_BSPC_DXSC_ECONM_EFVSC_SFVSC_SSPC_SARC:
+  guid: "183caae0-6eb0-4630-9dd8-066e028b664d"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DXSC
+  - ECONM
+  - EFVSC
+  - SFVSC
+  - SSPC
+  - SARC
+
 AHU_ZSPC_CHWDC_CSP_ECONMD_DFSS_DFVSC_HWDC:
   guid: "e0eadf0d-ea13-4d5d-8c35-0ca458d65dba"
   description: "Single zone unit with dehumidifcation CHW coil"
