@@ -129,3 +129,44 @@ LOADTYPE-GUID:
 
 The source entity for the Measures connection must be a device that performs quantification.
 This typically includes `METERS`.
+
+## Fully Aggregates
+
+#### Definition: Source combines attributes of the Targets and the Targets' attributes fully account for the Source's attributes.
+
+The Fully Aggregates connection should be used when one entity aggregates the attributes of another,
+by summing, averaging, etc., and the aggregation of the connected targets fully account for the 
+attributions of the source. This connection is commonly used to represent meter hierarchies. 
+For example, a meter may measure a panel and we may have 6 meters below it in the hierarchy that each 
+that measure a breaker load on the panel, and there are only 6 total beaker loads on the panel. 
+In this instance the connection between the panel meter (source) and breaker meters (targets) 
+should be set on the breaker meters as follows:
+
+``` yaml
+BREAKER-METER-GUID:
+  code: EM-201
+  connections:
+    PANEL-METER-GUID:
+    - FULLY_AGGREGATES
+```
+
+## Partially Aggregates
+
+#### Definition: Source combines attributes of the Targets but the Targets' attributes do not fully account for the Source's attributes.
+
+The Partially Aggregates connection should be used when one entity aggregates the attributes of another,
+by summing, averaging, etc., but the aggregation of the connected targets do not fully account for the 
+attributions of the source. This connection is commonly used to represent meter hierarchies. 
+For example, a meter may measure a panel and we may have 4 meters below it in the hierarchy that each 
+that measure a breaker load on the panel, but there are 6 total beaker loads on the panel. Therefore
+there are unaccounted for loads from the remaining 2 breakers that attribute to the attributes of 
+the panel meter. In this instance the connection between the panel meter (source) and breaker 
+meters (targets) should be set on the breaker meters as follows:
+
+``` yaml
+BREAKER-METER-GUID:
+  code: EM-201
+  connections:
+    PANEL-METER-GUID:
+    - PARTIALLY_AGGREGATES
+```
