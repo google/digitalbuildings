@@ -61,7 +61,7 @@ dde-453:
 
 Metering systems can be modeled with electrical infrastructure and load designation to provide a complete picture of the system as it physically exists. This section describes how all involved entities should be created and connected within a building configuration file.
 
-#### Create the Building Entity, Meter Device Entities, Electrical Infrastucture Entites (Panels/Breakers/Equipment/etc), and Load Types
+#### Create the Building Entity, Meter Device Entities, Electrical Infrastructure Entities (Panels/Breakers/Equipment/etc), and Load Types
 
 Use the syntax described in [building_config](building_config.md) to create a facility entity for the building and a reporting entity for the meter device. A `CONTAINS` connection should be used to indicate that the meter exists within the building. Create entities to represent the electrical infrastructure and abstract entities to represent load types.
 
