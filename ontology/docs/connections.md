@@ -115,7 +115,27 @@ This typically includes `SENSORS`.
 #### Definition: Source quantifies attributes of the Target.
 
 The measures connection should be used to decribe when an entity ascertains the
-quantity or value of another's attributes. One common example would be a meter that measures a
+quantity or value of another's attributes. One common example would be a meter that 
+measures the attributes of a panel. In these instances the connection should be 
+set on the `PANEL` entity as follows:
+
+``` yaml
+PANEL-GUID:
+  code: MSB-1
+  connections:
+    METER-GUID:
+    - MEASURES
+```
+
+The source entity for the Measures connection must be a device that performs quantification.
+This typically includes `METERS`.
+
+## Measures Type
+
+#### Definition: Source quantifies attributes that are categorized by the Target.
+
+The measures type connection should be used to decribe when an entity ascertains quantities or values of attributes that
+fall within the category of the target entity. This connection should be used for a meter that measures a
 [load type](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/METERS/entity_types/LOADTYPES.yaml).
 In these instances the connection should be set on the `LOADTYPE` entity as follows:
 
@@ -124,10 +144,10 @@ LOADTYPE-GUID:
   code: Loadtype HVAC
   connections:
     METER-GUID:
-    - MEASURES
+    - MEASURES_TYPE
 ```
 
-The source entity for the Measures connection must be a device that performs quantification.
+The source entity for the Measures Type connection must be a device that performs quantification.
 This typically includes `METERS`.
 
 ## Fully Aggregates

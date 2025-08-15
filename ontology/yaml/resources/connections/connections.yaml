@@ -26,5 +26,7 @@ HAS_RANGE:
   description: "Source has a coverage or detection range defined by Target."
 MEASURES:
   description: "Source quantifies attributes of the Target."
+MEASURES_TYPE:
+  description: "Source quantifies attributes that are categorized by the Target."
 PARIALLY_AGGREGATES:
   description: "Source combines attributes of the Targets but the Targets' attributes do not fully account for the Source's attributes."
