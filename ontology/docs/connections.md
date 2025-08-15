@@ -115,8 +115,8 @@ This typically includes `SENSORS`.
 #### Definition: Source quantifies attributes of the Target.
 
 The measures connection should be used to decribe when an entity ascertains the
-quantity or value of another's attributes. One common example would be a meter that 
-measures the attributes of a panel. In these instances the connection should be 
+quantity or value of another's attributes. One common example would be a meter that
+measures the attributes of a panel. In these instances the connection should be
 set on the `PANEL` entity as follows:
 
 ``` yaml
