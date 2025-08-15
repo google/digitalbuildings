@@ -14,15 +14,15 @@ Use the syntax described in [building_config](building_config.md) to create a fa
 
 Create a loadtype entity to represent each of the types of loads the meters in the building measure. The entity will consist of a single abstract loadtype found in the file called `LOADTYPES.yaml` in the `METER` namespace. The abstract loadtype does not implement any fields. A `CONTAINS` connection should be used to indicate that the load exists within the building.
 
-### Connect the Loadtype Entity to the Meter Entity via a `MEASURES` Connection
+### Connect the Loadtype Entity to the Meter Entity via a `MEASURES_TYPE` Connection
 
-Add a `MEASURES` connection to the loadtype entity to indicate which meter(s) provide data for it. A building may have multiple meters that measure the same loadtype.
+Add a `MEASURES_TYPE` connection to the loadtype entity to indicate which meter(s) provide data for it. A building may have multiple meters that measure the same loadtype.
 
 ## Example Building Layout and Config
 
 Example full building-loadtype-meter layout:
 
-![image](https://github.com/shambergoldstein/digitalbuildings/assets/124837286/427e4c03-c132-468c-94e7-20486117643a)
+<img width="1996" height="1034" alt="image" src="https://github.com/user-attachments/assets/936cb3b3-c304-477f-88af-004fc289876e" />
 
 Example building-loadtype-meter connection in building configuration file:
 ``` yaml
@@ -37,7 +37,7 @@ abc-123:
   type: METERS/LOADTYPE_MAIN
   connections:
     ccb-342: CONTAINS
-    dde-453: MEASURES
+    dde-453: MEASURES_TYPE
 
 # The reporting entity for the meter
 dde-453:
@@ -69,9 +69,9 @@ Use the syntax described in [building_config](building_config.md) to create a fa
 
 Please see the [connections documentation](connections.md) for a description of this connection type.
 
-#### Connect the Loadtype Entities and Electrical Infrastructure to the Meter Entities via `MEASURES` Connections
+#### Connect the Loadtype Entities to the Meter Entities using a `MEASURES_TYPE` Connection and Electrical Infrastructure to the Meter Entities via `MEASURES` Connection
 
-Add a `MEASURES` connection to each loadtype entity and to each entity representing the electrical infrastructure to indicate which meter(s) provides data for them. If a component if the electrical infrastructure is not measured by any meters then this connection can be omitted.
+Add a `MEASURES_TYPE` connection to each loadtype entity as described above and a `MEASURES` connection to each entity representing the electrical infrastructure to indicate which meter(s) provides data for them. If a component if the electrical infrastructure is not measured by any meters then this connection can be omitted.
 
 #### Connect the Meter Entities to each other with either a `PARTIALLY_AGGREGATES` or a `FULLY_AGGREGATES` Connection
 
@@ -81,8 +81,7 @@ Please see the [connections documentation](connections.md) for a description of 
 
 Example full building-loadtype-meter-electrical-infrastructure layout:
 
-<img width="1000" height="653" alt="image" src="https://github.com/user-attachments/assets/adab4aec-f070-4f75-8ed4-0bdd1f383f4e" />
-
+<img width="2239" height="1410" alt="image" src="https://github.com/user-attachments/assets/f2796dd5-bd59-4bc2-8090-b784b1548b36" />
 
 Example building-loadtype-meter-electrical-infrastructure connection in building configuration file:
 ``` yaml
@@ -203,23 +202,23 @@ hvac:
   code: HVAC
   type: METERS/LOADTYPE
   connections:
-    m_ahu1: MEASURES
-    m_ahu2: MEASURES
-    m_ahu3: MEASURES
+    m_ahu1: MEASURES_TYPE
+    m_ahu2: MEASURES_TYPE
+    m_ahu3: MEASURES_TYPE
     bldg: CONTAINS
 
 main:
   code: MAIN
   type: METERS/LOADTYPE
   connections:
-    m_main: MEASURES
+    m_main: MEASURES_TYPE
     bldg: CONTAINS
 
 plug:
   code: PLUG
   type: METERS/LOADTYPE
   connections:
-    m_tc1: MEASURES
+    m_tc1: MEASURES_TYPE
     bldg: CONTAINS
 
 ```
@@ -231,9 +230,9 @@ Often, the explicit modeling of the electrical system is outside an MSI’s base
 
 Use the syntax described in [building_config](building_config.md) to create a facility entity for the building and a reporting entity for the meter device. A `CONTAINS` connection should be used to indicate that the meter exists within the building. Create abstract entities to represent load types.
 
-#### Connect the Loadtype Entities to the Meter Entities via `MEASURES` Connections
+#### Connect the Loadtype Entities to the Meter Entities via `MEASURES_TYPE` Connections
 
-Add a `MEASURES` connection to each loadtype entity to indicate which meter(s) provides data for them.
+Add a `MEASURES_TYPE` connection to each loadtype entity to indicate which meter(s) provides data for them.
 
 #### Connect the Meter Entities to each other with either a `PARTIALLY_AGGREGATES` or a `FULLY_AGGREGATES` Connection
 
@@ -243,8 +242,7 @@ Please see the [connections documentation](connections.md) for a description of 
 
 Example full building-loadtype-meter layout:
 
-<img width="545" height="424" alt="image" src="https://github.com/user-attachments/assets/d9fac686-d813-421a-95bc-d466e13f8c6b" />
-
+<img width="1955" height="1485" alt="image" src="https://github.com/user-attachments/assets/09d0f7c9-5a10-4e4a-982a-871a0f852937" />
 
 Example building-loadtype-meter connection in building configuration file:
 
@@ -303,23 +301,23 @@ hvac:
   code: HVAC
   type: METERS/LOADTYPE
   connections:
-    m_ahu1: MEASURES
-    m_ahu2: MEASURES
-    m_ahu3: MEASURES
+    m_ahu1: MEASURES_TYPE
+    m_ahu2: MEASURES_TYPE
+    m_ahu3: MEASURES_TYPE
     bldg: CONTAINS
 
 main:
   code: MAIN
   type: METERS/LOADTYPE
   connections:
-    m_main: MEASURES
+    m_main: MEASURES_TYPE
     bldg: CONTAINS
 
 plug:
   code: PLUG
   type: METERS/LOADTYPE
   connections:
-    m_tc1: MEASURES
+    m_tc1: MEASURES_TYPE
     bldg: CONTAINS
 
 ```
