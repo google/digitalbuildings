@@ -19,6 +19,7 @@
 # they are placeholders for appropriate types to be applied later.
 
 AHU_INITIAL:
+  guid: af089fcc-6491-49ee-9a01-edabe9276c58
   description: "Initial type for AHUs."
   implements:
   - AHU
@@ -26,12 +27,14 @@ AHU_INITIAL:
 
 
 FCU_INITIAL:
+  guid: 62e1bfda-7575-4f43-8a37-9748f3b72b1f
   description: "Initial type for FCUs."
   implements:
   - FCU
   allow_undefined_fields: true
 
 PMP_INITIAL:
+  guid: 292a81bc-e6d1-4e36-b635-4974063ec151
   description: "Initial type for PMPs."
   implements:
   - PMP
