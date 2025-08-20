@@ -3164,6 +3164,7 @@ DX2SWC:
   - low_supply_water_temperature_alarm
   - load_percentage_sensor_1
   - load_percentage_sensor_2
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4666,6 +4667,7 @@ SARC:
   - supply_air_flowrate_sensor
   - warmup_run_command
   - warmup_request_count
+  - cooldown_run_command
   uses:
   - cooling_request_count
   - pressurization_request_count

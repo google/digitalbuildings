@@ -1,0 +1,2899 @@
+CONFIG_METADATA:
+  operation: UPDATE
+
+e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+  cloud_device_id: 2645423796165524
+  code: PHWP-1 ABB ACH-580
+  etag: 7be27a6c
+  translation:
+    compressor_run_command_1_1: MISSING
+    compressor_run_command_2_1: MISSING
+    compressor_run_command_3_1: MISSING
+    compressor_run_command_4_1: MISSING
+    compressor_run_status_1_1:
+      present_value: data.binary-value_163.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_2_1:
+      present_value: data.binary-value_237.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_3_1:
+      present_value: data.binary-value_234.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_4_1:
+      present_value: data.binary-value_238.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    failed_alarm_1:
+      present_value: data.binary-value_194.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_communication_alarm_2:
+      present_value: data.binary-value_295.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_heating_return_water_isolation_valve_alarm_1:
+      present_value: data.binary-value_196.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    heating_return_water_isolation_valve_percentage_command_1:
+      present_value: data.analog-output_6.present-value
+      units:
+        key: data.analog-output_6.units
+        values:
+          percent: percent
+    heating_return_water_isolation_valve_percentage_sensor_1:
+      present_value: data.analog-input_13.present-value
+      units:
+        key: data.analog-input_13.units
+        values:
+          percent: percent
+    load_percentage_sensor_1_3:
+      present_value: data.analog-value_94.present-value
+      units:
+        key: data.analog-value_94.units
+        values:
+          percent: percent
+    load_percentage_sensor_2_1:
+      present_value: data.analog-value_113.present-value
+      units:
+        key: data.analog-value_113.units
+        values:
+          percent: percent
+    refrigerant_discharge_pressure_sensor_1_3:
+      present_value: data.analog-value_91.present-value
+      units:
+        key: data.analog-value_91.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_discharge_pressure_sensor_2_3:
+      present_value: data.analog-value_96.present-value
+      units:
+        key: data.analog-value_96.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_discharge_temperature_sensor_1_1: MISSING
+    refrigerant_discharge_temperature_sensor_2_1: MISSING
+    refrigerant_liquid_pressure_sensor_1_1: MISSING
+    refrigerant_liquid_pressure_sensor_2_1: MISSING
+    refrigerant_liquid_saturation_temperature_sensor_1_1: MISSING
+    refrigerant_liquid_saturation_temperature_sensor_2_1: MISSING
+    refrigerant_liquid_temperature_sensor_1_3:
+      present_value: data.analog-value_92.present-value
+      units:
+        key: data.analog-value_92.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_liquid_temperature_sensor_2_1:
+      present_value: data.analog-value_111.present-value
+      units:
+        key: data.analog-value_111.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_subcooling_temperature_sensor_1_1: MISSING
+    refrigerant_subcooling_temperature_sensor_2_1: MISSING
+    refrigerant_suction_pressure_sensor_1_3:
+      present_value: data.analog-value_93.present-value
+      units:
+        key: data.analog-value_93.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_suction_pressure_sensor_2_1:
+      present_value: data.analog-value_112.present-value
+      units:
+        key: data.analog-value_112.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_suction_saturation_temperature_sensor_1_1: MISSING
+    refrigerant_suction_saturation_temperature_sensor_2_1: MISSING
+    refrigerant_suction_superheat_temperature_sensor_1_1: MISSING
+    refrigerant_suction_superheat_temperature_sensor_2_1: MISSING
+    refrigerant_suction_temperature_sensor_1_1: MISSING
+    refrigerant_suction_temperature_sensor_2_1: MISSING
+    refrigerant_vapor_temperature_sensor_1_3:
+      present_value: data.analog-value_95.present-value
+      units:
+        key: data.analog-value_95.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_vapor_temperature_sensor_2_1:
+      present_value: data.analog-value_114.present-value
+      units:
+        key: data.analog-value_114.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    return_water_temperature_sensor_1:
+      present_value: data.analog-value_119.present-value
+      units:
+        key: data.analog-value_119.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    reversing_valve_command_1_1:
+      present_value: data.binary-value_235.present-value
+      states:
+        OPEN:
+        - active
+        CLOSED:
+        - inactive
+    reversing_valve_command_2_1:
+      present_value: data.binary-value_239.present-value
+      states:
+        OPEN:
+        - active
+        CLOSED:
+        - inactive
+    run_command_3:
+      present_value: data.binary-output_2.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_1:
+      present_value: data.binary-value_119.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_water_temperature_sensor_1:
+      present_value: data.analog-value_120.present-value
+      units:
+        key: data.analog-value_120.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_water_temperature_setpoint_2:
+      present_value: data.analog-value_59.present-value
+      units:
+        key: data.analog-value_59.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    compressor_run_command_1_2: MISSING
+    compressor_run_command_2_2: MISSING
+    compressor_run_command_3_2: MISSING
+    compressor_run_command_4_2: MISSING
+    compressor_run_status_1_2:
+      present_value: data.binary-value_298.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_2_2:
+      present_value: data.binary-value_302.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_3_2:
+      present_value: data.binary-value_299.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_4_2:
+      present_value: data.binary-value_303.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    failed_alarm_2:
+      present_value: data.binary-value_198.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_communication_alarm_3:
+      present_value: data.binary-value_360.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_heating_return_water_isolation_valve_alarm_2:
+      present_value: data.binary-value_200.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    heating_return_water_isolation_valve_percentage_command_2:
+      present_value: data.analog-output_7.present-value
+      units:
+        key: data.analog-output_7.units
+        values:
+          percent: percent
+    heating_return_water_isolation_valve_percentage_sensor_2:
+      present_value: data.analog-input_14.present-value
+      units:
+        key: data.analog-input_14.units
+        values:
+          percent: percent
+    load_percentage_sensor_1_1:
+      present_value: data.analog-value_126.present-value
+      units:
+        key: data.analog-value_126.units
+        values:
+          percent: percent
+    load_percentage_sensor_2_2:
+      present_value: data.analog-value_131.present-value
+      units:
+        key: data.analog-value_131.units
+        values:
+          percent: percent
+    refrigerant_discharge_pressure_sensor_1_1:
+      present_value: data.analog-value_123.present-value
+      units:
+        key: data.analog-value_123.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_discharge_pressure_sensor_2_1:
+      present_value: data.analog-value_128.present-value
+      units:
+        key: data.analog-value_128.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_discharge_temperature_sensor_1_2: MISSING
+    refrigerant_discharge_temperature_sensor_2_2: MISSING
+    refrigerant_liquid_pressure_sensor_1_2: MISSING
+    refrigerant_liquid_pressure_sensor_2_2: MISSING
+    refrigerant_liquid_saturation_temperature_sensor_1_2: MISSING
+    refrigerant_liquid_saturation_temperature_sensor_2_2: MISSING
+    refrigerant_liquid_temperature_sensor_1_1:
+      present_value: data.analog-value_124.present-value
+      units:
+        key: data.analog-value_124.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_liquid_temperature_sensor_2_2:
+      present_value: data.analog-value_129.present-value
+      units:
+        key: data.analog-value_129.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_subcooling_temperature_sensor_1_2: MISSING
+    refrigerant_subcooling_temperature_sensor_2_2: MISSING
+    refrigerant_suction_pressure_sensor_1_1:
+      present_value: data.analog-value_125.present-value
+      units:
+        key: data.analog-value_125.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_suction_pressure_sensor_2_2:
+      present_value: data.analog-value_130.present-value
+      units:
+        key: data.analog-value_130.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_suction_saturation_temperature_sensor_1_2: MISSING
+    refrigerant_suction_saturation_temperature_sensor_2_2: MISSING
+    refrigerant_suction_superheat_temperature_sensor_1_2: MISSING
+    refrigerant_suction_superheat_temperature_sensor_2_2: MISSING
+    refrigerant_suction_temperature_sensor_1_2: MISSING
+    refrigerant_suction_temperature_sensor_2_2: MISSING
+    refrigerant_vapor_temperature_sensor_1_1:
+      present_value: data.analog-value_127.present-value
+      units:
+        key: data.analog-value_127.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_vapor_temperature_sensor_2_2:
+      present_value: data.analog-value_132.present-value
+      units:
+        key: data.analog-value_132.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    return_water_temperature_sensor_2:
+      present_value: data.analog-value_137.present-value
+      units:
+        key: data.analog-value_137.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    reversing_valve_command_1_2:
+      present_value: data.binary-value_300.present-value
+      states:
+        OPEN:
+        - active
+        CLOSED:
+        - inactive
+    reversing_valve_command_2_2:
+      present_value: data.binary-value_304.present-value
+      states:
+        OPEN:
+        - active
+        CLOSED:
+        - inactive
+    run_command_4:
+      present_value: data.binary-output_4.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_2:
+      present_value: data.binary-value_122.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_water_temperature_sensor_2:
+      present_value: data.analog-value_138.present-value
+      units:
+        key: data.analog-value_138.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_water_temperature_setpoint_3:
+      present_value: data.analog-value_89.present-value
+      units:
+        key: data.analog-value_89.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    compressor_run_command_1_3: MISSING
+    compressor_run_command_2_3: MISSING
+    compressor_run_command_3_3: MISSING
+    compressor_run_command_4_3: MISSING
+    compressor_run_status_1_3:
+      present_value: data.binary-value_363.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_2_3:
+      present_value: data.binary-value_367.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_3_3:
+      present_value: data.binary-value_364.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    compressor_run_status_4_3:
+      present_value: data.binary-value_368.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    failed_alarm_3:
+      present_value: data.binary-value_202.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_communication_alarm_4:
+      present_value: data.binary-value_425.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_heating_return_water_isolation_valve_alarm_3:
+      present_value: data.binary-value_204.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    heating_return_water_isolation_valve_percentage_command_3:
+      present_value: data.analog-output_8.present-value
+      units:
+        key: data.analog-output_8.units
+        values:
+          percent: percent
+    heating_return_water_isolation_valve_percentage_sensor_3:
+      present_value: data.analog-input_15.present-value
+      units:
+        key: data.analog-input_15.units
+        values:
+          percent: percent
+    load_percentage_sensor_1_2:
+      present_value: data.analog-value_144.present-value
+      units:
+        key: data.analog-value_144.units
+        values:
+          percent: percent
+    load_percentage_sensor_2_3:
+      present_value: data.analog-value_149.present-value
+      units:
+        key: data.analog-value_149.units
+        values:
+          percent: percent
+    refrigerant_discharge_pressure_sensor_1_2:
+      present_value: data.analog-value_141.present-value
+      units:
+        key: data.analog-value_141.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_discharge_pressure_sensor_2_2:
+      present_value: data.analog-value_146.present-value
+      units:
+        key: data.analog-value_146.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_discharge_temperature_sensor_1_3: MISSING
+    refrigerant_discharge_temperature_sensor_2_3: MISSING
+    refrigerant_liquid_pressure_sensor_1_3: MISSING
+    refrigerant_liquid_pressure_sensor_2_3: MISSING
+    refrigerant_liquid_saturation_temperature_sensor_1_3: MISSING
+    refrigerant_liquid_saturation_temperature_sensor_2_3: MISSING
+    refrigerant_liquid_temperature_sensor_1_2:
+      present_value: data.analog-value_142.present-value
+      units:
+        key: data.analog-value_142.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_liquid_temperature_sensor_2_3:
+      present_value: data.analog-value_147.present-value
+      units:
+        key: data.analog-value_147.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_subcooling_temperature_sensor_1_3: MISSING
+    refrigerant_subcooling_temperature_sensor_2_3: MISSING
+    refrigerant_suction_pressure_sensor_1_2:
+      present_value: data.analog-value_143.present-value
+      units:
+        key: data.analog-value_143.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_suction_pressure_sensor_2_3:
+      present_value: data.analog-value_148.present-value
+      units:
+        key: data.analog-value_148.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_suction_saturation_temperature_sensor_1_3: MISSING
+    refrigerant_suction_saturation_temperature_sensor_2_3: MISSING
+    refrigerant_suction_superheat_temperature_sensor_1_3: MISSING
+    refrigerant_suction_superheat_temperature_sensor_2_3: MISSING
+    refrigerant_suction_temperature_sensor_1_3: MISSING
+    refrigerant_suction_temperature_sensor_2_3: MISSING
+    refrigerant_vapor_temperature_sensor_1_2:
+      present_value: data.analog-value_145.present-value
+      units:
+        key: data.analog-value_145.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_vapor_temperature_sensor_2_3:
+      present_value: data.analog-value_150.present-value
+      units:
+        key: data.analog-value_150.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    return_water_temperature_sensor_3:
+      present_value: data.analog-value_155.present-value
+      units:
+        key: data.analog-value_155.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    reversing_valve_command_1_3:
+      present_value: data.binary-value_365.present-value
+      states:
+        OPEN:
+        - active
+        CLOSED:
+        - inactive
+    reversing_valve_command_2_3:
+      present_value: data.binary-value_369.present-value
+      states:
+        OPEN:
+        - active
+        CLOSED:
+        - inactive
+    run_command_5:
+      present_value: data.binary-output_6.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_3:
+      present_value: data.binary-value_125.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_water_temperature_sensor_3:
+      present_value: data.analog-value_156.present-value
+      units:
+        key: data.analog-value_156.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_water_temperature_setpoint_1:
+      present_value: data.analog-value_115.present-value
+      units:
+        key: data.analog-value_115.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    failed_communication_alarm_1:
+      present_value: data.binary-value_206.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_primary_return_water_temperature_alarm:
+      present_value: data.binary-value_222.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_primary_supply_water_flowrate_alarm:
+      present_value: data.binary-value_224.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_primary_supply_water_temperature_alarm:
+      present_value: data.binary-value_223.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_secondary_return_water_temperature_alarm:
+      present_value: data.binary-value_225.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_secondary_supply_water_flowrate_alarm:
+      present_value: data.binary-value_227.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_secondary_supply_water_temperature_alarm:
+      present_value: data.binary-value_226.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_secondary_water_differential_pressure_alarm:
+      present_value: data.binary-value_207.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    heating_request_count:
+      present_value: data.analog-value_82.present-value
+      units:
+        key: data.analog-value_82.units
+        values:
+          no_units: no-units
+    high_primary_supply_water_temperature_alarm:
+      present_value: data.binary-value_209.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    high_secondary_supply_water_temperature_alarm:
+      present_value: data.binary-value_210.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    high_secondary_water_differential_pressure_alarm:
+      present_value: data.binary-value_208.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_secondary_supply_water_temperature_alarm:
+      present_value: data.binary-value_212.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_secondary_water_differential_pressure_alarm:
+      present_value: data.binary-value_211.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    primary_return_water_temperature_sensor:
+      present_value: data.analog-input_6.present-value
+      units:
+        key: data.analog-input_6.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    primary_supply_water_flowrate_sensor:
+      present_value: data.analog-input_5.present-value
+      units:
+        key: data.analog-input_5.units
+        values:
+          us_gallons_per_minute: us-gallons-per-minute
+    primary_supply_water_flowrate_setpoint:
+      present_value: data.analog-value_74.present-value
+      units:
+        key: data.analog-value_74.units
+        values:
+          us_gallons_per_minute: us-gallons-per-minute
+    primary_supply_water_temperature_sensor:
+      present_value: data.analog-input_7.present-value
+      units:
+        key: data.analog-input_7.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    run_command_9:
+      present_value: data.binary-value_121.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    secondary_return_water_temperature_sensor:
+      present_value: data.analog-input_9.present-value
+      units:
+        key: data.analog-input_9.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    secondary_supply_water_flowrate_sensor:
+      present_value: data.analog-input_8.present-value
+      units:
+        key: data.analog-input_8.units
+        values:
+          us_gallons_per_minute: us-gallons-per-minute
+    secondary_supply_water_temperature_sensor:
+      present_value: data.analog-input_10.present-value
+      units:
+        key: data.analog-input_10.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    secondary_supply_water_temperature_setpoint:
+      present_value: data.analog-value_70.present-value
+      units:
+        key: data.analog-value_70.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    secondary_water_differential_pressure_sensor:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    secondary_water_differential_pressure_setpoint:
+      present_value: data.analog-value_67.present-value
+      units:
+        key: data.analog-value_67.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    current_sensor_1:
+      present_value: data.analog-value_100.present-value
+      units:
+        key: data.analog-value_100.units
+        values:
+          amperes: amperes
+    failed_alarm_4:
+      present_value: data.binary-value_213.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_1:
+      present_value: data.analog-value_109.present-value
+      units:
+        key: data.analog-value_109.units
+        values:
+          kilowatts: kilowatts
+    run_command_6:
+      present_value: data.binary-output_7.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_4:
+      present_value: data.binary-value_167.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_3:
+      present_value: data.analog-input_2.present-value
+      units:
+        key: data.analog-input_2.units
+        values:
+          hertz: hertz
+    speed_percentage_command_1:
+      present_value: data.analog-output_1.present-value
+      units:
+        key: data.analog-output_1.units
+        values:
+          percent: percent
+    torque_sensor_1:
+      present_value: data.analog-value_110.present-value
+      units:
+        key: data.analog-value_110.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_1:
+      present_value: data.analog-value_108.present-value
+      units:
+        key: data.analog-value_108.units
+        values:
+          volts: volts
+    current_sensor_4:
+      present_value: data.analog-value_4.present-value
+      units:
+        key: data.analog-value_4.units
+        values:
+          amperes: amperes
+    failed_alarm_5:
+      present_value: data.binary-value_216.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_2:
+      present_value: data.analog-value_13.present-value
+      units:
+        key: data.analog-value_13.units
+        values:
+          kilowatts: kilowatts
+    run_command_7:
+      present_value: data.binary-output_8.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_5:
+      present_value: data.binary-value_172.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_4:
+      present_value: data.analog-input_3.present-value
+      units:
+        key: data.analog-input_3.units
+        values:
+          hertz: hertz
+    speed_percentage_command_2:
+      present_value: data.analog-output_2.present-value
+      units:
+        key: data.analog-output_2.units
+        values:
+          percent: percent
+    torque_sensor_2:
+      present_value: data.analog-value_14.present-value
+      units:
+        key: data.analog-value_14.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_2:
+      present_value: data.analog-value_12.present-value
+      units:
+        key: data.analog-value_12.units
+        values:
+          volts: volts
+    current_sensor_2:
+      present_value: data.analog-value_18.present-value
+      units:
+        key: data.analog-value_18.units
+        values:
+          amperes: amperes
+    failed_alarm_6:
+      present_value: data.binary-value_219.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_3:
+      present_value: data.analog-value_27.present-value
+      units:
+        key: data.analog-value_27.units
+        values:
+          kilowatts: kilowatts
+    run_command_8:
+      present_value: data.binary-output_9.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_6:
+      present_value: data.binary-value_177.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_5:
+      present_value: data.analog-input_4.present-value
+      units:
+        key: data.analog-input_4.units
+        values:
+          hertz: hertz
+    speed_percentage_command_3:
+      present_value: data.analog-output_3.present-value
+      units:
+        key: data.analog-output_3.units
+        values:
+          percent: percent
+    torque_sensor_3:
+      present_value: data.analog-value_28.present-value
+      units:
+        key: data.analog-value_28.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_3:
+      present_value: data.analog-value_26.present-value
+      units:
+        key: data.analog-value_26.units
+        values:
+          volts: volts
+    current_sensor_3:
+      present_value: data.analog-value_32.present-value
+      units:
+        key: data.analog-value_32.units
+        values:
+          amperes: amperes
+    failed_alarm_7:
+      present_value: data.binary-value_228.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_4:
+      present_value: data.analog-value_41.present-value
+      units:
+        key: data.analog-value_41.units
+        values:
+          kilowatts: kilowatts
+    run_command_1:
+      present_value: data.binary-output_10.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_7:
+      present_value: data.binary-value_186.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_1:
+      present_value: data.analog-input_11.present-value
+      units:
+        key: data.analog-input_11.units
+        values:
+          hertz: hertz
+    speed_percentage_command_4:
+      present_value: data.analog-output_4.present-value
+      units:
+        key: data.analog-output_4.units
+        values:
+          percent: percent
+    torque_sensor_4:
+      present_value: data.analog-value_42.present-value
+      units:
+        key: data.analog-value_42.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_4:
+      present_value: data.analog-value_40.present-value
+      units:
+        key: data.analog-value_40.units
+        values:
+          volts: volts
+    current_sensor_5:
+      present_value: data.analog-value_46.present-value
+      units:
+        key: data.analog-value_46.units
+        values:
+          amperes: amperes
+    failed_alarm_8:
+      present_value: data.binary-value_231.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_5:
+      present_value: data.analog-value_55.present-value
+      units:
+        key: data.analog-value_55.units
+        values:
+          kilowatts: kilowatts
+    run_command_2:
+      present_value: data.binary-output_11.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_8:
+      present_value: data.binary-value_190.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_2:
+      present_value: data.analog-input_12.present-value
+      units:
+        key: data.analog-input_12.units
+        values:
+          hertz: hertz
+    speed_percentage_command_5:
+      present_value: data.analog-output_5.present-value
+      units:
+        key: data.analog-output_5.units
+        values:
+          percent: percent
+    torque_sensor_5:
+      present_value: data.analog-value_56.present-value
+      units:
+        key: data.analog-value_56.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_5:
+      present_value: data.analog-value_54.present-value
+      units:
+        key: data.analog-value_54.units
+        values:
+          volts: volts
+  type: GATEWAYS/PASSTHROUGH
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+5fecfa15-1932-4e3b-95e7-30d6e588298f:
+  cloud_device_id: 2.80428E+15
+  code: ChW System / B42
+  etag: 3375fb1f
+  translation:
+    compressor_run_command_1_1: MISSING
+    compressor_run_command_2_1: MISSING
+    compressor_run_command_3_1: MISSING
+    compressor_run_command_4_1: MISSING
+    compressor_run_status_1_1: MISSING
+    compressor_run_status_2_1: MISSING
+    compressor_run_status_3_1: MISSING
+    compressor_run_status_4_1: MISSING
+    compressor_speed_percentage_command_1:
+      present_value: data.analog-value_25.present-value
+      units:
+        key: data.analog-value_25.units
+        values:
+          percent: percent
+    cooling_request_count_1:
+      present_value: data.analog-value_125.present-value
+      units:
+        key: data.analog-value_125.units
+        values:
+          no_units: no-units
+    differential_pressure_sensor_1:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    failed_alarm_1:
+      present_value: data.binary-value_26.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_communication_alarm_1:
+      present_value: data.binary-value_57.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_differential_pressure_alarm_1:
+      present_value: data.binary-value_25.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_supply_water_isolation_valve_alarm_1:
+      present_value: data.binary-value_28.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    refrigerant_condenser_pressure_sensor_1_1:
+      present_value: data.analog-value_44.present-value
+      units:
+        key: data.analog-value_44.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_condenser_pressure_sensor_2_1:
+      present_value: data.analog-value_46.present-value
+      units:
+        key: data.analog-value_46.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_condenser_saturation_temperature_sensor_1_1:
+      present_value: data.analog-value_45.present-value
+      units:
+        key: data.analog-value_45.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_condenser_saturation_temperature_sensor_2_1:
+      present_value: data.analog-value_47.present-value
+      units:
+        key: data.analog-value_47.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_evaporator_pressure_sensor_1_1:
+      present_value: data.analog-value_52.present-value
+      units:
+        key: data.analog-value_52.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_evaporator_pressure_sensor_2_1:
+      present_value: data.analog-value_53.present-value
+      units:
+        key: data.analog-value_53.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_evaporator_saturation_temperature_sensor_1_1: MISSING
+    refrigerant_evaporator_saturation_temperature_sensor_2_1: MISSING
+    refrigerant_suction_temperature_sensor_1_1:
+      present_value: data.analog-value_28.present-value
+      units:
+        key: data.analog-value_28.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_suction_temperature_sensor_2_1:
+      present_value: data.analog-value_36.present-value
+      units:
+        key: data.analog-value_36.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    run_command_1:
+      present_value: data.binary-output_2.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_4:
+      present_value: data.binary-value_7.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_water_isolation_valve_percentage_command_1:
+      present_value: data.analog-output_3.present-value
+      units:
+        key: data.analog-output_3.units
+        values:
+          percent: percent
+    supply_water_isolation_valve_percentage_sensor_2:
+      present_value: data.analog-input_9.present-value
+      units:
+        key: data.analog-input_9.units
+        values:
+          percent: percent
+    supply_water_temperature_sensor_2:
+      present_value: data.analog-value_56.present-value
+      units:
+        key: data.analog-value_56.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_water_temperature_setpoint_1:
+      present_value: data.analog-value_24.present-value
+      units:
+        key: data.analog-value_24.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    compressor_run_command_1_2: MISSING
+    compressor_run_command_2_2: MISSING
+    compressor_run_command_3_2: MISSING
+    compressor_run_command_4_2: MISSING
+    compressor_run_status_1_2: MISSING
+    compressor_run_status_2_2: MISSING
+    compressor_run_status_3_2: MISSING
+    compressor_run_status_4_2: MISSING
+    compressor_speed_percentage_command_2:
+      present_value: data.analog-value_62.present-value
+      units:
+        key: data.analog-value_62.units
+        values:
+          percent: percent
+    cooling_request_count_2:
+      present_value: data.analog-value_126.present-value
+      units:
+        key: data.analog-value_126.units
+        values:
+          no_units: no-units
+    differential_pressure_sensor_2:
+      present_value: data.analog-input_2.present-value
+      units:
+        key: data.analog-input_2.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    failed_alarm_2:
+      present_value: data.binary-value_31.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_communication_alarm_2:
+      present_value: data.binary-value_97.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_differential_pressure_alarm_2:
+      present_value: data.binary-value_30.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_supply_water_isolation_valve_alarm_2:
+      present_value: data.binary-value_33.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    refrigerant_condenser_pressure_sensor_1_2:
+      present_value: data.analog-value_81.present-value
+      units:
+        key: data.analog-value_81.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_condenser_pressure_sensor_2_2:
+      present_value: data.analog-value_83.present-value
+      units:
+        key: data.analog-value_83.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_condenser_saturation_temperature_sensor_1_2:
+      present_value: data.analog-value_82.present-value
+      units:
+        key: data.analog-value_82.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_condenser_saturation_temperature_sensor_2_2:
+      present_value: data.analog-value_84.present-value
+      units:
+        key: data.analog-value_84.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_evaporator_pressure_sensor_1_2:
+      present_value: data.analog-value_89.present-value
+      units:
+        key: data.analog-value_89.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_evaporator_pressure_sensor_2_2:
+      present_value: data.analog-value_90.present-value
+      units:
+        key: data.analog-value_90.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    refrigerant_evaporator_saturation_temperature_sensor_1_2: MISSING
+    refrigerant_evaporator_saturation_temperature_sensor_2_2: MISSING
+    refrigerant_suction_temperature_sensor_1_2:
+      present_value: data.analog-value_65.present-value
+      units:
+        key: data.analog-value_65.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    refrigerant_suction_temperature_sensor_2_2:
+      present_value: data.analog-value_73.present-value
+      units:
+        key: data.analog-value_73.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    run_command_2:
+      present_value: data.binary-output_4.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_1:
+      present_value: data.binary-value_11.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_water_isolation_valve_percentage_command_2:
+      present_value: data.analog-output_4.present-value
+      units:
+        key: data.analog-output_4.units
+        values:
+          percent: percent
+    supply_water_isolation_valve_percentage_sensor_1:
+      present_value: data.analog-input_10.present-value
+      units:
+        key: data.analog-input_10.units
+        values:
+          percent: percent
+    supply_water_temperature_sensor_3:
+      present_value: data.analog-value_93.present-value
+      units:
+        key: data.analog-value_93.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_water_temperature_setpoint_2:
+      present_value: data.analog-value_61.present-value
+      units:
+        key: data.analog-value_61.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    cooling_request_count_3:
+      present_value: data.analog-value_18.present-value
+      units:
+        key: data.analog-value_18.units
+        values:
+          no_units: no-units
+    differential_pressure_sensor_3:
+      present_value: data.analog-input_8.present-value
+      units:
+        key: data.analog-input_8.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    differential_pressure_setpoint:
+      present_value: data.analog-value_8.present-value
+      units:
+        key: data.analog-value_8.units
+        values:
+          pounds_force_per_square_inch: pounds-force-per-square-inch
+    failed_differential_pressure_alarm_3:
+      present_value: data.binary-value_44.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_flowrate_alarm:
+      present_value: data.binary-value_35.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_supply_water_temperature_alarm:
+      present_value: data.binary-value_43.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    flowrate_sensor:
+      present_value: data.analog-input_3.present-value
+      units:
+        key: data.analog-input_3.units
+        values:
+          us_gallons_per_minute: us-gallons-per-minute
+    flowrate_setpoint:
+      present_value: data.analog-value_144.present-value
+      units:
+        key: data.analog-value_144.units
+        values:
+          us_gallons_per_minute: us-gallons-per-minute
+    high_differential_pressure_alarm:
+      present_value: data.binary-value_46.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    high_supply_water_temperature_alarm:
+      present_value: data.binary-value_45.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_differential_pressure_alarm:
+      present_value: data.binary-value_48.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_return_water_temperature_alarm:
+      present_value: data.binary-value_42.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_supply_water_temperature_alarm:
+      present_value: data.binary-value_47.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    return_water_temperature_sensor:
+      present_value: data.analog-input_6.present-value
+      units:
+        key: data.analog-input_6.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    run_command_5:
+      present_value: data.binary-value_23.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_water_temperature_sensor_1:
+      present_value: data.analog-input_7.present-value
+      units:
+        key: data.analog-input_7.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_water_temperature_setpoint_3:
+      present_value: data.analog-value_9.present-value
+      units:
+        key: data.analog-value_9.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    current_sensor_1:
+      present_value: data.analog-value_100.present-value
+      units:
+        key: data.analog-value_100.units
+        values:
+          amperes: amperes
+    failed_alarm_3:
+      present_value: data.binary-value_36.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_1:
+      present_value: data.analog-value_109.present-value
+      units:
+        key: data.analog-value_109.units
+        values:
+          kilowatts: kilowatts
+    run_command_3:
+      present_value: data.binary-output_5.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_2:
+      present_value: data.binary-value_18.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_1:
+      present_value: data.analog-input_4.present-value
+      units:
+        key: data.analog-input_4.units
+        values:
+          hertz: hertz
+    speed_percentage_command_1:
+      present_value: data.analog-output_1.present-value
+      units:
+        key: data.analog-output_1.units
+        values:
+          percent: percent
+    torque_sensor_1:
+      present_value: data.analog-value_110.present-value
+      units:
+        key: data.analog-value_110.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_1:
+      present_value: data.analog-value_108.present-value
+      units:
+        key: data.analog-value_108.units
+        values:
+          volts: volts
+    current_sensor_2:
+      present_value: data.analog-value_114.present-value
+      units:
+        key: data.analog-value_114.units
+        values:
+          amperes: amperes
+    failed_alarm_4:
+      present_value: data.binary-value_39.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    power_sensor_2:
+      present_value: data.analog-value_123.present-value
+      units:
+        key: data.analog-value_123.units
+        values:
+          kilowatts: kilowatts
+    run_command_4:
+      present_value: data.binary-output_6.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_3:
+      present_value: data.binary-value_19.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    speed_frequency_sensor_2:
+      present_value: data.analog-input_5.present-value
+      units:
+        key: data.analog-input_5.units
+        values:
+          hertz: hertz
+    speed_percentage_command_2:
+      present_value: data.analog-output_2.present-value
+      units:
+        key: data.analog-output_2.units
+        values:
+          percent: percent
+    torque_sensor_2:
+      present_value: data.analog-value_124.present-value
+      units:
+        key: data.analog-value_124.units
+        values:
+          newton_meters: newton-meters
+    voltage_sensor_2:
+      present_value: data.analog-value_122.present-value
+      units:
+        key: data.analog-value_122.units
+        values:
+          volts: volts
+  type: GATEWAYS/PASSTHROUGH
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+c63f73f8-e5f7-4e71-879d-838c13bc4062:
+  cloud_device_id: 1709917998095
+  code: Dryers EF-1&2
+  etag: f0b92078
+  translation:
+    dryer_run_status_1:
+      present_value: data.binary-input_3.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    failed_alarm_1:
+      present_value: data.binary-value_4.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    run_command_1:
+      present_value: data.binary-output_1.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_1:
+      present_value: data.binary-input_1.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    dryer_run_status_2:
+      present_value: data.binary-input_4.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    failed_alarm_2:
+      present_value: data.binary-value_7.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    run_command_2:
+      present_value: data.binary-output_2.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status_2:
+      present_value: data.binary-input_2.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+  type: GATEWAYS/PASSTHROUGH
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+7d55490f-0b8e-4d64-9ae2-9506486d621a:
+  cloud_device_id: 2593400850101206
+  code: CO 1-1-7 / Fire Alarm Control Panel Rm 132
+  etag: 4a1c22cb
+  translation:
+    failed_alarm:
+      present_value: data.binary-value_21.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    run_command_1:
+      present_value: data.binary-value_12.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    run_status:
+      present_value: data.binary-input_1.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    cooling_request_count:
+      present_value: data.analog-value_2.present-value
+      units:
+        key: data.analog-value_2.units
+        values:
+          no_units: no-units
+    failed_communication_alarm:
+      present_value: data.binary-value_20.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_zone_air_temperature_alarm:
+      present_value: data.binary-value_25.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    flowrate_requirement:
+      present_value: data.analog-value_4203.present-value
+      units:
+        key: data.analog-value_4203.units
+        values:
+          '': cubic-feet-per-minute
+    high_zone_air_temperature_alarm:
+      present_value: data.binary-value_26.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_zone_air_temperature_alarm:
+      present_value: data.binary-value_27.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    pressurization_request_count:
+      present_value: data.analog-value_9.present-value
+      units:
+        key: data.analog-value_9.units
+        values:
+          no_units: no-units
+    run_command_2:
+      present_value: data.binary-value_7.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    schedule_run_command:
+      present_value: data.binary-value_1.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    supply_air_cooling_flowrate_capacity:
+      present_value: data.analog-value_4201.present-value
+      units:
+        key: data.analog-value_4201.units
+        values:
+          cubic_feet_per_minute: cubic-feet-per-minute
+    supply_air_damper_percentage_command:
+      present_value: data.analog-value_30.present-value
+      units:
+        key: data.analog-value_30.units
+        values:
+          percent: percent
+    supply_air_flowrate_sensor:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.units
+        values:
+          cubic_feet_per_minute: cubic-feet-per-minute
+    supply_air_flowrate_setpoint:
+      present_value: data.analog-value_3.present-value
+      units:
+        key: data.analog-value_3.units
+        values:
+          cubic_feet_per_minute: cubic-feet-per-minute
+    supply_air_heating_flowrate_capacity:
+      present_value: data.analog-value_4202.present-value
+      units:
+        key: data.analog-value_4202.units
+        values:
+          cubic_feet_per_minute: cubic-feet-per-minute
+    unoccupied_flowrate_requirement:
+      present_value: data.analog-value_4204.present-value
+      units:
+        key: data.analog-value_4204.units
+        values:
+          '': cubic-feet-per-minute
+    warmup_request_count:
+      present_value: data.analog-value_32.present-value
+      units:
+        key: data.analog-value_32.units
+        values:
+          no_units: no-units
+    zone_air_cooling_temperature_setpoint:
+      present_value: data.analog-value_11.present-value
+      units:
+        key: data.analog-value_11.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_heating_temperature_setpoint:
+      present_value: data.analog-value_12.present-value
+      units:
+        key: data.analog-value_12.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_temperature_sensor:
+      present_value: data.analog-input_2.present-value
+      units:
+        key: data.analog-input_2.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+  type: GATEWAYS/PASSTHROUGH
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+4aafd763-1d13-4530-bf26-4fad06f24721:
+  cloud_device_id: 2639947048458485
+  code: FCU 2.2/2.3/2.4 - Bridge to B41
+  etag: a030c937
+  translation:
+    chilled_water_valve_percentage_command:
+      present_value: data.analog-output_1.present-value
+      units:
+        key: data.analog-output_1.units
+        values:
+          percent: percent
+    discharge_air_temperature_sensor_1:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_1: MISSING
+    discharge_fan_run_status_1:
+      present_value: data.binary-input_2.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_1:
+      present_value: data.analog-output_2.present-value
+      units:
+        key: data.analog-output_2.units
+        values:
+          percent: percent
+    failed_chilled_water_valve_alarm:
+      present_value: data.binary-value_8.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_air_temperature_alarm_3:
+      present_value: data.binary-value_9.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_1:
+      present_value: data.binary-value_12.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_heating_water_valve_alarm:
+      present_value: data.binary-value_24.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_zone_air_temperature_alarm:
+      present_value: data.binary-value_28.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    heating_water_valve_percentage_command:
+      present_value: data.analog-output_5.present-value
+      units:
+        key: data.analog-output_5.units
+        values:
+          percent: percent
+    high_discharge_air_temperature_alarm:
+      present_value: data.binary-value_21.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    high_zone_air_temperature_alarm:
+      present_value: data.binary-value_22.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_discharge_air_temperature_alarm:
+      present_value: data.binary-value_25.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_zone_air_temperature_alarm:
+      present_value: data.binary-value_26.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    zone_air_cooling_temperature_setpoint:
+      present_value: data.analog-value_7.present-value
+      units:
+        key: data.analog-value_7.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_heating_temperature_setpoint:
+      present_value: data.analog-value_8.present-value
+      units:
+        key: data.analog-value_8.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_temperature_sensor:
+      present_value: data.analog-input_4.present-value
+      units:
+        key: data.analog-input_4.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_air_temperature_sensor_2:
+      present_value: data.analog-input_2.present-value
+      units:
+        key: data.analog-input_2.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_2: MISSING
+    discharge_fan_run_status_2:
+      present_value: data.binary-input_3.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_2:
+      present_value: data.analog-output_3.present-value
+      units:
+        key: data.analog-output_3.units
+        values:
+          percent: percent
+    failed_discharge_air_temperature_alarm_1:
+      present_value: data.binary-value_13.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_2:
+      present_value: data.binary-value_16.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    discharge_air_temperature_sensor_3:
+      present_value: data.analog-input_3.present-value
+      units:
+        key: data.analog-input_3.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_3: MISSING
+    discharge_fan_run_status_3:
+      present_value: data.binary-input_4.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_3:
+      present_value: data.analog-output_4.present-value
+      units:
+        key: data.analog-output_4.units
+        values:
+          percent: percent
+    failed_discharge_air_temperature_alarm_2:
+      present_value: data.binary-value_17.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_3:
+      present_value: data.binary-value_20.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+  type: GATEWAYS/PASSTHROUGH
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+e5cafa9f-db75-4d50-a5d4-902390a3b0ce:
+  cloud_device_id: 2.66351E+15
+  code: FCU 2.5/2.6/2.7/2.8 - Bridge to B43
+  etag: e0050145
+  translation:
+    chilled_water_valve_percentage_command:
+      present_value: data.analog-output_5.present-value
+      units:
+        key: data.analog-output_5.units
+        values:
+          percent: percent
+    discharge_air_temperature_sensor_1:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_1: MISSING
+    discharge_fan_run_status_1:
+      present_value: data.binary-input_1.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_1:
+      present_value: data.analog-output_1.present-value
+      units:
+        key: data.analog-output_1.units
+        values:
+          percent: percent
+    failed_chilled_water_valve_alarm:
+      present_value: data.binary-value_8.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_air_temperature_alarm_4:
+      present_value: data.binary-value_9.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_1:
+      present_value: data.binary-value_11.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_heating_water_valve_alarm:
+      present_value: data.binary-value_24.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_zone_air_temperature_alarm:
+      present_value: data.binary-value_28.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    heating_water_valve_percentage_command:
+      present_value: data.analog-output_6.present-value
+      units:
+        key: data.analog-output_6.units
+        values:
+          percent: percent
+    high_discharge_air_temperature_alarm:
+      present_value: data.binary-value_21.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    high_zone_air_temperature_alarm:
+      present_value: data.binary-value_22.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_discharge_air_temperature_alarm:
+      present_value: data.binary-value_25.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_zone_air_temperature_alarm:
+      present_value: data.binary-value_26.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    zone_air_cooling_temperature_setpoint:
+      present_value: data.analog-value_7.present-value
+      units:
+        key: data.analog-value_7.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_heating_temperature_setpoint:
+      present_value: data.analog-value_8.present-value
+      units:
+        key: data.analog-value_8.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_temperature_sensor:
+      present_value: data.analog-input_5.present-value
+      units:
+        key: data.analog-input_5.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_air_temperature_sensor_2:
+      present_value: data.analog-input_2.present-value
+      units:
+        key: data.analog-input_2.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_2: MISSING
+    discharge_fan_run_status_2:
+      present_value: data.binary-input_2.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_2:
+      present_value: data.analog-output_2.present-value
+      units:
+        key: data.analog-output_2.units
+        values:
+          percent: percent
+    failed_discharge_air_temperature_alarm_1:
+      present_value: data.binary-value_12.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_2:
+      present_value: data.binary-value_14.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    discharge_air_temperature_sensor_3:
+      present_value: data.analog-input_3.present-value
+      units:
+        key: data.analog-input_3.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_3: MISSING
+    discharge_fan_run_status_3:
+      present_value: data.binary-input_3.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_3:
+      present_value: data.analog-output_3.present-value
+      units:
+        key: data.analog-output_3.units
+        values:
+          percent: percent
+    failed_discharge_air_temperature_alarm_2:
+      present_value: data.binary-value_15.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_3:
+      present_value: data.binary-value_17.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    discharge_air_temperature_sensor_4:
+      present_value: data.analog-input_4.present-value
+      units:
+        key: data.analog-input_4.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    discharge_fan_run_command_4: MISSING
+    discharge_fan_run_status_4:
+      present_value: data.binary-input_4.present-value
+      states:
+        ON:
+        - active
+        OFF:
+        - inactive
+    discharge_fan_speed_percentage_command_4:
+      present_value: data.analog-output_4.present-value
+      units:
+        key: data.analog-output_4.units
+        values:
+          percent: percent
+    failed_discharge_air_temperature_alarm_3:
+      present_value: data.binary-value_18.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    failed_discharge_fan_alarm_4:
+      present_value: data.binary-value_20.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+  type: GATEWAYS/PASSTHROUGH
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+e1cb4898-54aa-4091-80b1-5cceaf7c8dfe:
+  cloud_device_id: 4213922902763644000
+  code: Main Elec Room Temp
+  etag: 8a50d486
+  translation:
+    high_zone_air_temperature_alarm:
+      present_value: data.binary-value_2.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    low_zone_air_temperature_alarm:
+      present_value: data.binary-value_3.present-value
+      states:
+        ACTIVE:
+        - active
+        INACTIVE:
+        - inactive
+    zone_air_temperature_sensor:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+  type: HVAC/SENSOR_ZTM
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+82e1f2df-ad0f-4efd-9e44-ac73828ea52b:
+  cloud_device_id: 7255615073574166000
+  code: ACU-2 Daikin Interface, ACU-3 Daikin Interface, Demand Limit / B42, Shelter/Purge
+    / B42, Covid Mode / US-MTV-42, OA Conditions - Bldg Broadcast
+  etag: 98a826b5
+  translation:
+    outside_air_dewpoint_temperature_sensor:
+      present_value: data.analog-value_1304.present-value
+      units:
+        key: data.analog-value_1304.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    outside_air_relative_humidity_sensor:
+      present_value: data.analog-value_1302.present-value
+      units:
+        key: data.analog-value_1302.units
+        values:
+          percent_relative_humidity: percent-relative-humidity
+    outside_air_specificenthalpy_sensor:
+      present_value: data.analog-value_1303.present-value
+      units:
+        key: data.analog-value_1303.units
+        values:
+          btus_per_pound_dry_air: btus-per-pound-dry-air
+    outside_air_temperature_sensor:
+      present_value: data.analog-value_1301.present-value
+      units:
+        key: data.analog-value_1301.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    outside_air_wetbulb_temperature_sensor:
+      present_value: data.analog-value_1305.present-value
+      units:
+        key: data.analog-value_1305.units
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+  type: HVAC/WEATHER_OA
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - TRANSLATION
+
+9177a6be-f779-4538-8e4e-66e5d5bead41:
+  code: US-MTV-42:ASHP:ASHP 1
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      compressor_run_command_1: compressor_run_command_1_1
+      compressor_run_command_2: compressor_run_command_2_1
+      compressor_run_command_3: compressor_run_command_3_1
+      compressor_run_command_4: compressor_run_command_4_1
+      compressor_run_status_1: compressor_run_status_1_1
+      compressor_run_status_2: compressor_run_status_2_1
+      compressor_run_status_3: compressor_run_status_3_1
+      compressor_run_status_4: compressor_run_status_4_1
+      failed_alarm: failed_alarm_1
+      failed_communication_alarm: failed_communication_alarm_2
+      failed_heating_return_water_isolation_valve_alarm: failed_heating_return_water_isolation_valve_alarm_1
+      heating_return_water_isolation_valve_percentage_command: heating_return_water_isolation_valve_percentage_command_1
+      heating_return_water_isolation_valve_percentage_sensor: heating_return_water_isolation_valve_percentage_sensor_1
+      load_percentage_sensor_1: load_percentage_sensor_1_3
+      load_percentage_sensor_2: load_percentage_sensor_2_1
+      refrigerant_discharge_pressure_sensor_1: refrigerant_discharge_pressure_sensor_1_3
+      refrigerant_discharge_pressure_sensor_2: refrigerant_discharge_pressure_sensor_2_3
+      refrigerant_discharge_temperature_sensor_1: refrigerant_discharge_temperature_sensor_1_1
+      refrigerant_discharge_temperature_sensor_2: refrigerant_discharge_temperature_sensor_2_1
+      refrigerant_liquid_pressure_sensor_1: refrigerant_liquid_pressure_sensor_1_1
+      refrigerant_liquid_pressure_sensor_2: refrigerant_liquid_pressure_sensor_2_1
+      refrigerant_liquid_saturation_temperature_sensor_1: refrigerant_liquid_saturation_temperature_sensor_1_1
+      refrigerant_liquid_saturation_temperature_sensor_2: refrigerant_liquid_saturation_temperature_sensor_2_1
+      refrigerant_liquid_temperature_sensor_1: refrigerant_liquid_temperature_sensor_1_3
+      refrigerant_liquid_temperature_sensor_2: refrigerant_liquid_temperature_sensor_2_1
+      refrigerant_subcooling_temperature_sensor_1: refrigerant_subcooling_temperature_sensor_1_1
+      refrigerant_subcooling_temperature_sensor_2: refrigerant_subcooling_temperature_sensor_2_1
+      refrigerant_suction_pressure_sensor_1: refrigerant_suction_pressure_sensor_1_3
+      refrigerant_suction_pressure_sensor_2: refrigerant_suction_pressure_sensor_2_1
+      refrigerant_suction_saturation_temperature_sensor_1: refrigerant_suction_saturation_temperature_sensor_1_1
+      refrigerant_suction_saturation_temperature_sensor_2: refrigerant_suction_saturation_temperature_sensor_2_1
+      refrigerant_suction_superheat_temperature_sensor_1: refrigerant_suction_superheat_temperature_sensor_1_1
+      refrigerant_suction_superheat_temperature_sensor_2: refrigerant_suction_superheat_temperature_sensor_2_1
+      refrigerant_suction_temperature_sensor_1: refrigerant_suction_temperature_sensor_1_1
+      refrigerant_suction_temperature_sensor_2: refrigerant_suction_temperature_sensor_2_1
+      refrigerant_vapor_temperature_sensor_1: refrigerant_vapor_temperature_sensor_1_3
+      refrigerant_vapor_temperature_sensor_2: refrigerant_vapor_temperature_sensor_2_1
+      return_water_temperature_sensor: return_water_temperature_sensor_1
+      reversing_valve_command_1: reversing_valve_command_1_1
+      reversing_valve_command_2: reversing_valve_command_2_1
+      run_command: run_command_3
+      run_status: run_status_1
+      supply_water_temperature_sensor: supply_water_temperature_sensor_1
+      supply_water_temperature_setpoint: supply_water_temperature_setpoint_2
+  type: HVAC/ASHP_SS_HP4SWC_HWRWISOVPM_RCKTM2X
+  operation: ADD
+
+39035fb3-b2fa-4c30-b35d-af1edcd932a5:
+  code: US-MTV-42:ASHP:ASHP 2
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      compressor_run_command_1: compressor_run_command_1_2
+      compressor_run_command_2: compressor_run_command_2_2
+      compressor_run_command_3: compressor_run_command_3_2
+      compressor_run_command_4: compressor_run_command_4_2
+      compressor_run_status_1: compressor_run_status_1_2
+      compressor_run_status_2: compressor_run_status_2_2
+      compressor_run_status_3: compressor_run_status_3_2
+      compressor_run_status_4: compressor_run_status_4_2
+      failed_alarm: failed_alarm_2
+      failed_communication_alarm: failed_communication_alarm_3
+      failed_heating_return_water_isolation_valve_alarm: failed_heating_return_water_isolation_valve_alarm_2
+      heating_return_water_isolation_valve_percentage_command: heating_return_water_isolation_valve_percentage_command_2
+      heating_return_water_isolation_valve_percentage_sensor: heating_return_water_isolation_valve_percentage_sensor_2
+      load_percentage_sensor_1: load_percentage_sensor_1_1
+      load_percentage_sensor_2: load_percentage_sensor_2_2
+      refrigerant_discharge_pressure_sensor_1: refrigerant_discharge_pressure_sensor_1_1
+      refrigerant_discharge_pressure_sensor_2: refrigerant_discharge_pressure_sensor_2_1
+      refrigerant_discharge_temperature_sensor_1: refrigerant_discharge_temperature_sensor_1_2
+      refrigerant_discharge_temperature_sensor_2: refrigerant_discharge_temperature_sensor_2_2
+      refrigerant_liquid_pressure_sensor_1: refrigerant_liquid_pressure_sensor_1_2
+      refrigerant_liquid_pressure_sensor_2: refrigerant_liquid_pressure_sensor_2_2
+      refrigerant_liquid_saturation_temperature_sensor_1: refrigerant_liquid_saturation_temperature_sensor_1_2
+      refrigerant_liquid_saturation_temperature_sensor_2: refrigerant_liquid_saturation_temperature_sensor_2_2
+      refrigerant_liquid_temperature_sensor_1: refrigerant_liquid_temperature_sensor_1_1
+      refrigerant_liquid_temperature_sensor_2: refrigerant_liquid_temperature_sensor_2_2
+      refrigerant_subcooling_temperature_sensor_1: refrigerant_subcooling_temperature_sensor_1_2
+      refrigerant_subcooling_temperature_sensor_2: refrigerant_subcooling_temperature_sensor_2_2
+      refrigerant_suction_pressure_sensor_1: refrigerant_suction_pressure_sensor_1_1
+      refrigerant_suction_pressure_sensor_2: refrigerant_suction_pressure_sensor_2_2
+      refrigerant_suction_saturation_temperature_sensor_1: refrigerant_suction_saturation_temperature_sensor_1_2
+      refrigerant_suction_saturation_temperature_sensor_2: refrigerant_suction_saturation_temperature_sensor_2_2
+      refrigerant_suction_superheat_temperature_sensor_1: refrigerant_suction_superheat_temperature_sensor_1_2
+      refrigerant_suction_superheat_temperature_sensor_2: refrigerant_suction_superheat_temperature_sensor_2_2
+      refrigerant_suction_temperature_sensor_1: refrigerant_suction_temperature_sensor_1_2
+      refrigerant_suction_temperature_sensor_2: refrigerant_suction_temperature_sensor_2_2
+      refrigerant_vapor_temperature_sensor_1: refrigerant_vapor_temperature_sensor_1_1
+      refrigerant_vapor_temperature_sensor_2: refrigerant_vapor_temperature_sensor_2_2
+      return_water_temperature_sensor: return_water_temperature_sensor_2
+      reversing_valve_command_1: reversing_valve_command_1_2
+      reversing_valve_command_2: reversing_valve_command_2_2
+      run_command: run_command_4
+      run_status: run_status_2
+      supply_water_temperature_sensor: supply_water_temperature_sensor_2
+      supply_water_temperature_setpoint: supply_water_temperature_setpoint_3
+  type: HVAC/ASHP_SS_HP4SWC_HWRWISOVPM_RCKTM2X
+  operation: ADD
+
+3a306b54-997f-40ba-be49-937cbfc059fb:
+  code: US-MTV-42:ASHP:ASHP 3
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      compressor_run_command_1: compressor_run_command_1_3
+      compressor_run_command_2: compressor_run_command_2_3
+      compressor_run_command_3: compressor_run_command_3_3
+      compressor_run_command_4: compressor_run_command_4_3
+      compressor_run_status_1: compressor_run_status_1_3
+      compressor_run_status_2: compressor_run_status_2_3
+      compressor_run_status_3: compressor_run_status_3_3
+      compressor_run_status_4: compressor_run_status_4_3
+      failed_alarm: failed_alarm_3
+      failed_communication_alarm: failed_communication_alarm_4
+      failed_heating_return_water_isolation_valve_alarm: failed_heating_return_water_isolation_valve_alarm_3
+      heating_return_water_isolation_valve_percentage_command: heating_return_water_isolation_valve_percentage_command_3
+      heating_return_water_isolation_valve_percentage_sensor: heating_return_water_isolation_valve_percentage_sensor_3
+      load_percentage_sensor_1: load_percentage_sensor_1_2
+      load_percentage_sensor_2: load_percentage_sensor_2_3
+      refrigerant_discharge_pressure_sensor_1: refrigerant_discharge_pressure_sensor_1_2
+      refrigerant_discharge_pressure_sensor_2: refrigerant_discharge_pressure_sensor_2_2
+      refrigerant_discharge_temperature_sensor_1: refrigerant_discharge_temperature_sensor_1_3
+      refrigerant_discharge_temperature_sensor_2: refrigerant_discharge_temperature_sensor_2_3
+      refrigerant_liquid_pressure_sensor_1: refrigerant_liquid_pressure_sensor_1_3
+      refrigerant_liquid_pressure_sensor_2: refrigerant_liquid_pressure_sensor_2_3
+      refrigerant_liquid_saturation_temperature_sensor_1: refrigerant_liquid_saturation_temperature_sensor_1_3
+      refrigerant_liquid_saturation_temperature_sensor_2: refrigerant_liquid_saturation_temperature_sensor_2_3
+      refrigerant_liquid_temperature_sensor_1: refrigerant_liquid_temperature_sensor_1_2
+      refrigerant_liquid_temperature_sensor_2: refrigerant_liquid_temperature_sensor_2_3
+      refrigerant_subcooling_temperature_sensor_1: refrigerant_subcooling_temperature_sensor_1_3
+      refrigerant_subcooling_temperature_sensor_2: refrigerant_subcooling_temperature_sensor_2_3
+      refrigerant_suction_pressure_sensor_1: refrigerant_suction_pressure_sensor_1_2
+      refrigerant_suction_pressure_sensor_2: refrigerant_suction_pressure_sensor_2_3
+      refrigerant_suction_saturation_temperature_sensor_1: refrigerant_suction_saturation_temperature_sensor_1_3
+      refrigerant_suction_saturation_temperature_sensor_2: refrigerant_suction_saturation_temperature_sensor_2_3
+      refrigerant_suction_superheat_temperature_sensor_1: refrigerant_suction_superheat_temperature_sensor_1_3
+      refrigerant_suction_superheat_temperature_sensor_2: refrigerant_suction_superheat_temperature_sensor_2_3
+      refrigerant_suction_temperature_sensor_1: refrigerant_suction_temperature_sensor_1_3
+      refrigerant_suction_temperature_sensor_2: refrigerant_suction_temperature_sensor_2_3
+      refrigerant_vapor_temperature_sensor_1: refrigerant_vapor_temperature_sensor_1_2
+      refrigerant_vapor_temperature_sensor_2: refrigerant_vapor_temperature_sensor_2_3
+      return_water_temperature_sensor: return_water_temperature_sensor_3
+      reversing_valve_command_1: reversing_valve_command_1_3
+      reversing_valve_command_2: reversing_valve_command_2_3
+      run_command: run_command_5
+      run_status: run_status_3
+      supply_water_temperature_sensor: supply_water_temperature_sensor_3
+      supply_water_temperature_setpoint: supply_water_temperature_setpoint_1
+  type: HVAC/ASHP_SS_HP4SWC_HWRWISOVPM_RCKTM2X
+  operation: ADD
+
+675c1197-798f-4421-8403-0d1eeff0df69:
+  code: US-MTV-42:CH:CH 1
+  etag: 01351cb6
+  links:
+    5fecfa15-1932-4e3b-95e7-30d6e588298f:
+      compressor_run_command_1: compressor_run_command_1_1
+      compressor_run_command_2: compressor_run_command_2_1
+      compressor_run_command_3: compressor_run_command_3_1
+      compressor_run_command_4: compressor_run_command_4_1
+      compressor_run_status_1: compressor_run_status_1_1
+      compressor_run_status_2: compressor_run_status_2_1
+      compressor_run_status_3: compressor_run_status_3_1
+      compressor_run_status_4: compressor_run_status_4_1
+      compressor_speed_percentage_command: compressor_speed_percentage_command_1
+      cooling_request_count: cooling_request_count_1
+      differential_pressure_sensor: differential_pressure_sensor_1
+      failed_alarm: failed_alarm_1
+      failed_communication_alarm: failed_communication_alarm_1
+      failed_differential_pressure_alarm: failed_differential_pressure_alarm_1
+      failed_supply_water_isolation_valve_alarm: failed_supply_water_isolation_valve_alarm_1
+      refrigerant_condenser_pressure_sensor_1: refrigerant_condenser_pressure_sensor_1_1
+      refrigerant_condenser_pressure_sensor_2: refrigerant_condenser_pressure_sensor_2_1
+      refrigerant_condenser_saturation_temperature_sensor_1: refrigerant_condenser_saturation_temperature_sensor_1_1
+      refrigerant_condenser_saturation_temperature_sensor_2: refrigerant_condenser_saturation_temperature_sensor_2_1
+      refrigerant_evaporator_pressure_sensor_1: refrigerant_evaporator_pressure_sensor_1_1
+      refrigerant_evaporator_pressure_sensor_2: refrigerant_evaporator_pressure_sensor_2_1
+      refrigerant_evaporator_saturation_temperature_sensor_1: refrigerant_evaporator_saturation_temperature_sensor_1_1
+      refrigerant_evaporator_saturation_temperature_sensor_2: refrigerant_evaporator_saturation_temperature_sensor_2_1
+      refrigerant_suction_temperature_sensor_1: refrigerant_suction_temperature_sensor_1_1
+      refrigerant_suction_temperature_sensor_2: refrigerant_suction_temperature_sensor_2_1
+      run_command: run_command_1
+      run_status: run_status_4
+      supply_water_isolation_valve_percentage_command: supply_water_isolation_valve_percentage_command_1
+      supply_water_isolation_valve_percentage_sensor: supply_water_isolation_valve_percentage_sensor_2
+      supply_water_temperature_sensor: supply_water_temperature_sensor_2
+      supply_water_temperature_setpoint: supply_water_temperature_setpoint_1
+  type: HVAC/CH_SS_SWTC_WDPM_DX4SWC_SWISOVPM_REFSM2X_REFPM2X
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - LINKS
+
+b3d5ef5e-09b4-4699-9760-35e2bc226427:
+  code: US-MTV-42:CH:CH 2
+  etag: d3941ce1
+  links:
+    5fecfa15-1932-4e3b-95e7-30d6e588298f:
+      compressor_run_command_1: compressor_run_command_1_2
+      compressor_run_command_2: compressor_run_command_2_2
+      compressor_run_command_3: compressor_run_command_3_2
+      compressor_run_command_4: compressor_run_command_4_2
+      compressor_run_status_1: compressor_run_status_1_2
+      compressor_run_status_2: compressor_run_status_2_2
+      compressor_run_status_3: compressor_run_status_3_2
+      compressor_run_status_4: compressor_run_status_4_2
+      compressor_speed_percentage_command: compressor_speed_percentage_command_2
+      cooling_request_count: cooling_request_count_2
+      differential_pressure_sensor: differential_pressure_sensor_2
+      failed_alarm: failed_alarm_2
+      failed_communication_alarm: failed_communication_alarm_2
+      failed_differential_pressure_alarm: failed_differential_pressure_alarm_2
+      failed_supply_water_isolation_valve_alarm: failed_supply_water_isolation_valve_alarm_2
+      refrigerant_condenser_pressure_sensor_1: refrigerant_condenser_pressure_sensor_1_2
+      refrigerant_condenser_pressure_sensor_2: refrigerant_condenser_pressure_sensor_2_2
+      refrigerant_condenser_saturation_temperature_sensor_1: refrigerant_condenser_saturation_temperature_sensor_1_2
+      refrigerant_condenser_saturation_temperature_sensor_2: refrigerant_condenser_saturation_temperature_sensor_2_2
+      refrigerant_evaporator_pressure_sensor_1: refrigerant_evaporator_pressure_sensor_1_2
+      refrigerant_evaporator_pressure_sensor_2: refrigerant_evaporator_pressure_sensor_2_2
+      refrigerant_evaporator_saturation_temperature_sensor_1: refrigerant_evaporator_saturation_temperature_sensor_1_2
+      refrigerant_evaporator_saturation_temperature_sensor_2: refrigerant_evaporator_saturation_temperature_sensor_2_2
+      refrigerant_suction_temperature_sensor_1: refrigerant_suction_temperature_sensor_1_2
+      refrigerant_suction_temperature_sensor_2: refrigerant_suction_temperature_sensor_2_2
+      run_command: run_command_2
+      run_status: run_status_1
+      supply_water_isolation_valve_percentage_command: supply_water_isolation_valve_percentage_command_2
+      supply_water_isolation_valve_percentage_sensor: supply_water_isolation_valve_percentage_sensor_1
+      supply_water_temperature_sensor: supply_water_temperature_sensor_3
+      supply_water_temperature_setpoint: supply_water_temperature_setpoint_2
+  type: HVAC/CH_SS_SWTC_WDPM_DX4SWC_SWISOVPM_REFSM2X_REFPM2X
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - LINKS
+
+30668db9-719b-4312-8798-0949189156e2:
+  code: US-MTV-42:CHWS:CHW System
+  links:
+    5fecfa15-1932-4e3b-95e7-30d6e588298f:
+      cooling_request_count: cooling_request_count_3
+      differential_pressure_sensor: differential_pressure_sensor_3
+      differential_pressure_setpoint: differential_pressure_setpoint
+      failed_differential_pressure_alarm: failed_differential_pressure_alarm_3
+      failed_flowrate_alarm: failed_flowrate_alarm
+      failed_supply_water_temperature_alarm: failed_supply_water_temperature_alarm
+      flowrate_sensor: flowrate_sensor
+      flowrate_setpoint: flowrate_setpoint
+      high_differential_pressure_alarm: high_differential_pressure_alarm
+      high_supply_water_temperature_alarm: high_supply_water_temperature_alarm
+      low_differential_pressure_alarm: low_differential_pressure_alarm
+      low_return_water_temperature_alarm: low_return_water_temperature_alarm
+      low_supply_water_temperature_alarm: low_supply_water_temperature_alarm
+      return_water_temperature_sensor: return_water_temperature_sensor
+      run_command: run_command_5
+      supply_water_temperature_sensor: supply_water_temperature_sensor_1
+      supply_water_temperature_setpoint: supply_water_temperature_setpoint_3
+  type: HVAC/CHWS_SWTC_WDPC_WFRC
+  operation: ADD
+
+bf912efb-0dd7-4982-abc0-a14cd76dbf36:
+  code: US-MTV-42:FAN:DEF 1
+  links:
+    c63f73f8-e5f7-4e71-879d-838c13bc4062:
+      dryer_run_status: dryer_run_status_1
+      failed_alarm: failed_alarm_1
+      run_command: run_command_1
+      run_status: run_status_1
+  type: HVAC/FAN_SS_DRI
+  operation: ADD
+
+41b84410-7440-4170-931e-9a6f502fb462:
+  code: US-MTV-42:FAN:DEF 2
+  links:
+    c63f73f8-e5f7-4e71-879d-838c13bc4062:
+      dryer_run_status: dryer_run_status_2
+      failed_alarm: failed_alarm_2
+      run_command: run_command_2
+      run_status: run_status_2
+  type: HVAC/FAN_SS_DRI
+  operation: ADD
+
+9118d59b-9488-4995-99b7-46a89b426a1c:
+  code: US-MTV-42:FAN:EF 5
+  links:
+    7d55490f-0b8e-4d64-9ae2-9506486d621a:
+      failed_alarm: failed_alarm
+      run_command: run_command_1
+      run_status: run_status
+  type: HVAC/FAN_SS
+  operation: ADD
+
+892c7a4d-89ea-41f1-9837-513a20fb0853:
+  code: US-MTV-42:FCU:FCU 2-2
+  links:
+    4aafd763-1d13-4530-bf26-4fad06f24721:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_1
+      discharge_fan_run_command: discharge_fan_run_command_1
+      discharge_fan_run_status: discharge_fan_run_status_1
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_1
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_3
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_1
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+08c8089f-ec1a-451a-a5ea-d9440f405c55:
+  code: US-MTV-42:FCU:FCU 2-3
+  links:
+    4aafd763-1d13-4530-bf26-4fad06f24721:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_2
+      discharge_fan_run_command: discharge_fan_run_command_2
+      discharge_fan_run_status: discharge_fan_run_status_2
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_2
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_1
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_2
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+d1db95f7-79c4-4ffd-a1d4-160dc798ac3e:
+  code: US-MTV-42:FCU:FCU 2-4
+  links:
+    4aafd763-1d13-4530-bf26-4fad06f24721:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_3
+      discharge_fan_run_command: discharge_fan_run_command_3
+      discharge_fan_run_status: discharge_fan_run_status_3
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_3
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_2
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_3
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+88bcf29a-dcc8-4d38-979e-bde833c16e09:
+  code: US-MTV-42:FCU:FCU 2-5
+  links:
+    e5cafa9f-db75-4d50-a5d4-902390a3b0ce:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_1
+      discharge_fan_run_command: discharge_fan_run_command_1
+      discharge_fan_run_status: discharge_fan_run_status_1
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_1
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_4
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_1
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+0879a2db-6f7c-4b61-9f5e-8fe1097d4df7:
+  code: US-MTV-42:FCU:FCU 2-6
+  links:
+    e5cafa9f-db75-4d50-a5d4-902390a3b0ce:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_2
+      discharge_fan_run_command: discharge_fan_run_command_2
+      discharge_fan_run_status: discharge_fan_run_status_2
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_2
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_1
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_2
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+47eb42bd-ff8d-49ed-a6a6-b1c6df5cbf9d:
+  code: US-MTV-42:FCU:FCU 2-7
+  links:
+    e5cafa9f-db75-4d50-a5d4-902390a3b0ce:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_3
+      discharge_fan_run_command: discharge_fan_run_command_3
+      discharge_fan_run_status: discharge_fan_run_status_3
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_3
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_2
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_3
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+5e82644d-adfe-4676-bec7-1baef34ac888:
+  code: US-MTV-42:FCU:FCU 2-8
+  links:
+    e5cafa9f-db75-4d50-a5d4-902390a3b0ce:
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor_4
+      discharge_fan_run_command: discharge_fan_run_command_4
+      discharge_fan_run_status: discharge_fan_run_status_4
+      discharge_fan_speed_percentage_command: discharge_fan_speed_percentage_command_4
+      failed_chilled_water_valve_alarm: failed_chilled_water_valve_alarm
+      failed_discharge_air_temperature_alarm: failed_discharge_air_temperature_alarm_3
+      failed_discharge_fan_alarm: failed_discharge_fan_alarm_4
+      failed_heating_water_valve_alarm: failed_heating_water_valve_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      high_discharge_air_temperature_alarm: high_discharge_air_temperature_alarm
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_discharge_air_temperature_alarm: low_discharge_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/FCU_DFSS_DFVSC_DSP_HWZC_CHWZC
+  operation: ADD
+
+024bffba-5c3f-4663-99ef-d551c8f976be:
+  code: US-MTV-42:HWS:HW SYSTEM
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      failed_communication_alarm: failed_communication_alarm_1
+      failed_primary_return_water_temperature_alarm: failed_primary_return_water_temperature_alarm
+      failed_primary_supply_water_flowrate_alarm: failed_primary_supply_water_flowrate_alarm
+      failed_primary_supply_water_temperature_alarm: failed_primary_supply_water_temperature_alarm
+      failed_secondary_return_water_temperature_alarm: failed_secondary_return_water_temperature_alarm
+      failed_secondary_supply_water_flowrate_alarm: failed_secondary_supply_water_flowrate_alarm
+      failed_secondary_supply_water_temperature_alarm: failed_secondary_supply_water_temperature_alarm
+      failed_secondary_water_differential_pressure_alarm: failed_secondary_water_differential_pressure_alarm
+      heating_request_count: heating_request_count
+      high_primary_supply_water_temperature_alarm: high_primary_supply_water_temperature_alarm
+      high_secondary_supply_water_temperature_alarm: high_secondary_supply_water_temperature_alarm
+      high_secondary_water_differential_pressure_alarm: high_secondary_water_differential_pressure_alarm
+      low_secondary_supply_water_temperature_alarm: low_secondary_supply_water_temperature_alarm
+      low_secondary_water_differential_pressure_alarm: low_secondary_water_differential_pressure_alarm
+      primary_return_water_temperature_sensor: primary_return_water_temperature_sensor
+      primary_supply_water_flowrate_sensor: primary_supply_water_flowrate_sensor
+      primary_supply_water_flowrate_setpoint: primary_supply_water_flowrate_setpoint
+      primary_supply_water_temperature_sensor: primary_supply_water_temperature_sensor
+      run_command: run_command_9
+      secondary_return_water_temperature_sensor: secondary_return_water_temperature_sensor
+      secondary_supply_water_flowrate_sensor: secondary_supply_water_flowrate_sensor
+      secondary_supply_water_temperature_sensor: secondary_supply_water_temperature_sensor
+      secondary_supply_water_temperature_setpoint: secondary_supply_water_temperature_setpoint
+      secondary_water_differential_pressure_sensor: secondary_water_differential_pressure_sensor
+      secondary_water_differential_pressure_setpoint: secondary_water_differential_pressure_setpoint
+  type: HVAC/HWS_PWDT_PRSWFRC_SESWTC_SEWDPC_SEWFRM
+  operation: ADD
+
+42d22771-3701-450c-82d4-9db185037777:
+  code: US-MTV-42:PMP:CHWP 1
+  etag: aa8fd8d5
+  links:
+    5fecfa15-1932-4e3b-95e7-30d6e588298f:
+      current_sensor: current_sensor_1
+      failed_alarm: failed_alarm_3
+      power_sensor: power_sensor_1
+      run_command: run_command_3
+      run_status: run_status_2
+      speed_frequency_sensor: speed_frequency_sensor_1
+      speed_percentage_command: speed_percentage_command_1
+      torque_sensor: torque_sensor_1
+      voltage_sensor: voltage_sensor_1
+  type: HVAC/PMP_SS_VSC
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - LINKS
+
+8ecbe15e-823f-480c-8542-00898c9495dd:
+  code: US-MTV-42:PMP:CHWP 2
+  etag: a482c108
+  links:
+    5fecfa15-1932-4e3b-95e7-30d6e588298f:
+      current_sensor: current_sensor_2
+      failed_alarm: failed_alarm_4
+      power_sensor: power_sensor_2
+      run_command: run_command_4
+      run_status: run_status_3
+      speed_frequency_sensor: speed_frequency_sensor_2
+      speed_percentage_command: speed_percentage_command_2
+      torque_sensor: torque_sensor_2
+      voltage_sensor: voltage_sensor_2
+  type: HVAC/PMP_SS_VSC
+  operation: UPDATE
+  update_mask:
+  - TYPE
+  - LINKS
+
+85c988ce-57c5-4609-ade5-912a831dc0b9:
+  code: US-MTV-42:PMP:PHWP 1
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      current_sensor: current_sensor_1
+      failed_alarm: failed_alarm_4
+      power_sensor: power_sensor_1
+      run_command: run_command_6
+      run_status: run_status_4
+      speed_frequency_sensor: speed_frequency_sensor_3
+      speed_percentage_command: speed_percentage_command_1
+      torque_sensor: torque_sensor_1
+      voltage_sensor: voltage_sensor_1
+  type: HVAC/PMP_SS_VSC
+  operation: ADD
+
+103484e1-6fbb-4260-a034-5dee816b5e31:
+  code: US-MTV-42:PMP:PHWP 2
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      current_sensor: current_sensor_4
+      failed_alarm: failed_alarm_5
+      power_sensor: power_sensor_2
+      run_command: run_command_7
+      run_status: run_status_5
+      speed_frequency_sensor: speed_frequency_sensor_4
+      speed_percentage_command: speed_percentage_command_2
+      torque_sensor: torque_sensor_2
+      voltage_sensor: voltage_sensor_2
+  type: HVAC/PMP_SS_VSC
+  operation: ADD
+
+ee45482c-adcd-4827-a366-793597e477e5:
+  code: US-MTV-42:PMP:PHWP 3
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      current_sensor: current_sensor_2
+      failed_alarm: failed_alarm_6
+      power_sensor: power_sensor_3
+      run_command: run_command_8
+      run_status: run_status_6
+      speed_frequency_sensor: speed_frequency_sensor_5
+      speed_percentage_command: speed_percentage_command_3
+      torque_sensor: torque_sensor_3
+      voltage_sensor: voltage_sensor_3
+  type: HVAC/PMP_SS_VSC
+  operation: ADD
+
+c79e0b29-5650-4578-8f9c-4b02415656c0:
+  code: US-MTV-42:PMP:SHWP 1
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      current_sensor: current_sensor_3
+      failed_alarm: failed_alarm_7
+      power_sensor: power_sensor_4
+      run_command: run_command_1
+      run_status: run_status_7
+      speed_frequency_sensor: speed_frequency_sensor_1
+      speed_percentage_command: speed_percentage_command_4
+      torque_sensor: torque_sensor_4
+      voltage_sensor: voltage_sensor_4
+  type: HVAC/PMP_SS_VSC
+  operation: ADD
+
+9ed376c8-e84e-47ed-90d8-188615710cb6:
+  code: US-MTV-42:PMP:SHWP 2
+  links:
+    e9f9470e-7eb6-4a26-bc85-0171f4de457b:
+      current_sensor: current_sensor_5
+      failed_alarm: failed_alarm_8
+      power_sensor: power_sensor_5
+      run_command: run_command_2
+      run_status: run_status_8
+      speed_frequency_sensor: speed_frequency_sensor_2
+      speed_percentage_command: speed_percentage_command_5
+      torque_sensor: torque_sensor_5
+      voltage_sensor: voltage_sensor_5
+  type: HVAC/PMP_SS_VSC
+  operation: ADD
+
+c9416e5f-1f60-496f-a542-e2fd0a82a9fa:
+  code: US-MTV-42:VAV:VAVCO 1-1-7
+  links:
+    7d55490f-0b8e-4d64-9ae2-9506486d621a:
+      cooling_request_count: cooling_request_count
+      failed_communication_alarm: failed_communication_alarm
+      failed_zone_air_temperature_alarm: failed_zone_air_temperature_alarm
+      flowrate_requirement: flowrate_requirement
+      high_zone_air_temperature_alarm: high_zone_air_temperature_alarm
+      low_zone_air_temperature_alarm: low_zone_air_temperature_alarm
+      pressurization_request_count: pressurization_request_count
+      run_command: run_command_2
+      schedule_run_command: schedule_run_command
+      supply_air_cooling_flowrate_capacity: supply_air_cooling_flowrate_capacity
+      supply_air_damper_percentage_command: supply_air_damper_percentage_command
+      supply_air_flowrate_sensor: supply_air_flowrate_sensor
+      supply_air_flowrate_setpoint: supply_air_flowrate_setpoint
+      supply_air_heating_flowrate_capacity: supply_air_heating_flowrate_capacity
+      unoccupied_flowrate_requirement: unoccupied_flowrate_requirement
+      warmup_request_count: warmup_request_count
+      zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
+      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+  type: HVAC/VAV_SD_DSP
+  operation: ADD
+
+9946be96-4ded-476e-b0eb-066d20ad92d4:
+  code: US-MTV-42
+  type: FACILITIES/BUILDING
+  etag: 962ed41c
+

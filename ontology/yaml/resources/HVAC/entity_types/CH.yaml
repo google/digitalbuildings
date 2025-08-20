@@ -461,6 +461,17 @@ CH_SS_SWTC_DX2SWC_REFSM2X_REFPM2X:
   - REFSM2X
   - REFPM2X
 
+CH_SS_DX2SWC_MWDPC_REFSM2X_REFPM2X:
+  description: "Two-stage air-cooled chiller with two-circuit refrigerant monitoring and minimum differential pressure control."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - MWDPC
+  - REFSM2X
+  - REFPM2X
+
 CH_SS_SWTC_DX2SWC_RWISOVM_REFSM2X_REFPM2X:
   guid: "6af261e4-ad47-44a0-b2f4-3d995bda804d"
   description: "Two-stage air-cooled chiller with two-circuit refrigerant monitoring."
