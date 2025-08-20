@@ -4166,6 +4166,7 @@ AHU_BPC_DXSC_ECONM_RFSS_RFVSC_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BPC_DXSC_ECONM_RFVSC_SAIDC_SARC_SFVSC_SSPC:
+  guid: "5190b0ff-2ada-41ac-a61e-0be789c9e08d"
   description: "Multi-zone AHU with DX cooling, economizing mode control, return air control, barometric relief, and supply isolation damper."
   is_canonical: true
   implements:
