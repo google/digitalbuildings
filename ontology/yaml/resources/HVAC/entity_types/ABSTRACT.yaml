@@ -616,6 +616,7 @@ BSPC:
 
 
 BSPC3X:
+  guid: "86bbf8a4-0070-42dd-ab47-61ef9328880f"
   description: "Three exhaust fan building static pressure control (as part of a composite device)."
   is_abstract: true
   opt_uses:
