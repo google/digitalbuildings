@@ -737,7 +737,7 @@ grouped in the following categories:
 2. [code](#code-update)
 3. [cloud_device_id](#cloud-device-id-update)
 4. [translation](#translation-update)
-5. [connections](connections-update)
+5. [connections](#connections-update)
 6. [links](#links-update)
 
 #### Type update

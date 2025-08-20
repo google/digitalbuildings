@@ -1513,6 +1513,7 @@ SWTC:
   - low_supply_water_temperature_alarm
   - failed_return_water_temperature_alarm
   - failed_supply_water_temperature_alarm
+  - heating_thermal_power_sensor
   uses:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
@@ -1781,10 +1782,25 @@ MMCWDPC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
+  - mechanical_cooling_differential_pressure_sensor
+  - low_limit_mechanical_cooling_differential_pressure_sensor
   uses:
   - bypass_valve_percentage_command
-  - low_limit_mechanical_cooling_differential_pressure_sensor
   - low_limit_mechanical_cooling_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+MMHWDPC:
+  guid: "56fa586d-8c29-42b5-b641-483675f61dd5"
+  description: "Minimum water differential pressure control for mechanical heating in a hydronic system."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
+  uses:
+  - bypass_valve_percentage_command
+  - mechanical_heating_differential_pressure_sensor
+  - low_limit_mechanical_heating_differential_pressure_setpoint
   implements:
   - OPERATIONAL
 
@@ -3158,6 +3174,8 @@ DX2SWC:
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
   - compressor_speed_frequency_sensor
+  - compressor_speed_frequency_sensor_1
+  - compressor_speed_frequency_sensor_2
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - high_supply_water_temperature_alarm
