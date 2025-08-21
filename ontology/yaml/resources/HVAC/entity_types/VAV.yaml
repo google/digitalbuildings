@@ -334,6 +334,7 @@ VAV_SD_DSP_DFSS_DFVSC_HT3DC:
   - HT3DC
 
 VAV_SD_DSP_DFSS_DFVSC_HT3DTC:
+  guid: "724983c1-cdff-45b0-a9d3-f13a8f83213c"
   description: "Fan powered VAV with variable speed control with three electric heaters."
   is_canonical: true
   implements:

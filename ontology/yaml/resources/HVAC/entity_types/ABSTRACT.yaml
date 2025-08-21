@@ -3916,6 +3916,7 @@ HT3DC:
   - CONTROL
 
 HT3DTC:
+  guid: "fe4dc535-b121-4636-9b05-768cc9ecb97e"
   description: "Three electric heater control on discharge side."
   is_abstract: true
   opt_uses:
