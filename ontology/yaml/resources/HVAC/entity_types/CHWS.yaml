@@ -265,6 +265,17 @@ CHWS_SWTC_WDPC_BYPVFRC_CLPM:
   - BYPVFRC
   - CLPM
 
+CHWS_SWTC_WDPC_CLPM_MINFC:
+  guid: "ee576902-b1bc-4e34-9940-5f8d0559d516"
+  description: "Chilled water system with supply water temperature control, differential pressure control, cooling thermal monitoring, and minimum flow control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - MINFC
+
 CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
   guid: "7626e0e2-1e32-4101-b53b-5fa66af3cdc2"
   description: "Chilled water system with process water (typically used in lab applications)."

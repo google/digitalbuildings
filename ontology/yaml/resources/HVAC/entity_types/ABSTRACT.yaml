@@ -234,6 +234,21 @@ CSP:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
 
+OACSP:
+  guid: "b006a998-ff00-4c09-a2ed-2cef5f8965e2"
+  description: "Single cooling setpoint control for using outside air cooling."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - high_limit_outside_air_temperature_setpoint
+  - outside_air_temperature_sensor
 
 ZTC:
   guid: "6140021d-52a9-4d7c-8846-ca296ab32aa2"
@@ -1498,6 +1513,7 @@ SWTC:
   - low_supply_water_temperature_alarm
   - failed_return_water_temperature_alarm
   - failed_supply_water_temperature_alarm
+  - heating_thermal_power_sensor
   uses:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
@@ -1766,10 +1782,25 @@ MMCWDPC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
+  - mechanical_cooling_differential_pressure_sensor
+  - low_limit_mechanical_cooling_differential_pressure_sensor
   uses:
   - bypass_valve_percentage_command
-  - low_limit_mechanical_cooling_differential_pressure_sensor
   - low_limit_mechanical_cooling_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+MMHWDPC:
+  guid: "56fa586d-8c29-42b5-b641-483675f61dd5"
+  description: "Minimum water differential pressure control for mechanical heating in a hydronic system."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
+  uses:
+  - bypass_valve_percentage_command
+  - mechanical_heating_differential_pressure_sensor
+  - low_limit_mechanical_heating_differential_pressure_setpoint
   implements:
   - OPERATIONAL
 
@@ -3143,12 +3174,15 @@ DX2SWC:
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
   - compressor_speed_frequency_sensor
+  - compressor_speed_frequency_sensor_1
+  - compressor_speed_frequency_sensor_2
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   - load_percentage_sensor_1
   - load_percentage_sensor_2
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4651,6 +4685,7 @@ SARC:
   - supply_air_flowrate_sensor
   - warmup_run_command
   - warmup_request_count
+  - cooldown_run_command
   uses:
   - cooling_request_count
   - pressurization_request_count
@@ -4684,6 +4719,17 @@ CHWISOVM:
   implements:
   - MONITORING
 
+HWISOVM:
+  guid: "4c24255f-af62-471a-8e0d-8161f5ffc3d4"
+  description: "Heating water isolation valve control."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  uses:
+  - heating_water_isolation_valve_command
+  - heating_water_isolation_valve_status
+  implements:
+  - MONITORING
 
 CDWISOVM:
   guid: "a90ebfb9-d964-4bc7-aebf-67a72866fd38"
@@ -5483,6 +5529,14 @@ EFVSC4X:
   - exhaust_fan_power_sensor_2
   - exhaust_fan_power_sensor_3
   - exhaust_fan_power_sensor_4
+  - exhaust_fan_voltage_sensor_1
+  - exhaust_fan_voltage_sensor_2
+  - exhaust_fan_voltage_sensor_3
+  - exhaust_fan_voltage_sensor_4
+  - exhaust_fan_energy_accumulator_1
+  - exhaust_fan_energy_accumulator_2
+  - exhaust_fan_energy_accumulator_3
+  - exhaust_fan_energy_accumulator_4
   - exhaust_fan_speed_frequency_sensor_1
   - exhaust_fan_speed_frequency_sensor_2
   - exhaust_fan_speed_frequency_sensor_3
@@ -5491,6 +5545,10 @@ EFVSC4X:
   - exhaust_fan_speed_percentage_sensor_2
   - exhaust_fan_speed_percentage_sensor_3
   - exhaust_fan_speed_percentage_sensor_4
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
+  - failed_exhaust_fan_alarm_3
+  - failed_exhaust_fan_alarm_4
   uses:
   - exhaust_fan_run_command_1
   - exhaust_fan_run_command_2
@@ -5525,6 +5583,8 @@ SFVSC2X:
   - supply_fan_torque_sensor_2
   - supply_fan_voltage_sensor_1
   - supply_fan_voltage_sensor_2
+  - supply_fan_energy_accumulator_1
+  - supply_fan_energy_accumulator_2
   - failed_supply_fan_alarm_1
   - failed_supply_fan_alarm_2
   uses:
@@ -5996,6 +6056,7 @@ CHWDPC:
   opt_uses:
   - high_chilled_water_differential_pressure_alarm
   - low_chilled_water_differential_pressure_alarm
+  - failed_chilled_water_differential_pressure_alarm
 
 CHWHRDPC:
   guid: "54ad7c4b-917d-4194-b888-954bf6553838"
@@ -7002,66 +7063,6 @@ WDPCSCM:
   - supervisor_differential_pressure_setpoint
   opt_uses:
   - supervisor_alarm
-
-
-CSWIVS:
-  guid: "e1e35fec-c621-4346-9992-4c85d31acaac"
-  description: "Condensing return water isolation valve control."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - condensing_return_water_isolation_valve_command_1
-  - condensing_return_water_isolation_valve_command_2
-  - condensing_return_water_isolation_valve_command_3
-  - condensing_return_water_isolation_valve_command_4
-  - condensing_return_water_isolation_valve_command_5
-  - condensing_return_water_isolation_valve_command_6
-  - condensing_return_water_isolation_valve_command_7
-  - condensing_return_water_isolation_valve_status_1
-  - condensing_return_water_isolation_valve_status_10
-  - condensing_return_water_isolation_valve_status_11
-  - condensing_return_water_isolation_valve_status_12
-  - condensing_return_water_isolation_valve_status_13
-  - condensing_return_water_isolation_valve_status_14
-  - condensing_return_water_isolation_valve_status_2
-  - condensing_return_water_isolation_valve_status_3
-  - condensing_return_water_isolation_valve_status_4
-  - condensing_return_water_isolation_valve_status_5
-  - condensing_return_water_isolation_valve_status_6
-  - condensing_return_water_isolation_valve_status_7
-  - condensing_return_water_isolation_valve_status_8
-  - condensing_return_water_isolation_valve_status_9
-
-
-CRWIVS:
-  guid: "8ea0f73c-6a13-4196-a63d-f68011597239"
-  description: "Condensing supply water isolation valve control."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - condensing_supply_water_isolation_valve_command_1
-  - condensing_supply_water_isolation_valve_command_2
-  - condensing_supply_water_isolation_valve_command_3
-  - condensing_supply_water_isolation_valve_command_4
-  - condensing_supply_water_isolation_valve_command_5
-  - condensing_supply_water_isolation_valve_command_6
-  - condensing_supply_water_isolation_valve_command_7
-  - condensing_supply_water_isolation_valve_status_1
-  - condensing_supply_water_isolation_valve_status_10
-  - condensing_supply_water_isolation_valve_status_11
-  - condensing_supply_water_isolation_valve_status_12
-  - condensing_supply_water_isolation_valve_status_13
-  - condensing_supply_water_isolation_valve_status_14
-  - condensing_supply_water_isolation_valve_status_2
-  - condensing_supply_water_isolation_valve_status_3
-  - condensing_supply_water_isolation_valve_status_4
-  - condensing_supply_water_isolation_valve_status_5
-  - condensing_supply_water_isolation_valve_status_6
-  - condensing_supply_water_isolation_valve_status_7
-  - condensing_supply_water_isolation_valve_status_8
-  - condensing_supply_water_isolation_valve_status_9
 
 
 CSWTC:
