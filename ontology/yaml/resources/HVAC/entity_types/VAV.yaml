@@ -412,6 +412,7 @@ VAV_DD_DSP_DTC:
   - DTC
 
 VAV_DD_DSP_DTC_CO2C:
+  guid: "7876071d-e3e4-4a18-b1f3-2a3cd396a9a5"
   description: "Dual duct VAV with no heating and cooling ability by itself and CO2 control."
   is_canonical: true
   implements:
