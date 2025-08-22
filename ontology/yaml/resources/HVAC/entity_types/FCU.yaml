@@ -260,6 +260,17 @@ FCU_DFSS_DSP_HPHCZC:
   - DSP
   - HPHCZC
 
+FCU_DAIDC_DFSS_DSP_HPHCZC:
+  guid: "59e33b78-7f5a-4e07-811c-3f4838ff053a"
+  description: "Heating and cooling control heat pump FCU (zone control) with discharge isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DAIDC
+  - DFSS
+  - DSP
+  - HPHCZC
+
 FCU_DFSS_DFMSC_HPDSPRTC:
   guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
   description: "Return temp control multi-speed FCU with heat pump"
