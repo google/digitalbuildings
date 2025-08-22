@@ -30,8 +30,17 @@ FCU_DFVSC_HWDC_CHWDC_RTM:
   - CHWDC
   - RTM
 
-FCU_DFMSC_DXZC:
+FCU_DFMSC_DSP_DXZTC:
   guid: "9a03ce8b-40af-4243-a867-e2c94f615753"
+  description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFMSC
+  - DSP
+  - DXZTC
+
+FCU_DFMSC_DXZC:
   description: "Variable refrigerant flow unit with zone cooling control, discharge fan speed modes"
   is_canonical: true
   implements:
