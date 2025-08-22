@@ -1500,6 +1500,7 @@ SWTC:
   opt_uses:
   - cooling_request_count
   - heating_request_count
+  - warmup_request_count
   - return_water_temperature_sensor
   - return_water_temperature_sensor_1
   - return_water_temperature_sensor_2
@@ -7613,6 +7614,7 @@ HWTTC:
   description: "Hot water tank temperature control."
   is_abstract: true
   opt_uses:
+  - water_leak_alarm
   - high_water_temperature_alarm
   - return_water_temperature_sensor
   uses:
