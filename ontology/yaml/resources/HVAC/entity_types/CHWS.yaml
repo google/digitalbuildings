@@ -276,6 +276,16 @@ CHWS_SWTC_WDPC_CLPM_MINFC:
   - CLPM
   - MINFC
 
+CHWS_SWTC_WDPM_CHWBYPVPM_WSEBYPVPM:
+  description: "Chilled water system with supply water temperatrue control, differential pressure control, chilled water bypass valve percentage control, and water side economizer bypass valve monitoring"
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPM
+  - CHWBYPVPM
+  - WSEBYPVPM
+
 CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
   guid: "7626e0e2-1e32-4101-b53b-5fa66af3cdc2"
   description: "Chilled water system with process water (typically used in lab applications)."

@@ -126,15 +126,16 @@ HX_CWDT_CHWDT_CWRISOVPM_CHWBYPVPM:
   - CWRISOVPM
   - CHWBYPVPM
 
-HX_CWDT_CHWDT_CWRISOVPM:
+HX_CWDT_CHWDT_CWSISOVPM_CLPM:
   guid: "7d22f3c3-30be-46f9-bd13-1f88b374923c"
-  description: 'Condenser/chilled water heat exchanger.'
+  description: 'Condenser/chilled water heat exchanger with condenser water differential temperature control, chilled water differential temperature control, condensing water supply isolation valve percentage control, and cooling thermal monitoring'
   is_canonical: true
   implements:
   - HX
   - CWDT
   - CHWDT
-  - CWRISOVPM
+  - CWSISOVPM
+  - CLPM
 
 HX_CWDT_PRWDT_CWRISOVPM:
   guid: "6f180176-dde9-4321-a198-9f1ab3d637de"

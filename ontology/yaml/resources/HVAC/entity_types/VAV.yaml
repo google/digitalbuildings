@@ -66,6 +66,17 @@ VAV_SD_HLSAFS_CO2C:
   - HLSAFS
   - CO2C
 
+VAV_SD_DSP_DFVSC_CHWDC:
+  description: "Single duct VAV with chilled water coil"
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - DFVSC
+  - CHWDC
+  - RTC
+
 VAV_SD_CSP_HLSAFS:
   guid: "ea3a576a-08af-40b2-ae0b-59451e0b88a4"
   description: "Simple cooling only VAV with occupancy."

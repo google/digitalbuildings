@@ -30,15 +30,14 @@ FCU_DFVSC_HWDC_CHWDC_RTM:
   - CHWDC
   - RTM
 
-FCU_DFMSC_DSP_DXZTC:
+FCU_DFMSC_DXZC:
   guid: "9a03ce8b-40af-4243-a867-e2c94f615753"
-  description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
+  description: "Variable refrigerant flow unit with zone cooling control, discharge fan speed modes"
   is_canonical: true
   implements:
   - FCU
   - DFMSC
-  - DSP
-  - DXZTC
+  - DXZC
 
 FCU_DFVSC2X_CHWZTC_HWZTC:
   guid: "678cad15-19cf-499e-b906-0c37c2414fc5"
@@ -1529,6 +1528,70 @@ FCU_DFVSC_CHWRC_FDPSM2X:
   - FDPSM2X
   opt_uses:
   - isolation_damper_status
+
+FCU_DFVSC_CHWDC_DSPM_DSP:
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - DSPM
+  - DSP
+
+FCU_DFVSC_CHWRC_RHDHC:
+  description: "Fan coil unit with discharge fan, chilled water coil, and return humidification/dehumidification control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
+  - RHDHC
+
+FCU_DFVSC_CHWDC_RTM:
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - RTM
+
+FCU_DFVSC_CHWDC_RTM_CSP:
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - RTM
+  - CSP
+
+FCU_DFVSC_CHWRC_CSP:
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
+  - CSP
+
+FCU_DFVSC_CHWDC_CSP:
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - CSP
+
+FCU_DFVSC_CHWRC:
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
 
 FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
   guid: "37d4b545-97fd-4eb8-9c87-acd2be28a748"
