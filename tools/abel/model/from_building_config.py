@@ -68,6 +68,7 @@ def EntityInstanceToEntity(
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
         bc_guid=entity_instance.guid,
+        display_name=entity_instance.display_name,
     )
   else:
     entity = ReportingEntity(
@@ -77,6 +78,7 @@ def EntityInstanceToEntity(
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
         bc_guid=entity_instance.guid,
+        display_name=entity_instance.display_name,
     )
     if entity_instance.translation:
       for field in entity_instance.translation.values():
