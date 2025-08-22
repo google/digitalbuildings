@@ -66,18 +66,6 @@ VAV_SD_HLSAFS_CO2C:
   - HLSAFS
   - CO2C
 
-VAV_SD_DSP_DFVSC_CHWDC:
-  guid: "3aa041b8-1429-4e94-baf2-0b9e717f86e3"
-  description: "Single duct VAV with chilled water coil"
-  is_canonical: true
-  implements:
-  - VAV
-  - SD
-  - DSP
-  - DFVSC
-  - CHWDC
-  - RTC
-
 VAV_SD_CSP_HLSAFS:
   guid: "ea3a576a-08af-40b2-ae0b-59451e0b88a4"
   description: "Simple cooling only VAV with occupancy."
@@ -344,6 +332,18 @@ VAV_SD_DSP_DFSS_DFVSC_HT3DC:
   - DFSS
   - DFVSC
   - HT3DC
+
+VAV_SD_DSP_DFSS_DFVSC_HT3DTC:
+  guid: "724983c1-cdff-45b0-a9d3-f13a8f83213c"
+  description: "Fan powered VAV with variable speed control with three electric heaters."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - DFSS
+  - DFVSC
+  - HT3DTC
 
 VAV_SD_DSP_CO2C_DFSS_DFVSC:
   guid: "bc81486d-d20e-4f56-9485-b15b2e3584d3"

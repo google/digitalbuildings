@@ -276,15 +276,15 @@ CHWS_SWTC_WDPC_CLPM_MINFC:
   - CLPM
   - MINFC
 
-CHWS_SWTC_WDPM_CHWBYPVPM_WSEBYPVPM:
+CHWS_SWTC_WDPM_BYPVPM_WSEBYPVPM:
   guid: "3d0097bf-b4f8-41be-a205-513da531f0ee"
-  description: "Chilled water system with supply water temperatrue control, differential pressure control, chilled water bypass valve percentage control, and water side economizer bypass valve monitoring"
+  description: "Chilled water system with supply water temperatrue control, differential pressure control, bypass valve percentage control, and water side economizer bypass valve monitoring"
   is_canonical: true
   implements:
   - CHWS
   - SWTC
   - WDPM
-  - CHWBYPVPM
+  - BYPVPM
   - WSEBYPVPM
 
 CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
