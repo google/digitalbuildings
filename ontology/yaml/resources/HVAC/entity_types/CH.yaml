@@ -794,6 +794,55 @@ CH_VSC_CHDX2SC_CHWSWISOVM_CWRISOVM:
   - CHWSWISOVM
   - CWRISOVM
 
+CH_VSC_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_REFSM_CHWDPM_CHCPC_CDCPC_SRC:
+  guid: "2553e844-12da-43f1-96b2-b912ce108705"
+  description: "Chiller with variable speed control, supply water temperature control, chilled water return side isolation valve percentage control, condenser differential temperature control, condenser supply isolation valve percentage control, refrigerant pressure monitoring, refrigerant saturation monitoring, chilled water differential pressure monitoring, circulation control for onboard chilled water pump, and circulation control for onboard condenser water pump"
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWDT
+  - CWSISOVPM
+  - REFPM
+  - REFSM
+  - CHWDPM
+  - CHCPC
+  - CDCPC
+  - SRC
+
+CH_SS_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_CHWDPM:
+  guid: "72c8da44-36de-4aeb-b176-2158bf0ff885"
+  description: "Chiller with supply water temperature control, chilled water return side isolation valve percentage control, condenser differential temperature control, condenser supply isolation valve percentage control, refrigerant pressure monitoring, chilled water differential pressure monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWDT
+  - CWSISOVPM
+  - REFPM
+  - CHWDPM
+
+CH_SS_WDPM_WDT_RWISOVPM_REFPM2X_DX4SWC:
+  guid: "46e1f7f9-bc34-4238-bf4f-e7106b55aa3b"
+  description: "Chiller with variable speed control, differential pressure monitoring, differential temperature control, chilled water return side isolation valve percentage control, refrigerant pressure monitoring for 2 circuits, refrigerant saturation monitoring, chiller control on supply side with 4 compressors, circulation control for onboard chilled water pump, and circulation control for onboard condenser water pump"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - VSC
+  - CHWDPM
+  - CHWDT
+  - CHWRWISOVPM
+  - REFPM2X
+  - REFSM
+  - CHDX4SC
+  - CHCPC
+  - CDCPC
+
 CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
   guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
   description: "Water cooled chiller with condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled water differential pressure monitoring and single circuit refrigerant pressure and temperature monitoring."

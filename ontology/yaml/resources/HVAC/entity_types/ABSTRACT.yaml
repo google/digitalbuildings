@@ -712,6 +712,9 @@ VSFC:
   - failed_alarm
   - run_command
   - run_status
+  - current_sensor
+  - power_sensor
+  - voltage_sensor
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
@@ -802,6 +805,7 @@ DFVSC:
   - failed_inverter_alarm
   - high_discharge_air_flowrate_alarm
   - high_discharge_air_static_pressure_alarm
+  - schedule_run_command
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
