@@ -52,6 +52,7 @@ HWS_SWTC_WDPC_WFRM:
   - WFRM
 
 HWS_SS_SWTC_WDPC:
+  guid: "183ae265-7880-4bdb-b39e-8c7bab54ff66"
   description: "Simple heating water system with supply temperature and differential pressure control"
   is_canonical: true
   implements:

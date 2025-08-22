@@ -1530,6 +1530,7 @@ FCU_DFVSC_CHWRC_FDPSM2X:
   - isolation_damper_status
 
 FCU_DFVSC_CHWDC_DSPM_DSP:
+  guid: "6f0497df-b586-4c57-b66b-bc5899cc9f1d"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
@@ -1540,6 +1541,7 @@ FCU_DFVSC_CHWDC_DSPM_DSP:
   - DSP
 
 FCU_DFVSC_CHWRC_RHDHC:
+  guid: "e1c6586d-a7ad-46c9-b74a-73497dd83cb4"
   description: "Fan coil unit with discharge fan, chilled water coil, and return humidification/dehumidification control"
   is_canonical: true
   implements:
@@ -1549,6 +1551,7 @@ FCU_DFVSC_CHWRC_RHDHC:
   - RHDHC
 
 FCU_DFVSC_CHWDC_RTM:
+  guid: "3b860ad7-8302-42b5-ac0c-b5cf5d6694cb"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
@@ -1558,6 +1561,7 @@ FCU_DFVSC_CHWDC_RTM:
   - RTM
 
 FCU_DFVSC_CHWDC_RTM_CSP:
+  guid: "01a45693-cb13-4a80-824e-e997c4084a03"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
@@ -1568,6 +1572,7 @@ FCU_DFVSC_CHWDC_RTM_CSP:
   - CSP
 
 FCU_DFVSC_CHWRC_CSP:
+  guid: "f85a8800-4fa6-438c-94f5-4af7822d9962"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
@@ -1577,6 +1582,7 @@ FCU_DFVSC_CHWRC_CSP:
   - CSP
 
 FCU_DFVSC_CHWDC_CSP:
+  guid: "18a4d56e-2953-451c-95d1-b8ed07f07c40"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
@@ -1586,6 +1592,7 @@ FCU_DFVSC_CHWDC_CSP:
   - CSP
 
 FCU_DFVSC_CHWRC:
+  guid: "48aa5707-4828-42a3-98b9-3fab33fa309d"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
