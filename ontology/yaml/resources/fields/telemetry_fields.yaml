@@ -2317,7 +2317,16 @@ literals:
 - low_limit_mechanical_cooling_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- mechanical_cooling_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - low_limit_mechanical_cooling_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- mechanical_heating_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- low_limit_mechanical_heating_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - low_limit_outside_air_damper_percentage_command:

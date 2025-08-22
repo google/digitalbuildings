@@ -1518,6 +1518,7 @@ SWTC:
   - low_supply_water_temperature_alarm
   - failed_return_water_temperature_alarm
   - failed_supply_water_temperature_alarm
+  - heating_thermal_power_sensor
   uses:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
@@ -1786,10 +1787,25 @@ MMCWDPC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
+  - mechanical_cooling_differential_pressure_sensor
+  - low_limit_mechanical_cooling_differential_pressure_sensor
   uses:
   - bypass_valve_percentage_command
-  - low_limit_mechanical_cooling_differential_pressure_sensor
   - low_limit_mechanical_cooling_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+MMHWDPC:
+  guid: "56fa586d-8c29-42b5-b641-483675f61dd5"
+  description: "Minimum water differential pressure control for mechanical heating in a hydronic system."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  - failed_bypass_valve_alarm
+  uses:
+  - bypass_valve_percentage_command
+  - mechanical_heating_differential_pressure_sensor
+  - low_limit_mechanical_heating_differential_pressure_setpoint
   implements:
   - OPERATIONAL
 
@@ -3163,12 +3179,15 @@ DX2SWC:
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
   - compressor_speed_frequency_sensor
+  - compressor_speed_frequency_sensor_1
+  - compressor_speed_frequency_sensor_2
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   - load_percentage_sensor_1
   - load_percentage_sensor_2
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -3901,6 +3920,24 @@ HT3DC:
   implements:
   - CONTROL
 
+HT3DTC:
+  guid: "fe4dc535-b121-4636-9b05-768cc9ecb97e"
+  description: "Three electric heater control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  - failed_discharge_air_temperature_alarm
+  - failed_heater_alarm
+  uses:
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  implements:
+  - CONTROL
 
 HTSC:
   guid: "bf18254f-acb9-4497-9d54-a7920879f5e5"
@@ -4671,6 +4708,7 @@ SARC:
   - supply_air_flowrate_sensor
   - warmup_run_command
   - warmup_request_count
+  - cooldown_run_command
   uses:
   - cooling_request_count
   - pressurization_request_count
@@ -7048,66 +7086,6 @@ WDPCSCM:
   - supervisor_differential_pressure_setpoint
   opt_uses:
   - supervisor_alarm
-
-
-CSWIVS:
-  guid: "e1e35fec-c621-4346-9992-4c85d31acaac"
-  description: "Condensing return water isolation valve control."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - condensing_return_water_isolation_valve_command_1
-  - condensing_return_water_isolation_valve_command_2
-  - condensing_return_water_isolation_valve_command_3
-  - condensing_return_water_isolation_valve_command_4
-  - condensing_return_water_isolation_valve_command_5
-  - condensing_return_water_isolation_valve_command_6
-  - condensing_return_water_isolation_valve_command_7
-  - condensing_return_water_isolation_valve_status_1
-  - condensing_return_water_isolation_valve_status_10
-  - condensing_return_water_isolation_valve_status_11
-  - condensing_return_water_isolation_valve_status_12
-  - condensing_return_water_isolation_valve_status_13
-  - condensing_return_water_isolation_valve_status_14
-  - condensing_return_water_isolation_valve_status_2
-  - condensing_return_water_isolation_valve_status_3
-  - condensing_return_water_isolation_valve_status_4
-  - condensing_return_water_isolation_valve_status_5
-  - condensing_return_water_isolation_valve_status_6
-  - condensing_return_water_isolation_valve_status_7
-  - condensing_return_water_isolation_valve_status_8
-  - condensing_return_water_isolation_valve_status_9
-
-
-CRWIVS:
-  guid: "8ea0f73c-6a13-4196-a63d-f68011597239"
-  description: "Condensing supply water isolation valve control."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - condensing_supply_water_isolation_valve_command_1
-  - condensing_supply_water_isolation_valve_command_2
-  - condensing_supply_water_isolation_valve_command_3
-  - condensing_supply_water_isolation_valve_command_4
-  - condensing_supply_water_isolation_valve_command_5
-  - condensing_supply_water_isolation_valve_command_6
-  - condensing_supply_water_isolation_valve_command_7
-  - condensing_supply_water_isolation_valve_status_1
-  - condensing_supply_water_isolation_valve_status_10
-  - condensing_supply_water_isolation_valve_status_11
-  - condensing_supply_water_isolation_valve_status_12
-  - condensing_supply_water_isolation_valve_status_13
-  - condensing_supply_water_isolation_valve_status_14
-  - condensing_supply_water_isolation_valve_status_2
-  - condensing_supply_water_isolation_valve_status_3
-  - condensing_supply_water_isolation_valve_status_4
-  - condensing_supply_water_isolation_valve_status_5
-  - condensing_supply_water_isolation_valve_status_6
-  - condensing_supply_water_isolation_valve_status_7
-  - condensing_supply_water_isolation_valve_status_8
-  - condensing_supply_water_isolation_valve_status_9
 
 
 CSWTC:
