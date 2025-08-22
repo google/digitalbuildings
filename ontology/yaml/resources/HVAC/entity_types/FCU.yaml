@@ -260,6 +260,17 @@ FCU_DFSS_DSP_HPHCZC:
   - DSP
   - HPHCZC
 
+FCU_DAIDC_DFSS_DSP_HPHCZC:
+  guid: "59e33b78-7f5a-4e07-811c-3f4838ff053a"
+  description: "Heating and cooling control heat pump FCU (zone control) with discharge isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DAIDC
+  - DFSS
+  - DSP
+  - HPHCZC
+
 FCU_DFSS_DFMSC_HPDSPRTC:
   guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
   description: "Return temp control multi-speed FCU with heat pump"
@@ -1529,6 +1540,57 @@ FCU_DFVSC_CHWRC_FDPSM2X:
   - FDPSM2X
   opt_uses:
   - isolation_damper_status
+
+FCU_DFVSC_CHWDC_DSPM_DSP:
+  guid: "44672cf6-20de-4700-bb3f-f4e1a0981a74"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - DSPM
+  - DSP
+
+FCU_DFVSC_CHWDC_RTM:
+  guid: "cfb6b478-27b2-476e-860a-df77f471a6c3"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - RTM
+
+FCU_DFVSC_CHWDC_RTM_CSP:
+  guid: "6d0c1126-3c04-441f-a4a8-1ca5d4f15269"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - RTM
+  - CSP
+
+FCU_DFVSC_CHWRC_CSP:
+  guid: "9b6e2a86-b128-464d-b6de-d0c312d531a1"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
+  - CSP
+
+FCU_DFVSC_CHWRC:
+  guid: "a6a04503-852a-48f3-8357-3f31ee639dc4"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
 
 FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
   guid: "37d4b545-97fd-4eb8-9c87-acd2be28a748"
