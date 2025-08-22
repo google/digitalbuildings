@@ -87,6 +87,7 @@ CT_SS_VSC_SWTC_RWISOVM:
   - RWISOVM
 
 CT_SWTC_VSFC_SWISOVPM_RWISOVPM_CFVSC:
+  guid: "3cdfe968-37cc-4dba-bc25-d395bc969c55"
   description: "Cooling tower with supply water temperature control, variable speed frequency control, supply water isolation valve monitoring, return water isolation valve monitoring, and variable speed control for condensing fan"
   is_canonical: true
   implements:
