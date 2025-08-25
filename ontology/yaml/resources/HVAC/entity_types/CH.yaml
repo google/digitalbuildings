@@ -828,20 +828,16 @@ CH_SS_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_CHWDPM:
 
 CH_SS_WDPM_WDT_RWISOVPM_REFPM2X_DX4SWC:
   guid: "46e1f7f9-bc34-4238-bf4f-e7106b55aa3b"
-  description: "Chiller with variable speed control, differential pressure monitoring, differential temperature control, chilled water return side isolation valve percentage control, refrigerant pressure monitoring for 2 circuits, refrigerant saturation monitoring, chiller control on supply side with 4 compressors, circulation control for onboard chilled water pump, and circulation control for onboard condenser water pump"
+  description: "Air cooled chiller with differential pressure monitoring, differential temperature control, return side isolation valve percentage control, refrigerant pressure monitoring for 2 circuits, and chiller control on supply side with 4 compressors"
   is_canonical: true
   implements:
   - CH
   - SS
-  - VSC
-  - CHWDPM
-  - CHWDT
-  - CHWRWISOVPM
+  - WDPM
+  - WDT
+  - RWISOVPM
   - REFPM2X
-  - REFSM
-  - CHDX4SC
-  - CHCPC
-  - CDCPC
+  - DX4SWC
 
 CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
   guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
