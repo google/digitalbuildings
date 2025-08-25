@@ -175,6 +175,24 @@ AHU_DFVSC_EFSS_DX2DDC_HTDDC_ECONMD_ZSPC_DSP:
   - ZSPC
   - DSP
 
+AHU_SFVSC2X_EFVSC4X_BSPC4X_SSPC_CHWSC_HWSC_ECON_FDPM_MOAFC_SARC_SRC:
+  guid: "22a720cb-e85e-4505-ac6c-6027ba53ddc1"
+  description: "Multi zone AHU with two supply fans, two exhaust fans, building static pressure control, dual heating/cooling mode water coil, and economizer"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC4X
+  - BSPC4X
+  - SSPC
+  - CHWSC
+  - HWSC
+  - ECON
+  - FDPM
+  - MOAFC
+  - SARC
+  - SRC
+
 AHU_SFVSC_EFVSC_DX2SC_HTSC_EDBPC_ECON:
   guid: "b25736c6-a75a-4c6a-abcd-505c04b5fd3c"
   description: "Multi zone AHU with supply fan, exhaust fan, two stage DX cooling coil, heating coil, building static pressure control with exhaust damper, and economizer."
@@ -5493,6 +5511,25 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFHCM_SARC_SFSS_SFVSC_SSPC:
   - EFVSC
   - MOAFHCM
   - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_BSPC_DX5SC_ECONM_EDPM_EFSS_EFVSC_HWSC_OAFMC_REFSM2X_SFSS_SFVSC_SSPC:
+  guid: "02733a64-1734-4bc0-8fe1-f00d27958c63"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX5SC
+  - ECONM
+  - EDPM
+  - EFSS
+  - EFVSC
+  - HWSC
+  - OAFMC
+  - REFSM2X
   - SFSS
   - SFVSC
   - SSPC
