@@ -22,6 +22,7 @@ from model.constants import BUILDING_CODE
 from model.constants import CLOUD_DEVICE_ID
 from model.constants import CONNECTION_TYPE
 from model.constants import CONNECTIONS
+from model.constants import DISPLAY_NAME
 from model.constants import ENTITIES
 from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
@@ -92,6 +93,7 @@ TEST_CLOUD_DEVICE_ID = '2541901344105616'
 TEST_REPORTING_GUID = 'test_reporting_guid'
 TEST_VIRTUAL_GUID = 'test_virtual_guid'
 TEST_ETAG = '1234567'
+TEST_DISPLAY_NAME = 'Test Display Name'
 
 # Test Site instances
 TEST_SITE_DICT = {
@@ -115,6 +117,7 @@ TEST_REPORTING_ENTITY_DICT = {
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'TRUE',
     OPERATION: 'ADD',
+    DISPLAY_NAME: TEST_DISPLAY_NAME,
 }
 
 TEST_REPORTING_ENTITY_DICT_NO_GUID = {
@@ -137,6 +140,7 @@ TEST_VIRTUAL_ENTITY_DICT = {
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'FALSE',
     OPERATION: 'ADD',
+    DISPLAY_NAME: TEST_DISPLAY_NAME,
 }
 
 # Test Entity Field instances

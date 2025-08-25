@@ -49,6 +49,9 @@ class EntityUpdateMaskAttribute(enum.Enum):
   # A virtual entity's links.
   LINKS = 'links'
 
+  # An entity's display name.
+  DISPLAY_NAME = 'display_name'
+
 
 class EntityNamespace(enum.Enum):
   """Possible values for an entity namespace."""

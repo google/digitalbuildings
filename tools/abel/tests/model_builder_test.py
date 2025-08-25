@@ -34,6 +34,7 @@ from model.site import Site
 from model.state import State
 from tests.test_constants import TEST_CONNECTION_DICT
 from tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
+from tests.test_constants import TEST_DISPLAY_NAME
 from tests.test_constants import TEST_FIELD_DICT_NO_UNITS
 from tests.test_constants import TEST_MISSING_FIELD_DICT
 from tests.test_constants import TEST_MULTISTATE_VALUE_FIELD_DICT
@@ -89,6 +90,7 @@ class ModelBuilderTest(absltest.TestCase):
         source_entity.code,
         ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT).code,
     )
+    self.assertEqual(added_entity.display_name, TEST_DISPLAY_NAME)
 
   @mock.patch.object(uuid, 'uuid4')
   def testFromSpreadsheet_reportingEntityNoGuid_createsGuidFromUuid(
