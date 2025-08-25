@@ -24,6 +24,7 @@ from model.constants import BC_MISSING
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
 from model.constants import CONFIG_CONNECTIONS
+from model.constants import CONFIG_DISPLAY_NAME
 from model.constants import CONFIG_ETAG
 from model.constants import CONFIG_INITIALIZE
 from model.constants import CONFIG_LINKS
@@ -51,6 +52,19 @@ from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from validate.field_translation import FieldTranslation
 
+def _clean_empty_lists(d):
+  """Recursively removes keys with empty list values from a dictionary."""
+  if isinstance(d, dict):
+    return {
+        k: _clean_empty_lists(v)
+        for k, v in d.items()
+        if not (isinstance(v, list) and not v)
+    }
+  elif isinstance(d, list):
+    # Process elements within a list, but don't remove empty lists from lists
+    return [_clean_empty_lists(elem) for elem in d]
+  else:
+    return d
 
 class GoogleSheetExport(object):
   """Class to help write ABEL data types to a Google Sheets spreadsheet.
@@ -152,8 +166,10 @@ class BuildingConfigExport(object):
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
-          file.write(as_document({key: value}).as_yaml())
-          file.write('\n')
+          cleaned_value = _clean_empty_lists(value)
+          if cleaned_value:  # Ensure not empty after cleaning
+            file.write(as_document({key: cleaned_value}).as_yaml())
+            file.write('\n')
     except PermissionError:
       print(f'Permission denied when writing to {filepath}')
     return entity_yaml_dict
@@ -198,8 +214,10 @@ class BuildingConfigExport(object):
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
-          file.write(as_document({key: value}).as_yaml())
-          file.write('\n')
+          cleaned_value = _clean_empty_lists(value)
+          if cleaned_value:
+            file.write(as_document({key: cleaned_value}).as_yaml())
+            file.write('\n')
     except PermissionError:
       print(f'Permission denied when writing to {filepath}')
     return entity_yaml_dict
@@ -232,6 +250,8 @@ class BuildingConfigExport(object):
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
     }
+    if entity.display_name:
+      reporting_entity_yaml.update({CONFIG_DISPLAY_NAME: entity.display_name})
     if entity.etag:
       reporting_entity_yaml.update({CONFIG_ETAG: entity.etag})
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
@@ -274,6 +294,8 @@ class BuildingConfigExport(object):
       A dicitionary formatted for Building Config ready to be parsed into yaml.
     """
     virtual_entity_yaml = {CONFIG_CODE: entity.code}
+    if entity.display_name:
+      virtual_entity_yaml.update({CONFIG_DISPLAY_NAME: entity.display_name})
     if entity.etag:
       virtual_entity_yaml.update({CONFIG_ETAG: entity.etag})
     virtual_entity_yaml.update(self._GetConnections(entity=entity))

@@ -23,6 +23,7 @@ from model.constants import CLOUD_DEVICE_ID
 from model.constants import CONDITION
 from model.constants import CONDITION_TYPE
 from model.constants import DATA_VALIDATION
+from model.constants import DISPLAY_NAME
 from model.constants import ENTITY_CODE
 from model.constants import ETAG
 from model.constants import IS_REPORTING_FALSE
@@ -49,6 +50,7 @@ class Entity(object):
     connections: List of Connection class instances.
     type_name: A DBO type name for this entity.
     bc_guid: UUID4 value for an entity.
+    display_name: Human readable display name for the entity.
     metadata: Contextual metadata coming from a physical device. e.g. {
         location: '/Sif-Solo/Site 1 - Sif/Charleston Road North/B13 - 1875
           Charleston/Roof',
@@ -65,6 +67,7 @@ class Entity(object):
       etag: Optional[str] = None,
       type_name: Optional[str] = None,
       bc_guid: Optional[str] = None,
+      display_name: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
     """Init.
@@ -75,6 +78,7 @@ class Entity(object):
       etag: [Optional] Hash used for entity versioning.
       type_name: [Optional] An entity's DBO type name.
       bc_guid: [Optional] UUID4 value for an entity.
+      display_name: [Optional] Human readable display name for the entity.
       metadata: [Optional] Contextual metadata about an entity.
     """
 
@@ -84,6 +88,7 @@ class Entity(object):
     self.namespace = namespace
     self._connections = []
     self.type_name = type_name
+    self.display_name = display_name
     self.metadata = metadata
 
   def __hash__(self):
@@ -156,6 +161,7 @@ class VirtualEntity(Entity):
       etag: Optional[str] = None,
       type_name: Optional[str] = None,
       bc_guid: Optional[str] = None,
+      display_name: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
     """Init.
@@ -166,10 +172,19 @@ class VirtualEntity(Entity):
       etag: [Optional] Hash used for entity versioning.
       type_name: [Optional] An entity's DBO type name.
       bc_guid: [Optional] UUID4 value for an entity.
+      display_name: [Optional] Human readable display name for the entity.
       metadata: [Optional] Contextual metadata about an entity.
     """
 
-    super().__init__(code, namespace, etag, type_name, bc_guid, metadata)
+    super().__init__(
+        code,
+        namespace,
+        etag,
+        type_name,
+        bc_guid,
+        display_name,
+        metadata,
+    )
     self._links = []
 
   def __eq__(self, other: ...) -> bool:
@@ -194,6 +209,7 @@ class VirtualEntity(Entity):
         bc_guid=entity_dict[BC_GUID],
         namespace=EntityNamespace(entity_dict.get(NAMESPACE).upper()),
         type_name=entity_dict[TYPE_NAME],
+        display_name=entity_dict.get(DISPLAY_NAME),
     )
     if ETAG in entity_dict.keys():
       virtual_entity_instance.etag = entity_dict[ETAG]
@@ -228,6 +244,7 @@ class VirtualEntity(Entity):
     row_map_object = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.display_name}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.bc_guid}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
             {
@@ -282,6 +299,7 @@ class ReportingEntity(Entity):
       etag: Optional[str] = None,
       type_name: Optional[str] = None,
       bc_guid: Optional[str] = None,
+      display_name: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
     """Init.
@@ -293,10 +311,19 @@ class ReportingEntity(Entity):
       etag: [Optional] Hash used for entity versioning.
       type_name: [Optional] An entity's DBO type name.
       bc_guid: [Optional] UUID4 value for an entity.
+      display_name: [Optional] Human readable display name for the entity.
       metadata: [Optional] Contextual metadata about an entity.
     """
 
-    super().__init__(code, namespace, etag, type_name, bc_guid, metadata)
+    super().__init__(
+        code,
+        namespace,
+        etag,
+        type_name,
+        bc_guid,
+        display_name,
+        metadata,
+    )
     self.cloud_device_id = cloud_device_id
     self._translations = []
 
@@ -326,6 +353,7 @@ class ReportingEntity(Entity):
         namespace=EntityNamespace(entity_dict.get(NAMESPACE).upper()),
         type_name=entity_dict[TYPE_NAME],
         cloud_device_id=entity_dict[CLOUD_DEVICE_ID],
+        display_name=entity_dict.get(DISPLAY_NAME),
     )
     if ETAG in entity_dict.keys():
       reporting_entity_instance.etag = entity_dict[ETAG]
@@ -361,6 +389,7 @@ class ReportingEntity(Entity):
     row_map_object = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.display_name}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.bc_guid}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
             {
