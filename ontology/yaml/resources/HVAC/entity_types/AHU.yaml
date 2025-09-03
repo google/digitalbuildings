@@ -134,6 +134,19 @@ AHU_DFVSC_EFVSC_ZSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
   - DSP
   - DAIDC
 
+AHU_DSP_DFVSC_CHWDC_ECOND_FDPM2X:
+  guid: "03b7bb88-59e0-445c-b74d-bbd48cb51a46"
+  description: "Single zone AHU with variable speed discharge fan, chilled water coil, dual setpoint zone temp control, two filters, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFVSC
+  - CHWDC
+  - ECOND
+  - FDPM2X
+
+
 AHU_DFSS_EFSS_DX2DC_ECOND_EDBPC:
   guid: "a79815eb-54b4-4ac9-a669-eca5c3a4135b"
   description: "Single zone AHU with discharge fan, exhaust fan, DX cooling coil, building static pressure control with exhaust damper, and economizer."
@@ -2151,6 +2164,21 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_ECON_EDBPC_BSPC_SSPC:
   - EDBPC
   - BSPC
   - SSPC
+
+AHU_SFVSC_CHWSC_ECON_BSPC_SSPC_SARC_FDPM2X_EDBPC:
+  guid: "38f358bb-25a8-4671-96ea-b8f3d7c99a39"
+  description: "Multi-zone AHU with chilled water, economizing, static pressure control, and dual filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - CHWSC
+  - ECON
+  - BSPC
+  - SSPC
+  - SARC
+  - FDPM2X
+  - EDBPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC_SSPC:
   guid: "0402924a-3617-4248-a014-2bae40397b45"
@@ -5192,6 +5220,26 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_LHC_CHW2XSC_DH2XSDPC_SSPC_SARC_MOAFC_ECON_EDPM
   - RD
   - UV
   - SHM
+
+AHU_SFSS_SFVSC_RFSS_RFVSC_HWSC_CHWSC_SSPC_SARC_MOAFC_ECON_EDPM_RD_UV:
+  guid: "db33e650-dda4-43f6-bbc5-1844d6b97a0b"
+  description: "Multi-zone AHU with supply and return fans, chilled and heating water valve control, exhaust damper monitoring, minimum ventilation control, return damper flow control and ultraviolet lamp."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - RFSS
+  - RFVSC
+  - HWSC
+  - CHWSC
+  - SSPC
+  - SARC
+  - MOAFC
+  - ECON
+  - EDPM
+  - RD
+  - UV
 
 AHU_SFSS_SFVSC_RFSS_RFVSC_HWSC_CHWSC_SSPC_SARC_MOAFC_ECON_EDPM_RD_UV:
   guid: "db33e650-dda4-43f6-bbc5-1844d6b97a0b"
