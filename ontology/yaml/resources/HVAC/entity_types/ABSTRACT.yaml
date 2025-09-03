@@ -9836,6 +9836,14 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_command_1
   - chilled_water_circulation_pump_run_command_2
 
+CHCPVSC:
+  guid: "aaeceaf5-11fb-4cfe-a4d3-474e6f3a30e2"
+  description: "Variable speed circulation control for onboard chilled water pump."
+  is_abstract: true
+  uses:
+  - chilled_water_circulation_pump_speed_percentage_sensor
+  - chilled_water_circulation_pump_speed_percentage_command
+
 CDCPC:
   guid: "80262436-bf4a-43ef-a037-9ceaccbaaf76"
   description: "Circulation control for onboard condenser water pump."
