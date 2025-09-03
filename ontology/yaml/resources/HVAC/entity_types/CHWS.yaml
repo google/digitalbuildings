@@ -584,6 +584,18 @@ CHWS_SS_SWTC_WDPC_CLPM_WFRM:
   - CLPM
   - WFRM
 
+CHWS_BYPVPM_PWDT_PRSWFRC_SESWTC_SEWDPC:
+  guid: "d1bbaa95-12ad-4164-a80b-8999a151541d"
+  description: "Chilled water system with primary and secondary water control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - BYPVPM
+  - PWDT
+  - PRSWFRC
+  - SESWTC
+  - SEWDPC
+
 CHWS_SS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
   guid: "49477bff-e5f7-42bc-b498-8965f4ed3e41"
   description: "Chilled water system with run command, cooling thermal power monitoring, primary and secondary water control, and water side economizing."

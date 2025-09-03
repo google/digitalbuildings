@@ -9096,6 +9096,18 @@ EDM2X:
   - exhaust_air_damper_status_1
   - exhaust_air_damper_status_2
 
+EDM2X2C:
+  guid: "964e05dd-f8e4-4fdb-ad06-e4560e6a4c3a"
+  description: "Dual exhaust air damper control."
+  is_abstract: true
+  opt_uses:
+  - low_exhaust_air_static_pressure_alarm
+  uses:
+  - exhaust_air_damper_command_1
+  - exhaust_air_damper_command_2
+  - exhaust_air_damper_status_1
+  - exhaust_air_damper_status_2
+
 ACO2C:
   guid: "155dae96-5a12-4062-a9e4-ba911d17d036"
   description: "Average zone CO2 control."
@@ -9546,6 +9558,48 @@ HP8SWC:
   implements:
   - CONTROL
 
+HP12SWC:
+  guid: "09035def-bc6c-402b-8eec-67f9817e5fc6"
+  description: "Twelve-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_command_7
+  - compressor_run_command_8
+  - compressor_run_command_9
+  - compressor_run_command_10
+  - compressor_run_command_11
+  - compressor_run_command_12
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
+  - compressor_run_status_7
+  - compressor_run_status_8
+  - compressor_run_status_9
+  - compressor_run_status_10
+  - compressor_run_status_11
+  - compressor_run_status_12
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 HP16SWC:
   guid: "10a296de-4115-413f-a036-abcac89ea6a2"
   description: "Sixteen-compressor heat pump control on supply water side."
@@ -9782,6 +9836,14 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_command_1
   - chilled_water_circulation_pump_run_command_2
 
+CHCPVSC:
+  guid: "aaeceaf5-11fb-4cfe-a4d3-474e6f3a30e2"
+  description: "Variable speed circulation control for onboard chilled water pump."
+  is_abstract: true
+  uses:
+  - chilled_water_circulation_pump_speed_percentage_sensor
+  - chilled_water_circulation_pump_speed_percentage_command
+
 CDCPC:
   guid: "80262436-bf4a-43ef-a037-9ceaccbaaf76"
   description: "Circulation control for onboard condenser water pump."
@@ -9789,6 +9851,14 @@ CDCPC:
   uses:
   - condensing_water_circulation_pump_run_status
   - condensing_water_circulation_pump_run_command
+
+CDCPVSC:
+  guid: "8487fd92-da52-420f-870f-b48f8710023c"
+  description: "Variable speed circulation control for onboard condenser water pump."
+  is_abstract: true
+  uses:
+  - condensing_water_circulation_pump_speed_percentage_sensor
+  - condensing_water_circulation_pump_speed_percentage_command
 
 ESM2X:
   guid: "3d2d7498-e741-4690-aab6-f2e14e11cfeb"

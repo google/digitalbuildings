@@ -721,7 +721,7 @@ FCU_DFSS_DFHLC_DSP_DXZC:
 
 FCU_DFSS_DFHMLC_DSP_HWDC_CHWDC:
   guid: "b6296ca6-48de-43c2-94a8-9f12edfc7d8d"
-  description: "Multi-speed heat pump fan coil with zone temp control."
+  description: "Multi-speed heat pump fan coil with zone temp heating and cooling control."
   is_canonical: true
   implements:
   - FCU
@@ -730,6 +730,16 @@ FCU_DFSS_DFHMLC_DSP_HWDC_CHWDC:
   - DSP
   - HWDC
   - CHWDC
+
+FCU_DFHMLC_CSP_DXZC:
+  guid: "53aac485-de87-404e-bc27-874c6e8e3554"
+  description: "Multi-speed heat pump fan coil with DX zone temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFHMLC
+  - CSP
+  - DXZC
 
 FCU_DFSS_DFMSC_DSP_DXZC:
   guid: "61a50502-8054-4ab1-b9ae-2aa792036d48"
