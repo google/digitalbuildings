@@ -1166,3 +1166,33 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
   - DEPRECATED
   uses:
   - humidification_run_command
+
+MAU_NONCANONICAL_1:
+  guid: "05766d18-3da7-4f72-b72e-c9204f179d135"
+  description: "Non-standard pressure controlled MAU."
+  implements:
+  - MAU
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - cooling_request_count
+  - failed_supply_fan_alarm
+  - filter_differential_pressure_sensor_1
+  - filter_differential_pressure_sensor_2
+  - high_building_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - high_supply_air_temperature_alarm
+  - low_building_air_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
+  - low_supply_air_temperature_alarm
+  - outside_air_damper_percentage_command
+  - outside_air_temperature_sensor
+  - pressurization_request_count
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_air_temperature_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_speed_percentage_command
+  - ventilation_request_count
