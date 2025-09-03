@@ -9849,8 +9849,8 @@ CDCPVSC:
   description: "Variable speed circulation control for onboard condenser water pump."
   is_abstract: true
   uses:
-  - condensing_water_circulation_pump_run_speed_percentage_sensor
-  - condensing_water_circulation_pump_run_speed_percentage_command
+  - condensing_water_circulation_pump_speed_percentage_sensor
+  - condensing_water_circulation_pump_speed_percentage_command
 
 ESM2X:
   guid: "3d2d7498-e741-4690-aab6-f2e14e11cfeb"
