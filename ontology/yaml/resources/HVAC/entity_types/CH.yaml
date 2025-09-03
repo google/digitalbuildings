@@ -692,6 +692,17 @@ CH_SS_SCHWTC_HWDT:
   - SCHWTC
   - HWDT
 
+CH_SS_SCHWTC_CHWSWISOVPM_CDCPVSC:
+  guid: "25b28d28-b606-4963-8926-a3f5c553b69e"
+  description: "Water-cooled heat recovery chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWSWISOVPM
+  - CDCPVSC
+
 CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   guid: "66d78993-5a42-47b7-8505-01160c88234e"
   description: "Two-stage water-cooled chiller with refrigerant pressure and temperature monitoring."
