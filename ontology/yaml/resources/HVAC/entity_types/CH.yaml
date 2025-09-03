@@ -694,7 +694,7 @@ CH_SS_SCHWTC_HWDT:
 
 CH_SS_SCHWTC_CHWSWISOVPM_CHCPC_CHCPVSC_CWDT_CWSWISOVPM_CDCPC_CDCPVSC_HWRWISOVPM:
   guid: "25b28d28-b606-4963-8926-a3f5c553b69e"
-  description: "Water-cooled heat recovery chiller will supply chilled wate."
+  description: "Water-cooled heat recovery chiller will supply chilled water temperature control, chilled and condenser circulation pumps, and chilled, condenser, and heat recovery water isolation valves."
   is_canonical: true
   implements:
   - CH
