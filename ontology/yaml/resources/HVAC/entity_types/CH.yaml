@@ -577,6 +577,19 @@ CH_SS_WDT_SWISOVM_WDPM_DX2SWC_RCKTM2X:
   - DX2SWC
   - RCKTM2X
 
+CH_SS_CHWSWISOVPM_SCHWTC_CWSISOVPM_CWDT_RCKTM2X:
+  guid: "97b9ca2b-b92b-4dfc-a3d0-cd9fd26acfdf"
+  description: "Complex water-cooled chiller with two-circuit refrigeration monitoring and supply temperature control."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWSWISOVPM
+  - SCHWTC
+  - CWSISOVPM
+  - CWDT
+  - RCKTM2X
+
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
   guid: "e4f34eb3-4e22-4601-8de3-c7dc7d6860ea"
   description: "Complex water-cooled chiller."
