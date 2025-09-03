@@ -1029,7 +1029,7 @@ MAU_NONCANONICAL_4:
   - supply_fan_speed_percentage_command
 
 MAU_NONCANONICAL_5:
-  guid: "05766d18-3da7-4f72-b72e-c9204f179d135"
+  guid: "9de8c08d-eea4-407e-ac21-d4ec02fadd26"
   description: "Non-standard pressure controlled MAU."
   implements:
   - MAU
