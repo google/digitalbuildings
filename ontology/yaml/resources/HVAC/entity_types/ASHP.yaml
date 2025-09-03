@@ -45,6 +45,16 @@ ASHP_SS_HP8SWC_SWISOVM_WDPM:
   - SWISOVM
   - WDPM
 
+ASHP_SS_HP12SWC_RWISOVM:
+  guid: "7448f14a-89de-4f75-9560-f338ff366b2c"
+  description: "Twelve-stage air source heat pump with isolation valve on return."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP12SWC
+  - RWISOVM
+
 
 ASHP_SS_HP6SWC_CFVSC3X_CPC2X:
   guid: "9757814e-187f-4c3f-9a53-99d8c28ec8e6"
