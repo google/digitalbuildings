@@ -323,6 +323,15 @@ FAN_VSC_EDPM:
   - VSC
   - EDPM
 
+FAN_VSC_EDM2X2C:
+  guid: "3ab5df48-a26f-4bcf-8bea-7861704109fa"
+  description: "Variable speed fan with two exhaust dampers."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - EDM2X2C
+
 FAN_SS_DSP_VSC:
   guid: "660d42d5-15b3-4cb4-9af1-506f31b0aa0e"
   description: "Fan with dual setpoint control and variable speed."
