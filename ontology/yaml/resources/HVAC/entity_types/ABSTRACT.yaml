@@ -9096,6 +9096,18 @@ EDM2X:
   - exhaust_air_damper_status_1
   - exhaust_air_damper_status_2
 
+EDM2X2C:
+  guid: "964e05dd-f8e4-4fdb-ad06-e4560e6a4c3a"
+  description: "Dual exhaust air damper control."
+  is_abstract: true
+  opt_uses:
+  - low_exhaust_air_static_pressure_alarm
+  uses:
+  - exhaust_air_damper_command_1
+  - exhaust_air_damper_command_2
+  - exhaust_air_damper_status_1
+  - exhaust_air_damper_status_2
+
 ACO2C:
   guid: "155dae96-5a12-4062-a9e4-ba911d17d036"
   description: "Average zone CO2 control."
