@@ -4313,3 +4313,6 @@ literals:
 - zone_scene_command:
   - ACTIVE
   - INACTIVE
+- steam_mass_accumulator:
+    fixed_min: 0.0
+    flexible_max: 100000000.0
