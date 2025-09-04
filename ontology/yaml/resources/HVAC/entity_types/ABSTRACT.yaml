@@ -9746,6 +9746,7 @@ DSVC:
   - CONTROL
 
 SMFRM:
+  guid: "509b7ae2-0c7a-43ed-8235-a354d6e84a19"
   description: "Steam mass flowrate monitoring."
   is_abstract: true
   opt_uses:
