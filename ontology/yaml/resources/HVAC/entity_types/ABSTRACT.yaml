@@ -9745,6 +9745,16 @@ DSVC:
   implements:
   - CONTROL
 
+SMFRM:
+  description: "Steam mass flowrate monitoring."
+  is_abstract: true
+  opt_uses:
+  - steam_mass_accumulator
+  uses:
+  - steam_massflow_sensor
+  implements:
+  - MONITORING
+
 COC2XDSP:
   guid: "fa7cba8d-be4d-4968-a5bf-f55429006b77"
   description: "Dual setpoint CO concentration control with 2 sensors."
