@@ -3593,6 +3593,9 @@ literals:
 - startup_dimmer_percentage_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
+- steam_mass_accumulator:
+    fixed_min: 0.0
+    flexible_max: 100000000.0
 - steam_massflow_sensor:
     flexible_min: 0.0
     flexible_max: 5000
@@ -4313,3 +4316,4 @@ literals:
 - zone_scene_command:
   - ACTIVE
   - INACTIVE
+  
