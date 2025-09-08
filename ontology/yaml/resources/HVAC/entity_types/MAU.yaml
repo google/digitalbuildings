@@ -542,6 +542,17 @@ MAU_DFSS_DFVSC_HTDC:
   - DFVSC
   - HTDC
 
+MAU_DFSS_DFVSC_DXDC_HTDC:
+  guid: "1e5de0a6-b057-4387-b4b4-908b07198740"
+  description: "Single zone heating and cooling make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - DXDC
+  - HTDC
+
 MAU_DFSS_HTDC:
   guid: "f23aed1d-0043-49c3-b793-9b08f8273bbd"
   description: "Single zone heating make-up air unit with start/stop control."
