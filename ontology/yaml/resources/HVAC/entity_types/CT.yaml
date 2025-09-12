@@ -272,7 +272,7 @@ CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSWISOVM_FRWISOVM:
   opt_uses:
   - high_water_level_alarm
   - low_water_level_alarm
-  
+
 CT_SS_VSC_SWTM_MWFRM:
   guid: "1bef97de-792f-4595-87b2-5c014e41c387"
   description: "Cooling tower with variable speed control, supply water temperature monitoring, and makeup water flowrate monitoring"
