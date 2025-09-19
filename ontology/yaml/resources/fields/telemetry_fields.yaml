@@ -2973,6 +2973,12 @@ literals:
 - preheating_water_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
+- cooling_air_pressurization_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
+- heating_air_pressurization_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
 - pressurization_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
