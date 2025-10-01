@@ -76,6 +76,7 @@ DD:
   - schedule_run_command
   - cooling_air_pressurization_request_count
   - heating_air_pressurization_request_count
+  - user_occupancy_override_status
   uses:
   - cooling_air_damper_percentage_command
   - cooling_air_flowrate_sensor
@@ -1048,6 +1049,7 @@ DFSS:
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
   - zone_occupancy_status
+  - user_occupancy_override_status
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
