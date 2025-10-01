@@ -4161,6 +4161,21 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_SFVSC_EFVSC_DX6SC_HWSC_ECON_BSPC_SARC_SSPC_SAIDC:
+  description: "Multi-zone AHU with six-stage DX cooling with heating water valve and supply air isolation damper."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX6SC
+  - HWSC
+  - ECON
+  - BSPC
+  - SARC
+  - SSPC
+  - SAIDC
+
 AHU_BSPC_DX3SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
   guid: "62c7768e-8f0b-45c9-b526-cc78367f29c7"
   description: "Multi-zone AHU with three-stage DX cooling and two-stage heating."

@@ -1047,6 +1047,7 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
+  - user_occupancy_override_status
   - zone_occupancy_status
   uses:
   - discharge_fan_run_command

@@ -551,6 +551,15 @@ HWS_SWTC_WDPC_MMHWDPC_WFRM:
   - MMHWDPC
   - WFRM
 
+HWS_SWTC_WDPC_MINFC:
+  description: "Heating water system with differential pressure control,and minimum flow control for entire loop."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - MINFC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
