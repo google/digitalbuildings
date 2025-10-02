@@ -331,6 +331,19 @@ AHU_DFSS_DSP_DXZC:
   - DSP
   - DXZC
 
+AHU_DFVSC_DSP_ECONMD_EFVSC_HPHC2ZC_REFSM2X_RCKTM2X:
+  description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DSP
+  - EFVSC
+  - HPHC2ZC
+  - ECONMD
+  - REFSM2X
+  - RCKTM2X
+
 AHU_DFSS_DSP_HPHC4ZC_ECONZ:
   guid: "9a26ccb9-8ea4-47ae-9ad4-257887973c8f"
   description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
@@ -635,6 +648,16 @@ AHU_DFSS_ECONZ_HP2ZC:
   - ECONZ
   - HP2ZC
 
+AHU_DFSS_DSP_ECONZ_HP2ZC:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+
 AHU_DFSS_DSP_ECONZ_HPZC_HTZC:
   guid: "80261608-f2bd-4c51-af89-83eb4ecdf35c"
   description: "Single zone AHU."
@@ -898,6 +921,18 @@ AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   - DSP
   - DX2ZC
   - ECONZ
+  - EFSS
+
+AHU_BSPC_DFSS_CSP_DX2ZC_ECONMD_EFSS:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DFSS
+  - CSP
+  - DX2ZC
+  - ECONMD
   - EFSS
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HT2ZC:
@@ -5593,6 +5628,16 @@ AHU_BSPC_DX5SC_ECONM_EDPM_EFSS_EFVSC_HWSC_OAFMC_REFSM2X_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_DFVSC_DX2ZC_ECONMD_HT2ZC:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DX2ZC
+  - ECONMD
+  - HT2ZC
 
 ###################################
 ### Existing Non-standard Types ###

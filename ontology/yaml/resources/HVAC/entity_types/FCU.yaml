@@ -2121,6 +2121,15 @@ FCU_DFSS_DSP_CHWZC_HT2ZC_ZHC:
   - HT2ZC
   - ZHC
 
+FCU_CHWDC_CSP_DFVSC6X:
+  description: "Cooling only FCU with discharge fan variable speed control for 6 fans and common S/S control, and chilled water valve control."
+  is_canonical: false
+  implements:
+  - FCU
+  - CHWDC
+  - CSP
+  - DFVSC6X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

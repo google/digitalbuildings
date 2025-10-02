@@ -1261,6 +1261,17 @@ CH_SS_RWISOVM_SWTC:
   - RWISOVM
   - SWTC
 
+CH_SS_SWTC_DXSWC_WFRM:
+  description: "Simple air-cooled chiller with supply water temperature and flowrate monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DXSWC
+  - WFRM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
