@@ -372,16 +372,18 @@ MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP:
   - HTDC
   - DSP
 
-MAU_DSP_DFVSC_DXDC_HTDC_BPC_OA:
-  description: "Single zone static control heating and cooling make-up air unit with outside air sensor."
+MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP_OA:
+  guid: 
+  description: "Single zone static control heating and cooling make-up air unit with outside air temperature sensor."
   is_canonical: true
   implements:
   - MAU
-  - DSP
+  - DFSS
   - DFVSC
+  - BPC
   - DXDC
   - HTDC
-  - BPC
+  - DSP
   - OA
 
 MAU_SFSS_SFVSC_HPSC_SSPC_FDPM4X_OADM:
