@@ -874,7 +874,7 @@ DFVSC2X:
 
 DFVSC6X:
   guid: "7b8f5636-ece9-4027-b438-05ff0f60e90b"
-  description: "Variable speed control for six discharge fans in array with a single run heating_run_command."
+  description: "Variable speed control for six discharge fans in array with a single run command"
   is_abstract: true
   opt_uses:
   - discharge_fan_current_sensor_1
@@ -3590,7 +3590,8 @@ HPHC2ZC:
   - failed_discharge_air_temperature_alarm
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
-  - failed_compressor_alarm
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
