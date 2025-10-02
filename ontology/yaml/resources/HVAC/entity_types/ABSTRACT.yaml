@@ -873,6 +873,7 @@ DFVSC2X:
   - OPERATIONAL
 
 DFVSC6X:
+  guid: "7b8f5636-ece9-4027-b438-05ff0f60e90b"
   description: "Variable speed control for six discharge fans in array with a single run heating_run_command."
   is_abstract: true
   opt_uses:
@@ -3581,6 +3582,7 @@ HPHCZC:
   - CONTROL
 
 HPHC2ZC:
+  guid: "16bd0ce3-2712-4cc0-909f-047c68189517"
   description: "Zone temperature cooling and heating heat pump control with 4 stage compressor."
   is_abstract: true
   opt_uses:

@@ -332,6 +332,7 @@ AHU_DFSS_DSP_DXZC:
   - DXZC
 
 AHU_DFVSC_DSP_ECONMD_EFVSC_HPHC2ZC_REFSM2X_RCKTM2X:
+  guid: "fed51193-9895-49b7-827e-90d14fb90017"
   description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
   is_canonical: true
   implements:
@@ -649,6 +650,7 @@ AHU_DFSS_ECONZ_HP2ZC:
   - HP2ZC
 
 AHU_DFSS_DSP_ECONZ_HP2ZC:
+  guid: "5208bc4d-5841-430c-8869-e23c69a18587"
   description: "Single zone AHU."
   is_canonical: true
   implements:
@@ -924,6 +926,7 @@ AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   - EFSS
 
 AHU_BSPC_DFSS_CSP_DX2ZC_ECONMD_EFSS:
+  guid: "53d16854-0153-48f8-a05d-b7725b0b6c76"
   description: "Single zone AHU."
   is_canonical: true
   implements:
@@ -5643,6 +5646,7 @@ AHU_BSPC_DX5SC_ECONM_EDPM_EFSS_EFVSC_HWSC_OAFMC_REFSM2X_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_DFVSC_DX2ZC_ECONMD_HT2ZC:
+  guid: "4c362cb6-e9ba-48b6-9a4a-f4fd16ac28ca"
   description: "Single zone AHU."
   is_canonical: true
   implements:
