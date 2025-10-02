@@ -3581,7 +3581,7 @@ HPHCZC:
   - CONTROL
 
 HPHC2ZC:
-  description: "Zone temperature cooling and heating heat pump control with 4 stage compressor."
+  description: "Zone temperature cooling and heating heat pump control with 2 stage compressor."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
