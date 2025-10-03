@@ -1175,7 +1175,7 @@ FCU_SS_ZTC:
 
 FCU_DXDC_DFVSC2X:
   guid: "2d53a16d-d52f-473e-80c0-337bb149537e"
-  description: "CRAC unit with compressor and two discharge fans"
+  description: "FCU unit with compressor and two discharge fans"
   is_canonical: true
   implements:
   - FCU
