@@ -1174,6 +1174,7 @@ FCU_SS_ZTC:
   - ZTC
 
 FCU_DXDC_DFVSC2X:
+  guid: "2d53a16d-d52f-473e-80c0-337bb149537e"
   description: "CRAC unit with compressor and two discharge fans"
   is_canonical: true
   implements:
@@ -1182,6 +1183,7 @@ FCU_DXDC_DFVSC2X:
   - DFVSC2X
 
 FCU_DXZC_DFSS_DTM_RTM:
+  guid: "4b87d0e9-e3d1-40b7-a8d6-563baa1fcb29"
   description: "FCU with compressor, two discharge fans, discharge temperature monitoring, and return temperature monitoring"
   is_canonical: true
   implements:

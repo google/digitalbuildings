@@ -619,6 +619,7 @@ BSPC:
   - CONTROL
 
 BSPC2X:
+  guid: "dff2e80b-8be4-4495-9791-6c7d7d4d3a0f"
   description: "Two exhaust fan building static pressure control (as part of a composite device)."
   is_abstract: true
   opt_uses:
@@ -4580,6 +4581,7 @@ ECONZ:
   - CONTROL
 
 ECONZ2X:
+  guid: "3c9e49de-c142-4e0a-a9d0-22f328b3eab0"
   description: "Economizer mode control for two commonly ducted units serving the same zone"
   is_abstract: true
   opt_uses:

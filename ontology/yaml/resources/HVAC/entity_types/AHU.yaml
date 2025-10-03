@@ -3156,6 +3156,7 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_DX4SC_ECONM_SSPC_SARC_EDBPC_BSPC:
   - BSPC
 
 AHU_DFSS_EFVSC_DXZC_ECONZ_BSPC:
+  guid: "82391c38-eef2-4f8b-bb07-e0518aab70cc"
   description: "Single-zone AHU with discharge fan, exhaust fan, compressor, economizer, and building static pressure control"
   is_canonical: true
   implements:
@@ -3167,6 +3168,7 @@ AHU_DFSS_EFVSC_DXZC_ECONZ_BSPC:
   - BSPC
 
 AHU_DFSS2X_EFVSC2X_DX2ZC_ECONZ2X_BSPC2X:
+  guid: "11853b1c-446e-4bf9-a498-2fb8223b3a4b"
   description: "Commonly ducted single-zone AHUs with discharge fan, exhaust fan, compressor, economizer, and building static pressure control"
   is_canonical: true
   implements:
