@@ -1173,6 +1173,26 @@ FCU_SS_ZTC:
   - SS
   - ZTC
 
+FCU_DXDC_DFVSC2X:
+  guid: "2d53a16d-d52f-473e-80c0-337bb149537e"
+  description: "FCU unit with compressor and two discharge fans"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXDC
+  - DFVSC2X
+
+FCU_DXZC_DFSS_DTM_RTM:
+  guid: "4b87d0e9-e3d1-40b7-a8d6-563baa1fcb29"
+  description: "FCU with compressor, two discharge fans, discharge temperature monitoring, and return temperature monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXDC
+  - DFSS2X
+  - DTM
+  - RTM
+
 FCU_HPZTC_CO2C_FDPM:
   guid: "29f39ffb-a724-4d8d-acd2-d422e79fac05"
   description: "Heat pump with zone temperature and CO2 control and filter monitoring."
