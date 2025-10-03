@@ -732,7 +732,7 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - DRSM2X
 
 FAN_VSC_EFC_FDPM_DRSM2X:
-  guid:
+  guid: "6e069ad0-4c7b-4cc8-8ad8-52491825f092"
   description: "Fan with variable speed control as well as filter pressure, exhaust air flow control and dryer status monitoring."
   is_canonical: true
   implements:
