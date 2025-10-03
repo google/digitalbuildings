@@ -53,6 +53,15 @@ DH_SS_HTSC:
   - SS
   - HTSC
 
+DH_SS_HTDC_ZTM:
+  description: "Electric duct heater."
+  is_canonical: true
+  implements:
+  - DH
+  - SS
+  - HTDC
+  - ZTM
+
 ############################
 ### Need to Remap These  ###
 ############################
