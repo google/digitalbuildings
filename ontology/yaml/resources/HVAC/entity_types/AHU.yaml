@@ -331,6 +331,20 @@ AHU_DFSS_DSP_DXZC:
   - DSP
   - DXZC
 
+AHU_DFVSC_DSP_ECONMD_EFVSC_HPHC2ZC_REFSM2X_RCKTM2X:
+  guid: "fed51193-9895-49b7-827e-90d14fb90017"
+  description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DSP
+  - ECONMD
+  - EFVSC
+  - HPHC2ZC
+  - REFSM2X
+  - RCKTM2X
+
 AHU_DFSS_DSP_HPHC4ZC_ECONZ:
   guid: "9a26ccb9-8ea4-47ae-9ad4-257887973c8f"
   description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
@@ -635,6 +649,17 @@ AHU_DFSS_ECONZ_HP2ZC:
   - ECONZ
   - HP2ZC
 
+AHU_DFSS_DSP_ECONZ_HP2ZC:
+  guid: "5208bc4d-5841-430c-8869-e23c69a18587"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+
 AHU_DFSS_DSP_ECONZ_HPZC_HTZC:
   guid: "80261608-f2bd-4c51-af89-83eb4ecdf35c"
   description: "Single zone AHU."
@@ -898,6 +923,19 @@ AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   - DSP
   - DX2ZC
   - ECONZ
+  - EFSS
+
+AHU_BSPC_DFSS_CSP_DX2ZC_ECONMD_EFSS:
+  guid: "53d16854-0153-48f8-a05d-b7725b0b6c76"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DFSS
+  - CSP
+  - DX2ZC
+  - ECONMD
   - EFSS
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HT2ZC:
@@ -1780,6 +1818,19 @@ AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC:
   - ECON
   - SFSS
   - SFVSC
+  - SSPC
+
+AHU_BSPC3X_DX4SC_ECON_SFVSC_EFSS3X_SSPC:
+  guid: "f1db18fe-ac03-4be9-a685-90165287a2ec"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC3X
+  - DX4SC
+  - ECON
+  - SFVSC
+  - EFSS3X
   - SSPC
 
 AHU_BPC_DXSC_ECON_PHWSC_RAIDC_RFSS_RFVSC_SAIDC_SFSS_SFVSC_SSPC:
@@ -5617,6 +5668,17 @@ AHU_BSPC_DX5SC_ECONM_EDPM_EFSS_EFVSC_HWSC_OAFMC_REFSM2X_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_DFVSC_DX2ZC_ECONMD_HT2ZC:
+  guid: "4c362cb6-e9ba-48b6-9a4a-f4fd16ac28ca"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DX2ZC
+  - ECONMD
+  - HT2ZC
 
 ###################################
 ### Existing Non-standard Types ###

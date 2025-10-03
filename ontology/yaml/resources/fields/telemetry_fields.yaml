@@ -1844,6 +1844,9 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+- high_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_heating_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
