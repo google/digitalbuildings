@@ -1458,6 +1458,7 @@ OA:
   - ultraviolet_irradiance_sensor
   - outside_air_pm2pt5_density_sensor
   - outside_air_aqi_sensor
+  - failed_outside_air_temperature_alarm
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -4025,6 +4026,7 @@ HT3DC:
   - leaving_heating_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_heater_alarm
+  - warmup_run_command
   uses:
   - discharge_air_heating_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -4044,6 +4046,7 @@ HT3DTC:
   - leaving_heating_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_heater_alarm
+  - warmup_run_command
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -4064,6 +4067,8 @@ HTSC:
   - heating_thermal_power_capacity
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
+  - warmup_request_count
   uses:
   - heater_run_command
   - supply_air_temperature_sensor

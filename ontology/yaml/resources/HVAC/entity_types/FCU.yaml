@@ -1115,6 +1115,17 @@ FCU_SFSS_SFVSC_CHWSC_SSPC_RTM:
   - SSPC
   - RTM
 
+FCU_SFVSC_HTSC_SSPC_RTM:
+  guid: "06eda916-055e-4e40-8734-bf821f503bff"
+  description: "Multi-zone blower furnace"
+  is_canonical: true
+  implements:
+  - FCU
+  - SFVSC
+  - HTSC
+  - SSPC
+  - RTM
+
 FCU_DFSS_DFVSC_SSPC_DTC_CHWDC:
   guid: "3609bf02-9dc4-44cb-b8a4-3a14607d74bf"
   description: "Discharge temperature control FCU with chilled water."
