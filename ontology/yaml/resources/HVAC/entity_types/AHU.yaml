@@ -1266,6 +1266,17 @@ AHU_BSPC_DFSS_DFVSC_DSP_DX3DC_ECOND_EFSS_EFVSC_HTDC:
   - EFVSC
   - HTDC
 
+AHU_DFVSC_DSP_DX3DC_ECOND_HT3DTC:
+  guid: "f865ec31-f677-409d-b65f-23a6f33984f3"
+  description: "Single zone AHU with three stage cooling and heating."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DSP
+  - DX3DC
+  - ECOND
+  - HT3DTC
 
 AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC:
   guid: "0ed4c0d3-9fe9-4e39-9ea3-44f5aec750c4"
@@ -2555,6 +2566,21 @@ AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_EDBPC_DX3SC_ECON_EFVSC_SARC_SFVSC_SSPC:
+  guid: "7e283fd9-63b8-4d7f-b30d-67d7e2cfd7d4"
+  description: "Multi-zone AHU with three-stage DX cooling, economizer mode control, supply air reset control, and exhaust damper pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - EDBPC
+  - DX3SC
+  - ECON
+  - EFVSC
+  - SARC
+  - SFVSC
+  - SSPC
+
 AHU_BSPC_DX2SC_ECON_EFSS_SARC_SFM_SFSS_SSPC:
   guid: "f32f304a-40cb-4a7f-a911-8cc09b71d3cf"
   description: "Multi-zone AHU."
@@ -3703,7 +3729,7 @@ AHU_CSP_DFSS_DFVSC_EFSS_DX3ZC_ECONZ:
 
 AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   guid: "4557f283-0aae-4af8-9ea8-854147da6962"
-  description: "Multi-zone AHU with bypass staic control, 3-stage cooling, 2-stage heating"
+  description: "Multi-zone AHU with bypass static control, 3-stage cooling, 2-stage heating"
   is_canonical: true
   implements:
   - AHU
