@@ -1116,7 +1116,7 @@ FCU_SFSS_SFVSC_CHWSC_SSPC_RTM:
   - RTM
 
 FCU_SFSS_SFVSC_CHWSC_SSPC_RTM_SAIDC:
-  guid: "211d29a7-2f06-4342-ad98-ea1f23674e7e"
+  guid: "e8228a69-4ac3-4dfd-a914-93e90faf0504"
   description: "Multi-zone commonly ducted FCU with chilled water"
   is_canonical: true
   implements:
