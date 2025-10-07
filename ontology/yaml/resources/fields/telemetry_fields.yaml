@@ -1063,6 +1063,9 @@ literals:
   - ON
   - OFF
   - UNKNOWN
+- exhaust_fan_speed_frequency_command:
+    flexible_min: -0.5
+    flexible_max: 65.0
 - exhaust_fan_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -1841,6 +1844,9 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+- high_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_heating_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE

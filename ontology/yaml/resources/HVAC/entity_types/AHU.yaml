@@ -331,6 +331,20 @@ AHU_DFSS_DSP_DXZC:
   - DSP
   - DXZC
 
+AHU_DFVSC_DSP_ECONMD_EFVSC_HPHC2ZC_REFSM2X_RCKTM2X:
+  guid: "fed51193-9895-49b7-827e-90d14fb90017"
+  description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DSP
+  - ECONMD
+  - EFVSC
+  - HPHC2ZC
+  - REFSM2X
+  - RCKTM2X
+
 AHU_DFSS_DSP_HPHC4ZC_ECONZ:
   guid: "9a26ccb9-8ea4-47ae-9ad4-257887973c8f"
   description: "Single zone AHU with discharge fan, dual setpoint control, four stage heat pump, and economizer."
@@ -635,6 +649,17 @@ AHU_DFSS_ECONZ_HP2ZC:
   - ECONZ
   - HP2ZC
 
+AHU_DFSS_DSP_ECONZ_HP2ZC:
+  guid: "5208bc4d-5841-430c-8869-e23c69a18587"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+
 AHU_DFSS_DSP_ECONZ_HPZC_HTZC:
   guid: "80261608-f2bd-4c51-af89-83eb4ecdf35c"
   description: "Single zone AHU."
@@ -898,6 +923,19 @@ AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   - DSP
   - DX2ZC
   - ECONZ
+  - EFSS
+
+AHU_BSPC_DFSS_CSP_DX2ZC_ECONMD_EFSS:
+  guid: "53d16854-0153-48f8-a05d-b7725b0b6c76"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DFSS
+  - CSP
+  - DX2ZC
+  - ECONMD
   - EFSS
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HT2ZC:
@@ -1228,6 +1266,17 @@ AHU_BSPC_DFSS_DFVSC_DSP_DX3DC_ECOND_EFSS_EFVSC_HTDC:
   - EFVSC
   - HTDC
 
+AHU_DFVSC_DSP_DX3DC_ECOND_HT3DTC:
+  guid: "f865ec31-f677-409d-b65f-23a6f33984f3"
+  description: "Single zone AHU with three stage cooling and heating."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DSP
+  - DX3DC
+  - ECOND
+  - HT3DTC
 
 AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC:
   guid: "0ed4c0d3-9fe9-4e39-9ea3-44f5aec750c4"
@@ -1780,6 +1829,19 @@ AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC:
   - ECON
   - SFSS
   - SFVSC
+  - SSPC
+
+AHU_BSPC3X_DX4SC_ECON_SFVSC_EFSS3X_SSPC:
+  guid: "f1db18fe-ac03-4be9-a685-90165287a2ec"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC3X
+  - DX4SC
+  - ECON
+  - SFVSC
+  - EFSS3X
   - SSPC
 
 AHU_BPC_DXSC_ECON_PHWSC_RAIDC_RFSS_RFVSC_SAIDC_SFSS_SFVSC_SSPC:
@@ -2504,6 +2566,21 @@ AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_EDBPC_DX3SC_ECON_EFVSC_SARC_SFVSC_SSPC:
+  guid: "7e283fd9-63b8-4d7f-b30d-67d7e2cfd7d4"
+  description: "Multi-zone AHU with three-stage DX cooling, economizer mode control, supply air reset control, and exhaust damper pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - EDBPC
+  - DX3SC
+  - ECON
+  - EFVSC
+  - SARC
+  - SFVSC
+  - SSPC
+
 AHU_BSPC_DX2SC_ECON_EFSS_SARC_SFM_SFSS_SSPC:
   guid: "f32f304a-40cb-4a7f-a911-8cc09b71d3cf"
   description: "Multi-zone AHU."
@@ -3155,6 +3232,18 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_DX4SC_ECONM_SSPC_SARC_EDBPC_BSPC:
   - EDBPC
   - BSPC
 
+AHU_DFSS_EFVSC_DXZC_ECONZ_ZSPC:
+  guid: "5c8e0d6f-432b-4b41-bbc2-d7615c0369f9"
+  description: "Single-zone AHU with discharge fan, exhaust fan, compressor, economizer, and zone static pressure control"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - EFVSC
+  - DXZC
+  - ECONZ
+  - ZSPC
+
 AHU_SFSS_SFVSC_EFSS_EFVSC_DX4SC_ECONM_SSPC_SARC_EDBPC_BSPC_SFC:
   guid: "4b1eda07-7d30-40ce-93ae-be2daa4eed9d"
   description: "Multi-zone AHU with exhaust damper building pressure control and supply flowrate control."
@@ -3640,7 +3729,7 @@ AHU_CSP_DFSS_DFVSC_EFSS_DX3ZC_ECONZ:
 
 AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   guid: "4557f283-0aae-4af8-9ea8-854147da6962"
-  description: "Multi-zone AHU with bypass staic control, 3-stage cooling, 2-stage heating"
+  description: "Multi-zone AHU with bypass static control, 3-stage cooling, 2-stage heating"
   is_canonical: true
   implements:
   - AHU
@@ -4160,6 +4249,22 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_SFVSC_EFVSC_DX6SC_HWSC_ECON_BSPC_SARC_SSPC_SAIDC:
+  guid: "ee428a0e-5ea0-47af-b2b6-351ed4c28047"
+  description: "Multi-zone AHU with six-stage DX cooling with heating water valve and supply air isolation damper."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX6SC
+  - HWSC
+  - ECON
+  - BSPC
+  - SARC
+  - SSPC
+  - SAIDC
 
 AHU_BSPC_DX3SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
   guid: "62c7768e-8f0b-45c9-b526-cc78367f29c7"
@@ -5593,6 +5698,17 @@ AHU_BSPC_DX5SC_ECONM_EDPM_EFSS_EFVSC_HWSC_OAFMC_REFSM2X_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_DFVSC_DX2ZC_ECONMD_HT2ZC:
+  guid: "4c362cb6-e9ba-48b6-9a4a-f4fd16ac28ca"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - DX2ZC
+  - ECONMD
+  - HT2ZC
 
 ###################################
 ### Existing Non-standard Types ###

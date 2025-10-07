@@ -76,6 +76,7 @@ DD:
   - schedule_run_command
   - cooling_air_pressurization_request_count
   - heating_air_pressurization_request_count
+  - user_occupancy_override_status
   uses:
   - cooling_air_damper_percentage_command
   - cooling_air_flowrate_sensor
@@ -618,6 +619,54 @@ BSPC:
   implements:
   - CONTROL
 
+BSPC2X:
+  guid: "dff2e80b-8be4-4495-9791-6c7d7d4d3a0f"
+  description: "Two exhaust fan building static pressure control (as part of a composite device)."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_status_2
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_speed_percentage_command_2
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_command_2
+  implements:
+  - CONTROL
+
+BSPC3X:
+  guid: "86bbf8a4-0070-42dd-ab47-61ef9328880f"
+  description: "Three exhaust fan building static pressure control (as part of a composite device)."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_status_2
+  - exhaust_fan_run_status_3
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_speed_percentage_command_2
+  - exhaust_fan_speed_percentage_command_3
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
+  - failed_exhaust_fan_alarm_3
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_command_3
+  implements:
+  - CONTROL
+
 BSPC4X:
   guid: "ceba44bb-d69f-4651-ba9a-b7abdf188996"
   description: "Four exhaust fan building static pressure control (as part of a composite device)."
@@ -809,6 +858,7 @@ DFVSC:
   - failed_inverter_alarm
   - high_discharge_air_flowrate_alarm
   - high_discharge_air_static_pressure_alarm
+  - low_discharge_air_static_pressure_alarm
   - schedule_run_command
   uses:
   - discharge_fan_run_command
@@ -833,6 +883,8 @@ DFVSC2X:
   - discharge_fan_speed_percentage_sensor_2
   - discharge_fan_lost_power_alarm_1
   - discharge_fan_lost_power_alarm_2
+  - failed_discharge_fan_alarm_1
+  - failed_discharge_fan_alarm_2
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_command_2
@@ -840,6 +892,47 @@ DFVSC2X:
   - discharge_fan_run_status_2
   - discharge_fan_speed_percentage_command_1
   - discharge_fan_speed_percentage_command_2
+  implements:
+  - OPERATIONAL
+
+DFVSC6X:
+  guid: "7b8f5636-ece9-4027-b438-05ff0f60e90b"
+  description: "Variable speed control for six discharge fans in array with a single run command"
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_current_sensor_1
+  - discharge_fan_current_sensor_2
+  - discharge_fan_current_sensor_3
+  - discharge_fan_current_sensor_4
+  - discharge_fan_current_sensor_5
+  - discharge_fan_current_sensor_6
+  - discharge_fan_power_sensor_1
+  - discharge_fan_power_sensor_2
+  - discharge_fan_power_sensor_3
+  - discharge_fan_power_sensor_4
+  - discharge_fan_power_sensor_5
+  - discharge_fan_power_sensor_6
+  - discharge_fan_speed_frequency_sensor_1
+  - discharge_fan_speed_frequency_sensor_2
+  - discharge_fan_speed_frequency_sensor_3
+  - discharge_fan_speed_frequency_sensor_4
+  - discharge_fan_speed_frequency_sensor_5
+  - discharge_fan_speed_frequency_sensor_6
+  - discharge_fan_speed_percentage_sensor_1
+  - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_speed_percentage_sensor_3
+  - discharge_fan_speed_percentage_sensor_4
+  - discharge_fan_speed_percentage_sensor_5
+  - discharge_fan_speed_percentage_sensor_6
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_speed_percentage_command_3
+  - discharge_fan_speed_percentage_command_4
+  - discharge_fan_speed_percentage_command_5
+  - discharge_fan_speed_percentage_command_6
   implements:
   - OPERATIONAL
 
@@ -957,6 +1050,8 @@ SS:
   - optimal_stop_command
   - request_run_command
   - schedule_run_command
+  - switch_command
+  - user_occupancy_override_status
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1048,6 +1143,7 @@ DFSS:
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
   - zone_occupancy_status
+  - user_occupancy_override_status
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -1385,6 +1481,7 @@ OA:
   - ultraviolet_irradiance_sensor
   - outside_air_pm2pt5_density_sensor
   - outside_air_aqi_sensor
+  - failed_outside_air_temperature_alarm
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -2492,6 +2589,8 @@ FDPM:
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor
+  opt_uses:
+  - filter_alarm
   implements:
   - MONITORING
 
@@ -2833,6 +2932,8 @@ DX2ZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -3052,6 +3153,7 @@ DX2SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -3469,6 +3571,7 @@ HPZC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - overload_compressor_alarm
+  - warmup_run_command
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -3498,6 +3601,38 @@ HPHCZC:
   - cooling_run_command
   - heating_run_command
   - compressor_run_status
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HPHC2ZC:
+  guid: "16bd0ce3-2712-4cc0-909f-047c68189517"
+  description: "Zone temperature cooling and heating heat pump control with 2 stage compressor."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  - cooling_request_count
+  - heating_request_count
+  - zone_conditioning_mode
+  - heating_percentage_command
+  - cooling_percentage_command
+  - warmup_run_command
+  - reversing_valve_command
+  uses:
+  - cooling_run_command
+  - heating_run_command
+  - compressor_run_status_1
+  - compressor_run_status_2
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
@@ -3554,6 +3689,7 @@ HP2ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - warmup_run_command
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -3915,6 +4051,7 @@ HT3DC:
   - leaving_heating_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_heater_alarm
+  - warmup_run_command
   uses:
   - discharge_air_heating_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -3934,6 +4071,7 @@ HT3DTC:
   - leaving_heating_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_heater_alarm
+  - warmup_run_command
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -3954,6 +4092,8 @@ HTSC:
   - heating_thermal_power_capacity
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
+  - warmup_request_count
   uses:
   - heater_run_command
   - supply_air_temperature_sensor
@@ -4038,6 +4178,8 @@ HT2ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - warmup_run_command
+  - failed_heating_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -4530,6 +4672,7 @@ ECONZ:
   - low_limit_outside_air_damper_percentage_command
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - failed_outside_air_damper_alarm
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
   - outside_air_relative_humidity_sensor
@@ -5074,6 +5217,7 @@ WFRM:
   - MONITORING
   opt_uses:
   - low_flowrate_alarm
+  - high_flowrate_alarm
   - failed_flowrate_alarm
 
 
@@ -6360,6 +6504,8 @@ DXDDC:
   - compressor_lost_power_alarm
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - overload_compressor_alarm
   uses:
   - compressor_run_command
@@ -6378,6 +6524,8 @@ HTDDC:
   - heater_run_status
   - heating_percentage_command
   - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - discharge_air_cooling_temperature_setpoint
   - discharge_air_heating_temperature_setpoint
