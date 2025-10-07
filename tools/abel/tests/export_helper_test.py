@@ -286,8 +286,6 @@ class ExportHelperTest(absltest.TestCase):
         )
     )
 
-    print(exported_updated_building_config)
-
     expected_update_masks = [mask.value for mask in update_masks]
     for entity_guid in self.export_helper.model.site.entities:
       entity = self.export_helper.model.guid_to_entity_map.GetEntityByGuid(
