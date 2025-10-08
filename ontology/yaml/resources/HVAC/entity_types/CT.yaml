@@ -86,6 +86,17 @@ CT_SS_VSC_SWTC_RWISOVM:
   - SWTC
   - RWISOVM
 
+CT_SWTC_VSFC_SWISOVPM_RWISOVPM:
+  guid: "3cdfe968-37cc-4dba-bc25-d395bc969c55"
+  description: "Cooling tower with supply water temperature control, variable speed frequency control, supply water isolation valve monitoring, return water isolation valve monitoring"
+  is_canonical: true
+  implements:
+  - CT
+  - SWTC
+  - VSFC
+  - SWISOVPM
+  - RWISOVPM
+
 CT_SS_VSC_SWTC_SWISOVM:
   guid: "5a86bb8e-a5d0-4bd4-b111-7b83616214e6"
   description: "Variable speed supply temp controlling cooling tower with an isolation valve on the supply side."
@@ -261,6 +272,17 @@ CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSWISOVM_FRWISOVM:
   opt_uses:
   - high_water_level_alarm
   - low_water_level_alarm
+
+CT_SS_VSC_SWTM_MWFRM:
+  guid: "1bef97de-792f-4595-87b2-5c014e41c387"
+  description: "Cooling tower with variable speed control, supply water temperature monitoring, and makeup water flowrate monitoring"
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTM
+  - MWFRM
 
 CT_SS_SWTC_CWBYPVPM:
   guid: "a72576f6-3f22-41c0-9a0b-1b473ce63f79"

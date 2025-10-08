@@ -286,6 +286,12 @@ literals:
 - chilled_water_circulation_pump_run_status:
   - ON
   - OFF
+- chilled_water_circulation_pump_speed_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- chilled_water_circulation_pump_speed_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - chilled_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -501,6 +507,12 @@ literals:
 - condensing_water_circulation_pump_run_status:
   - ON
   - OFF
+- condensing_water_circulation_pump_speed_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- condensing_water_circulation_pump_speed_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - condensing_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -1051,6 +1063,9 @@ literals:
   - ON
   - OFF
   - UNKNOWN
+- exhaust_fan_speed_frequency_command:
+    flexible_min: -0.5
+    flexible_max: 65.0
 - exhaust_fan_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -1829,6 +1844,9 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+- high_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_heating_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -2961,6 +2979,12 @@ literals:
 - preheating_water_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
+- cooling_air_pressurization_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
+- heating_air_pressurization_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
 - pressurization_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
@@ -3581,6 +3605,9 @@ literals:
 - startup_dimmer_percentage_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
+- steam_mass_accumulator:
+    fixed_min: 0.0
+    flexible_max: 100000000.0
 - steam_massflow_sensor:
     flexible_min: 0.0
     flexible_max: 5000

@@ -260,6 +260,17 @@ FCU_DFSS_DSP_HPHCZC:
   - DSP
   - HPHCZC
 
+FCU_DAIDC_DFSS_DSP_HPHCZC:
+  guid: "59e33b78-7f5a-4e07-811c-3f4838ff053a"
+  description: "Heating and cooling control heat pump FCU (zone control) with discharge isolation damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DAIDC
+  - DFSS
+  - DSP
+  - HPHCZC
+
 FCU_DFSS_DFMSC_HPDSPRTC:
   guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
   description: "Return temp control multi-speed FCU with heat pump"
@@ -710,7 +721,7 @@ FCU_DFSS_DFHLC_DSP_DXZC:
 
 FCU_DFSS_DFHMLC_DSP_HWDC_CHWDC:
   guid: "b6296ca6-48de-43c2-94a8-9f12edfc7d8d"
-  description: "Multi-speed heat pump fan coil with zone temp control."
+  description: "Multi-speed heat pump fan coil with zone temp heating and cooling control."
   is_canonical: true
   implements:
   - FCU
@@ -719,6 +730,16 @@ FCU_DFSS_DFHMLC_DSP_HWDC_CHWDC:
   - DSP
   - HWDC
   - CHWDC
+
+FCU_DFHMLC_CSP_DXZC:
+  guid: "53aac485-de87-404e-bc27-874c6e8e3554"
+  description: "Multi-speed heat pump fan coil with DX zone temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFHMLC
+  - CSP
+  - DXZC
 
 FCU_DFSS_DFMSC_DSP_DXZC:
   guid: "61a50502-8054-4ab1-b9ae-2aa792036d48"
@@ -1094,6 +1115,30 @@ FCU_SFSS_SFVSC_CHWSC_SSPC_RTM:
   - SSPC
   - RTM
 
+FCU_SFSS_SFVSC_CHWSC_SSPC_RTM_SAIDC:
+  guid: "e8228a69-4ac3-4dfd-a914-93e90faf0504"
+  description: "Multi-zone commonly ducted FCU with chilled water"
+  is_canonical: true
+  implements:
+  - FCU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - SSPC
+  - RTM
+  - SAIDC
+
+FCU_SFVSC_HTSC_SSPC_RTM:
+  guid: "06eda916-055e-4e40-8734-bf821f503bff"
+  description: "Multi-zone blower furnace"
+  is_canonical: true
+  implements:
+  - FCU
+  - SFVSC
+  - HTSC
+  - SSPC
+  - RTM
+
 FCU_DFSS_DFVSC_SSPC_DTC_CHWDC:
   guid: "3609bf02-9dc4-44cb-b8a4-3a14607d74bf"
   description: "Discharge temperature control FCU with chilled water."
@@ -1151,6 +1196,26 @@ FCU_SS_ZTC:
   - FCU
   - SS
   - ZTC
+
+FCU_DXDC_DFVSC2X:
+  guid: "2d53a16d-d52f-473e-80c0-337bb149537e"
+  description: "FCU unit with compressor and two discharge fans"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXDC
+  - DFVSC2X
+
+FCU_DXZC_DFSS_DTM_RTM:
+  guid: "4b87d0e9-e3d1-40b7-a8d6-563baa1fcb29"
+  description: "FCU with compressor, two discharge fans, discharge temperature monitoring, and return temperature monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXDC
+  - DFSS2X
+  - DTM
+  - RTM
 
 FCU_HPZTC_CO2C_FDPM:
   guid: "29f39ffb-a724-4d8d-acd2-d422e79fac05"
@@ -1529,6 +1594,57 @@ FCU_DFVSC_CHWRC_FDPSM2X:
   - FDPSM2X
   opt_uses:
   - isolation_damper_status
+
+FCU_DFVSC_CHWDC_DSPM_DSP:
+  guid: "44672cf6-20de-4700-bb3f-f4e1a0981a74"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - DSPM
+  - DSP
+
+FCU_DFVSC_CHWDC_RTM:
+  guid: "cfb6b478-27b2-476e-860a-df77f471a6c3"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - RTM
+
+FCU_DFVSC_CHWDC_RTM_CSP:
+  guid: "6d0c1126-3c04-441f-a4a8-1ca5d4f15269"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWDC
+  - RTM
+  - CSP
+
+FCU_DFVSC_CHWRC_CSP:
+  guid: "9b6e2a86-b128-464d-b6de-d0c312d531a1"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
+  - CSP
+
+FCU_DFVSC_CHWRC:
+  guid: "a6a04503-852a-48f3-8357-3f31ee639dc4"
+  description: "Fan coil unit with discharge fan and chilled water coil"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
 
 FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
   guid: "37d4b545-97fd-4eb8-9c87-acd2be28a748"
@@ -2048,6 +2164,16 @@ FCU_DFSS_DSP_CHWZC_HT2ZC_ZHC:
   - CHWZC
   - HT2ZC
   - ZHC
+
+FCU_CHWDC_CSP_DFVSC6X:
+  guid: "bb33cb41-aa93-4206-9a13-86e51ade424d"
+  description: "Cooling only FCU with discharge fan variable speed control for 6 fans and common S/S control, and chilled water valve control."
+  is_canonical: false
+  implements:
+  - FCU
+  - CHWDC
+  - CSP
+  - DFVSC6X
 
 ###################################
 ### Existing Non-standard Types ###

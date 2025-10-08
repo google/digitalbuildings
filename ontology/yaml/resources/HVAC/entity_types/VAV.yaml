@@ -333,6 +333,18 @@ VAV_SD_DSP_DFSS_DFVSC_HT3DC:
   - DFVSC
   - HT3DC
 
+VAV_SD_DSP_DFSS_DFVSC_HT3DTC:
+  guid: "724983c1-cdff-45b0-a9d3-f13a8f83213c"
+  description: "Fan powered VAV with variable speed control with three electric heaters."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - DFSS
+  - DFVSC
+  - HT3DTC
+
 VAV_SD_DSP_CO2C_DFSS_DFVSC:
   guid: "bc81486d-d20e-4f56-9485-b15b2e3584d3"
   description: "Fan powered VAV with variable speed control and CO2 control."
@@ -387,6 +399,27 @@ VAV_DD_DSP_CO2C:
   - VAV
   - DD
   - DSP
+  - CO2C
+
+VAV_DD_DSP_DTC:
+  guid: "afdee1e6-edb1-4fe1-aaa3-60c30d3a5706"
+  description: "Dual duct VAV with no heating and cooling ability by itself."
+  is_canonical: true
+  implements:
+  - VAV
+  - DD
+  - DSP
+  - DTC
+
+VAV_DD_DSP_DTC_CO2C:
+  guid: "7876071d-e3e4-4a18-b1f3-2a3cd396a9a5"
+  description: "Dual duct VAV with no heating and cooling ability by itself and CO2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DD
+  - DSP
+  - DTC
   - CO2C
 
 VAV_DDCO_DSP:

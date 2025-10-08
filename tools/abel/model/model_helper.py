@@ -62,13 +62,12 @@ def DetermineReportingEntityUpdateMask(
     updated_entity: An Entity instance from an updated building config.
   """
   update_mask = set()
-  # updated entity code
   if updated_entity.code != current_entity.code:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
-  # updated entity type name
+  if (updated_entity.display_name or '') != (current_entity.display_name or ''):
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.DISPLAY_NAME)
   if updated_entity.type_name != current_entity.type_name:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
-  # updated entity connections
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
@@ -138,6 +137,8 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
   update_mask = set()
   if updated_entity.code != current_entity.code:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
+  if (updated_entity.display_name or '') != (current_entity.display_name or ''):
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.DISPLAY_NAME)
   if updated_entity.type_name != current_entity.type_name:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
   if set(updated_entity.connections).difference(

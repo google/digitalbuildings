@@ -577,6 +577,19 @@ CH_SS_WDT_SWISOVM_WDPM_DX2SWC_RCKTM2X:
   - DX2SWC
   - RCKTM2X
 
+CH_SS_CHWSWISOVPM_SCHWTC_CWSISOVPM_CWDT_RCKTM2X:
+  guid: "97b9ca2b-b92b-4dfc-a3d0-cd9fd26acfdf"
+  description: "Complex water-cooled chiller with two-circuit refrigeration monitoring and supply temperature control."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWSWISOVPM
+  - SCHWTC
+  - CWSISOVPM
+  - CWDT
+  - RCKTM2X
+
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
   guid: "e4f34eb3-4e22-4601-8de3-c7dc7d6860ea"
   description: "Complex water-cooled chiller."
@@ -678,6 +691,23 @@ CH_SS_SCHWTC_HWDT:
   - SS
   - SCHWTC
   - HWDT
+
+CH_SS_SCHWTC_CHWSWISOVPM_CHCPC_CHCPVSC_CWDT_CWSWISOVPM_CDCPC_CDCPVSC_HWRWISOVPM:
+  guid: "25b28d28-b606-4963-8926-a3f5c553b69e"
+  description: "Water-cooled heat recovery chiller will supply chilled water temperature control, chilled and condenser circulation pumps, and chilled, condenser, and heat recovery water isolation valves."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWSWISOVPM
+  - CHCPC
+  - CHCPVSC
+  - CWDT
+  - CWSWISOVPM
+  - CDCPC
+  - CDCPVSC
+  - HWRWISOVPM
 
 CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   guid: "66d78993-5a42-47b7-8505-01160c88234e"
@@ -793,6 +823,51 @@ CH_VSC_CHDX2SC_CHWSWISOVM_CWRISOVM:
   - CHDX2SC
   - CHWSWISOVM
   - CWRISOVM
+
+CH_VSC_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_REFSM_CHWDPM_CHCPC_CDCPC_SRC:
+  guid: "2553e844-12da-43f1-96b2-b912ce108705"
+  description: "Chiller with variable speed control, supply water temperature control, chilled water return side isolation valve percentage control, condenser differential temperature control, condenser supply isolation valve percentage control, refrigerant pressure monitoring, refrigerant saturation monitoring, chilled water differential pressure monitoring, circulation control for onboard chilled water pump, and circulation control for onboard condenser water pump"
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWDT
+  - CWSISOVPM
+  - REFPM
+  - REFSM
+  - CHWDPM
+  - CHCPC
+  - CDCPC
+  - SRC
+
+CH_SS_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_CHWDPM:
+  guid: "72c8da44-36de-4aeb-b176-2158bf0ff885"
+  description: "Chiller with supply water temperature control, chilled water return side isolation valve percentage control, condenser differential temperature control, condenser supply isolation valve percentage control, refrigerant pressure monitoring, chilled water differential pressure monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWDT
+  - CWSISOVPM
+  - REFPM
+  - CHWDPM
+
+CH_SS_WDPM_WDT_RWISOVPM_REFPM2X_DX4SWC:
+  guid: "46e1f7f9-bc34-4238-bf4f-e7106b55aa3b"
+  description: "Air cooled chiller with differential pressure monitoring, differential temperature control, return side isolation valve percentage control, refrigerant pressure monitoring for 2 circuits, and chiller control on supply side with 4 compressors"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - WDPM
+  - WDT
+  - RWISOVPM
+  - REFPM2X
+  - DX4SWC
 
 CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
   guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
@@ -1185,6 +1260,18 @@ CH_SS_RWISOVM_SWTC:
   - SS
   - RWISOVM
   - SWTC
+
+CH_SS_SWTC_DXSWC_WFRM:
+  guid: "886e7ea1-bfb2-4581-8cfb-cf7b07f9d9ef"
+  description: "Simple air-cooled chiller with supply water temperature and flowrate monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DXSWC
+  - WFRM
+
 
 ###################################
 ### Existing Non-standard Types ###

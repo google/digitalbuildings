@@ -193,6 +193,7 @@ class ModelHelperTest(absltest.TestCase):
         EntityUpdateMaskAttribute.TYPE,
         EntityUpdateMaskAttribute.CONNECTIONS,
         EntityUpdateMaskAttribute.LINKS,
+        EntityUpdateMaskAttribute.DISPLAY_NAME,
     }
 
     actual_updated_mask = model_helper.DetermineVirtualEntityUpdateMask(

@@ -55,6 +55,14 @@ DMP_ED:
   - DMP
   - ED
 
+DMP_OADM:
+  guid: "48924740-bed6-4b2a-b954-f70bd1160837"
+  description: "Outside air control damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - OADM
+
 DMP_SDBPC:
   guid: "f475383f-8570-4813-8039-54c637e9be9a"
   description: "Exhaust control damper."

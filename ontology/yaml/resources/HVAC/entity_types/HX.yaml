@@ -136,6 +136,17 @@ HX_CWDT_CHWDT_CWRISOVPM:
   - CHWDT
   - CWRISOVPM
 
+HX_CWDT_CHWDT_CWSISOVPM_CLPM:
+  guid: "fd7f7378-e5e0-4e42-b188-3d220f763345"
+  description: 'Condenser/chilled water heat exchanger with condenser water differential temperature control, chilled water differential temperature control, condensing water supply isolation valve percentage control, and cooling thermal monitoring'
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CWSISOVPM
+  - CLPM
+
 HX_CWDT_PRWDT_CWRISOVPM:
   guid: "6f180176-dde9-4321-a198-9f1ab3d637de"
   description: 'Condenser/process water heat exchanger.'
@@ -255,6 +266,17 @@ HX_CWSWISOVPM_OCWSWISOVPM_CWBYPVPM_OCWCPC2X_CWTWSTM:
   uses:
   - condensing_supply_water_temperature_sensor
   - outside_condensing_loop_supply_water_temperature_sensor
+
+HX_CWSWISOVPM_OCWRWISOVPM_CDCPC_CDCPVSC:
+  guid: "7008e2e0-a8ca-46d6-9a68-4939d69cadc9"
+  description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water with isolation valves and closed loop circulation pump."
+  is_canonical: true
+  implements:
+  - HX
+  - CWSWISOVPM
+  - OCWRWISOVPM
+  - CDCPC
+  - CDCPVSC
 
 HX_RWISOVM:
   guid: "2385f180-c38d-48a1-9604-1d822dfe99ff"

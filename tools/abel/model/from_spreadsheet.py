@@ -75,8 +75,7 @@ def LoadFieldsFromSpreadsheet(
     entity_field_entries: List[Dict[str, str]],
     guid_to_entity_map: GuidToEntityMap,
 ) -> List[FieldTranslation]:
-  """Loads list of entity fields from a spreadsheet into FieldTranslation
-  instances.
+  """Loads a list of entity fields into FieldTranslation instances.
 
   Once the entity field mapping is loaded into an FieldTranslation instance,
   it is then added to the ABEL internal model.

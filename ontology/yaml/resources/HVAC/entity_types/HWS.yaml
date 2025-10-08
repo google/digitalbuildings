@@ -51,6 +51,16 @@ HWS_SWTC_WDPC_WFRM:
   - WDPC
   - WFRM
 
+HWS_SS_SWTC_WDPC:
+  guid: "183ae265-7880-4bdb-b39e-8c7bab54ff66"
+  description: "Simple heating water system with supply temperature and differential pressure control"
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - SWTC
+  - WDPC
+
 HWS_RWTC:
   guid: "cc001c3f-20b4-4dad-8fc6-64d2f4982dec"
   description: "Simple heating water system with return temp control."
@@ -484,6 +494,18 @@ HWS_PWDT_SESWTC_SEWDPC_SEWFRM_SEWTM:
   - SEWDPC
   - SEWFRM
   - SEWTM
+
+HWS_BYPVPM_WSEBYPVPM_PRSWTC_PRSWFRC_SEWFRM:
+  guid: "b9aff20a-d0d4-4f43-8502-2a819de19649"
+  description: "Heating water system with primary water supply temperature and flowrate control, secondary loop supply flowrate monitoring, and water side economizing."
+  is_canonical: true
+  implements:
+  - HWS
+  - BYPVPM
+  - WSEBYPVPM
+  - PRSWTC
+  - PRSWFRC
+  - SEWFRM
 
 HWS_SS_SWTC_WDPC_WFRM_HWTTC_HLPM:
   guid: "b203359c-877b-4c46-903e-57c4c5b4d634"
