@@ -1207,6 +1207,7 @@ FCU_DXDC_DFVSC2X:
   - DFVSC2X
 
 FCU_DXDC_DFVSC2X_CATM_HATM_CAM:
+  guid: "253f961d-43ea-404b-8d24-2659a694405f"
   description: "FCU unit with compressor, two discharge fans, hot/cold aisle temperature monitoring, and condensate water alarm"
   is_canonical: true
   implements:
@@ -1218,6 +1219,7 @@ FCU_DXDC_DFVSC2X_CATM_HATM_CAM:
   - CAM
 
 FCU_DXDC_DFVSC2X_DAIDC_CAM_ZTM:
+  guid: "148e2032-8cf0-425e-bedb-48d1ba5b828a"
   description: "FCU unit with compressor, two discharge fans, discharge air isolation damper, condensate water alarm, and zone temperature monitoring"
   is_canonical: true
   implements:
@@ -1650,6 +1652,7 @@ FCU_DFVSC_CHWDC_RTM_CSP:
   - CSP
 
 FCU_DFVSC_CHWRC_RTM_CSP:
+  guid: "ea3adf33-b594-4fa4-ac4a-9bea1fbcfa9c"
   description: "Fan coil unit with discharge fan and chilled water coil"
   is_canonical: true
   implements:
