@@ -59,8 +59,6 @@ FCU:
   - failed_alarm
   - emergency_alarm
   - fire_alarm
-  - schedule_run_command
-  - user_occupancy_override_status
   implements:
   - EQUIPMENT
 
