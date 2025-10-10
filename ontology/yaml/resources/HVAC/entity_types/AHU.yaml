@@ -3244,6 +3244,28 @@ AHU_DFSS_EFVSC_DXZC_ECONZ_ZSPC:
   - ECONZ
   - ZSPC
 
+AHU_DFSS_EFVSC_HPZC_ECONZ_ZSPC:
+  description: "Single-zone AHU with discharge fan, exhaust fan, heat pump, economizer, and zone static pressure control"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - EFVSC
+  - HPZC
+  - ECONZ
+  - ZSPC
+
+AHU_DFSS_DXZC_ECONZ_DTM_RTM:
+  description: "Single-zone AHU with discharge fan, compressor, economizer, and return/discharge air temperature monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXZC
+  - ECONZ
+  - DTM
+  - RTM
+
 AHU_SFSS_SFVSC_EFSS_EFVSC_DX4SC_ECONM_SSPC_SARC_EDBPC_BSPC_SFC:
   guid: "4b1eda07-7d30-40ce-93ae-be2daa4eed9d"
   description: "Multi-zone AHU with exhaust damper building pressure control and supply flowrate control."

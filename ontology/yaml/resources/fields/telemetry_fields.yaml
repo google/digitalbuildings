@@ -145,6 +145,18 @@ literals:
 - bypass_air_damper_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 120.0
+- high_bypass_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_bypass_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- bypass_air_flowrate_sensor:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
+- bypass_air_flowrate_setpoint:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
 - bypass_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -417,6 +429,9 @@ literals:
 - compressor_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
+- compressor_speed_frequency_command:
+    flexible_min: -0.5
+    flexible_max: 65.0
 - compressor_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -1138,6 +1153,12 @@ literals:
 - failed_cold_aisle_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_communication_alarm:
   - ACTIVE
   - INACTIVE
@@ -1235,6 +1256,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_hot_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_hot_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_hot_aisle_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - failed_humidifier_alarm:
