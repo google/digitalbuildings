@@ -429,9 +429,6 @@ literals:
 - compressor_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
-- compressor_speed_frequency_command:
-    flexible_min: -0.5
-    flexible_max: 65.0
 - compressor_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0

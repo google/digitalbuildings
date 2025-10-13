@@ -67,7 +67,6 @@ DD:
   opt_uses:
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
-  - discharge_air_temperature_setpoint
   - heating_thermal_power_capacity
   - run_command
   - supply_air_cooling_flowrate_capacity
@@ -4705,7 +4704,6 @@ ECONZ:
   - low_return_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - failed_outside_air_temperature_alarm
-  - mixed_air_damper_percentage_command
   uses:
   - economizer_mode
   - outside_air_damper_percentage_command
