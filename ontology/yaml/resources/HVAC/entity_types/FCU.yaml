@@ -1653,17 +1653,6 @@ FCU_DFVSC_CHWDC_RTM_CSP:
   - RTM
   - CSP
 
-FCU_DFVSC_CHWRC_RTM_CSP:
-  guid: "ea3adf33-b594-4fa4-ac4a-9bea1fbcfa9c"
-  description: "Fan coil unit with discharge fan and chilled water coil"
-  is_canonical: true
-  implements:
-  - FCU
-  - DFVSC
-  - CHWRC
-  - RTM
-  - CSP
-
 FCU_DFVSC_CHWRC_CSP:
   guid: "9b6e2a86-b128-464d-b6de-d0c312d531a1"
   description: "Fan coil unit with discharge fan and chilled water coil"
