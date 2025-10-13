@@ -600,6 +600,12 @@ literals:
 - cooling_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 4.719474432
+- high_cooling_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_cooling_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - cooling_output_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1646,6 +1652,12 @@ literals:
 - heating_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 23.59737216
+- high_heating_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_heating_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - heating_cooling_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0

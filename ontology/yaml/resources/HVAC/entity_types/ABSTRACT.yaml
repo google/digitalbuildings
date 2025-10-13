@@ -78,6 +78,10 @@ DD:
   - cooling_air_pressurization_request_count
   - heating_air_pressurization_request_count
   - user_occupancy_override_status
+  - high_cooling_air_flowrate_alarm
+  - high_heating_air_flowrate_alarm
+  - low_cooling_air_flowrate_alarm
+  - low_heating_air_flowrate_alarm
   uses:
   - cooling_air_damper_percentage_command
   - cooling_air_flowrate_sensor
@@ -229,6 +233,7 @@ CSP:
   - low_discharge_air_temperature_alarm
   - zone_air_relative_humidity_sensor
   - zone_occupancy_status
+  - user_occupancy_override_status
   - failed_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
@@ -888,6 +893,7 @@ DFVSC2X:
   - discharge_fan_lost_power_alarm_2
   - failed_discharge_fan_alarm_1
   - failed_discharge_fan_alarm_2
+  - user_occupancy_override_status
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_command_2
@@ -4685,6 +4691,7 @@ ECONZ:
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
   - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
@@ -4736,15 +4743,23 @@ BYPDM:
   guid: "b26b31a9-5a4a-4bd8-87d0-97260e739f32"
   description: "Bypass damper monitoring."
   is_abstract: true
-  opt_uses:
-  - high_bypass_air_flowrate_alarm
-  - low_bypass_air_flowrate_alarm
-  - bypass_air_flowrate_sensor
-  - bypass_air_flowrate_setpoint
   uses:
   - bypass_air_damper_percentage_command
   implements:
   - MONITORING
+
+BYPFRC:
+  description: "Bypass air flowrate control."
+  is_abstract: true
+  opt_uses:
+  - high_bypass_air_flowrate_alarm
+  - low_bypass_air_flowrate_alarm
+  uses:
+  - bypass_air_flowrate_sensor
+  - bypass_air_flowrate_setpoint
+  - bypass_air_damper_percentage_command
+  implements: 
+  - CONTROL
 
 
 BYPDVM:
