@@ -145,6 +145,18 @@ literals:
 - bypass_air_damper_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 120.0
+- high_bypass_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_bypass_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- bypass_air_flowrate_sensor:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
+- bypass_air_flowrate_setpoint:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
 - bypass_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -585,6 +597,12 @@ literals:
 - cooling_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 4.719474432
+- high_cooling_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_cooling_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - cooling_output_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1138,6 +1156,12 @@ literals:
 - failed_cold_aisle_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_communication_alarm:
   - ACTIVE
   - INACTIVE
@@ -1235,6 +1259,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_hot_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_hot_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_hot_aisle_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - failed_humidifier_alarm:
@@ -1619,6 +1649,12 @@ literals:
 - heating_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 23.59737216
+- high_heating_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_heating_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - heating_cooling_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0

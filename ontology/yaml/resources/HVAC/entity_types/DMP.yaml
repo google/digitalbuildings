@@ -121,6 +121,14 @@ DMP_OAFC:
   - DMP
   - OAFC
 
+DMP_BYPFRC:
+  guid: "d4d1735b-82d8-4090-98b6-a0a2a58619f6"
+  description: "VAV functioning as bypass to serve minimum air requirements of blower furnace"
+  is_canonical: true
+  implements:
+  - DMP
+  - BYPFRC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

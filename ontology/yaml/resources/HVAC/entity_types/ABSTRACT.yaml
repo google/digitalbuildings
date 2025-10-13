@@ -77,6 +77,10 @@ DD:
   - cooling_air_pressurization_request_count
   - heating_air_pressurization_request_count
   - user_occupancy_override_status
+  - high_cooling_air_flowrate_alarm
+  - high_heating_air_flowrate_alarm
+  - low_cooling_air_flowrate_alarm
+  - low_heating_air_flowrate_alarm
   uses:
   - cooling_air_damper_percentage_command
   - cooling_air_flowrate_sensor
@@ -228,6 +232,7 @@ CSP:
   - low_discharge_air_temperature_alarm
   - zone_air_relative_humidity_sensor
   - zone_occupancy_status
+  - user_occupancy_override_status
   - failed_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
@@ -877,6 +882,8 @@ DFVSC2X:
   - discharge_fan_current_sensor_2
   - discharge_fan_power_sensor_1
   - discharge_fan_power_sensor_2
+  - discharge_fan_voltage_sensor_1
+  - discharge_fan_voltage_sensor_2
   - discharge_fan_speed_frequency_sensor_1
   - discharge_fan_speed_frequency_sensor_2
   - discharge_fan_speed_percentage_sensor_1
@@ -885,6 +892,8 @@ DFVSC2X:
   - discharge_fan_lost_power_alarm_2
   - failed_discharge_fan_alarm_1
   - failed_discharge_fan_alarm_2
+  - schedule_run_command
+  - user_occupancy_override_status
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_command_2
@@ -1377,6 +1386,8 @@ HATM:
   implements:
   - MONITORING
   opt_uses:
+  - high_hot_aisle_air_temperature_alarm
+  - low_hot_aisle_air_temperature_alarm
   - failed_hot_aisle_air_temperature_alarm
   uses:
   - hot_aisle_air_temperature_sensor
@@ -1401,6 +1412,8 @@ CATM:
   implements:
   - MONITORING
   opt_uses:
+  - high_cold_aisle_air_temperature_alarm
+  - low_cold_aisle_air_temperature_alarm
   - failed_cold_aisle_air_temperature_alarm
   uses:
   - cold_aisle_air_temperature_sensor
@@ -3567,6 +3580,8 @@ HPZC:
   - compressor_lost_power_alarm
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
@@ -4677,6 +4692,7 @@ ECONZ:
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
   - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
@@ -4731,6 +4747,20 @@ BYPDM:
   - bypass_air_damper_percentage_command
   implements:
   - MONITORING
+
+BYPFRC:
+  guid: "8f312e75-6322-4cb6-9a52-255227966f0c"
+  description: "Bypass air flowrate control."
+  is_abstract: true
+  opt_uses:
+  - high_bypass_air_flowrate_alarm
+  - low_bypass_air_flowrate_alarm
+  uses:
+  - bypass_air_flowrate_sensor
+  - bypass_air_flowrate_setpoint
+  - bypass_air_damper_percentage_command
+  implements: 
+  - CONTROL
 
 
 BYPDVM:
@@ -6508,6 +6538,7 @@ DXDDC:
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
   - overload_compressor_alarm
+  - compressor_speed_frequency_sensor
   uses:
   - compressor_run_command
   - discharge_air_cooling_temperature_setpoint

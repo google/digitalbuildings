@@ -393,7 +393,7 @@ VAV_DD_DSP:
 
 VAV_DD_DSP_CO2C:
   guid: "9da9b67a-9e17-4c94-b774-6f1c15a4bd12"
-  description: "Typical dual duct VAV with CO2 conotrol."
+  description: "Typical dual duct VAV with CO2 control."
   is_canonical: true
   implements:
   - VAV

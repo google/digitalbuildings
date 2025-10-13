@@ -384,7 +384,7 @@ MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP:
   - HTDC
   - DSP
 
-MAU_DFVSC_DXDDC_HTDDC:
+MAU_DFVSC_DXDDC_HTDDC_OA:
   guid: "8a025f87-ab1a-4a94-ac25-0f77bf435b4d"
   description: "MAU with heating and cooling dual setpoint control on the discharge side"
   is_canonical: true
@@ -393,6 +393,7 @@ MAU_DFVSC_DXDDC_HTDDC:
   - DFVSC
   - DXDDC
   - HTDDC
+  - OA
 
 MAU_DFSS_DFVSC_HPHCZC_HTZC_DTC_ZSPM_OA:
   guid: "44b9d22f-82e5-4375-9879-3884ab8229ee"
