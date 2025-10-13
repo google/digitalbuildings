@@ -3612,6 +3612,7 @@ HPHCZC:
   - low_zone_air_temperature_alarm
   - cooling_request_count
   - heating_request_count
+  - cooling_percentage_command
   uses:
   - cooling_run_command
   - heating_run_command
