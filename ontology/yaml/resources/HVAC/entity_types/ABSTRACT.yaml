@@ -6530,7 +6530,6 @@ DXDDC:
   opt_uses:
   - compressor_run_status
   - cooling_percentage_command
-  - compressor_speed_frequency_command
   - compressor_lost_power_alarm
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
