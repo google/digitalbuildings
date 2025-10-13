@@ -892,6 +892,7 @@ DFVSC2X:
   - discharge_fan_lost_power_alarm_2
   - failed_discharge_fan_alarm_1
   - failed_discharge_fan_alarm_2
+  - schedule_run_command
   - user_occupancy_override_status
   uses:
   - discharge_fan_run_command_1
