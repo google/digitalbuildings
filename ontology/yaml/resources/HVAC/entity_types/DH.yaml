@@ -64,7 +64,6 @@ DH_SS_HTDC_ZTM:
   - ZTM
 
 DH_SS_HTDC_DSP:
-  guid: "7177059d-d982-489d-a01a-56f559e70f71"
   description: "Electric duct heater."
   is_canonical: true
   implements:
