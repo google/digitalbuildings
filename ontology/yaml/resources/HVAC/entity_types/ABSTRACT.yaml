@@ -4749,6 +4749,7 @@ BYPDM:
   - MONITORING
 
 BYPFRC:
+  guid: "8f312e75-6322-4cb6-9a52-255227966f0c"
   description: "Bypass air flowrate control."
   is_abstract: true
   opt_uses:
