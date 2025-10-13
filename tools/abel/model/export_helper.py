@@ -230,7 +230,7 @@ class BuildingConfigExport(object):
       update_dict = {}
     if operation.update_mask:
       update_dict.update(
-          {'update_mask': [x.name for x in operation.update_mask]}
+          {'update_mask': [x.value for x in operation.update_mask]}
       )
     return update_dict
 
