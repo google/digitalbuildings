@@ -1206,7 +1206,7 @@ FCU_DXDC_DFVSC2X:
   - DXDC
   - DFVSC2X
 
-FCU_DXDC_DFVSC2X_CATM_HATM_CAM_SRC:
+FCU_DXDC_DFVSC2X_CATM_HATM_CAM:
   guid: "253f961d-43ea-404b-8d24-2659a694405f"
   description: "FCU unit with compressor, two discharge fans, hot/cold aisle temperature monitoring, and condensate water alarm"
   is_canonical: true
@@ -1217,9 +1217,8 @@ FCU_DXDC_DFVSC2X_CATM_HATM_CAM_SRC:
   - CATM
   - HATM
   - CAM
-  - SRC
 
-FCU_DXDC_DFVSC2X_DAIDC_CAM_ZTM_SRC:
+FCU_DXDC_DFVSC2X_DAIDC_CAM_ZTM:
   guid: "148e2032-8cf0-425e-bedb-48d1ba5b828a"
   description: "FCU unit with compressor, two discharge fans, discharge air isolation damper, condensate water alarm, and zone temperature monitoring"
   is_canonical: true
@@ -1230,7 +1229,6 @@ FCU_DXDC_DFVSC2X_DAIDC_CAM_ZTM_SRC:
   - DAIDC
   - CAM
   - ZTM
-  - SRC
 
 FCU_DXZC_DFSS_DTM_RTM:
   guid: "4b87d0e9-e3d1-40b7-a8d6-563baa1fcb29"
