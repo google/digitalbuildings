@@ -6537,6 +6537,7 @@ DXDDC:
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
   - overload_compressor_alarm
+  - compressor_speed_frequency_sensor
   uses:
   - compressor_run_command
   - discharge_air_cooling_temperature_setpoint
