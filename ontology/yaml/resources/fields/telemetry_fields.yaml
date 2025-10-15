@@ -621,6 +621,7 @@ literals:
 - cooling_run_command: # for ASHP
   - ON
   - OFF
+  - UNKNOWN
 - cooling_run_status:
   - ON
   - OFF
@@ -1691,6 +1692,7 @@ literals:
 - heating_run_command: # for ASHP
   - ON
   - OFF
+  - UNKNOWN
 - heating_run_status:
   - ON
   - OFF
