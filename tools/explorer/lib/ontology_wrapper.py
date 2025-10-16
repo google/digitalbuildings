@@ -348,7 +348,16 @@ class OntologyWrapper(object):
             colored(field.ljust(col_width), 'green') for field in row
         )
       else:
-        return_string += ''.join(field.ljust(col_width) for field in row)
+        for index, field in enumerate(row):
+            if "Required" in field:
+                # Highlight previous field, if it exists
+                if index > 0:
+                    return_string += ''.join(colored(row[index - 1].ljust(col_width), 'red'))
+                # Highlight current field
+                return_string += ''.join(colored(field.ljust(col_width), 'red'))
+            elif index == 0 or "Required" not in row[index + 1] if index + 1 < len(row) else True:
+                # Only print normal if not about to be reprinted in red by next loop
+                return_string += ''.join(field.ljust(col_width))
       return_string += '\n'
     return_string += '\n'
 
