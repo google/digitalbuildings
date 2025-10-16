@@ -2825,6 +2825,9 @@ literals:
 - outside_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 322.037037
+- outside_air_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 322.037037
 - outside_air_voc_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.005
