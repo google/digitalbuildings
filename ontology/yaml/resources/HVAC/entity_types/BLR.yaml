@@ -26,6 +26,16 @@ BLR_SS_SWTC_CPC:
   - SWTC
   - CPC
 
+BLR_SS_SWTC_CPC2X:
+  guid: "177f473a-0708-45ec-a5af-0cb758cf894c"
+  description: "Simple boiler with two onboard circulation pumps."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - CPC2X
+
 BLR_SS_SWTC:
   guid: "80dacf95-bd8f-4682-859a-f71cd8b80012"
   description: "Simple boiler with start/stop and supply temperature control."
