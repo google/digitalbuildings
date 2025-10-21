@@ -2181,6 +2181,20 @@ AHU_BSPC_DX4SC_ECON_EFSS_RHM_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_DXSC_HWSC_ECON_SFVSC_EFVSC_BSPC_SSPC:
+  guid: "f55738a5-2e6e-4d0a-a3cb-380ab7df1b0d"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DXSC
+  - HWSC
+  - ECON
+  - SFVSC
+  - EFVSC
+  - BSPC
+  - SSPC
+
 AHU_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "2281d1f2-83a6-4625-a6cb-6a976eeff49b"
   description: "Multi-zone AHU."

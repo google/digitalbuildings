@@ -105,3 +105,12 @@ TK_LHLM_WFRM_SWISOVPM_RWISOVPM:
   - WFRM
   - SWISOVPM
   - RWISOVPM
+
+TK_LHLM_RWISOVPM:
+  guid: "457942ce-3efa-48f9-a555-6d5ab5cf98a7"
+  description: "Tank with level monitoring and return water isolation valve."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM
+  - RWISOVPM
