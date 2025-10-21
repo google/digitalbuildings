@@ -292,6 +292,15 @@ HWS_SWTM_WDPC_BYPVPM:
   - WDPC
   - BYPVPM
 
+HWS_SWTM_MWFRM:
+  guid: "6c72584c-a2b6-492a-9b3f-176765844708"
+  description: "Heating water system with supply temperature monitoring and makeup water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTM
+  - MWFRM
+
 HWS_SWTC_WDPC_WFRM_BYPVPM_HLPM:
   guid: "86b9cad8-5aef-401e-a8fe-28d7bce11a0b"
   description: "Heating water system with supply temperature control, flowrate monitoring, differential pressure control and bypass valve control."
