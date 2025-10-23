@@ -42,7 +42,6 @@ def main(parsed_args):
           + '4: Get fields for a list of subfields\n'
           + '5: Compare given type against ontology\n'
           + '6: Compare list of fields to specified type\n'
-          # + '7: Run loadsheet validation checks\n'
           + 'q: quit\n'
       )
       function_choice = input('Please select an option: ')
@@ -55,13 +54,9 @@ def main(parsed_args):
       elif function_choice == '4':
         parse_input.GetFieldsForSubfieldList(ontology)
       elif function_choice == '5':
-        parse_input.CheckIfAbstractTypeExists(ontology, False)
+        parse_input.CheckIfAbstractTypeExists(ontology)
       elif function_choice == '6':
-        parse_input.CompareFieldsToSpecifiedType(ontology, False, None, None)
-      # elif function_choice == '7':
-      #   parse_input.LoadsheetValidationChecks(ontology)
-      # elif function_choice == '8':
-      #   parse_input.testing(ontology)
+        parse_input.CompareFieldsToSpecifiedType(ontology, None)
       elif function_choice == 'q':
         print('bye bye')
         done = True
