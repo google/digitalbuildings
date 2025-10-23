@@ -16,15 +16,12 @@
 import ast
 import re
 from typing import List
-import pandas as pd
-import xlwings as xw
 import re
 
 # pylint: disable=g-importing-member
 import colorama
 from collections import defaultdict
 from termcolor import colored
-from itertools import zip_longest
 
 from lib import model
 from lib.model import StandardField
