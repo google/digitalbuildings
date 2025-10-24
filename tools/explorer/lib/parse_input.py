@@ -16,7 +16,6 @@
 import ast
 import re
 from typing import List
-import re
 
 # pylint: disable=g-importing-member
 import colorama
