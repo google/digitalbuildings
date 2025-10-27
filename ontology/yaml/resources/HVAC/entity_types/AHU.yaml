@@ -2947,6 +2947,7 @@ AHU_BSPC_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC_MOAFC:
   - MOAFC
 
 AHU_BSPC4X_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC:
+  guid: "3cd529a8-ce72-4225-a8b5-1dc9ed4456d3"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
@@ -2963,6 +2964,7 @@ AHU_BSPC4X_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC:
   - SSPC
 
 AHU_BSPC4X_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC_MOAFC:
+  guid: "416c773b-724c-4aaf-9e69-ecb4304914f5"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
@@ -5018,6 +5020,7 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X:
   - SAIDC3X
 
 AHU_DSP_DSPC_DFVSC_EFVSC_ECONZ_DXZC_HTZC_DTM:
+  guid: "f5b0b432-8dc5-4e3c-a9a1-676f04a63cb4"
   description: "Multizone AHU with heating and cooling coils"
   is_canonical: true
   implements:
