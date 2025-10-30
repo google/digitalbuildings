@@ -99,6 +99,11 @@ def _FieldIsAllowed(
       _GetAllowedField(universe, as_written_field_name, entity_type) is not None
   )
 
+def _FieldIsAlphaNumeric(field) -> bool:
+  """Validates that a field is alpha numeric."""
+  if not re.compile(r'^[a-zA-Z0-9_]+$').match(field):
+    return False
+  return True
 
 def _GetAllowedField(
     universe: pvt.ConfigUniverse,
@@ -208,6 +213,130 @@ class GraphValidator(object):
     self.universe = universe
     self.config_mode = config_mode
     self.entity_instances = entity_instances
+
+  def _ValidateStates(
+      self,
+      qualified_field_name: str,
+      ft: ft_lib.FieldTranslation,
+      entity: EntityInstance,
+  ):
+    """Returns a boolean indicating whether or not the field states are valid.
+
+    Method assumes field has already been checked for existence in the ontology.
+
+    Args:
+      qualified_field_name: A qualified field name for the field
+      ft: Subclass of `FieldTranslation` for the field of the following:
+        MultiStateValue, NonDimensional
+      entity: Instance of EntityInstance class
+
+    Returns:
+      true if the states are valid or if states aren't required for the field
+    """
+    valid_states = self.universe.GetStatesByField(qualified_field_name)
+    if valid_states:
+      if not isinstance(ft, ft_lib.MultiStateValue):
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+            f'{qualified_field_name} without states, which are expected on '
+            'the field. Define states.'
+        )
+        return False
+
+      is_valid = True
+      for state, value in ft.states.items():
+        if state not in valid_states:
+          print(
+              f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
+              f'field {qualified_field_name} with an invalid state: '
+              f'{state}. Allowed states are ({str(valid_states)}).'
+          )
+          is_valid = False
+        raw_values = value if isinstance(value, list) else [value]
+        for raw_value in raw_values:
+          if ft.raw_values[raw_value] != state:
+            print(
+                f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
+                f'field {qualified_field_name} has raw value {raw_value} '
+                f'mapped to more than one state: {state} and '
+                f'{ft.raw_values[raw_value]}'
+            )
+            is_valid = False
+
+      return is_valid
+
+    if isinstance(ft, ft_lib.MultiStateValue):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+          f'{qualified_field_name} with states, but this field is not '
+          'multi-state.'
+      )
+      return False
+
+    if isinstance(ft, ft_lib.NonDimensionalValue):
+      return True
+
+    return False
+
+  def _ValidateUnits(
+      self,
+      qualified_field_name: str,
+      ft: ft_lib.FieldTranslation,
+      entity: EntityInstance,
+  ):
+    """Returns a boolean indicating whether or not the field units are valid.
+
+    Method assumes field has already been checked for existence in the ontology.
+
+    Args:
+      qualified_field_name: A qualified field name for the field
+      ft: Subclass of `FieldTranslation` for the field of the following:
+        DimensionalValue, NonDimensionalValue
+      entity: Instance of EntityInstance class
+
+    Returns:
+      true if units are valid or if units aren't required for the field
+    """
+    valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
+    if valid_units and set(valid_units).difference({'no_units'}):
+      if not isinstance(ft, ft_lib.DimensionalValue):
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+            f'{qualified_field_name} but does not define valid units. '
+            'Add units.'
+        )
+        return False
+
+      if not ft.unit_mapping:
+        print(
+            'At least one unit must be provided for dimensional value '
+            f'{qualified_field_name}'
+        )
+        return False
+
+      unit = list(ft.unit_mapping.keys())[0]
+      if unit not in valid_units:
+        print(
+            f'Field {qualified_field_name} has an undefined measurement unit:'
+            + f' {unit}'
+        )
+        return False
+      return True
+
+    if isinstance(ft, ft_lib.DimensionalValue):
+      if set(ft.unit_mapping) == {'no_units'}:
+        return True
+      print(
+          'Units are provided for dimensional value'
+          f' {qualified_field_name} that is defined to have "no_units" in the'
+          ' ontology'
+      )
+      return False
+
+    if isinstance(ft, ft_lib.NonDimensionalValue):
+      return True
+
+    return False
 
   def _ConnectionsAreValid(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's connections are complete."""
