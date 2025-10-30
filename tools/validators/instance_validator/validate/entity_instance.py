@@ -457,16 +457,25 @@ class GraphValidator(object):
           src_entity.namespace, src_entity.type_name
       )
 
-      for _, source_field in link_inst.field_map.items():
-        if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
+      for target_field, source_field in link_inst.field_map.items():
+        if not _FieldIsAlphaNumeric(source_field):
+          print(f'source_field not alpha numeric or underscore: {source_field}')
+          is_valid = False
+          continue
+        if source_field not in source_entity.translation:
           print(
               f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines a '
-              'link field that is not valid in the ontology: '
-              f'{source_field}. Confirm this field is defined in the '
-              'ontology.'
+              f'link field {source_field} that is not connected to another '
+              f'entity. Confirm this field is defined in the config. '
           )
           is_valid = False
           continue
+        field_translation = source_entity.translation.get(source_field)
+        if field_translation:
+          if not (self._FieldTranslationIsValid(
+            target_field, field_translation, entity)):
+            is_valid = False
+            continue
 
     return is_valid
 
@@ -725,6 +734,10 @@ class InstanceValidator(object):
       return False
 
     is_valid = self._ValidateEnumerations(entity)
+    # Skipping for Passthrough devices
+    if entity_type.allow_undefined_fields:
+      return True
+
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
       qualified_field_name = _GetAllowedField(
@@ -1055,7 +1068,7 @@ class InstanceValidator(object):
     is_valid = True
     found_fields = set()
     for link_inst in entity.links:
-      for target_field, source_field in link_inst.field_map.items():
+      for target_field, _ in link_inst.field_map.items():
         qualified_tgt_field = _GetAllowedField(
             self.universe, target_field, entity_type
         )
@@ -1067,31 +1080,8 @@ class InstanceValidator(object):
           )
           is_valid = False
           continue
-        qualified_src_field = _GetAllowedField(
-            self.universe, source_field, None
-        )
-        if not qualified_src_field:
-          print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to '
-              f'source field {source_field} that is invalid for '
-              f'link: {link_inst}'
-          )
-          is_valid = False
-          continue
 
         found_fields.add(qualified_tgt_field)
-
-        if not self._LinkUnitsMatch(
-            qualified_src_field, qualified_tgt_field, entity
-        ):
-          is_valid = False
-          continue
-
-        if not self._LinkStatesMatch(
-            qualified_src_field, qualified_tgt_field, entity
-        ):
-          is_valid = False
-          continue
 
     if entity_type:
       for field_name, field in entity_type.GetAllFields().items():
@@ -1100,38 +1090,6 @@ class InstanceValidator(object):
           is_valid = False
 
     return is_valid
-
-  def _LinkUnitsMatch(
-      self, source_field: str, target_field: str, entity: EntityInstance
-  ) -> bool:
-    """Validates that units match between linked source and target fields."""
-
-    source_units = self.universe.GetUnitsForMeasurement(source_field)
-    target_units = self.universe.GetUnitsForMeasurement(target_field)
-    if source_units != target_units:
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) links target field '
-          f'{target_field} to source field {source_field} but the units '
-          'do not match between the fields.'
-      )
-      return False
-    return True
-
-  def _LinkStatesMatch(
-      self, source_field: str, target_field: str, entity: EntityInstance
-  ) -> bool:
-    """Validates that states match between linked source and target fields."""
-
-    source_states = self.universe.GetStatesByField(source_field)
-    target_states = self.universe.GetStatesByField(target_field)
-    if source_states != target_states:
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) links target field '
-          f'{target_field} to source field {source_field} but the states do '
-          'not match between the fields.'
-      )
-      return False
-    return True
 
   def _IsFaciltitiesEntitiesMatchPattern(self, entity: EntityInstance) -> bool:
     """Returns True if facilitities entities match regex patterns."""
