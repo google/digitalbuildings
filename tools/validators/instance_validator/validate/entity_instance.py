@@ -214,6 +214,44 @@ class GraphValidator(object):
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
+  def _FieldTranslationIsValid(
+      self,
+      qualified_field_name: str,
+      ft: ft_lib.FieldTranslation,
+      entity: EntityInstance,
+  ):
+    """Returns a boolean indicating whether or not the field translations is valid.
+
+    A field {@code FieldTranslation} is an instance of: {@code UndefinedField},
+    {@code DimensionalValue}, {@code NonDimensionalValue}, or {@code
+    MultistateValue}.
+
+    Args:
+      qualified_field_name: A qualified field name for the field
+      ft: a `FieldTranslation` sublcass, for the field, of the following:
+        UndefinedField, DimensionalValue, NonDimensionalValue, MultiStateValue.
+      entity: Instance of EntityInstance class
+    """
+    if isinstance(ft, ft_lib.UndefinedField):
+      return True
+
+    if isinstance(ft, ft_lib.DimensionalValue):
+      return self._ValidateUnits(qualified_field_name, ft, entity)
+
+    if isinstance(ft, ft_lib.MultiStateValue):
+      return self._ValidateStates(qualified_field_name, ft, entity)
+
+    # field is instantiated as NonDimensionValue at parse time if neither units
+    # or states are defined (for the field) on the entity in the building config.
+    # it is necessary to validate both units and state here according to the
+    # ontology.
+    if isinstance(ft, ft_lib.NonDimensionalValue):
+      return self._ValidateUnits(
+          qualified_field_name, ft, entity
+      ) and self._ValidateStates(qualified_field_name, ft, entity)
+
+    return False
+
   def _ValidateStates(
       self,
       qualified_field_name: str,
