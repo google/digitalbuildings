@@ -40,4 +40,9 @@ PMP_INITIAL:
   - PMP
   allow_undefined_fields: true
 
-
+CDWS_INITIAL:
+  guid: fa4c78ed-ca06-4e04-8738-6f8587ee73a7
+  description: "Initial type for CDWS."
+  implements:
+  - CDWS
+  allow_undefined_fields: true
