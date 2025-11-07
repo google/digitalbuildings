@@ -214,6 +214,9 @@ literals:
 - chilled_return_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- chilled_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
 - chilled_return_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -224,6 +227,9 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 - chilled_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_water_isolation_valve_status:
   - OPEN
   - CLOSED
 - chilled_return_water_pressure_sensor:
@@ -1136,6 +1142,9 @@ literals:
 - failed_chilled_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_chilled_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_chilled_water_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -1248,6 +1257,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_heating_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heating_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - failed_heating_supply_water_valve_alarm:
@@ -1671,6 +1683,9 @@ literals:
 - heating_request_count:
     fixed_min: 0.0
     flexible_max: 250.0
+- heating_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
 - heating_return_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1681,6 +1696,9 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 - heating_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_water_isolation_valve_status:
   - OPEN
   - CLOSED
 - heating_return_water_pressure_sensor:
