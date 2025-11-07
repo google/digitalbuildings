@@ -1074,9 +1074,6 @@ literals:
 - exhaust_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
-- exhaust_fan_run_time_accumulator:
-    fixed_min: 0.0
-    flexible_max: 1.25
 - exhaust_fan_run_command:
   - ON
   - OFF
@@ -1088,6 +1085,9 @@ literals:
   - ON
   - OFF
   - UNKNOWN
+- exhaust_fan_run_time_accumulator:
+    fixed_min: 0.0
+    flexible_max: 1.25
 - exhaust_fan_speed_frequency_command:
     flexible_min: -0.5
     flexible_max: 65.0
