@@ -80,6 +80,10 @@ The `Entities` tab holds all information about [reporting entities](../../../ont
 being used or Google, then this field is **required** or else spreadsheet
 validation will fail.
 
+`Display Name` *string*
+
+An optional human-readable display name for the entity.
+
 `Etag` *string*
 
 Version control tag for entities in an entity type database. Used only when updating an existing building config.

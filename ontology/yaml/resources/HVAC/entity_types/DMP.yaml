@@ -55,6 +55,14 @@ DMP_ED:
   - DMP
   - ED
 
+DMP_OADM:
+  guid: "48924740-bed6-4b2a-b954-f70bd1160837"
+  description: "Outside air control damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - OADM
+
 DMP_SDBPC:
   guid: "f475383f-8570-4813-8039-54c637e9be9a"
   description: "Exhaust control damper."
@@ -112,6 +120,14 @@ DMP_OAFC:
   implements:
   - DMP
   - OAFC
+
+DMP_BYPFRC:
+  guid: "d4d1735b-82d8-4090-98b6-a0a2a58619f6"
+  description: "VAV functioning as bypass to serve minimum air requirements of blower furnace"
+  is_canonical: true
+  implements:
+  - DMP
+  - BYPFRC
 
 ###################################
 ### Existing Non-standard Types ###

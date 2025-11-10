@@ -1422,6 +1422,7 @@ class EntityInstance(findings_lib.Findings):
       operation,
       guid,
       code,
+      display_name=None,
       cloud_device_id=None,
       namespace=None,
       type_name=None,
@@ -1437,6 +1438,7 @@ class EntityInstance(findings_lib.Findings):
     self.operation = operation
     self.guid = guid
     self.code = code
+    self.display_name = display_name
     self.cloud_device_id = cloud_device_id
     self.namespace = namespace
     self.type_name = type_name
@@ -1451,6 +1453,7 @@ class EntityInstance(findings_lib.Findings):
     return (
         self.guid == other.guid
         and self.code == other.code
+        and self.display_name == other.display_name
         and self.cloud_device_id == other.cloud_device_id
         and self.operation == other.operation
         and self.etag == other.etag
@@ -1464,6 +1467,7 @@ class EntityInstance(findings_lib.Findings):
     return hash((
         self.guid,
         self.code,
+        self.display_name,
         self.cloud_device_id,
         self.operation,
         self.etag,
@@ -1539,6 +1543,8 @@ class EntityInstance(findings_lib.Findings):
       ):
         raise ValueError('Update of cloud device id requires translation.')
 
+    display_name = entity_yaml.get(parse.ENTITY_DISPLAY_NAME_KEY)
+    
     translation = None
     cloud_device_id = entity_yaml.get(parse.ENTITY_CLOUD_DEVICE_ID_KEY)
     if parse.TRANSLATION_KEY in entity_yaml:
@@ -1567,6 +1573,7 @@ class EntityInstance(findings_lib.Findings):
         operation,
         guid=guid,
         code=code,
+        display_name=display_name,
         cloud_device_id=cloud_device_id,
         namespace=namespace,
         type_name=type_name,

@@ -94,3 +94,23 @@ TK_RWTC_SWISOVM:
   - /TK # Inherits from global namespace
   - RWTC
   - SWISOVM
+
+TK_LHLM_WFRM_SWISOVPM_RWISOVPM:
+  guid: "790e69ca-a67e-48d2-bd72-b68c62c187e4"
+  description: "Tank with level monitoring, flowrate monitoring, supply and return water isolation valves."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM
+  - WFRM
+  - SWISOVPM
+  - RWISOVPM
+
+TK_LHLM_RWISOVPM:
+  guid: "457942ce-3efa-48f9-a555-6d5ab5cf98a7"
+  description: "Tank with level monitoring and return water isolation valve."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM
+  - RWISOVPM

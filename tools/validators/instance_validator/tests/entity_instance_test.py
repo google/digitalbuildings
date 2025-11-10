@@ -1557,6 +1557,18 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(instance))
 
+  def testValidate_UpdateDisplayName_Success(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'update_display_name.yaml')]
+    )
+    entity_guid, entity_parsed = next(iter(parsed.items()))
+
+    entity = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity_parsed, default_operation=default_operation
+    )
+
+    self.assertTrue(self.update_validator.Validate(entity))
+  
   def testValidate_UpdateEntityTypeOnly_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'update_entity_type_only.yaml')]

@@ -323,6 +323,15 @@ FAN_VSC_EDPM:
   - VSC
   - EDPM
 
+FAN_VSC_EDM2X2C:
+  guid: "3ab5df48-a26f-4bcf-8bea-7861704109fa"
+  description: "Variable speed fan with two exhaust dampers."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - EDM2X2C
+
 FAN_SS_DSP_VSC:
   guid: "660d42d5-15b3-4cb4-9af1-506f31b0aa0e"
   description: "Fan with dual setpoint control and variable speed."
@@ -719,6 +728,17 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - FAN
   - SS
   - VSC
+  - FDPM
+  - DRSM2X
+
+FAN_VSC_EFC_FDPM_DRSM2X:
+  guid: "6e069ad0-4c7b-4cc8-8ad8-52491825f092"
+  description: "Fan with variable speed control as well as filter pressure, exhaust air flow control and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - EFC
   - FDPM
   - DRSM2X
 
