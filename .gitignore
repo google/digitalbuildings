@@ -10,4 +10,4 @@
 package-lock.json
 yarn.lock
 venv/
-tooling/.tooling/ 
+tooling/ 
