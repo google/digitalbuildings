@@ -104,6 +104,7 @@ FCU_DFSS_CSP_DXZC:
   - DXZC
 
 FCU_CSP_DFSS_DXZC_RTM:
+  guid: "37b54023-5ac4-4630-89ec-6a1c507a8b89"
   description: "Typical DX FCU with cooling-only (discharge control) with returen air temp monitoring."
   is_canonical: true
   implements:
