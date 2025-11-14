@@ -2761,6 +2761,21 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_SFVSC_EFVSC_DX4SDC_HWSDC_ECON_BSPC_SSPC_DSARC_FDPM2X:
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX4SDC
+  - HWSDC
+  - ECON
+  - BSPC
+  - SSPC
+  - DSARC
+  - FDPM2X
+
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_OAFMC_SFSS_SFVSC_SSPC:
   guid: "e809e4f4-ab23-49b7-a742-da76a8622a54"
   description: "Multi-zone AHU."

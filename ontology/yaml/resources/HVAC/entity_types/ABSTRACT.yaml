@@ -3264,6 +3264,32 @@ DX2SDC:
   - CONTROL
 
 
+DX4SDC:
+  description: "Four compressor run control on supply air side (dual temp setpoint)."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - cooling_percentage_command
+  - cooling_thermal_power_capacity
+  - leaving_cooling_coil_temperature_sensor
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_heating_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
 DX4SWC:
   guid: "beb1f5d7-7ccf-4bb6-8f4e-494d3624589d"
   description: "Four compressor run control on supply water side."
