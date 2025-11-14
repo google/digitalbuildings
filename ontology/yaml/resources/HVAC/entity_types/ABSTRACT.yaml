@@ -2698,6 +2698,34 @@ CHWSC:
   implements:
   - CONTROL
 
+CHWHWSC:
+  guid: "7ef8ef45-0abe-469b-90fc-f1c95d2243e5"
+  description: "4-pipe chilled/heating water valve control on supply side."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_valve_percentage_sensor
+  - heating_water_valve_percentage_sensor
+  - cooling_request_count
+  - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - failed_chilled_water_valve_alarm
+  - failed_heating_water_valve_alarm
+  - failed_chilled_water_isolation_valve_alarm
+  - failed_heating_water_isolation_valve_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - heating_water_isolation_valve_status
+  - chilled_water_isolation_valve_status
+  uses:
+  - chilled_water_valve_percentage_command
+  - heating_water_valve_percentage_command
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - heating_water_isolation_valve_command
+  - chilled_water_isolation_valve_command
+  implements:
+  - CONTROL
+
 CHWSDC:
   guid: "291c8966-a4c3-4329-9d9a-89226e3bb571"
   description: "Chilled water valve dual setpoint control on supply side."
