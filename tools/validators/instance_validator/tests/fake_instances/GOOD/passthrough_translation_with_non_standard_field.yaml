@@ -12,28 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Test entity with numeric points missing units for supply_water_temperature_sensor
-
 CHWS_WDT-17-GUID:
-  type: HVAC/CHWS_WDT
-  code: CHWS_WDT-17
+  type: GATEWAYS/PASSTHROUGH
+  code: CHWS_WDT-GATEWAY
   cloud_device_id: "123456789"
   translation:
-    return_water_temperature_sensor:
+    room1_temp_data:
       present_value: "points.return_water_temperature_sensor.present_value"
       units:
         key: "pointset.points.return_water_temperature_sensor.units"
         values:
           degrees_celsius: "degC"
-    return_water_temperature_sensor_1:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      units:
-        key: "pointset.points.return_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-
-US-ABC-BLDG-GUID:
-  type: FACILITIES/BUILDING
-  code: US-ABC-BLDG

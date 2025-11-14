@@ -1,0 +1,31 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+VAV-456-GUID:
+  code: VAV-456
+  type: GATEWAYS/PASSTHROUGH
+  cloud_device_id: "2619178366980755"
+  translation:
+    run_status:
+      present_value: points.run_status.present_value
+      states:
+        ON: "true"
+        OFF: "false"
+
+VAV-789-GUID:
+  code: VAV-789
+  type: HVAC/CHWS_WDT
+  links:
+    VAV-456-GUID:
+      # Target field links to a source field that does not exist in VAV-456-GUID's translation
+      return_water_temperature_sensor: non_existent_field

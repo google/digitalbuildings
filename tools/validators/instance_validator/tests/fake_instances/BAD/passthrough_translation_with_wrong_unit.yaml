@@ -12,36 +12,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Test the instance validator can parse state field translations case-insensitive
-# this is used in both instance validator test as well as entity instance Test
-# instance validator: passes
-# entity instance: fails
-
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
 
-FC2-1-1-GUID:
+CHWS-1-GUID:
+  type: GATEWAYS/PASSTHROUGH
+  code: CHWS-1
   cloud_device_id: "1234567890123456"
-  code: FC2-1-1
   translation:
     room1_temp_data:
-      present_value: data.binary-value_1.present-value
-      states:
-        off: inactive
-        on: active
-    room3_temp_data:
-      present_value: data.binary-value_13.present-value
-      states:
-        OFf: inactive
-        oN: active
-  type: GATEWAYS/PASSTHROUGH
+      present_value: "points.supply_water_temperature_sensor.present_value"
+      units:
+        key: "pointset.points.supply_water_temperature_sensor.units"
+        values:
+          hertz: hertz
+    room2_temp_data:
+      present_value: "points.return_water_temperature_sensor.present_value"
+      units:
+        key: "pointset.points.return_water_temperature_sensor.units"
+        values:
+          hertz: hertz
 
-VRT-1-1-GUID:
-  type: HVAC/FAN_SS
-  code: VRT-1-1
+CHWS-2-GUID:
+  type: HVAC/CHWS_WDT
+  code: CHWS-2
+  connections:
+    CHWS-1-GUID: FEEDS
   links:
-    FC2-1-1-GUID:
-      run_command: room1_temp_data
-      run_status: room3_temp_data
-    
+    CHWS-1-GUID:
+      supply_water_temperature_sensor: room1_temp_data
+      return_water_temperature_sensor: room2_temp_data
