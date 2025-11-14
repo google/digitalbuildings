@@ -35,7 +35,7 @@ _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
 
-_ALPHA_NUMERIC_FIELD_REGEX = r'^[a-zA-Z0-9_]+$'
+_ALPHA_NUMERIC_FIELD_REGEX = r'^[a-z0-9]([a-z0-9_]*[a-z0-9])?$'
 _ALPHA_NUMERIC_FIELD_PATTERN = re.compile(_ALPHA_NUMERIC_FIELD_REGEX)
 
 # udmi present value: points.$name.present_value
@@ -263,8 +263,8 @@ class GraphValidator(object):
           if not _IsFieldAlphaNumeric(source_field):
             print(f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to '
                   f'source_field {source_field} which contains invalid '
-                  f'characters.' ' Field names can only contain alphanumeric '
-                  f'characters and ' 'underscores.')
+                  f'characters. Field names can only contain alphanumeric '
+                  f'characters and underscores.')
             is_valid = False
             continue
           try:
