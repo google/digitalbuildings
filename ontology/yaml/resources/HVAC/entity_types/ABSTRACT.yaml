@@ -3265,6 +3265,7 @@ DX2SDC:
 
 
 DX4SDC:
+  guid: "546163e4-af62-47c3-8b1d-17e4dc9731f3"
   description: "Four compressor run control on supply air side (dual temp setpoint)."
   is_abstract: true
   opt_uses:
