@@ -1952,11 +1952,28 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='PASSTHROUGH',
         cloud_device_id='2619178366980754',
         translation={
-            'run-status': field_translation.MultiStateValue(
+            'invalid-field-1': field_translation.MultiStateValue(
                 std_field_name='run_status',
                 raw_field_name='points.run_status.present_value',
                 states={'ON': 'true', 'OFF': 'false'},
-            )
+            ),
+            'Field': field_translation.MultiStateValue(
+                std_field_name='differential_pressure_specification',
+                raw_field_name='points.Field.present_value',
+                states={'ON': 'true', 'OFF': 'false'},
+            ),
+            '_field': field_translation.DimensionalValue(
+                std_field_name='flowrate_requirement',
+                raw_field_name='points._field.present_value',
+                unit_field_name='points._field.present_value.units',
+                unit_mapping={'liters_per_second': 'lps'},
+            ),
+            'field_': field_translation.DimensionalValue(
+                std_field_name='return_water_temperature_sensor',
+                raw_field_name='points.field_.present_value',
+                unit_field_name='points.field_.present_value.units',
+                unit_mapping={'degrees_fahrenheit': 'degF'},
+            ),
         },
     )
     virtual_entity = entity_instance.EntityInstance(
@@ -1966,9 +1983,16 @@ class EntityInstanceTest(absltest.TestCase):
         etag='12345',
         namespace='HVAC',
         type_name='CHWS_WDT',
-        links=[link.Link('VAV-123-GUID', {
-            'run_status': 'run-status',  # Invalid characters in source_field
-        })],
+        links=[
+            link.Link(
+                'VAV-123-GUID', {
+                    'run_status': 'invalid-field-1',
+                    'differential_pressure_specification': 'Field',
+                    'flowrate_requirement': '_field',
+                    'return_water_temperature_sensor': 'field_',
+                }
+            )
+        ],
         update_mask=['links'],
     )
     entity_instances = {}
