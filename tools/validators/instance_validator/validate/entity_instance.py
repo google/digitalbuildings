@@ -34,6 +34,10 @@ from yamlformat.validator import presubmit_validate_types_lib as pvt
 _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
+
+_ALPHA_NUMERIC_FIELD_REGEX = r'^[a-z0-9]([a-z0-9_]*[a-z0-9])?$'
+_ALPHA_NUMERIC_FIELD_PATTERN = re.compile(_ALPHA_NUMERIC_FIELD_REGEX)
+
 # udmi present value: points.$name.present_value
 # udmi units: pointset.points.$name.units
 # where name follows: [a-z][a-z0-9]*(_[a-z0-9]+)*
@@ -79,6 +83,7 @@ _FLOOR_TYPE_NAME = 'FLOOR'
 _ROOM_TYPE_NAME = 'ROOM'
 _FACILITIES_NAMESPACE = 'FACILITIES'
 
+_NO_UNITS_IDENTIFIER = 'no_units'
 
 def _FieldIsAllowed(
     universe: pvt.ConfigUniverse,
@@ -98,7 +103,6 @@ def _FieldIsAllowed(
   return (
       _GetAllowedField(universe, as_written_field_name, entity_type) is not None
   )
-
 
 def _GetAllowedField(
     universe: pvt.ConfigUniverse,
@@ -255,18 +259,44 @@ class GraphValidator(object):
       # check that source entity contains target translation
       if self.config_mode != _CONFIG_UPDATE:
         source_entity = self.entity_instances[link_inst.source]
-        for source_field_name in link_inst.field_map.values():
+        for target_field, source_field in link_inst.field_map.items():
+          if not _IsFieldAlphaNumeric(source_field):
+            print(f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to '
+                  f'source_field {source_field} which contains invalid '
+                  f'characters. Field names can only contain alphanumeric '
+                  f'characters and underscores.')
+            is_valid = False
+            continue
           try:
-            if source_field_name not in source_entity.translation.keys():
+            if source_field not in source_entity.translation.keys():
               print(
                   f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a'
                   f' source entity: {source_entity.guid} ({source_entity.code})'
                   ' that does not have the linked source field: '
-                  f'{source_field_name}. Check that this field on source'
+                  f'{source_field}. Check that this field on source'
                   ' translation exists.'
               )
               is_valid = False
               continue
+            if source_field not in source_entity.translation:
+              print(
+                  f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines a '
+                  'link field that is not valid in the ontology: '
+                  f'{source_field}. Confirm this field is defined in the '
+                  'ontology.'
+              )
+              is_valid = False
+              continue
+            target_entity_type = self.universe.GetEntityType(
+                entity.namespace, entity.type_name
+            )
+            qualified_target_field = _GetAllowedField(
+                self.universe, target_field, target_entity_type
+            )
+            source_field_translation = source_entity.translation.get(source_field)
+            if source_field_translation:
+              if not (_FieldTranslationIsValid(self.universe, qualified_target_field, source_field_translation, entity)):
+                is_valid = False
           except AttributeError:
             print(
                 f'[ERROR]\tentity: {source_entity.guid} '
@@ -274,6 +304,7 @@ class GraphValidator(object):
                 f'even though it is mapped to by links is {entity.guid} ('
                 f'{entity.code})'
             )
+            is_valid = False
       elif (
           self.entity_instances[link_inst.source].operation
           == parse.EntityOperation.DELETE
@@ -284,23 +315,6 @@ class GraphValidator(object):
         )
         is_valid = False
         continue
-
-      src_entity = self.entity_instances.get(link_inst.source)
-      src_entity_type = self.universe.GetEntityType(
-          src_entity.namespace, src_entity.type_name
-      )
-
-      for _, source_field in link_inst.field_map.items():
-        if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
-          print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines a '
-              'link field that is not valid in the ontology: '
-              f'{source_field}. Confirm this field is defined in the '
-              'ontology.'
-          )
-          is_valid = False
-          continue
-
     return is_valid
 
   def Validate(self, entity: EntityInstance) -> bool:
@@ -556,14 +570,16 @@ class InstanceValidator(object):
     # ensure that not all fields are marked as MISSING
     if self._IsAllMissingFields(entity):
       return False
-
-    is_valid = self._ValidateEnumerations(entity)
+    is_valid = True
+    if entity_type and not entity_type.allow_undefined_fields:
+      is_valid = self._ValidateEnumerations(entity)
+    found_units = {}
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
       qualified_field_name = _GetAllowedField(
           self.universe, as_written_field_name, entity_type
       )
-      if not qualified_field_name:
+      if not qualified_field_name and not entity_type.allow_undefined_fields:
         if entity_type and not entity_type.allow_undefined_fields:
           print(
               f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
@@ -577,30 +593,8 @@ class InstanceValidator(object):
               'ontology.'
           )
         is_valid = False
-      else:
+      elif qualified_field_name and not entity_type.allow_undefined_fields:
         found_fields[qualified_field_name] = ft
-
-    # Check that unmatched type fields are optional
-    if entity_type and entity.operation == parse.EntityOperation.ADD:
-      type_fields = entity_type.GetAllFields()
-      unmatched = set(type_fields.keys()).difference(set(found_fields.keys()))
-      for unmatched_name in unmatched:
-        if not type_fields[unmatched_name].optional:
-          print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) missing field '
-              f'"{unmatched_name}" which is required for assigned type '
-              f'"{entity.type_name}"'
-          )
-          is_valid = False
-
-    # Check that MISSING translation fields are handled properly.
-
-    # Check that translations are properly defined
-    found_units = {}
-    type_fields = entity_type.GetAllFields()
-    for qualified_field_name, ft in found_fields.items():
-      if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
-        is_valid = False
 
       # Check if the field is defined MISSING
       if isinstance(ft, ft_lib.UndefinedField):
@@ -618,37 +612,10 @@ class InstanceValidator(object):
               'that the applied virtual entity type is correct, otherwise '
               'your building config will be rejected.'
           )
-        else:
-          # If the field is MISSING and REQUIRED, warn the user.
-          if not type_fields[qualified_field_name].optional:
-            print(
-                f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
-                f'MISSING translation for field {qualified_field_name} which '
-                f'is required for type {entity.type_name}. This feature '
-                'should only be used when the device cannot physically send '
-                'required data and it truly is an instance of the assigned '
-                'type. You must provide justification for all MISSING '
-                'translations and that the applied type is correct, '
-                'otherwise your building config will be rejected.'
-            )
-
-          # If its MISSING and OPTIONAL, raise error. They shouldn't do this.
-          # Optional fields are automatically interpreted as missing if not
-          # provided explicitly.
-          if type_fields[qualified_field_name].optional:
-            print(
-                f'[ERROR]\tEntity {entity.guid} ({entity.code}) provides '
-                f'MISSING translation for field {qualified_field_name}, '
-                f'which is optional on type {entity.type_name}. The use of '
-                'MISSING fields is strictly reserved for required fields. '
-                'Adjust the translation and remove MISSING optional fields.'
-            )
-            is_valid = False
 
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi:
           is_valid &= self._IsUdmiCompliant(entity, ft)
-
         for std_unit, raw_unit in ft.unit_mapping.items():
           if std_unit not in found_units:
             found_units[std_unit] = raw_unit
@@ -664,170 +631,53 @@ class InstanceValidator(object):
             )
             is_valid = False
 
-    return is_valid
-
-  def _ValidateUnits(
-      self,
-      qualified_field_name: str,
-      ft: ft_lib.FieldTranslation,
-      entity: EntityInstance,
-  ):
-    """Returns a boolean indicating whether or not the field units are valid.
-
-    Method assumes field has already been checked for existence in the ontology.
-
-    Args:
-      qualified_field_name: A qualified field name for the field
-      ft: Subclass of `FieldTranslation` for the field of the following:
-        DimensionalValue, NonDimensionalValue
-      entity: Instance of EntityInstance class
-
-    Returns:
-      true if units are valid or if units aren't required for the field
-    """
-    valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
-    if valid_units and set(valid_units).difference({'no_units'}):
-      if not isinstance(ft, ft_lib.DimensionalValue):
-        print(
-            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
-            f'{qualified_field_name} but does not define valid units. '
-            'Add units.'
-        )
-        return False
-
-      if not ft.unit_mapping:
-        print(
-            'At least one unit must be provided for dimensional value '
-            f'{qualified_field_name}'
-        )
-        return False
-
-      unit = list(ft.unit_mapping.keys())[0]
-      if unit not in valid_units:
-        print(
-            f'Field {qualified_field_name} has an undefined measurement unit:'
-            + f' {unit}'
-        )
-        return False
-      return True
-
-    if isinstance(ft, ft_lib.DimensionalValue):
-      if set(ft.unit_mapping) == {'no_units'}:
-        return True
-      print(
-          'Units are provided for dimensional value'
-          f' {qualified_field_name} that is defined to have "no_units" in the'
-          ' ontology'
-      )
-      return False
-
-    if isinstance(ft, ft_lib.NonDimensionalValue):
-      return True
-
-    return False
-
-  def _ValidateStates(
-      self,
-      qualified_field_name: str,
-      ft: ft_lib.FieldTranslation,
-      entity: EntityInstance,
-  ):
-    """Returns a boolean indicating whether or not the field states are valid.
-
-    Method assumes field has already been checked for existence in the ontology.
-
-    Args:
-      qualified_field_name: A qualified field name for the field
-      ft: Subclass of `FieldTranslation` for the field of the following:
-        MultiStateValue, NonDimensional
-      entity: Instance of EntityInstance class
-
-    Returns:
-      true if the states are valid or if states aren't required for the field
-    """
-    valid_states = self.universe.GetStatesByField(qualified_field_name)
-    if valid_states:
-      if not isinstance(ft, ft_lib.MultiStateValue):
-        print(
-            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
-            f'{qualified_field_name} without states, which are expected on '
-            'the field. Define states.'
-        )
-        return False
-
-      is_valid = True
-      for state, value in ft.states.items():
-        if state not in valid_states:
+    # Check that unmatched type fields are optional
+    if entity_type and entity.operation == parse.EntityOperation.ADD:
+      type_fields = entity_type.GetAllFields()
+      unmatched = set(type_fields.keys()).difference(set(found_fields.keys()))
+      for unmatched_name in unmatched:
+        if not type_fields[unmatched_name].optional:
           print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
-              f'field {qualified_field_name} with an invalid state: '
-              f'{state}. Allowed states are ({str(valid_states)}).'
+              f'[ERROR]\tEntity {entity.guid} ({entity.code}) missing field '
+              f'"{unmatched_name}" which is required for assigned type '
+              f'"{entity.type_name}"'
           )
           is_valid = False
-        raw_values = value if isinstance(value, list) else [value]
-        for raw_value in raw_values:
-          if ft.raw_values[raw_value] != state:
-            print(
-                f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
-                f'field {qualified_field_name} has raw value {raw_value} '
-                f'mapped to more than one state: {state} and '
-                f'{ft.raw_values[raw_value]}'
-            )
-            is_valid = False
 
-      return is_valid
+    # Check that translations are properly defined
+    type_fields = entity_type.GetAllFields()
+    for qualified_field_name, ft in found_fields.items():
+      if not _FieldTranslationIsValid(self.universe, qualified_field_name, ft, entity):
+        is_valid = False
 
-    if isinstance(ft, ft_lib.MultiStateValue):
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
-          f'{qualified_field_name} with states, but this field is not '
-          'multi-state.'
-      )
-      return False
+      # Check if the field is defined MISSING
+      if isinstance(ft, ft_lib.UndefinedField):
+        # If the field is MISSING and REQUIRED, warn the user.
+        if not type_fields[qualified_field_name].optional:
+          print(
+              f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
+              f'MISSING translation for field {qualified_field_name} which '
+              f'is required for type {entity.type_name}. This feature '
+              'should only be used when the device cannot physically send '
+              'required data and it truly is an instance of the assigned '
+              'type. You must provide justification for all MISSING '
+              'translations and that the applied type is correct, '
+              'otherwise your building config will be rejected.'
+          )
 
-    if isinstance(ft, ft_lib.NonDimensionalValue):
-      return True
-
-    return False
-
-  def _FieldTranslationIsValid(
-      self,
-      qualified_field_name: str,
-      ft: ft_lib.FieldTranslation,
-      entity: EntityInstance,
-  ):
-    """Returns a boolean indicating whether or not the field is valid.
-
-    Method assumes field has already been checked for existence in the ontology.
-    A field {@code FieldTranslation} is an instance of: {@code UndefinedField},
-    {@code DimensionalValue}, {@code NonDimensionalValue}, or {@code
-    MultistateValue}.
-
-    Args:
-      qualified_field_name: A qualified field name for the field
-      ft: a `FieldTranslation` sublcass, for the field, of the following:
-        UndefinedField, DimensionalValue, NonDimensionalValue, MultiStateValue.
-      entity: Instance of EntityInstance class
-    """
-    if isinstance(ft, ft_lib.UndefinedField):
-      return True
-
-    if isinstance(ft, ft_lib.DimensionalValue):
-      return self._ValidateUnits(qualified_field_name, ft, entity)
-
-    if isinstance(ft, ft_lib.MultiStateValue):
-      return self._ValidateStates(qualified_field_name, ft, entity)
-
-    # field is instantiated as NonDimensionValue at parse time if neither units
-    # or states are defined (for the field) on the entity in the building config.
-    # it is necessary to validate both units and state here according to the
-    # ontology.
-    if isinstance(ft, ft_lib.NonDimensionalValue):
-      return self._ValidateUnits(
-          qualified_field_name, ft, entity
-      ) and self._ValidateStates(qualified_field_name, ft, entity)
-
-    return False
+        # If its MISSING and OPTIONAL, raise error. They shouldn't do this.
+        # Optional fields are automatically interpreted as missing if not
+        # provided explicitly.
+        if type_fields[qualified_field_name].optional:
+          print(
+              f'[ERROR]\tEntity {entity.guid} ({entity.code}) provides '
+              f'MISSING translation for field {qualified_field_name}, '
+              f'which is optional on type {entity.type_name}. The use of '
+              'MISSING fields is strictly reserved for required fields. '
+              'Adjust the translation and remove MISSING optional fields.'
+          )
+          is_valid = False
+    return is_valid
 
   def _ConnectionsAreValid(self, entity: EntityInstance) -> bool:
     """Validate's an entity's connections against the ontology universe.
@@ -888,7 +738,7 @@ class InstanceValidator(object):
     is_valid = True
     found_fields = set()
     for link_inst in entity.links:
-      for target_field, source_field in link_inst.field_map.items():
+      for target_field, _ in link_inst.field_map.items():
         qualified_tgt_field = _GetAllowedField(
             self.universe, target_field, entity_type
         )
@@ -900,31 +750,8 @@ class InstanceValidator(object):
           )
           is_valid = False
           continue
-        qualified_src_field = _GetAllowedField(
-            self.universe, source_field, None
-        )
-        if not qualified_src_field:
-          print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to '
-              f'source field {source_field} that is invalid for '
-              f'link: {link_inst}'
-          )
-          is_valid = False
-          continue
 
         found_fields.add(qualified_tgt_field)
-
-        if not self._LinkUnitsMatch(
-            qualified_src_field, qualified_tgt_field, entity
-        ):
-          is_valid = False
-          continue
-
-        if not self._LinkStatesMatch(
-            qualified_src_field, qualified_tgt_field, entity
-        ):
-          is_valid = False
-          continue
 
     if entity_type:
       for field_name, field in entity_type.GetAllFields().items():
@@ -933,38 +760,6 @@ class InstanceValidator(object):
           is_valid = False
 
     return is_valid
-
-  def _LinkUnitsMatch(
-      self, source_field: str, target_field: str, entity: EntityInstance
-  ) -> bool:
-    """Validates that units match between linked source and target fields."""
-
-    source_units = self.universe.GetUnitsForMeasurement(source_field)
-    target_units = self.universe.GetUnitsForMeasurement(target_field)
-    if source_units != target_units:
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) links target field '
-          f'{target_field} to source field {source_field} but the units '
-          'do not match between the fields.'
-      )
-      return False
-    return True
-
-  def _LinkStatesMatch(
-      self, source_field: str, target_field: str, entity: EntityInstance
-  ) -> bool:
-    """Validates that states match between linked source and target fields."""
-
-    source_states = self.universe.GetStatesByField(source_field)
-    target_states = self.universe.GetStatesByField(target_field)
-    if source_states != target_states:
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) links target field '
-          f'{target_field} to source field {source_field} but the states do '
-          'not match between the fields.'
-      )
-      return False
-    return True
 
   def _IsFaciltitiesEntitiesMatchPattern(self, entity: EntityInstance) -> bool:
     """Returns True if facilitities entities match regex patterns."""
@@ -1394,6 +1189,174 @@ def _ParseOperationAndUpdateMask(
 
   return operation, update_mask
 
+def _IsFieldAlphaNumeric(field) -> bool:
+  """Validates that a field is alpha numeric."""
+  if not _ALPHA_NUMERIC_FIELD_PATTERN.match(field):
+    return False
+  return True
+
+def _FieldTranslationIsValid(
+    universe: pvt.ConfigUniverse,
+    qualified_field_name: str,
+    ft: ft_lib.FieldTranslation,
+    entity: EntityInstance,
+):
+  """Returns a boolean indicating whether or not the field is valid.
+
+  Method assumes field has already been checked for existence in the ontology.
+  A field {@code FieldTranslation} is an instance of: {@code UndefinedField},
+  {@code DimensionalValue}, {@code NonDimensionalValue}, or {@code
+  MultistateValue}.
+
+  Args:
+    universe: ConfigUniverse to validate against
+    qualified_field_name: A qualified field name for the field
+    ft: a `FieldTranslation` sublcass, for the field, of the following:
+      UndefinedField, DimensionalValue, NonDimensionalValue, MultiStateValue.
+    entity: Instance of EntityInstance class
+  """
+  if isinstance(ft, ft_lib.UndefinedField):
+    return True
+  if isinstance(ft, ft_lib.DimensionalValue):
+    return _ValidateUnits(universe, qualified_field_name, ft, entity)
+  if isinstance(ft, ft_lib.MultiStateValue):
+    return _ValidateStates(universe, qualified_field_name, ft, entity)
+  # field is instantiated as NonDimensionValue at parse time if neither units
+  # or states are defined (for the field) on the entity in the building config.
+  # it is necessary to validate both units and state here according to the
+  # ontology.
+  if isinstance(ft, ft_lib.NonDimensionalValue):
+    return _ValidateUnits(
+        universe, qualified_field_name, ft, entity
+    ) and _ValidateStates(universe, qualified_field_name, ft, entity)
+  return False
+
+def _ValidateStates(
+    universe: pvt.ConfigUniverse,
+    qualified_field_name: str,
+    ft: ft_lib.FieldTranslation,
+    entity: EntityInstance,
+):
+  """Returns a boolean indicating whether or not the field states are valid.
+
+  Method assumes field has already been checked for existence in the ontology.
+
+  Args:
+    universe: ConfigUniverse to validate against
+    qualified_field_name: A qualified field name for the field
+    ft: Subclass of `FieldTranslation` for the field of the following:
+      MultiStateValue, NonDimensional
+    entity: Instance of EntityInstance class
+
+  Returns:
+    true if the states are valid or if states aren't required for the field
+  """
+  valid_states = universe.GetStatesByField(qualified_field_name)
+  if valid_states:
+    if not isinstance(ft, ft_lib.MultiStateValue):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+          f'{qualified_field_name} without states, which are expected on '
+          'the field. Define states.'
+      )
+      return False
+
+    is_valid = True
+    for state, value in ft.states.items():
+      if state not in valid_states:
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
+            f'field {qualified_field_name} with an invalid state: '
+            f'{state}. Allowed states are ({str(valid_states)}).'
+        )
+        is_valid = False
+      raw_values = value if isinstance(value, list) else [value]
+      for raw_value in raw_values:
+        if ft.raw_values[raw_value] != state:
+          print(
+              f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
+              f'field {qualified_field_name} has raw value {raw_value} '
+              f'mapped to more than one state: {state} and '
+              f'{ft.raw_values[raw_value]}'
+          )
+          is_valid = False
+
+    return is_valid
+
+  if isinstance(ft, ft_lib.MultiStateValue):
+    print(
+        f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+        f'{qualified_field_name} with states, but this field is not '
+        'multi-state.'
+    )
+    return False
+
+  if isinstance(ft, ft_lib.NonDimensionalValue):
+    return True
+
+  return False
+
+
+def _ValidateUnits(
+    universe: pvt.ConfigUniverse,
+    qualified_field_name: str,
+    ft: ft_lib.FieldTranslation,
+    entity: EntityInstance,
+):
+  """Returns a boolean indicating whether or not the field units are valid.
+
+  Method assumes field has already been checked for existence in the ontology.
+
+  Args:
+    universe: ConfigUniverse to validate against
+    qualified_field_name: A qualified field name for the field
+    ft: Subclass of `FieldTranslation` for the field of the following:
+      DimensionalValue, NonDimensionalValue
+    entity: Instance of EntityInstance class
+
+  Returns:
+    true if units are valid or if units aren't required for the field
+  """
+  valid_units = universe.GetUnitsForMeasurement(qualified_field_name)
+  if valid_units and set(valid_units).difference({_NO_UNITS_IDENTIFIER}):
+    if not isinstance(ft, ft_lib.DimensionalValue):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+          f'{qualified_field_name} but does not define valid units. '
+          'Add units.'
+      )
+      return False
+
+    if not ft.unit_mapping:
+      print(
+          'At least one unit must be provided for dimensional value '
+          f'{qualified_field_name}'
+      )
+      return False
+
+    unit = list(ft.unit_mapping.keys())[0]
+    if unit not in valid_units:
+      print(
+          f'Field {qualified_field_name} has an undefined measurement unit:'
+          + f' {unit}'
+      )
+      return False
+    return True
+
+  if isinstance(ft, ft_lib.DimensionalValue):
+    if set(ft.unit_mapping) == {_NO_UNITS_IDENTIFIER}:
+      return True
+    print(
+        'Units are provided for dimensional value'
+        f' {qualified_field_name} that is defined to have "no_units" in the'
+        ' ontology'
+    )
+    return False
+
+  if isinstance(ft, ft_lib.NonDimensionalValue):
+    return True
+
+  return False
 
 # TODO(nkilmer): move parsing and validation logic in this class into subclasses
 # TODO(berkoben): Change name to Entity
