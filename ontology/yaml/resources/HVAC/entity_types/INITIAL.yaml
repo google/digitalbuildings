@@ -25,6 +25,18 @@ AHU_INITIAL:
   - AHU
   allow_undefined_fields: true
 
+CDWS_INITIAL:
+  guid: fa4c78ed-ca06-4e04-8738-6f8587ee73a7
+  description: "Initial type for CDWS."
+  implements:
+  - CDWS
+  allow_undefined_fields: true
+
+FAN_INITIAL:
+  description: "Initial type for FAN."
+  implements:
+  - FAN
+  allow_undefined_fields: true
 
 FCU_INITIAL:
   guid: 62e1bfda-7575-4f43-8a37-9748f3b72b1f
@@ -33,16 +45,15 @@ FCU_INITIAL:
   - FCU
   allow_undefined_fields: true
 
+FRZ_INITIAL:
+  description: "Initial type for FRZ."
+  implements:
+  - FRZ
+  allow_undefined_fields: true
+
 PMP_INITIAL:
   guid: 292a81bc-e6d1-4e36-b635-4974063ec151
   description: "Initial type for PMPs."
   implements:
   - PMP
-  allow_undefined_fields: true
-
-CDWS_INITIAL:
-  guid: fa4c78ed-ca06-4e04-8738-6f8587ee73a7
-  description: "Initial type for CDWS."
-  implements:
-  - CDWS
   allow_undefined_fields: true
