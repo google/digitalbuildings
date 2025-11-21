@@ -302,7 +302,7 @@ class ParserTest(absltest.TestCase):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_insensitive.yaml')]
     )
-    self.assertLen(parser.GetEntities().keys(), 2)
+    self.assertLen(parser.GetEntities().keys(), 3)
 
   def testEntityBlock_EntityWithId_Success(self):
     parser = _ParserHelper(

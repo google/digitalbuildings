@@ -1226,7 +1226,8 @@ class EntityInstanceTest(absltest.TestCase):
       self,
   ):
     # pylint: disable=line-too-long
-    entity = entity_instance.EntityInstance(
+    entity_instances = {}
+    passthrough_entity = entity_instance.EntityInstance(
         _UPDATE,
         guid='VAV-123-GUID',
         code='VAV-123',
@@ -1235,7 +1236,7 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='PASSTHROUGH',
         cloud_device_id='2619178366980754',
         translation={
-            'return_water_temperature_sensor': (
+            'room1_temp_data': (
                 field_translation.DimensionalValue(
                     std_field_name='return_water_temperature_sensor',
                     unit_field_name=(
@@ -1249,8 +1250,25 @@ class EntityInstanceTest(absltest.TestCase):
             )
         },
     )
-
-    self.assertFalse(self.update_validator.Validate(entity))
+    virtual_entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-1233-GUID',
+        code='VAV-1233',
+        etag='12345',
+        namespace='HVAC',
+        type_name='CHWS_WDT',
+        cloud_device_id='2619178366980754',
+        links=[link.Link('VAV-123-GUID', {
+            'return_water_temperature_sensor': 'room1_temp_data',
+        })],
+        update_mask=['links'],
+    )
+    entity_instances['VAV-123-GUID'] = passthrough_entity
+    entity_instances['VAV-1233-GUID'] = virtual_entity
+    graph_validator = entity_instance.GraphValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+    self.assertFalse(graph_validator.Validate(virtual_entity))
 
   def testInstance_DimensionalValueNoUnitsExpected_Success(self):
     entity = entity_instance.EntityInstance(
@@ -1316,7 +1334,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertFalse(self.update_validator.Validate(entity))
 
   def testInstance_oneOfThreeFieldsIsInvalid_Fails(self):
-    entity = entity_instance.EntityInstance(
+    passthrough_entity = entity_instance.EntityInstance(
         _UPDATE,
         guid='VAV-123-GUID',
         code='VAV-123',
@@ -1346,8 +1364,35 @@ class EntityInstanceTest(absltest.TestCase):
             ),
         },
     )
-
-    self.assertFalse(self.update_validator.Validate(entity))
+    virtual_entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-1233-GUID',
+        code='VAV-1233',
+        etag='12345',
+        namespace='ELECTRICAL',
+        type_name='PPWM',
+        cloud_device_id='2619178366980754',
+        links=[
+            link.Link(
+                'VAV-123-GUID',
+                {
+                    'line_powerfactor_sensor': 'line_powerfactor_sensor',
+                    'return_water_temperature_sensor': (
+                        'return_water_temperature_sensor'
+                    ),
+                    'exhaust_air_damper_command': 'exhaust_air_damper_command',
+                },
+            )
+        ],
+        update_mask=['links'],
+    )
+    entity_instances = {}
+    entity_instances['VAV-123-GUID'] = passthrough_entity
+    entity_instances['VAV-1233-GUID'] = virtual_entity
+    graph_validator = entity_instance.GraphValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+    self.assertFalse(graph_validator.Validate(virtual_entity))
 
   def testInstance_EntityWithNonDimensionalValue_InstantiatesNonDimensionalValueObjectSuccessfully(
       self,
@@ -1463,6 +1508,38 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_PassthroughTranslationWithNonStandardField_Success(self):
+        parsed, default_operation = _Helper([
+            path.join(
+                _TESTCASE_PATH,
+                'GOOD',
+                'passthrough_translation_with_non_standard_field.yaml',
+            )
+        ])
+        entity_guid, entity_parsed = next(iter(parsed.items()))
+
+        entity = entity_instance.EntityInstance.FromYaml(
+            entity_guid, entity_parsed, default_operation=default_operation
+        )
+
+        self.assertTrue(self.init_validator.Validate(entity))
+
+  def testInstance_PassthroughTranslationWithInvalidEnumerations_Success(self):
+    parsed, default_operation = _Helper([
+        path.join(
+            _TESTCASE_PATH,
+            'GOOD',
+            'passthrough_translation_with_invalid_enumerations.yaml',
+        )
+    ])
+    entity_guid, entity_parsed = next(iter(parsed.items()))
+
+    entity = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity_parsed, default_operation=default_operation
+    )
+
+    self.assertTrue(self.init_validator.Validate(entity))
 
   def testValidate_EmptyCode_Fails(self):
     entity = entity_instance.EntityInstance(
@@ -1720,7 +1797,7 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertFalse(
-        combination_validator.Validate(entity_instances['FC2-1-1-GUID'])
+        combination_validator.Validate(entity_instances['VRT-1-1-GUID'])
     )
 
   def testValidate_BuildingConfigEntityWithId_Success(self):
@@ -1761,7 +1838,7 @@ class EntityInstanceTest(absltest.TestCase):
     )
     self.assertFalse(self.init_validator.Validate(entity_1))
 
-  def testPrivateFieldTranslationIsValid_BaseDefinedFieldNotCoveredByValidation_Fails(
+  def testFieldTranslationIsValid_BaseDefinedFieldNotCoveredByValidation_Fails(
       self,
   ):
     as_written_field_name = 'zone_air_cooling_temperature_setpoint'
@@ -1789,12 +1866,12 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertFalse(
-        self.update_validator._FieldTranslationIsValid(
-            qualified_field_name, ft, entity
+        entity_instance._FieldTranslationIsValid(
+            self.config_universe, qualified_field_name, ft, entity
         )
     )
 
-  def testPrivateValidateStates_FieldTranslationNotCoveredByValidation_Fails(
+  def testValidateStates_FieldTranslationNotCoveredByValidation_Fails(
       self,
   ):
     as_written_field_name = 'return_water_temperature_sensor'
@@ -1825,10 +1902,12 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertFalse(
-        self.update_validator._ValidateStates(qualified_field_name, ft, entity)
+        entity_instance._ValidateStates(
+            self.config_universe, qualified_field_name, ft, entity
+        )
     )
 
-  def testPrivateValidateUnits_FieldTranslationNotCoveredByValidation_Fails(
+  def tesValidateUnits_FieldTranslationNotCoveredByValidation_Fails(
       self,
   ):
     as_written_field_name = 'exhaust_air_damper_command'
@@ -1858,9 +1937,133 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertFalse(
-        self.update_validator._ValidateUnits(qualified_field_name, ft, entity)
+        entity_instance._ValidateUnits(
+            self.config_universe, qualified_field_name, ft, entity
+        )
     )
 
+  def testLinksAreValid_InvalidSourceFieldName_Fails(self):
+    passthrough_entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
+        translation={
+            'invalid-field-1': field_translation.MultiStateValue(
+                std_field_name='run_status',
+                raw_field_name='points.run_status.present_value',
+                states={'ON': 'true', 'OFF': 'false'},
+            ),
+            'Field': field_translation.MultiStateValue(
+                std_field_name='differential_pressure_specification',
+                raw_field_name='points.Field.present_value',
+                states={'ON': 'true', 'OFF': 'false'},
+            ),
+            '_field': field_translation.DimensionalValue(
+                std_field_name='flowrate_requirement',
+                raw_field_name='points._field.present_value',
+                unit_field_name='points._field.present_value.units',
+                unit_mapping={'liters_per_second': 'lps'},
+            ),
+            'field_': field_translation.DimensionalValue(
+                std_field_name='return_water_temperature_sensor',
+                raw_field_name='points.field_.present_value',
+                unit_field_name='points.field_.present_value.units',
+                unit_mapping={'degrees_fahrenheit': 'degF'},
+            ),
+        },
+    )
+    virtual_entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-1233-GUID',
+        code='VAV-1233',
+        etag='12345',
+        namespace='HVAC',
+        type_name='CHWS_WDT',
+        links=[
+            link.Link(
+                'VAV-123-GUID', {
+                    'run_status': 'invalid-field-1',
+                    'differential_pressure_specification': 'Field',
+                    'flowrate_requirement': '_field',
+                    'return_water_temperature_sensor': 'field_',
+                }
+            )
+        ],
+        update_mask=['links'],
+    )
+    entity_instances = {}
+    entity_instances['VAV-123-GUID'] = passthrough_entity
+    entity_instances['VAV-1233-GUID'] = virtual_entity
+    graph_validator = entity_instance.GraphValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+    self.assertFalse(graph_validator.Validate(virtual_entity))
+
+  def testLinksAreValid_SourceFieldNotInTranslation_Fails(self):
+    parsed, default_operation = _Helper([
+        path.join(
+            _TESTCASE_PATH, 'BAD', 'links_source_field_not_in_translation.yaml'
+        )
+    ])
+
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation
+      )
+      entity_instances[entity.guid] = entity
+
+    graph_validator = entity_instance.GraphValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+
+    self.assertFalse(graph_validator.Validate(entity_instances['VAV-789-GUID']))
+
+  def testLinksAreValid_PassthroughTranslationWithWrongUnit_Fails(self):
+    parsed, default_operation = _Helper([
+        path.join(
+            _TESTCASE_PATH,
+            'BAD',
+            'passthrough_translation_with_wrong_unit.yaml',
+        )
+    ])
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation
+      )
+      entity_instances[entity.guid] = entity
+    graph_validator = entity_instance.GraphValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+    self.assertFalse(
+        graph_validator.Validate(entity_instances['CHWS-2-GUID'])
+    )
+
+  def testInstance_ValidPassthroughValidation_Success(self):
+    parsed, default_operation = _Helper([
+        path.join(
+            _TESTCASE_PATH,
+            'GOOD',
+            'passthrough_validation_success.yaml',
+        )
+    ])
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation
+      )
+      entity_instances[entity.guid] = entity
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+    self.assertTrue(
+        combination_validator.Validate(entity_instances['CHWS-2-GUID'])
+    )
 
 if __name__ == '__main__':
   absltest.main()
