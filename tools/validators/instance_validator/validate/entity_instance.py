@@ -47,7 +47,7 @@ _UDMI_PRESENT_VALUE_REGEX = (
 _UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
 _UDMI_UNIT_FIELD_REGEX = (
-    r'^(pointset.points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.units)$'
+    r'^(pointset.points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.unit)$'
 )
 _UDMI_UNIT_FIELD_PATTERN = re.compile(_UDMI_UNIT_FIELD_REGEX)
 
