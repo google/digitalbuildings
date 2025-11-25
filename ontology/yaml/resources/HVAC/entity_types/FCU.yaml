@@ -1919,19 +1919,6 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
-FCU_DSP_DFVSC_CHWDDC_HWDDC_CO2C_MTM:
-  guid: "247619b2-e329-40aa-801d-5c12178a35de"
-  is_canonical: true
-  description: " Hot water and chilled water discharge air controled with mixed air temperature monitoring and CO2 contol, zone cooling and heating setpoints, discharge fan speed command"
-  implements:
-  - FCU
-  - DSP
-  - DFVSC
-  - CHWDDC
-  - HWDDC
-  - CO2C
-  - MTM
-
 FCU_DFMSC_DSP_HPZC_CO2M:
   guid: "8c787fe8-5c21-47ac-9de8-5c5c9d60a439"
   is_canonical: true
