@@ -88,7 +88,7 @@ VAV_SD_DSP_CO2C:
 
 VAV_SD_DSP_CO2C_COM_ZHM:
   guid: "a941d668-9c2f-4519-ad77-635a93f1a847"
-  description: "CO2 control VAV wiht CO monitoring and humidity monitoring."
+  description: "CO2 control VAV with CO monitoring and humidity monitoring."
   is_canonical: true
   implements:
   - VAV
@@ -151,7 +151,7 @@ VAV_SD_DSP_CO2M:
 
 VAV_SD_DSP_CO2M_COM_ZHM:
   guid: "ce2aef8e-367f-4ab6-8603-56ddc787f0a9"
-  description: "VAV with zone CO2 monitoring CO monitoring and humidity monitoring."
+  description: "VAV with zone CO2 monitoring, CO monitoring and humidity monitoring."
   is_canonical: true
   implements:
   - VAV
@@ -447,7 +447,7 @@ VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC:
 
 VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC_COM_ZHM:
   guid: "86f64755-4de7-466c-a14a-6408ada66da0"
-  description: "Single duct fan powered VAV with reheat and CO2 control CO and humidity monitoring."
+  description: "Single duct fan powered VAV with reheat and CO2 control, CO and humidity monitoring."
   is_canonical: true
   implements:
   - VAV
@@ -462,7 +462,7 @@ VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC_COM_ZHM:
 
 VAV_SD_DSP_HWDC_CO2C_DFVSC_COM_ZHM:
   guid: "7d6dad5c-31cb-4dc9-887c-7eba3709bb61"
-  description: "Single duct fan powered VAV with reheat and CO2 control CO monitoring and humidity monitoring."
+  description: "Single duct fan powered VAV with reheat and CO2 control, CO monitoring and humidity monitoring."
   is_canonical: true
   implements:
   - VAV
