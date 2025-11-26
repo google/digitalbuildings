@@ -16,8 +16,8 @@
 # enumerated name and one without.
 
 CHWS_WDT-17-GUID:
-  type: HVAC/CHWS_WDT
-  code: CHWS_WDT-17
+  type: GATEWAYS/PASSTHROUGH
+  code: CHWS_WDT-GATEWAY
   cloud_device_id: "123456789"
   translation:
     return_water_temperature_sensor:
