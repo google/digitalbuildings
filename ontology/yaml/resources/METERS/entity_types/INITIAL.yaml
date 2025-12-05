@@ -19,6 +19,7 @@
 # they are placeholders for appropriate types to be applied later.
 
 HM_INITIAL:
+  guid: "4e6d3359-8528-4e5d-a8e1-9f23e29ee17e"
   description: "Initial type for HMs."
   implements:
   - HM
