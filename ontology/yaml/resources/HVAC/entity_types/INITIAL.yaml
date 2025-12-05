@@ -32,6 +32,24 @@ CDWS_INITIAL:
   - CDWS
   allow_undefined_fields: true
 
+CH_INITIAL:
+  description: "Initial type for CH."
+  implements:
+  - CH
+  allow_undefined_fields: true
+
+CHWS_INITIAL:
+  description: "Initial type for CHWS."
+  implements:
+  - CHWS
+  allow_undefined_fields: true
+
+CT_INITIAL:
+  description: "Initial type for CT."
+  implements:
+  - CT
+  allow_undefined_fields: true
+
 FAN_INITIAL:
   guid: "4e40b592-b24d-44f1-abee-6cc066c9a203"
   description: "Initial type for FAN."
@@ -58,4 +76,10 @@ PMP_INITIAL:
   description: "Initial type for PMPs."
   implements:
   - PMP
+  allow_undefined_fields: true
+
+VAV_INITIAL:
+  description: "Initial type for VAV."
+  implements:
+  - VAV
   allow_undefined_fields: true
