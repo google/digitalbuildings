@@ -15,7 +15,7 @@
 # INITIAL TYPES
 # These type definitions are meant to be used for initial device onboarding
 # where device modeling is in progress but where end-to-end connectivity
-# testing is needed. These are not to be permanently applied to entities; 
+# testing is needed. These are not to be permanently applied to entities;
 # they are placeholders for appropriate types to be applied later.
 
 AHU_INITIAL:

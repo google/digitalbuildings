@@ -41,7 +41,7 @@ FM:
   description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
   is_abstract: true
   implements:
-  - MTR  
+  - MTR
 
 WM:
   guid: "c1df623f-c71b-45a1-89eb-2bc7c82f291a"
