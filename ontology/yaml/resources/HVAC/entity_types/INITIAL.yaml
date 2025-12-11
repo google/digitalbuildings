@@ -15,7 +15,7 @@
 # INITIAL TYPES
 # These type definitions are meant to be used for initial device onboarding
 # where device modeling is in progress but where end-to-end connectivity
-# testing is needed. These are not to be permanently applied to entities; 
+# testing is needed. These are not to be permanently applied to entities;
 # they are placeholders for appropriate types to be applied later.
 
 AHU_INITIAL:
@@ -30,6 +30,27 @@ CDWS_INITIAL:
   description: "Initial type for CDWS."
   implements:
   - CDWS
+  allow_undefined_fields: true
+
+CH_INITIAL:
+  guid: "439ecc5a-4787-4afb-90a9-eeca10824256"
+  description: "Initial type for CH."
+  implements:
+  - CH
+  allow_undefined_fields: true
+
+CHWS_INITIAL:
+  guid: "f8eedf45-6f35-4694-bc49-ab13bed230b9"
+  description: "Initial type for CHWS."
+  implements:
+  - CHWS
+  allow_undefined_fields: true
+
+CT_INITIAL:
+  guid: "0916a1bf-d7a9-424b-8c3a-9291f6205cc3"
+  description: "Initial type for CT."
+  implements:
+  - CT
   allow_undefined_fields: true
 
 FAN_INITIAL:
@@ -58,4 +79,11 @@ PMP_INITIAL:
   description: "Initial type for PMPs."
   implements:
   - PMP
+  allow_undefined_fields: true
+
+VAV_INITIAL:
+  guid: "6835a0be-50c6-4559-a38a-2027c8533798"
+  description: "Initial type for VAV."
+  implements:
+  - VAV
   allow_undefined_fields: true
