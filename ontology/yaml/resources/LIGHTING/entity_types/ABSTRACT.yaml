@@ -56,7 +56,7 @@ OS:
   implements:
   - /ZOS
 
-ROS: 
+ROS:
   guid: "e0421347-a54f-4ac7-a0f0-8183df183839"
   is_abstract: true
   description: "Room occupancy status based on one or multiple zone occupancy statuses"
@@ -172,7 +172,7 @@ CCIEM:
   guid: "d2755279-6ccd-4d9e-838a-371ab23c022d"
   description: "CIE light color monitoring"
   is_abstract: true
-  uses: 
+  uses:
   - lighting_color_cie_xvalue_sensor
   - lighting_color_cie_yvalue_sensor
 
