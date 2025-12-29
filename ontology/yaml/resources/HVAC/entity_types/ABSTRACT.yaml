@@ -7902,13 +7902,13 @@ RCKTM:
   is_abstract: true
   opt_uses:
   - refrigerant_vapor_temperature_sensor
-  uses:
   - refrigerant_discharge_pressure_sensor
   - refrigerant_discharge_temperature_sensor
   - refrigerant_liquid_pressure_sensor
   - refrigerant_liquid_saturation_temperature_sensor
   - refrigerant_liquid_temperature_sensor
   - refrigerant_subcooling_temperature_sensor
+  uses:
   - refrigerant_suction_pressure_sensor
   - refrigerant_suction_saturation_temperature_sensor
   - refrigerant_suction_superheat_temperature_sensor
@@ -7922,7 +7922,6 @@ RCKTM2X:
   opt_uses:
   - refrigerant_vapor_temperature_sensor_1
   - refrigerant_vapor_temperature_sensor_2
-  uses:
   - refrigerant_discharge_pressure_sensor_1
   - refrigerant_discharge_pressure_sensor_2
   - refrigerant_discharge_temperature_sensor_1
@@ -7935,6 +7934,7 @@ RCKTM2X:
   - refrigerant_liquid_temperature_sensor_2
   - refrigerant_subcooling_temperature_sensor_1
   - refrigerant_subcooling_temperature_sensor_2
+  uses:
   - refrigerant_suction_pressure_sensor_1
   - refrigerant_suction_pressure_sensor_2
   - refrigerant_suction_saturation_temperature_sensor_1
