@@ -54,7 +54,7 @@ OS:
   is_abstract: true
   description: "Occupancy status for a specific zone."
   implements:
-  - /ZOC
+  - /ZOS
 
 ROS: 
   guid: "e0421347-a54f-4ac7-a0f0-8183df183839"
