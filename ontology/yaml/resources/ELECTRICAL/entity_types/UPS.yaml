@@ -20,7 +20,6 @@ UPS_SS:
   - UPS
   - SS
 
-
 UPS_IOBM:
   guid: "5588b9bb-a6be-4b7b-b41d-301bbd2986cb"
   description: "UPS with input and output electrical monitoring"

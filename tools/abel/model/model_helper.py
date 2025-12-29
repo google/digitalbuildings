@@ -62,24 +62,20 @@ def DetermineReportingEntityUpdateMask(
     updated_entity: An Entity instance from an updated building config.
   """
   update_mask = set()
-  # updated entity code
   if updated_entity.code != current_entity.code:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
-  # updated entity type name
+  if (updated_entity.display_name or '') != (current_entity.display_name or ''):
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.DISPLAY_NAME)
   if updated_entity.type_name != current_entity.type_name:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
-  # updated entity connections
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.add(
-        entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
-    )
-  if (sorted(updated_entity.translations, key=lambda x: x.std_field_name) !=
-      sorted(current_entity.translations, key=lambda x: x.std_field_name)):
-    update_mask.add(
-        entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
-    )
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS)
+  if sorted(
+      updated_entity.translations, key=lambda x: x.std_field_name
+  ) != sorted(current_entity.translations, key=lambda x: x.std_field_name):
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION)
   else:
     for updated_field in updated_entity.translations:
       current_translation = {
@@ -141,14 +137,14 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
   update_mask = set()
   if updated_entity.code != current_entity.code:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
+  if (updated_entity.display_name or '') != (current_entity.display_name or ''):
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.DISPLAY_NAME)
   if updated_entity.type_name != current_entity.type_name:
     update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.add(
-        entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
-    )
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS)
   # Facilities entities don't have links but are virtual so do the following
   # check to ensure a division by zero error is not thrown.
   if (

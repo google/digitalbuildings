@@ -255,5 +255,6 @@ SUBFIELD_FOLDER.AddFromConfig(
             'status': 'foobar',
             'specification': 'foobar',
             'timestamp': 'foobar',
-        }
-    }])
+        },
+    }],
+)

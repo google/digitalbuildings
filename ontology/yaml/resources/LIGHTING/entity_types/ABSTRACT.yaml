@@ -30,6 +30,18 @@ DC:
   uses:
   - brightness_percentage_command
 
+AWIC:
+  guid: "58b91ab7-a475-4800-bf15-f918fa95f829"
+  description: "Luminance control with separate aisle and window brightness command."
+  is_abstract: true
+  opt_uses:
+  - brightness_percentage_sensor
+  uses:
+  - illuminance_sensor
+  - illuminance_setpoint
+  - aisle_brightness_percentage_command
+  - window_brightness_percentage_command
+
 MS:
   guid: "d5244d01-e5e9-4592-8c76-bf3a7e196a28"
   description: "Motion sensing monitoring."
@@ -41,8 +53,8 @@ OS:
   guid: "42e7e1d7-2da6-4be6-9d21-2d3e93e5af1c"
   is_abstract: true
   description: "Occupancy status for a specific zone."
-  uses:
-  - zone_occupancy_status
+  implements:
+  - /ZOS
 
 ROS: 
   guid: "e0421347-a54f-4ac7-a0f0-8183df183839"
@@ -146,15 +158,15 @@ SRC:
   guid: "2483cfe4-4196-42a4-b18f-f67f258a0220"
   description: "Basic run scheduling "
   is_abstract: true
-  uses:
-  - schedule_run_command 
+  implements:
+  - /SRC
 
 PWM:
   guid: "fc70bbb6-5000-4f83-9e79-862f60ececfe"
   description: "Basic power monitoring "
   is_abstract: true
-  uses:
-  - power_sensor  
+  implements:
+  - /PWM
 
 CCIEM:
   guid: "d2755279-6ccd-4d9e-838a-371ab23c022d"
@@ -206,3 +218,11 @@ CTC:
   - lighting_color_temperature_sensor
   uses:
   - lighting_color_temperature_setpoint
+
+
+LPS:
+  guid: "a6981abe-eb32-4431-88fa-9b2660b84762"
+  description: "Individual lighting percentage sensor monitoring, not used for control"
+  is_abstract: true
+  uses:
+  - lighting_percentage_sensor

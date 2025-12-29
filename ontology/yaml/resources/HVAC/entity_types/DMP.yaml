@@ -39,15 +39,29 @@ DMP_EDM:
   - DMP
   - EDM
 
+DMP_EDPM:
+  guid: "a1857e98-6e75-4b74-b1f0-d21bafbc1706"
+  description: "Exhaust damper percentage monitoring."
+  is_canonical: true
+  implements:
+  - DMP
+  - EDPM
+
 DMP_ED:
   guid: "f94434b4-3b01-4a69-a31c-9cc6e1afbc64"
   description: "Exhaust control damper."
   is_canonical: true
-  uses:
-  - exhaust_air_static_pressure_sensor
   implements:
   - DMP
   - ED
+
+DMP_OADM:
+  guid: "48924740-bed6-4b2a-b954-f70bd1160837"
+  description: "Outside air control damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - OADM
 
 DMP_SDBPC:
   guid: "f475383f-8570-4813-8039-54c637e9be9a"
@@ -98,6 +112,22 @@ DMP_ZSPC_EFM:
   - DMP
   - ZSPC
   - EFM
+
+DMP_OAFC:
+  guid: "35d72afa-47e3-48ba-8f59-51c74ebbbddd"
+  description: "Stand-alone damper with outside air flowrate control."
+  is_canonical: true
+  implements:
+  - DMP
+  - OAFC
+
+DMP_BYPFRC:
+  guid: "d4d1735b-82d8-4090-98b6-a0a2a58619f6"
+  description: "VAV functioning as bypass to serve minimum air requirements of blower furnace"
+  is_canonical: true
+  implements:
+  - DMP
+  - BYPFRC
 
 ###################################
 ### Existing Non-standard Types ###

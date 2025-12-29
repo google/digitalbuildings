@@ -14,13 +14,12 @@
 
 """Tests for generator.rdflib_units_handler."""
 
-import rdflib
-
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
 from rdfformat.generator import rdflib_units_handler
 from rdfformat.generator import yaml_handler
-from absl.testing import absltest
+import rdflib
 
 
 class RdfUnitHandlerTest(absltest.TestCase):
@@ -51,11 +50,18 @@ class RdfUnitHandlerTest(absltest.TestCase):
     degrees_fahrenheit = rdflib.URIRef(constants.UNITS_NS['degrees_fahrenheit'])
     kelvins = rdflib.URIRef(constants.UNITS_NS['kelvins'])
     is_standard_unit = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['is_standard_unit'])
-    is_standard_unit_degrees_celsius = (degrees_celsius, is_standard_unit,
-                                        rdflib.Literal(False))
-    is_standard_unit_degrees_fahrenheit = (degrees_fahrenheit, is_standard_unit,
-                                           rdflib.Literal(False))
+        constants.DIGITAL_BUILDINGS_NS['is_standard_unit']
+    )
+    is_standard_unit_degrees_celsius = (
+        degrees_celsius,
+        is_standard_unit,
+        rdflib.Literal(False),
+    )
+    is_standard_unit_degrees_fahrenheit = (
+        degrees_fahrenheit,
+        is_standard_unit,
+        rdflib.Literal(False),
+    )
     is_standard_unit_kelvin = (kelvins, is_standard_unit, rdflib.Literal(True))
 
     # Classes Under Test
@@ -63,14 +69,23 @@ class RdfUnitHandlerTest(absltest.TestCase):
     temperature_class = (temperature, rdflib.RDF.type, rdflib.OWL.Class)
 
     # Data Properties Under Test
-    is_standard_unit_object = (is_standard_unit, rdflib.RDF.type,
-                               rdflib.OWL.DatatypeProperty)
+    is_standard_unit_object = (
+        is_standard_unit,
+        rdflib.RDF.type,
+        rdflib.OWL.DatatypeProperty,
+    )
 
     # Instances Under Test
-    degrees_celsius_object = (degrees_celsius, rdflib.RDF.type,
-                              rdflib.OWL.NamedIndividual)
-    degrees_fahrenheit_object = (degrees_fahrenheit, rdflib.RDF.type,
-                                 rdflib.OWL.NamedIndividual)
+    degrees_celsius_object = (
+        degrees_celsius,
+        rdflib.RDF.type,
+        rdflib.OWL.NamedIndividual,
+    )
+    degrees_fahrenheit_object = (
+        degrees_fahrenheit,
+        rdflib.RDF.type,
+        rdflib.OWL.NamedIndividual,
+    )
     kelvins_object = (kelvins, rdflib.RDF.type, rdflib.OWL.NamedIndividual)
 
     # Assertions

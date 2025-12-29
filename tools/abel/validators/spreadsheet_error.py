@@ -58,13 +58,15 @@ class InvalidNamingError(BaseSpreadsheetError):
     naming_pattern: Regex pattern for entity names.
   """
 
-  def __init__(self,
-               table: str,
-               row: str,
-               column: str,
-               invalid_name: str,
-               naming_pattern: str,
-               message: Optional[str] = ''):
+  def __init__(
+      self,
+      table: str,
+      row: str,
+      column: str,
+      invalid_name: str,
+      naming_pattern: str,
+      message: Optional[str] = '',
+  ):
     """Init.
 
     Args:
@@ -82,7 +84,11 @@ class InvalidNamingError(BaseSpreadsheetError):
     self.naming_pattern = naming_pattern
 
   def GetErrorMessage(self) -> str:
-    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}, entity name: {self.invalid_name} must follow naming pattern: {self.naming_pattern}'
+    return (
+        f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message:'
+        f' {self.message}, entity name: {self.invalid_name} must follow naming'
+        f' pattern: {self.naming_pattern}'
+    )
 
 
 class MissingSpreadsheetValueError(BaseSpreadsheetError):
@@ -109,7 +115,10 @@ class MissingSpreadsheetValueError(BaseSpreadsheetError):
     self.column = column
 
   def GetErrorMessage(self) -> str:
-    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}'
+    return (
+        f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message:'
+        f' {self.message}'
+    )
 
 
 class MissingFieldError(BaseSpreadsheetError):
@@ -128,7 +137,10 @@ class MissingFieldError(BaseSpreadsheetError):
     self.column = column
 
   def GetErrorMessage(self) -> str:
-    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}'
+    return (
+        f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message:'
+        f' {self.message}'
+    )
 
 
 class DuplicateCodeError(BaseSpreadsheetError):
@@ -158,7 +170,10 @@ class DuplicateCodeError(BaseSpreadsheetError):
     self.code = code
 
   def GetErrorMessage(self) -> str:
-    return f'Table: {self.table}, Duplicate Code: {self.code}, Message: {self.message}'
+    return (
+        f'Table: {self.table}, Duplicate Code: {self.code}, Message:'
+        f' {self.message}'
+    )
 
 
 class SpreadsheetHeaderError(BaseSpreadsheetError):
@@ -182,7 +197,10 @@ class SpreadsheetHeaderError(BaseSpreadsheetError):
     self.header = header
 
   def GetErrorMessage(self) -> str:
-    return f'Table: {self.table}, Missing Header: {self.header}, Message: {self.message}'
+    return (
+        f'Table: {self.table}, Missing Header: {self.header}, Message:'
+        f' {self.message}'
+    )
 
 
 class CrossSheetDependencyError(BaseSpreadsheetError):
@@ -203,13 +221,15 @@ class CrossSheetDependencyError(BaseSpreadsheetError):
     message: Custom error message.
   """
 
-  def __init__(self,
-               source_table: str,
-               target_table: str,
-               row: str,
-               column: str,
-               cell_value: str,
-               message: Optional[str] = ''):
+  def __init__(
+      self,
+      source_table: str,
+      target_table: str,
+      row: str,
+      column: str,
+      cell_value: str,
+      message: Optional[str] = '',
+  ):
     """Init.
 
     Args:
@@ -229,8 +249,14 @@ class CrossSheetDependencyError(BaseSpreadsheetError):
     self.cell_value = cell_value
 
   def GetErrorMessage(self) -> str:
-    error_message = f'Row: {self.row}, Column: {self.column}, Source Table: {self.table}, Target Table: {self.target_table}.\n'
-    error_message += f'{self.table} has a dependency on {self.target_table}, {self.cell_value} not found in {self.target_table}.'
+    error_message = (
+        f'Row: {self.row}, Column: {self.column}, Source Table: {self.table},'
+        f' Target Table: {self.target_table}.\n'
+    )
+    error_message += (
+        f'{self.table} has a dependency on {self.target_table},'
+        f' {self.cell_value} not found in {self.target_table}.'
+    )
     if self.message:
       error_message += f'\nMessage: {self.message}'
     return error_message
@@ -250,12 +276,14 @@ class ConnectionDependencyError(BaseSpreadsheetError):
     message: Custom error message.
   """
 
-  def __init__(self,
-               row: str,
-               missing_code: str,
-               present_code: str,
-               table: Optional[str] = CONNECTIONS,
-               message: Optional[str] = ''):
+  def __init__(
+      self,
+      row: str,
+      missing_code: str,
+      present_code: str,
+      table: Optional[str] = CONNECTIONS,
+      message: Optional[str] = '',
+  ):
     """Init.
 
     Args:
@@ -274,7 +302,9 @@ class ConnectionDependencyError(BaseSpreadsheetError):
   def GetErrorMessage(self) -> str:
     error_message = f'Row: {self.row},'
     error_message += f'Entity with code: {self.present_code} has a connection '
-    error_message += f'dependency error, {self.missing_code} not found in {ENTITIES} table.'
+    error_message += (
+        f'dependency error, {self.missing_code} not found in {ENTITIES} table.'
+    )
     if self.message:
       error_message += f'\n Message: {self.message}'
     return error_message

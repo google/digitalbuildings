@@ -33,59 +33,67 @@ class ImportTest(absltest.TestCase):
   def testGetAllSheets(self):
     test_spreadsheet_range = ['Entities']
     test_request = os.path.join(TEST_RESOURCES, 'test_entities_sheet.json')
-    mock_http = HttpMockSequence([({
-        'status': '200'
-    }, open(test_request, 'rb').read())])
+    mock_http = HttpMockSequence(
+        [({'status': '200'}, open(test_request, 'rb').read())]
+    )
     google_sheets_service = build(
-        SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY)
+        SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY
+    )
     result_spreadsheet = import_helper.GetAllSheets(
         spreadsheet_id='mock_spreadsheet_id',
         spreadsheet_range=test_spreadsheet_range,
-        google_sheets_service=google_sheets_service)
+        google_sheets_service=google_sheets_service,
+    )
     self.assertNotEmpty(result_spreadsheet[test_spreadsheet_range[0]])
     self.assertIn(test_spreadsheet_range[0], result_spreadsheet)
 
   def testGetAllSheetsWithNoValues(self):
     test_spreadsheet_range = ['Entities']
-    test_request = os.path.join(TEST_RESOURCES,
-                                'test_blank_entities_sheet.json')
-    mock_http = HttpMockSequence([({
-        'status': '200'
-    }, open(test_request, 'rb').read())])
+    test_request = os.path.join(
+        TEST_RESOURCES, 'test_blank_entities_sheet.json'
+    )
+    mock_http = HttpMockSequence(
+        [({'status': '200'}, open(test_request, 'rb').read())]
+    )
     google_sheets_service = build(
-        SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY)
+        SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY
+    )
     result_spreadsheet = import_helper.GetAllSheets(
         spreadsheet_id='spreadsheet_id',
         spreadsheet_range=test_spreadsheet_range,
-        google_sheets_service=google_sheets_service)
+        google_sheets_service=google_sheets_service,
+    )
     self.assertEmpty(result_spreadsheet[test_spreadsheet_range[0]])
 
   def testGetAllSheetsRaisesSpreadsheetAuthorizationError(self):
     test_spreadsheet_range = ['Entities']
     test_request = os.path.join(TEST_RESOURCES, 'test_entities_sheet.json')
-    mock_http = HttpMockSequence([({
-        'status': '403'
-    }, open(test_request, 'rb').read())])
+    mock_http = HttpMockSequence(
+        [({'status': '403'}, open(test_request, 'rb').read())]
+    )
     google_sheets_service = build(
-        SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY)
+        SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY
+    )
     with self.assertRaises(SpreadsheetAuthorizationError):
       import_helper.GetAllSheets(
           spreadsheet_id='spreadsheet_id',
           spreadsheet_range=test_spreadsheet_range,
-          google_sheets_service=google_sheets_service)
+          google_sheets_service=google_sheets_service,
+      )
 
   def testDeserializeBuildingConfiguration(self):
-    test_building_config_path = os.path.join(TEST_RESOURCES,
-                                             'good_test_building_config.yaml')
+    test_building_config_path = os.path.join(
+        TEST_RESOURCES, 'good_test_building_config.yaml'
+    )
 
     function_result = import_helper.DeserializeBuildingConfiguration(
-        test_building_config_path)
+        test_building_config_path
+    )
 
     self.assertIsNotNone(function_result)
 
   def testDeserializeBuildingConfigurationRaisesFileNotFoundError(self):
-    test_building_config_path = os.path.join(TEST_RESOURCES,
-                                             'not_a_file.yaml')
+    test_building_config_path = os.path.join(TEST_RESOURCES, 'not_a_file.yaml')
 
     with self.assertRaises(FileNotFoundError):
       import_helper.DeserializeBuildingConfiguration(test_building_config_path)

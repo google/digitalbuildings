@@ -15,12 +15,10 @@
 """Facilities RDF handler.
 
 Takes a units.yaml input and populate the RDF graph with the yaml content.
-
 """
-import rdflib
-
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
+import rdflib
 
 
 def GenerateGraph(yaml_object, graph):
@@ -45,18 +43,22 @@ def GenerateGraph(yaml_object, graph):
       'Unit',
       'Class of all units',
       rdflib.OWL.Thing,
-      entity_namespace=constants.UNITS_NS)
-  graph, standard_unit_data_property_object = \
+      entity_namespace=constants.UNITS_NS,
+  )
+  graph, standard_unit_data_property_object = (
       rdf_helper.CreateDataPropertyInGraph(
           graph,
           data_property_name='is_standard_unit',
-          data_property_description=
-          'The International System of Units '
-          '(abbreviated SI from systeme internationale , '
-          'the French version of the name) is a scientific '
-          'method of expressing the magnitudes or quantities'
-          ' of important natural phenomena. There are seven '
-          'base units in the system, from which other units are derived.')
+          data_property_description=(
+              'The International System of Units '
+              '(abbreviated SI from systeme internationale , '
+              'the French version of the name) is a scientific '
+              'method of expressing the magnitudes or quantities'
+              ' of important natural phenomena. There are seven '
+              'base units in the system, from which other units are derived.'
+          ),
+      )
+  )
 
   # Construct the classes and the subclasses
   for clazz in yaml_object.keys():
@@ -65,7 +67,8 @@ def GenerateGraph(yaml_object, graph):
         class_name=clazz.capitalize(),
         class_description=None,
         parent_clazz=unit,
-        entity_namespace=constants.UNITS_NS)
+        entity_namespace=constants.UNITS_NS,
+    )
     clazz_content = yaml_object.get(clazz)
     for each_item in clazz_content:
       # When a unit is standard it is a dict, example: kelvins: STANDARD.
@@ -75,18 +78,25 @@ def GenerateGraph(yaml_object, graph):
       else:
         is_standard = False
         instance_name = each_item
-    # Construct the instances
+      # Construct the instances
       graph, instance_object = rdf_helper.CreateInstanceInGraph(
           graph=graph,
           instance_name=instance_name,
           instance_description=None,
           parent_clazz=clazz_object,
-          entity_namespace=constants.UNITS_NS)
+          entity_namespace=constants.UNITS_NS,
+      )
       if is_standard:
-        graph.add((instance_object[0], standard_unit_data_property_object[0],
-                   rdflib.Literal(True)))
+        graph.add((
+            instance_object[0],
+            standard_unit_data_property_object[0],
+            rdflib.Literal(True),
+        ))
       else:
-        graph.add((instance_object[0], standard_unit_data_property_object[0],
-                   rdflib.Literal(False)))
+        graph.add((
+            instance_object[0],
+            standard_unit_data_property_object[0],
+            rdflib.Literal(False),
+        ))
 
   return graph

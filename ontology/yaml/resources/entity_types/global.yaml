@@ -24,6 +24,9 @@ SENSOR:
   guid: "4fa42531-26a8-4d1f-a0b3-a7f6bb5623e1"
   description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
   is_abstract: true
+  opt_uses:
+  - failed_alarm
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 

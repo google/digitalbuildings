@@ -3,6 +3,7 @@ CONFIG_METADATA:
 
 c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   code: VAV-1
+  display_name: VAV-1 Display Name
   etag: 1234567
   links:
     0a85029e-96c5-48a0-afa8-23139f6eda67:

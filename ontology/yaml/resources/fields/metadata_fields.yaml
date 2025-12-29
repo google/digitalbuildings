@@ -82,6 +82,9 @@ literals:
 - flowrate_requirement: # Minimum flowrate
     fixed_min: 0.0
     flexible_max: 18.92706
+- unoccupied_flowrate_requirement:
+    fixed_min: 0.0
+    flexible_max: 18.92706
 - outside_air_flowrate_requirement:
     fixed_min: 0.0
     flexible_max: 141.584233
