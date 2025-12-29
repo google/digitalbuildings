@@ -18,7 +18,7 @@ RSR_HHCDM:
   implements:
   - RSR
   - HHCDM
-  
+
 FARSR_UNDEFINED:
   guid: "cd83cffe-fb37-4138-9ff0-9da7958eccf2"
   description: "Fresh air distribution riser without any data points."
