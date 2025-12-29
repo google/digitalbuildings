@@ -24,6 +24,6 @@ PMP_SS:
   is_canonical: true
   implements:
   - /PMP # inherits from global namespace
-  - SS  
+  - SS
 
 
