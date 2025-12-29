@@ -21,7 +21,7 @@ VLV_CHWVM_RTM_DTM:
   description: "Chilled water valve with discharge and return temperature monitoring."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CHWVM
   - RTM
   - DTM
@@ -31,7 +31,7 @@ VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DT
   description: "Heating water valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - HWVM
 
 VLV_CHWVM_CHWDT_CLPM:
@@ -39,7 +39,7 @@ VLV_CHWVM_CHWDT_CLPM:
   description: "Chilled water pressure control valve with differential temperature and thermal load monitoring."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CHWVM
   - CHWDT
   - CLPM
@@ -49,7 +49,7 @@ VLV_CHWPVM:
   description: "Chilled water pressure control valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CHWPVM
 
 VLV_HWPVM:
@@ -57,7 +57,7 @@ VLV_HWPVM:
   description: "Heating water pressure control valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - HWPVM
 
 VLV_CDWPVM:
@@ -65,7 +65,7 @@ VLV_CDWPVM:
   description: "Condensing water pressure control valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CDWPVM
 
 VLV_SWCM:
@@ -73,5 +73,5 @@ VLV_SWCM:
   description: "Solenoid water valve control and monitoring."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - SWCM
