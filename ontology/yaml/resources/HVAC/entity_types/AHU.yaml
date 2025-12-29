@@ -1164,6 +1164,7 @@ AHU_ECOND_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2C:
   - CO2C
 
 AHU_DFVSC_DSP_CHWDC_VOADM_CO2C:
+  guid: "c5e9e37a-66c7-4863-afaf-492cdc72cde6"
   description: "Single Zone AHU with cooling only, variable OA monitoring and CO2 control"
   is_canonical: true
   implements:
