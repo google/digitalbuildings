@@ -19,6 +19,8 @@ PWM:
   guid: "960f7009-b4bd-4c68-b7d1-33555bff2148"
   description: "Very basic power and energy monitoring only."
   is_abstract: true
+  implements:
+  - /PWM
   opt_uses:
   - apparent_power_sensor
   - reactive_power_sensor
@@ -27,7 +29,6 @@ PWM:
   - apparent_energy_accumulator
   - reactive_energy_accumulator
   uses:
-  - power_sensor
   - energy_accumulator
 
 AVCM:

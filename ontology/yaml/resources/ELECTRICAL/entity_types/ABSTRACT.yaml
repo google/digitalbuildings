@@ -66,8 +66,9 @@ PWM:
   guid: "fd2b653c-cb42-4158-8322-34421d1cf5bb"
   description: "Very basic power and energy monitoring."
   is_abstract: true
+  implements:
+  - /PWM
   uses:
-  - power_sensor
   - energy_accumulator
   - powerfactor_sensor 
   - apparent_power_sensor 
@@ -76,23 +77,22 @@ RMM:
   guid: "322b2898-cb04-453b-8171-4e50d65e844f"
   description: "Run mode monitoring."
   is_abstract: true
-  uses:
-  - run_mode
+  implements:
+  - /RMM
 
 OTPM:
   guid: "cf9a36d8-f852-4372-bed4-80b95263c2de"
   description: "Oil temperature and pressure monitoring"
   is_abstract: true
-  uses:
-  - oil_temperature_sensor
-  - oil_pressure_sensor
+  implements:
+  - /OTPM
 
 RDM:
   guid: "e1e402a7-fd60-4905-84d7-d926db979fc5"
   description: "Very basic system run duration monitoring."
   is_abstract: true
-  uses:
-  - run_time_accumulator
+  implements:
+  - /RDM
 
 TKLS:
   guid: "a759f985-e858-431f-a9f9-d4eaaa711aa4"

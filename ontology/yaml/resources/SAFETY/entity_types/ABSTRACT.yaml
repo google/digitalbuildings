@@ -100,15 +100,12 @@ LM:
   guid: "25887ceb-f2d8-4b25-be80-36e8b37f5ae9"
   description: "Tank level monitoring."
   is_abstract: true
-  uses:
-  - level_status
+  implements:
+  - /LM
 
 REFM:
   guid: "591f8a31-dc4b-45a2-8ac1-b0478b7ceaa5"
   description: "Refrigerant leak monitoring."
   is_abstract: true
-  opt_uses:
-  - high_zone_air_refrigerant_concentration_alarm
-  - failed_zone_air_refrigerant_concentration_alarm
-  uses:
-  - zone_air_refrigerant_concentration_sensor
+  implements:
+  - /REFM
