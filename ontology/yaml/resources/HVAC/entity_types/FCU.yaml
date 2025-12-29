@@ -2202,7 +2202,7 @@ FCU_CHWDC_CSP_DFVSC6X:
 ###################################
 ### Existing Non-standard Types ###
 ###################################
-  
+
 FCU_DFSS_CSP_DXZC_NONCANONICAL_1:
   guid: "16c44e1d-4a63-4fcf-a762-ff16d823f04c"
   description: "Non-standard type."
