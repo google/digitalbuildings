@@ -59,7 +59,7 @@ LM:
   - percentage_sensor
 
 REFM:
-  guid: "e647589c-9962-47b2-a623-21cb5728e9495"
+  guid: "51dc4d1e-125d-428c-9a8a-3098442b172d"
   description: "Refrigerant leak monitoring."
   is_abstract: true
   opt_uses:
