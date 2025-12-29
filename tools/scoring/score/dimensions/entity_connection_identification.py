@@ -15,19 +15,21 @@
 
 # from collections import Counter
 
-from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories
-from score.scorer_types import DeserializedFile, ConnectionsList
-
-from typing import Set
 from collections import namedtuple
+from typing import Set
+
+from score.constants import DimensionCategories, FileTypes
+from score.dimensions.dimension import Dimension
+from score.scorer_types import ConnectionsList, DeserializedFile
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class EntityConnectionIdentification(Dimension):
   """Quantifies whether connections between entities were
-  correctly and completely defined in the proposed file."""
+
+  correctly and completely defined in the proposed file.
+  """
 
   # COMPLEX category indicates this dimension receives `deserialized_files`
   # rather than `translations` to do its calculations
@@ -36,7 +38,9 @@ class EntityConnectionIdentification(Dimension):
   @staticmethod
   def _isolate_connections(file: DeserializedFile) -> ConnectionsList:
     """Distill individual connections from each entity
-    prior to inclusion in sets for global comparison."""
+
+    prior to inclusion in sets for global comparison.
+    """
     Connection = namedtuple('Connection', ['target', 'connection'])
 
     all_connections = []
@@ -49,46 +53,58 @@ class EntityConnectionIdentification(Dimension):
   @staticmethod
   def _get_cdid(code_or_guid: str, *, file: DeserializedFile) -> str:
     """Returns an entity's `cloud_device_id` if available
-    to increase the likelihood of connections matching between files"""
+
+    to increase the likelihood of connections matching between files
+    """
     for entity in file.values():
       if code_or_guid in [entity.code, entity.guid]:
         return entity.cloud_device_id or entity.code
 
-  def _condense_connections(self, connections: ConnectionsList, *,
-                            file: DeserializedFile) -> Set[str]:
+  def _condense_connections(
+      self, connections: ConnectionsList, *, file: DeserializedFile
+  ) -> Set[str]:
     """Condense connections into sets of strings
-    for easy comparison using intersection."""
+
+    for easy comparison using intersection.
+    """
     condensed = set()
     for cn in connections:
       # e.g. "THAT_ENTITY CONTAINS THIS_ENTITY"
       condensed.add(
           f'{self._get_cdid(cn.connection.source, file=file)} '
-          f'{cn.connection.ctype} {self._get_cdid(cn.target, file=file)}')
+          f'{cn.connection.ctype} {self._get_cdid(cn.target, file=file)}'
+      )
     return condensed
 
   def evaluate(self):
     """Calculate and assign properties necessary for generating a score."""
 
-    proposed_file, solution_file = map(self.deserialized_files.get,
-                                       (PROPOSED, SOLUTION))
+    proposed_file, solution_file = map(
+        self.deserialized_files.get, (PROPOSED, SOLUTION)
+    )
 
     proposed_connections, solution_connections = map(
-        self._isolate_connections, (proposed_file, solution_file))
+        self._isolate_connections, (proposed_file, solution_file)
+    )
 
     proposed_connections_condensed = self._condense_connections(
-        proposed_connections, file=proposed_file)
+        proposed_connections, file=proposed_file
+    )
     solution_connections_condensed = self._condense_connections(
-        solution_connections, file=solution_file)
+        solution_connections, file=solution_file
+    )
 
     # Compare them
     correct = proposed_connections_condensed.intersection(
-        solution_connections_condensed)
+        solution_connections_condensed
+    )
 
     # Set attributes which allow for result to be calculated
     # independent of "virtual" and "reporting" buckets
     self.correct_total_override = len(correct)
     self.correct_ceiling_override = len(solution_connections_condensed)
-    self.incorrect_total_override = (self.correct_ceiling_override -
-                                     self.correct_total_override)
+    self.incorrect_total_override = (
+        self.correct_ceiling_override - self.correct_total_override
+    )
 
     return self

@@ -37,7 +37,7 @@ _TEST_REPORTING_ENTITY_DICT = {
     NAMESPACE: TEST_NAMESPACE,
     CLOUD_DEVICE_ID: TEST_CLOUD_DEVICE_ID,
     TYPE_NAME: TEST_TYPE_NAME,
-    METADATA + '.test': 'test metadata'
+    METADATA + '.test': 'test metadata',
 }
 _TEST_SITE_DICT = {
     BUILDING_CODE: 'UK-LON-S2',
@@ -60,6 +60,7 @@ class SiteTest(absltest.TestCase):
     test_site.AddEntity(_TEST_REPORTING_ENTITY)
 
     self.assertEqual(test_site.entities, [_TEST_REPORTING_ENTITY.bc_guid])
+
 
 if __name__ == '__main__':
   absltest.main()

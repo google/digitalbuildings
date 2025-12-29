@@ -83,7 +83,7 @@ _SUBFIELD_CATEGORY_NAMES = {
     SubfieldCategory.DESCRIPTOR: 'descriptor',
     SubfieldCategory.MEASUREMENT_DESCRIPTOR: 'measurement_descriptor',
     SubfieldCategory.MEASUREMENT: 'measurement',
-    SubfieldCategory.POINT_TYPE: 'point_type'
+    SubfieldCategory.POINT_TYPE: 'point_type',
 }
 
 
@@ -109,10 +109,12 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
       parent_namespace: object containing global namepsace information. When
         working in the global namespace folder, this should be None.
     """
-    super(SubfieldFolder, self).__init__(folderpath,
-                                         base_lib.ComponentType.SUBFIELD)
-    self.local_namespace = SubfieldNamespace(self._namespace_name,
-                                             parent_namespace)
+    super(SubfieldFolder, self).__init__(
+        folderpath, base_lib.ComponentType.SUBFIELD
+    )
+    self.local_namespace = SubfieldNamespace(
+        self._namespace_name, parent_namespace
+    )
     self.parent_namespace = parent_namespace
 
   def AddSubfield(self, subfield):
@@ -156,7 +158,8 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
         # TODO(berkoben): Add handling for tagged measurement types
         description = subfield_map[subfield_name]
         self.AddSubfield(
-            Subfield(subfield_name, category, description, context))
+            Subfield(subfield_name, category, description, context)
+        )
 
   def ValidateUnits(self, unit_universe):
     """Checks that all subfields in the folder's namespace have units.
@@ -176,6 +179,7 @@ class SubfieldNamespace(findings_lib.Findings):
     namespace: string name of this namespace.
     parent_namespace: Instance of SubfieldNamespace indicating global namespace,
       None if namespace is global namespace.
+
   Returns:
     An instance of the SubfieldNamespace class.
   """
@@ -226,14 +230,16 @@ class SubfieldNamespace(findings_lib.Findings):
     if self.parent_namespace is not None:
       if subfield.category != SubfieldCategory.MEASUREMENT:
         self.AddFinding(
-            findings_lib.InvalidSubfieldNamespaceError(
-                self.namespace, subfield))
+            findings_lib.InvalidSubfieldNamespaceError(self.namespace, subfield)
+        )
 
     old_subfield = self._PutIfAbsent(subfield)
     if old_subfield is not None:
       self.AddFinding(
           findings_lib.DuplicateSubfieldDefinitionError(
-              self, subfield, old_subfield.file_context))
+              self, subfield, old_subfield.file_context
+          )
+      )
 
   def ValidateUnits(self, unit_universe):
     """Checks that all subfields in this namespace have corresponding units.
@@ -247,8 +253,10 @@ class SubfieldNamespace(findings_lib.Findings):
     """
     unit_measurement_types = unit_universe.GetMeasurementTypes()
     for subfield in self.subfields.values():
-      if (subfield.category == SubfieldCategory.MEASUREMENT and
-          subfield.name not in unit_measurement_types):
+      if (
+          subfield.category == SubfieldCategory.MEASUREMENT
+          and subfield.name not in unit_measurement_types
+      ):
         self.AddFinding(findings_lib.MissingUnitError(subfield))
 
 
@@ -290,12 +298,16 @@ class Subfield(findings_lib.Findings):
       self.AddFinding(findings_lib.InvalidSubfieldNameError(name, file_context))
     if not self.description:
       self.AddFinding(
-          findings_lib.MissingSubfieldDescriptionWarning(name, file_context))
+          findings_lib.MissingSubfieldDescriptionWarning(name, file_context)
+      )
 
   def __eq__(self, other):
     if isinstance(other, Subfield):
-      return (self.name == other.name and self.category == other.category and
-              self.description == other.description)
+      return (
+          self.name == other.name
+          and self.category == other.category
+          and self.description == other.description
+      )
     return False
 
   def __ne__(self, other):

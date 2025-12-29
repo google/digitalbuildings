@@ -42,6 +42,15 @@ TK_LHLM_SWTM:
   - LHLM
   - SWTM
 
+TK_LHLM2X_SWTM2X:
+  guid: "e50038e9-60fc-4604-a632-5300043f93cc"
+  description: "Dual section Tank with supply water temperature monitoring with high and low water level monitoring."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM2X
+  - SWTM2X
+
 TK_SWTC_PHWTC:
   guid: "afec4cde-0aa9-4f75-9cf8-1fa1512fd49a"
   description: "Tank with supply water temperature control and potable water temperature monitoring."
@@ -50,6 +59,15 @@ TK_SWTC_PHWTC:
   - /TK # Inherits from global namespace
   - SWTC
   - PHWTC
+
+TK_SWTC_POTHWM:
+  guid: "34c7d9cc-84e9-4215-8f06-f74632258de5"
+  description: "Tank with supply water temperature control and potable water supply and return temperature monitoring."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - SWTC
+  - POTHWM
 
 TK_LM_PLPM:
   guid: "b523b52b-ee5d-42a8-95dd-cf64ccd87488"
@@ -67,3 +85,32 @@ TK_LM:
   implements:
   - /TK # Inherits from global namespace
   - LM
+
+TK_RWTC_SWISOVM:
+  guid: "df96b12d-3e7f-45c9-addf-710dce3baa1a"
+  description: "Tank with return water temp control and supply water isolation valve."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - RWTC
+  - SWISOVM
+
+TK_LHLM_WFRM_SWISOVPM_RWISOVPM:
+  guid: "790e69ca-a67e-48d2-bd72-b68c62c187e4"
+  description: "Tank with level monitoring, flowrate monitoring, supply and return water isolation valves."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM
+  - WFRM
+  - SWISOVPM
+  - RWISOVPM
+
+TK_LHLM_RWISOVPM:
+  guid: "457942ce-3efa-48f9-a555-6d5ab5cf98a7"
+  description: "Tank with level monitoring and return water isolation valve."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM
+  - RWISOVPM

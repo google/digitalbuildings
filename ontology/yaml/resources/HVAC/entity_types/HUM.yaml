@@ -16,6 +16,12 @@
 ### Canonical Types  ###
 ########################
 
+HUM_RHHC:
+  guid: "44f8269a-c7ad-4405-9c93-5312a1c69b65"
+  description: "Standard humidifier."
+  implements:
+  - HUM
+  - RHHC
 
 ###################################
 ### Existing Non-standard Types ###
@@ -30,14 +36,3 @@ HUM_NONCANONICAL_1:
   - discharge_air_relative_humidity_sensor
   - humidification_percentage_command
   - humidification_percentage_sensor
-
-HUM_NONCANONICAL_2:
-  guid: "2ae8e262-a092-48bf-92ac-e5c0079e8db2"
-  description: "Non-standard type."
-  implements:
-  - HUM
-  uses:
-  - humidification_percentage_command
-  - humidification_run_command
-  - zone_air_relative_humidity_sensor
-  - zone_air_temperature_sensor

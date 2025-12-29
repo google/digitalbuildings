@@ -1,0 +1,89 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# INITIAL TYPES
+# These type definitions are meant to be used for initial device onboarding
+# where device modeling is in progress but where end-to-end connectivity
+# testing is needed. These are not to be permanently applied to entities;
+# they are placeholders for appropriate types to be applied later.
+
+AHU_INITIAL:
+  guid: af089fcc-6491-49ee-9a01-edabe9276c58
+  description: "Initial type for AHUs."
+  implements:
+  - AHU
+  allow_undefined_fields: true
+
+CDWS_INITIAL:
+  guid: fa4c78ed-ca06-4e04-8738-6f8587ee73a7
+  description: "Initial type for CDWS."
+  implements:
+  - CDWS
+  allow_undefined_fields: true
+
+CH_INITIAL:
+  guid: "439ecc5a-4787-4afb-90a9-eeca10824256"
+  description: "Initial type for CH."
+  implements:
+  - CH
+  allow_undefined_fields: true
+
+CHWS_INITIAL:
+  guid: "f8eedf45-6f35-4694-bc49-ab13bed230b9"
+  description: "Initial type for CHWS."
+  implements:
+  - CHWS
+  allow_undefined_fields: true
+
+CT_INITIAL:
+  guid: "0916a1bf-d7a9-424b-8c3a-9291f6205cc3"
+  description: "Initial type for CT."
+  implements:
+  - CT
+  allow_undefined_fields: true
+
+FAN_INITIAL:
+  guid: "4e40b592-b24d-44f1-abee-6cc066c9a203"
+  description: "Initial type for FAN."
+  implements:
+  - FAN
+  allow_undefined_fields: true
+
+FCU_INITIAL:
+  guid: 62e1bfda-7575-4f43-8a37-9748f3b72b1f
+  description: "Initial type for FCUs."
+  implements:
+  - FCU
+  allow_undefined_fields: true
+
+FRZ_INITIAL:
+  guid: "61608dab-a2ac-431b-b587-8a030e2d1a2b"
+  description: "Initial type for FRZ."
+  implements:
+  - FRZ
+  allow_undefined_fields: true
+
+PMP_INITIAL:
+  guid: 292a81bc-e6d1-4e36-b635-4974063ec151
+  description: "Initial type for PMPs."
+  implements:
+  - PMP
+  allow_undefined_fields: true
+
+VAV_INITIAL:
+  guid: "6835a0be-50c6-4559-a38a-2027c8533798"
+  description: "Initial type for VAV."
+  implements:
+  - VAV
+  allow_undefined_fields: true

@@ -26,6 +26,8 @@ EM:
   implements:
   - MTR
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
 
 GM:
   guid: "919ece3f-2f6f-4c9d-adcf-2a77eed49185"
@@ -39,7 +41,7 @@ FM:
   description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
   is_abstract: true
   implements:
-  - MTR  
+  - MTR
 
 WM:
   guid: "c1df623f-c71b-45a1-89eb-2bc7c82f291a"
@@ -47,6 +49,8 @@ WM:
   implements:
   - MTR
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
 
 HM:
   guid: "9496631b-c154-4d86-857d-c2ffff88ffe4"
@@ -54,3 +58,5 @@ HM:
   is_abstract: true
   implements:
   - MTR
+  opt_uses:
+  - failed_communication_alarm

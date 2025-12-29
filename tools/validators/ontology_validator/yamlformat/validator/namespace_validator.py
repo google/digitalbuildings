@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Class for validating entity types for consistency across their namespaces.
-"""
+"""Class for validating entity types for consistency across their namespaces."""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -29,10 +28,10 @@ class NamespaceValidator(findings_lib.Findings):
   """Validates types across namespaces and records findings.
 
   Attributes:
-    type_namespaces_map: a dictionary. Keys are namespace strings and
-      values are TypeNamespace objects. All entity types within
-      TypeNamespace objects are expanded, with inherited_field_names updated and
-      inherited_fields_expanded set to True.
+    type_namespaces_map: a dictionary. Keys are namespace strings and values are
+      TypeNamespace objects. All entity types within TypeNamespace objects are
+      expanded, with inherited_field_names updated and inherited_fields_expanded
+      set to True.
 
   Returns:
     An instance of the NamespaceValidator class.
@@ -78,8 +77,10 @@ class NamespaceValidator(findings_lib.Findings):
         try:
           self._ExpandFieldsForType(namespace, entity_type, on_stack)
         # terminate if any fatal inheritance errors are encountered
-        except (findings_lib.NonexistentEntityProcessError,
-                findings_lib.InheritanceCycleProcessError):
+        except (
+            findings_lib.NonexistentEntityProcessError,
+            findings_lib.InheritanceCycleProcessError,
+        ):
           break
 
   def _ExpandFieldsForType(self, namespace, entity_type, on_stack):
@@ -133,8 +134,9 @@ class NamespaceValidator(findings_lib.Findings):
 
       # if on stack, there is a cycle
       if parent_key in on_stack:
-        self.AddFinding(findings_lib.InheritanceCycleError(
-            entity_type, parent_literal))
+        self.AddFinding(
+            findings_lib.InheritanceCycleError(entity_type, parent_literal)
+        )
         raise findings_lib.InheritanceCycleProcessError('')
 
       # Recurse.
@@ -144,14 +146,17 @@ class NamespaceValidator(findings_lib.Findings):
         if type_namespace is not None:
           parent_type = type_namespace.valid_types_map.get(parent_name)
         if parent_type is not None and parent_type.allow_undefined_fields:
-          self.AddFinding(findings_lib.PassthroughParentError(entity_type,
-                                                              parent_name))
+          self.AddFinding(
+              findings_lib.PassthroughParentError(entity_type, parent_name)
+          )
           continue
         fields = self._ExpandFieldsForType(
-            parent_namespace, parent_type, on_stack)
+            parent_namespace, parent_type, on_stack
+        )
       except findings_lib.NonexistentEntityProcessError as e:
-        self.AddFinding(findings_lib.NonexistentParentError(
-            entity_type, parent_key))
+        self.AddFinding(
+            findings_lib.NonexistentParentError(entity_type, parent_key)
+        )
         raise e
       for field in fields:
         fv = fields[field]
@@ -171,8 +176,8 @@ class NamespaceValidator(findings_lib.Findings):
     to be duplicate fields in the class.  This method validates that rule.
 
     Args:
-      type_namespaces_map: a dict mapping namespace strings to
-        TypeNamespace objects.
+      type_namespaces_map: a dict mapping namespace strings to TypeNamespace
+        objects.
 
     Returns:
       True if all types validate.
@@ -202,8 +207,11 @@ class NamespaceValidator(findings_lib.Findings):
           if field_lookup[key] is not None:
             # Don't worry about adding this finding to the namespace.  It is a
             # short-circuiting error, making universe integrity irrelevant.
-            self.AddFinding(findings_lib.IllegalFieldIncrementError(
-                entity_type, field_lookup[key]))
+            self.AddFinding(
+                findings_lib.IllegalFieldIncrementError(
+                    entity_type, field_lookup[key]
+                )
+            )
             is_clean = False
 
     return is_clean
@@ -215,8 +223,8 @@ class NamespaceValidator(findings_lib.Findings):
       or duplicate expanded field sets are found.
 
     Args:
-      type_namespaces_map: a dict mapping namespace strings to
-        TypeNamespace objects.
+      type_namespaces_map: a dict mapping namespace strings to TypeNamespace
+        objects.
     """
     # Check for duplicate local field sets
     # Map local field sets from self.types_map to their entity types
@@ -251,7 +259,8 @@ class NamespaceValidator(findings_lib.Findings):
     type_len = len(types)
     while i < type_len:
       target = types.pop(0)
-      target.AddFinding(findings_lib.DuplicateLocalFieldSetsWarning(
-          target, types))
+      target.AddFinding(
+          findings_lib.DuplicateLocalFieldSetsWarning(target, types)
+      )
       types.append(target)
       i += 1

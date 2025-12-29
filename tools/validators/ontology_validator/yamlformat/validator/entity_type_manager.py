@@ -137,8 +137,10 @@ class EntityTypeManager(findings_lib.Findings):
         entity_type = self._GetTypeByName(typename)
         if base_lib.HasDeprecatedType(entity_type.parent_names):
           continue
-        if (len(entity_type.parent_names) == 1 and
-            not entity_type.local_field_names):
+        if (
+            len(entity_type.parent_names) == 1
+            and not entity_type.local_field_names
+        ):
           continue
 
         matching_parents = {}
@@ -196,8 +198,11 @@ class EntityTypeManager(findings_lib.Findings):
             wrapped_field = parent_entity.GetAllFields()[field]
             if not wrapped_field.optional:
               is_match = False
-              if (not parent_entity.is_canonical or parent_entity.is_abstract or
-                  base_lib.HasDeprecatedType(parent_entity.parent_names)):
+              if (
+                  not parent_entity.is_canonical
+                  or parent_entity.is_abstract
+                  or base_lib.HasDeprecatedType(parent_entity.parent_names)
+              ):
                 break
               missing_required_fields.append(field)
             else:
@@ -212,18 +217,25 @@ class EntityTypeManager(findings_lib.Findings):
           elif missing_required_fields and is_optional:
             if len(missing_required_fields) > MAX_FIELDS_FOR_INCOMPLETE:
               continue
-            if not incomplete_parent_matches or len(
-                missing_required_fields) <= best_incomplete_diff:
-              opt_diff = len(diff) - len(
-                  missing_required_fields) + optionality_changes
+            if (
+                not incomplete_parent_matches
+                or len(missing_required_fields) <= best_incomplete_diff
+            ):
+              opt_diff = (
+                  len(diff) - len(missing_required_fields) + optionality_changes
+              )
               if len(missing_required_fields) < best_incomplete_diff:
                 incomplete_parent_matches = {}
               else:
-                if (best_incomplete_diff_opt is not None and
-                    best_incomplete_diff_opt > opt_diff):
+                if (
+                    best_incomplete_diff_opt is not None
+                    and best_incomplete_diff_opt > opt_diff
+                ):
                   incomplete_parent_matches = {}
-                elif (best_incomplete_diff_opt is not None and
-                      best_incomplete_diff_opt < opt_diff):
+                elif (
+                    best_incomplete_diff_opt is not None
+                    and best_incomplete_diff_opt < opt_diff
+                ):
                   continue
 
               incomplete_parent_matches[parent] = missing_required_fields
@@ -232,37 +244,39 @@ class EntityTypeManager(findings_lib.Findings):
 
         if matching_parents:
           finding = findings_lib.OverlappingFlexTypeChildWarning(
-              entity_type, best_diff, matching_parents)
+              entity_type, best_diff, matching_parents
+          )
           entity_type.AddFinding(finding)
           findings.append(finding)
 
           for parent in matching_parents:
             parent_rollup[parent] = {typename: matching_parents[parent]}
 
-# This is commented to reduce the verbosity of warnings for the user.
-# To uncomment, remove the comments in bulk using a shortcut key map in your
-# favorite editor.
-#         if incomplete_parent_matches:
-#           finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
-#               entity_type, best_incomplete_diff, incomplete_parent_matches)
-#           entity_type.AddFinding(finding)
-#           findings.append(finding)
+      # This is commented to reduce the verbosity of warnings for the user.
+      # To uncomment, remove the comments in bulk using a shortcut key map in your
+      # favorite editor.
+      #         if incomplete_parent_matches:
+      #           finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
+      #               entity_type, best_incomplete_diff, incomplete_parent_matches)
+      #           entity_type.AddFinding(finding)
+      #           findings.append(finding)
 
-#           for parent in incomplete_parent_matches:
-#             incomplete_parent_rollup[parent] = {
-#                 typename: incomplete_parent_matches[parent]}
+      #           for parent in incomplete_parent_matches:
+      #             incomplete_parent_rollup[parent] = {
+      #                 typename: incomplete_parent_matches[parent]}
 
-#       for parent in incomplete_parent_rollup:
-#         entity_type = self._GetTypeByName(parent)
-#         finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
-#             entity_type, incomplete_parent_rollup[parent])
-#         entity_type.AddFinding(finding)
-#         findings.append(finding)
+      #       for parent in incomplete_parent_rollup:
+      #         entity_type = self._GetTypeByName(parent)
+      #         finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
+      #             entity_type, incomplete_parent_rollup[parent])
+      #         entity_type.AddFinding(finding)
+      #         findings.append(finding)
 
       for parent in parent_rollup:
         parent_type = self._GetTypeByName(parent)
         finding = findings_lib.OverlappingFlexTypeParentWarning(
-            parent_type, parent_rollup[parent])
+            parent_type, parent_rollup[parent]
+        )
         parent_type.AddFinding(finding)
         findings.append(finding)
 
@@ -289,8 +303,10 @@ class EntityTypeManager(findings_lib.Findings):
           if other_name not in qparents_by_child:
             other_type = self._GetTypeByName(other_name)
             qparents_by_child[other_name] = other_type.parent_names
-          if (typename not in qparents_by_child[other_name] and
-              other_name not in entity_type.parent_names):
+          if (
+              typename not in qparents_by_child[other_name]
+              and other_name not in entity_type.parent_names
+          ):
 
             optionality_compatible = True
             optionality_changes = 0
@@ -311,7 +327,8 @@ class EntityTypeManager(findings_lib.Findings):
         key_list = list(not_related.keys())
         key_list.append(typename)
         finding = findings_lib.DuplicateExpandedFieldSetsWarning(
-            entity_type, not_related, frozenset(key_list))
+            entity_type, not_related, frozenset(key_list)
+        )
         entity_type.AddFinding(finding)
         findings.append(finding)
     return findings
@@ -357,7 +374,8 @@ class EntityTypeManager(findings_lib.Findings):
         current_shard.add(full_qual_type)
 
         all_qualified_fields = frozenset(
-            [et.field for et in entity_type.GetAllFields().values()])
+            [et.field for et in entity_type.GetAllFields().values()]
+        )
 
         for full_qual_field in all_qualified_fields:
           if full_qual_field not in field_to_typenames:
@@ -371,9 +389,9 @@ class EntityTypeManager(findings_lib.Findings):
 
     # Evaluate the sets in each shard and merge them
     for shard in type_shards:
-      typenames_by_subset = self._MapTypenamesBySubset(shard,
-                                                       field_to_typenames,
-                                                       min_set_size)
+      typenames_by_subset = self._MapTypenamesBySubset(
+          shard, field_to_typenames, min_set_size
+      )
 
       # Check each new subset against the existing master subsets
       # NB: All subsets should initially be large enough
@@ -388,7 +406,8 @@ class EntityTypeManager(findings_lib.Findings):
           # Add new Types to master group for any identical field subsets
           if subset == master_subset:
             typenames_by_subset_output[master_subset].update(
-                typenames_by_subset[subset])
+                typenames_by_subset[subset]
+            )
             continue
 
           # Find the common fields from the two field sets
@@ -396,7 +415,8 @@ class EntityTypeManager(findings_lib.Findings):
           # if new set of fields is big enough, save for addition to master list
           if len(new_subset) >= min_set_size:
             combined_typenames = typenames_by_subset[subset].union(
-                typenames_by_subset_output[master_subset])
+                typenames_by_subset_output[master_subset]
+            )
             if new_subset not in typenames_by_subset_output:
               if new_subset not in new_subsets:
                 new_subsets[new_subset] = set()
@@ -412,14 +432,16 @@ class EntityTypeManager(findings_lib.Findings):
     self._complete_field_sets_oi = complete_field_sets_output
     _CleanMap(self._typenames_by_subset_oi, self._complete_field_sets_oi)
 
-  def _MapTypenamesBySubset(self, types_to_include, field_to_typenames,
-                            min_set_size):
+  def _MapTypenamesBySubset(
+      self, types_to_include, field_to_typenames, min_set_size
+  ):
     """Creates a map of type sets keyed by unique fields sets."""
 
     subsets_by_typegroup = {}
     for field in field_to_typenames:
       types_with_field = field_to_typenames[field].intersection(
-          types_to_include)
+          types_to_include
+      )
       i = 1
       stable_types_with_field = list(types_with_field)
       while i <= len(stable_types_with_field):
