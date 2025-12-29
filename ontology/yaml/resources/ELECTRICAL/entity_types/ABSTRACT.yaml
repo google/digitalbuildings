@@ -70,8 +70,8 @@ PWM:
   - /PWM
   uses:
   - energy_accumulator
-  - powerfactor_sensor 
-  - apparent_power_sensor 
+  - powerfactor_sensor
+  - apparent_power_sensor
 
 RMM:
   guid: "322b2898-cb04-453b-8171-4e50d65e844f"
