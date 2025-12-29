@@ -3,6 +3,7 @@ CONFIG_METADATA:
 
 c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   code: VAV-1
+  display_name: VAV-1 Display Name
   links:
     0a85029e-96c5-48a0-afa8-23139f6eda67:
       zone_air_temperature_sensor: zone_air_temperature_sensor
@@ -13,6 +14,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 
 4931e096-dea5-4b81-86ad-234c6d07b978:
   code: VAV-2
+  display_name: VAV-2 Display Name
   connections:
     c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
     - FEEDS
@@ -27,6 +29,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 0a85029e-96c5-48a0-afa8-23139f6eda67:
   cloud_device_id: "2541901344105616"
   code: GTWY-1
+  display_name: GTWY-1 Display Name
   translation:
     zone_air_temperature_sensor:
       present_value: zone_air_temperature_sensor.present_value

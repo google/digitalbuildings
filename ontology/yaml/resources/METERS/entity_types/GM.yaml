@@ -32,6 +32,8 @@ GM_PULSE:
   uses:
   - gas_flowrate_sensor
   - gas_volume_accumulator
+  opt_uses:
+  - gas_flowrate_counter
 
 GM_TPWM:
   guid: "223b81fb-9fcf-475b-a2f5-ad5d1364454c"

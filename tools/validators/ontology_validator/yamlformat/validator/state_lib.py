@@ -72,8 +72,9 @@ class StateFolder(config_folder_lib.ConfigFolder):
     Args:
       folderpath: required string with full path to folder containing states.
     """
-    super(StateFolder, self).__init__(folderpath,
-                                      base_lib.ComponentType.MULTI_STATE)
+    super(StateFolder, self).__init__(
+        folderpath, base_lib.ComponentType.MULTI_STATE
+    )
     self.local_namespace = StateNamespace(self._namespace_name)
 
   def AddState(self, state):
@@ -140,7 +141,8 @@ class StateNamespace(findings_lib.Findings):
     if state.name in self.states:
       prev_context = self.states[state.name].file_context
       self.AddFinding(
-          findings_lib.DuplicateStateDefinitionError(self, state, prev_context))
+          findings_lib.DuplicateStateDefinitionError(self, state, prev_context)
+      )
       return
     self.states[state.name] = state
 

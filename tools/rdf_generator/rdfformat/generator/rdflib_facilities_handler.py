@@ -15,13 +15,11 @@
 """Facilities RDF handler.
 
 Takes a Facilities.yaml input and populate the RDF graph with the yaml content.
-
 """
-import rdflib
-from rdflib.extras import infixowl
-
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
+import rdflib
+from rdflib.extras import infixowl
 
 
 def GenerateGraph(yaml_object, graph):
@@ -40,27 +38,34 @@ def GenerateGraph(yaml_object, graph):
   physical_location = rdflib.URIRef(constants.FACILITIES_NS["PhysicalLocation"])
   entity_type = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS["EntityType"])
   has_physical_location = rdflib.URIRef(
-      constants.DIGITAL_BUILDINGS_NS["hasPhysicalLocation"])
+      constants.DIGITAL_BUILDINGS_NS["hasPhysicalLocation"]
+  )
   has_floor = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS["hasFloor"])
   has_room = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS["hasRoom"])
 
   has_room_property = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["hasRoom"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
 
   has_floor_property = infixowl.Property(
       identifier=constants.DIGITAL_BUILDINGS_NS["hasFloor"],
       baseType=infixowl.OWL_NS.ObjectProperty,
-      graph=graph)
+      graph=graph,
+  )
 
   # Add the OWL data to the graph
   graph.add((physical_location, rdflib.RDF.type, rdflib.OWL.Class))
   graph.add((physical_location, rdflib.RDFS.subClassOf, entity_type))
-  graph.add((physical_location, rdflib.RDFS.label,
-             rdflib.Literal("PhysicalLocation")))
-  graph.add((physical_location, rdflib.RDFS.comment,
-             rdflib.Literal("The class of all physical locations")))
+  graph.add(
+      (physical_location, rdflib.RDFS.label, rdflib.Literal("PhysicalLocation"))
+  )
+  graph.add((
+      physical_location,
+      rdflib.RDFS.comment,
+      rdflib.Literal("The class of all physical locations"),
+  ))
 
   # Construct the classes and the subclasses
   map_name_object = {}
@@ -72,13 +77,15 @@ def GenerateGraph(yaml_object, graph):
         clazz.capitalize(),
         description,
         physical_location,
-        entity_namespace=constants.FACILITIES_NS)
+        entity_namespace=constants.FACILITIES_NS,
+    )
     map_name_object[clazz.capitalize()] = clazz_object
 
   # Construct the object properties
   graph.add((has_physical_location, rdflib.RDF.type, rdflib.OWL.ObjectProperty))
   graph.add(
-      (has_physical_location, rdflib.RDF.type, rdflib.OWL.TransitiveProperty))
+      (has_physical_location, rdflib.RDF.type, rdflib.OWL.TransitiveProperty)
+  )
   graph.add((has_floor, rdflib.RDF.type, rdflib.OWL.ObjectProperty))
   graph.add((has_room, rdflib.RDF.type, rdflib.OWL.ObjectProperty))
 
@@ -88,11 +95,14 @@ def GenerateGraph(yaml_object, graph):
 
   # Link the graph together, done manually until the yaml evolves
   class_floor = infixowl.Class(
-      identifier=constants.FACILITIES_NS["Floor"], graph=graph)
+      identifier=constants.FACILITIES_NS["Floor"], graph=graph
+  )
   class_room = infixowl.Class(
-      identifier=constants.FACILITIES_NS["Room"], graph=graph)
+      identifier=constants.FACILITIES_NS["Room"], graph=graph
+  )
   class_building = infixowl.Class(
-      identifier=constants.FACILITIES_NS["Building"], graph=graph)
+      identifier=constants.FACILITIES_NS["Building"], graph=graph
+  )
   class_building.subClassOf = [has_floor_property | infixowl.only | class_floor]
   class_floor.subClassOf = [has_room_property | infixowl.only | class_room]
 

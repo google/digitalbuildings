@@ -6,6 +6,7 @@ CONFIG_METADATA:
 # Updated links, connections, and type
 4931e096-dea5-4b81-86ad-234c6d07b978:
   code: VAV-2
+  display_name: VAV-2 Updated Display Name
   etag: 1234567
   connections:
     c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:

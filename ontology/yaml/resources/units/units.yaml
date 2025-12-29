@@ -60,12 +60,6 @@ concentration:
   parts_per_billion:
     multiplier: 0.000000001
     offset: 0
-  grams_per_kilogram: # Can convert approximately using Avogadro
-    multiplier: 0.001
-    offset: 0
-  grams_of_water_per_kilogram:
-    multiplier: 0.001
-    offset: 0
 current:
   amperes: STANDARD
   milliamperes:
@@ -102,6 +96,8 @@ distance:
   inches:
     multiplier: 0.0254
     offset: 0
+thermalefficiency:
+  kilowatts_per_ton: STANDARD
 electriccapacitance:
   farads: STANDARD
 electricconductance:
@@ -209,6 +205,9 @@ flowrate:
   us_gallons_per_minute:
     multiplier: 0.0000630901964
     offset: 0
+  us_gallons_per_hour:
+    multiplier: 0.000001051503277778
+    offset: 0
 force:
   newton: STANDARD
 frequency:
@@ -224,15 +223,6 @@ frequency:
     offset: 0
   megahertz:
     multiplier: 0.000001
-    offset: 0
-  per_hour:
-    multiplier: 3600
-    offset: 0
-  per_minute:
-    multiplier: 60
-    offset: 0
-  per_second:
-    multiplier: 1
     offset: 0
 humidity:
   percent_relative_humidity: STANDARD
@@ -297,9 +287,6 @@ mass:
   pounds_mass:
     multiplier: 453.592
     offset: 0
-  tons:
-    multiplier: 907184
-    offset: 0
   metric_tons:
     multiplier: 1000000
     offset: 0
@@ -323,9 +310,6 @@ massflow:
     offset: 0
   kilograms_per_second:
     multiplier: 1000
-    offset: 0
-  tons_per_hour:
-    multiplier: 251.996
     offset: 0
   metric_tons_per_hour:
     multiplier: 277.777777778
@@ -381,6 +365,9 @@ power:
   kilobtus_per_hour:
     multiplier: 293.07107
     offset: 0
+  megabtus_per_hour:
+    multiplier: 293071.07
+    offset: 0
   therms_per_hour:
     multiplier: 29300.1111
     offset: 0
@@ -402,6 +389,8 @@ power:
   megavolt_amperes_apparent:
     multiplier: 1000000
     offset: 0
+ph:
+  no_units: STANDARD
 powerfactor:
   no_units: STANDARD
 powerflux:

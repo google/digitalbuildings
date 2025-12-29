@@ -35,3 +35,11 @@ PCU_EFSS_DTPM:
   - PCU
   - EFSS
   - DTPM
+
+PCU_EFVSC:
+  guid: "a5d30f41-d268-4e09-9855-f2fd51abd641"
+  description: "Pollution control unit with variable speed exhaust fan."
+  is_canonical: true
+  implements:
+  - PCU
+  - EFVSC

@@ -28,19 +28,24 @@ from yamlformat.validator import findings_lib
 
 ENTITY_TYPE_NAME_REGEX = re.compile(r'^[a-zA-Z][a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
 ENTITY_TYPE_GUID_PATTERN = re.compile(
-    r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+    r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+)
 FIELD_INCREMENT_STRIPPER_REGEX = re.compile(
-    r'(^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*)((?:_[0-9]+)+)$')
+    r'(^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*)((?:_[0-9]+)+)$'
+)
 
-FieldParts = typing.NamedTuple('FieldParts',
-                               [('namespace', str), ('field', str),
-                                ('increment', str)])
-OptWrapper = typing.NamedTuple('OptWrapper', [('field', FieldParts),
-                                              ('optional', bool)])
-TypeParts = typing.NamedTuple('TypeParts', [('namespace', str),
-                                            ('typename', str)])
-EntityIdByEntry = typing.NamedTuple('EntityIdByEntry', [('namespace', str),
-                                                        ('typename', str)])
+FieldParts = typing.NamedTuple(
+    'FieldParts', [('namespace', str), ('field', str), ('increment', str)]
+)
+OptWrapper = typing.NamedTuple(
+    'OptWrapper', [('field', FieldParts), ('optional', bool)]
+)
+TypeParts = typing.NamedTuple(
+    'TypeParts', [('namespace', str), ('typename', str)]
+)
+EntityIdByEntry = typing.NamedTuple(
+    'EntityIdByEntry', [('namespace', str), ('typename', str)]
+)
 
 
 def SeparateFieldNamespace(qualified_field_name: str) -> Tuple[str, str]:
@@ -48,18 +53,21 @@ def SeparateFieldNamespace(qualified_field_name: str) -> Tuple[str, str]:
 
   Args:
     qualified_field_name: a qualified field string like `HVAC/run_status`
+
   Throws:
     TypeError: if the field is not qualified
   """
   fqf_parsed = qualified_field_name.split('/')
 
   if len(fqf_parsed) == 1:
-    raise TypeError('Type improperly formatted, a namespace is missing: ',
-                    fqf_parsed)
+    raise TypeError(
+        'Type improperly formatted, a namespace is missing: ', fqf_parsed
+    )
 
   if len(fqf_parsed) > 2:
-    raise ValueError('Type improperly formatted, too many separators: ',
-                     fqf_parsed)
+    raise ValueError(
+        'Type improperly formatted, too many separators: ', fqf_parsed
+    )
 
   return fqf_parsed[0], fqf_parsed[1]
 
@@ -108,7 +116,8 @@ class EntityTypeUniverse(findings_lib.Findings):
     self.type_guids_map = {}
     self._BuildNamespaceFolderMap(entity_type_folders)
     self._BuildTypeMaps(
-        [folder.local_namespace for folder in entity_type_folders])
+        [folder.local_namespace for folder in entity_type_folders]
+    )
 
   def GetEntityType(self, namespace_name, typename):
     """Finds entity_type by namespace and typename and returns it or None."""
@@ -151,19 +160,28 @@ class EntityTypeUniverse(findings_lib.Findings):
         if entity_type.guid:
           if entity_type.guid in self.type_guids_map:
             dup_guid_entry = self.type_guids_map[entity_type.guid]
-            dup_guid_type = self.GetEntityType(dup_guid_entry.namespace,
-                                               dup_guid_entry.typename)
+            dup_guid_type = self.GetEntityType(
+                dup_guid_entry.namespace, dup_guid_entry.typename
+            )
             if dup_guid_type is None:
-              raise RuntimeError('Duplicate type with guid ' + entity_type.guid
-                                 + ' should always be mapped')
+              raise RuntimeError(
+                  'Duplicate type with guid '
+                  + entity_type.guid
+                  + ' should always be mapped'
+              )
             entity_type.AddFinding(
-                findings_lib.DuplicateGuidsError(type_namespace.namespace,
-                                                 entity_type, dup_guid_type))
+                findings_lib.DuplicateGuidsError(
+                    type_namespace.namespace, entity_type, dup_guid_type
+                )
+            )
             dup_guid_type.AddFinding(
-                findings_lib.DuplicateGuidsError(dup_guid_entry.namespace,
-                                                 dup_guid_type, entity_type))
+                findings_lib.DuplicateGuidsError(
+                    dup_guid_entry.namespace, dup_guid_type, entity_type
+                )
+            )
           self.type_guids_map[entity_type.guid] = EntityIdByEntry(
-              namespace=type_namespace.namespace, typename=entity_type.typename)
+              namespace=type_namespace.namespace, typename=entity_type.typename
+          )
 
   def _BuildNamespaceFolderMap(self, type_folders):
     """Creates a dict mapping namespace strings to EntityTypeFolder objects.
@@ -185,9 +203,9 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
   Attributes:
     local_namespace: TypeNamespace object representing this namespace.
-    require_guid: boolean indicating whether the type guid is required.
-       This is needed to bypass write permission issues on the ontology
-       validator GitHub Action.
+    require_guid: boolean indicating whether the type guid is required. This is
+      needed to bypass write permission issues on the ontology validator GitHub
+      Action.
   """
 
   def __init__(self, folderpath, field_universe=None, require_guid=True):
@@ -200,8 +218,9 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
       field_universe: optional FieldsUniverse object.
       require_guid: boolean indicating whether the type guid is required.
     """
-    super(EntityTypeFolder, self).__init__(folderpath,
-                                           base_lib.ComponentType.ENTITY_TYPE)
+    super(EntityTypeFolder, self).__init__(
+        folderpath, base_lib.ComponentType.ENTITY_TYPE
+    )
     self.local_namespace = TypeNamespace(self._namespace_name, field_universe)
     self.require_guid = require_guid
 
@@ -211,8 +230,9 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
   def _AddFromConfigHelper(self, document, context):
     for type_name in document:
-      new_type = self._ConstructType(type_name, document[type_name],
-                                     context.filepath, self.require_guid)
+      new_type = self._ConstructType(
+          type_name, document[type_name], context.filepath, self.require_guid
+      )
       self._AddType(new_type)
 
   def _ConstructField(self, local_field_names, optional, output_array):
@@ -224,13 +244,16 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
       # TODO(berkoben) refactor so validation happens in an order that
       # prevents this logic lint
       field_ns = self.local_namespace.GetQualifiedNamespace(
-          field_ns, std_field_name)
+          field_ns, std_field_name
+      )
       output_array.append(
           OptWrapper(
               field=FieldParts(
-                  namespace=field_ns, field=std_field_name,
-                  increment=increment),
-              optional=optional))
+                  namespace=field_ns, field=std_field_name, increment=increment
+              ),
+              optional=optional,
+          )
+      )
 
   def _ConstructType(self, type_name, type_contents, filepath, require_guid):
     """Reads a entity type config block and generates an EntityType object."""
@@ -245,8 +268,14 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
     guid = None
 
     expected_keys = set([
-        'description', 'implements', 'uses', 'opt_uses', 'is_abstract', 'guid',
-        'is_canonical', 'allow_undefined_fields'
+        'description',
+        'implements',
+        'uses',
+        'opt_uses',
+        'is_abstract',
+        'guid',
+        'is_canonical',
+        'allow_undefined_fields',
     ])
 
     if 'description' in type_contents:
@@ -285,7 +314,8 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
         is_canonical=is_canonical,
         guid=guid,
         require_guid=require_guid,
-        namespace=self.local_namespace)
+        namespace=self.local_namespace,
+    )
 
     # Add errors to type if there's anything extra in the block.  We add to the
     # entity type because an extra key here is likely a typo in a real key name
@@ -293,7 +323,8 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
     for key in type_contents:
       if key not in expected_keys:
         entity_type.AddFinding(
-            findings_lib.UnrecognizedKeyError(key, entity_type.file_context))
+            findings_lib.UnrecognizedKeyError(key, entity_type.file_context)
+        )
 
     return entity_type
 
@@ -367,7 +398,9 @@ class TypeNamespace(findings_lib.Findings):
       # entity_type is a duplicate type
       self.AddFinding(
           findings_lib.DuplicateEntityTypeDefinitionError(
-              self, entity_type, mapped_entity_type.file_context))
+              self, entity_type, mapped_entity_type.file_context
+          )
+      )
       return False
 
     return False
@@ -458,10 +491,12 @@ class TypeNamespace(findings_lib.Findings):
     Returns:
       True if field is defined.
     """
-    if not self._field_universe.IsFieldDefined(field_tuple.field,
-                                               field_tuple.namespace):
+    if not self._field_universe.IsFieldDefined(
+        field_tuple.field, field_tuple.namespace
+    ):
       self.AddFinding(
-          findings_lib.UndefinedFieldError(entity, field_tuple.field))
+          findings_lib.UndefinedFieldError(entity, field_tuple.field)
+      )
       return False
     return True
 
@@ -494,25 +529,27 @@ class EntityType(findings_lib.Findings):
     An instance of the EntityType class.
   """
 
-  def __init__(self,
-               begin_line_number=0,
-               filepath='',
-               typename='',
-               description='',
-               parents=None,
-               local_field_tuples=None,
-               is_abstract=False,
-               allow_undefined_fields=False,
-               inherited_fields_expanded=False,
-               is_canonical=False,
-               guid=None,
-               require_guid=True,
-               namespace=None):
+  def __init__(
+      self,
+      begin_line_number=0,
+      filepath='',
+      typename='',
+      description='',
+      parents=None,
+      local_field_tuples=None,
+      is_abstract=False,
+      allow_undefined_fields=False,
+      inherited_fields_expanded=False,
+      is_canonical=False,
+      guid=None,
+      require_guid=True,
+      namespace=None,
+  ):
     """Init.
 
     Args:
        begin_line_number: int. Starting line number for the entity type
-       definition.
+         definition.
        filepath: string. google3 path to the file defining the type.
        typename: required string.
        description: required string.
@@ -531,7 +568,8 @@ class EntityType(findings_lib.Findings):
     super(EntityType, self).__init__()
 
     self.file_context = findings_lib.FileContext(
-        begin_line_number=begin_line_number, filepath=filepath)
+        begin_line_number=begin_line_number, filepath=filepath
+    )
     self.typename = typename
     self.description = description
     self.namespace = namespace
@@ -604,9 +642,9 @@ class EntityType(findings_lib.Findings):
       self._all_fields = tmp
     return self._all_fields
 
-  def HasFieldAsWritten(self,
-                        fieldname_as_written: str,
-                        run_unsafe: bool = False) -> bool:
+  def HasFieldAsWritten(
+      self, fieldname_as_written: str, run_unsafe: bool = False
+  ) -> bool:
     """Returns true if a valid config file value maps to a field in the type.
 
     Accepts a field name as written in a configuration file
@@ -626,12 +664,14 @@ class EntityType(findings_lib.Findings):
       True if the Field is defined on the type.  False otherwise.
     """
 
-    return self.GetFieldFromConfigText(fieldname_as_written,
-                                       run_unsafe) is not None
+    return (
+        self.GetFieldFromConfigText(fieldname_as_written, run_unsafe)
+        is not None
+    )
 
-  def GetFieldFromConfigText(self,
-                             fieldname_as_written: str,
-                             run_unsafe: bool = False) -> Optional[OptWrapper]:
+  def GetFieldFromConfigText(
+      self, fieldname_as_written: str, run_unsafe: bool = False
+  ) -> Optional[OptWrapper]:
     """Returns `OptWrapper` provided string validates against the entity.
 
     Accepts a field name as written in a configuration file
@@ -654,15 +694,16 @@ class EntityType(findings_lib.Findings):
     # Field is unqualified so it is either global or type-namespace-local
     # Check for a locally defined field first using type's namespace
     field = self._GetField(
-        self.namespace.namespace + '/' + fieldname_as_written, run_unsafe)
+        self.namespace.namespace + '/' + fieldname_as_written, run_unsafe
+    )
     if not field:
       # Check field as if it's in the global namespace
       field = self._GetField('/' + fieldname_as_written, run_unsafe)
     return field
 
-  def HasField(self,
-               fully_qualified_fieldname: str,
-               run_unsafe: bool = False) -> bool:
+  def HasField(
+      self, fully_qualified_fieldname: str, run_unsafe: bool = False
+  ) -> bool:
     """Returns True if field string validates against the entity's fields.
 
     Args:
@@ -670,14 +711,15 @@ class EntityType(findings_lib.Findings):
         "HVAC/run_status_1".
       run_unsafe: set true to run against a type before fields are fully
         expanded.  Running in this mode does not memoize the result.
+
     Throws:
       TypeError: if the field is not fully qualified
     """
     return self.GetField(fully_qualified_fieldname, run_unsafe) is not None
 
-  def GetField(self,
-               fully_qualified_fieldname: str,
-               run_unsafe: bool = False) -> Optional[OptWrapper]:
+  def GetField(
+      self, fully_qualified_fieldname: str, run_unsafe: bool = False
+  ) -> Optional[OptWrapper]:
     """Returns `OptWrapper` if field string validates against the entity.
 
     Args:
@@ -695,9 +737,9 @@ class EntityType(findings_lib.Findings):
     _, _ = SeparateFieldNamespace(fully_qualified_fieldname)
     return self._GetField(fully_qualified_fieldname, run_unsafe)
 
-  def _GetField(self,
-                fully_qualified_fieldname: str,
-                run_unsafe: bool = False) -> Optional[OptWrapper]:
+  def _GetField(
+      self, fully_qualified_fieldname: str, run_unsafe: bool = False
+  ) -> Optional[OptWrapper]:
     return self.GetAllFields(run_unsafe).get(fully_qualified_fieldname)
 
   def _ValidateType(self, local_field_names, require_guid):
@@ -716,10 +758,12 @@ class EntityType(findings_lib.Findings):
       self.AddFinding(findings_lib.MissingTypenameError(self))
     elif not isinstance(self.typename, str):
       self.AddFinding(
-          findings_lib.IllegalKeyTypeError(self.typename, self.file_context))
+          findings_lib.IllegalKeyTypeError(self.typename, self.file_context)
+      )
     elif not ENTITY_TYPE_NAME_REGEX.match(self.typename):
       self.AddFinding(
-          findings_lib.InvalidTypenameError(self.typename, self.file_context))
+          findings_lib.InvalidTypenameError(self.typename, self.file_context)
+      )
 
     # Check for correct GUID format.
     if self.guid is not None and not ENTITY_TYPE_GUID_PATTERN.match(self.guid):
@@ -765,7 +809,8 @@ class EntityType(findings_lib.Findings):
       # Check formatting of parent name
       if len(parent_name.split('/')) > 2:
         self.AddFinding(
-            findings_lib.UnrecognizedParentFormatError(self, parent_name))
+            findings_lib.UnrecognizedParentFormatError(self, parent_name)
+        )
 
     # Enforce that the inherited_fields_expanded field is not set
     if self.inherited_fields_expanded:

@@ -46,6 +46,9 @@ FCU:
   is_abstract: true
   opt_uses:
   - return_air_temperature_sensor
+  - low_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - return_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
   - failed_communication_alarm
@@ -70,6 +73,7 @@ AHU:
   - failed_communication_alarm
   - smoke_alarm
   - emergency_alarm
+  - filter_alarm
 
 HX:
   guid: "9aa0dd1a-851c-4d4e-90da-6804c4f8b9f9"
@@ -86,6 +90,7 @@ PMP:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
@@ -106,6 +111,9 @@ MAU:
   - failed_communication_alarm
   - failed_alarm
   - emergency_alarm
+  - smoke_alarm
+  - filter_alarm
+  - run_mode
   implements:
   - EQUIPMENT
 
@@ -401,6 +409,10 @@ DOAS:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - smoke_alarm
+  - filter_alarm
+  - run_mode
+  - outside_air_temperature_sensor
   implements:
   - EQUIPMENT
 
@@ -449,3 +461,13 @@ PCU:
   - EQUIPMENT
   opt_uses:
   - failed_communication_alarm
+
+HOOD:
+  guid: "da347c83-a433-4df7-b6d4-26f416494a8c"
+  description: "Tag for a hood. Hoods are typically used in kitchen or lab spaces to exhaust air and detect smoke."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - failed_communication_alarm
+  - fire_alarm

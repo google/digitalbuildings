@@ -187,6 +187,26 @@ PMP_SS_VSC_HWBYPVM:
   - VSC
   - HWBYPVM
 
+PMP_SS_CHWFRSM:
+  guid: "133886ac-dced-440b-b036-34235ff3958b"
+  description: "Typical pump with chilled water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - CHWFRSM
+
+PMP_SS_VSC_CHWFRSM:
+  guid: "9b01db04-b3cb-4bd6-b08c-ef83cc555c4f"
+  description: "Typical variable speed pump with chilled water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - CHWFRSM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

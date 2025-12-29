@@ -1,5 +1,5 @@
 [![Tools](https://github.com/google/digitalbuildings/actions/workflows/tools.yml/badge.svg)](https://github.com/google/digitalbuildings/actions/workflows/tools.yml)
-![Ontology Type Validator](https://github.com/google/digitalbuildings/workflows/Ontology%20Type%20Validator/badge.svg)
+![Ontology Validator](https://github.com/google/digitalbuildings/actions/workflows/OntologyValidator.yml/badge.svg)
 ![Node.js CI](https://github.com/google/digitalbuildings/workflows/Node.js%20CI/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -28,9 +28,9 @@ This project is structured as follows:
 
 * A [model instance configuration](./ontology/docs/building_config.md) (a.k.a building configuration file) that contains a mapping between the ontology and the "raw" real-world data. Building configuration files are the "Assertion box."
 * Tools that enable the following:
-  * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building configration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
+  * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building configuration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
   * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
-  * [**Instance Validator**](./tools/validators/ontology_validator/README.md)**:** validates a concrete application (instance) of DBO (i.e., a building configuration file) with optional telemetry validation.
+  * [**Instance Validator**](./tools/validators/instance_validator/README.md)**:** validates a concrete application (instance) of DBO (i.e., a building configuration file) with optional telemetry validation.
   * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently supports YAML format only).
   * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the YAML ontology files.
 * An [Internal Building Representation (IBR)](./ibr/README.md) file format to represent data from different verticals such as spatial or assets.
@@ -43,7 +43,7 @@ The learning modules provide an overview of the following key concepts:
 * How to use the validation tools for ontology extensions and building configuration files
 
 ### Module 1: Digital Buildings Ontology (DBO)
-In this module, you’ll fully explore the core modeling and organizational concepts of the DBO. These are essential concepts for data modeling and creating building configuration files.
+In this module, you'll fully explore the core modeling and organizational concepts of the DBO. These are essential concepts for data modeling and creating building configuration files.
 
 
 * [Lesson 1: Introduction to the DBO](./ontology/docs/learning/Module_1_Lesson_1_Introduction_to_the_DBO.pdf)
@@ -59,7 +59,7 @@ In this module, you’ll fully explore the core modeling and organizational conc
 
 ### Module 2: Data Modeling with the DBO
 
-In this module, you’ll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
+In this module, you'll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
 
 
 * [Lesson 1: Get ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)

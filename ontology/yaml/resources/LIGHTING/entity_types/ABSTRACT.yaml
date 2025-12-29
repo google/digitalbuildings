@@ -218,3 +218,11 @@ CTC:
   - lighting_color_temperature_sensor
   uses:
   - lighting_color_temperature_setpoint
+
+
+LPS:
+  guid: "a6981abe-eb32-4431-88fa-9b2660b84762"
+  description: "Individual lighting percentage sensor monitoring, not used for control"
+  is_abstract: true
+  uses:
+  - lighting_percentage_sensor

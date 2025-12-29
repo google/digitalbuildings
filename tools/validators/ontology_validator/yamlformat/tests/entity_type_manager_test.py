@@ -57,7 +57,8 @@ def _GetEntityTypeFolder(field_universe, yaml, namespace=''):
 
 def _GetEntityTypeUniverse(type_folders):
   namespace_validator.NamespaceValidator(
-      [type_folder.local_namespace for type_folder in type_folders])
+      [type_folder.local_namespace for type_folder in type_folders]
+  )
   return entity_type_lib.EntityTypeUniverse(type_folders)
 
 
@@ -65,36 +66,35 @@ class EntityTypeManagerTest(absltest.TestCase):
 
   def testAnalyzeFindsFlexibleParents(self):
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
-    field_universe = field_lib.FieldUniverse(
-        [_GetFieldFolder(yaml)])
+    field_universe = field_lib.FieldUniverse([_GetFieldFolder(yaml)])
     yaml = {
         'VAV_parent': {
             'guid': _GUID_1,
             'description': 'parent',
             'is_canonical': True,
             'uses': ['field1', 'field4'],
-            'opt_uses': ['field2', 'field3']
+            'opt_uses': ['field2', 'field3'],
         },
         'VAV_child1': {
             'guid': _GUID_2,
             'description': 'child1',
             'uses': ['field1', 'field4'],
-            'opt_uses': ['field2']
+            'opt_uses': ['field2'],
         },
         'VAV_child2': {
             'guid': _GUID_3,
             'description': 'child2',
-            'uses': ['field1', 'field3', 'field4']
+            'uses': ['field1', 'field3', 'field4'],
         },
         'different_equip_type': {
             'guid': _GUID_4,
             'description': 'different',
-            'uses': ['field1', 'field3', 'field4']
+            'uses': ['field1', 'field3', 'field4'],
         },
         'VAV_nomatch': {
             'guid': _GUID_5,
             'description': 'nomatch',
-            'uses': ['field1', 'field2', 'field3']
+            'uses': ['field1', 'field2', 'field3'],
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
@@ -109,44 +109,55 @@ class EntityTypeManagerTest(absltest.TestCase):
     parent = universe.GetEntityType('', 'VAV_parent')
     nomatch = universe.GetEntityType('', 'VAV_nomatch')
 
-    self.assertTrue(parent.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeParentWarning]))
-    self.assertFalse(parent.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeChildWarning]))
+    self.assertTrue(
+        parent.HasFindingTypes([findings_lib.OverlappingFlexTypeParentWarning])
+    )
+    self.assertFalse(
+        parent.HasFindingTypes([findings_lib.OverlappingFlexTypeChildWarning])
+    )
 
-    self.assertTrue(child1.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeChildWarning]))
-    self.assertFalse(child1.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeParentWarning]))
+    self.assertTrue(
+        child1.HasFindingTypes([findings_lib.OverlappingFlexTypeChildWarning])
+    )
+    self.assertFalse(
+        child1.HasFindingTypes([findings_lib.OverlappingFlexTypeParentWarning])
+    )
 
-    self.assertTrue(child2.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeChildWarning]))
-    self.assertFalse(child2.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeParentWarning]))
+    self.assertTrue(
+        child2.HasFindingTypes([findings_lib.OverlappingFlexTypeChildWarning])
+    )
+    self.assertFalse(
+        child2.HasFindingTypes([findings_lib.OverlappingFlexTypeParentWarning])
+    )
 
-    self.assertFalse(child2_nm.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeChildWarning,
-         findings_lib.OverlappingFlexTypeParentWarning]))
-    self.assertFalse(nomatch.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeChildWarning,
-         findings_lib.OverlappingFlexTypeParentWarning]))
+    self.assertFalse(
+        child2_nm.HasFindingTypes([
+            findings_lib.OverlappingFlexTypeChildWarning,
+            findings_lib.OverlappingFlexTypeParentWarning,
+        ])
+    )
+    self.assertFalse(
+        nomatch.HasFindingTypes([
+            findings_lib.OverlappingFlexTypeChildWarning,
+            findings_lib.OverlappingFlexTypeParentWarning,
+        ])
+    )
 
   def testAnalyzeIgnoresNonCanonicalFlexibleParents(self):
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
-    field_universe = field_lib.FieldUniverse(
-        [_GetFieldFolder(yaml)])
+    field_universe = field_lib.FieldUniverse([_GetFieldFolder(yaml)])
     yaml = {
         'VAV_parent': {
             'guid': _GUID_1,
             'description': 'parent',
             'uses': ['field1', 'field4'],
-            'opt_uses': ['field2', 'field3']
+            'opt_uses': ['field2', 'field3'],
         },
         'VAV_child1': {
             'guid': _GUID_2,
             'description': 'child1',
             'uses': ['field1', 'field4'],
-            'opt_uses': ['field2']
+            'opt_uses': ['field2'],
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
@@ -157,30 +168,32 @@ class EntityTypeManagerTest(absltest.TestCase):
 
     parent = universe.GetEntityType('', 'VAV_parent')
 
-    self.assertFalse(parent.HasFindingTypes(
-        [findings_lib.OverlappingFlexTypeChildWarning,
-         findings_lib.OverlappingFlexTypeParentWarning]))
+    self.assertFalse(
+        parent.HasFindingTypes([
+            findings_lib.OverlappingFlexTypeChildWarning,
+            findings_lib.OverlappingFlexTypeParentWarning,
+        ])
+    )
 
   def testAnalyzeFindsDuplicates(self):
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4', 'field5']}
-    field_universe = field_lib.FieldUniverse(
-        [_GetFieldFolder(yaml)])
+    field_universe = field_lib.FieldUniverse([_GetFieldFolder(yaml)])
     yaml = {
         'parent': {
             'guid': _GUID_1,
             'description': 'parent',
-            'uses': ['field1', 'field2', 'field3']
+            'uses': ['field1', 'field2', 'field3'],
         },
         'child1': {
             'guid': _GUID_2,
             'description': 'child1',
             'implements': ['parent'],
-            'uses': ['field4']
+            'uses': ['field4'],
         },
         'child2': {
             'guid': _GUID_3,
             'description': 'child2',
-            'uses': ['field1', 'field2', 'field3', 'field4']
+            'uses': ['field1', 'field2', 'field3', 'field4'],
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
@@ -193,32 +206,33 @@ class EntityTypeManagerTest(absltest.TestCase):
     child2 = universe.GetEntityType('', 'child2')
     parent = universe.GetEntityType('', 'parent')
 
-    self.assertTrue(child2.HasFindingTypes(
-        [findings_lib.DuplicateExpandedFieldSetsWarning]))
-    self.assertTrue(child1.HasFindingTypes(
-        [findings_lib.DuplicateExpandedFieldSetsWarning]))
-    self.assertFalse(parent.HasFindingTypes(
-        [findings_lib.DuplicateExpandedFieldSetsWarning]))
+    self.assertTrue(
+        child2.HasFindingTypes([findings_lib.DuplicateExpandedFieldSetsWarning])
+    )
+    self.assertTrue(
+        child1.HasFindingTypes([findings_lib.DuplicateExpandedFieldSetsWarning])
+    )
+    self.assertFalse(
+        parent.HasFindingTypes([findings_lib.DuplicateExpandedFieldSetsWarning])
+    )
 
   def testAnalyzeIgnoresPassthroughTypes(self):
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
-    field_universe = field_lib.FieldUniverse(
-        [_GetFieldFolder(yaml)])
+    field_universe = field_lib.FieldUniverse([_GetFieldFolder(yaml)])
     yaml = {
         'parent': {
             'guid': _GUID_1,
             'description': 'parent',
-            'uses': ['field1', 'field2', 'field3']
+            'uses': ['field1', 'field2', 'field3'],
         },
         'PASSTHROUGH': {
             'guid': _GUID_2,
             'description': 'PASSTHROUGH',
             'allow_undefined_fields': True,
-            'uses': ['field1', 'field2', 'field3', 'field4']
+            'uses': ['field1', 'field2', 'field3', 'field4'],
         },
     }
-    type_folder = _GetEntityTypeFolder(
-        field_universe, yaml)
+    type_folder = _GetEntityTypeFolder(field_universe, yaml)
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
 
@@ -237,22 +251,21 @@ class EntityTypeManagerTest(absltest.TestCase):
         'parent': {
             'guid': _GUID_1,
             'description': 'parent',
-            'uses': ['HVAC/field1', 'field2', 'field3']
+            'uses': ['HVAC/field1', 'field2', 'field3'],
         },
     }
     yaml2 = {
         'child1': {
             'guid': _GUID_2,
             'description': 'child1',
-            'uses': ['field1', 'field2', 'field3']
+            'uses': ['field1', 'field2', 'field3'],
         },
     }
     type_folder1 = _GetEntityTypeFolder(
-        field_universe, yaml1, 'other_namespace')
-    type_folder2 = _GetEntityTypeFolder(
-        field_universe, yaml2, 'HVAC')
-    universe = _GetEntityTypeUniverse(
-        [type_folder1, type_folder2])
+        field_universe, yaml1, 'other_namespace'
+    )
+    type_folder2 = _GetEntityTypeFolder(field_universe, yaml2, 'HVAC')
+    universe = _GetEntityTypeUniverse([type_folder1, type_folder2])
     manager = entity_type_manager.EntityTypeManager(universe)
 
     findings = manager.Analyze()
@@ -262,33 +275,34 @@ class EntityTypeManagerTest(absltest.TestCase):
 
     self.assertLen(findings, 2)
     self.assertLen(child1.GetFindings(), 1)
-    self.assertTrue(child1.HasFindingTypes(
-        [findings_lib.DuplicateExpandedFieldSetsWarning]))
+    self.assertTrue(
+        child1.HasFindingTypes([findings_lib.DuplicateExpandedFieldSetsWarning])
+    )
     self.assertLen(parent.GetFindings(), 1)
-    self.assertTrue(parent.HasFindingTypes(
-        [findings_lib.DuplicateExpandedFieldSetsWarning]))
+    self.assertTrue(
+        parent.HasFindingTypes([findings_lib.DuplicateExpandedFieldSetsWarning])
+    )
 
   def testGetCompleteFieldSetsOI(self):
     # build test universe
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
-    field_universe = field_lib.FieldUniverse(
-        [_GetFieldFolder(yaml)])
+    field_universe = field_lib.FieldUniverse([_GetFieldFolder(yaml)])
     yaml = {
         'parent': {
             'guid': _GUID_1,
             'description': 'parent',
-            'uses': ['field1', 'field2', 'field3']
+            'uses': ['field1', 'field2', 'field3'],
         },
         'child1': {
             'guid': _GUID_2,
             'description': 'child1',
             'implements': ['parent'],
-            'uses': ['field4']
+            'uses': ['field4'],
         },
         'child2': {
             'guid': _GUID_3,
             'description': 'child2',
-            'uses': ['field1', 'field2', 'field3', 'field4']
+            'uses': ['field1', 'field2', 'field3', 'field4'],
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
@@ -299,14 +313,14 @@ class EntityTypeManagerTest(absltest.TestCase):
         frozenset({
             FieldParts(namespace='', field='field1', increment=''),
             FieldParts(namespace='', field='field2', increment=''),
-            FieldParts(namespace='', field='field3', increment='')
+            FieldParts(namespace='', field='field3', increment=''),
         }): {'/parent'},
         frozenset({
             FieldParts(namespace='', field='field1', increment=''),
             FieldParts(namespace='', field='field2', increment=''),
             FieldParts(namespace='', field='field4', increment=''),
-            FieldParts(namespace='', field='field3', increment='')
-        }): {'/child1', '/child2'}
+            FieldParts(namespace='', field='field3', increment=''),
+        }): {'/child1', '/child2'},
     }
 
     # test field sets have not been instantiated
@@ -321,19 +335,18 @@ class EntityTypeManagerTest(absltest.TestCase):
   def testGetTypenamesBySubsetOI(self):
     # build test universe
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
-    field_universe = field_lib.FieldUniverse(
-        [_GetFieldFolder(yaml)])
+    field_universe = field_lib.FieldUniverse([_GetFieldFolder(yaml)])
     yaml = {
         'VAV_child1': {
             'guid': _GUID_1,
             'description': 'child1',
             'uses': ['field1', 'field4'],
-            'opt_uses': ['field2']
+            'opt_uses': ['field2'],
         },
         'VAV_child2': {
             'guid': _GUID_2,
             'description': 'child2',
-            'uses': ['field1', 'field3', 'field4']
+            'uses': ['field1', 'field3', 'field4'],
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
@@ -343,7 +356,7 @@ class EntityTypeManagerTest(absltest.TestCase):
     expected_output = {
         frozenset({
             FieldParts(namespace='', field='field4', increment=''),
-            FieldParts(namespace='', field='field1', increment='')
+            FieldParts(namespace='', field='field1', increment=''),
         }): {'/VAV_child2', '/VAV_child1'}
     }
 
@@ -355,6 +368,7 @@ class EntityTypeManagerTest(absltest.TestCase):
     function_output = manager.GetTypenamesBySubsetOI()
 
     self.assertEqual(expected_output, function_output)
+
 
 if __name__ == '__main__':
   absltest.main()

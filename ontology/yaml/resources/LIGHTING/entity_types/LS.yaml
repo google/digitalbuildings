@@ -94,3 +94,11 @@ LS_OS_IS_MTS:
   - zone_air_temperature_sensor
   - zone_air_relative_humidity_sensor
 
+LS_LPS_OS:
+  guid: "502f5b67-1373-47e7-b151-08f185b67ec7"
+  description: "Lighting percentage sensing and zone occupancy monitoring"
+  is_canonical: true
+  implements:
+  - LS
+  - LPS
+  - OS

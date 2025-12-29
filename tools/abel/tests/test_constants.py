@@ -22,6 +22,7 @@ from model.constants import BUILDING_CODE
 from model.constants import CLOUD_DEVICE_ID
 from model.constants import CONNECTION_TYPE
 from model.constants import CONNECTIONS
+from model.constants import DISPLAY_NAME
 from model.constants import ENTITIES
 from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
@@ -68,11 +69,17 @@ TEST_STANDARD_FIELD_NAME_NO_UNITS = 'cooling_stage_run_count'
 TEST_BAD_MULTISTATE_FIELD_NAME = 'bad_mulistate_field'
 TEST_DIMENSIONAL_REPORTING_FIELD_NAME = 'supply_water_temperature_sensor_1'
 TEST_MULTISTATE_REPORTING_FIELD_NAME = 'fire_alarm_5'
-TEST_DIMENSIONAL_VALUE_RAW_FIELD_NAME = 'points.supply_water_temperature_sensor.present_value'
+TEST_DIMENSIONAL_VALUE_RAW_FIELD_NAME = (
+    'points.supply_water_temperature_sensor.present_value'
+)
 TEST_MULTISTATE_RAW_FIELD_NAME = 'points.fire_alarm_5.present_value'
-TEST_MISSING_RAW_FIELD_NAME = 'points.return_water_temperature_sensor.present_value'
+TEST_MISSING_RAW_FIELD_NAME = (
+    'points.return_water_temperature_sensor.present_value'
+)
 TEST_RAW_FIELD_NAME_NO_UNITS = 'points.cooling_stage_run_count.present_value'
-TEST_BAD_MULTISTATE_FIELD_RAW_FIELD_NAME = 'points.bad_multistate_field.present_value'
+TEST_BAD_MULTISTATE_FIELD_RAW_FIELD_NAME = (
+    'points.bad_multistate_field.present_value'
+)
 TEST_RAW_UNIT_PATH = 'pointset.points.supply_water_temperature_sensor.units'
 TEST_RAW_UNIT_PATH_NO_UNITS = 'pointset.points.cooling_stage_run_count.units'
 TEST_STANDARD_UNIT_VALUE = 'degrees-celsius'
@@ -86,12 +93,13 @@ TEST_CLOUD_DEVICE_ID = '2541901344105616'
 TEST_REPORTING_GUID = 'test_reporting_guid'
 TEST_VIRTUAL_GUID = 'test_virtual_guid'
 TEST_ETAG = '1234567'
+TEST_DISPLAY_NAME = 'Test Display Name'
 
 # Test Site instances
 TEST_SITE_DICT = {
     BUILDING_CODE: 'UK-LON-S2',
     BC_GUID: 'test_site_guid',
-    ETAG: '1234567'
+    ETAG: '1234567',
 }
 
 # Test Entity instances
@@ -109,6 +117,7 @@ TEST_REPORTING_ENTITY_DICT = {
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'TRUE',
     OPERATION: 'ADD',
+    DISPLAY_NAME: TEST_DISPLAY_NAME,
 }
 
 TEST_REPORTING_ENTITY_DICT_NO_GUID = {
@@ -131,6 +140,7 @@ TEST_VIRTUAL_ENTITY_DICT = {
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'FALSE',
     OPERATION: 'ADD',
+    DISPLAY_NAME: TEST_DISPLAY_NAME,
 }
 
 # Test Entity Field instances

@@ -1,4 +1,5 @@
 """Constants for the guid generator application tests."""
+
 from os import path
 
 from instance_guid_generator import constants

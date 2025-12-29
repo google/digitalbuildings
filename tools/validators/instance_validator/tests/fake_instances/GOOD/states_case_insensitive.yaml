@@ -25,19 +25,23 @@ FC2-1-1-GUID:
   cloud_device_id: "1234567890123456"
   code: FC2-1-1
   translation:
-    compressor_run_command_1:
+    room1_temp_data:
       present_value: data.binary-value_1.present-value
       states:
         off: inactive
         on: active
-    discharge_fan_run_status_5:
-      present_value: data.binary-value_2.present-value
-      states:
-        OFF: inactive
-        ON: active
-    run_status_1:
+    room3_temp_data:
       present_value: data.binary-value_13.present-value
       states:
         OFf: inactive
         oN: active
   type: GATEWAYS/PASSTHROUGH
+
+VRT-1-1-GUID:
+  type: HVAC/FAN_SS
+  code: VRT-1-1
+  links:
+    FC2-1-1-GUID:
+      run_command: room1_temp_data
+      run_status: room3_temp_data
+    

@@ -13,6 +13,7 @@
 # limitations under the License.
 """Tests for Export Helper."""
 
+import copy
 import os
 import tempfile
 
@@ -25,6 +26,9 @@ from model import import_helper
 from model.constants import ENTITY_FIELDS
 from model.constants import SHEETS
 from model.constants import V4
+from model.entity_enumerations import EntityOperationType
+from model.entity_enumerations import EntityUpdateMaskAttribute
+from model.entity_operation import EntityOperation
 from model.export_helper import BuildingConfigExport
 from model.export_helper import GoogleSheetExport
 from model.model_builder import Model
@@ -48,7 +52,7 @@ class ExportHelperTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    self.input_spreadsheet = TEST_SPREADSHEET.copy()
+    self.input_spreadsheet = copy.deepcopy(TEST_SPREADSHEET)
 
     self.export_filepath = os.path.join(
         tempfile.gettempdir(), 'exported_building_config.yaml'
@@ -152,7 +156,14 @@ class ExportHelperTest(absltest.TestCase):
     exported_building_config = (
         self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
-    expected_keys = ['code', 'etag', 'connections', 'links', 'type']
+    expected_keys = [
+        'code',
+        'display_name',
+        'etag',
+        'connections',
+        'links',
+        'type',
+    ]
     exported_keys = list(
         exported_building_config.get('test_virtual_guid').keys()
     )
@@ -165,7 +176,14 @@ class ExportHelperTest(absltest.TestCase):
     exported_building_config = (
         self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
-    expected_keys = ['cloud_device_id', 'code', 'etag', 'translation', 'type']
+    expected_keys = [
+        'cloud_device_id',
+        'code',
+        'display_name',
+        'etag',
+        'translation',
+        'type',
+    ]
     exported_keys = list(
         exported_building_config.get('test_reporting_guid').keys()
     )
@@ -234,12 +252,12 @@ class ExportHelperTest(absltest.TestCase):
     )
 
   def testExportBuildingConfigRaisesValueErrorForBadMultistate(self):
-    bad_input_spreadsheet = TEST_SPREADSHEET.copy()
+    bad_input_spreadsheet = copy.deepcopy(TEST_SPREADSHEET)
     bad_input_spreadsheet[ENTITY_FIELDS].append(
         TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
     )
     unbuilt_model, operations = Model.Builder.FromSpreadsheet(
-        self.input_spreadsheet
+        bad_input_spreadsheet
     )
     model = unbuilt_model.Build()
     export_helper = BuildingConfigExport(model)
@@ -247,6 +265,38 @@ class ExportHelperTest(absltest.TestCase):
     with self.assertRaises(ValueError):
       export_helper.ExportInitBuildingConfiguration(self.export_filepath)
 
+  def testExportBuildingConfigExportsUpdateMasksCorrectly(self):
+    operations = []
+    update_masks = list(EntityUpdateMaskAttribute)
+    for entity_guid in self.export_helper.model.site.entities:
+      entity = self.export_helper.model.guid_to_entity_map.GetEntityByGuid(
+          entity_guid
+      )
+      operations.append(
+          EntityOperation(
+              entity=entity,
+              operation=EntityOperationType.UPDATE,
+              update_mask=update_masks,
+          )
+      )
+
+    exported_updated_building_config = (
+        self.export_helper.ExportUpdateBuildingConfiguration(
+            self.export_filepath, operations
+        )
+    )
+
+    expected_update_masks = [mask.value for mask in update_masks]
+    for entity_guid in self.export_helper.model.site.entities:
+      entity = self.export_helper.model.guid_to_entity_map.GetEntityByGuid(
+          entity_guid
+      )
+      entity_block = exported_updated_building_config.get(entity.bc_guid)
+      self.assertIsNotNone(entity_block)
+      self.assertEqual(entity_block.get('operation'), 'UPDATE')
+      self.assertCountEqual(
+          entity_block.get('update_mask'), expected_update_masks
+      )
 
 if __name__ == '__main__':
   absltest.main()

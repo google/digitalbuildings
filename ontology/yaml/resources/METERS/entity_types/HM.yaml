@@ -66,3 +66,16 @@ HM_HW:
   - heating_return_water_temperature_sensor
   - heating_thermal_power_sensor
   - heating_thermal_energy_accumulator
+
+HM_STEAM:
+  guid: "430d69cc-4c54-41b6-87f5-bcda7c81dec3"
+  description: "Steam load heat meter."
+  implements:
+  - HM
+  is_canonical: true
+  uses:
+  - supply_steam_temperature_sensor
+  - steam_volume_accumulator
+  opt_uses:
+  - supply_steam_flowrate_sensor
+  - steam_massflow_sensor

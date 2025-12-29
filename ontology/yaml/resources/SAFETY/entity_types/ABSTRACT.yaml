@@ -53,13 +53,13 @@ BCM:
 
 BC2X:
   guid: "5b04410c-62b1-4385-998b-16023b663b14"
-  description: "Broken cable monitoring."
+  description: "Dual broken cable monitoring."
   is_abstract: true
   uses:
   - broken_cable_alarm_1
   - broken_cable_alarm_2
 
-LPA: 
+LPA:
   guid: "3f8a398c-23f5-43bd-9694-ac06087ffc07"
   description: "Loss of power alarming."
   is_abstract: true
@@ -102,3 +102,13 @@ LM:
   is_abstract: true
   uses:
   - level_status
+
+REFM:
+  guid: "591f8a31-dc4b-45a2-8ac1-b0478b7ceaa5"
+  description: "Refrigerant leak monitoring."
+  is_abstract: true
+  opt_uses:
+  - high_zone_air_refrigerant_concentration_alarm
+  - failed_zone_air_refrigerant_concentration_alarm
+  uses:
+  - zone_air_refrigerant_concentration_sensor
