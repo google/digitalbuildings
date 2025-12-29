@@ -21,7 +21,7 @@ PMP_SS:
   description: "Typical pump."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
 
 PMP_SS_VSC:
@@ -29,7 +29,7 @@ PMP_SS_VSC:
   description: "Typical variable speed pump."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
 
@@ -38,7 +38,7 @@ PMP_SS_SWTM:
   description: "Pump with supply water temperature monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - SWTM
 
@@ -47,7 +47,7 @@ PMP_DRPM:
   description: "Pump implemented with drain pump monitoring ."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - DRPM
 
 PMP_SS_VSC_WDPM:
@@ -55,7 +55,7 @@ PMP_SS_VSC_WDPM:
   description: "Variable speed pump with differential pressure monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - WDPM
@@ -65,7 +65,7 @@ PMP_SS_VSC_WDPC:
   description: "Pump with variable speed control and differential pressure control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - WDPC
@@ -75,7 +75,7 @@ PMP_SS_LHLM:
   description: "Sump Pump with water level monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - LHLM
 
@@ -84,7 +84,7 @@ PMP_SS_VSFC:
   description: "PMP device with pump frequency control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSFC
   opt_uses:
@@ -99,7 +99,7 @@ PMP_SS_CHWISOVPM_VSFC:
   description: "PMP device with chilled water valve and pump frequency control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - CHWISOVPM
   - VSFC
@@ -115,7 +115,7 @@ PMP_SS_CHWISOVPM_VSC:
   description: "PMP device with chilled water valve and pump speed percentage control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - CHWISOVPM
   - VSC
@@ -125,7 +125,7 @@ PMP_SS_VSC_WDPC_WFRC:
   description: "Pump with variable speed control, differential pressure control and flow control."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - WDPC
@@ -136,7 +136,7 @@ PMP_SS_VSC_SWTC:
   description: "Pump with variable speed control and supply water temperature control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - SWTC
@@ -146,7 +146,7 @@ PMP_SS_CWCS_VSFC:
   description: "PMP device with condensing water valve and pump frequency control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - CWCS
   - VSFC
@@ -160,7 +160,7 @@ PMP_SS_RMM:
   description: "Pump with pressure switch and failed alarm monitoring"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - RMM
   opt_uses:
@@ -173,7 +173,7 @@ PMP_SS_WDPM:
   description: "Pump with pressure alarms and status monitoring"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - WDPM
 
@@ -182,7 +182,7 @@ PMP_SS_VSC_HWBYPVM:
   description: "Variable speed pump with heating water bypass valve binary control."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - HWBYPVM
@@ -192,7 +192,7 @@ PMP_SS_CHWFRSM:
   description: "Typical pump with chilled water flowrate status monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - CHWFRSM
 
@@ -201,12 +201,7 @@ PMP_SS_VSC_CHWFRSM:
   description: "Typical variable speed pump with chilled water flowrate status monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - CHWFRSM
-
-
-###################################
-### Existing Non-standard Types ###
-###################################
