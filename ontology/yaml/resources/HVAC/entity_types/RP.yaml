@@ -139,3 +139,14 @@ RP_DSP_FPHC_CAM:
   - DSP
   - FPHC
   - CAM
+
+RP_DSP_FPHC_CAM_ZHM:
+  guid: "36560088-c885-4029-ad49-c9b2d469a9f6"
+  description: "Four-pipe radiant panel for room heating and cooling with condensate monitoring and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+  - CAM
+  - ZHM
