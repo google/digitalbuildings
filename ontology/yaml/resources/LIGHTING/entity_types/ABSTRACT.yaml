@@ -180,7 +180,7 @@ CHSLM:
   guid: "1ab195d7-4035-424c-b2d9-282ec0a9cc2a"
   description: "HSL light color monitoring"
   is_abstract: true
-  uses: 
+  uses:
   - lighting_color_hsl_saturation_percentage_sensor
   - lighting_color_hsl_hue_angle_sensor
 
