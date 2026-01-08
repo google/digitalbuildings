@@ -115,8 +115,6 @@ electricinductance:
   henrys: STANDARD
 electricphasedifference:
   degrees_phase: STANDARD
-electricfieldstrength:
-  amperes_per_meter: STANDARD
 electricresistivity:
   ohm_meters: STANDARD
 energy:
@@ -273,6 +271,8 @@ luminousflux:
   lumens: STANDARD
 luminousintensity:
   candelas: STANDARD
+magneticfieldstrength:
+  amperes_per_meter: STANDARD
 magneticflux:
   webers: STANDARD
 magneticinduction:
