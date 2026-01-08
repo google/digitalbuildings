@@ -450,7 +450,7 @@ rotationalvelocity:
   revolutions_per_minute: STANDARD
 soundpressurelevel:
   decibels: STANDARD
-specificenergy:
+specificentropy:
   joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:
   joules_per_kilogram: STANDARD
