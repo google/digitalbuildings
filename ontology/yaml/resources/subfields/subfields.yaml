@@ -331,7 +331,7 @@ measurement:
   rate: "ratio of change compared to a step or time."
   resistance: "Electrical resistance."
   rotationalvelocity: "Vector measure of rotation rate, that refers to how fast an object rotates or revolves relative to another point."
-  specificenergy: "Energy per unit mass."
+  specificentropy: "Entropy per unit mass."
   specificenthalpy: "Measure of energy of air per unit mass."
   soundpressurelevel: "Logarithmic measure of the sound intensity in comparison to a reference value (1e10-12 W/m^2)."
   temperature: "Measures the temperature of media within a process or system."
