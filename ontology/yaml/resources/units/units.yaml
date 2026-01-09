@@ -109,7 +109,7 @@ electricconductivity:
     offset: 0
 electriccurrentdensity:
   amperes_per_square_meter: STANDARD
-electricfield:
+electricfieldstrength:
   volts_per_meter: STANDARD
 electricinductance:
   henrys: STANDARD
