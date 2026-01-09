@@ -314,6 +314,7 @@ measurement:
   luminance: "The intensity of light emitted from a surface per unit area in a given direction."
   luminousflux: "Measure of the perceived power of light."
   luminousintensity: "Measure of the wavelength-weighted power emitted by a light source in a particular direction per unit solid angle."
+  magneticfieldstrength: "Quantitative expression of the intensity of a magnetic field."
   magneticflux: "Surface integral of the normal component of the magnetic field over a surface."
   magneticinduction: "Vector field that wdescribes the magnetic influence on moving electric charges, electric currents and magnetic materials."
   magneticmoment: "Measure of the magnetic strength of a magnet or current-carrying coil, expressed as the torque produced when the magnet or coil is set with its axis perpendicular to unit magnetic flux density."
