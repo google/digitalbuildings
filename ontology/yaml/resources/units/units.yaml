@@ -450,8 +450,6 @@ rotationalvelocity:
   revolutions_per_minute: STANDARD
 soundpressurelevel:
   decibels: STANDARD
-specificenergy:
-  joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:
   joules_per_kilogram: STANDARD
   btus_per_pound_dry_air:
@@ -466,6 +464,8 @@ specificenthalpy:
   megajoules_per_kilogram_dry_air:
     multiplier: 1000000
     offset: 0
+specificentropy:
+  joules_per_kilogram_kelvin: STANDARD
 temperature:
   kelvin: STANDARD
   degrees_celsius:
