@@ -445,20 +445,6 @@ VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC:
   - DFSS
   - DFVSC
 
-VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC_COM_ZHM:
-  guid: "86f64755-4de7-466c-a14a-6408ada66da0"
-  description: "Single duct fan powered VAV with reheat and CO2 control, CO and humidity monitoring."
-  is_canonical: true
-  implements:
-  - VAV
-  - SD
-  - DSP
-  - HWDC
-  - CO2C
-  - DFSS
-  - DFVSC
-  - COM
-  - ZHM
 
 VAV_SD_DSP_HWDC_CO2C_DFVSC_COM_ZHM:
   guid: "7d6dad5c-31cb-4dc9-887c-7eba3709bb61"
