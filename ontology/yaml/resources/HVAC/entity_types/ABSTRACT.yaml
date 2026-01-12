@@ -55,9 +55,8 @@ RDM:
   guid: "9b0b6094-b092-4d27-b894-6dbc299e4833"
   description: "Very basic system run duration monitoring. "
   is_abstract: true
-  uses:
-  - run_time_accumulator
   implements:
+  - /RDM
   - MONITORING
 
 DD:
@@ -96,9 +95,8 @@ SRC:
   guid: "0b8da138-b5be-42d1-81ad-13d4196f5352"
   description: "Very basic run scheduling command."
   is_abstract: true
-  uses:
-  - schedule_run_command
   implements:
+  - /SRC
   - CONTROL
 
 # Not deprecated but probably not useful
@@ -212,13 +210,8 @@ REFM:
   description: "Refrigerant leak monitoring."
   is_abstract: true
   implements:
+  - /REFM
   - MONITORING
-  opt_uses:
-  - high_zone_air_refrigerant_concentration_alarm
-  - failed_zone_air_refrigerant_concentration_alarm
-  uses:
-  - zone_air_refrigerant_concentration_sensor
-
 
 CSP:
   guid: "d741e3d6-4997-4a01-8ac1-07b6ff6d53a7"
@@ -6552,8 +6545,8 @@ RMM:
   guid: "162df361-7593-4e36-bf41-e7fa667244dd"
   description: "Run mode monitoring."
   is_abstract: true
-  uses:
-  - run_mode
+  implements:
+  - /RMM
 
 
 DSPZDHC:
@@ -7909,13 +7902,13 @@ RCKTM:
   is_abstract: true
   opt_uses:
   - refrigerant_vapor_temperature_sensor
-  uses:
   - refrigerant_discharge_pressure_sensor
   - refrigerant_discharge_temperature_sensor
   - refrigerant_liquid_pressure_sensor
   - refrigerant_liquid_saturation_temperature_sensor
   - refrigerant_liquid_temperature_sensor
   - refrigerant_subcooling_temperature_sensor
+  uses:
   - refrigerant_suction_pressure_sensor
   - refrigerant_suction_saturation_temperature_sensor
   - refrigerant_suction_superheat_temperature_sensor
@@ -7929,7 +7922,6 @@ RCKTM2X:
   opt_uses:
   - refrigerant_vapor_temperature_sensor_1
   - refrigerant_vapor_temperature_sensor_2
-  uses:
   - refrigerant_discharge_pressure_sensor_1
   - refrigerant_discharge_pressure_sensor_2
   - refrigerant_discharge_temperature_sensor_1
@@ -7942,6 +7934,7 @@ RCKTM2X:
   - refrigerant_liquid_temperature_sensor_2
   - refrigerant_subcooling_temperature_sensor_1
   - refrigerant_subcooling_temperature_sensor_2
+  uses:
   - refrigerant_suction_pressure_sensor_1
   - refrigerant_suction_pressure_sensor_2
   - refrigerant_suction_saturation_temperature_sensor_1
@@ -8168,10 +8161,8 @@ OTPM:
   is_abstract: true
   opt_uses:
   - oil_differential_pressure_sensor
-  uses:
-  - oil_temperature_sensor
-  - oil_pressure_sensor
   implements:
+  - /OTPM
   - MONITORING
 
 
@@ -8792,9 +8783,9 @@ LM:
   guid: "debce299-ec12-4d13-86fd-93e0cf10102e"
   description: "level monitoring of devices storing media."
   is_abstract: true
-  uses:
-  - level_status
-  - percentage_sensor
+  implements:
+  - /LM
+  - MONITORING
 
 
 LHLM:
@@ -9376,9 +9367,8 @@ ZOS:
   guid: "afaa65e7-ae33-482b-8f55-ef9907cd68cb"
   description: "Occupancy status monitoring. For space/desk/seat occupancy status (occupied and unoccupied)"
   is_abstract: true
-  uses:
-  - zone_occupancy_status
   implements:
+  - /ZOS
   - MONITORING
 
 SPLM:

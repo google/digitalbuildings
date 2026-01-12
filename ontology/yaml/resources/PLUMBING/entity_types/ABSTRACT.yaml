@@ -29,10 +29,8 @@ LVLM:
   guid: "288e9cfb-952e-404c-8bfa-586caf1b340b"
   description: "Level Monitoring for tanks."
   is_abstract: true
-  uses:
-  - level_status
-  opt_uses:
-  - percentage_sensor
+  implements:
+  - /LM
 
 PH:
   guid: "4d5f4328-0bee-44eb-ba51-0723292f9bb5"
