@@ -2897,6 +2897,9 @@ literals:
 - particle_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
+- percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2966,6 +2969,9 @@ literals:
 - phase3_reactive_power_sensor:
     flexible_min: -30000.0
     flexible_max: 30000.0
+- position_command:
+  - OPEN
+  - CLOSED
 - position_status:
   - OPEN
   - CLOSED
