@@ -94,6 +94,16 @@ VLV_VPM:
   implements:
   - /VLV # inherits from global namespace
   - VPM
+  
+VLV_VPM_RTM_DTM:
+  guid: "2b376a98-ad41-4d12-b4e9-ec95e15d2bae"
+  description: "Pressure control valve with discharge and return air temperature monitoring."
+  is_canonical: true
+  implements:
+  - /VLV # inherits from global namespace
+  - VPM
+  - RTM
+  - DTM
 
 VLV_VPM_WDT_CLPM:
   guid: "f9f63525-1890-49ce-a627-ccc8ffbdacd2"
@@ -104,13 +114,3 @@ VLV_VPM_WDT_CLPM:
   - VPM
   - WDT
   - CLPM
-  
-VLV_VPM_RTM_DTM:
-  guid: "2b376a98-ad41-4d12-b4e9-ec95e15d2bae"
-  description: "Chilled or heating water valve with discharge and return air temperature monitoring."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - VPM
-  - RTM
-  - DTM
