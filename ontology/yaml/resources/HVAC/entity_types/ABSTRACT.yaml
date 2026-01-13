@@ -1517,8 +1517,12 @@ WDT:
   - return_water_temperature_sensor
   - supply_water_temperature_sensor
   opt_uses:
+  - failed_supply_water_temperature_alarm
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - failed_return_water_temperature_alarm
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
 
 
 CMWDT:
@@ -6487,7 +6491,6 @@ SDBPC:
   implements:
   - MONITORING
 
-
 HWVM:
   guid: "9e86fa93-01d8-4536-815b-1b031b165f3f"
   description: "Heating water valve command and position monitoring (without regard to what controls it)."
@@ -6498,6 +6501,22 @@ HWVM:
   uses:
   - heating_water_valve_percentage_command
   - heating_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+
+VPM:
+  guid: "d022437c-5783-4416-b8b0-846f4de9142a"
+  description: "Variable position control without regard to what it controls to."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - cooling_thermal_power_capacity
+  - failed_alarm
+  - frost_alarm
+  - flowrate_sensor
+  uses:
+  - percentage_command
+  - percentage_sensor
   implements:
   - OPERATIONAL
 
@@ -8729,6 +8748,14 @@ SWCM:
   uses:
   - valve_command
   - valve_status
+
+PM:
+  guid: "f00bc1ea-8abe-40e0-8fcf-1f26810881bf"
+  description: "Binary position control without regard to what it controls to."
+  is_abstract: true
+  uses:
+  - position_command
+  - position_status
 
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"
