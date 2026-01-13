@@ -77,10 +77,10 @@ VLV_SWCM:
   - SWCM
 
 # The below types follow the expected convention of avoiding the redundancy of calling out "valve" on the fields of the valve type. The above types
-#  should be removed once all existing valves using them are reonboarded with one of the following.
+# should be removed once all existing valves using them are reonboarded with one of the following.
 
 VLV_PM:
-  guid: "e0552cad-7620-462c-9571-b832cda303f5"
+  guid: "43c90956-65a7-4893-90e4-ab58f9878a19"
   description: "Valve with binary position control."
   is_canonical: true
   implements:
