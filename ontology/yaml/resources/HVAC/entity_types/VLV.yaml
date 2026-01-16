@@ -22,7 +22,7 @@ VLV_PM:
   is_canonical: true
   implements:
   - /VLV # inherits from global namespace
-  - PM
+  - /PM # inherits from global namespace
 
 VLV_VPM:
   guid: "342034a9-5850-4ec0-b63f-d3a6712d75e0"
