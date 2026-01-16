@@ -22,4 +22,4 @@ VLV_PM:
   is_canonical: true
   implements:
   - /VLV # inherits from global namespace
-  - PM
+  - /PM # inherits from global namespace
