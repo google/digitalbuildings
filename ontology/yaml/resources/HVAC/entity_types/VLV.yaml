@@ -16,69 +16,6 @@
 ### Canonical Types  ###
 ########################
 
-VLV_CHWVM_RTM_DTM:
-  guid: "b2223a12-07e8-455b-8ae4-eed3942df5a8"
-  description: "Chilled water valve with discharge and return temperature monitoring."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CHWVM
-  - RTM
-  - DTM
-
-VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DTM)
-  guid: "d8fad139-6759-4165-b0a3-eae7d5b299a0"
-  description: "Heating water valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - HWVM
-
-VLV_CHWVM_CHWDT_CLPM:
-  guid: "e5d23585-6ac5-4d3b-bc2e-4278ffc6391d"
-  description: "Chilled water pressure control valve with differential temperature and thermal load monitoring."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CHWVM
-  - CHWDT
-  - CLPM
-
-VLV_CHWPVM:
-  guid: "4222857f-3f92-4663-83ac-0bb11550f568"
-  description: "Chilled water pressure control valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CHWPVM
-
-VLV_HWPVM:
-  guid: "8ead3ca8-7f64-421c-9293-fcbf440bcc4f"
-  description: "Heating water pressure control valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - HWPVM
-
-VLV_CDWPVM:
-  guid: "f656bec8-3061-4e60-b7d2-00f754bad5af"
-  description: "Condensing water pressure control valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CDWPVM
-
-VLV_SWCM:
-  guid: "e0552cad-7620-462c-9571-b832cda303f5"
-  description: "Solenoid water valve control and monitoring."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - SWCM
-
-# The below types follow the expected convention of avoiding the redundancy of calling out "valve" on the fields of the valve type. The above types
-# should be removed once all existing valves using them are reonboarded with one of the following.
-
 VLV_PM:
   guid: "43c90956-65a7-4893-90e4-ab58f9878a19"
   description: "Valve with binary position control."
