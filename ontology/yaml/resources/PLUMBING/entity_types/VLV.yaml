@@ -16,10 +16,10 @@
 ### Canonical Types  ###
 ########################
 
-VLV_WVCM:
-  guid: "63e9ccb7-67f6-4547-aff8-d3cf30d1ab40"
-  description: "Solenoid water valve control and monitoring."
+VLV_PM:
+  guid: "82bdc442-dccf-4ff5-8c2e-d9219a2159ef"
+  description: "Valve with binary position control."
   is_canonical: true
   implements:
   - /VLV # inherits from global namespace
-  - WVCM
+  - PM
