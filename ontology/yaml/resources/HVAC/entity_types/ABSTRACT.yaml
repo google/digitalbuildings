@@ -4972,7 +4972,6 @@ CDWISOVM:
   implements:
   - MONITORING
 
-
 CDWISOVPM:
   guid: "8308f584-0b61-4124-abb9-d8f5ca71e880"
   description: "Condensing water isolation valve percentage control."
@@ -4985,7 +4984,6 @@ CDWISOVPM:
   - condensing_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
-
 
 SHWISOVPM:
   guid: "b56edb43-bde9-49f3-9437-d7a6b6e6fdea"
@@ -8703,14 +8701,6 @@ HMLC:
   - medium_speed_command
   implements:
   - OPERATIONAL
-
-PM:
-  guid: "f00bc1ea-8abe-40e0-8fcf-1f26810881bf"
-  description: "Binary position control without regard to what it controls to."
-  is_abstract: true
-  uses:
-  - position_command
-  - position_status
 
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"
