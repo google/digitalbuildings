@@ -131,7 +131,7 @@ DMP_BYPFRC:
 
  ### To do: remove above types once existing devices are reonboarded to use the ones below ###
  
- DMP_DBPC:
+DMP_DBPC:
   guid: "1c421427-3283-440d-949d-7623beb365e7"
   description: "Stand-alone building pressure control damper."
   is_canonical: true
