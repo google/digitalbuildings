@@ -129,7 +129,7 @@ DMP_BYPFRC:
   - DMP
   - BYPFRC
 
- ### To do: remove above types once existing devices are reonboarded to use the ones below
+ ### To do: remove above types once existing devices are reonboarded to use the ones below ###
  
  DMP_DBPC:
   guid: "1c421427-3283-440d-949d-7623beb365e7"
@@ -140,7 +140,7 @@ DMP_BYPFRC:
   - DBPC
 
 DMP_PM:
-  guid: "1c421427-3283-440d-949d-7623beb365e7"
+  guid: "d697236b-3232-4b5d-94a8-5a4d3e3770b4"
   description: "Damper with binary position monitoring."
   is_canonical: true
   implements:
