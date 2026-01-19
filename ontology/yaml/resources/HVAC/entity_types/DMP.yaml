@@ -180,15 +180,6 @@ DMP_DSSPC_RMM:
   - DSSPC
   - RMM
 
-DMP_DBM_RMM:
-  guid: "65eaef28-e89e-4d52-8c1c-c7123f42d5cb"
-  description: "Damper with binary position monitoring (separate open/closed statuses)."
-  is_canonical: true
-  implements:
-  - DMP
-  - DBM
-  - RMM
-
 DMP_DZPC:
   guid: "3ac75d82-48e4-4f33-b5bc-125434bac0b3"
   description: "Stand-alone zone pressure control damper."
