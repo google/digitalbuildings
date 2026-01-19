@@ -139,29 +139,29 @@ DMP_BYPFRC:
   - DMP
   - DBPC
 
-DMP_DM:
+DMP_PM:
   guid: "1c421427-3283-440d-949d-7623beb365e7"
   description: "Damper with binary position monitoring."
   is_canonical: true
   implements:
   - DMP
-  - DM
+  - PM
 
-DMP_DPM:
+DMP_VPM:
   guid: "55b22938-cd53-4347-b204-0eacd0d01ffb"
   description: "Damper with variable position monitoring."
   is_canonical: true
   implements:
   - DMP
-  - DPM
+  - VPM
 
-DMP_DFC:
+DMP_EFVPC:
   guid: "a0d24c6c-4ebf-49f0-8bc3-1f5ed58ab6e3"
-  description: "Flowrate controlled variable position damper."
+  description: "Flowrate controlled variable position exhaust damper."
   is_canonical: true
   implements:
   - DMP
-  - DFC
+  - EFVPC
 
 DMP_DSSPC:
   guid: "82d97cb8-24e5-4496-a285-d35ee1c73e39"
@@ -196,3 +196,19 @@ DMP_DZPC:
   implements:
   - DMP
   - DZPC
+
+DMP_OFVPC:
+  guid: "bbfa2ee3-c842-46d4-917f-81ae917f1bd0"
+  description: "Flowrate controlled variable position outside air damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - OFVPC
+
+DMP_BYPFVPC:
+  guid: "3bbb57c5-9ce4-41d7-84fe-70d5346836d6"
+  description: "Flowrate controlled variable position bypass air damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - BYPFVPC
