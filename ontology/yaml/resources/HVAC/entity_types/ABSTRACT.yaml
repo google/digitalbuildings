@@ -1091,6 +1091,8 @@ PM:
   - /PM
   opt_uses:
   - failed_alarm
+  - run_mode
+  - schedule_run_command
   - ventilation_request_count
 
 DSPC:
