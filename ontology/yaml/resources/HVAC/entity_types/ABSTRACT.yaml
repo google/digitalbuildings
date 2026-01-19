@@ -2548,8 +2548,8 @@ DZPC:
   - failed_alarm
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
-  - zone_air_flowrate_sensor
-  - zone_air_temperatures_sensor
+  - exhaust_air_flowrate_sensor
+  - zone_air_temperature_sensor
   uses:  
   - percentage_command
   - zone_air_static_pressure_sensor
