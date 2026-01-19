@@ -180,6 +180,19 @@ OAFC:
   implements:
   - CONTROL
 
+OFVPC:
+  guid: "c6d9a458-1249-4a84-9121-add6b2165d80"
+  description: "Outside air flow control for a standealone damper"
+  is_abstract: true
+  opt_uses:
+  - percentage_sensor
+  uses:
+  - percentage_command
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  implements:
+  - CONTROL
+
 ZTM:
   guid: "869b8713-9b16-4ca0-b957-630c26e9e506"
   description: "Zone temperature monitoring."
@@ -534,6 +547,22 @@ EDM:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
 
+DBPC:
+  guid: "b81e216e-86a7-4fea-98a1-b2dd0d71fcf9"
+  description: "Building static pressure controlled damper."
+  is_abstract: true
+  opt_uses:
+  - percentage_sensor
+  - failed_alarm
+  - differential_pressure_sensor
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - percentage_command
+  implements:
+  - CONTROL
 
 EDBPC:
   guid: "4e428d76-1f7d-46e9-adc6-2affcd170fb6"
@@ -1025,7 +1054,6 @@ DTM:
   implements:
   - MONITORING
 
-
 SS:
   guid: "5231c7a0-b1bf-48b2-8443-6f37e3b07376"
   description: "Basic combination of run command and status (start/stop)."
@@ -1054,6 +1082,16 @@ SS:
   - schedule_run_command
   - switch_command
   - user_occupancy_override_status
+
+PM:
+  guid: "bcb62278-de08-41a4-ac07-5b49c476911a"
+  description: "Binary position control without regard to what it controls to."
+  is_abstract: true
+  implements:
+  - /PM
+  opt_uses:
+  - failed_alarm
+  - ventilation_request_count
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1985,7 +2023,6 @@ ETM:
   opt_uses:
   - failed_exhaust_air_temperature_alarm
 
-
 ED:
   guid: "cfc04603-a257-4077-8181-50b564fbdf96"
   description: "Exhaust air flow control."
@@ -2002,6 +2039,21 @@ ED:
   implements:
   - CONTROL
 
+EFVPC:
+  guid: "d6e7670c-2444-4991-8b88-0735c2d19374"
+  description: "Exhaust air flowrate based variable position control."
+  is_abstract: true
+  opt_uses:
+  - percentage_sensor
+  - exhaust_air_static_pressure_sensor
+  - run_command
+  - schedule_run_command
+  uses:
+  - percentage_command
+  - exhaust_air_flowrate_sensor
+  - exhaust_air_flowrate_setpoint
+  implements:
+  - CONTROL
 
 RD:
   guid: "0aecbeb0-8b01-44a2-a0b6-027a034fb2a5"
@@ -2482,6 +2534,24 @@ ZSPC:
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
   uses:
+  - zone_air_static_pressure_sensor
+  - zone_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+DZPC:
+  guid: "3f30efa6-e4e0-4830-bfc8-fe7badce51cc"
+  description: "Zone static pressure control."
+  is_abstract: true
+  opt_uses:
+  - percentage_sensor
+  - failed_alarm
+  - high_zone_air_static_pressure_alarm
+  - low_zone_air_static_pressure_alarm
+  - zone_air_flowrate_sensor
+  - zone_air_temperatures_sensor
+  uses:  
+  - percentage_command
   - zone_air_static_pressure_sensor
   - zone_air_static_pressure_setpoint
   implements:
@@ -4789,6 +4859,20 @@ BYPFRC:
   implements: 
   - CONTROL
 
+BYPFVPC:
+  guid: "fdfc96e7-102d-4149-93d7-83ad6a5315a5"
+  description: "Bypass air flowrate control for a standalone damper."
+  is_abstract: true
+  opt_uses:
+  - high_bypass_air_flowrate_alarm
+  - low_bypass_air_flowrate_alarm
+  - percentage_sensor
+  uses:
+  - bypass_air_flowrate_sensor
+  - bypass_air_flowrate_setpoint
+  - percentage_command
+  implements: 
+  - CONTROL
 
 BYPDVM:
   guid: "c8e52e6d-1d4e-447c-ad36-044219ea89ec"
@@ -6434,7 +6518,6 @@ PDSCV:
   implements:
   - CONTROL
 
-
 SDBPC:
   guid: "881f3d79-d107-4268-83c6-f16e3ae7fb5a"
   description: "Back-pressure controlling supply damper."
@@ -6447,6 +6530,23 @@ SDBPC:
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  implements:
+  - MONITORING
+
+DSSPC:
+  guid: "98237f81-1ba7-4662-8dec-c5caa9e08f41"
+  description: "Back-pressure controlling supply damper."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  - failed_supply_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
+  uses:
+  - percentage_command
+  - percentage_sensor
   - supply_air_static_pressure_sensor
   - supply_air_static_pressure_setpoint
   implements:
@@ -6527,7 +6627,8 @@ RMM:
   is_abstract: true
   implements:
   - /RMM
-
+  opt_uses:
+  - schedule_run_command
 
 DSPZDHC:
   guid: "365e7bc0-cc71-4fdd-937c-c8be0011636e"
@@ -7085,6 +7186,14 @@ DICM:
   - supply_air_isolation_damper_command
   - supply_air_isolation_damper_open_status
 
+BPM:
+  guid: "eba545c2-5fc3-4a2e-a0da-6f08d5bfba84"
+  description: "Binary position control (without regard to what it controls to) with separate open/closed statuses. "
+  is_abstract: true
+  uses:
+  - closed_status
+  - position_command
+  - open_status
 
 UV:
   guid: "6f7a15ff-40b1-4c49-b70b-18e409db171b"
