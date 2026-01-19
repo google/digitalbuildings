@@ -7186,15 +7186,6 @@ DICM:
   - supply_air_isolation_damper_command
   - supply_air_isolation_damper_open_status
 
-BPM:
-  guid: "eba545c2-5fc3-4a2e-a0da-6f08d5bfba84"
-  description: "Binary position control (without regard to what it controls to) with separate open/closed statuses. "
-  is_abstract: true
-  uses:
-  - closed_status
-  - position_command
-  - open_status
-
 UV:
   guid: "6f7a15ff-40b1-4c49-b70b-18e409db171b"
   description: "Ultraviolet lamp operation."
