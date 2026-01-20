@@ -14,19 +14,19 @@
 
 ### ABSTRACT TYPES
 
-GASDET:
-  guid: "38f79492-74f8-4a6b-b87f-27bd9a3b8442"
+GASLA:
+  guid: "2f10c175-67ea-4624-84ec-c8ca5ac2861e"
   description: "Basic natural gas leak monitoring."
   is_abstract: true
   uses:
-  - gas_leak_detection_alarm
+  - gas_leak_alarm
 
-NHDET:
-  guid: "828db562-44c2-4c7c-b59b-6dbb45eae334"
+NHLA:
+  guid: "20a3ed1a-7854-47a2-8852-a0a792369447"
   description: "Basic ammonia gas leak monitoring"
   is_abstract: true
   uses:
-  - ammonia_leak_detection_alarm
+  - ammonia_leak_alarm
 
 H2M:
   guid: "7101fcfa-3143-467e-88a3-356259be5941"
