@@ -27,6 +27,9 @@ literals:
 - aisle_brightness_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- ammonia_leak_alarm:
+  - ACTIVE
+  - INACTIVE
 - ammonia_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
@@ -1518,6 +1521,9 @@ literals:
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
+- gas_leak_alarm:
+  - ACTIVE
+  - INACTIVE
 - gas_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
