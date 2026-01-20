@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
+
 LDS_BC2X:
   guid: "49057696-a063-4786-87f5-6ea4ef9ee19b"
   description: "Leak sensing device with broken cable status."
