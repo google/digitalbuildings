@@ -24,10 +24,10 @@ HS_SS:
   - HS
   - SS
 
-HS_EL:
+HS_EM:
   guid: "2872bc24-2c0f-4695-b4f2-8455880e3471"
   description: "Horn strobe with alarm."
   is_canonical: true
   implements:
   - HS
-  - EL
+  - EM
