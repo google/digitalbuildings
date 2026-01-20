@@ -390,11 +390,6 @@ ph:
   no_units: STANDARD
 powerfactor:
   no_units: STANDARD
-powerflux:
-  watts_per_square_meter: STANDARD
-  watts_per_square_foot:
-    multiplier: 0.092903
-    offset: 0
 pressure:
   pascals: STANDARD
   hectopascals:
