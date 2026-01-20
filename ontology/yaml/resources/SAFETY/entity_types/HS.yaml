@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
+
 HS_SS:
   guid: "240f9f62-04e9-44e5-9f36-0887feee26ad"
   description: "Standard horn strobe."
