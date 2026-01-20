@@ -148,9 +148,6 @@ energy:
   kilovolt_ampere_hours:
     multiplier: 3600000
     offset: 0
-  kilovolt_ampere_apparent_hours:
-    multiplier: 3600000
-    offset: 0
   kilovolt_ampere_reactive_hours:
     multiplier: 3600000
     offset: 0
@@ -375,15 +372,6 @@ power:
     multiplier: 1000
     offset: 0
   megavolt_amperes_reactive:
-    multiplier: 1000000
-    offset: 0
-  volt_amperes_apparent:
-    multiplier: 1
-    offset: 0
-  kilovolt_amperes_apparent:
-    multiplier: 1000
-    offset: 0
-  megavolt_amperes_apparent:
     multiplier: 1000000
     offset: 0
 ph:
