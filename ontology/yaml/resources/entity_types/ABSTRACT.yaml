@@ -14,6 +14,16 @@ PM:
   - position_command
   - position_status
 
+VPM:
+  guid: "0e865ab2-4175-4342-933e-0ef5d50b6b48"
+  description: "Variable position control without regard to what it controls to."
+  is_abstract: true
+  uses:
+  - percentage_command
+  - percentage_sensor
+  implements:
+  - OPERATIONAL
+
 PWM:
   guid: "4bee8cc5-4ff1-4bc2-a4c6-f6a698006b72"
   description: "Basic power monitoring "
