@@ -6577,10 +6577,8 @@ VPM:
   - failed_alarm
   - frost_alarm
   - flowrate_sensor
-  uses:
-  - percentage_command
-  - percentage_sensor
   implements:
+  - /VPM
   - OPERATIONAL
 
 HWVVM:
