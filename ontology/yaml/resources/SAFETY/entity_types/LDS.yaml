@@ -12,23 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LDS_WLDS:
-  guid: "b1cbee31-2314-470b-900f-0543bd8b9021"
-  description: "Basic leak detection device."
-  is_canonical: true
-  implements:
-  - LDS
-  - WLDS
-
-LDS_WLDS_BCM:
-  guid: "e2d4f75a-d848-4653-8688-00102fbc6dee"
-  description: "Leak sensing device with broken cable status."
-  is_canonical: true
-  implements:
-  - LDS
-  - WLDS
-  - BCM
-
 LDS_BC2X:
   guid: "49057696-a063-4786-87f5-6ea4ef9ee19b"
   description: "Leak sensing device with broken cable status."
@@ -47,8 +30,7 @@ LDS_BC2X_LPA:
   - WLDS
   - BC2X
   - LPA
-  
-# General Types
+
 LDS_GASDET:
   guid: "6b24e8cc-d5e3-4516-8097-54fe857ace17"
   description: "Basic natural gas monitoring device."
@@ -105,16 +87,6 @@ LDS_WLA_BCM:
   opt_uses:
   - water_leak_cable_distance_sensor
   - failed_alarm
-
-LDS_WLCC:
-  guid: "1bc59b7b-cef7-4c39-b7b2-efaae420bf9f"
-  description: "Leak detection sensor with array of leak cable-based sensors."
-  is_canonical: true
-  uses:
-  - water_leak_detection_alarm
-  - water_leak_alarm
-  - water_leak_cable_distance_sensor
-  - broken_cable_alarm
 
 LDS_REFM:
   guid: "3e43f901-2d8c-4e69-9356-f755780b0f2b"
