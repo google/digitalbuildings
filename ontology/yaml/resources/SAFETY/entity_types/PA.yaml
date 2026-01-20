@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
+########################
+### Canonical Types  ###
+########################
 
-PA_STD:
-  guid: "721b187b-71e7-4b05-b0a4-b559ac1f7ae6"
+PA_PM:
+  guid: "d15cfc70-50b3-4aca-9eae-35f53e19172e"
   description: "Standard public address system."
   is_canonical: true
   implements:
   - PA
-  uses:
-  - panel_alarm
+  - PM
