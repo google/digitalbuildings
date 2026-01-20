@@ -23,6 +23,14 @@ FD_STD:
   opt_uses:
   - damper_command
 
+FD_PM:
+  guid: "9777f093-a7b6-4777-ba83-73e1970d5b18"
+  description: "Basic fire damper"
+  is_canonical: true
+  implements:
+  - FD
+  - /PM
+
 FD_SD:
   guid: "70dad00c-3334-4a77-8ce2-2d41d6a97c78"
   description: "Basic smoke detector fire damper"
@@ -33,3 +41,11 @@ FD_SD:
   uses:
   - damper_percentage_sensor
   - damper_percentage_command
+
+FD_VPM:
+  guid: "815ff0a4-331e-41fb-8645-835c446dfb9b"
+  description: "Basic smoke detector fire damper with variable position control"
+  is_canonical: true
+  implements:
+  - FD
+  - /VPM
