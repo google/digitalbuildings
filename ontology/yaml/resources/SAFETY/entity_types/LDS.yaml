@@ -35,23 +35,21 @@ LDS_BC2X_LPA:
   - BC2X
   - LPA
 
-LDS_GASDET:
-  guid: "6b24e8cc-d5e3-4516-8097-54fe857ace17"
+LDS_GASLA:
+  guid: "eacc0d4c-a043-4379-ae0f-29ae0dbd74fe"
   description: "Basic natural gas monitoring device."
   is_canonical: true
   implements:
   - LDS
-  - GASDET
-  opt_uses:
-  - failed_alarm
+  - GASLA
 
-LDS_NHDET:
-  guid: "04b71e1e-530b-4288-8fdd-b1b5f05b13c3"
+LDS_NHLA:
+  guid: "13d018f0-dff0-44b7-b523-9d94d11ebada"
   description: "Basic ammonia gas monitoring device"
   is_canonical: true
   implements:
   - LDS
-  - NHDET
+  - NHLA
 
 LDS_H2M:
   guid: "257bc52c-0010-4c25-a402-491fd3059e15"
