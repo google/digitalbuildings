@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
+########################
+### Canonical Types  ###
+########################
 
-SSS_STD:
-  guid: "729b6568-3f7a-4add-8756-e8dbccaa2413"
+SSS_SM:
+  guid: "2ae00a7d-a11e-4c6b-851f-bc94a5d3cf6e"
   description: "Standard seismic detector."
   is_canonical: true
   implements:
   - SSS
-  uses:
-  - seismic_alarm
-  - failed_alarm
+  - SM
