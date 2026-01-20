@@ -30,9 +30,6 @@ literals:
 - ammonia_leak_alarm:
   - ACTIVE
   - INACTIVE
-- ammonia_leak_detection_alarm:
-  - ACTIVE
-  - INACTIVE
 - apparent_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 36000000000000000000.0
@@ -1522,9 +1519,6 @@ literals:
     fixed_min: 0.0
     flexible_max: 0.003932896
 - gas_leak_alarm:
-  - ACTIVE
-  - INACTIVE
-- gas_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
 - gas_release_valve_status:
