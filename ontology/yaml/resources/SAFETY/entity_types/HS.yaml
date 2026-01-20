@@ -12,22 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
-
-HS_STD:
-  guid: "502e5b54-bcfb-4d1c-beb6-35135f2cb50d"
+HS_SS:
+  guid: "240f9f62-04e9-44e5-9f36-0887feee26ad"
   description: "Standard horn strobe."
   is_canonical: true
   implements:
   - HS
-  uses:
-  - run_status
+  - SS
 
-HS_AL:
+HS_EL:
   guid: "2872bc24-2c0f-4695-b4f2-8455880e3471"
   description: "Horn strobe with alarm."
   is_canonical: true
   implements:
   - HS
-  uses:
-  - emergency_alarm
+  - EL
