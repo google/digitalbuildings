@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
+
 FD_PM:
   guid: "9777f093-a7b6-4777-ba83-73e1970d5b18"
   description: "Basic fire damper"
