@@ -21,10 +21,16 @@ from typing import List
 import colorama
 from collections import defaultdict
 from termcolor import colored
+import xlwings as xw
+import pandas as pd
+import yaml
+import os
+from itertools import permutations
 
 from lib import model
 from lib.model import StandardField
 from yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
+from pathlib import Path
 
 colorama.init()
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
@@ -192,197 +198,230 @@ def GetFieldsForSubfieldList(ontology):
     print(colored(field, 'green'))
 
 
-def CompareFieldsToSpecifiedType(ontology, point_list_input):
-    """Prompts user for abstract type and point list, then compares against ABSTRACT.yaml definitions."""
+def CheckIfAbstractTypeExists(constructed_type):
+    # Prompt the user
+    if constructed_type == None:
+        typeName = input("Enter constructed typeName: ").strip()
+    else:
+        typeName = constructed_type.strip()
 
-    entity_type_map = {}
-    dict_list = []
+    # Extract general type (everything before the first underscore)
+    general_type = typeName.split("_")[0]
 
-    # Collect entity type maps from ontology
-    for tns in ontology.universe.GetEntityTypeNamespaces():
-        dict_list.append(tns.valid_types_map)
+    # Build path to the YAML file
+    base_path = r"C:\Users\ErikAadalen\Documents\digitalbuildings\ontology\yaml\resources\HVAC\entity_types"
+    file_path = os.path.join(base_path, f"{general_type}.yaml")
 
-    largest_dict = max(dict_list, key=lambda d: len(d))
+    # Check if file exists
+    if not os.path.isfile(file_path):
+        print(f"Ontology file for {general_type} does not exist at {file_path}")
+        return
 
-    # Build mapping of abstract types -> required/optional fields
-    for entity_type in largest_dict:
-        if "_" not in entity_type:
-            entity_type_map[entity_type] = {'uses': [], 'opt_uses': []}
-            for key, opt_wrapper in largest_dict[entity_type].GetAllFields().items():
-                field_name = key.lstrip("/")
-                is_optional = opt_wrapper.optional
-                if not is_optional:
-                    entity_type_map[entity_type]['uses'].append(field_name)
-                else:
-                    entity_type_map[entity_type]['opt_uses'].append(field_name)
+    # Load YAML
+    with open(file_path, "r") as f:
+        ontology_data = yaml.safe_load(f)
 
-    type_name = CheckIfAbstractTypeExists(ontology)
+    # Check if exact type exists
+    if typeName in ontology_data:
+        print(colored('\n' + typeName + ' exists in ontology', 'green'))
+        return
 
-    parts = type_name.split('_')
+    # Check for permutation
+    user_components = typeName.split("_")
+    for existing_type in ontology_data.keys():
+        if sorted(existing_type.split("_")) == sorted(user_components):
+            print(colored(f"\n{typeName} is a permutation of an existing type", "yellow"))
+            print(colored(f"Conflicting type: {existing_type}", "yellow"))
+            return
 
-    required_points_by_type = {}
-    optional_points_by_type = {}
-    all_required_points = set()
-    all_optional_points = set()
+    # If neither exact match nor permutation
+    print(colored('\n' + typeName + ' does not exist in ontology', 'red'))
 
-    # Build forward maps
-    for key in parts:
-        if key in entity_type_map:
-            uses = entity_type_map[key]['uses']
-            opt_uses = entity_type_map[key].get('opt_uses', [])
-            required_points_by_type[key] = set(uses)
-            optional_points_by_type[key] = set(opt_uses)
-            all_required_points.update(uses)
-            all_optional_points.update(opt_uses)
+
+def CompareFieldsToSpecifiedType(general_types_data, secondary_general_types_data, abstract_data, secondary_abstract_data, constructed_type, standard_field_names):
+    """Prompt user for constructed typeName, load ABSTRACT.yaml, collect required/optional
+    fields for the abstract components, then prompt for a comma-separated list of
+    standardFieldNames and categorize them against the required/optional sets.
+
+    Produces four categories:
+      - entered fields found in required
+      - entered fields found in optional
+      - entered fields not found in either
+      - required fields not provided by the user
+    """
+
+    # Prompt user for constructed typeName
+    if constructed_type is None:
+        type_name = input("Enter constructed typeName: ").strip()
+    else:
+        type_name = constructed_type.strip()
+
+    if not type_name:
+        if constructed_type is None and standard_field_names is None:
+            print("❌ No typeName provided.")
+            return
         else:
-            if key != "SENSOR":
-                print(colored(f"Warning: Abstract type '{key}' not found in ontology!", "yellow"))
+            return False, None, False
 
-    # Build reverse map: field -> contributing abstract types
-    field_to_types = defaultdict(set)
-    for key, fields in required_points_by_type.items():
-        for field in fields:
-            field_to_types[field].add(key)
-
-    # Detect and strip redundant abstract components
-    redundant_types = []
-    for key in parts[1:]:
-        if key not in required_points_by_type and key not in optional_points_by_type:
-            continue
-
-        other_keys = [k for k in parts if k != key and (k in required_points_by_type or k in optional_points_by_type)]
-
-        others_combined_required = set().union(*(required_points_by_type.get(k, set()) for k in other_keys))
-        unique_required = required_points_by_type.get(key, set()) - others_combined_required
-
-        others_combined_optional = set().union(*(optional_points_by_type.get(k, set()) for k in other_keys))
-        unique_optional = optional_points_by_type.get(key, set()) - others_combined_optional
-
-        if not unique_required and not unique_optional:
-            redundant_types.append(key)
-
-    if redundant_types:
-        print(colored("\nRedundant abstract types (do not contribute unique required or optional points):", "red", attrs=["bold"]))
-        for rt in redundant_types:
-            print(colored(f"- {rt}", "red"))
-
-    filtered_keys = [k for k in parts if k not in redundant_types]
-
-    # Rebuild sets after removing redundant components
-    all_required_points = set()
-    all_optional_points = set()
-    for key in filtered_keys:
-        if key in entity_type_map:
-            uses = entity_type_map[key].get('uses', [])
-            opt_uses = entity_type_map[key].get('opt_uses', [])
-            all_required_points.update(uses)
-            all_optional_points.update(opt_uses)
-
-    matched_points = set()
-
-    while True:
-        point_list_input = input(
-            "\nEnter a comma-separated list of observed points "
-            "(press 'f' to view full required/optional point lists, press 'q' to quit): "
-        ).strip().lower()
-
-        if point_list_input == "q":
-            print(colored("\nExiting point comparison loop.", "cyan"))
-            break
-        elif point_list_input == "f":
-            sorted_required = sorted(all_required_points)
-            sorted_optional = sorted(all_optional_points)
-            max_len = max(len(sorted_required), len(sorted_optional))
-            required_col = sorted_required + [""] * (max_len - len(sorted_required))
-            optional_col = sorted_optional + [""] * (max_len - len(sorted_optional))
-
-            print("\n" + colored("Required points".ljust(50), "yellow") + colored(" Optional points", "cyan"))
-            print("_" * 50 + " " + "_" * 50)
-            for req, opt in zip(required_col, optional_col):
-                req_str = colored(req.ljust(50), "yellow")
-                opt_str = colored(opt, "cyan")
-                print(f"{req_str} {opt_str}")
-            continue
-
-        observed_points = {p.strip() for p in point_list_input.split(',') if p.strip()}
-        matched_points = observed_points
-
-        found_required = all_required_points & matched_points
-        missing_required = all_required_points - matched_points
-        found_optional = all_optional_points & matched_points
-        unexpected_points = matched_points - (all_required_points | all_optional_points)
-
-        if found_required:
-            print(colored(f"\nFound required points ({len(found_required)}):", "green"))
-            for p in sorted(found_required):
-                print(colored(f"- {p}", "green"))
-
-        if found_optional:
-            print(colored(f"\nFound optional points ({len(found_optional)}):", "green"))
-            for p in sorted(found_optional):
-                print(colored(f"- {p}", "green"))
-
-        if missing_required:
-            print(colored(f"\nMissing required points ({len(missing_required)}):", "red"))
-
-            # Build list of tuples (point, types)
-            missing_with_sources = []
-            for p in sorted(missing_required):
-                sources = [k for k, v in required_points_by_type.items() if p in v]
-                missing_with_sources.append((p, sources))
-
-            # Determine max left column width for alignment
-            max_point_len = max(len(p) for p, _ in missing_with_sources)
-            align_width = max_point_len + 4  # padding for spacing and arrows
-
-            for p, sources in missing_with_sources:
-                src_text = f"from abstract type(s): {', '.join(sources)}" if sources else "from abstract type(s): N/A"
-                print(
-                    colored(f"- {p.ljust(align_width, ' ')}", "red")
-                    + colored(f"----> {src_text}", "yellow")
-                )
-
-        if unexpected_points:
-            print(colored(f"\nUnexpected points (not defined in type) ({len(unexpected_points)}):", "red"))
-            for p in sorted(unexpected_points):
-                print(colored(f"- {p}", "red"))
-
-        if missing_required or unexpected_points:
-            print(colored("\nPlease enter more points to complete the required set and remove unexpected ones.", "cyan"))
+    parts = type_name.split("_")
+    if len(parts) < 2:
+        if constructed_type is None and standard_field_names is None:
+            print("❌ Invalid format. Expected at least one abstract after the general prefix.")
+            return
         else:
-            print(colored("\nThe list of points is a 100% match!", "green", attrs=["bold"]))
-            break
+            return False, None, False
 
+    general_type = parts[0]
+    abstract_types = parts[1:]
 
-def CheckIfAbstractTypeExists(ontology):
-    input_type = input("Enter constructed typeName: ").strip()
-    input_parts = input_type.split('_')
-    if len(input_parts) < 2:
-        print("Invalid input: must include at least one prefix and one component.")
-        return False, None
+    # Collect required (uses) and optional (opt_uses) fields across all abstracts
+    all_required_fields = set()
+    all_optional_fields = set()
+    required_field_to_abstracts = {}
+    missing_abstracts = []
+    missing_general_types = []
 
-    input_prefix = input_parts[0]
-    input_components = input_parts[1:]
+    # ----------------------------
+    # Load GENERAL TYPES
+    # ----------------------------
+    if not general_types_data:
+        general_types_path = (Path(__file__).parent/ "../../../ontology/yaml/resources/HVAC/entity_types/GENERALTYPES.yaml")
+        with open(general_types_path, "r") as f:
+            general_types_data = yaml.safe_load(f)
+        secondary_general_types_path = (Path(__file__).parent/ "../../../ontology/yaml/resources/entity_types/global.yaml")
+        with open(secondary_general_types_path, "r") as f:
+            secondary_general_types_data = yaml.safe_load(f)
+    try:
+        info = general_types_data.get(general_type)
+        secondary_info = secondary_general_types_data.get(general_type)
 
-    for tns in ontology.universe.GetEntityTypeNamespaces():
-        for existing_type in tns.valid_types_map.keys():
-            if existing_type == input_type:
-                print(colored('\n' + existing_type + ' exists in ontology', 'green'))
-                return input_type
+        if not info and not secondary_info:
+            missing_general_types.append(general_type)
 
-            existing_parts = existing_type.split('_')
-            if len(existing_parts) < 2:
+        if info != None:
+            opt_uses = info.get("opt_uses", []) or []
+            for field in opt_uses:
+                all_optional_fields.add(str(field).strip().lower())
+        if secondary_info != None:
+            secondary_opt_uses = secondary_info.get("opt_uses", []) or []
+            for field in secondary_opt_uses:
+                all_optional_fields.add(str(field).strip().lower())
+
+    except Exception:
+        print(f"⚠️ Error pulling data from: {general_type}")
+
+    # ----------------------------
+    # Load ABSTRACT TYPES
+    # ----------------------------
+
+    for abstract_type in abstract_types:
+        if not abstract_data:
+            abstract_path = (Path(__file__).parent/ "../../../ontology/yaml/resources/HVAC/entity_types/ABSTRACT.yaml")
+            with open(abstract_path, "r") as f:
+                abstract_data = yaml.safe_load(f)
+            secondary_abstract_path = (Path(__file__).parent/ "../../../ontology/yaml/resources/entity_types/ABSTRACT.yaml")
+            with open(secondary_abstract_path, "r") as f:
+                secondary_abstract_data = yaml.safe_load(f)
+        try:
+            info = abstract_data.get(abstract_type)
+            for item in info.get("implements", []) or []:
+                if item.startswith("/") == True:
+                    for item in secondary_abstract_data.get(item.removeprefix("/")).get("uses", []):
+                        info.setdefault("uses", []).append(item)
+            if not info:
+                missing_abstracts.append(abstract_type)
                 continue
 
-            existing_prefix = existing_parts[0]
-            existing_components = existing_parts[1:]
+            uses = info.get("uses", []) or []
+            opt_uses = info.get("opt_uses", []) or []
 
-            if (existing_prefix == input_prefix and set(existing_components) == set(input_components) and existing_components != input_components):
-                # Same components, different order = permutation match
-                print(colored(f"\n{input_type} is a permutation of an existing abstract type in ABSTRACT.yaml!", "yellow"))
-                print(colored(f"Conflicting type: {existing_type}", "yellow"))
-                return input_type
+            for field in uses:
+                norm_field = str(field).strip().lower()
+                all_required_fields.add(norm_field)
+                required_field_to_abstracts.setdefault(norm_field, set()).add(abstract_type)
 
-    print(colored('\n' + input_type + ' does not exist in ontology', 'yellow'))
-    return input_type
+            for field in opt_uses:
+                all_optional_fields.add(str(field).strip().lower())
+        except Exception:
+            print(f"⚠️ Abstract not found in ABSTRACT.yaml: {abstract_type}")
 
+    norm_required = set(all_required_fields)
+    norm_optional = set(all_optional_fields)
+    combined_defined = norm_required | norm_optional
+
+    if missing_abstracts and constructed_type is None and standard_field_names is None:
+        print("⚠️ Missing abstracts (not found in ABSTRACT.yaml):")
+        for a in missing_abstracts:
+            print(f"  - {a}")
+    elif missing_abstracts:
+        return False, missing_abstracts, False
+
+    # Prompt user for standardFieldNames to check
+    if standard_field_names is None:
+        raw = input("Enter list of comma-separated standardFieldNames: ").strip()
+    else:
+        raw = ",".join(str(v) for v in standard_field_names).strip()
+
+    if not raw:
+        if constructed_type is not None and standard_field_names is not None:
+            return False, None, True
+
+    observed = {p.strip().lower() for p in raw.split(",") if p.strip()}
+
+    # Categorize
+    found_in_required = sorted(observed & norm_required)
+    found_in_optional = sorted(observed & norm_optional)
+    not_found = sorted(observed - combined_defined)
+    required_missing = sorted(norm_required - observed)
+
+    # Print concise categorized results
+    if constructed_type is None and standard_field_names is None:
+        print(colored(f"\nFound required points ({len(found_in_required)}):", "green"))
+        for p in found_in_required:
+            print(colored(f"  - {p}", "green"))
+
+        print(colored(f"\nFound optional points ({len(found_in_optional)}):", "green"))
+        for p in found_in_optional:
+            print(colored(f"  - {p}", "green"))
+
+        print(colored(f"\nUnexpected points (not defined in type) ({len(not_found)}):", "red"))
+        for p in not_found:
+            print(colored(f"  - {p}", "red"))
+
+        print(colored(f"\nMissing required points ({len(required_missing)}):", "red"))
+        for p in required_missing:
+            abstracts = ", ".join(sorted(required_field_to_abstracts.get(p, [])))
+            print(colored(f"  - {p}  (from: {abstracts})", "red"))
+
+    if not not_found and not required_missing:
+        return True, None, False
+    else:
+        return False, None, False
+
+
+def load_excel(path):
+    """
+    Loads the Excel file into a pandas DataFrame using xlwings.
+    Reads the entire used range, ignoring filters and hidden rows.
+    Strips column names for consistent validation.
+    """
+    try:
+        wb = xw.Book(path)
+        sheet = wb.sheets[0]  # first sheet, adjust if needed
+
+        # Read the full used range (ignores filters)
+        df = sheet.used_range.options(pd.DataFrame, header=1, index=False).value
+
+        # Sanitize column names
+        df.columns = [str(col).strip() for col in df.columns]
+
+        return df
+
+    except FileNotFoundError:
+        print(f"❌ File not found: {path}")
+    except PermissionError:
+        print(f"❌ Permission denied: The file '{path}' is likely open in another program. Please close it and try again.")
+    except Exception as e:
+        print(f"❌ Unexpected error while reading the file: {e}")
+
+    return None
