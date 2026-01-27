@@ -283,6 +283,7 @@ measurement:
   aqi: "Abbreviation for air quality index, which is a set of special standard gradings for the pollution in air."
   area: "Amount of space within the perimeter of a two-dimensional shape."
   concentration: "Concentration of something relative to something else (usually in parts per million or parts per billion)."
+  coolingperformanceratio: "Ratio of input power to delivered cooling capacity, used to assess the efficiency of cooling systems such as chillers. Commonly expressed in kW per ton of refrigeration, where lower values indicate better performance."
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
