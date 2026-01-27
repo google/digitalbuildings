@@ -60,6 +60,8 @@ concentration:
   parts_per_billion:
     multiplier: 0.000000001
     offset: 0
+coolingperformanceratio:
+  kilowatts_per_tons_of_refrigeration: STANDARD
 current:
   amperes: STANDARD
   milliamperes:
