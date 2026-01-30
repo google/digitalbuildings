@@ -3424,7 +3424,6 @@ literals:
   - CLOSED
   - OPEN
   - UNKNOWN
-- room_calendar_email_label
 - room_occupancy_status:
   - OCCUPIED
   - UNKNOWN
