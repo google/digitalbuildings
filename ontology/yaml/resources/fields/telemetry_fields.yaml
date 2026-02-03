@@ -637,6 +637,9 @@ literals:
 - cooling_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
+- cooling_thermalefficiency_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - cooling_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
@@ -3972,9 +3975,6 @@ literals:
 - thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
-- thermalefficiency_percentage_sensor:
-    fixed_min: 0.0
-    fixed_max: 100.0
 - thermally_conditioned_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
