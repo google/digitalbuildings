@@ -21,8 +21,6 @@ VPM:
   uses:
   - percentage_command
   - percentage_sensor
-  implements:
-  - OPERATIONAL
 
 PWM:
   guid: "4bee8cc5-4ff1-4bc2-a4c6-f6a698006b72"
