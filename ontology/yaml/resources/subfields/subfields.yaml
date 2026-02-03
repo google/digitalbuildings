@@ -325,7 +325,6 @@ measurement:
   ph: "pH (potential of hydrogen) measure of how acidic or basic water is."
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
-  powerflux: "Energy emitted, reflected, transmitted or received per unit time."
   pressure: "Measured force per unit area within a system or process."
   #pressurechange: "Change of pressure per temperature." # TODO (tsodorff): find an alternative name once a use case arises
   rate: "ratio of change compared to a step or time."
