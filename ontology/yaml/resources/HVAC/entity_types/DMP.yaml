@@ -188,7 +188,7 @@ DMP_DZPC:
   - DMP
   - DZPC
 
-DMP_VPCOF:
+DMP_VPCOAF:
   guid: "bbfa2ee3-c842-46d4-917f-81ae917f1bd0"
   description: "Flowrate controlled variable position outside air damper."
   is_canonical: true
