@@ -2543,7 +2543,7 @@ ZSPC:
 
 DZPC:
   guid: "3f30efa6-e4e0-4830-bfc8-fe7badce51cc"
-  description: "Zone static pressure control."
+  description: "Zone static pressure control by standalone damper position."
   is_abstract: true
   opt_uses:
   - percentage_sensor
