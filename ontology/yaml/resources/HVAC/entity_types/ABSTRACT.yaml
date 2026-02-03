@@ -180,7 +180,7 @@ OAFC:
   implements:
   - CONTROL
 
-OFVPC:
+VPCOF:
   guid: "c6d9a458-1249-4a84-9121-add6b2165d80"
   description: "Outside air flow control for a standealone damper"
   is_abstract: true
@@ -2041,7 +2041,7 @@ ED:
   implements:
   - CONTROL
 
-EFVPC:
+VPCEF:
   guid: "d6e7670c-2444-4991-8b88-0735c2d19374"
   description: "Exhaust air flowrate based variable position control."
   is_abstract: true
@@ -4861,7 +4861,7 @@ BYPFRC:
   implements: 
   - CONTROL
 
-BYPFVPC:
+VPCBYPF:
   guid: "fdfc96e7-102d-4149-93d7-83ad6a5315a5"
   description: "Bypass air flowrate control for a standalone damper."
   is_abstract: true
