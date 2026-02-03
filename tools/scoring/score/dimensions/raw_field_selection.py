@@ -13,16 +13,18 @@
 # limitations under the License.
 """Core component."""
 
+from score.constants import DimensionCategories, FileTypes
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelection(Dimension):
-  """Quantifies whether the correct raw fields
-  (e.g. "points.chilled_water_flowrate_sensor.present_value")
-  were selected in the proposed file."""
+  """Quantifies whether the correct raw fields (e.g.
+
+  "points.chilled_water_flowrate_sensor.present_value") were selected in the
+  proposed file.
+  """
 
   # SIMPLE category indicates this dimension receives `translations`
   # rather than `deserialized_files` to do its calculations
@@ -38,11 +40,13 @@ class RawFieldSelection(Dimension):
     """Calculates and assigns properties necessary for generating a score."""
 
     proposed_translations, solution_translations = map(
-        self._condense_translations, (PROPOSED, SOLUTION))
+        self._condense_translations, (PROPOSED, SOLUTION)
+    )
 
     proposed_fields, solution_fields = map(
         self._fetch_raw_field_names,
-        (proposed_translations, solution_translations))
+        (proposed_translations, solution_translations),
+    )
 
     correct_fields = proposed_fields.intersection(solution_fields)
     incorrect_fields = solution_fields.difference(proposed_fields)

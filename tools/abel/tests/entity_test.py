@@ -42,6 +42,8 @@ from model.entity_enumerations import EntityNamespace
 from model.entity_field import DimensionalValueField
 from tests.test_constants import TEST_CLOUD_DEVICE_ID
 from tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
+from tests.test_constants import TEST_DISPLAY_NAME
+from tests.test_constants import TEST_ETAG
 from tests.test_constants import TEST_NAMESPACE
 from tests.test_constants import TEST_REPORTING_ENTITY_CODE
 from tests.test_constants import TEST_REPORTING_ENTITY_DICT
@@ -60,19 +62,25 @@ class EntityTest(absltest.TestCase):
 
     self.assertEqual(test_virtual_entity.code, TEST_VIRTUAL_ENTITY_CODE)
     self.assertEqual(test_virtual_entity.bc_guid, TEST_VIRTUAL_GUID)
-    self.assertEqual(test_virtual_entity.namespace, TEST_NAMESPACE)
+    self.assertEqual(
+        test_virtual_entity.namespace, EntityNamespace(TEST_NAMESPACE)
+    )
     self.assertEqual(test_virtual_entity.type_name, TEST_TYPE_NAME)
+    self.assertEqual(test_virtual_entity.display_name, TEST_DISPLAY_NAME)
 
   def testReportingEntityInstantiatesFromDict(self):
     test_reporting_entity = ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT)
 
     self.assertEqual(test_reporting_entity.code, TEST_REPORTING_ENTITY_CODE)
     self.assertEqual(test_reporting_entity.bc_guid, TEST_REPORTING_GUID)
-    self.assertEqual(test_reporting_entity.namespace, TEST_NAMESPACE)
+    self.assertEqual(
+        test_reporting_entity.namespace, EntityNamespace(TEST_NAMESPACE)
+    )
     self.assertEqual(test_reporting_entity.type_name, TEST_TYPE_NAME)
     self.assertEqual(
         test_reporting_entity.cloud_device_id, TEST_CLOUD_DEVICE_ID
     )
+    self.assertEqual(test_reporting_entity.display_name, TEST_DISPLAY_NAME)
 
   def testVirtualEntityEquality(self):
     test_entity_1 = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
@@ -183,8 +191,9 @@ class EntityTest(absltest.TestCase):
     expected_row_mapping = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_DISPLAY_NAME}},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_GUID}},
-            {USER_ENTERED_VALUE: {STRING_VALUE: None}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_ETAG}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_FALSE},
                 DATA_VALIDATION: {

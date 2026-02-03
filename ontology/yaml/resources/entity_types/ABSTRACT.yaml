@@ -5,3 +5,73 @@ SS:
   uses:
   - run_command
   - run_status
+
+PM:
+  guid: "f00bc1ea-8abe-40e0-8fcf-1f26810881bf"
+  description: "Binary position control without regard to what it controls to."
+  is_abstract: true
+  uses:
+  - position_command
+  - position_status
+
+PWM:
+  guid: "4bee8cc5-4ff1-4bc2-a4c6-f6a698006b72"
+  description: "Basic power monitoring "
+  is_abstract: true
+  uses:
+  - power_sensor
+
+RMM:
+  guid: "d6ee2495-817e-4041-97f6-1052dd9294c7"
+  description: "Run mode monitoring."
+  is_abstract: true
+  uses:
+  - run_mode
+
+OTPM:
+  guid: "9a84357b-98b7-4b56-a9c8-7feb80e07ee0"
+  description: "Oil temperature and pressure monitoring"
+  is_abstract: true
+  uses:
+  - oil_temperature_sensor
+  - oil_pressure_sensor
+
+RDM:
+  guid: "e7138e3d-dfd8-46db-870b-abc8b3019754"
+  description: "Very basic system run duration monitoring."
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+
+ZOS:
+  guid: "e38afc93-7667-4416-b41c-c0ffd9d21dc7"
+  description: "Occupancy status monitoring. For space/desk/seat occupancy status (occupied and unoccupied)"
+  is_abstract: true
+  uses:
+  - zone_occupancy_status
+
+SRC:
+  guid: "b8e436e9-c5b5-4557-b6ca-e86a5cc226cd"
+  description: "Basic run scheduling "
+  is_abstract: true
+  uses:
+  - schedule_run_command
+
+LM:
+  guid: "d0290617-cbf3-4ee0-8fc1-d825aeebf608"
+  description: "Level Monitoring for tanks."
+  is_abstract: true
+  uses:
+  - level_status
+  opt_uses:
+  - percentage_sensor
+
+REFM:
+  guid: "51dc4d1e-125d-428c-9a8a-3098442b172d"
+  description: "Refrigerant leak monitoring."
+  is_abstract: true
+  opt_uses:
+  - high_zone_air_refrigerant_concentration_alarm
+  - failed_zone_air_refrigerant_concentration_alarm
+  uses:
+  - zone_air_refrigerant_concentration_sensor

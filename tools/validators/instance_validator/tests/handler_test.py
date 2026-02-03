@@ -205,13 +205,11 @@ class HandlerTest(absltest.TestCase):
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateAcceptsWithInterdependency(self):
-    parsed, default_operation = _Helper(
-        [
-            os.path.join(
-                _TESTCASE_PATH, 'GOOD', 'entity_interdependency_v1_alpha.yaml'
-            )
-        ]
-    )
+    parsed, default_operation = _Helper([
+        os.path.join(
+            _TESTCASE_PATH, 'GOOD', 'entity_interdependency_v1_alpha.yaml'
+        )
+    ])
     config_universe = generate_universe.BuildUniverse(
         use_simplified_universe=True
     )
@@ -232,15 +230,13 @@ class HandlerTest(absltest.TestCase):
 
   def testGraph_DoesNotAllowDuplicateCloudDeviceId(self):
     # pylint: disable=protected-access
-    parsed, default_operation = _Helper(
-        [
-            os.path.join(
-                _TESTCASE_PATH,
-                'BAD',
-                'entity_identical_cloud_device_ids.yaml',
-            )
-        ]
-    )
+    parsed, default_operation = _Helper([
+        os.path.join(
+            _TESTCASE_PATH,
+            'BAD',
+            'entity_identical_cloud_device_ids.yaml',
+        )
+    ])
     config_universe = generate_universe.BuildUniverse(
         use_simplified_universe=True
     )

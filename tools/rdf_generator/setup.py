@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" Setup file """
+"""Setup file"""
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name='ontology-rdf-generator',
@@ -25,7 +25,11 @@ setup(
     author_email='charbelk@google.com',
     description='',
     packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'ruamel.yaml==0.17.4',
-                      'rdflib==5.0.0'],
+    install_requires=[
+        'absl-py',
+        'pyglib',
+        'ruamel.yaml==0.17.4',
+        'rdflib==5.0.0',
+    ],
     python_requires='>=3.9',
 )

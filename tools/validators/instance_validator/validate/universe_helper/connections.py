@@ -17,7 +17,8 @@ from yamlformat.validator import connection_lib
 
 CONNECTION_FOLDER = connection_lib.ConnectionFolder(folderpath='connections')
 CONNECTION_UNIVERSE = connection_lib.ConnectionUniverse(
-    folders=[CONNECTION_FOLDER])
+    folders=[CONNECTION_FOLDER]
+)
 
 CONNECTION_FOLDER.AddFromConfig(
     documents=[{
@@ -37,4 +38,5 @@ CONNECTION_FOLDER.AddFromConfig(
             'description': 'foobar',
         },
     }],
-    config_filename='connections/connections.yaml')
+    config_filename='connections/connections.yaml',
+)

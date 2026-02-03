@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 LDS_WLDS:
   guid: "b1cbee31-2314-470b-900f-0543bd8b9021"
   description: "Basic leak detection device."
@@ -87,6 +86,14 @@ LDS_WLA:
   - LDS
   - WLA
 
+LDS_WLA2X:
+  guid: "60f43913-fff2-4d92-adcd-892ebea5e85d"
+  description: "Water Leak sensing device with two sensors."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA2X
+
 LDS_WLA_BCM:
   guid: "83a30f4d-8999-4b8e-ae4e-bd4eec29271d"
   description: "Water Leak sensing and broken cable sensing device."
@@ -101,10 +108,17 @@ LDS_WLA_BCM:
 
 LDS_WLCC:
   guid: "1bc59b7b-cef7-4c39-b7b2-efaae420bf9f"
-  description: Leak detection sensor with array of leak cable-based sensors."
+  description: "Leak detection sensor with array of leak cable-based sensors."
   is_canonical: true
   uses:
   - water_leak_detection_alarm
   - water_leak_alarm
   - water_leak_cable_distance_sensor
   - broken_cable_alarm
+
+LDS_REFM:
+  guid: "3e43f901-2d8c-4e69-9356-f755780b0f2b"
+  description: "Refrigerant leak detection."
+  is_canonical: true
+  implements:
+    - REFM

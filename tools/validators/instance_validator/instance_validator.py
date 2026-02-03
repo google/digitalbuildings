@@ -42,7 +42,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
     ArgumentParser object
   """
   parser = argparse.ArgumentParser(
-      description='Validate a YAML building configuration file')
+      description='Validate a YAML building configuration file'
+  )
 
   parser.add_argument(
       '-i',
@@ -51,7 +52,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='filenames',
       required=True,
       help='Filepaths to YAML building configurations',
-      metavar='FILE')
+      metavar='FILE',
+  )
 
   parser.add_argument(
       '-m',
@@ -59,7 +61,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='modified_types_filepath',
       required=False,
       help='Filepath to modified type filepaths',
-      metavar='MODIFIED_TYPE_FILEPATHS')
+      metavar='MODIFIED_TYPE_FILEPATHS',
+  )
 
   parser.add_argument(
       '-s',
@@ -67,15 +70,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       dest='subscription',
       required=False,
       help='Pubsub subscription for telemetry to validate',
-      metavar='subscription')
-
-  parser.add_argument(
-      '-c',
-      '--credential',
-      dest='gcp_credential',
-      required=False,
-      help='gcp credential used to authenticate against pubsub api',
-      metavar='gcp credential')
+      metavar='subscription',
+  )
 
   parser.add_argument(
       '-t',
@@ -84,7 +80,8 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=DEFAULT_TIMEOUT,
       help='Timeout duration (in seconds) for telemetry validation test',
-      metavar='timeout')
+      metavar='timeout',
+  )
 
   parser.add_argument(
       '-d',
@@ -93,14 +90,16 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=None,
       help='Absolute path to report output directory',
-      metavar='report-directory',)
+      metavar='report-directory',
+  )
 
   parser.add_argument(
       '--udmi',
       dest='udmi',
       required=False,
-      default='True',
-      help='Parse messages as UDMI')
+      default='False',
+      help='Parse messages as UDMI',
+  )
 
   return parser
 
@@ -114,7 +113,6 @@ if __name__ == '__main__':
       filenames=args.filenames,
       modified_types_filepath=args.modified_types_filepath,
       subscription=args.subscription,
-      gcp_credential_path=args.gcp_credential,
       report_directory=args.report_directory,
       timeout=int(args.timeout),
       is_udmi=is_udmi,

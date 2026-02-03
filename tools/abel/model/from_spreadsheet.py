@@ -75,11 +75,10 @@ def LoadFieldsFromSpreadsheet(
     entity_field_entries: List[Dict[str, str]],
     guid_to_entity_map: GuidToEntityMap,
 ) -> List[FieldTranslation]:
-  """Loads list of entity field maps into FieldTranslation instances.
+  """Loads a list of entity fields into FieldTranslation instances.
 
   Once the entity field mapping is loaded into an FieldTranslation instance,
-  it
-  is then added to the ABEL internal model.
+  it is then added to the ABEL internal model.
 
   Args:
     entity_field_entries: A list of python dictionaries mapping entity field
@@ -128,7 +127,7 @@ def LoadStatesFromSpreadsheet(
   states = []
 
   for state_entry in state_entries:
-    state_entry[BC_GUID] = guid_to_entity_map.GetEntityGuidByCode(
+    state_entry[REPORTING_ENTITY_GUID] = guid_to_entity_map.GetEntityGuidByCode(
         state_entry[REPORTING_ENTITY_CODE]
     )
     states.append(State.FromDict(states_dict=state_entry))

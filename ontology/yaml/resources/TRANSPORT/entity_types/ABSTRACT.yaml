@@ -15,7 +15,7 @@
 
 SS:
   guid: "944c0f2d-9999-4b1b-871b-285a817941bf"
-  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  description: "Basic combination of run command and status (start/stop)."
   is_abstract: true
   implements:
   - /SS
@@ -23,3 +23,22 @@ SS:
   - failed_alarm
   - lost_power_alarm
 
+EOM:
+  guid: "51760cac-2f64-4f03-8a39-0f2d8125d8dd"
+  description: "Elevator operation monitoring."
+  is_abstract: true
+  opt_uses:
+  - maintenance_alarm
+  - control_status
+  - fire_alarm
+  uses:
+  - floor_count
+  - position_status
+
+EDM:
+  guid: "883ebb66-315f-44a4-9d2a-e7524195f1dd"
+  description: "Elevator direction monitoring."
+  is_abstract: true
+  uses:
+  - direction_up_mode
+  - direction_down_mode

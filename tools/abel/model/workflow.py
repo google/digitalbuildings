@@ -19,6 +19,7 @@ import webbrowser
 
 # pylint: disable=g-importing-member
 from model import authenticator
+from model import entity_enumerations
 from model import export_helper
 from model import import_helper
 from model import model_helper
@@ -262,3 +263,24 @@ class Workflow(object):
       )
     self.ss_model = self._ImportSpreadsheetAndBuildModel(self.spreadsheet_id)[0]
     self._ValidateAndExportBuildingConfig(model=self.ss_model)
+
+  def SplitWorkflow(self) -> None:
+    """Workflow to take in a building config and split it.
+
+    STEPS:
+      1. ingest building config.
+      2. Split building config.
+      3. Export the split building config.
+    """
+    if not self.bc_filepath:
+      self.bc_filepath = input('Please provide a building config file path.')
+    else:
+      namespace_string = input('Desired namespace: ')
+      namespace = entity_enumerations.EntityNamespace(namespace_string.upper())
+      self.bc_model, bc_operations = self._ImportBCAndBuildModel()
+      split_model, split_operations = model_helper.Split(
+          self.bc_model, bc_operations, namespace
+      )
+      self._ValidateAndExportBuildingConfig(
+          model=split_model, operations=split_operations
+      )

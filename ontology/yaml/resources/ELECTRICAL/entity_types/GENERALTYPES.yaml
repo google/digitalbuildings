@@ -14,14 +14,14 @@
 
 BATT:
   guid: "b65c37c0-3820-4847-8bde-ae02cec805cb"
-  description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
+  description: "Tag for all batteries. Batteries are used to store and discharge power for the use of a device or group of devices."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 UPS:
   guid: "53a1903c-7b32-47da-a7ef-94b047a1aa50"
-  description: "Tag for all uninterruptible power supply units."
+  description: "Tag for all uninterruptible power supply (UPS) units. A UPS provides power in the event of grid power failure, protecting critical equipment from damage."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -35,34 +35,30 @@ PANEL:
   implements:
   - EQUIPMENT
 
-
-  
 GEN:
   guid: "c935c4f5-019c-4eb7-9f81-8dcf47e7a594"
-  description: "Tag for all Electricity generating equipments."
-
-ATS:
-  guid: "f2e50348-ce8d-4c2e-9e82-0d6056d4c89c"
-  description: "Tag for automatic transfer switch (ATS) units."
-
+  description: "Tag for all generator units. Generators convert mechanical or chemical energy into electric energy."
   is_abstract: true
   implements:
   - EQUIPMENT
 
-
-
-
+ATS:
+  guid: "f2e50348-ce8d-4c2e-9e82-0d6056d4c89c"
+  description: "Tag for automatic transfer switch (ATS) units. An ATS automatically transfers a power supply from its primary source to a backup source when it senses a failure or outage in the primary source."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
 
 CB:
   guid: "245e084f-a577-441d-a88e-662fd8396271"
-  description: "Tag for all circuit breakers."
+  description: "Tag for all circuit breakers. A circuit breaker is an electrical safety device designed to protect an electrical circuit from damage caused by overcurrent. Its basic function is to interrupt current flow to protect equipment and to prevent the risk of fire."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 TXMR:
   guid: "89a9ced0-3ee2-4d12-94b4-84e7179766e6"
-  description: "Typical Transformer tag used for device that transfers electric energy from one alternating-current circuit to one or more other circuits, either increasing (stepping up) or reducing (stepping down) the voltage."
+  description: "Tag for transformers, which are devices that transfer electric energy from one alternating-current circuit to one or more other circuits by either increasing (stepping up) or reducing (stepping down) the voltage."
   is_abstract: true
   implements:
   - EQUIPMENT

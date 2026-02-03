@@ -12,26 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Test entity missing states not marked as MISSING
-
-ENTITY-GUID:
-  cloud_device_id: '123456789'
-  type: SAFETY/FACP
-  code: FACP-14
+# Test entity missing states not marked as MISSING      
+DMPR1-GUID:
+  type: HVAC/DMP_EDM
+  code: US-SEA-DMPR1
+  cloud_device_id: "1234567891234567"
   translation:
-    fire_alarm_1:
-      present_value: points.fire_alarm_1.present_value
+    exhaust_air_damper_command:
+      present_value: "points.damper_1.present_value"
+    exhaust_air_damper_status:
+      present_value: "points.damper_2.present_value"
       states:
-        ACTIVE: 'true'
-        INACTIVE: 'false'
-    fire_alarm_2:
-      present_value: points.fire_alarm_2.present_value
-      states:
-        ACTIVE: 'true'
-        INACTIVE: 'false'
-    panel_alarm:
-      present_value: points.panel_alarm.present_value
-
+        OPEN: "1"
+        CLOSED: "0"
+        
 US-ABC-BLDG-GUID:
   type: FACILITIES/BUILDING
   code: US-ABC-BLDG

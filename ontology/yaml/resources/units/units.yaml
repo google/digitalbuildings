@@ -38,6 +38,9 @@ aqi:
   uba: # Umwelt Bundesamt, German air quality standard
     multiplier: 1
     offset: 0
+  awair: # Awair Air Quality Score
+    multiplier: 1
+    offset: 0
 area:
   square_meters: STANDARD
   square_centimeters:
@@ -56,12 +59,6 @@ concentration:
     offset: 0
   parts_per_billion:
     multiplier: 0.000000001
-    offset: 0
-  grams_per_kilogram: # Can convert approximately using Avogadro
-    multiplier: 0.001
-    offset: 0
-  grams_of_water_per_kilogram:
-    multiplier: 0.001
     offset: 0
 current:
   amperes: STANDARD
@@ -99,22 +96,25 @@ distance:
   inches:
     multiplier: 0.0254
     offset: 0
+thermalefficiency:
+  kilowatts_per_ton: STANDARD
 electriccapacitance:
   farads: STANDARD
 electricconductance:
   siemens: STANDARD
 electricconductivity:
   siemens_per_meter: STANDARD
+  microsiemens_per_centimeter:
+    multiplier: 0.0001
+    offset: 0
 electriccurrentdensity:
   amperes_per_square_meter: STANDARD
-electricfield:
+electricfieldstrength:
   volts_per_meter: STANDARD
 electricinductance:
   henrys: STANDARD
 electricphasedifference:
   degrees_phase: STANDARD
-electricfieldstrength:
-  amperes_per_meter: STANDARD
 electricresistivity:
   ohm_meters: STANDARD
 energy:
@@ -144,6 +144,12 @@ energy:
     multiplier: 105480400
     offset: 0
   kilovolt_ampere_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_apparent_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_reactive_hours:
     multiplier: 3600000
     offset: 0
   ton_hours:
@@ -188,14 +194,14 @@ flowrate:
   liters_per_hour:
     multiplier: 0.000000277777777778
     offset: 0
-  gallons_per_minute:
-    multiplier: 0.0000630901964
-    offset: 0
   imperial_gallons_per_minute:
     multiplier: 0.000075768166666667
     offset: 0
   us_gallons_per_minute:
     multiplier: 0.0000630901964
+    offset: 0
+  us_gallons_per_hour:
+    multiplier: 0.000001051503277778
     offset: 0
 force:
   newton: STANDARD
@@ -212,15 +218,6 @@ frequency:
     offset: 0
   megahertz:
     multiplier: 0.000001
-    offset: 0
-  per_hour:
-    multiplier: 3600
-    offset: 0
-  per_minute:
-    multiplier: 60
-    offset: 0
-  per_second:
-    multiplier: 1
     offset: 0
 humidity:
   percent_relative_humidity: STANDARD
@@ -271,6 +268,8 @@ luminousflux:
   lumens: STANDARD
 luminousintensity:
   candelas: STANDARD
+magneticfieldstrength:
+  amperes_per_meter: STANDARD
 magneticflux:
   webers: STANDARD
 magneticinduction:
@@ -285,8 +284,14 @@ mass:
   pounds_mass:
     multiplier: 453.592
     offset: 0
-  tons:
-    multiplier: 907184
+  metric_tons:
+    multiplier: 1000000
+    offset: 0
+  uk_tons:
+    multiplier: 1016046.9088
+    offset: 0
+  us_tons:
+    multiplier: 907184.74
     offset: 0
 massconcentration: concentration
 massflow:
@@ -303,8 +308,14 @@ massflow:
   kilograms_per_second:
     multiplier: 1000
     offset: 0
-  tons_per_hour:
-    multiplier: 251.996
+  metric_tons_per_hour:
+    multiplier: 277.777777778
+    offset: 0
+  uk_tons_per_hour:
+    multiplier: 282.235252444
+    offset: 0
+  us_tons_per_hour:
+    multiplier: 251.995761111
     offset: 0
   pounds_mass_per_hour:
     multiplier: 0.125998
@@ -351,6 +362,9 @@ power:
   kilobtus_per_hour:
     multiplier: 293.07107
     offset: 0
+  megabtus_per_hour:
+    multiplier: 293071.07
+    offset: 0
   therms_per_hour:
     multiplier: 29300.1111
     offset: 0
@@ -372,13 +386,10 @@ power:
   megavolt_amperes_apparent:
     multiplier: 1000000
     offset: 0
+ph:
+  no_units: STANDARD
 powerfactor:
   no_units: STANDARD
-powerflux:
-  watts_per_square_meter: STANDARD
-  watts_per_square_foot:
-    multiplier: 0.092903
-    offset: 0
 pressure:
   pascals: STANDARD
   hectopascals:
@@ -429,8 +440,8 @@ resistance:
     offset: 0
 rotationalvelocity:
   revolutions_per_minute: STANDARD
-specificenergy:
-  joules_per_kilogram_kelvin: STANDARD
+soundpressurelevel:
+  decibels: STANDARD
 specificenthalpy:
   joules_per_kilogram: STANDARD
   btus_per_pound_dry_air:
@@ -445,6 +456,8 @@ specificenthalpy:
   megajoules_per_kilogram_dry_air:
     multiplier: 1000000
     offset: 0
+specificentropy:
+  joules_per_kilogram_kelvin: STANDARD
 temperature:
   kelvin: STANDARD
   degrees_celsius:

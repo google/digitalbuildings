@@ -21,7 +21,7 @@ PMP_SS:
   description: "Typical pump."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
 
 PMP_SS_VSC:
@@ -29,16 +29,25 @@ PMP_SS_VSC:
   description: "Typical variable speed pump."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
+
+PMP_SS_SWTM:
+  guid: "d0b32b26-b10a-4963-849e-4f213e0ee293"
+  description: "Pump with supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - /PMP # inherits from global namespace
+  - SS
+  - SWTM
 
 PMP_DRPM:
   guid: "d88d7308-a688-4b7a-9b94-ed9bd0b04266"
   description: "Pump implemented with drain pump monitoring ."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - DRPM
 
 PMP_SS_VSC_WDPM:
@@ -46,7 +55,7 @@ PMP_SS_VSC_WDPM:
   description: "Variable speed pump with differential pressure monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - WDPM
@@ -56,17 +65,26 @@ PMP_SS_VSC_WDPC:
   description: "Pump with variable speed control and differential pressure control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - WDPC
+
+PMP_SS_LHLM:
+  guid: "0c3cc1e4-6710-4dab-a0bc-35708f9c2b91"
+  description: "Sump Pump with water level monitoring."
+  is_canonical: true
+  implements:
+  - /PMP # inherits from global namespace
+  - SS
+  - LHLM
 
 PMP_SS_VSFC:
   guid: "08683c47-596a-4e52-8545-5079201b55df"
   description: "PMP device with pump frequency control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSFC
   opt_uses:
@@ -81,7 +99,7 @@ PMP_SS_CHWISOVPM_VSFC:
   description: "PMP device with chilled water valve and pump frequency control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - CHWISOVPM
   - VSFC
@@ -92,12 +110,22 @@ PMP_SS_CHWISOVPM_VSFC:
   - low_differential_pressure_alarm
   - chilled_water_differential_pressure_setpoint
 
+PMP_SS_CHWISOVPM_VSC:
+  guid: "6ee2c381-b2f1-455a-9d0c-59b48cab5b4c"
+  description: "PMP device with chilled water valve and pump speed percentage control"
+  is_canonical: true
+  implements:
+  - /PMP # inherits from global namespace
+  - SS
+  - CHWISOVPM
+  - VSC
+
 PMP_SS_VSC_WDPC_WFRC:
   guid: "626cf14c-537c-4dbf-85e1-1ed6d68d5aa3"
   description: "Pump with variable speed control, differential pressure control and flow control."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - WDPC
@@ -108,7 +136,7 @@ PMP_SS_VSC_SWTC:
   description: "Pump with variable speed control and supply water temperature control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - VSC
   - SWTC
@@ -118,7 +146,7 @@ PMP_SS_CWCS_VSFC:
   description: "PMP device with condensing water valve and pump frequency control"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - CWCS
   - VSFC
@@ -132,7 +160,7 @@ PMP_SS_RMM:
   description: "Pump with pressure switch and failed alarm monitoring"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - RMM
   opt_uses:
@@ -145,30 +173,35 @@ PMP_SS_WDPM:
   description: "Pump with pressure alarms and status monitoring"
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from global namespace
   - SS
   - WDPM
 
-
-###################################
-### Existing Non-standard Types ###
-###################################
-
-PMP_SS_VSC_NONCANONICAL_1:
-  guid: "026231f9-fae5-4250-8d4b-c8b33948dc5d"
-  description: "Non-standard variable speed pump."
+PMP_SS_VSC_HWBYPVM:
+  guid: "aec25b2b-513d-474d-91b3-7cb756fe12ce"
+  description: "Variable speed pump with heating water bypass valve binary control."
+  is_canonical: true
   implements:
-  - PMP_SS_VSC
-  - INCOMPLETE
-  uses:
-  - speed_frequency_command
+  - /PMP # inherits from global namespace
+  - SS
+  - VSC
+  - HWBYPVM
 
-PMP_SS_VSC_NONCANONICAL_2:
-  guid: "f9ffc542-75a0-4159-9b19-2b72fd1b4396"
-  description: "One-off pump that performs chilled water blending."
+PMP_SS_CHWFRSM:
+  guid: "133886ac-dced-440b-b036-34235ff3958b"
+  description: "Typical pump with chilled water flowrate status monitoring."
+  is_canonical: true
   implements:
-  - PMP_SS_VSC
-  uses:
-  - mixing_valve_percentage_command
-  - chilled_supply_water_temperature_setpoint
-  - chilled_supply_water_temperature_sensor
+  - /PMP # inherits from global namespace
+  - SS
+  - CHWFRSM
+
+PMP_SS_VSC_CHWFRSM:
+  guid: "9b01db04-b3cb-4bd6-b08c-ef83cc555c4f"
+  description: "Typical variable speed pump with chilled water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - /PMP # inherits from global namespace
+  - SS
+  - VSC
+  - CHWFRSM

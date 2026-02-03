@@ -59,40 +59,54 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     # Paths to testing files
     # subfield files
     self.global_subfields = base_lib.PathParts(
-        root=self.base_dir, relative_path='subfields/global_subfields.yaml')
+        root=self.base_dir, relative_path='subfields/global_subfields.yaml'
+    )
     self.good_local_subfields = base_lib.PathParts(
-        root=self.base_dir, relative_path='GOOD/subfields/local_subfields.yaml')
+        root=self.base_dir, relative_path='GOOD/subfields/local_subfields.yaml'
+    )
     self.bad_local_subfields = base_lib.PathParts(
         root=self.base_dir,
-        relative_path='BAD/subfields/bad_local_subfields.yaml')
+        relative_path='BAD/subfields/bad_local_subfields.yaml',
+    )
 
     # field files
     self.global_fields = base_lib.PathParts(
-        root=self.base_dir, relative_path='fields/global_fields.yaml')
+        root=self.base_dir, relative_path='fields/global_fields.yaml'
+    )
     self.good_local_fields = base_lib.PathParts(
-        root=self.base_dir, relative_path='GOOD/fields/local_fields.yaml')
+        root=self.base_dir, relative_path='GOOD/fields/local_fields.yaml'
+    )
     self.bad_local_fields = base_lib.PathParts(
-        root=self.base_dir, relative_path='BAD/fields/bad_local_fields.yaml')
+        root=self.base_dir, relative_path='BAD/fields/bad_local_fields.yaml'
+    )
 
     # type files
     self.bad1_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='BAD/entity_types/bad1.yaml')
+        root=self.base_dir, relative_path='BAD/entity_types/bad1.yaml'
+    )
     self.bad2_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='BAD/entity_types/bad2.yaml')
+        root=self.base_dir, relative_path='BAD/entity_types/bad2.yaml'
+    )
     self.bad3_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='BAD/entity_types/bad3.yaml')
+        root=self.base_dir, relative_path='BAD/entity_types/bad3.yaml'
+    )
     self.bad4_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='BAD/entity_types/bad4.yaml')
+        root=self.base_dir, relative_path='BAD/entity_types/bad4.yaml'
+    )
     self.bad5_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='BAD/entity_types/bad5.yaml')
+        root=self.base_dir, relative_path='BAD/entity_types/bad5.yaml'
+    )
 
     self.good1_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='GOOD/entity_types/good1.yaml')
+        root=self.base_dir, relative_path='GOOD/entity_types/good1.yaml'
+    )
     self.good2_file = base_lib.PathParts(
-        root=self.base_dir, relative_path='GOOD/entity_types/good2.yaml')
+        root=self.base_dir, relative_path='GOOD/entity_types/good2.yaml'
+    )
 
-    self.good1_depot_path = path.join('//depot/google3', RESOURCE_PATH,
-                                      'GOOD/entity_types/good1.yaml')
+    self.good1_depot_path = path.join(
+        '//depot/google3', RESOURCE_PATH, 'GOOD/entity_types/good1.yaml'
+    )
 
   def ListHasType(self, findings_list, finding_type):
     for f in findings_list:
@@ -104,15 +118,18 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     context = findings_lib.FileContext('')
     type_universe = entity_type_lib.EntityTypeUniverse([])
     type_universe.AddFinding(
-        findings_lib.InvalidTypenameError('stuff', context))
+        findings_lib.InvalidTypenameError('stuff', context)
+    )
     field_universe = field_lib.FieldUniverse([])
     field_universe.AddFinding(
-        findings_lib.InconsistentFileLocationError('', context))
+        findings_lib.InconsistentFileLocationError('', context)
+    )
     subfield_universe = subfield_lib.SubfieldUniverse([])
     state_universe = state_lib.StateUniverse([])
     connection_universe = connection_lib.ConnectionUniverse([])
     connection_universe.AddFinding(
-        findings_lib.InvalidConnectionNamespaceError('notglobal', context))
+        findings_lib.InvalidConnectionNamespaceError('notglobal', context)
+    )
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
         subfield_universe=subfield_universe,
@@ -120,7 +137,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=type_universe,
         state_universe=state_universe,
         connection_universe=connection_universe,
-        unit_universe=unit_universe)
+        unit_universe=unit_universe,
+    )
 
     findings = config_universe.GetFindings()
     self.assertLen(findings, 3)
@@ -128,18 +146,21 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         config_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
             findings_lib.InvalidTypenameError,
-            findings_lib.InvalidConnectionNamespaceError
-        ]))
+            findings_lib.InvalidConnectionNamespaceError,
+        ])
+    )
     self.assertFalse(config_universe.IsValid())
 
   def testConfigUniverseGetEntityTypeNamespace(self):
     context = findings_lib.FileContext('')
     type_universe = entity_type_lib.EntityTypeUniverse([])
     type_universe.AddFinding(
-        findings_lib.InvalidTypenameError('stuff', context))
+        findings_lib.InvalidTypenameError('stuff', context)
+    )
     field_universe = field_lib.FieldUniverse([])
     field_universe.AddFinding(
-        findings_lib.InconsistentFileLocationError('', context))
+        findings_lib.InconsistentFileLocationError('', context)
+    )
     subfield_universe = subfield_lib.SubfieldUniverse([])
     state_universe = state_lib.StateUniverse([])
     connection_universe = connection_lib.ConnectionUniverse([])
@@ -150,10 +171,12 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=type_universe,
         state_universe=state_universe,
         connection_universe=connection_universe,
-        unit_universe=unit_universe)
+        unit_universe=unit_universe,
+    )
 
     entity_type_namespace = config_universe.GetEntityTypeNamespace(
-        'NONEXISTENT')
+        'NONEXISTENT'
+    )
 
     self.assertIsNone(entity_type_namespace)
 
@@ -161,10 +184,12 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     context = findings_lib.FileContext('')
     type_universe = entity_type_lib.EntityTypeUniverse([])
     type_universe.AddFinding(
-        findings_lib.InvalidTypenameError('stuff', context))
+        findings_lib.InvalidTypenameError('stuff', context)
+    )
     field_universe = field_lib.FieldUniverse([])
     field_universe.AddFinding(
-        findings_lib.InconsistentFileLocationError('', context))
+        findings_lib.InconsistentFileLocationError('', context)
+    )
     subfield_universe = subfield_lib.SubfieldUniverse([])
     state_universe = state_lib.StateUniverse([])
     connection_universe = connection_lib.ConnectionUniverse([])
@@ -175,7 +200,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=type_universe,
         state_universe=state_universe,
         connection_universe=connection_universe,
-        unit_universe=unit_universe)
+        unit_universe=unit_universe,
+    )
 
     entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
 
@@ -194,7 +220,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=None,
         state_universe=None,
         connection_universe=None,
-        unit_universe=unit_universe)
+        unit_universe=unit_universe,
+    )
 
     units = config_universe.GetUnitsForMeasurement('zone_temperature_sensor')
     self.assertSameElements(['degrees_celsius', 'kelvin'], units)
@@ -207,21 +234,17 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     units = config_universe.GetUnitsForMeasurement('pressure_sensor')
     self.assertIsNone(units)
     units = config_universe.GetUnitsForMeasurement(
-        'discharge_fan_lost_power_alarm')
+        'discharge_fan_lost_power_alarm'
+    )
     self.assertIsNone(units)
 
   def testConfigUniverseGetUnitsForMeasurementMultipleNoUnits(self):
     doc = {
         'powerfactor': {
             'no_units': 'STANDARD',
-            'another_one': {
-                'multiplier': 2,
-                'offset': 0
-            }
+            'another_one': {'multiplier': 2, 'offset': 0},
         },
-        'voltageratio': {
-            'no_units': 'STANDARD'
-        },
+        'voltageratio': {'no_units': 'STANDARD'},
     }
     folder = unit_lib.UnitFolder('units/anyfolder')
     folder.AddFromConfig([doc], 'units/anyfolder/units.yaml')
@@ -233,7 +256,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=None,
         state_universe=None,
         connection_universe=None,
-        unit_universe=unit_universe)
+        unit_universe=unit_universe,
+    )
     units1 = config_universe.GetUnitsForMeasurement('powerfactor_sensor')
     units2 = config_universe.GetUnitsForMeasurement('voltageratio_sensor')
 
@@ -249,8 +273,9 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     claws_cat.states = claw_states
 
     global_folder = field_lib.FieldFolder('fields/anyfolder')
-    folder = field_lib.FieldFolder('localnamespace/fields/anyfolder',
-                                   global_folder.local_namespace)
+    folder = field_lib.FieldFolder(
+        'localnamespace/fields/anyfolder', global_folder.local_namespace
+    )
     folder.local_namespace.PutIfAbsent(meow_cat)
     global_folder.local_namespace.PutIfAbsent(claws_cat)
 
@@ -262,38 +287,53 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=None,
         state_universe=None,
         connection_universe=None,
-        unit_universe=None)
+        unit_universe=None,
+    )
 
-    self.assertSameElements(claw_states,
-                            config_universe.GetStatesByField('/claws_cat'))
     self.assertSameElements(
-        meow_states,
-        config_universe.GetStatesByField('localnamespace/meow_cat'))
+        claw_states, config_universe.GetStatesByField('/claws_cat')
+    )
+    self.assertSameElements(
+        meow_states, config_universe.GetStatesByField('localnamespace/meow_cat')
+    )
 
   def testValidateUndefinedFields(self):
     # bad3_file declares an undefined field
     findings = presubmit_validate_types_lib.RunPresubmit(
-        [], [], [self.bad3_file, self.global_fields])
+        [], [], [self.bad3_file, self.global_fields]
+    )
     self.assertTrue(
-        self.ListHasType(findings, findings_lib.UndefinedFieldError))
+        self.ListHasType(findings, findings_lib.UndefinedFieldError)
+    )
 
   def testBadFieldsFile(self):
     findings = presubmit_validate_types_lib.RunPresubmit(
-        [], [], [self.bad3_file, self.global_fields, self.bad_local_fields])
+        [], [], [self.bad3_file, self.global_fields, self.bad_local_fields]
+    )
     self.assertTrue(
-        self.ListHasType(findings, findings_lib.DuplicateFieldDefinitionError))
+        self.ListHasType(findings, findings_lib.DuplicateFieldDefinitionError)
+    )
     self.assertTrue(
-        self.ListHasType(findings, findings_lib.UndefinedFieldError))
+        self.ListHasType(findings, findings_lib.UndefinedFieldError)
+    )
 
   def testBadSubfieldsFile(self):
-    findings = presubmit_validate_types_lib.RunPresubmit([], [], [
-        self.good2_file, self.global_fields, self.global_subfields,
-        self.bad_local_subfields
-    ])
+    findings = presubmit_validate_types_lib.RunPresubmit(
+        [],
+        [],
+        [
+            self.good2_file,
+            self.global_fields,
+            self.global_subfields,
+            self.bad_local_subfields,
+        ],
+    )
     # Bad subfields should be ignored
     self.assertTrue(
-        self.ListHasType(findings,
-                         findings_lib.DuplicateSubfieldDefinitionError))
+        self.ListHasType(
+            findings, findings_lib.DuplicateSubfieldDefinitionError
+        )
+    )
     # Rest of validation should proceed with no problems.
     # only one finding from duplicate subfield
     self.assertLen(findings, 1)
@@ -305,19 +345,26 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testSeparateConfigFiles(self):
     field1 = base_lib.PathParts(
-        root='path/to/resources', relative_path='fields/field1')
+        root='path/to/resources', relative_path='fields/field1'
+    )
     field2 = base_lib.PathParts(
-        root='path/to/resources', relative_path='fields/field2')
+        root='path/to/resources', relative_path='fields/field2'
+    )
     types1 = base_lib.PathParts(
-        root='path/to/resources', relative_path='TEST/entity_types/types1')
+        root='path/to/resources', relative_path='TEST/entity_types/types1'
+    )
     types2 = base_lib.PathParts(
-        root='path/to/resources', relative_path='TEST/entity_types/types2')
+        root='path/to/resources', relative_path='TEST/entity_types/types2'
+    )
     subfield1 = base_lib.PathParts(
-        root='path/to/resources', relative_path='subfields/subfield1')
+        root='path/to/resources', relative_path='subfields/subfield1'
+    )
     state1 = base_lib.PathParts(
-        root='path/to/resources', relative_path='states/state1')
+        root='path/to/resources', relative_path='states/state1'
+    )
     unit1 = base_lib.PathParts(
-        root='path/to/resources', relative_path='units/unit1')
+        root='path/to/resources', relative_path='units/unit1'
+    )
 
     config_list = [field1, field2, types1, types2, subfield1, state1, unit1]
     config = presubmit_validate_types_lib.SeparateConfigFiles(config_list)
@@ -331,18 +378,23 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.assertIn(unit1, config.units)
 
   def testOrganizeFindingsByFile(self):
-    finding1 = findings_lib.Finding('error1',
-                                    findings_lib.FileContext(filepath='path1'))
-    finding2 = findings_lib.Finding('error2',
-                                    findings_lib.FileContext(filepath='path1'))
-    finding3 = findings_lib.Finding('error3',
-                                    findings_lib.FileContext(filepath='path2'))
-    finding4 = findings_lib.Finding('error4',
-                                    findings_lib.FileContext(filepath='path3'))
+    finding1 = findings_lib.Finding(
+        'error1', findings_lib.FileContext(filepath='path1')
+    )
+    finding2 = findings_lib.Finding(
+        'error2', findings_lib.FileContext(filepath='path1')
+    )
+    finding3 = findings_lib.Finding(
+        'error3', findings_lib.FileContext(filepath='path2')
+    )
+    finding4 = findings_lib.Finding(
+        'error4', findings_lib.FileContext(filepath='path3')
+    )
 
     findings_list = [finding1, finding2, finding3, finding4]
     findings_map = presubmit_validate_types_lib.OrganizeFindingsByFile(
-        findings_list)
+        findings_list
+    )
 
     self.assertLen(findings_map, 3)
     path1_list = findings_map.get('path1')
@@ -365,7 +417,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     type1 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type1',
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     ns1.InsertType(type1)
 
     ns2_path = 'namespace_two/entity_types/anyfolder'
@@ -375,7 +428,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns2_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        is_abstract=True)
+        is_abstract=True,
+    )
     ns2.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1, folder2])
 
@@ -383,7 +437,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     new_uv = entity_type_lib.EntityTypeUniverse([])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
 
     self.assertLen(findings, 1)
     self.assertIsInstance(findings[0], findings_lib.RemovedNamespaceWarning)
@@ -397,13 +452,15 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     type1 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type1',
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        is_abstract=True)
+        is_abstract=True,
+    )
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -412,7 +469,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
 
     self.assertLen(findings, 1)
     self.assertIsInstance(findings[0], findings_lib.RemovedTypeWarning)
@@ -427,13 +485,15 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         inherited_fields_expanded=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        guid=_GUID_2)
+        guid=_GUID_2,
+    )
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -443,18 +503,21 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1a',
         inherited_fields_expanded=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     ns1a.InsertType(type1a)
     type2a = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        guid=_GUID_3)
+        guid=_GUID_3,
+    )
     ns1a.InsertType(type2a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
 
     self.assertLen(findings, 1)
     self.assertIsInstance(findings[0], findings_lib.RemovedTypeWarning)
@@ -470,7 +533,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         inherited_fields_expanded=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     ns1.InsertType(type1)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -481,12 +545,14 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns2_path + '/file.yaml',
         typename='type1a',
         inherited_fields_expanded=True,
-        guid=_GUID_1)
+        guid=_GUID_1,
+    )
     ns2.InsertType(type1a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a, folder2])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
 
     self.assertEmpty(findings)
 
@@ -499,13 +565,15 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         local_field_tuples=_F(['local1']),
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         local_field_tuples=_F(['local1']),
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -515,21 +583,22 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     type1a = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type1',
-        local_field_tuples=[_F1('local1', False),
-                            _F1('local2', False)],
-        inherited_fields_expanded=True)
+        local_field_tuples=[_F1('local1', False), _F1('local2', False)],
+        inherited_fields_expanded=True,
+    )
     ns1a.InsertType(type1a)
     type2a = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
-        local_field_tuples=[_F1('local1', False),
-                            _F1('local2', True)],
-        inherited_fields_expanded=True)
+        local_field_tuples=[_F1('local1', False), _F1('local2', True)],
+        inherited_fields_expanded=True,
+    )
     ns1a.InsertType(type2a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
 
     self.assertLen(findings, 1)
     self.assertTrue(type1a.HasFindingTypes([findings_lib.AddedFieldWarning]))
@@ -544,7 +613,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         local_field_tuples=_F(['local1']),
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     type1.inherited_field_names = {'/inherited1': _F1('/inherited1', False)}
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
@@ -552,7 +622,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         typename='type2',
         local_field_tuples=_F(['abstract1']),
         inherited_fields_expanded=True,
-        is_abstract=True)
+        is_abstract=True,
+    )
     type2.inherited_field_names = {'/abstract1a': _F1('/abstract1a', False)}
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
@@ -564,10 +635,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         local_field_tuples=_F(['local1', 'local2']),
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     type1a.inherited_field_names = {
         '/inherited1': _F1('/inherited1', False),
-        '/inherited2': _F1('/inherited2', False)
+        '/inherited2': _F1('/inherited2', False),
     }
     ns1a.InsertType(type1a)
     type2a = entity_type_lib.EntityType(
@@ -575,16 +647,18 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         typename='type2',
         local_field_tuples=_F(['abstract1', 'abstract2']),
         inherited_fields_expanded=True,
-        is_abstract=True)
+        is_abstract=True,
+    )
     type2a.inherited_field_names = {
         '/abstract1a': _F1('/abstract1a', False),
-        '/abstract2a': _F1('/abstract2a', False)
+        '/abstract2a': _F1('/abstract2a', False),
     }
     ns1a.InsertType(type2a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
 
     self.assertLen(findings, 2)
     field1 = 'local2'
@@ -606,10 +680,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         local_field_tuples=_F(['local1', 'local2']),
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     type1.inherited_field_names = {
         '/inherited1': _F1('/inherited1', False),
-        '/inherited2': _F1('/inherited2', False)
+        '/inherited2': _F1('/inherited2', False),
     }
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
@@ -617,10 +692,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         typename='type2',
         local_field_tuples=_F(['abstract1', 'abstract2']),
         inherited_fields_expanded=True,
-        is_abstract=True)
+        is_abstract=True,
+    )
     type2.inherited_field_names = {
         '/abstract1a': _F1('/abstract1a', False),
-        '/abstract2a': _F1('/abstract2a', False)
+        '/abstract2a': _F1('/abstract2a', False),
     }
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
@@ -632,7 +708,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         local_field_tuples=_F(['local1']),
-        inherited_fields_expanded=True)
+        inherited_fields_expanded=True,
+    )
     type1a.inherited_field_names = {'/inherited1': _F1('/inherited1', False)}
     ns1a.InsertType(type1a)
     type2a = entity_type_lib.EntityType(
@@ -640,13 +717,15 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         typename='type2',
         local_field_tuples=_F(['abstract1']),
         inherited_fields_expanded=True,
-        is_abstract=True)
+        is_abstract=True,
+    )
     type2a.inherited_field_names = {'/abstract1a': _F1('/abstract1a', False)}
     ns1a.InsertType(type2a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
     findings = presubmit_validate_types_lib.CheckBackwardsCompatibility(
-        new_uv, old_uv)
+        new_uv, old_uv
+    )
     self.assertLen(findings, 2)
     field1 = 'local2'
     field2 = 'inherited2'

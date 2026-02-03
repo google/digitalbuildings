@@ -1,18 +1,22 @@
 # Heating Water Systems (HWS)
+- [Type Definition](#type-definition)
+- [Type Requirements](#type-requirements)
+- Examples
+  * [Variable Primary HWS](#example-variable-primary-hws)
 
 ## Type Definition
-Hydronic heating systems (HWS) contain boilers (BLR), pumps (PMP), and associated field telemetry.
+Hydronic heating water systems (HWS) contain boilers (BLR) to heat the water and pumps (PMP) to distribute the heated water to downstream equipment and/or to circulate the water through the boilers.
 
 ## Type Requirements
-- It *must* handle water for the purposes of heating.
+- It **must** handle water for the purposes of heating.
 
-## Example: Variable Primary HWS 
+## Example: Variable Primary HWS
 This version of HWS has a single set of variable speed pumps which serve boilers and downstream equipment.
 
 ### BMS Example
 ![HWS Variable Primary](./figures/bms_screenshots/hwsys.png)
 **Notes:**
-- The fields associated with individual devices (individual supply water temps for each boiler, for example) get mapped to those devices; system level telemetry gets assigned to the system directly.
+- The fields associated with individual devices (e.g., individual supply water temps for each boiler) get mapped to those individual devices while system level telemetry (e.g., system supply water temperature) gets assigned to the heating water system directly.
 
 ### System Diagram and Connections
 ![HWS Variable Primary](./figures/system_diagrams/hwsys.png)

@@ -23,3 +23,14 @@ FSS_STD:
   - FSS
   uses:
   - fire_alarm
+
+FSS_FA2X_GS:
+  guid: "637223a2-1c85-4ba3-b28f-ba5c96ffce9d"
+  description: "Fire Suppression System with with 2-level alarm and gas suppression."
+  is_canonical: true
+  implements:
+  - FSS
+  - FA2X
+  uses:
+  - master_alarm
+  - gas_release_valve_status

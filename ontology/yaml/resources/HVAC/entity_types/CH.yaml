@@ -18,16 +18,39 @@
 
 CH_SS_SWTC:
   guid: "76ab5a99-4b02-4a6a-a232-2954b16fafc0"
-  description: " Simple air cooled chiller."
+  description: "Simple air-cooled chiller."
   is_canonical: true
   implements:
   - CH
   - SS
   - SWTC
 
-CH_SS_SCHWTC_RWISOVPM:
-  guid: "69ac8219-82ca-46d1-88dc-7fc8ce0f16d3"
-  description: "Simple water-cooled chiller with condenser isolation."
+CH_SS_SWTC_WDPM:
+  guid: "619f27ca-5e68-44e2-a037-07c0fbccf29e"
+  description: "Simple air-cooled chiller with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - WDPM
+
+CH_SS_SWTC_DXSWC_WDPM_RCKTM_RWISOVPM:
+  guid: "3bd0de2e-505f-4de9-bf84-61e39710ee6f"
+  description: "Simple air-cooled chiller with supply temperature control, differential pressure monitoring and circuit monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DXSWC
+  - WDPM
+  - RCKTM
+  - RWISOVPM
+
+CH_SS_SWTC_RWISOVPM:
+  guid: "dbd37e91-f519-4754-9d30-daf41376d4bb"
+  description: "Simple air-cooled chiller with return water isolation."
   is_canonical: true
   implements:
   - CH
@@ -35,9 +58,23 @@ CH_SS_SCHWTC_RWISOVPM:
   - SWTC
   - RWISOVPM
 
+CH_SS_SCHWTC_CHWRWISOVPM_CWSISOVPM_REFPM_REFSM_CWDT:
+  guid: "c3547a02-44fa-4a53-b1d7-62ce2f301c86"
+  description: "Simple water-cooled chiller with condenser supply water isolation, chilled return water isolation, plus refrigerant and thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWSISOVPM
+  - REFPM
+  - REFSM
+  - CWDT
+
 CH_SS_SWTC_DX4SWC_CHWDPM: # HERE
   guid: "29d217b2-a914-4495-9c6c-34684a73bdf6"
-  description: "Air cooled chiller with 4 stages cooling."
+  description: "Air-cooled chiller with four-stage cooling."
   is_canonical: true
   implements:
   - CH
@@ -48,7 +85,7 @@ CH_SS_SWTC_DX4SWC_CHWDPM: # HERE
 
 CH_SS_SCHWTC_CWDT_IGM_CWRISOVPM_CHWRWISOVPM_CHWRWISOVM_CHDXSC_CDWFRM_CHWDPM_CHPM_REFSM_CHWBYPVPM:
   guid: "7e0c9db5-c872-4856-99c1-2bf92631105b"
-  description: "Complex water cooled chiller."
+  description: "Complex water-cooled chiller with isolation on both sides, flowrate and refrigeration monitoring, and bypass on the chilled water side."
   is_canonical: true
   implements:
   - CH
@@ -68,7 +105,7 @@ CH_SS_SCHWTC_CWDT_IGM_CWRISOVPM_CHWRWISOVPM_CHWRWISOVM_CHDXSC_CDWFRM_CHWDPM_CHPM
 
 CH_SS_SWTC_DX2SWC:
   guid: "342fa3f5-2c4b-4e62-9d83-0af7fcb91663"
-  description: "Two stage air cooled chiller."
+  description: "Two-stage air-cooled chiller with supply temperature control."
   is_canonical: true
   implements:
   - CH
@@ -78,7 +115,7 @@ CH_SS_SWTC_DX2SWC:
 
 CH_SS_SWTC_DX4SWC:
   guid: "867d2d7c-563a-4f5b-a626-912615a75214"
-  description: "Four stage air cooled chiller."
+  description: "Four-stage air-cooled chiller with supply temperature control."
   is_canonical: true
   implements:
   - CH
@@ -88,7 +125,7 @@ CH_SS_SWTC_DX4SWC:
 
 CH_SS_SCHWTC_CWDT:
   guid: "485a1a19-e110-45a2-8793-193287324b92"
-  description: "Simple water cooled chiller."
+  description: "Simple water-cooled chiller with supply temperature control."
   is_canonical: true
   implements:
   - CH
@@ -96,9 +133,32 @@ CH_SS_SCHWTC_CWDT:
   - SCHWTC
   - CWDT
 
+CH_SS_SCHWTC_CHWDPC_CWDT_REFPM_REFSM:
+  guid: "af499208-82b6-43d3-9f2a-a69facd684c1"
+  description: "Water-cooled chiller with supply temperature and differential pressure control, condensing water temperature monitoring and refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+
+CH_SS_RCHWTC_CWDT:
+  guid: "1f0accb9-f2d8-4258-a048-8d3c7a7510d0"
+  description: "Simple water cooled chiller, return water temperature control."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - RCHWTC
+  - CWDT
+
 CH_SS_SCHWTC_CHWSWISOVM:
   guid: "6b8e395a-94e3-4b25-8eda-0f2472d72332"
-  description: "Simple water cooled chiller."
+  description: "Simple water-cooled chiller with supply temperature control and supply isolation."
   is_canonical: true
   implements:
   - CH
@@ -108,7 +168,7 @@ CH_SS_SCHWTC_CHWSWISOVM:
 
 CH_SS_SCHWTC_CWRISOVPM:
   guid: "9e64a89d-bf31-48d6-86b6-4135ff55995e"
-  description: "Simple water cooled chiller."
+  description: "Simple water-cooled chiller with supply temperature control and return isolation."
   is_canonical: true
   implements:
   - CH
@@ -118,7 +178,7 @@ CH_SS_SCHWTC_CWRISOVPM:
 
 CH_SS_SCHWTC_CHWRWISOVM:
   guid: "b84e4440-23e0-4604-b533-e0f63763a430"
-  description: "Simple water cooled chiller."
+  description: "Simple water-cooled chiller with supply temperature control and return isolation."
   is_canonical: true
   implements:
   - CH
@@ -128,7 +188,7 @@ CH_SS_SCHWTC_CHWRWISOVM:
 
 CH_SS_SCHWTC_CHWRWISOVM_DX2SWC:
   guid: "fe2ac3c6-603a-4da9-b387-3bf2a9777d6d"
-  description: "Tw-stage air cooled chiller."
+  description: "Two-stage air-cooled chiller with supply temperature control and return isolation."
   is_canonical: true
   implements:
   - CH
@@ -139,7 +199,7 @@ CH_SS_SCHWTC_CHWRWISOVM_DX2SWC:
 
 CH_SS_SCHWTC_CHWRWISOVM_CWSISOVM:
   guid: "3586e39f-ce12-4478-bdb8-da467b8f91af"
-  description: "Two stage water cooled chiller."
+  description: "Two-stage water-cooled chiller with supply temperature control and isolation on both the condenser and chilled water sides."
   is_canonical: true
   implements:
   - CH
@@ -150,7 +210,7 @@ CH_SS_SCHWTC_CHWRWISOVM_CWSISOVM:
 
 CH_SS_SWTC_DX4SWC_SWISOVPM:
   guid: "5762f148-a3d3-4267-b759-bb7ba09300a6"
-  description: "Four stage air cooled cooled chiller."
+  description: "Four-stage air-cooled cooled chiller with supply temperature control and supply isolation."
   is_canonical: true
   implements:
   - CH
@@ -161,7 +221,7 @@ CH_SS_SWTC_DX4SWC_SWISOVPM:
 
 CH_SS_SWTC_DX2SWC_SWISOVM:
   guid: "3f4de97b-6aa4-4a90-9ddc-df4949a841ad"
-  description: "Two stage air cooled chiller."
+  description: "Two-stage air-cooled chiller with supply temperature control and supply isolation."
   is_canonical: true
   implements:
   - CH
@@ -170,31 +230,43 @@ CH_SS_SWTC_DX2SWC_SWISOVM:
   - DX2SWC
   - SWISOVM
 
-CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM:
-  guid: "6bf879c5-ec1b-478f-9fac-8318b285bd9c"
-  description: "Simple air cooled chiller."
+CH_SS_SWTC_DX2SWC_SWISOVM_REFPM2X:
+  guid: "e64f0b0a-dfb1-43f9-908b-0a039ffa7bdf"
+  description: "Two-stage air-cooled chiller with supply temperature control, supply isolation valve and two circuit refrigerant pressure monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
-  - CHWRWISOVPM
+  - SWTC
+  - DX2SWC
+  - SWISOVM
+  - REFPM2X
+
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM:
+  guid: "6bf879c5-ec1b-478f-9fac-8318b285bd9c"
+  description: "Simple air-cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWRWISOVPM #TODO: if this is an air-cooled chiller, it should not use abstract types with `chilled` subfields
   - SCHWTC
   - CHWDPM
 
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM:
   guid: "b4758dbe-8d63-4479-8868-97cfdc4d71ab"
-  description: "Simple air cooled chiller."
+  description: "Simple air-cooled chiller."
   is_canonical: true
   implements:
   - CH
   - SS
-  - SCHWTC
+  - SCHWTC  #TODO: if this is an air-cooled chiller, it should not use abstract types with `chilled` subfields
   - CHWSWISOVM
   - CHWDPM
 
 CH_SS_SCHWTC_DX2SWC_CWSISOVPM_CHWRWISOVPM:
   guid: "0a2ef912-fab8-408d-bb75-ec584aa286b7"
-  description: "Two stage water cooled chiller."
+  description: "Two-stage water-cooled chiller with isolation on both the condenser and chilled sides."
   is_canonical: true
   implements:
   - CH
@@ -206,7 +278,7 @@ CH_SS_SCHWTC_DX2SWC_CWSISOVPM_CHWRWISOVPM:
 
 CH_SS_SCHWTC_DX2SWC_CHWSWISOVM_CWSISOVM:
   guid: "d8fb2722-8966-4b59-b8ba-07aeb070caaf"
-  description: "Two stage water cooled chiller."
+  description: "Two-stage water-cooled chiller with isolation on both the condenser and chilled sides."
   is_canonical: true
   implements:
   - CH
@@ -218,7 +290,7 @@ CH_SS_SCHWTC_DX2SWC_CHWSWISOVM_CWSISOVM:
 
 CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM:
   guid: "6d82b9f8-d283-4c6a-a176-5b5aca16b391"
-  description: "Water cooled chiller."
+  description: "Water-cooled chiller with isolation on both the condenser and chilled sides and flowrate monitoring."
   is_canonical: true
   implements:
   - CH
@@ -229,9 +301,26 @@ CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM:
   - CWSISOVM
   - CHWFRM
 
+CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM_REFPM_REFSM_CLPM:
+  guid: "3f5c5c79-f2fd-4c87-860a-fd9e634cc057"
+  description: "Water-cooled chiller with isolation on both the condenser and chilled sides and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - CHWSWISOVM
+  - CWSISOVM
+  - CHWDPM
+  - CHWFRM
+  - REFPM
+  - REFSM
+  - CLPM
+
 CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   guid: "d05d0151-6a59-4526-92c9-9a827e70e34c"
-  description: "Water cooled chiller."
+  description: "Water-cooled chiller with pressure and refrigeration monitoring."
   is_canonical: true
   implements:
   - CH
@@ -239,13 +328,30 @@ CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   - SCHWTC
   - CHPM
   - REFSM
-  - DXSWC
+  - DXSWC #TODO: this abstract is inconsistent with the others used in this type
+  - CHWRWISOVM
+  - IGM
+
+
+CH_SS_SCHWTC_CWDT_WDPM_REFSM_REFPM_CHDXSC_CHWRWISOVM_IGM:
+  guid: "74bda35f-625f-4472-947e-b9d10a4d2d3f"
+  description: "Water-cooled chiller with refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - WDPM
+  - REFSM
+  - REFPM
+  - CHDXSC
   - CHWRWISOVM
   - IGM
 
 CH_SS_SCHWTC_CHWRWISOVPM_CWRISOVPM_CHPM_CWDT_REFSM_CHWDPM:
   guid: "bca8842a-ad65-4ddc-925f-e97129f5c2d9"
-  description: "Water cooled chiller."
+  description: "Water-cooled chiller."
   is_canonical: true
   implements:
   - CH
@@ -260,7 +366,7 @@ CH_SS_SCHWTC_CHWRWISOVPM_CWRISOVPM_CHPM_CWDT_REFSM_CHWDPM:
 
 CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
   guid: "99502c4e-3975-46ea-adcb-1f04fd17909f"
-  description: "Water cooled chiller."
+  description: "Water-cooled chiller."
   is_canonical: true
   implements:
   - CH
@@ -269,19 +375,35 @@ CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
   - CHPM
   - REFSM
   - IGM
-  - DXSWC
+  - DXSWC # TODO: this is inconsistent with the rest of the type
   - CHWSWISOVM
   - CHWDPM
 
-CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
-  guid: "17092e52-d7cf-4b7e-a353-2f94bdde3844"
-  description: "Water cooled chiller."
+CH_SS_SCHWTC_CHPM_REFSM_IGM_CHDXSC_CHWSWISOVM_CHWDPM_CWDT:
+  guid: "1f62d2f7-76e4-455b-b6cc-6689aa47e90d"
+  description: "Water-cooled chiller."
   is_canonical: true
   implements:
   - CH
   - SS
   - SCHWTC
-  - DXSWC
+  - CHPM
+  - REFSM
+  - IGM
+  - CHDXSC
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
+
+CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
+  guid: "17092e52-d7cf-4b7e-a353-2f94bdde3844"
+  description: "Water-cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - DXSWC # TODO: this is inconsistent with the rest of the type
   - IGM
   - CWDT
   - CHWRWISOVPM
@@ -291,7 +413,7 @@ CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
 
 CH_SS_SCHWTC_CHWRWISOVM_CHWSWISOVM_MINFC_CHWDPM_CLPM_CWDT:
   guid: "7cd12570-3454-4c3b-8147-0d362cad9620"
-  description: "Water cooled chiller with min flow control and chiller load monitoring."
+  description: "Water-cooled chiller with minimum flow control and chiller load monitoring."
   is_canonical: true
   implements:
   - CH
@@ -306,47 +428,59 @@ CH_SS_SCHWTC_CHWRWISOVM_CHWSWISOVM_MINFC_CHWDPM_CLPM_CWDT:
 
 CH_SS_SWTC_DX2SWC_WFRM:
   guid: "1b072c71-87de-40a0-8e19-e150050032de"
-  description: " 2-stage air cooled chiller with flowrate monitoring."
+  description: "Two-stage air-cooled chiller with flowrate monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
-  - SWTC
+  - SWTC #TODO: redundant to have SWTC and DX2SWC
   - DX2SWC
   - WFRM
 
 CH_SS_SWTC_DX2SWC_REFSM_REFPM:
   guid: "6526d6b6-8fba-44c9-a5ec-b0c5da77b0eb"
-  description: "Two stage air cooled chiller with single circuit refrigerant monitoring."
+  description: "Two-stage air-cooled chiller with refrigerant monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
-  - SWTC
+  - SWTC #TODO: redundant to have SWTC and DX2SWC
   - DX2SWC
   - REFSM
   - REFPM
 
 CH_SS_SWTC_DX2SWC_REFSM2X_REFPM2X:
   guid: "ca882db0-18a6-460b-9962-c63b8d1510f5"
-  description: "Two stage air cooled chiller with two circuit refrigerant monitoring."
+  description: "Two-stage air-cooled chiller with two-circuit refrigerant monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
-  - SWTC
+  - SWTC #TODO: redundant to have SWTC and DX2SWC
   - DX2SWC
+  - REFSM2X
+  - REFPM2X
+
+CH_SS_DX2SWC_MWDPC_REFSM2X_REFPM2X:
+  guid: "312c17b6-6d1b-4ded-9dc2-f744a883728c"
+  description: "Two-stage air-cooled chiller with two-circuit refrigerant monitoring and minimum differential pressure control."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - MWDPC
   - REFSM2X
   - REFPM2X
 
 CH_SS_SWTC_DX2SWC_RWISOVM_REFSM2X_REFPM2X:
   guid: "6af261e4-ad47-44a0-b2f4-3d995bda804d"
-  description: "Two stage air cooled chiller with two circuit refrigerant monitoring."
+  description: "Two-stage air-cooled chiller with two-circuit refrigerant monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
-  - SWTC
+  - SWTC #TODO: redundant to have SWTC and DX2SWC
   - DX2SWC
   - RWISOVM
   - REFSM2X
@@ -354,20 +488,20 @@ CH_SS_SWTC_DX2SWC_RWISOVM_REFSM2X_REFPM2X:
 
 CH_SS_SWTC_DX4SWC_RWISOVPM_REFPM2X_WDPM:
   guid: "9a15bda0-8058-43b7-b40f-0f7da4cdc5e1"
-  description: "Four stage air cooled chiller with two circuit refrigerant monitoring."
+  description: "Four-stage air-cooled chiller with two-circuit refrigerant monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
-  - SWTC
+  - SWTC #TODO: redundant to have SWTC and DX$SWC
   - DX4SWC
   - RWISOVPM
   - REFPM2X
   - WDPM
 
-CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGV_DXSWC:
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_DXSWC:
   guid: "bd33ff3f-b562-4763-84da-241750c04453"
-  description: "Complex water cooled chiller."
+  description: "Complex water-cooled chiller."
   is_canonical: true
   implements:
   - CH
@@ -382,9 +516,41 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGV_DXSWC:
   - IGM
   - DXSWC
 
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_CHDXSC:
+  guid: "01d59f6f-3ed5-444d-8245-fe2d5ebb1f8c"
+  description: "Complex water-cooled chiller with refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWRWISOVPM
+  - SCHWTC
+  - CHWDPM
+  - CDWISOVPM
+  - CWDT
+  - REFPM
+  - REFSM
+  - IGM
+  - CHDXSC
+
+CH_SS_SCHWTC_CHDXSC_CHWDPC_CWDT_REFPM_REFSM_IGM:
+  guid: "9c8f75a7-8545-46da-91cf-c7da53652f10"
+  description: "Water-cooled chiller with with supply temperature and differential pressure control, condensing water temperature monitoring, and refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDXSC
+  - CHWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+  - IGM
+
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   guid: "e3e3ff1b-4d52-4234-aac0-1692fac0ee77"
-  description: "Complex water cooled chiller."
+  description: "Complex water-cooled chiller."
   is_canonical: true
   implements:
   - CH
@@ -400,7 +566,7 @@ CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
 
 CH_SS_WDT_SWISOVM_WDPM_DX2SWC_RCKTM2X:
   guid: "e5f66336-36cd-40c9-82a6-4389d6472bc1"
-  description: "Complex air cooled chiller with 2 refrigeration circuits and supply water temperature differential monitoring."
+  description: "Complex air-cooled chiller with two-circuit refrigeration monitoring and supply temperature control."
   is_canonical: true
   implements:
   - CH
@@ -411,9 +577,22 @@ CH_SS_WDT_SWISOVM_WDPM_DX2SWC_RCKTM2X:
   - DX2SWC
   - RCKTM2X
 
+CH_SS_CHWSWISOVPM_SCHWTC_CWSISOVPM_CWDT_RCKTM2X:
+  guid: "97b9ca2b-b92b-4dfc-a3d0-cd9fd26acfdf"
+  description: "Complex water-cooled chiller with two-circuit refrigeration monitoring and supply temperature control."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWSWISOVPM
+  - SCHWTC
+  - CWSISOVPM
+  - CWDT
+  - RCKTM2X
+
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
   guid: "e4f34eb3-4e22-4601-8de3-c7dc7d6860ea"
-  description: "Complex water cooled chiller."
+  description: "Complex water-cooled chiller."
   is_canonical: true
   implements:
   - CH
@@ -428,7 +607,7 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
 
 CH_SS_SCHWTC_CWDT_CDWISOVPM_REFSM_REFPM:
   guid: "32f963ba-f466-43ac-9302-bb38f819bdeb"
-  description: "Simple water cooled chiller."
+  description: "Simple water-cooled chiller with supply temperature control and refrigerant temperature and pressure monitoring."
   is_canonical: true
   implements:
   - CH
@@ -441,7 +620,7 @@ CH_SS_SCHWTC_CWDT_CDWISOVPM_REFSM_REFPM:
 
 CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
   guid: "109ccd0c-4605-471e-8388-53597142bb94"
-  description: "Two stage air cooled chiller."
+  description: "Two-stage air-cooled chiller with refrigerant pressure monitoring."
   is_canonical: true
   implements:
   - CH
@@ -454,7 +633,7 @@ CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
 
 CH_SS_SWTC_REFSM2X_SWISOVM:
   guid: "9a0447b5-bbf6-4165-91f8-8ba9667ece90"
-  description: "Complex water cooled chiller."
+  description: "Air-cooled chiller with two-circuit refrigerant temperature monitoring."
   is_canonical: true
   implements:
   - CH
@@ -465,7 +644,7 @@ CH_SS_SWTC_REFSM2X_SWISOVM:
 
 CH_SS_SWTC_DX6SWC_RWISOVM_REFSM2X_REFPM2X:
   guid: "dab13734-fb60-4990-8f3d-a84f386d09e0"
-  description: "Six stage air cooled chiller with two circuit refrigerant monitoring."
+  description: "Six-stage air-cooled chiller with two-circuit refrigerant temperature and pressure monitoring."
   is_canonical: true
   implements:
   - CH
@@ -478,12 +657,26 @@ CH_SS_SWTC_DX6SWC_RWISOVM_REFSM2X_REFPM2X:
 
 CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   guid: "feae169d-9cf2-4eb0-9b23-1e67813c7204"
-  description: "Four stage air cooled chiller with two circuit refrigerant monitoring."
+  description: "Four-stage air-cooled chiller with two-circuit refrigerant temperature and pressure monitoring."
   is_canonical: true
   implements:
   - CH
   - SS
   - SWTC
+  - DX4SWC
+  - SWISOVPM
+  - REFSM2X
+  - REFPM2X
+
+CH_SS_SWTC_WDPM_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
+  guid: "c2c25a1f-44cb-4c3e-9e49-18735d656431"
+  description: "Four-stage air-cooled chiller with differential pressure monitoring and two-circuit refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - WDPM
   - DX4SWC
   - SWISOVPM
   - REFSM2X
@@ -499,9 +692,26 @@ CH_SS_SCHWTC_HWDT:
   - SCHWTC
   - HWDT
 
+CH_SS_SCHWTC_CHWSWISOVPM_CHCPC_CHCPVSC_CWDT_CWSWISOVPM_CDCPC_CDCPVSC_HWRWISOVPM:
+  guid: "25b28d28-b606-4963-8926-a3f5c553b69e"
+  description: "Water-cooled heat recovery chiller will supply chilled water temperature control, chilled and condenser circulation pumps, and chilled, condenser, and heat recovery water isolation valves."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWSWISOVPM
+  - CHCPC
+  - CHCPVSC
+  - CWDT
+  - CWSWISOVPM
+  - CDCPC
+  - CDCPVSC
+  - HWRWISOVPM
+
 CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   guid: "66d78993-5a42-47b7-8505-01160c88234e"
-  description: "Two stage chiller with refrigerant monitoring"
+  description: "Two-stage water-cooled chiller with refrigerant pressure and temperature monitoring."
   is_canonical: true
   implements:
   - CH
@@ -512,9 +722,27 @@ CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   - REFPM2X
   - CWDT
 
+CH_SS_SCHWTC_CHDX2SC_CHWRWISOVM_REFSM2X_REFPM2X_CWDT_CC2XM_CP2XM_CHWDPM_CWDPM:
+  guid: "09ff2faa-3a00-4a8c-9645-8e369c3ee8c3"
+  description: "Two-stage water-cooled chiller with refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - CHWRWISOVM
+  - REFSM2X
+  - REFPM2X
+  - CWDT
+  - CC2XM
+  - CP2XM
+  - CHWDPM
+  - CWDPM
+
 CH_SS_RMM_SCHWTC_CHDXSC_CCM_CHWSWISOVPM_CWSWISOVPM_IGM_REFPM_REFSM_MIPVCM_MIPWM_CWDPM_CHWDPM_CWDT_INVOPWM_INVIPCM:
   guid: "0f88a977-49bf-4d09-8078-8459134a3bff"
-  description: "Complex water-cooled chiller with both motor and inverter (i.e., VFD) sensors."
+  description: "Complex water-cooled chiller with both motor and inverter (i.e. VFD) sensors."
   is_canonical: true
   implements:
   - CH
@@ -538,7 +766,7 @@ CH_SS_RMM_SCHWTC_CHDXSC_CCM_CHWSWISOVPM_CWSWISOVPM_IGM_REFPM_REFSM_MIPVCM_MIPWM_
 
 CH_SS_CHDXVSC_CHWFRSM_CHDXSC_CHWISOVM:
   guid: "b5854f21-b539-4c16-866c-1a06d353b247"
-  description: "Water cooled chiller with VFD, supply ,return water temperature,flow and isolation valve monitoring."
+  description: "Water-cooled chiller with a variable-speed compressor, supply temperature control, and flow status monitoring."
   is_canonical: true
   implements:
   - CH
@@ -550,7 +778,7 @@ CH_SS_CHDXVSC_CHWFRSM_CHDXSC_CHWISOVM:
 
 CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   guid: "64496940-6b53-48da-8a03-65dc029e1b66"
-  description: "Complex water cooled chiller."
+  description: "Complex water-cooled chiller."
   is_canonical: true
   implements:
   - CH
@@ -566,88 +794,485 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   - IGM
   - DXSWC
 
+
+CH_SS_SCHWTC_CHDXSC_CHWDPM_CHWFRM_CHWRWISOVM_CWDT_CDWFRM_CWRISOVM_REFPM_IGM:
+  guid: "661834a3-a83f-4f31-94a6-08b0c82992f5"
+  description: "Complex water-cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDXSC
+  - CHWDPM
+  - CHWFRM
+  - CHWRWISOVM
+  - CWDT
+  - CDWFRM
+  - CWRISOVM
+  - REFPM
+  - IGM
+
+CH_VSC_CHDX2SC_CHWSWISOVM_CWRISOVM:
+  guid: "0d51581f-bbea-406a-ac0a-5032df5925b9"
+  description: "Water-cooled chiller with two compressors."
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - CHDX2SC
+  - CHWSWISOVM
+  - CWRISOVM
+
+CH_VSC_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_REFSM_CHWDPM_CHCPC_CDCPC_SRC:
+  guid: "2553e844-12da-43f1-96b2-b912ce108705"
+  description: "Chiller with variable speed control, supply water temperature control, chilled water return side isolation valve percentage control, condenser differential temperature control, condenser supply isolation valve percentage control, refrigerant pressure monitoring, refrigerant saturation monitoring, chilled water differential pressure monitoring, circulation control for onboard chilled water pump, and circulation control for onboard condenser water pump"
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWDT
+  - CWSISOVPM
+  - REFPM
+  - REFSM
+  - CHWDPM
+  - CHCPC
+  - CDCPC
+  - SRC
+
+CH_SS_SCHWTC_CHWRWISOVPM_CWDT_CWSISOVPM_REFPM_CHWDPM:
+  guid: "72c8da44-36de-4aeb-b176-2158bf0ff885"
+  description: "Chiller with supply water temperature control, chilled water return side isolation valve percentage control, condenser differential temperature control, condenser supply isolation valve percentage control, refrigerant pressure monitoring, chilled water differential pressure monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWDT
+  - CWSISOVPM
+  - REFPM
+  - CHWDPM
+
+CH_SS_WDPM_WDT_RWISOVPM_REFPM2X_DX4SWC:
+  guid: "46e1f7f9-bc34-4238-bf4f-e7106b55aa3b"
+  description: "Air cooled chiller with differential pressure monitoring, differential temperature control, return side isolation valve percentage control, refrigerant pressure monitoring for 2 circuits, and chiller control on supply side with 4 compressors"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - WDPM
+  - WDT
+  - RWISOVPM
+  - REFPM2X
+  - DX4SWC
+
+CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
+  guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
+  description: "Water cooled chiller with condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled water differential pressure monitoring and single circuit refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - VSC
+  - CHDXSC
+  - SCHWTC
+  - CWSISOVPM
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
+  - REFPM
+  - REFSM
+
+CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPC_CWDPC_CWDT_REFPM_REFSM:
+  guid: "8c69f993-c5eb-46f1-a1f1-964cc8b4cbdf"
+  description: "Water cooled chiller with run control, condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled and condensing water differential pressure control and single circuit refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - VSC
+  - CHDXSC
+  - SCHWTC
+  - CWSISOVPM
+  - CHWSWISOVM
+  - CHWDPC
+  - CWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+
+CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPC_CWDPC_CWDT_REFPM_REFSM_CLPM:
+  guid: "f93ff1bb-7d84-4b09-a5e6-b04d517abda8"
+  description: "Water cooled chiller with run control, condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled and condensing water differential pressure control and single circuit refrigerant pressure and temperature monitoring, and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - VSC
+  - CHDXSC
+  - SCHWTC
+  - CWSISOVPM
+  - CHWSWISOVM
+  - CHWDPC
+  - CWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+  - CLPM
+
+CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPM_CWDT_CHWDT_RCKTM:
+  guid: "8a648fa7-d065-4ff4-b524-626b4a23c238"
+  description: "Water cooled chiller with three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, chilled supply water islation valve, chilled water differential pressure monitoring and condensing water temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX3SCHWC
+  - CWSISOVM
+  - CWRISOVM
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
+  - CHWDT
+  - RCKTM
+
+CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPC_CWDPC_CHWHRDPC_CWHRDPC_CWDT_CHWDT_RCKTM:
+  guid: "b660c55d-d96b-4d86-97e9-58a4c3342c2c"
+  description: "Water cooled chiller with run control, three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, chilled supply water islation valve, chilled and condensing water differential pressure control, heat recovery, and condensing water temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX3SCHWC
+  - CWSISOVM
+  - CWRISOVM
+  - CHWSWISOVM
+  - CHWDPC
+  - CWDPC
+  - CHWHRDPC
+  - CWHRDPC
+  - CWDT
+  - CHWDT
+  - RCKTM
+
+CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPC_CWDPC_CHWHRDPC_CWHRDPC_CWDT_CHWDT_RCKTM_CLPM:
+  guid: "34229a6a-0e6c-42a0-ae22-084336453e9d"
+  description: "Water cooled chiller with run control, three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, chilled supply water islation valve, chilled and condensing water differential pressure control, heat recovery, condensing water temperature differential monitoring, and thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX3SCHWC
+  - CWSISOVM
+  - CWRISOVM
+  - CHWSWISOVM
+  - CHWDPC
+  - CWDPC
+  - CHWHRDPC
+  - CWHRDPC
+  - CWDT
+  - CHWDT
+  - RCKTM
+  - CLPM
+
+CH_SS_DX4SWC_RWTM_REFSM2X_REFPM2X_CPC:
+  guid: "6de8a9fd-87c5-4190-b4e2-402ede91900d"
+  description: "Four stage air cooled chiller with return water temperature monitoring, circulation pump monitoring and two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX4SWC
+  - RWTM
+  - REFSM2X
+  - REFPM2X
+  - CPC
+
+CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_RWISOVM_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
+  guid: "cf101310-f825-4637-9948-f036ecbb4210"
+  description: "Two stage air cooled chiller with dual compressor variable speed control, return water isolation valve, minimum differential pressure control, return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - CHDXVSC2X
+  - RWTM
+  - MWDPC
+  - RWISOVM
+  - REFSM2X
+  - REFPM2X
+  - CPC
+  - INVIPWM2X
+  - INVOPWM2X
+
+CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
+  guid: "315ae36a-c828-4c22-a82a-40be34d0cfe9"
+  description: "Two stage air cooled chiller with dual compressor variable speed control, minimum differential pressure control, return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - CHDXVSC2X
+  - RWTM
+  - MWDPC
+  - REFSM2X
+  - REFPM2X
+  - CPC
+  - INVIPWM2X
+  - INVOPWM2X
+
+CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM:
+  guid: "8fcb81b4-c437-4a5b-b725-60bf4884fbec"
+  description: "Chiller with supply water temperature monitoring, condenser water temperature delta monitoring, return isolation valves on condenser and chilled side, refrigerant saturation and pressure monitoring, motor input current, voltage and power monitoring, and oil tank temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - CHWRISOVPM
+  - CWRISOVPM
+  - REFPM
+  - REFSM
+  - MIPVCM
+  - MIPWM
+  - CHCPC
+  - CDCPC
+  - OTPM
+
+CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
+  guid: "38027ed7-d703-4971-a958-5c125fd41fce"
+  description: "Simple water-cooled chiller with supply temperature control with refrigerant monitoring, chilled and condenser water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - REFSM
+  - CHWFRSM
+  - CDWFRSM
+  - CHDXSC
+  - IGM
+  opt_uses:
+  - compressor_run_time_accumulator
+
+CH_SS_CHWDPC_CHWDT_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
+  guid: "aa1f0cf1-759d-4645-8cda-18e2b2639e4f"
+  description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilled water, and refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWDPC
+  - CHWDT
+  - CHWRISOVPM
+  - HWDT
+  - HWDPM
+  - REFPM2X
+  - REFSM2X
+  - CPC2X
+
+CH_SS_CHWDPC_SCHWTC_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
+  guid: "881cb7fd-97ea-4271-b0ac-547dd38a0bc4"
+  description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilled water, and refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWDPC
+  - SCHWTC
+  - CHWRISOVPM
+  - HWDT
+  - HWDPM
+  - REFPM2X
+  - REFSM2X
+  - CPC2X
+
+CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
+  guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"
+  description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWFRSM
+  - CDWFRSM
+  - CC2XM
+  - REFSTC2X
+  - REFPM2X
+
+CH_SS_SCHWTC_CHDX2SC_CHWSWISOVM_CDWISOVPM_CWDT:
+  guid: "8340bb1e-2bc6-482f-8b48-b54be0010ec5"
+  description: "Water cooled chiller with chilled and condensing water isolation valves."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - CHWSWISOVM
+  - CDWISOVPM
+  - CWDT
+
+CH_SS_SWTC_DX2SWC_REFPM:
+  guid: "c5465ea9-4eb0-4d06-9555-91f7b29fde7f"
+  description: "Two stage air cooled chiller with supply water temperature control and refrigerant pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - REFPM
+
+CH_SS_SCHWTC_CHDX2SC_CWRISOVPM_CHWRWISOVPM_REFSM_REFPM:
+  guid: "6ddf8a7a-394a-43aa-a7e7-f1462039417f"
+  description: "Water cool chiller with chilled and condensing water isolation valve, with refrigerant saturation and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - CWRISOVPM
+  - CHWRWISOVPM
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_WDPC_RWISOVM_REFSM_REFPM:
+  guid: "216b01fc-afac-480f-8fc8-130629715587"
+  description: "Two-stage air-cooled chiller with differential pressure control and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WDPC
+  - RWISOVM
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_WDPM_RWISOVM_REFSM_REFPM:
+  guid: "6df19046-b117-4523-bd61-518ee6e07e29"
+  description: "Two-stage air-cooled chiller with differential pressure and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WDPM
+  - RWISOVM
+  - REFSM
+  - REFPM
+
+CH_SS_SCHWTC_CHWDPC_CHWSWISOVPM_CWDT_CWDPM_CWRISOVPM_HXCRWISOVPM_CLPM:
+  guid: "c51bcdbe-1899-4e9e-9722-0b786b4dcdaf"
+  description: "Water cooled chiller with isolation on chilled and condensing water side, condensing water heat exchange isolation and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWDPC
+  - CHWSWISOVPM
+  - CWDT
+  - CWDPM
+  - CWRISOVPM
+  - HXCRWISOVPM
+  - CLPM
+
+CH_SS_SCHWTC_CHWDPC_CWDT_CWDPM_CHWSWISOVPM_CHWRWISOVPM_PSWISOVPM_PRWISOVPM_CWRISOVPM_HXCRWISOVPM_CLPM:
+  guid: "75203ebf-976f-4fef-84a1-7dec7f47c8a5"
+  description: "Water cooled chiller supplying water for chilled and process water systems, with isolation on chilled, process and condensing water side, condensing water heat exchange isolation and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWDPC
+  - CWDT
+  - CWDPM
+  - CHWSWISOVPM
+  - CHWRWISOVPM
+  - PSWISOVPM
+  - PRWISOVPM
+  - CWRISOVPM
+  - HXCRWISOVPM
+  - CLPM
+
+CH_SS_PSWTC_PWDPC_CWDT_CWDPM_PSWISOVPM_CWRISOVPM_CLPM:
+  guid: "8defc678-ce17-427c-8800-5a0bbe953bd4"
+  description: "Water cooled process chiller with isolation on condensing and process sides, and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - PSWTC
+  - PWDPC
+  - CWDT
+  - CWDPM
+  - PSWISOVPM
+  - CWRISOVPM
+  - CLPM
+
+CH_SS_CLPM_DX6SWC_SWTC_WDPM:
+  guid: "b35818cd-5618-4c59-8837-4dcb6874ecd9"
+  description: "Six-stage air-cooled chiller with differential pressure monitoring and cooling power and capacity sensors."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CLPM
+  - DX6SWC
+  - SWTC
+  - WDPM
+
+CH_VSC_CHWDPC_CHWDT_CHWSWISOVM_CWDT_CWSISOVM_IGM_REFPM_REFSM_SCHWTC:
+  guid: "3f6b0ae8-3056-490f-a7f8-057f7b20b7d7"
+  description: "Water cooled variable load chiller controlling to chilled water supply temp and differential pressure, isolation valves on chilled and condensing water side, guidvane monitoring, refrigerent pressure and temperature sensors, and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - CHWDPC
+  - CHWSWISOVM
+  - CWDT
+  - CWSISOVM
+  - IGM
+  - REFPM
+  - REFSM
+  - SCHWTC
+
+CH_SS_RWISOVM_SWTC:
+  guid: "5399557e-f436-4d43-9834-4579b4ba598f"
+  description: "Simple air-cooled chiller with return water isolation valve."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - RWISOVM
+  - SWTC
+
+CH_SS_SWTC_DXSWC_WFRM:
+  guid: "886e7ea1-bfb2-4581-8cfb-cf7b07f9d9ef"
+  description: "Simple air-cooled chiller with supply water temperature and flowrate monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DXSWC
+  - WFRM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
-
-CH_SS_SWTC_DX4SWC_SWISOVPM_NONCANONICAL_1:
-  guid: "d4bef12c-c41b-4ba8-9d06-035e9e9ba431"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SWTC_DX4SWC_SWISOVPM
-  - INCOMPLETE
-
-CH_SS_SWTC_NONCANONICAL_1:
-  guid: "ae202987-6078-455c-8ee0-dfe43e223329"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - cooling_percentage_sensor
-
-CH_SS_SCHWTC_CWDT_NONCANONICAL_1:
-  guid: "30db6609-b1e4-40ac-8d03-12d38d41a64d"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SCHWTC_CWDT
-  - INCOMPLETE
-  uses:
-  - cooling_percentage_sensor
-
-CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
-  guid: "48f951c0-42ca-4714-a3ef-e384fa1485d2"
-  description: "Non-standard type."
-  is_canonical: false
-  implements:
-  - CH
-  - SS
-  - CHWDT
-  - CWDT
-  - CWDPM
-  - CHWDPM
-  - REFM
-
-CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
-  guid: "d6b6a0e5-a5a1-4634-9792-0ba39cb3e1fd"
-  description: "Non-standard type."
-  is_canonical: false
-  implements:
-  - CH
-  - SS
-  - CHWDT2X
-  - CWDT
-  - CWDPM
-  - CHWDPM
-  - REFM
-
-CH_SS_CHWDT:
-  guid: "471edb03-6731-4fe3-862e-c7ab9825e7e9"
-  description: "Non-standard chiller."
-  implements:
-  - CH
-  - INCOMPLETE
-  - SS
-  - CHWDT
-  opt_uses:
-  - lost_power_alarm
-  - run_mode
-
-CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
-  guid: "bec266d2-2046-4142-a55a-fb7917d6d74f"
-  description: "Non standard chiller with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status "
-  implements:
-  - CH
-  - SS
-  - CHWSWISOVM
-  - CWSISOVM
-  - CWRISOVM
-  - CHWRWISOVM
-  - CHWDT
-  uses:
-  - chilled_water_flowrate_status
-  - condensing_water_flowrate_status
-  - condensing_supply_water_temperature_sensor
-  opt_uses:
-  - lost_power_alarm
-  - run_mode

@@ -13,18 +13,19 @@
 # limitations under the License.
 """Core component."""
 
-from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories
-
 import re as regex
+
+from score.constants import DimensionCategories, FileTypes
+from score.dimensions.dimension import Dimension
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class StandardFieldNaming(Dimension):
-  """Quantifies whether the correct standard field names
-  (e.g. "chilled_water_flowrate_sensor")
-  were selected in the proposed file."""
+  """Quantifies whether the correct standard field names (e.g.
+
+  "chilled_water_flowrate_sensor") were selected in the proposed file.
+  """
 
   # SIMPLE category indicates this dimension receives `translations`
   # rather than `deserialized_files` to do its calculations
@@ -32,8 +33,11 @@ class StandardFieldNaming(Dimension):
 
   def _split_subfields(self, field):
     return set(
-        filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
-               field.split('_')))
+        filter(
+            lambda subfield: not bool(regex.match('[0-9]+', subfield)),
+            field.split('_'),
+        )
+    )
 
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
@@ -53,9 +57,11 @@ class StandardFieldNaming(Dimension):
             proposed_subfields = self._split_subfields(proposed_field)
 
         correct_subfields.extend(
-            proposed_subfields.intersection(solution_subfields))
+            proposed_subfields.intersection(solution_subfields)
+        )
         incorrect_subfields.extend(
-            solution_subfields.difference(proposed_subfields))
+            solution_subfields.difference(proposed_subfields)
+        )
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling

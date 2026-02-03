@@ -18,12 +18,12 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import rdflib
+from absl.testing import absltest
 from rdfformat.generator import constants
 from rdfformat.generator import rdf_helper
 from rdfformat.generator import rdflib_facilities_handler
 from rdfformat.generator import yaml_handler
-from absl.testing import absltest
+import rdflib
 
 
 class RdfFacilitiesHandlerTest(absltest.TestCase):
@@ -46,23 +46,29 @@ class RdfFacilitiesHandlerTest(absltest.TestCase):
     graph.namespace_manager = namespace_manager
 
     g_facilities = rdflib_facilities_handler.GenerateGraph(
-        yaml_facilities, graph)
+        yaml_facilities, graph
+    )
 
     # Main Types
     entity_type = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['EntityType'])
     physical_location = rdflib.URIRef(
-        constants.FACILITIES_NS['PhysicalLocation'])
+        constants.FACILITIES_NS['PhysicalLocation']
+    )
     building = rdflib.URIRef(constants.FACILITIES_NS['Building'])
     floor = rdflib.URIRef(constants.FACILITIES_NS['Floor'])
     room = rdflib.URIRef(constants.FACILITIES_NS['Room'])
     has_physical_location = rdflib.URIRef(
-        constants.DIGITAL_BUILDINGS_NS['hasPhysicalLocation'])
+        constants.DIGITAL_BUILDINGS_NS['hasPhysicalLocation']
+    )
     has_floor = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['hasFloor'])
     has_room = rdflib.URIRef(constants.DIGITAL_BUILDINGS_NS['hasRoom'])
 
     # Main Classes
-    physical_location_class = (physical_location, rdflib.RDF.type,
-                               rdflib.OWL.Class)
+    physical_location_class = (
+        physical_location,
+        rdflib.RDF.type,
+        rdflib.OWL.Class,
+    )
     building_class = (building, rdflib.RDF.type, rdflib.OWL.Class)
     floor_class = (floor, rdflib.RDF.type, rdflib.OWL.Class)
     room_class = (room, rdflib.RDF.type, rdflib.OWL.Class)
@@ -75,23 +81,30 @@ class RdfFacilitiesHandlerTest(absltest.TestCase):
     self.assertIn(room_class, g_facilities)
 
     # SubClasses assertions
-    self.assertIn((physical_location, rdflib.RDFS.subClassOf, entity_type),
-                  g_facilities)
-    self.assertIn((building, rdflib.RDFS.subClassOf, physical_location),
-                  g_facilities)
-    self.assertIn((floor, rdflib.RDFS.subClassOf, physical_location),
-                  g_facilities)
-    self.assertIn((room, rdflib.RDFS.subClassOf, physical_location),
-                  g_facilities)
+    self.assertIn(
+        (physical_location, rdflib.RDFS.subClassOf, entity_type), g_facilities
+    )
+    self.assertIn(
+        (building, rdflib.RDFS.subClassOf, physical_location), g_facilities
+    )
+    self.assertIn(
+        (floor, rdflib.RDFS.subClassOf, physical_location), g_facilities
+    )
+    self.assertIn(
+        (room, rdflib.RDFS.subClassOf, physical_location), g_facilities
+    )
 
     # Relations assertions
     self.assertIn(
         (has_physical_location, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-        g_facilities)
-    self.assertIn((has_floor, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-                  g_facilities)
-    self.assertIn((has_room, rdflib.RDF.type, rdflib.OWL.ObjectProperty),
-                  g_facilities)
+        g_facilities,
+    )
+    self.assertIn(
+        (has_floor, rdflib.RDF.type, rdflib.OWL.ObjectProperty), g_facilities
+    )
+    self.assertIn(
+        (has_room, rdflib.RDF.type, rdflib.OWL.ObjectProperty), g_facilities
+    )
 
 
 if __name__ == '__main__':

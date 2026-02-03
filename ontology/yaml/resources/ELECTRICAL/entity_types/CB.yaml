@@ -14,7 +14,7 @@
 
 CB_SS:
   guid: "68fddad2-d8e8-4428-8178-d2257f72d93b"
-  description: "Standard CB unit."
+  description: "Standard circuit breaker."
   is_canonical: true
   implements:
   - CB

@@ -9,8 +9,9 @@ if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')
 else:
   REPO_ROOT = path.join(
-      path.dirname(
-          path.realpath(__file__)), path.join('..', '..', '..', '..', '..'))
+      path.dirname(path.realpath(__file__)),
+      path.join('..', '..', '..', '..', '..'),
+  )
 
 TEST_INSTANCES = path.join(
     REPO_ROOT,
@@ -19,4 +20,5 @@ TEST_INSTANCES = path.join(
     'ontology',
     'types_guid_generator',
     'tests',
-    'test_data')
+    'test_data',
+)

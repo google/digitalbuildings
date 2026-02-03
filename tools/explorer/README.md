@@ -1,24 +1,24 @@
 # Ontology Explorer
 
-The Ontology explorer allows a user to ask a few basic question of the ontology:
-* What fields are associated with a type name
-* What are the types associated with a given set of fields
-* Is a field defined within a certain namespace
+The Ontology explorer allows a user to ask a few basic questions of the ontology:
+* What fields are associated with a type name?
+* What are the types associated with a given set of fields?
+* Is a field defined within a certain namespace?
 
 ## Install
 
 To install please follow the instructions below.
 
-## First create a virtual env
+### Create a Virtual Environment
 
-Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
+First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the digitalbuildings repository.
 
 ```
-virtualenv tooling
+python -m venv tooling
 ```
 
 
-Activate the virtual environment
+### Activate the Virtual Environment
 
 Mac OS / Linux:
 ```
@@ -29,14 +29,16 @@ Windows
 ```
 tooling\Scripts\activate
 ```
+### Install Packages
+Next, you can either use pip or setup (to be deprecated) to install the necessary packages and dependencies.
 
+#### Pip
+1. Run the following command to ensure that your Python package management tools are up-to-date.
 
-Then you can either use pip or setuptools.
+```
+python3 -m pip install --upgrade pip
+```
 
-
-## Pip
-
-1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 2. Run `python3 -m pip install .` from the following directories:
 
 * digitalbuildings/tools/validators/ontology_validator
@@ -44,7 +46,7 @@ Then you can either use pip or setuptools.
 * digitalbuildings/tools/explorer
 
 
-### Setup (to be deprecated)
+#### Setup (to be deprecated)
 To install the dependencies, please run `python setup.py install` from the following directories, in order:
 * digitalbuildings/tools/validators/ontology_validator
 * digitalbuildings/tools/validators/instance_validator
@@ -52,9 +54,11 @@ To install the dependencies, please run `python setup.py install` from the follo
 
 ## Usage
 There are two main ways in which the ontology explorer can be used:
+
 1. Import explorer_handler from explorer.lib and call Build()
-  * This returns an OntologyWrapper object which can be used to execute query functions on the Digital Buildings Ontology. You may also pass to Build() a path to an ontology extension.
-2. The explorer may also be run as a stand-alone command-line interface. 
-  * Run `python explorer.py` to start the application.
-  * If you have extended the ontology by adding new types to your local ontology, run the following: `python explorer.py --modified-ontology-types=path/to/modified/ontology/types/folder`
+   * This returns an OntologyWrapper object which can be used to execute query functions on the Digital Buildings Ontology. You may also pass to Build() a path to an ontology extension.
+
+2. As a stand-alone command-line interface (CLI). 
+   * Run `python explorer.py` to start the application.
+   * If you have extended the ontology by adding new types to your local ontology, run the following: `python explorer.py --modified-ontology-types=path/to/modified/ontology/types/folder`
 

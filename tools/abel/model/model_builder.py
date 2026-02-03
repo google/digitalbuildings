@@ -13,6 +13,7 @@
 # limitations under the License.
 """Helper module for concrete model construction."""
 
+import datetime
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -97,7 +98,7 @@ class Model(object):
 
       Returns:
         An instance of Model class and a list of EntityOperation intances
-        operating on Entity instances in a Model.
+        operating on a Model.
       """
       # Currently only supports one site per ABEL instance.
       site = Site.FromDict(spreadsheet_dict[SITES][0])
@@ -137,7 +138,7 @@ class Model(object):
 
       Returns:
         A Model instance and a list of EntityOperation instances operating on
-        Entity instances  in a model.
+        Entities in the model.
       """
       model_builder = cls(site)
       entities = []
@@ -167,6 +168,27 @@ class Model(object):
 
       return model_builder, operations
 
+    @classmethod
+    def FromEntities(cls, site: Site, entities: List[Entity]) -> ...:
+      """Returns a Model instance built from a list of entity instances.
+
+      The Build method does not need to be called after this class method
+      because the entities being loaded into this method are pre-built. Meaning,
+      These entities already have their links, translations, or states connected
+      to them.
+
+      Args:
+        site: Site instance for a model.
+        entities: List of Entity instances to be a part of a Model instance.
+
+      Returns: A Model instance.
+      """
+      model_builder = cls(site)
+      model_builder.entities = entities
+      for entity in entities:
+        model_builder.guid_to_entity_map.AddEntity(entity)
+      return Model(model_builder)
+
     def Build(self) -> ...:
       """Connects ABEL graph with Guids as edges.
 
@@ -177,6 +199,19 @@ class Model(object):
       Returns:
         built Model instance
       """
+      # First add states to fields
+      for field in self.fields:
+        # For each state in the model
+        if isinstance(field, MultistateValueField):
+          for state in self.states:
+            # Create edges between states and their corresponding Multi-state
+            # value field in stances.
+            if state.reporting_entity_guid == field.reporting_entity_guid:
+              if state.std_field_name in (
+                  field.reporting_entity_field_name,
+                  field.std_field_name,
+              ):
+                field.AddState(state)
       self.site.entities = self.entities
       # For each entity, Add connections where entity is the source
       for guid in self.site.entities:
@@ -186,17 +221,6 @@ class Model(object):
             entity.AddConnection(connection)
         # For each field in the model
         for field in self.fields:
-          # For each state in the model
-          for state in self.states:
-            # Create edges between states and their corresponding Multi-state
-            # value field in stances.
-            if state.reporting_entity_guid == guid:
-              if state.std_field_name in (
-                  field.reporting_entity_field_name,
-                  field.std_field_name,
-              ):
-                if isinstance(field, MultistateValueField):
-                  field.AddState(state)
           # Link field to entity if entity is virtual
           if isinstance(entity, VirtualEntity):
             if field.entity_guid == guid:
@@ -214,6 +238,16 @@ class Model(object):
     self._states = builder.states
     self._connections = builder.connections
     self._guid_to_entity_map = builder.guid_to_entity_map
+
+  def __eq__(self, other):
+    if not isinstance(other, Model):
+      return False
+    if self.site != other.site:
+      return False
+    for entity in self.entities:
+      if entity != other.GetEntity(entity.bc_guid):
+        return False
+    return True
 
   @property
   def site(self) -> Site:
@@ -240,7 +274,23 @@ class Model(object):
     return self._guid_to_entity_map
 
   def GetEntity(self, entity_guid: str) -> Entity:
+    """Helper function to get an Entity instance for a guid."""
     return self.guid_to_entity_map.GetEntityByGuid(entity_guid)
+
+  def GetStates(
+      self,
+      entity_guid: str,
+      std_field_name: str,
+  ) -> List[State]:
+    """Helper function to get State instances for a field name and guid."""
+    state_map = {}
+    for state in self.states:
+      states_hash = hash((state.reporting_entity_guid, state.std_field_name))
+      if state_map.get(states_hash) is None:
+        state_map[states_hash] = [state]
+      else:
+        state_map[states_hash].append(state)
+    return state_map.get(hash((entity_guid, std_field_name)))
 
   def ToModelDictionary(
       self, operations: Optional[List[EntityOperation]] = None
@@ -271,10 +321,9 @@ class Model(object):
         STATES: (ALL_STATE_HEADERS, self.states),
         CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections),
     }
+    # pylint: disable=line-too-long
     title = (
-        f'{self.site.code}'
-        '{datetime.datetime.strftime(datetime.datetime.now(),' 
-        ' "%Y-%m-%d %H:%M")}'
+        f'{self.site.code} {datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")}'
     )
     spreadsheet_model = {PROPERTIES: {TITLE: title}, SHEETS: []}
     # pylint: disable = g-complex-comprehension

@@ -39,15 +39,18 @@ def main(parsed_args: argparse.ArgumentParser):
   modified_types_filepath = parsed_args.modified_types_filepath
   if modified_types_filepath is not None:
     modified_types_filepath = path.expanduser(
-        parsed_args.modified_types_filepath)
+        parsed_args.modified_types_filepath
+    )
 
   print('Starting Yaml Validator!')
   external_file_lib.Validate(
       filter_text,
-      path.expanduser(args.original),
+      path.expanduser(parsed_args.original),
       modified_types_filepath,
       interactive=ast.literal_eval(parsed_args.interactive),
-      require_type_guids=not parsed_args.allow_missing_type_guids)
+      require_type_guids=not parsed_args.allow_missing_type_guids,
+  )
+
 
 if __name__ == '__main__':
   args = CreateParser().parse_args(sys.argv[1:])

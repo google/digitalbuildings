@@ -21,15 +21,15 @@
 
 CONTROL:
   guid: "7f01f97d-bc5a-4d03-a5ed-f38367af343c"
-  description: "A tag to represent that the subtype forms a control unit. Ex: temperature, setpoint, heater output."
+  description: "A tag to represent that the subtype forms a control unit. For example: temperature sensor, temperature setpoint, heater output."
   is_abstract: true
 
 OPERATIONAL:
   guid: "f5252215-3db7-4d34-af1a-2e3a25f7047b"
-  description: "A tag to represent that the subtype forms an operational group. Ex: temperature and setpoint."
+  description: "A tag to represent that the subtype forms an operational group. For example: temperature sensor and setpoint."
   is_abstract: true
 
 MONITORING:
   guid: "ddbc557c-0d40-4657-8575-f2ddaec96961"
-  description: "A tag to represent that the subtype forms a monitoring group. Ex: temperature sensor only."
+  description: "A tag to represent that the subtype forms a monitoring group. For example: only a temperature sensor."
   is_abstract: true

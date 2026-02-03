@@ -20,7 +20,9 @@ FD_STD:
   - FD
   uses:
   - damper_status
-  
+  opt_uses:
+  - damper_command
+
 FD_SD:
   guid: "70dad00c-3334-4a77-8ce2-2d41d6a97c78"
   description: "Basic smoke detector fire damper"
@@ -31,4 +33,3 @@ FD_SD:
   uses:
   - damper_percentage_sensor
   - damper_percentage_command
- 

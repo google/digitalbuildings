@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This config file is invalid because it fails to pass the syntax expectations
-# for translation. The devices listed in translation need to follow specific
-# formats, and `invalid_key` is not a valid part of any of them.
+# INITIAL TYPES
+# These type definitions are meant to be used for initial device onboarding
+# where device modeling is in progress but where end-to-end connectivity
+# testing is needed. These are not to be permanently applied to entities;
+# they are placeholders for appropriate types to be applied later.
 
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
-  translation:
-    zone_air_temperature_sensor:
-      present_value: "temp_1"
-      units:
-        key: "units"
-        values:
-          degrees_celsius: "degC"
+HM_INITIAL:
+  guid: "4e6d3359-8528-4e5d-a8e1-9f23e29ee17e"
+  description: "Initial type for HMs."
+  implements:
+  - HM
+  allow_undefined_fields: true

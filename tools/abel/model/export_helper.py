@@ -24,6 +24,8 @@ from model.constants import BC_MISSING
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
 from model.constants import CONFIG_CONNECTIONS
+from model.constants import CONFIG_DISPLAY_NAME
+from model.constants import CONFIG_ETAG
 from model.constants import CONFIG_INITIALIZE
 from model.constants import CONFIG_LINKS
 from model.constants import CONFIG_METADATA
@@ -50,6 +52,19 @@ from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from validate.field_translation import FieldTranslation
 
+def _clean_empty_lists(d):
+  """Recursively removes keys with empty list values from a dictionary."""
+  if isinstance(d, dict):
+    return {
+        k: _clean_empty_lists(v)
+        for k, v in d.items()
+        if not (isinstance(v, list) and not v)
+    }
+  elif isinstance(d, list):
+    # Process elements within a list, but don't remove empty lists from lists
+    return [_clean_empty_lists(elem) for elem in d]
+  else:
+    return d
 
 class GoogleSheetExport(object):
   """Class to help write ABEL data types to a Google Sheets spreadsheet.
@@ -129,35 +144,32 @@ class BuildingConfigExport(object):
     for operation in operations:
       entity = operation.entity
       if isinstance(entity, ReportingEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity, operation
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                entity, operation
+            )
+        })
       elif isinstance(entity, VirtualEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
-                    entity, operation
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                entity, operation
+            )
+        })
 
-    entity_yaml_dict.update(
-        {
-            site.guid: {
-                CONFIG_CODE: site.code,
-                CONFIG_TYPE: site.namespace + '/' + site.type_name,
-            }
+    entity_yaml_dict.update({
+        site.guid: {
+            CONFIG_CODE: site.code,
+            CONFIG_TYPE: site.namespace + '/' + site.type_name,
+            CONFIG_ETAG: site.etag,
         }
-    )
+    })
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
-          file.write(as_document({key: value}).as_yaml())
-          file.write('\n')
+          cleaned_value = _clean_empty_lists(value)
+          if cleaned_value:  # Ensure not empty after cleaning
+            file.write(as_document({key: cleaned_value}).as_yaml())
+            file.write('\n')
     except PermissionError:
       print(f'Permission denied when writing to {filepath}')
     return entity_yaml_dict
@@ -180,36 +192,32 @@ class BuildingConfigExport(object):
     for entity_guid in site.entities:
       entity = self.model.guid_to_entity_map.GetEntityByGuid(entity_guid)
       if isinstance(entity, ReportingEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity=entity,
-                    operation=None,
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                entity=entity,
+                operation=None,
+            )
+        })
       elif isinstance(entity, VirtualEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
-                    entity=entity, operation=None
-                )
-            }
-        )
+        entity_yaml_dict.update({
+            entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                entity=entity, operation=None
+            )
+        })
 
-    entity_yaml_dict.update(
-        {
-            site.guid: {
-                CONFIG_CODE: site.code,
-                CONFIG_TYPE: site.namespace + '/' + site.type_name,
-            }
+    entity_yaml_dict.update({
+        site.guid: {
+            CONFIG_CODE: site.code,
+            CONFIG_TYPE: site.namespace + '/' + site.type_name,
         }
-    )
+    })
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
-          file.write(as_document({key: value}).as_yaml())
-          file.write('\n')
+          cleaned_value = _clean_empty_lists(value)
+          if cleaned_value:
+            file.write(as_document({key: cleaned_value}).as_yaml())
+            file.write('\n')
     except PermissionError:
       print(f'Permission denied when writing to {filepath}')
     return entity_yaml_dict
@@ -222,7 +230,7 @@ class BuildingConfigExport(object):
       update_dict = {}
     if operation.update_mask:
       update_dict.update(
-          {'update_mask': [x.name for x in operation.update_mask]}
+          {'update_mask': [x.value for x in operation.update_mask]}
       )
     return update_dict
 
@@ -242,32 +250,32 @@ class BuildingConfigExport(object):
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
     }
+    if entity.display_name:
+      reporting_entity_yaml.update({CONFIG_DISPLAY_NAME: entity.display_name})
+    if entity.etag:
+      reporting_entity_yaml.update({CONFIG_ETAG: entity.etag})
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.translations:
       reporting_entity_yaml[CONFIG_TRANSLATION] = {}
       for field in entity.translations:
         if field.reporting_entity_field_name:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {
-                  field.reporting_entity_field_name: (
-                      BC_MISSING
-                      if isinstance(field, MissingField)
-                      else self._TranslateField(field)
-                  )
-              }
-          )
+          reporting_entity_yaml[CONFIG_TRANSLATION].update({
+              field.reporting_entity_field_name: (
+                  BC_MISSING
+                  if isinstance(field, MissingField)
+                  else self._TranslateField(field)
+              )
+          })
         else:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {
-                  field.std_field_name: (
-                      BC_MISSING
-                      if isinstance(field, MissingField)
-                      else self._TranslateField(field)
-                  )
-              }
-          )
+          reporting_entity_yaml[CONFIG_TRANSLATION].update({
+              field.std_field_name: (
+                  BC_MISSING
+                  if isinstance(field, MissingField)
+                  else self._TranslateField(field)
+              )
+          })
     reporting_entity_yaml.update(
-        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)}
+        {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
     if operation:
       reporting_entity_yaml.update(self._AddOperationToBlock(operation))
@@ -286,11 +294,15 @@ class BuildingConfigExport(object):
       A dicitionary formatted for Building Config ready to be parsed into yaml.
     """
     virtual_entity_yaml = {CONFIG_CODE: entity.code}
+    if entity.display_name:
+      virtual_entity_yaml.update({CONFIG_DISPLAY_NAME: entity.display_name})
+    if entity.etag:
+      virtual_entity_yaml.update({CONFIG_ETAG: entity.etag})
     virtual_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.links:
       virtual_entity_yaml.update({CONFIG_LINKS: self._SortLinks(entity)})
     virtual_entity_yaml.update(
-        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)}
+        {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
     if operation:
       virtual_entity_yaml.update(self._AddOperationToBlock(operation))
@@ -364,7 +376,11 @@ class BuildingConfigExport(object):
             ' multi-state value but has no states.'
         )
       else:
-        return_dict[CONFIG_STATES] = {
-            state.standard_state: str(state.raw_state) for state in field.states
-        }
+        config_states = {}
+        for state in field.states:
+          if state.standard_state not in config_states:
+            config_states.update({state.standard_state: [state.raw_state]})
+          else:
+            config_states.get(state.standard_state).append(state.raw_state)
+        return_dict[CONFIG_STATES] = config_states
     return return_dict
