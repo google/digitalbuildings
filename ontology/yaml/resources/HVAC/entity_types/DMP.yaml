@@ -194,7 +194,7 @@ DMP_VPCOAF:
   is_canonical: true
   implements:
   - DMP
-  - VPCOF
+  - VPCOAF
 
 DMP_VPCBYPF:
   guid: "3bbb57c5-9ce4-41d7-84fe-70d5346836d6"
