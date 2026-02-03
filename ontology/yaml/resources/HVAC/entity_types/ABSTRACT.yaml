@@ -1795,6 +1795,17 @@ SCHWTC:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
 
+SDHWTC:
+  description: "Supply doemstic hot water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - domestic_hot_return_water_temperature_sensor
+  uses:
+  - domestic_hot_supply_water_temperature_sensor
+  - domestic_hot_supply_water_temperature_setpoint
+  
 SCHWFRC:
   guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"
   description: "Supply chilled water flowrate control."
@@ -3268,6 +3279,45 @@ DX4SC:
   implements:
   - CONTROL
 
+DX6SC:
+  guid: "f2fed45c-84e5-4905-b01d-5397cffb7a0e"
+  description: "Six compressor run control on supply air side."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
+  - compressor_speed_percentage_command_3
+  - compressor_speed_percentage_command_4
+  - compressor_speed_percentage_command_5
+  - compressor_speed_percentage_command_6
+  - cooling_percentage_command
+  - cooling_request_count
+  - cooling_thermal_power_capacity
+  - leaving_cooling_coil_temperature_sensor
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - supply_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
+  - supply_air_relative_humidity_sensor
+  - failed_supply_air_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
 
 DX2SDC:
   guid: "4eca020e-b08e-4da5-9dd0-0c9cf8407c4b"
@@ -3753,6 +3803,7 @@ HP2ZC:
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
   - heating_thermal_power_capacity
@@ -6767,38 +6818,6 @@ ETM4X:
   implements:
   - MONITORING
 
-
-DX6SC:
-  guid: "f2fed45c-84e5-4905-b01d-5397cffb7a0e"
-  description: "Six compressor run control on supply air side."
-  is_abstract: true
-  opt_uses:
-  - compressor_speed_percentage_command
-  - cooling_percentage_command
-  - cooling_request_count
-  - cooling_thermal_power_capacity
-  - leaving_cooling_coil_temperature_sensor
-  - high_supply_air_temperature_alarm
-  - low_supply_air_temperature_alarm
-  uses:
-  - compressor_run_command_1
-  - compressor_run_command_2
-  - compressor_run_command_3
-  - compressor_run_command_4
-  - compressor_run_command_5
-  - compressor_run_command_6
-  - compressor_run_status_1
-  - compressor_run_status_2
-  - compressor_run_status_3
-  - compressor_run_status_4
-  - compressor_run_status_5
-  - compressor_run_status_6
-  - supply_air_temperature_sensor
-  - supply_air_temperature_setpoint
-  implements:
-  - CONTROL
-
-
 DX2DSPRTC:
   guid: "d0ac0571-5f48-464c-bd43-dc58ac879fa9"
   description: "Two-stage compressor run control with dual return temp control."
@@ -6822,7 +6841,6 @@ DX2DSPRTC:
   - return_air_temperature_sensor
   implements:
   - CONTROL
-
 
 HPDSPRTC:
   guid: "211fecae-8082-4a69-b27d-e39cdaf65362"
@@ -6905,6 +6923,38 @@ DX6SWC:
   - compressor_run_status_4
   - compressor_run_status_5
   - compressor_run_status_6
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX8SWC:
+  description: "Eight compressor run control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  - cooling_percentage_command
+  - cooling_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_command_7
+  - compressor_run_command_8
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
+  - compressor_run_status_7
+  - compressor_run_status_8
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
   implements:
@@ -7951,6 +8001,45 @@ RCKTM2X:
   - refrigerant_suction_temperature_sensor_1
   - refrigerant_suction_temperature_sensor_2
 
+RCKTM3X:
+  description: "Refrigeration circuits (3x) monitoring for a DX compressor loop."
+  is_abstract: true
+  opt_uses:
+  - refrigerant_vapor_temperature_sensor_1
+  - refrigerant_vapor_temperature_sensor_2
+  - refrigerant_vapor_temperature_sensor_3
+  - refrigerant_liquid_pressure_sensor_1
+  - refrigerant_liquid_pressure_sensor_2
+  - refrigerant_liquid_pressure_sensor_3
+  - refrigerant_liquid_saturation_temperature_sensor_1
+  - refrigerant_liquid_saturation_temperature_sensor_2
+  - refrigerant_liquid_saturation_temperature_sensor_3
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
+  - refrigerant_liquid_temperature_sensor_3
+  - refrigerant_subcooling_temperature_sensor_1
+  - refrigerant_subcooling_temperature_sensor_2
+  - refrigerant_subcooling_temperature_sensor_3
+  uses:
+  - refrigerant_discharge_pressure_sensor_1
+  - refrigerant_discharge_pressure_sensor_2
+  - refrigerant_discharge_pressure_sensor_3
+  - refrigerant_discharge_temperature_sensor_1
+  - refrigerant_discharge_temperature_sensor_2
+  - refrigerant_discharge_temperature_sensor_3
+  - refrigerant_suction_pressure_sensor_1
+  - refrigerant_suction_pressure_sensor_2
+  - refrigerant_suction_pressure_sensor_3
+  - refrigerant_suction_saturation_temperature_sensor_1
+  - refrigerant_suction_saturation_temperature_sensor_2
+  - refrigerant_suction_saturation_temperature_sensor_3
+  - refrigerant_suction_superheat_temperature_sensor_1
+  - refrigerant_suction_superheat_temperature_sensor_2
+  - refrigerant_suction_superheat_temperature_sensor_3
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_3
+
 RCKTM6X:
   guid: "a5e8f04e-2d5f-4c78-89e6-12ef1cdc6267"
   description: "Refrigeration circuits (6x) monitoring for a DX compressor loop."
@@ -8023,6 +8112,100 @@ RCKTM6X:
   - refrigerant_suction_superheat_temperature_sensor_4
   - refrigerant_suction_superheat_temperature_sensor_5
   - refrigerant_suction_superheat_temperature_sensor_6
+
+RCKTM8X:
+  description: "Refrigeration circuits (8x) monitoring for a DX compressor loop."
+  is_abstract: true
+  opt_uses:
+  - refrigerant_vapor_temperature_sensor_1
+  - refrigerant_vapor_temperature_sensor_2
+  - refrigerant_vapor_temperature_sensor_3
+  - refrigerant_vapor_temperature_sensor_4
+  - refrigerant_vapor_temperature_sensor_5
+  - refrigerant_vapor_temperature_sensor_6
+  - refrigerant_vapor_temperature_sensor_7
+  - refrigerant_vapor_temperature_sensor_8
+  - refrigerant_liquid_pressure_sensor_1
+  - refrigerant_liquid_pressure_sensor_2
+  - refrigerant_liquid_pressure_sensor_3
+  - refrigerant_liquid_pressure_sensor_4
+  - refrigerant_liquid_pressure_sensor_5
+  - refrigerant_liquid_pressure_sensor_6
+  - refrigerant_liquid_pressure_sensor_7
+  - refrigerant_liquid_pressure_sensor_8
+  - refrigerant_liquid_saturation_temperature_sensor_1
+  - refrigerant_liquid_saturation_temperature_sensor_2
+  - refrigerant_liquid_saturation_temperature_sensor_3
+  - refrigerant_liquid_saturation_temperature_sensor_4
+  - refrigerant_liquid_saturation_temperature_sensor_5
+  - refrigerant_liquid_saturation_temperature_sensor_6
+  - refrigerant_liquid_saturation_temperature_sensor_7
+  - refrigerant_liquid_saturation_temperature_sensor_8
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
+  - refrigerant_liquid_temperature_sensor_3
+  - refrigerant_liquid_temperature_sensor_4
+  - refrigerant_liquid_temperature_sensor_5
+  - refrigerant_liquid_temperature_sensor_6
+  - refrigerant_liquid_temperature_sensor_7
+  - refrigerant_liquid_temperature_sensor_8
+  - refrigerant_subcooling_temperature_sensor_1
+  - refrigerant_subcooling_temperature_sensor_2
+  - refrigerant_subcooling_temperature_sensor_3
+  - refrigerant_subcooling_temperature_sensor_4
+  - refrigerant_subcooling_temperature_sensor_5
+  - refrigerant_subcooling_temperature_sensor_6
+  - refrigerant_subcooling_temperature_sensor_7
+  - refrigerant_subcooling_temperature_sensor_8
+  uses:
+  - refrigerant_discharge_pressure_sensor_1
+  - refrigerant_discharge_pressure_sensor_2
+  - refrigerant_discharge_pressure_sensor_3
+  - refrigerant_discharge_pressure_sensor_4
+  - refrigerant_discharge_pressure_sensor_5
+  - refrigerant_discharge_pressure_sensor_6
+  - refrigerant_discharge_pressure_sensor_7
+  - refrigerant_discharge_pressure_sensor_8
+  - refrigerant_discharge_temperature_sensor_1
+  - refrigerant_discharge_temperature_sensor_2
+  - refrigerant_discharge_temperature_sensor_3
+  - refrigerant_discharge_temperature_sensor_4
+  - refrigerant_discharge_temperature_sensor_5
+  - refrigerant_discharge_temperature_sensor_6
+  - refrigerant_discharge_temperature_sensor_7
+  - refrigerant_discharge_temperature_sensor_8
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_3
+  - refrigerant_suction_temperature_sensor_4
+  - refrigerant_suction_temperature_sensor_5
+  - refrigerant_suction_temperature_sensor_6
+  - refrigerant_suction_temperature_sensor_7
+  - refrigerant_suction_temperature_sensor_8
+  - refrigerant_suction_pressure_sensor_1
+  - refrigerant_suction_pressure_sensor_2
+  - refrigerant_suction_pressure_sensor_3
+  - refrigerant_suction_pressure_sensor_4
+  - refrigerant_suction_pressure_sensor_5
+  - refrigerant_suction_pressure_sensor_6
+  - refrigerant_suction_pressure_sensor_7
+  - refrigerant_suction_pressure_sensor_8
+  - refrigerant_suction_saturation_temperature_sensor_1
+  - refrigerant_suction_saturation_temperature_sensor_2
+  - refrigerant_suction_saturation_temperature_sensor_3
+  - refrigerant_suction_saturation_temperature_sensor_4
+  - refrigerant_suction_saturation_temperature_sensor_5
+  - refrigerant_suction_saturation_temperature_sensor_6
+  - refrigerant_suction_saturation_temperature_sensor_7
+  - refrigerant_suction_saturation_temperature_sensor_8
+  - refrigerant_suction_superheat_temperature_sensor_1
+  - refrigerant_suction_superheat_temperature_sensor_2
+  - refrigerant_suction_superheat_temperature_sensor_3
+  - refrigerant_suction_superheat_temperature_sensor_4
+  - refrigerant_suction_superheat_temperature_sensor_5
+  - refrigerant_suction_superheat_temperature_sensor_6
+  - refrigerant_suction_superheat_temperature_sensor_7
+  - refrigerant_suction_superheat_temperature_sensor_8
 
 
 
@@ -8279,6 +8462,16 @@ HWRWISOVPM:
   implements:
   - MONITORING
 
+HWSWISOVPM:
+  description: "heating water supply side isolation valve percentage control."
+  is_abstract: true
+  opt_uses:
+  - failed_heating_supply_water_isolation_valve_alarm
+  uses:
+  - heating_supply_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
 
 DEFSS:
   guid: "7102dc2c-4f27-4bbb-a9a4-965e71f3ac79"
@@ -9780,6 +9973,14 @@ HP8SWC:
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   - return_water_temperature_sensor
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
+  - failed_compressor_alarm_3
+  - failed_compressor_alarm_4
+  - failed_compressor_alarm_5
+  - failed_compressor_alarm_6
+  - failed_compressor_alarm_7
+  - failed_compressor_alarm_8
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -10266,6 +10467,62 @@ CFVSC3X:
   - condensing_fan_speed_percentage_command_1
   - condensing_fan_speed_percentage_command_2
   - condensing_fan_speed_percentage_command_3
+
+
+CFVSC8X:
+  description: "Variable speed control for 8 condensing fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command_1
+  - condensing_fan_run_command_2
+  - condensing_fan_run_command_3
+  - condensing_fan_run_command_4
+  - condensing_fan_run_command_5
+  - condensing_fan_run_command_6
+  - condensing_fan_run_command_7
+  - condensing_fan_run_command_8
+  - condensing_fan_run_status_1
+  - condensing_fan_run_status_2
+  - condensing_fan_run_status_3
+  - condensing_fan_run_status_4
+  - condensing_fan_run_status_5
+  - condensing_fan_run_status_6
+  - condensing_fan_run_status_7
+  - condensing_fan_run_status_8
+  - condensing_fan_speed_percentage_command_1
+  - condensing_fan_speed_percentage_command_2
+  - condensing_fan_speed_percentage_command_3
+  - condensing_fan_speed_percentage_command_4
+  - condensing_fan_speed_percentage_command_5
+  - condensing_fan_speed_percentage_command_6
+  - condensing_fan_speed_percentage_command_7
+  - condensing_fan_speed_percentage_command_8
+
+CFSS2X:
+  description: "Start stop control for 2 condensing fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command_1
+  - condensing_fan_run_command_2
+  - condensing_fan_run_status_1
+  - condensing_fan_run_status_2
+
+CFSS6X:
+  description: "Start stop control for 6 condensing fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command_1
+  - condensing_fan_run_command_2
+  - condensing_fan_run_command_3
+  - condensing_fan_run_command_4
+  - condensing_fan_run_command_5
+  - condensing_fan_run_command_6
+  - condensing_fan_run_status_1
+  - condensing_fan_run_status_2
+  - condensing_fan_run_status_3
+  - condensing_fan_run_status_4
+  - condensing_fan_run_status_5
+  - condensing_fan_run_status_6
 
 RVINJM2X:
   guid: "4bcc49eb-6a3c-450a-8357-5dd1f5a8ce4d"

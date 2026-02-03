@@ -40,6 +40,7 @@ AHU_CSP_DFSS_DX2ZC_ECONMD:
   - DX2ZC
   - ECONMD
 
+
 AHU_DFSS_CHWZC_HWZC_RTM_DTM_ECONZ:
   guid: "79fec392-cfbe-4fdf-b937-6d52ebbb268d"
   description: "Single zone AHU with discharge fan, chilled water coil, heating water coil, and economizer"
@@ -117,6 +118,20 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_ZSPC_EDPM_ECONZ:
   - ZSPC
   - EDPM
   - ECONZ
+
+AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONM_ZSPC_CFSS2X:
+  description: "Single zone AHU with discharge fan, exhaust fan, two stage compressor heat pump, heating coil, building static pressure control, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP   
+  - DFVSC
+  - EFVSC
+  - HP2ZC
+  - HTZC
+  - ECONM
+  - ZSPC
+  - CFSS2X
 
 AHU_DFVSC_EFVSC_ZSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
   guid: "5d5e85e8-f331-4ab6-bfdb-930e049ed8b7"
@@ -778,6 +793,7 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC_RHM_RCKTM2X_CFCM:
   - RHM
   - RCKTM2X
   - CFCM
+
 
 AHU_DFSS_DSP_DXZC_ECONZ_ZHC:
   guid: "11ee2619-0647-4d96-8f98-fd0629e15cb7"
@@ -4341,6 +4357,25 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_SFVSC_EFVSC_DX6SC_HWSC_ECONM_BSPC_SARC_SSPC_RCKTM3X_CFSS6X_RHM_FDPM_RDC:
+  description: "Multi-zone AHU with six-stage DX cooling and heating water valve and relative humiditiy monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX6SC
+  - HWSC
+  - ECONM
+  - BSPC
+  - SARC
+  - SSPC
+  - RCKTM3X
+  - CFSS6X
+  - RHM
+  - FDPM
+  - RDC
 
 AHU_SFVSC_EFVSC_DX6SC_HWSC_ECON_BSPC_SARC_SSPC_SAIDC:
   guid: "ee428a0e-5ea0-47af-b2b6-351ed4c28047"

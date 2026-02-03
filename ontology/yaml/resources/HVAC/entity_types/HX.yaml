@@ -23,7 +23,7 @@ HX_SWISOVM:
   implements:
   - HX
   - SWISOVM
-
+  
 HX_HWSWC:
   guid: "ebb96e3e-db9c-40f5-9a46-0711aee439ac"
   description: 'Heating outlet control heat exchanger.'
@@ -429,3 +429,11 @@ HX_HWDT_PRWISOVPM_PSWTC_SHWISOVPM:
   - PRWISOVPM
   - PSWTC
   - SHWISOVPM
+
+HX_SDHWTC_HWSWISOVPM:
+  description: "Domestic hot water heat exchanger with mechanically heated hot water. Domestic hot water temperature control and supply hot water valve control"
+  is_canonical: true
+  implements:
+  - HX
+  - SDHWTC
+  - HWSWISOVPM

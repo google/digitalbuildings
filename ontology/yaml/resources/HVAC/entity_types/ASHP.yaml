@@ -25,6 +25,7 @@ ASHP_SS_HP6SWC:
   - SS
   - HP6SWC
 
+
 ASHP_SS_HP8SWC:
   guid: "b9add02d-0330-493c-a5b6-6f7dc83ac2c2"
   description: "Eight-stage air source heat pump."
@@ -33,6 +34,16 @@ ASHP_SS_HP8SWC:
   - ASHP
   - SS
   - HP8SWC
+
+ASHP_SS_HP8SWC_CFVSC8_RCKTM8X:
+  description: "Eight-stage air source heat pump with refrigerant circuit monitoring and 3 condensing fan variable speed control.."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP8SWC
+  - RCKTM8X
+  - CFVSC8X
 
 ASHP_SS_HP8SWC_SWISOVM_WDPM:
   guid: "5f4f7f3a-2f07-4bba-8512-fff094b4529b"

@@ -881,6 +881,18 @@ literals:
 - drain_water_valve_command:
   - OPEN
   - CLOSED
+- domestic_hot_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- domestic_hot_return_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- domestic_hot_supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- domestic_hot_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
 - dryer_run_status:
   - ON
   - OFF
@@ -1943,6 +1955,12 @@ literals:
     fixed_min: 0.0
     flexible_max: 0.0005
 - high_mixed_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_mechanical_heating_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_mechanical_heating_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - high_pressure_status:
