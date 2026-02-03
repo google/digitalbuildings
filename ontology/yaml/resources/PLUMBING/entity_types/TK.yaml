@@ -23,5 +23,5 @@ TK_LVLM:
   description: "Standard tank with level monitoring."
   is_canonical: true
   implements:
-  - TK #TODO: make this inherit from the GLOBAL namespace
+  - /TK # inherits from global namespace
   - LVLM

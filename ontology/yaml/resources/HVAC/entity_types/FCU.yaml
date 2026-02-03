@@ -2213,48 +2213,6 @@ FCU_CHWDC_CSP_DFVSC6X:
 ### Existing Non-standard Types ###
 ###################################
 
-FCU_DFS_CH_RTC_RRHM_HMDHMM:
-  guid: "330833da-f1df-479b-aa25-edfa1f24c14a"
-  description: "CHW fan coil unit with return temperature control."
-  implements:
-  - FCU_DFSS_DFVSC_RTC_CHWRC
-  - INCOMPLETE
-  uses:
-  - humidification_run_status
-  - dehumidification_run_status
-  - return_air_relative_humidity_sensor
-
-FCU_DFSS_DTC_CHWDC_NONCANONICAL_1:
-  guid: "5b507a68-810c-4584-81fa-f82ea371074a"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DTC_CHWDC
-  - INCOMPLETE
-  uses:
-  - discharge_air_cooling_temperature_setpoint
-  - discharge_air_heating_temperature_setpoint
-
-FCU_DFSS_ZTC_ZHDHC_DXZTC_NONCANONICAL_1:
-  guid: "10052149-6aa4-4b6f-aef7-236df7d05e95"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_ZTC_ZHDHC_DXZTC
-  - INCOMPLETE
-  uses:
-  - economizer_mode
-
-FCU_DFSS_DSP_HWZC_CHWZC_NONCANONICAL_1:
-  guid: "75d41b44-a33f-4c47-a1a8-5d1cb3438db2"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DSP_HWZC_CHWZC
-  - INCOMPLETE
-  uses:
-  - discharge_air_temperature_sensor_1
-  - discharge_air_temperature_sensor_2
-  - discharge_air_temperature_sensor_3
-  - discharge_air_temperature_sensor_4
-
 FCU_DFSS_CSP_DXZC_NONCANONICAL_1:
   guid: "16c44e1d-4a63-4fcf-a762-ff16d823f04c"
   description: "Non-standard type."
@@ -2292,15 +2250,6 @@ FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC_NONCANONICAL_1:
   uses:
   - humidification_percentage_command
 
-FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_1:
-  guid: "ed15a187-3d25-4c34-a571-95a90c404387"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DFVSC_DSP_HWDC_CHWDC
-  uses:
-  - heating_water_valve_status
-  - chilled_water_valve_command
-
 FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_2:
   guid: "99823266-a32c-4f51-bf3c-ecc5b24ee7ea"
   description: "Non-standard type."
@@ -2321,25 +2270,6 @@ FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_3:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
   - mixed_air_temperature_sensor
-
-FCU_DF2XSS_RTC_DXRC_NONCANONICAL_1:
-  guid: "4e7ff576-17dc-4b99-b8ec-76599114e3bd"
-  description: "Non-standard type."
-  implements:
-  - FCU_DF2XSS_RTC_DXRC
-  - INCOMPLETE
-  uses:
-  - discharge_fan_run_command
-
-FCU_DF2XSS_RTC_DXRC_NONCANONICAL_2:
-  guid: "228ee623-a396-4939-9264-f5f83dbbc3bd"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_RTC_DXRC
-  - INCOMPLETE
-  uses:
-  - discharge_air_temperature_setpoint
-  - zone_air_relative_humidity_sensor
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_1:
   guid: "b7d8e6c6-454a-4d40-bc45-9589620b5617"
@@ -2403,24 +2333,6 @@ FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   - INCOMPLETE
   uses:
   - zone_air_relative_humidity_setpoint
-
-FCU_DFSS_CSP_DXZC_NONCANONICAL_3:
-  guid: "23258e44-88e6-4ff4-93d0-65cd0445a8a1"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_CSP_DXZC
-  - INCOMPLETE
-  uses:
-  - condensing_water_isolation_valve_command
-
-FCU_DF2XSS_DSP_DXZC_NONCANONICAL_1:
-  guid: "56e8417a-9e15-48c6-97c7-be558b7f38a3"
-  description: "Non-standard type."
-  implements:
-  - FCU_DF2XSS_DSP_DXZC
-  - INCOMPLETE
-  uses:
-  - discharge_fan_run_status
 
 FCU_DFSS_CSP_DXZC_NONCANONICAL_4:
   guid: "c4a459f4-2d26-4300-91fa-c08b5105197c"
