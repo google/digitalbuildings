@@ -180,9 +180,9 @@ OAFC:
   implements:
   - CONTROL
 
-VPCOF:
+VPCOAF:
   guid: "c6d9a458-1249-4a84-9121-add6b2165d80"
-  description: "Outside air flow control for a standealone damper"
+  description: "Outside air flow control for a standalone damper"
   is_abstract: true
   opt_uses:
   - percentage_sensor
@@ -2043,7 +2043,7 @@ ED:
 
 VPCEF:
   guid: "d6e7670c-2444-4991-8b88-0735c2d19374"
-  description: "Exhaust air flowrate based variable position control."
+  description: "Exhaust air flowrate based variable position exhaust damper control."
   is_abstract: true
   opt_uses:
   - percentage_sensor
