@@ -163,6 +163,7 @@ FCU_DFSS_CSP_DX2ZC_DAIDC:
   - DAIDC
 
 FCU_DFSS_CSP_DX2ZC_DAIDPC:
+  guid: "d070baa5-856e-489b-9703-dd13031a9890"
   description: "2-stage DX FCU with cooling-only (zone control) and discharge air isolation damper percentage control."
   is_canonical: true
   implements:
