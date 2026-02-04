@@ -33,10 +33,10 @@ FSS_FA:
   - FSS
   - FA
 
-FSS_FA2XGC:
+FSS_FA2X:
   guid: "28f45d23-b612-4da5-b8e1-1cb6dd2768f3"
-  description: "Fire suppression system with with 2-level alarm and gas suppression."
+  description: "Fire suppression system with with 2-level alarm."
   is_canonical: true
   implements:
   - FSS
-  - FA2XGC
+  - FA2X
