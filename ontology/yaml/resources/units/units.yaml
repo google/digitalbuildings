@@ -109,14 +109,12 @@ electricconductivity:
     offset: 0
 electriccurrentdensity:
   amperes_per_square_meter: STANDARD
-electricfield:
+electricfieldstrength:
   volts_per_meter: STANDARD
 electricinductance:
   henrys: STANDARD
 electricphasedifference:
   degrees_phase: STANDARD
-electricfieldstrength:
-  amperes_per_meter: STANDARD
 electricresistivity:
   ohm_meters: STANDARD
 energy:
@@ -270,6 +268,8 @@ luminousflux:
   lumens: STANDARD
 luminousintensity:
   candelas: STANDARD
+magneticfieldstrength:
+  amperes_per_meter: STANDARD
 magneticflux:
   webers: STANDARD
 magneticinduction:
@@ -390,11 +390,6 @@ ph:
   no_units: STANDARD
 powerfactor:
   no_units: STANDARD
-powerflux:
-  watts_per_square_meter: STANDARD
-  watts_per_square_foot:
-    multiplier: 0.092903
-    offset: 0
 pressure:
   pascals: STANDARD
   hectopascals:
