@@ -122,22 +122,10 @@ FA2X:
   - master_alarm
   - supervisor_alarm
   - panel_alarm
-  uses:
-  - fire_alarm_1
-  - fire_alarm_2
-
-FA2XGM:
-  guid: "9c861b7a-d088-40ec-a404-21436917b3ce"
-  description: Gas release valve monitoring with two fire alarms."
-  is_abstract: true
-  opt_uses:
-  - master_alarm
-  - supervisor_alarm
-  - panel_alarm
-  uses:
-  - fire_alarm_1
-  - fire_alarm_2
   - gas_release_valve_status
+  uses:
+  - fire_alarm_1
+  - fire_alarm_2
 
 WLS:
   guid: "16a99ce4-3298-4f9a-9ba8-41edec6a48c8"
