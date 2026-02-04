@@ -3831,41 +3831,6 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - HT2SC
   - SFSS
   - SFVSC
-
-AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
-  guid: "f26ea3c9-14d1-46fd-b91c-2188bb52fbcd"
-  description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring, after hours override and leak detection"
-  is_canonical: true
-  implements:
-  - AHU
-  - DFVSC
-  - ZTC
-  - RTM
-  - DTM
-  - HPZTC
-  - CWDT
-  - CO2C
-  - OAFC
-  - FDPM
-  - AHAC
-  - SAFETY/WLDS
-
-AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
-  guid: "83b4ebbd-6c0a-407b-9a22-1748b55d2894"
-  description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
-  is_canonical: true
-  implements:
-  - AHU
-  - DFVSC
-  - ZTC
-  - RTM
-  - DTM
-  - HPZTC
-  - CWDT
-  - CO2C
-  - OAFC
-  - AHAC
-  - SAFETY/WLDS
   
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   guid: "01979cce-71eb-4aba-8a96-3a1e9936870d"
@@ -4001,29 +3966,6 @@ AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_AHAC:
   - CO2C
   - ECONZ
   - AHAC
-
-AHU_RTC_RHC_FDPM_REFM_WLDS:
-  description: "AHU with return temperature and humidity control, filter monitoring, and refrigerant and water leak monitoring. "
-  guid: "0fa6f1e1-279d-44e3-a865-e9ed8cbbd7f2"
-  is_canonical: true
-  implements:
-  - AHU
-  - RTC
-  - RHC
-  - FDPM
-  - REFM
-  - SAFETY/WLDS
-
-AHU_RTC_RHC_OAFM_WLDS:
-  guid: "b5ee8bfa-4594-4a3e-bb71-99ac68e8777b"
-  description: "AHU with return temperature and humidity control, and water leak monitoring. "
-  is_canonical: true
-  implements:
-  - AHU
-  - RTC
-  - RHC
-  - OAFM
-  - SAFETY/WLDS
 
 AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
   guid: "f728c3c0-68a0-41c0-9455-b3bef6ab2ea7"
