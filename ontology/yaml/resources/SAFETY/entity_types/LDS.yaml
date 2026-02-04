@@ -12,60 +12,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LDS_WLDS:
-  guid: "b1cbee31-2314-470b-900f-0543bd8b9021"
-  description: "Basic leak detection device."
-  is_canonical: true
-  implements:
-  - LDS
-  - WLDS
+########################
+### Canonical Types  ###
+########################
 
-LDS_WLDS_BCM:
-  guid: "e2d4f75a-d848-4653-8688-00102fbc6dee"
-  description: "Leak sensing device with broken cable status."
-  is_canonical: true
-  implements:
-  - LDS
-  - WLDS
-  - BCM
-
-LDS_BC2X:
+LDS_WLA_BC2X:
   guid: "49057696-a063-4786-87f5-6ea4ef9ee19b"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  - WLDS
+  - WLA
   - BC2X
 
-LDS_BC2X_LPA:
+LDS_WLA_BC2X_LPA:
   guid: "dd1b7b03-5246-4478-aef8-4ecdafb6d456"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  - WLDS
+  - WLA
   - BC2X
   - LPA
-  
-# General Types
-LDS_GASDET:
-  guid: "6b24e8cc-d5e3-4516-8097-54fe857ace17"
+
+LDS_GASLA:
+  guid: "eacc0d4c-a043-4379-ae0f-29ae0dbd74fe"
   description: "Basic natural gas monitoring device."
   is_canonical: true
   implements:
   - LDS
-  - GASDET
-  opt_uses:
-  - failed_alarm
+  - GASLA
 
-LDS_NHDET:
-  guid: "04b71e1e-530b-4288-8fdd-b1b5f05b13c3"
+LDS_NHLA:
+  guid: "13d018f0-dff0-44b7-b523-9d94d11ebada"
   description: "Basic ammonia gas monitoring device"
   is_canonical: true
   implements:
   - LDS
-  - NHDET
+  - NHLA
 
 LDS_H2M:
   guid: "257bc52c-0010-4c25-a402-491fd3059e15"
@@ -74,9 +58,6 @@ LDS_H2M:
   implements:
   - LDS
   - H2M
-  opt_uses:
-  - run_status
-  - failed_alarm
 
 LDS_WLA:
   guid: "3eee4387-6d06-4fdc-99d9-70cb1e780cb3"
@@ -102,23 +83,21 @@ LDS_WLA_BCM:
   - LDS
   - WLA
   - BCM
-  opt_uses:
-  - water_leak_cable_distance_sensor
-  - failed_alarm
 
-LDS_WLCC:
-  guid: "1bc59b7b-cef7-4c39-b7b2-efaae420bf9f"
-  description: "Leak detection sensor with array of leak cable-based sensors."
+LDS_WLA_WLS_BCM:
+  guid: "50f9d40a-2f88-4f62-9a82-246d1baa55bd"
+  description: "Water Leak sensing with cable distance sensor and and broken cable sensing device."
   is_canonical: true
-  uses:
-  - water_leak_detection_alarm
-  - water_leak_alarm
-  - water_leak_cable_distance_sensor
-  - broken_cable_alarm
+  implements:
+  - LDS
+  - WLA
+  - WLS
+  - BCM
 
 LDS_REFM:
   guid: "3e43f901-2d8c-4e69-9356-f755780b0f2b"
   description: "Refrigerant leak detection."
   is_canonical: true
   implements:
-    - REFM
+  - LDS
+  - REFM

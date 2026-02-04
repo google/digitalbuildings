@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
+
 FDR_STD:
   guid: "ff836c1f-7bd6-435a-a1b7-72c5c4490bae"
   description: "Typical fire door."

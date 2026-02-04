@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
+
 TK_LM:
   guid: "9f11b022-b47f-4704-90c1-a3fb6e90b64f"
   description: "level monitoring for tanks. Like Fire hydrant tanks."

@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
+########################
+### Canonical Types  ###
+########################
 
-RDT_STD:
-  guid: "f60c35f4-9ec9-411d-ba65-b8751d0aa6ab"
+RDT_TM:
+  guid: "73a4e01d-1de7-46b1-8e9b-c6deb14b3d47"
   description: "Standard Rodent Repellent."
   is_canonical: true
   implements:
   - RDT
-  uses:
-  - transducer_failed_alarm
+  - TM
