@@ -16,22 +16,22 @@
 ### Canonical Types  ###
 ########################
 
-LDS_BC2X:
+LDS_WLA_BC2X:
   guid: "49057696-a063-4786-87f5-6ea4ef9ee19b"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  - WLDS
+  - WLA
   - BC2X
 
-LDS_BC2X_LPA:
+LDS_WLA_BC2X_LPA:
   guid: "dd1b7b03-5246-4478-aef8-4ecdafb6d456"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  - WLDS
+  - WLA
   - BC2X
   - LPA
 
@@ -58,9 +58,6 @@ LDS_H2M:
   implements:
   - LDS
   - H2M
-  opt_uses:
-  - run_status
-  - failed_alarm
 
 LDS_WLA:
   guid: "3eee4387-6d06-4fdc-99d9-70cb1e780cb3"
@@ -86,13 +83,21 @@ LDS_WLA_BCM:
   - LDS
   - WLA
   - BCM
-  opt_uses:
-  - water_leak_cable_distance_sensor
-  - failed_alarm
+
+LDS_WLA_WLS_BCM:
+  guid: "50f9d40a-2f88-4f62-9a82-246d1baa55bd"
+  description: "Water Leak sensing with cable distance sensor and and broken cable sensing device."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA
+  - WLS
+  - BCM
 
 LDS_REFM:
   guid: "3e43f901-2d8c-4e69-9356-f755780b0f2b"
   description: "Refrigerant leak detection."
   is_canonical: true
   implements:
-    - REFM
+  - LDS
+  - REFM
