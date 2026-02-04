@@ -36,6 +36,7 @@ H2M:
   - zone_air_h2_concentration_sensor
   opt_uses:
   - high_zone_air_h2_concentration_alarm
+  - failed_alarm
 
 BCM:
   guid: "3a316bed-1a5a-4a36-86bf-32743da1624c"
@@ -65,6 +66,8 @@ WLA:
   is_abstract: true
   uses:
   - water_leak_alarm
+  opt_uses:
+  - failed_alarm
 
 WLA2X:
   guid: "56b8fea6-c32a-40a2-af68-4b34913f25c0"
