@@ -3832,24 +3832,6 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
-AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
-  guid: "2d143156-0001-496b-8413-a56cf51bdcf6"
-  description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
-  is_canonical: true
-  implements:
-  - AHU
-  - DFVSC
-  - ZTC
-  - RTM
-  - DTM
-  - HPZTC
-  - CWDT
-  - CO2C
-  - OADM
-  - FDPM
-  - AHAC
-  - SAFETY/WLDS
-
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
   guid: "f26ea3c9-14d1-46fd-b91c-2188bb52fbcd"
   description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring, after hours override and leak detection"
