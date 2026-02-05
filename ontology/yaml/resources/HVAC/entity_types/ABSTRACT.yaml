@@ -547,23 +547,6 @@ EDM:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
 
-DBPC:
-  guid: "b81e216e-86a7-4fea-98a1-b2dd0d71fcf9"
-  description: "Building static pressure controlled damper."
-  is_abstract: true
-  opt_uses:
-  - percentage_sensor
-  - failed_alarm
-  - differential_pressure_sensor
-  - high_building_air_static_pressure_alarm
-  - low_building_air_static_pressure_alarm
-  uses:
-  - building_air_static_pressure_sensor
-  - building_air_static_pressure_setpoint
-  - percentage_command
-  implements:
-  - CONTROL
-
 EDBPC:
   guid: "4e428d76-1f7d-46e9-adc6-2affcd170fb6"
   description: "Building static pressure control with exhaust damper."
@@ -2041,22 +2024,6 @@ ED:
   implements:
   - CONTROL
 
-VPCEF:
-  guid: "d6e7670c-2444-4991-8b88-0735c2d19374"
-  description: "Exhaust air flowrate based variable position exhaust damper control."
-  is_abstract: true
-  opt_uses:
-  - percentage_sensor
-  - exhaust_air_static_pressure_sensor
-  - run_command
-  - schedule_run_command
-  uses:
-  - percentage_command
-  - exhaust_air_flowrate_sensor
-  - exhaust_air_flowrate_setpoint
-  implements:
-  - CONTROL
-
 RD:
   guid: "0aecbeb0-8b01-44a2-a0b6-027a034fb2a5"
   description: "Return damper flow control."
@@ -2540,25 +2507,6 @@ ZSPC:
   - zone_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-
-DZPC:
-  guid: "3f30efa6-e4e0-4830-bfc8-fe7badce51cc"
-  description: "Zone static pressure control by standalone damper position."
-  is_abstract: true
-  opt_uses:
-  - percentage_sensor
-  - failed_alarm
-  - high_zone_air_static_pressure_alarm
-  - low_zone_air_static_pressure_alarm
-  - exhaust_air_flowrate_sensor
-  - zone_air_temperature_sensor
-  uses:  
-  - percentage_command
-  - zone_air_static_pressure_sensor
-  - zone_air_static_pressure_setpoint
-  implements:
-  - OPERATIONAL
-
 
 ZSPM:
   guid: "3c3d1d68-4f41-486e-b38c-ff6309f16f2f"
@@ -4605,7 +4553,6 @@ ECON2X:
   implements:
   - CONTROL
 
-
 ECOND:
   guid: "2640d584-7b8e-4523-b894-beaf4b13e4c0"
   description: "Economizer mode control on discharge side - single zone"
@@ -4861,20 +4808,16 @@ BYPFRC:
   implements: 
   - CONTROL
 
-VPCBYPF:
+BYPFC:
   guid: "fdfc96e7-102d-4149-93d7-83ad6a5315a5"
-  description: "Bypass air flowrate control for a standalone damper."
+  description: "Bypass air flowrate control."
   is_abstract: true
   opt_uses:
   - high_bypass_air_flowrate_alarm
   - low_bypass_air_flowrate_alarm
-  - percentage_sensor
   uses:
   - bypass_air_flowrate_sensor
   - bypass_air_flowrate_setpoint
-  - percentage_command
-  implements: 
-  - CONTROL
 
 BYPDVM:
   guid: "c8e52e6d-1d4e-447c-ad36-044219ea89ec"
@@ -4885,7 +4828,6 @@ BYPDVM:
   - bypass_air_damper_voltage_sensor
   implements:
   - MONITORING
-
 
 OAFM:
   guid: "4d6c951b-f9a2-445d-93d7-a8ab2aa523ad"
