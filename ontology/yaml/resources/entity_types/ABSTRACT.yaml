@@ -12,6 +12,7 @@ PM:
   is_abstract: true
   uses:
   - position_command
+  opt_uses:
   - position_status
 
 VPM:
@@ -20,6 +21,7 @@ VPM:
   is_abstract: true
   uses:
   - percentage_command
+  opt_uses:
   - percentage_sensor
 
 PWM:
