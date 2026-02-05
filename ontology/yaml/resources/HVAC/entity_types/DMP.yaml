@@ -130,14 +130,6 @@ DMP_BYPFRC:
   - BYPFRC
 
  ### To do: remove above types once existing devices are reonboarded to use the ones below ###
- 
-DMP_DBPC:
-  guid: "1c421427-3283-440d-949d-7623beb365e7"
-  description: "Stand-alone building pressure control damper."
-  is_canonical: true
-  implements:
-  - DMP
-  - DBPC
 
 DMP_PM:
   guid: "d697236b-3232-4b5d-94a8-5a4d3e3770b4"
@@ -154,52 +146,67 @@ DMP_VPM:
   implements:
   - DMP
   - VPM
+ 
+DMP_VPM_BPC:
+  guid: "1c421427-3283-440d-949d-7623beb365e7"
+  description: "Stand-alone building pressure control damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - VPM
+  - BPC
 
-DMP_VPCEF:
+DMP_VPM_EFC:
   guid: "a0d24c6c-4ebf-49f0-8bc3-1f5ed58ab6e3"
   description: "Flowrate controlled variable position exhaust damper."
   is_canonical: true
   implements:
   - DMP
-  - VPCEF
+  - VPM
+  - EFC
 
-DMP_DSSPC:
+DMP_VPM_SSPC:
   guid: "82d97cb8-24e5-4496-a285-d35ee1c73e39"
   description: "Back-pressure modulating damper (for pressure control of an AHU)."
   is_canonical: true
   implements:
   - DMP
-  - DSSPC
+  - VPM
+  - SSPC
 
-DMP_DSSPC_RMM:
+DMP_VPM_SSPC_RMM:
   guid: "60630992-18c6-4f03-86c8-cd778c9eb07d"
   description: "Back-pressure modulating damper (for pressure control of an AHU) with run mode monitoring."
   is_canonical: true
   implements:
   - DMP
-  - DSSPC
+  - VPM
+  - SSPC
   - RMM
 
-DMP_DZPC:
+DMP_VPM_ZSPC:
   guid: "3ac75d82-48e4-4f33-b5bc-125434bac0b3"
   description: "Stand-alone zone pressure control damper."
   is_canonical: true
   implements:
   - DMP
-  - DZPC
+  - VPM
+  - ZSPC
 
-DMP_VPCOAF:
+DMP_VPM_OFC:
   guid: "bbfa2ee3-c842-46d4-917f-81ae917f1bd0"
   description: "Flowrate controlled variable position outside air damper."
   is_canonical: true
   implements:
   - DMP
-  - VPCOAF
+  - VPM
+  - OFC
 
-DMP_VPCBYPF:
+DMP_VPM_BYPFC:
   guid: "3bbb57c5-9ce4-41d7-84fe-70d5346836d6"
   description: "Flowrate controlled variable position bypass air damper."
   is_canonical: true
   implements:
   - DMP
-  - VPCBYPF
+  - VPM
+  - BYPFC
