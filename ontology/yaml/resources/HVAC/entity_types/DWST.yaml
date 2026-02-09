@@ -27,6 +27,7 @@ DWST_SWTC_WFRM:
   - WFRM
 
 DWST_SWTC_PWRFM:
+  guid: "25820cb5-3291-44b7-83e2-5d31100bcd75"
   description: "Domestic water system with supply water temperature control and return flowrate monitoring."
   implements:
   - DWST

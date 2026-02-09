@@ -1791,7 +1791,12 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 SDHWTC:
+<<<<<<< HEAD
   description: "Supply doemstic heating water temperature control."
+=======
+  guid: "08b76bc5-4f63-4fd9-a1a3-dc092116f6f3"
+  description: "Supply doemstic hot water temperature control."
+>>>>>>> 594699eee60052bdacc9473be875148c512777a7
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -6927,6 +6932,7 @@ DX6SWC:
   - CONTROL
 
 DX8SWC:
+  guid: "20c2275c-a68c-48ee-8370-bbccf36bd74e"
   description: "Eight compressor run control on supply water side."
   is_abstract: true
   opt_uses:
@@ -8019,6 +8025,7 @@ RCKTM2X:
   - refrigerant_suction_temperature_sensor_2
 
 RCKTM3X:
+  guid: "740eb0bb-cc79-41a8-9ea5-3a5eaf63dbcc"
   description: "Refrigeration circuits (3x) monitoring for a DX compressor loop."
   is_abstract: true
   opt_uses:
@@ -8131,6 +8138,7 @@ RCKTM6X:
   - refrigerant_suction_superheat_temperature_sensor_6
 
 RCKTM8X:
+  guid: "7ee21dad-aa39-4281-8540-1118951b29f6"
   description: "Refrigeration circuits (8x) monitoring for a DX compressor loop."
   is_abstract: true
   opt_uses:
@@ -8478,6 +8486,7 @@ HWRWISOVPM:
   - MONITORING
 
 HWSWISOVPM:
+  guid: "c7b5f62b-22f6-4f20-955f-e862687caaed"
   description: "heating water supply side isolation valve percentage control."
   is_abstract: true
   opt_uses:
@@ -10484,6 +10493,7 @@ CFVSC3X:
 
 
 CFVSC8X:
+  guid: "973b99dd-6933-4d86-b185-1764b6d227d5"
   description: "Variable speed control for 8 condensing fans."
   is_abstract: true
   uses:
@@ -10513,6 +10523,7 @@ CFVSC8X:
   - condensing_fan_speed_percentage_command_8
 
 CFSS2X:
+  guid: "f318579a-3343-47ee-a486-c4b4572dcd34"
   description: "Start stop control for 2 condensing fans."
   is_abstract: true
   uses:
@@ -10522,6 +10533,7 @@ CFSS2X:
   - condensing_fan_run_status_2
 
 CFSS6X:
+  guid: "f4906230-b84f-4610-b301-602936182614"
   description: "Start stop control for 6 condensing fans."
   is_abstract: true
   uses:
