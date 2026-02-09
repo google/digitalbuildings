@@ -368,6 +368,7 @@ DSP:
   - cooling_request_count
   - heating_request_count
   - warmup_request_count
+  - user_occupancy_override_status
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -843,6 +844,7 @@ DFVSC:
   - discharge_fan_current_sensor
   - discharge_fan_energy_accumulator
   - discharge_fan_power_sensor
+  - discharge_fan_rotationalvelocity_sensor
   - discharge_fan_run_time_accumulator
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_mode
@@ -1789,15 +1791,15 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 SDHWTC:
-  description: "Supply doemstic hot water temperature control."
+  description: "Supply doemstic heating water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
   opt_uses:
-  - domestic_hot_return_water_temperature_sensor
+  - domestic_heating_return_water_temperature_sensor
   uses:
-  - domestic_hot_supply_water_temperature_sensor
-  - domestic_hot_supply_water_temperature_setpoint
+  - domestic_heating_supply_water_temperature_sensor
+  - domestic_heating_supply_water_temperature_setpoint
   
 SCHWFRC:
   guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"
@@ -1920,6 +1922,8 @@ MMHWDPC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
+  - low_mechanical_heating_differential_pressure_alarm 
+  - high_mechanical_heating_differential_pressure_alarm 
   uses:
   - bypass_valve_percentage_command
   - mechanical_heating_differential_pressure_sensor
@@ -3050,6 +3054,7 @@ DX2ZC:
   description: "Two compressor run control on zone side (DSP, CSP)."
   is_abstract: true
   opt_uses:
+  - compressor_run_status 
   - compressor_speed_percentage_command
   - cooling_percentage_command
   - cooling_thermal_power_capacity
@@ -7543,6 +7548,25 @@ PHRUD:
   - low_return_air_temperature_alarm
   - low_discharge_air_temperature_alarm
 
+HTRPLZTC:
+  description: "Heat recovery plate temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - leaving_heat_recovery_temperature_sensor
+  - outside_air_temperature_sensor
+  - return_air_temperature_sensor
+  opt_uses:
+  - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - high_leaving_heat_recovery_temperature_alarm
+  - low_leaving_heat_recovery_temperature_alarm
+
+
+
 CHWDT2X:
   guid: "956a597b-e5e5-4c1c-9c06-834b7b8d28b4"
   description: "Temperature differential across chilled water with two sets of sensors."
@@ -8457,7 +8481,7 @@ HWSWISOVPM:
   description: "heating water supply side isolation valve percentage control."
   is_abstract: true
   opt_uses:
-  - failed_heating_supply_water_isolation_valve_alarm
+  - failed_supply_water_isolation_valve_alarm
   uses:
   - heating_supply_water_isolation_valve_percentage_command
   - heating_supply_water_isolation_valve_percentage_sensor

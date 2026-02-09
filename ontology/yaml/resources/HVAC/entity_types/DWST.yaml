@@ -19,6 +19,13 @@ DWST_SWTC:
   - DWST
   - SWTC
 
+DWST_SWTC_WFRM:
+  description: "Domestic water system with supply water temperature control and flowrate monitoring."
+  implements:
+  - DWST
+  - SWTC
+  - WFRM
+
 DWST_SWTC_PWRFM:
   description: "Domestic water system with supply water temperature control and return flowrate monitoring."
   implements:
