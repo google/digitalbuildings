@@ -1519,8 +1519,12 @@ WDT:
   - return_water_temperature_sensor
   - supply_water_temperature_sensor
   opt_uses:
+  - failed_supply_water_temperature_alarm
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - failed_return_water_temperature_alarm
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
 
 
 CMWDT:
@@ -2907,19 +2911,6 @@ CHWZTC:
   implements:
   - CONTROL
 
-
-CHWPVM:
-  guid: "751c1130-6108-49c8-9c55-8bfabb762fa8"
-  description: "Chilled water pressure valve command and position monitoring (without regard to what controls it)."
-  is_abstract: true
-  opt_uses:
-  - chilled_water_flowrate_sensor
-  uses:
-  - chilled_water_valve_percentage_sensor
-  implements:
-  - OPERATIONAL
-
-
 CHWZTC2X:
   guid: "d4e628ff-e44c-43fd-b48e-bb53d0aaeb00"
   description: "Chilled water valve control on zone side (ZTC) for two separate zones. Chilled water valve controls to the worst zone."
@@ -4117,18 +4108,6 @@ PHSC:
   implements:
   - CONTROL
 
-HWPVM:
-  guid: "0a51d47f-2d53-4a3b-aa9a-f218394b55a7"
-  description: "Heating water pressure valve command and position monitoring (without regard to what controls it)."
-  is_abstract: true
-  opt_uses:
-  - heating_water_flowrate_sensor
-  uses:
-  - heating_water_valve_percentage_sensor
-  implements:
-  - OPERATIONAL
-
-
 HTDC:
   guid: "f88f5021-03fa-4aed-a131-c81cac1e354d"
   description: "Gas or electric heater control on discharge side."
@@ -5054,7 +5033,6 @@ CDWISOVM:
   implements:
   - MONITORING
 
-
 CDWISOVPM:
   guid: "8308f584-0b61-4124-abb9-d8f5ca71e880"
   description: "Condensing water isolation valve percentage control."
@@ -5068,7 +5046,6 @@ CDWISOVPM:
   implements:
   - MONITORING
 
-
 SHWISOVPM:
   guid: "b56edb43-bde9-49f3-9437-d7a6b6e6fdea"
   description: "Heating supply water isolation valve percentage control."
@@ -5080,18 +5057,6 @@ SHWISOVPM:
   - heating_supply_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
-
-
-CDWPVM:
-  guid: "588692e6-84a9-4a31-8cc6-09eb599cbe54"
-  description: "Condensing water pressure valve command and position monitoring (without regard to what controls it)."
-  is_abstract: true
-  opt_uses:
-  - condensing_water_flowrate_sensor
-  uses:
-  - condensing_water_valve_percentage_sensor
-  implements:
-  - OPERATIONAL
 
 WFRSM:
   guid: "08d4248b-2ef7-42e8-b56a-98aad618b6bc"
@@ -6548,7 +6513,6 @@ SDBPC:
   implements:
   - MONITORING
 
-
 HWVM:
   guid: "9e86fa93-01d8-4536-815b-1b031b165f3f"
   description: "Heating water valve command and position monitoring (without regard to what controls it)."
@@ -6559,6 +6523,22 @@ HWVM:
   uses:
   - heating_water_valve_percentage_command
   - heating_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+
+VPM:
+  guid: "d022437c-5783-4416-b8b0-846f4de9142a"
+  description: "Variable position control without regard to what it controls to."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - cooling_thermal_power_capacity
+  - failed_alarm
+  - frost_alarm
+  - flowrate_sensor
+  uses:
+  - percentage_command
+  - percentage_sensor
   implements:
   - OPERATIONAL
 
@@ -8947,14 +8927,6 @@ HMLC:
   - medium_speed_command
   implements:
   - OPERATIONAL
-
-SWCM:
-  guid: "b82c4b84-96ae-48ee-a36b-29f274f6a41a"
-  description: "Solenoid water valve control and monitoring."
-  is_abstract: true
-  uses:
-  - valve_command
-  - valve_status
 
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"
