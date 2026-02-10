@@ -104,7 +104,7 @@ PAS:
   - air_pressure_status
 
 FA:
-  guid: "d697236b-3232-4b5d-94a8-5a4d3e3770b4"
+  guid: "505db344-eca2-431e-a2a2-e1002490db38"
   description: "Fire alarm monitoring."
   is_abstract: true
   opt_uses:
