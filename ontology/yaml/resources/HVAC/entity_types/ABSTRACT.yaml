@@ -4792,7 +4792,7 @@ BYPFRC:
   - bypass_air_flowrate_sensor
   - bypass_air_flowrate_setpoint
   - bypass_air_damper_percentage_command
-  implements: 
+  implements:
   - CONTROL
 
 BYPFC:
