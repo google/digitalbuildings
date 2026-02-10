@@ -534,7 +534,6 @@ EDM:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
 
-
 EDBPC:
   guid: "4e428d76-1f7d-46e9-adc6-2affcd170fb6"
   description: "Building static pressure control with exhaust damper."
@@ -1025,7 +1024,6 @@ DTM:
   implements:
   - MONITORING
 
-
 SS:
   guid: "5231c7a0-b1bf-48b2-8443-6f37e3b07376"
   description: "Basic combination of run command and status (start/stop)."
@@ -1054,6 +1052,18 @@ SS:
   - schedule_run_command
   - switch_command
   - user_occupancy_override_status
+
+PM:
+  guid: "bcb62278-de08-41a4-ac07-5b49c476911a"
+  description: "Binary position control without regard to what it controls to."
+  is_abstract: true
+  implements:
+  - /PM
+  opt_uses:
+  - failed_alarm
+  - run_mode
+  - schedule_run_command
+  - ventilation_request_count
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1985,7 +1995,6 @@ ETM:
   opt_uses:
   - failed_exhaust_air_temperature_alarm
 
-
 ED:
   guid: "cfc04603-a257-4077-8181-50b564fbdf96"
   description: "Exhaust air flow control."
@@ -2001,7 +2010,6 @@ ED:
   - exhaust_air_flowrate_setpoint
   implements:
   - CONTROL
-
 
 RD:
   guid: "0aecbeb0-8b01-44a2-a0b6-027a034fb2a5"
@@ -2486,7 +2494,6 @@ ZSPC:
   - zone_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-
 
 ZSPM:
   guid: "3c3d1d68-4f41-486e-b38c-ff6309f16f2f"
@@ -4533,7 +4540,6 @@ ECON2X:
   implements:
   - CONTROL
 
-
 ECOND:
   guid: "2640d584-7b8e-4523-b894-beaf4b13e4c0"
   description: "Economizer mode control on discharge side - single zone"
@@ -4789,6 +4795,16 @@ BYPFRC:
   implements: 
   - CONTROL
 
+BYPFC:
+  guid: "fdfc96e7-102d-4149-93d7-83ad6a5315a5"
+  description: "Bypass air flowrate control."
+  is_abstract: true
+  opt_uses:
+  - high_bypass_air_flowrate_alarm
+  - low_bypass_air_flowrate_alarm
+  uses:
+  - bypass_air_flowrate_sensor
+  - bypass_air_flowrate_setpoint
 
 BYPDVM:
   guid: "c8e52e6d-1d4e-447c-ad36-044219ea89ec"
@@ -4799,7 +4815,6 @@ BYPDVM:
   - bypass_air_damper_voltage_sensor
   implements:
   - MONITORING
-
 
 OAFM:
   guid: "4d6c951b-f9a2-445d-93d7-a8ab2aa523ad"
@@ -6435,7 +6450,6 @@ PDSCV:
   implements:
   - CONTROL
 
-
 SDBPC:
   guid: "881f3d79-d107-4268-83c6-f16e3ae7fb5a"
   description: "Back-pressure controlling supply damper."
@@ -6476,10 +6490,8 @@ VPM:
   - failed_alarm
   - frost_alarm
   - flowrate_sensor
-  uses:
-  - percentage_command
-  - percentage_sensor
   implements:
+  - /VPM
   - OPERATIONAL
 
 HWVVM:
@@ -6528,7 +6540,8 @@ RMM:
   is_abstract: true
   implements:
   - /RMM
-
+  opt_uses:
+  - schedule_run_command
 
 DSPZDHC:
   guid: "365e7bc0-cc71-4fdd-937c-c8be0011636e"
@@ -7085,7 +7098,6 @@ DICM:
   - supply_air_isolation_damper_closed_status
   - supply_air_isolation_damper_command
   - supply_air_isolation_damper_open_status
-
 
 UV:
   guid: "6f7a15ff-40b1-4c49-b70b-18e409db171b"
