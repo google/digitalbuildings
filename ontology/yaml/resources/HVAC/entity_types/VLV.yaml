@@ -16,62 +16,38 @@
 ### Canonical Types  ###
 ########################
 
-VLV_CHWVM_RTM_DTM:
-  guid: "b2223a12-07e8-455b-8ae4-eed3942df5a8"
-  description: "Chilled water valve with discharge and return temperature monitoring."
+VLV_PM:
+  guid: "43c90956-65a7-4893-90e4-ab58f9878a19"
+  description: "Valve with binary position control."
   is_canonical: true
   implements:
   - /VLV # inherits from global namespace
-  - CHWVM
+  - /PM # inherits from global namespace
+
+VLV_VPM:
+  guid: "342034a9-5850-4ec0-b63f-d3a6712d75e0"
+  description: "Pressure control valve. This simple type should primarily be used for condensing water applications, whereas preheating, heating and cooling water valves should use VLV_VPM_RTM_DTM when possible."
+  is_canonical: true
+  implements:
+  - /VLV # inherits from global namespace
+  - VPM
+
+VLV_VPM_RTM_DTM:
+  guid: "2b376a98-ad41-4d12-b4e9-ec95e15d2bae"
+  description: "Pressure control valve with discharge and return air temperature monitoring."
+  is_canonical: true
+  implements:
+  - /VLV # inherits from global namespace
+  - VPM
   - RTM
   - DTM
 
-VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DTM)
-  guid: "d8fad139-6759-4165-b0a3-eae7d5b299a0"
-  description: "Heating water valve."
+VLV_VPM_WDT_CLPM:
+  guid: "f9f63525-1890-49ce-a627-ccc8ffbdacd2"
+  description: "Pressure control valve with differential temperature and cooling thermal load monitoring."
   is_canonical: true
   implements:
   - /VLV # inherits from global namespace
-  - HWVM
-
-VLV_CHWVM_CHWDT_CLPM:
-  guid: "e5d23585-6ac5-4d3b-bc2e-4278ffc6391d"
-  description: "Chilled water pressure control valve with differential temperature and thermal load monitoring."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CHWVM
-  - CHWDT
+  - VPM
+  - WDT
   - CLPM
-
-VLV_CHWPVM:
-  guid: "4222857f-3f92-4663-83ac-0bb11550f568"
-  description: "Chilled water pressure control valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CHWPVM
-
-VLV_HWPVM:
-  guid: "8ead3ca8-7f64-421c-9293-fcbf440bcc4f"
-  description: "Heating water pressure control valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - HWPVM
-
-VLV_CDWPVM:
-  guid: "f656bec8-3061-4e60-b7d2-00f754bad5af"
-  description: "Condensing water pressure control valve."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - CDWPVM
-
-VLV_SWCM:
-  guid: "e0552cad-7620-462c-9571-b832cda303f5"
-  description: "Solenoid water valve control and monitoring."
-  is_canonical: true
-  implements:
-  - /VLV # inherits from global namespace
-  - SWCM

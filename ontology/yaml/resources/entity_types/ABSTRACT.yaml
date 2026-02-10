@@ -6,6 +6,14 @@ SS:
   - run_command
   - run_status
 
+PM:
+  guid: "f00bc1ea-8abe-40e0-8fcf-1f26810881bf"
+  description: "Binary position control without regard to what it controls to."
+  is_abstract: true
+  uses:
+  - position_command
+  - position_status
+
 PWM:
   guid: "4bee8cc5-4ff1-4bc2-a4c6-f6a698006b72"
   description: "Basic power monitoring "
