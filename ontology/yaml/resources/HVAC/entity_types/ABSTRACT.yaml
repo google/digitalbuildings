@@ -1791,12 +1791,7 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 SDHWTC:
-<<<<<<< HEAD
   description: "Supply doemstic heating water temperature control."
-=======
-  guid: "08b76bc5-4f63-4fd9-a1a3-dc092116f6f3"
-  description: "Supply doemstic hot water temperature control."
->>>>>>> 594699eee60052bdacc9473be875148c512777a7
   is_abstract: true
   implements:
   - OPERATIONAL

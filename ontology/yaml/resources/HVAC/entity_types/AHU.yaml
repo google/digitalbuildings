@@ -134,19 +134,6 @@ AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONM_ZSPC_CFSS2X:
   - ZSPC
   - CFSS2X
 
-AHU_DSP_DFVSC_EFVSC_DXDC_HWDC_FDPM_HTRPLZTC:
-  description: "Single zone AHU with discharge fan, exhaust fan, DX cooling coil, hydronic heating coil, discharge air temp control, filter monitoring and heat recovery temperature monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - DSP
-  - DFVSC
-  - EFVSC
-  - DXDC
-  - FDPM
-  - HWDC
-  - HTRPLZTC
-
 AHU_DFVSC_EFVSC_ZSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
   guid: "5d5e85e8-f331-4ab6-bfdb-930e049ed8b7"
   description: "Single zone AHU with discharge fan, exhaust fan, chilled water coil, dual setpoint zone temp control, zone static pressure control, and economizer."
