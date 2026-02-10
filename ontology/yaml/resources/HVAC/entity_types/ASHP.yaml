@@ -37,7 +37,7 @@ ASHP_SS_HP8SWC:
 
 ASHP_SS_HP8SWC_CFVSC8_RCKTM8X:
   guid: "c79793d6-8c81-4fd2-9869-2a4758c95424"
-  description: "Eight-stage air source heat pump with refrigerant circuit monitoring and 3 condensing fan variable speed control.."
+  description: "Eight-stage air source heat pump with refrigerant circuit monitoring and 3 condensing fan variable speed control."
   is_canonical: true
   implements:
   - ASHP

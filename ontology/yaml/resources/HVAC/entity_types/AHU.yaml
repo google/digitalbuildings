@@ -119,7 +119,7 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_ZSPC_EDPM_ECONZ:
   - EDPM
   - ECONZ
 
-AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONM_ZSPC_CFSS2X:
+AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONMD_ZSPC_CFSS2X:
   guid: "83a62a26-f9ab-4b4f-8c0f-44ed8698717f"
   description: "Single zone AHU with discharge fan, exhaust fan, two stage compressor heat pump, heating coil, building static pressure control, and economizer."
   is_canonical: true
@@ -130,7 +130,7 @@ AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONM_ZSPC_CFSS2X:
   - EFVSC
   - HP2ZC
   - HTZC
-  - ECONM
+  - ECONMD
   - ZSPC
   - CFSS2X
 

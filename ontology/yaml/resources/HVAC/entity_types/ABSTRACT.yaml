@@ -1806,7 +1806,7 @@ SCHWTC:
 
 SDHWTC:
   guid: "796e6d1a-a645-442c-a3f9-67e96edef0b6"
-  description: "Supply doemstic heating water temperature control."
+  description: "Supply domestic heating water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -7560,8 +7560,6 @@ HTRPLZTC:
   - high_leaving_heat_recovery_temperature_alarm
   - low_leaving_heat_recovery_temperature_alarm
 
-
-
 CHWDT2X:
   guid: "956a597b-e5e5-4c1c-9c06-834b7b8d28b4"
   description: "Temperature differential across chilled water with two sets of sensors."
@@ -8033,13 +8031,13 @@ RCKTM3X:
   - refrigerant_subcooling_temperature_sensor_1
   - refrigerant_subcooling_temperature_sensor_2
   - refrigerant_subcooling_temperature_sensor_3
-  uses:
   - refrigerant_discharge_pressure_sensor_1
   - refrigerant_discharge_pressure_sensor_2
   - refrigerant_discharge_pressure_sensor_3
   - refrigerant_discharge_temperature_sensor_1
   - refrigerant_discharge_temperature_sensor_2
   - refrigerant_discharge_temperature_sensor_3
+  uses:
   - refrigerant_suction_pressure_sensor_1
   - refrigerant_suction_pressure_sensor_2
   - refrigerant_suction_pressure_sensor_3
@@ -8171,7 +8169,6 @@ RCKTM8X:
   - refrigerant_subcooling_temperature_sensor_6
   - refrigerant_subcooling_temperature_sensor_7
   - refrigerant_subcooling_temperature_sensor_8
-  uses:
   - refrigerant_discharge_pressure_sensor_1
   - refrigerant_discharge_pressure_sensor_2
   - refrigerant_discharge_pressure_sensor_3
@@ -8188,6 +8185,7 @@ RCKTM8X:
   - refrigerant_discharge_temperature_sensor_6
   - refrigerant_discharge_temperature_sensor_7
   - refrigerant_discharge_temperature_sensor_8
+  uses:
   - refrigerant_suction_temperature_sensor_1
   - refrigerant_suction_temperature_sensor_2
   - refrigerant_suction_temperature_sensor_3
@@ -8220,8 +8218,6 @@ RCKTM8X:
   - refrigerant_suction_superheat_temperature_sensor_6
   - refrigerant_suction_superheat_temperature_sensor_7
   - refrigerant_suction_superheat_temperature_sensor_8
-
-
 
 CCM:
   guid: "4690242f-f5fe-47cb-9340-771cfc6cecb3"
@@ -8476,7 +8472,7 @@ HWRWISOVPM:
 
 HWSWISOVPM:
   guid: "c7b5f62b-22f6-4f20-955f-e862687caaed"
-  description: "heating water supply side isolation valve percentage control."
+  description: "Heating water supply side isolation valve percentage control."
   is_abstract: true
   opt_uses:
   - failed_supply_water_isolation_valve_alarm
