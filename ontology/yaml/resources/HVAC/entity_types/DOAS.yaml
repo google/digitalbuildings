@@ -283,6 +283,7 @@ DOAS_DFSS_EFSS_PHRUD_DTM_ETM_RTM:
   - ETM
   - RTM
 DOAS_DSP_DFVSC_EFVSC_DXDC_HWDC_FDPM_HTRPLZTC:
+  guid: "197394b4-314c-464e-83d2-d901497a1735"
   description: "Single zone DOAS with discharge fan, exhaust fan, DX cooling coil, hydronic heating coil, discharge air temp control, filter monitoring and heat recovery temperature monitoring."
   is_canonical: true
   implements:

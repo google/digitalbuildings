@@ -1805,6 +1805,7 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 SDHWTC:
+  guid: "796e6d1a-a645-442c-a3f9-67e96edef0b6"
   description: "Supply doemstic heating water temperature control."
   is_abstract: true
   implements:
@@ -7542,6 +7543,7 @@ PHRUD:
   - low_discharge_air_temperature_alarm
 
 HTRPLZTC:
+  guid: "ec85dd3c-687f-4a8f-838f-d5696143400e"
   description: "Heat recovery plate temperature monitoring"
   is_abstract: true
   implements:
