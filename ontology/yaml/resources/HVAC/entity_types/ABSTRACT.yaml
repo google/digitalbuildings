@@ -7542,7 +7542,7 @@ PHRUD:
   - low_return_air_temperature_alarm
   - low_discharge_air_temperature_alarm
 
-HTRPLZTC:
+HTRPLTM:
   guid: "ec85dd3c-687f-4a8f-838f-d5696143400e"
   description: "Heat recovery plate temperature monitoring"
   is_abstract: true
