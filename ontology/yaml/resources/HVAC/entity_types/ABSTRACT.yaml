@@ -4759,6 +4759,7 @@ ECONMD:
   - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - outside_air_specificenthalpy_sensor
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
