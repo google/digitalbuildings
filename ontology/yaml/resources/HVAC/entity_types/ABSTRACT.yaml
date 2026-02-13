@@ -8476,7 +8476,7 @@ HWSWISOVPM:
   description: "Heating water supply side isolation valve percentage control."
   is_abstract: true
   opt_uses:
-  - failed_supply_water_isolation_valve_alarm
+  - failed_heating_supply_water_isolation_valve_alarm
   uses:
   - heating_supply_water_isolation_valve_percentage_command
   - heating_supply_water_isolation_valve_percentage_sensor
