@@ -5347,7 +5347,6 @@ CMSWFRM:
   uses:
   - common_supply_water_flowrate_sensor
 
-
 WFRC:
   guid: "55e5d148-7001-40e2-b082-d17cafb3309a"
   description: "Water flowrate control."
@@ -5361,7 +5360,6 @@ WFRC:
   - low_flowrate_alarm
   - failed_flowrate_alarm
 
-
 MWFRC:
   guid: "b98a5846-1b69-47e4-8913-87beb392ddcb"
   description: "Minimum water flowrate control."
@@ -5374,7 +5372,6 @@ MWFRC:
   opt_uses:
   - low_flowrate_alarm
 
-
 CHWFRM:
   guid: "3a9f9c94-7d1e-4ed2-839f-66ce995e58fd"
   description: "Chilled water flowrate monitoring."
@@ -5386,7 +5383,6 @@ CHWFRM:
   implements:
   - MONITORING
 
-
 CHWFRSM:
   guid: "b980da9b-c3de-4aab-b6de-8ab6cbc53178"
   description: "Chilled water flowrate status monitoring."
@@ -5395,7 +5391,6 @@ CHWFRSM:
   - chilled_water_flowrate_status
   implements:
   - MONITORING
-
 
 SEPM:
   guid: "a4c57915-39de-47ef-ae66-643b4e12b180"
@@ -5406,7 +5401,6 @@ SEPM:
   implements:
   - MONITORING
 
-
 STPM:
   guid: "8221a52f-102f-486e-8ae2-1c5eee8c31d0"
   description: "Shade tilt control."
@@ -5416,7 +5410,6 @@ STPM:
   implements:
   - MONITORING
 
-
 IGM:
   guid: "ae569be0-3ab9-4f9e-904e-6839aca72b72"
   description: "Inlet guidevane monitoring."
@@ -5425,7 +5418,6 @@ IGM:
   - inlet_guidevane_percentage_sensor
   implements:
   - OPERATIONAL
-
 
 CLPM:
   guid: "603cc89d-c8f4-4ab6-bba2-447a2bd2bbab"
@@ -5440,7 +5432,6 @@ CLPM:
   - power_sensor
   implements:
   - MONITORING
-
 
 PCLPM:
   guid: "876a8eaa-b0a3-4af7-bdf8-fbef6a93aca5"
@@ -5471,7 +5462,6 @@ DDCO:
   implements:
   - CONTROL
 
-
 FDPM2X:
   guid: "7ac01e64-eadc-4690-8c12-1bd9f48cd9b3"
   description: "Filter pressure monitoring (2 sensors)."
@@ -5481,7 +5471,6 @@ FDPM2X:
   - filter_differential_pressure_sensor_2
   implements:
   - MONITORING
-
 
 FDPSM2X:
   guid: "2d883683-d3fc-47c3-8efd-163df172ae9c"
@@ -10468,7 +10457,6 @@ CFVSC3X:
   - condensing_fan_speed_percentage_command_1
   - condensing_fan_speed_percentage_command_2
   - condensing_fan_speed_percentage_command_3
-
 
 CFVSC8X:
   guid: "973b99dd-6933-4d86-b185-1764b6d227d5"
