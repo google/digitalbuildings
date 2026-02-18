@@ -2753,6 +2753,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFVSC_SARC_SFVSC_SSPC_CFVSC:
+  guid: "164aa5b5-3871-4dc0-8cd0-d46e1a1e5a72"
   description: "Multi-zone AHU with building and supply static pressure control, economizer, variable-speed supply and exhaust fan, and condensing fan speed control."
   is_canonical: true
   implements:
