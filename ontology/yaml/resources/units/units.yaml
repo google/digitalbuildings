@@ -60,6 +60,8 @@ concentration:
   parts_per_billion:
     multiplier: 0.000000001
     offset: 0
+coolingperformanceratio:
+  kilowatts_per_tons_of_refrigeration: STANDARD
 current:
   amperes: STANDARD
   milliamperes:
@@ -96,8 +98,6 @@ distance:
   inches:
     multiplier: 0.0254
     offset: 0
-thermalefficiency:
-  kilowatts_per_ton: STANDARD
 electriccapacitance:
   farads: STANDARD
 electricconductance:
