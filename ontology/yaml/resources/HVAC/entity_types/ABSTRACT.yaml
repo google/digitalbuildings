@@ -4797,6 +4797,9 @@ ECONZ:
   - low_return_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - failed_outside_air_temperature_alarm
+  - failed_zone_air_relative_humidity_alarm
+  - high_zone_air_relative_humidity_alarm
+  - low_zone_air_relative_humidity_alarm
   uses:
   - economizer_mode
   - outside_air_damper_percentage_command
