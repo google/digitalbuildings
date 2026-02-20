@@ -332,7 +332,10 @@ obscuration:
 percentage:
   percent: STANDARD
 performanceratio:
-  kilowatts_per_tons_of_refrigeration: STANDARD
+  watts_per_watts: STANDARD
+  kilowatts_per_tons_of_refrigeration:
+    multiplier: 0.284333
+    offset: 0
 power:
   watts: STANDARD
   kilowatts:
