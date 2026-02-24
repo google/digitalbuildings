@@ -105,6 +105,7 @@ descriptor:
   direction: "Direction in which particular entity is moving or is present."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
   diverting: "Controlling the flow of fluids or gases by diverting the flow from one pathway to another."
+  domestic: "Potable water intended for everyday human use."
   drain: "Media drained from system; typically applied to water-side system "
   dutycycle: "The fraction of one period in which a signal or system is active."
   east: "Cardinal direction; opposite of west."

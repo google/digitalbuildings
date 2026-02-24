@@ -19,6 +19,14 @@ DWST_SWTC:
   - DWST
   - SWTC
 
+DWST_SWTC_WFRM:
+  guid: "407aedac-0c8f-4038-86ef-90385b718ffe"
+  description: "Domestic water system with supply water temperature control and flowrate monitoring."
+  implements:
+  - DWST
+  - SWTC
+  - WFRM
+
 DWST_CWDT_SWTC_CPC:
   guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"
   description: "Domestic water system with condensing water heat exhanger without bypass valve"

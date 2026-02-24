@@ -118,6 +118,21 @@ AHU_DFVSC_EFVSC_DX2ZC_HTZC_ZSPC_EDPM_ECONZ:
   - EDPM
   - ECONZ
 
+AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONMD_ZSPC_CFSS2X:
+  guid: "83a62a26-f9ab-4b4f-8c0f-44ed8698717f"
+  description: "Single zone AHU with discharge fan, exhaust fan, two stage compressor heat pump, heating coil, building static pressure control, and economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP   
+  - DFVSC
+  - EFVSC
+  - HP2ZC
+  - HTZC
+  - ECONMD
+  - ZSPC
+  - CFSS2X
+
 AHU_DFVSC_EFVSC_ZSPC_CHWDC_ECONZ_FDPM_DSPC_DSP_DAIDC:
   guid: "5d5e85e8-f331-4ab6-bfdb-930e049ed8b7"
   description: "Single zone AHU with discharge fan, exhaust fan, chilled water coil, dual setpoint zone temp control, zone static pressure control, and economizer."
@@ -145,7 +160,6 @@ AHU_DSP_DFVSC_CHWDC_ECOND_FDPM2X:
   - CHWDC
   - ECOND
   - FDPM2X
-
 
 AHU_DFSS_EFSS_DX2DC_ECOND_EDBPC:
   guid: "a79815eb-54b4-4ac9-a669-eca5c3a4135b"
@@ -778,6 +792,7 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC_RHM_RCKTM2X_CFCM:
   - RHM
   - RCKTM2X
   - CFCM
+
 
 AHU_DFSS_DSP_DXZC_ECONZ_ZHC:
   guid: "11ee2619-0647-4d96-8f98-fd0629e15cb7"
@@ -2737,6 +2752,21 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_DX4SC_ECON_EFVSC_SARC_SFVSC_SSPC_CFVSC:
+  guid: "164aa5b5-3871-4dc0-8cd0-d46e1a1e5a72"
+  description: "Multi-zone AHU with building and supply static pressure control, economizer, variable-speed supply and exhaust fan, and condensing fan speed control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFVSC
+  - SARC
+  - SFVSC
+  - SSPC
+  - CFVSC
+
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_EDM_RHM_RCKTM2X_CFCM4X:
   guid: "4e6d95c5-0e95-4f5c-9bb1-a885fc8d8df9"
   description: "Multi-zone AHU with exhaust air damper monitoring, return air humidity monitoring, 2-circuit refrigerant monitoring and condenser fan monitoring"
@@ -4341,6 +4371,26 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_SFVSC_EFVSC_DX6SC_HWSC_ECONM_BSPC_SARC_SSPC_RCKTM3X_CFSS6X_RHM_FDPM_RDC:
+  guid: "48b56baa-4a0e-45f4-8848-02a1f814c6c4"
+  description: "Multi-zone AHU with six-stage DX cooling and heating water valve and relative humiditiy monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX6SC
+  - HWSC
+  - ECONM
+  - BSPC
+  - SARC
+  - SSPC
+  - RCKTM3X
+  - CFSS6X
+  - RHM
+  - FDPM
+  - RDC
 
 AHU_SFVSC_EFVSC_DX6SC_HWSC_ECON_BSPC_SARC_SSPC_SAIDC:
   guid: "ee428a0e-5ea0-47af-b2b6-351ed4c28047"

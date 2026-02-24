@@ -429,3 +429,12 @@ HX_HWDT_PRWISOVPM_PSWTC_SHWISOVPM:
   - PRWISOVPM
   - PSWTC
   - SHWISOVPM
+
+HX_SDHWTC_HWSWISOVPM:
+  guid: "0244f310-65df-47b1-b3ad-bbf91f1ee22c"
+  description: "Domestic hot water heat exchanger with mechanically heated hot water. Domestic hot water temperature control and supply hot water valve control"
+  is_canonical: true
+  implements:
+  - HX
+  - SDHWTC
+  - HWSWISOVPM

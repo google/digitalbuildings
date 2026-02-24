@@ -829,6 +829,9 @@ literals:
 - discharge_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
+- discharge_fan_rotationalvelocity_sensor:
+    fixed_min: 0.0
+    flexible_max: 3000
 - discharge_fan_run_command:
   - ON
   - OFF
@@ -884,6 +887,18 @@ literals:
 - drain_water_valve_command:
   - OPEN
   - CLOSED
+- domestic_heating_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- domestic_heating_return_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- domestic_heating_supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- domestic_heating_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
 - dryer_run_status:
   - ON
   - OFF
@@ -1260,6 +1275,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_heating_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heating_supply_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - failed_heating_supply_water_valve_alarm:
@@ -1948,6 +1966,12 @@ literals:
 - high_mixed_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_mechanical_heating_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_mechanical_heating_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_pressure_status:
   - ACTIVE
   - INACTIVE
@@ -2201,6 +2225,15 @@ literals:
 - leaving_heat_recovery_coil_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
+- leaving_heat_recovery_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- high_leaving_heat_recovery_temperature_alarm:
+    - ACTIVE
+    - INACTIVE
+- low_leaving_heat_recovery_temperature_alarm:
+    - ACTIVE
+    - INACTIVE
 - leaving_heat_wheel_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
