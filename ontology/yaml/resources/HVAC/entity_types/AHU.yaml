@@ -124,7 +124,7 @@ AHU_DSP_DFVSC_EFVSC_HP2ZC_HTZC_ECONMD_ZSPC_CFSS2X:
   is_canonical: true
   implements:
   - AHU
-  - DSP   
+  - DSP
   - DFVSC
   - EFVSC
   - HP2ZC

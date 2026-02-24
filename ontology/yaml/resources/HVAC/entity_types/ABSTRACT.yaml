@@ -1815,7 +1815,7 @@ SDHWTC:
   uses:
   - domestic_heating_supply_water_temperature_sensor
   - domestic_heating_supply_water_temperature_setpoint
-  
+
 SCHWFRC:
   guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"
   description: "Supply chilled water flowrate control."
@@ -1937,8 +1937,8 @@ MMHWDPC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
-  - low_mechanical_heating_differential_pressure_alarm 
-  - high_mechanical_heating_differential_pressure_alarm 
+  - low_mechanical_heating_differential_pressure_alarm
+  - high_mechanical_heating_differential_pressure_alarm
   uses:
   - bypass_valve_percentage_command
   - mechanical_heating_differential_pressure_sensor
@@ -3053,7 +3053,7 @@ DX2ZC:
   description: "Two compressor run control on zone side (DSP, CSP)."
   is_abstract: true
   opt_uses:
-  - compressor_run_status 
+  - compressor_run_status
   - compressor_speed_percentage_command
   - cooling_percentage_command
   - cooling_thermal_power_capacity
