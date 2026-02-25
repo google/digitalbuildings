@@ -4542,6 +4542,7 @@ ECON:
   - low_supply_air_temperature_alarm
   - failed_outside_air_temperature_alarm
   - ventilation_request_count
+  - return_air_flowrate_sensor
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
