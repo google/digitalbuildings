@@ -4116,6 +4116,9 @@ literals:
 - water_high_level_status:
   - ACTIVE
   - INACTIVE
+- water_high_level_alarm:
+  - ACTIVE
+  - INACTIVE
 - water_leak_alarm:
   - ACTIVE
   - INACTIVE
@@ -4136,6 +4139,9 @@ literals:
     fixed_min: 0.0
     flexible_max: 5.08001016
 - water_low_level_status:
+  - ACTIVE
+  - INACTIVE
+- water_low_level_alarm:
   - ACTIVE
   - INACTIVE
 - water_riser_mode:
