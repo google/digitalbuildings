@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# General Types
+########################
+### Canonical Types  ###
+########################
 
 
 FACP_STD:
@@ -26,6 +28,14 @@ FACP_STD:
   opt_uses:
   - master_alarm
 
+FACP_FA:
+  guid: "b1b7d950-a039-422d-a773-c83922e48484"
+  description: "Basic fire alarm panel."
+  is_canonical: true
+  implements:
+  - FACP
+  - FA
+
 FACP_FA2X:
   guid: "a29a1bdd-0f8c-498e-b4ed-d09789f2487c"
   description: "Fire alarm panel with 2 fire alarm alertness and a fire fault status"
@@ -33,8 +43,6 @@ FACP_FA2X:
   implements:
   - FACP
   - FA2X
-  opt_uses:
-  - panel_alarm
 
 FACP_PAS:
   guid: "34d56a9a-15ca-4921-a851-eb13c7be7dfd"
@@ -42,13 +50,7 @@ FACP_PAS:
   is_canonical: true
   implements:
   - FACP
-  uses:
-  - fire_alarm
-  - supervisor_alarm
-  - water_flowrate_status
-  - air_pressure_status
-  opt_uses:
-  - master_alarm
+  - PAS
 
 FACP_ASD:
   guid: "3f21bbad-15ad-4253-982d-fed1324543d3"
@@ -56,8 +58,4 @@ FACP_ASD:
   is_canonical: true
   implements:
   - FACP
-  opt_uses:
-  - low_smoke_intensity_alarm
-  - medium_smoke_intensity_alarm
-  - fire_alarm
-  - master_alarm
+  - ASD

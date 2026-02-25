@@ -14,13 +14,6 @@
 
 # General Types
 
-SD:
-  guid: "e6a159e2-505e-43ad-8411-382f5ee46de9"
-  description: "Smoke detector."
-  is_abstract: true
-  implements:
-  - SENSOR
-
 FACP:
   guid: "0aebbaf1-0112-453e-9eae-83d3ac962a9d"
   description: "Fire alarm control panel."

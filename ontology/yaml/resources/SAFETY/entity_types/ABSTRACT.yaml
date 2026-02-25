@@ -14,19 +14,19 @@
 
 ### ABSTRACT TYPES
 
-GASDET:
-  guid: "38f79492-74f8-4a6b-b87f-27bd9a3b8442"
+GASLA:
+  guid: "2f10c175-67ea-4624-84ec-c8ca5ac2861e"
   description: "Basic natural gas leak monitoring."
   is_abstract: true
   uses:
-  - gas_leak_detection_alarm
+  - gas_leak_alarm
 
-NHDET:
-  guid: "828db562-44c2-4c7c-b59b-6dbb45eae334"
+NHLA:
+  guid: "20a3ed1a-7854-47a2-8852-a0a792369447"
   description: "Basic ammonia gas leak monitoring"
   is_abstract: true
   uses:
-  - ammonia_leak_detection_alarm
+  - ammonia_leak_alarm
 
 H2M:
   guid: "7101fcfa-3143-467e-88a3-356259be5941"
@@ -36,13 +36,7 @@ H2M:
   - zone_air_h2_concentration_sensor
   opt_uses:
   - high_zone_air_h2_concentration_alarm
-
-WLDS:
-  guid: "6530f835-51a6-45c0-9130-382c297c2a01"
-  description: "Basic water leak monitoring."
-  is_abstract: true
-  uses:
-  - water_leak_detection_alarm
+  - failed_alarm
 
 BCM:
   guid: "3a316bed-1a5a-4a36-86bf-32743da1624c"
@@ -72,6 +66,8 @@ WLA:
   is_abstract: true
   uses:
   - water_leak_alarm
+  opt_uses:
+  - failed_alarm
 
 WLA2X:
   guid: "56b8fea6-c32a-40a2-af68-4b34913f25c0"
@@ -81,10 +77,52 @@ WLA2X:
   - water_leak_alarm_1
   - water_leak_alarm_2
 
-FA2X:
-  guid: "5010bcf9-f4c8-4884-8f5c-a6261b14699e"
+ASD:
+  guid: "2b92cc9e-8e78-4eb1-9aed-302174f9b712"
+  description: "Aspirating alarm monitoring."
+  is_abstract: true
+  opt_uses:
+  - master_alarm
+  - supervisor_alarm
+  - panel_alarm
+  uses:
+  - low_smoke_intensity_alarm
+  - medium_smoke_intensity_alarm
+  - fire_alarm
+
+PAS:
+  guid: "c495a70b-8389-476a-b103-dbf86ab7e478"
+  description: "Fire alarm monitoring with pre-action suppression."
+  is_abstract: true
+  opt_uses:
+  - master_alarm
+  - supervisor_alarm
+  - panel_alarm
+  uses:
+  - fire_alarm
+  - water_flowrate_status
+  - air_pressure_status
+
+FA:
+  guid: "505db344-eca2-431e-a2a2-e1002490db38"
   description: "Fire alarm monitoring."
   is_abstract: true
+  opt_uses:
+  - master_alarm
+  - supervisor_alarm
+  - panel_alarm
+  uses:
+  - fire_alarm
+
+FA2X:
+  guid: "5010bcf9-f4c8-4884-8f5c-a6261b14699e"
+  description: "Dual fire alarm monitoring."
+  is_abstract: true
+  opt_uses:
+  - master_alarm
+  - supervisor_alarm
+  - panel_alarm
+  - gas_release_valve_status
   uses:
   - fire_alarm_1
   - fire_alarm_2
@@ -109,3 +147,33 @@ REFM:
   is_abstract: true
   implements:
   - /REFM
+
+EM:
+  guid: "7ee404e1-587e-4f7f-9722-09bad5599e70"
+  description: "Emergency alarm monitoring."
+  is_abstract: true
+  uses:
+  - emergency_alarm
+
+PM:
+  guid: "f559f8cc-aee8-4464-811f-9a699f9164b1"
+  description: "Panel alarm monitoring."
+  is_abstract: true
+  uses:
+  - panel_alarm
+
+TM:
+  guid: "34e861d6-6e6c-4dcc-9f9c-7337ff833dc0"
+  description: "Tranducer failure alarm monitoring."
+  is_abstract: true
+  uses:
+  - transducer_failed_alarm
+
+SM:
+  guid: "6386d6f6-4251-447a-a965-909f834eae33"
+  description: "Seismic alarm monitoring."
+  is_abstract: true
+  uses:
+  - seismic_alarm
+  opt_uses:
+  - failed_alarm
