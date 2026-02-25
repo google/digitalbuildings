@@ -238,6 +238,7 @@ HWS_SS_WDT:
   - control_status
 
 HWS_WDPC_WDT:
+  guid: "b17abbf1-755e-4abd-b79f-988afc9745cf"
   description: "Heating water system with temperature reading between return/supply water and differential pressure control"
   is_canonical: true
   implements:

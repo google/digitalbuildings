@@ -27,6 +27,7 @@ BLR_SS_SWTC_CPC:
   - CPC
 
 BLR_SS_SWTM_CPC:
+  guid: "ebd95aa6-1608-43d6-8a1f-99d425861e3f"
   description: "Simple boiler with onboard circulation pump and supply water temperature monitoring."
   is_canonical: true
   implements:

@@ -323,6 +323,7 @@ measurement:
   massflow: "Movement of fluids down a pressure or temperature gradient."
   obscuration: "Degree of shading."
   percentage: "Measurement per hundred."
+  performanceratio: "Ratio of input power to delivered/output power or thermal capacity. Commonly used to assess the efficiency of cooling systems such as chillers, usually expressed in kilowatts per tons of refrigeration, where lower values indicate better performance."
   ph: "pH (potential of hydrogen) measure of how acidic or basic water is."
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
