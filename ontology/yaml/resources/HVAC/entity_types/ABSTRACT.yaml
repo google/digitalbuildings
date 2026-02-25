@@ -5432,7 +5432,6 @@ CLPM:
   - cooling_thermal_energy_accumulator
   - cooling_thermal_power_capacity
   - cooling_performanceratio_sensor
-  - cooling_thermalefficiency_sensor
   - power_sensor
   implements:
   - MONITORING
