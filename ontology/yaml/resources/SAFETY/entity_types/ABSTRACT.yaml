@@ -37,6 +37,14 @@ H2M:
   opt_uses:
   - high_zone_air_h2_concentration_alarm
 
+HS:
+  guid: "236643bd-992c-4e12-93ac-b90aaa77478d"
+  description: "Horn strobe monitoring"
+  is_abstract: true
+  uses:
+  - strobe_run_status
+  - horn_run_status
+
 WLDS:
   guid: "6530f835-51a6-45c0-9130-382c297c2a01"
   description: "Basic water leak monitoring."
