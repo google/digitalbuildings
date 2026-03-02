@@ -49,6 +49,13 @@ HS:
   implements:
   - EQUIPMENT
 
+COHS:
+  guid: "e9fba3d0-a64a-413e-b225-e3b0b76c2cc7"
+  description: "Carbon monoxide horn strobe."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 BGU:
   guid: "549385fa-f484-4da2-8f92-4ef9d843a849"
   description: "Emergency break-glass unit."
