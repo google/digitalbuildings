@@ -42,7 +42,7 @@ FD:
   implements:
   - EQUIPMENT
 
-HS:
+FHS:
   guid: "a02c0de0-e626-4b5f-872f-87ba641b4375"
   description: "Fire system horn strobe."
   is_abstract: true
