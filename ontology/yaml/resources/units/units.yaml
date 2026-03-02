@@ -481,8 +481,6 @@ thermalconductivity:
   watts_per_meter_per_kelvin: STANDARD
 thermalcapacity:
   btus_per_pound: STANDARD
-thermalefficiency:
-  kilowatts_per_ton: STANDARD
 thermaltransmittance:
   watts_per_square_meter_kelvin: STANDARD
 time:
