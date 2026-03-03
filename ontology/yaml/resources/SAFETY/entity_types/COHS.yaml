@@ -14,10 +14,10 @@
 
 ### ABSTRACT TYPES
 
-COHS_HS:
+COHS_HSM:
   guid: "30a1442d-4996-4f54-82d6-01d4894a233b"
   description: "Standard carbon monoxide horn strobe."
   is_canonical: true
   implements:
   - COHS
-  - HS
+  - HSM
