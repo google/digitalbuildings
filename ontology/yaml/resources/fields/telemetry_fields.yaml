@@ -2065,6 +2065,9 @@ literals:
 - high_zone_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- horn_run_status:
+  - ON
+  - OFF
 - hot_aisle_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 322.037037
@@ -3711,6 +3714,9 @@ literals:
 - steam_volume_accumulator:
     flexible_min: 0.0
     flexible_max: 318000
+- strobe_run_status:
+  - ON
+  - OFF
 - suction_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
