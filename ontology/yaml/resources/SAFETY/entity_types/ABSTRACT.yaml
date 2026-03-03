@@ -37,7 +37,7 @@ H2M:
   opt_uses:
   - high_zone_air_h2_concentration_alarm
 
-HS:
+HSM:
   guid: "236643bd-992c-4e12-93ac-b90aaa77478d"
   description: "Horn strobe monitoring"
   is_abstract: true
