@@ -14,20 +14,20 @@
 
 ### ABSTRACT TYPES
 
-FHS_HS:
+FHS_HSM:
   guid: "502e5b54-bcfb-4d1c-beb6-35135f2cb50d"
   description: "Standard fire horn strobe."
   is_canonical: true
   implements:
   - FHS
-  - HS
+  - HSM
 
-FHS_HS_EALM:
+FHS_HSM_EALM:
   guid: "2872bc24-2c0f-4695-b4f2-8455880e3471"
   description: "Fire horn strobe with emergency alarm."
   is_canonical: true
   implements:
   - FHS
-  - HS
+  - HSM
   uses:
   - emergency_alarm
