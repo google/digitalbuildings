@@ -4224,9 +4224,6 @@ literals:
 - water_level_sensor:
     fixed_min: 0
     flexible_max: 1000
-- water_level_percentage_sensor:
-    fixed_min: 0
-    flexible_max: 100
 - water_level_status:
   - HIGH
   - MEDIUM

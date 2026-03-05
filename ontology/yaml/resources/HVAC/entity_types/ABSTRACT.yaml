@@ -365,7 +365,6 @@ DSP:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_occupancy_status
-  - user_occupancy_override_status
   - cooling_request_count
   - heating_request_count
   - warmup_request_count
@@ -6557,10 +6556,10 @@ CHDXSC:
   is_abstract: true
   opt_uses:
   - chilled_return_water_temperature_sensor
+  - cooling_performanceratio_sensor
   - compressor_speed_frequency_sensor
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
-  - cooling_thermalefficiency_sensor
   - compressor_current_sensor
   - compressor_voltage_sensor
   - cooling_percentage_command
@@ -6640,7 +6639,6 @@ CHDXVSC2XSC:
   - compressor_run_status_2
   - compressor_speed_percentage_sensor_1
   - compressor_speed_percentage_sensor_2
-  - compressor_speed_percentage_sensor
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
   opt_uses:
