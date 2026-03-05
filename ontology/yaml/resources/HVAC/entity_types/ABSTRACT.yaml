@@ -2057,7 +2057,6 @@ ED:
   - run_command
   - schedule_run_command
   - low_exhaust_air_flowrate_alarm
-  - high_exhaust_air_flowrate_alarm
   - pressurization_request_count
   uses:
   - exhaust_air_damper_percentage_command
@@ -6267,8 +6266,6 @@ CHGRWISOVM:
   guid: "82e4cece-5b3b-43ed-982f-2b05a2d4e772"
   description: "Glycol return side isolation valve control."
   is_abstract: true
-  opt_uses:
-  - failed_return_glycol_isolation_valve_alarm
   uses:
   - return_glycol_isolation_valve_command
   - return_glycol_isolation_valve_status
@@ -8892,9 +8889,6 @@ EAIDC:
   - exhaust_air_isolation_damper_status
   implements:
   - MONITORING
-  opt_uses:
-  - failed_exhaust_air_isolation_damper_alarm
-  - exhaust_air_isolation_damper_percentage_sensor
 
 DAIDC:
   guid: "35f6ae55-3f74-4fcc-bfb2-3412670f8d60"

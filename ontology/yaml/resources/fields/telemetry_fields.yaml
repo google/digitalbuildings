@@ -787,9 +787,6 @@ literals:
 - discharge_air_isolation_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- exhaust_air_isolation_damper_percentage_sensor:
-    fixed_min: 0.0
-    fixed_max: 100.0
 - discharge_air_isolation_damper_status:
   - OPEN
   - CLOSED
@@ -1059,12 +1056,6 @@ literals:
 - low_exhaust_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
-- high_exhaust_air_flowrate_alarm:
-  - ACTIVE
-  - INACTIVE
-- failed_exhaust_air_isolation_damper_alarm:
-  - ACTIVE
-  - INACTIVE
 - exhaust_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 23.59737216
@@ -1163,9 +1154,6 @@ literals:
 - failed_chilled_return_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
-- failed_return_glycol_isolation_valve_alarm:
-  - ACTIVE
-  - INACTIVE
 - failed_chilled_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -1191,9 +1179,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_chilled_water_valve_alarm:
-  - ACTIVE
-  - INACTIVE
-- failed_chilled_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
 - failed_circuitbreaker_alarm:
@@ -1587,21 +1572,9 @@ literals:
 - glycol_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
-- glycol_flowrate_sensor:
-    flexible_min: -0.000315451
-    flexible_max: 0.315451
 - glycol_valve_percentage_command:
     fixed_min: 0
     fixed_max: 100
-- glycol_valve_percentage_sensor:
-    fixed_min: 0
-    fixed_max: 100
-- glycol_leak_alarm:
-  - ACTIVE
-  - INACTIVE
-- failed_glycol_valve_alarm:
-  - ACTIVE
-  - INACTIVE
 - high_return_glycol_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -1931,9 +1904,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_defrost_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
-- high_chilled_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
 - high_differential_pressure_alarm:
@@ -3236,9 +3206,6 @@ literals:
 - process_water_isolation_valve_command:
   - OPEN
   - CLOSED
-- process_water_isolation_valve_status:
-  - OPEN
-  - CLOSED
 - process_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -3246,12 +3213,6 @@ literals:
   - OPEN
   - CLOSED
 - process_return_water_isolation_valve_status:
-  - OPEN
-  - CLOSED
-- process_supply_water_isolation_valve_command:
-  - OPEN
-  - CLOSED
-- process_supply_water_isolation_valve_status:
   - OPEN
   - CLOSED
 - production_differential_pressure_sensor:
@@ -3317,9 +3278,6 @@ literals:
     flexible_min: 0.0
     flexible_max: 2068427.367
 - refrigerant_evaporator_saturation_temperature_sensor:
-    flexible_min: 255.9259259
-    flexible_max: 422.037037
-- refrigerant_level_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
 - refrigerant_high_pressure_status:
