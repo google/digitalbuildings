@@ -1289,7 +1289,7 @@ CH_VSC_CHWDT_CWDT_CHDXSC_CHWSWISOVPM_CWSWISOVPM_REFPM_REFSM_OTPM_IGM:
   - OTPM
   - IGM
 
-CH_SS_CSWTC_CHDXVSC2X_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
+CH_SS_CSWTC_CHDXVSC2XSC_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
   guid: "77f6e195-edb5-48ac-8605-b74653a16d3c"
   description: "Water cooled chiller with condensing supply water temperature control, dual compressor variable speed control, chilled water return isolation, condenser water supply isolation, and refrigerant monitoring."
   is_canonical: true
@@ -1297,7 +1297,7 @@ CH_SS_CSWTC_CHDXVSC2X_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
   - CH
   - SS
   - CSWTC
-  - CHDXVSC2X
+  - CHDXVSC2XSC
   - CHWRWISOVPM
   - CWSWISOVPM
   - RCKTM2X

@@ -536,13 +536,6 @@ EDPM3X:
   - exhaust_air_damper_percentage_sensor_1
   - exhaust_air_damper_percentage_sensor_2
   - exhaust_air_damper_percentage_sensor_3
-  opt_uses:
-  - exhaust_air_damper_percentage_command_1
-  - exhaust_air_damper_percentage_command_2
-  - exhaust_air_damper_percentage_command_3
-  - failed_exhaust_air_damper_alarm_1
-  - failed_exhaust_air_damper_alarm_2
-  - failed_exhaust_air_damper_alarm_3
   implements:
   - MONITORING
 
@@ -2720,8 +2713,6 @@ FDPSM:
   implements:
   - MONITORING
 
-# Glycol valve control
-
 GDC:
   guid: "2f73916e-9c4b-45ff-8e75-f600c08cf9df"
   description: "Glycol valve control on discharge side."
@@ -2732,8 +2723,6 @@ GDC:
   - discharge_air_temperature_setpoint
   implements:
   - CONTROL
-
-# Chilled water valve control
 
 CHWDC:
   guid: "f312b9f0-a690-4d32-97ad-7f59aac34bab"
@@ -6616,19 +6605,10 @@ CHDXVSC2X:
   opt_uses:
   - compressor_speed_frequency_sensor_1
   - compressor_speed_frequency_sensor_2
-  - compressor_rotationalvelocity_sensor_1
-  - compressor_rotationalvelocity_sensor_2
-  - cooling_percentage_command
-  - chilled_supply_water_temperature_sensor
-  - chilled_supply_water_temperature_setpoint
-  - chilled_return_water_temperature_sensor
-  - chilled_return_water_temperature_setpoint
-  - compressor_current_sensor_1
-  - compressor_current_sensor_2
 
 CHDXVSCSC:
   guid: "cec49b31-2517-4ec5-a746-ddfa8ae30228"
-  description: "Variable speed compressor control (updated version of CHDXVSC to include what the compressor is controlling to - chilled water temperature)."
+  description: "Variable speed compressor control on supply water side."
   is_abstract: true
   uses:
   - compressor_run_command
@@ -6648,6 +6628,29 @@ CHDXVSCSC:
   - compressor_speed_percentage_command
   - high_chilled_supply_water_temperature_alarm
   - low_chilled_supply_water_temperature_alarm
+
+CHDXVSC2XSC:
+  description: "Dual variable speed compressor control on supply water side."
+  is_abstract: true
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_speed_percentage_sensor_1
+  - compressor_speed_percentage_sensor_2
+  - compressor_speed_percentage_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_temperature_setpoint
+  opt_uses:
+  - compressor_speed_frequency_sensor_1
+  - compressor_speed_frequency_sensor_2
+  - compressor_rotationalvelocity_sensor_1
+  - compressor_rotationalvelocity_sensor_2
+  - cooling_percentage_command
+  - chilled_return_water_temperature_sensor
+  - compressor_current_sensor_1
+  - compressor_current_sensor_2
 
 CDWFRM:
   guid: "b4cd6a63-df02-4c7b-bf81-3902cd827241"
