@@ -6094,15 +6094,6 @@ SFVSC4X:
   implements:
   - OPERATIONAL
 
-DWI:
-  guid: "322279cd-f8e4-445f-9f99-87ab4040e0de"
-  description: "Dishwasher-interlocked exhaust fan"
-  is_abstract: true
-  uses:
-  - dishwasher_run_status
-  implements:
-  - CONTROL
-
 BYPSSPC:
   guid: "1811cdec-15d7-4d1d-b819-f7673aa694c2"
   description: "Supply static pressure control with bypass damper."
@@ -8646,18 +8637,6 @@ CWRWISOVM:
   uses:
   - condensing_return_water_isolation_valve_command
   - condensing_return_water_isolation_valve_status
-  implements:
-  - MONITORING
-
-CWSWISOVM:
-  guid: "2b816ffe-a3e8-45a5-9ea5-98eef93aa72b"
-  description: "Condensing water supply side isolation valve monitoring."
-  is_abstract: true
-  opt_uses:
-  - failed_condensing_supply_water_isolation_valve_alarm
-  uses:
-  - condensing_supply_water_isolation_valve_command
-  - condensing_supply_water_isolation_valve_status
   implements:
   - MONITORING
 

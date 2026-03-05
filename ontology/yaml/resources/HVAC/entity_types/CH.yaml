@@ -1327,7 +1327,7 @@ CH_SS_DX12SWC_WDT:
   - DX12SWC
   - WDT
 
-CH_SS_PSWTC_PRWISOVM_CWSWISOVM:
+CH_SS_PSWTC_PRWISOVM_CWSISOVM:
   guid: "09fe62e9-5613-4b32-b2a6-5a5c12dc059b"
   description: "Water cooled process chiller with supply water temperature control, proces return water isolation and condensing supply water isolation."
   is_canonical: true
@@ -1336,9 +1336,9 @@ CH_SS_PSWTC_PRWISOVM_CWSWISOVM:
   - SS
   - PSWTC
   - PRWISOVM
-  - CWSWISOVM
+  - CWSISOVM
 
-CH_SS_SGTC_CHGRWISOVM_CWSWISOVM:
+CH_SS_SGTC_CHGRWISOVM_CWSISOVM:
   guid: "1de50746-9156-4af4-99ad-26149ebbb1d7"
   description: "Process glycol chiller with supply glycol temperature control, glycol return water isolation, and condensing supply water isolation."
   is_canonical: true
@@ -1347,7 +1347,7 @@ CH_SS_SGTC_CHGRWISOVM_CWSWISOVM:
   - SS
   - SGTC
   - CHGRWISOVM
-  - CWSWISOVM
+  - CWSISOVM
 
 ###################################
 ### Existing Non-standard Types ###
