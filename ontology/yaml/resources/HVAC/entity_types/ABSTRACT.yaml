@@ -6630,6 +6630,7 @@ CHDXVSCSC:
   - low_chilled_supply_water_temperature_alarm
 
 CHDXVSC2XSC:
+  guid: "4805c7c5-d7f1-4398-acf5-d0d79795a7d9"
   description: "Dual variable speed compressor control on supply water side."
   is_abstract: true
   uses:
