@@ -2191,26 +2191,6 @@ ZHC:
   implements:
   - OPERATIONAL
 
-ZHC2X:
-  guid: "c389cb01-cfa1-4aa0-96e6-7476baa3d533"
-  description: "Zone air minimum relative humidity control with two-stage humidifier."
-  is_abstract: true
-  opt_uses:
-  - humidification_percentage_command
-  - failed_humidifier_alarm_1
-  - failed_humidifier_alarm_2
-  - high_discharge_air_relative_humidity_alarm
-  - low_discharge_air_relative_humidity_alarm
-  uses:
-  - humidification_run_command_1
-  - humidification_run_command_2
-  - humidification_run_status_1
-  - humidification_run_status_2
-  - zone_air_humidification_relative_humidity_setpoint
-  - zone_air_relative_humidity_sensor
-  implements:
-  - OPERATIONAL
-
 RHC:
   guid: "8c138f85-254c-4b40-8e5c-d1183e7985c0"
   description: "Return air relative humidity control."
@@ -2271,24 +2251,6 @@ ZHDHC:
   uses:
   - dehumidification_run_command
   - humidification_run_command
-  - zone_air_relative_humidity_sensor
-  - zone_air_relative_humidity_setpoint
-  implements:
-  - CONTROL
-
-ZH2XDHC:
-  guid: "e38dc136-e2e6-46cf-a0b3-b1f777cec401"
-  description: "Zone humidification/dehumidification control with two-stage humidifier."
-  is_abstract: true
-  opt_uses:
-  - humidification_percentage_command
-  - failed_humidifier_alarm_1
-  - failed_humidifier_alarm_2
-  uses:
-  - dehumidification_run_command_1
-  - dehumidification_run_command_2
-  - humidification_run_command_1
-  - humidification_run_command_2
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
   implements:
@@ -2432,22 +2394,6 @@ EPC:
   uses:
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
-  opt_uses:
-  - exhaust_air_flowrate_sensor
-  - high_exhaust_air_static_pressure_alarm
-  - low_exhaust_air_static_pressure_alarm
-  implements:
-  - OPERATIONAL
-
-EPC2X:
-  guid: "859e413d-7e69-4da0-af67-fe82dfa499f1"
-  description: "Exhaust pressure control with two sensors."
-  is_abstract: true
-  uses:
-  - exhaust_air_static_pressure_sensor_1
-  - exhaust_air_static_pressure_setpoint_1
-  - exhaust_air_static_pressure_sensor_2
-  - exhaust_air_static_pressure_setpoint_2
   opt_uses:
   - exhaust_air_flowrate_sensor
   - high_exhaust_air_static_pressure_alarm
@@ -6410,16 +6356,6 @@ PWFRM:
   uses:
   - process_water_flowrate_sensor
 
-PWFRC:
-  guid: "d5d7a6c3-ec99-49e2-abdf-bc3c01858d9f"
-  description: "Process water flowrate control"
-  is_abstract: true
-  implements:
-  - MONITORING
-  uses:
-  - process_water_flowrate_sensor
-  - process_water_flowrate_setpoint
-
 PWFRM2X:
   guid: "7ee01573-42e1-4b4b-9dae-8c4950ce6e29"
   description: "Flowrate monitoring for 2 process water headers."
@@ -6625,47 +6561,6 @@ CHDX2SC:
   - compressor_run_command_2
   - compressor_run_status_1
   - compressor_run_status_2
-
-CHDX12SC:
-  guid: "e3aadf9c-0772-495f-84d7-ec7a6e0d8922"
-  description: "Chiller control on supply side with 12 compressors."
-  is_abstract: true
-  opt_uses:
-  - chilled_return_water_temperature_sensor
-  - compressor_speed_frequency_sensor
-  - compressor_speed_percentage_command
-  - compressor_speed_percentage_sensor
-  - cooling_percentage_command
-  - cooling_request_count
-  - cooling_thermal_power_capacity
-  uses:
-  - chilled_supply_water_temperature_sensor
-  - chilled_supply_water_temperature_setpoint
-  - compressor_run_command_1
-  - compressor_run_command_2
-  - compressor_run_command_3
-  - compressor_run_command_4
-  - compressor_run_command_5
-  - compressor_run_command_6
-  - compressor_run_command_7
-  - compressor_run_command_8
-  - compressor_run_command_9
-  - compressor_run_command_10
-  - compressor_run_command_11
-  - compressor_run_command_12
-  - compressor_run_status_1
-  - compressor_run_status_2
-  - compressor_run_status_3
-  - compressor_run_status_4
-  - compressor_run_status_5
-  - compressor_run_status_6
-  - compressor_run_status_7
-  - compressor_run_status_8
-  - compressor_run_status_9
-  - compressor_run_status_10
-  - compressor_run_status_11
-  - compressor_run_status_12
-
 
 CHDXSC:
   guid: "cc5a8afe-0752-4b8d-846a-5848bf056ddd"
@@ -7051,21 +6946,6 @@ DRPM:
   - drain_pump_run_status
   implements:
   - MONITORING
-
-BPM:
-  guid: "5ec3532a-fa9a-4845-9153-0d709e80f4ea"
-  description: "Basin pump monitoring."
-  is_abstract: true
-  opt_uses:
-  - input_motor_power_status
-  - water_high_level_status
-  - water_low_level_status
-  - failed_drain_pump_alarm
-  uses:
-  - drain_pump_run_status
-  implements:
-  - MONITORING
-
 
 SDM:
   guid: "40dc57c7-1efd-483d-a2c0-46077595b2b8"
@@ -8734,15 +8614,6 @@ TDTM:
   uses:
   - entering_water_tank_temperature_sensor
   - leaving_water_tank_temperature_sensor
-  implements:
-  - MONITORING
-
-WTFLM:
-  guid: "fe26bf2c-5639-4703-bbf7-36c25f741e2d"
-  description: "Water tank fill level monitoring."
-  is_abstract: true
-  uses:
-  - water_level_percentage_sensor
   implements:
   - MONITORING
 
@@ -10814,30 +10685,6 @@ CHWBZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
-
-PWBRTC:
-  guid: "80a0e7a9-f4fb-4347-b740-c7b650d6b9bc"
-  description: "Process water valve binary (open/closed) control on the return side."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - process_return_water_isolation_valve_command
-  - process_return_water_isolation_valve_status
-  opt_uses:
-  - failed_process_return_water_isolation_valve_alarm
-
-PWBSTC:
-  guid: "85deb96b-7357-44c5-9de0-d9a169d26a73"
-  description: "Process water valve binary (open/closed) control on the supply side."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - process_supply_water_isolation_valve_command
-  - process_supply_water_isolation_valve_status
-  opt_uses:
-  - failed_process_supply_water_isolation_valve_alarm
 
 REFSTC2X:
   guid: "82a2f713-a6b8-4b0b-814d-e75c5b1d0df1"
