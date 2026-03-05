@@ -96,8 +96,6 @@ distance:
   inches:
     multiplier: 0.0254
     offset: 0
-thermalefficiency:
-  kilowatts_per_ton: STANDARD
 electriccapacitance:
   farads: STANDARD
 electricconductance:
@@ -336,6 +334,11 @@ obscuration:
     offset: 0
 percentage:
   percent: STANDARD
+performanceratio:
+  watts_per_watts: STANDARD
+  kilowatts_per_tons_of_refrigeration:
+    multiplier: 0.284333
+    offset: 0
 power:
   watts: STANDARD
   kilowatts:

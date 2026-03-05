@@ -430,6 +430,24 @@ HX_HWDT_PRWISOVPM_PSWTC_SHWISOVPM:
   - PSWTC
   - SHWISOVPM
 
+HX_SDHWTC_HWSWISOVPM:
+  guid: "0244f310-65df-47b1-b3ad-bbf91f1ee22c"
+  description: "Domestic hot water heat exchanger with mechanically heated hot water. Domestic hot water temperature control and supply hot water valve control"
+  is_canonical: true
+  implements:
+  - HX
+  - SDHWTC
+  - HWSWISOVPM
+
+HX_SDHWTC_HWSWISOVPM:
+  guid: "0244f310-65df-47b1-b3ad-bbf91f1ee22c"
+  description: "Domestic hot water heat exchanger with mechanically heated hot water. Domestic hot water temperature control and supply hot water valve control"
+  is_canonical: true
+  implements:
+  - HX
+  - SDHWTC
+  - HWSWISOVPM
+
 HX_CWDT_CHWDPM_CWSISOVM:
   guid: "1001f0f9-ffe6-401d-98e9-2dec3a6ade25"
   description: "Condensing/chilled water heat exchanger with chilled water differential temperature/pressure monitoring and condensing water supply isolation."
