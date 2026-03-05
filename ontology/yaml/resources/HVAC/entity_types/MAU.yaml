@@ -1096,6 +1096,7 @@ MAU_DFVSC_DSPM_CHWDDC_OAMC_OA:
   - OA
 
 MAU_DFVSC_ECCDC_OA:
+  guid: "d133fc3a-5d06-420f-a3ea-33067138aeb4"
   description: "Mau with discharge fan variable speed control, evaporative cooling control, and outside air monitoring."
   is_canonical: true
   implements:
@@ -1105,6 +1106,7 @@ MAU_DFVSC_ECCDC_OA:
   - OA
 
 MAU_DFVSC_SFM:
+  guid: "afd1e19b-7928-4374-a7ef-41cf9420553a"
   description: "Mau with discharge fan variable speed control and supply air flowrate monitoring ."
   is_canonical: true
   implements:
