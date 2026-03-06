@@ -288,7 +288,7 @@ CDWS_SWTC_WFRM_MWFRM_BWFRM:
 
 CDWS_RWTC_BWFRM_BYPVPM_MWFRM:
   guid: "0a7cc7b1-86b3-4b3c-a271-030013c26666"
-  description: "Condensing water system with return water temperature control, blowdown and makeup water flowrate control, and bypass valve."
+  description: "Condensing water system with return water temperature control, blowdown and makeup water flowrate monitoring, and bypass valve."
   is_canonical: true
   implements:
   - CDWS
@@ -299,7 +299,7 @@ CDWS_RWTC_BWFRM_BYPVPM_MWFRM:
 
 CDWS_SWTC_BWFRM_MWFRM:
   guid: "ba436668-4de6-4a52-9f34-9eb9c254d3eb"
-  description: "Condensing water system with supply water temperature control, blowdown and makeup water flowrate control."
+  description: "Condensing water system with supply water temperature control, blowdown and makeup water flowrate monitoring."
   is_canonical: true
   implements:
   - CDWS

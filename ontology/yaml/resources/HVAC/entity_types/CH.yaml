@@ -332,7 +332,6 @@ CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   - CHWRWISOVM
   - IGM
 
-
 CH_SS_SCHWTC_CWDT_WDPM_REFSM_REFPM_CHDXSC_CHWRWISOVM_IGM:
   guid: "74bda35f-625f-4472-947e-b9d10a4d2d3f"
   description: "Water-cooled chiller with refrigerant pressure and temperature monitoring."
@@ -630,7 +629,6 @@ CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
   - SWISOVM
   - REFPM
 
-
 CH_SS_SWTC_REFSM2X_SWISOVM:
   guid: "9a0447b5-bbf6-4165-91f8-8ba9667ece90"
   description: "Air-cooled chiller with two-circuit refrigerant temperature monitoring."
@@ -793,7 +791,6 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   - REFPM
   - IGM
   - DXSWC
-
 
 CH_SS_SCHWTC_CHDXSC_CHWDPM_CHWFRM_CHWRWISOVM_CWDT_CDWFRM_CWRISOVM_REFPM_IGM:
   guid: "661834a3-a83f-4f31-94a6-08b0c82992f5"
@@ -1289,7 +1286,7 @@ CH_VSC_CHWDT_CWDT_CHDXSC_CHWSWISOVPM_CWSWISOVPM_REFPM_REFSM_OTPM_IGM:
   - OTPM
   - IGM
 
-CH_SS_CSWTC_CHDXVSC2XSC_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
+CH_SS_CSWTC_CHDX2SC_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
   guid: "77f6e195-edb5-48ac-8605-b74653a16d3c"
   description: "Water cooled chiller with condensing supply water temperature control, dual compressor variable speed control, chilled water return isolation, condenser water supply isolation, and refrigerant monitoring."
   is_canonical: true
@@ -1297,12 +1294,12 @@ CH_SS_CSWTC_CHDXVSC2XSC_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
   - CH
   - SS
   - CSWTC
-  - CHDXVSC2XSC
+  - CHDX2SC
   - CHWRWISOVPM
   - CWSWISOVPM
   - RCKTM2X
 
-CH_SS_CWDT_CHDXVSCSC_CHWRWISOVPM_CWSWISOVPM_REFPM_OTPM_IGM:
+CH_SS_CWDT_CHDXSC_CHWRWISOVPM_CWSWISOVPM_REFPM_OTPM_IGM:
   guid: "2ce93106-0d77-450d-b2d6-649f212b761f"
   description: "Water cooled chiller with condensing water temperature differential monitoring,  supply water temperature compressor variable speed control, chilled return isolation, condensing supply isolation, refrigerant pressure monitoring, oil temperature and pressure monitoring, and inlet guidevane monitoring."
   is_canonical: true
@@ -1310,7 +1307,7 @@ CH_SS_CWDT_CHDXVSCSC_CHWRWISOVPM_CWSWISOVPM_REFPM_OTPM_IGM:
   - CH
   - SS
   - CWDT
-  - CHDXVSCSC
+  - CHDXSC
   - CHWRWISOVPM
   - CWSWISOVPM
   - REFPM
@@ -1319,7 +1316,7 @@ CH_SS_CWDT_CHDXVSCSC_CHWRWISOVPM_CWSWISOVPM_REFPM_OTPM_IGM:
 
 CH_SS_DX12SWC_WDT:
   guid: "4775a12a-5d14-4566-b594-ccdb71b601cd"
-  description: "Air cooled chiller with  supply water 12-stage compressor control and water temperature differential monitoring."
+  description: "Air cooled chiller with supply water 12-stage compressor control and water temperature differential monitoring."
   is_canonical: true
   implements:
   - CH
@@ -1338,7 +1335,7 @@ CH_SS_PSWTC_PRWISOVM_CWSISOVM:
   - PRWISOVM
   - CWSISOVM
 
-CH_SS_SGTC_CHGRWISOVM_CWSISOVM:
+CH_SS_SGTC_GRISOVM_CWSISOVM:
   guid: "1de50746-9156-4af4-99ad-26149ebbb1d7"
   description: "Process glycol chiller with supply glycol temperature control, glycol return water isolation, and condensing supply water isolation."
   is_canonical: true
@@ -1346,91 +1343,9 @@ CH_SS_SGTC_CHGRWISOVM_CWSISOVM:
   - CH
   - SS
   - SGTC
-  - CHGRWISOVM
+  - GRISOVM
   - CWSISOVM
 
 ###################################
 ### Existing Non-standard Types ###
 ###################################
-
-CH_SS_SWTC_DX4SWC_SWISOVPM_NONCANONICAL_1:
-  guid: "d4bef12c-c41b-4ba8-9d06-035e9e9ba431"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SWTC_DX4SWC_SWISOVPM
-  - INCOMPLETE
-
-CH_SS_SWTC_NONCANONICAL_1:
-  guid: "ae202987-6078-455c-8ee0-dfe43e223329"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - cooling_percentage_sensor
-
-CH_SS_SCHWTC_CWDT_NONCANONICAL_1:
-  guid: "30db6609-b1e4-40ac-8d03-12d38d41a64d"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SCHWTC_CWDT
-  - INCOMPLETE
-  uses:
-  - cooling_percentage_sensor
-
-CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
-  guid: "48f951c0-42ca-4714-a3ef-e384fa1485d2"
-  description: "Non-standard type."
-  is_canonical: false
-  implements:
-  - CH
-  - SS
-  - CHWDT
-  - CWDT
-  - CWDPM
-  - CHWDPM
-  - REFM
-
-CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
-  guid: "d6b6a0e5-a5a1-4634-9792-0ba39cb3e1fd"
-  description: "Non-standard type."
-  is_canonical: false
-  implements:
-  - CH
-  - SS
-  - CHWDT2X
-  - CWDT
-  - CWDPM
-  - CHWDPM
-  - REFM
-
-CH_SS_CHWDT:
-  guid: "471edb03-6731-4fe3-862e-c7ab9825e7e9"
-  description: "Non-standard chiller."
-  implements:
-  - CH
-  - INCOMPLETE
-  - SS
-  - CHWDT
-  opt_uses:
-  - lost_power_alarm
-  - run_mode
-
-CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
-  guid: "bec266d2-2046-4142-a55a-fb7917d6d74f"
-  description: "Non standard chiller with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status "
-  implements:
-  - CH
-  - SS
-  - CHWSWISOVM
-  - CWSISOVM
-  - CWRISOVM
-  - CHWRWISOVM
-  - CHWDT
-  uses:
-  - chilled_water_flowrate_status
-  - condensing_water_flowrate_status
-  - condensing_supply_water_temperature_sensor
-  opt_uses:
-  - lost_power_alarm
-  - run_mode

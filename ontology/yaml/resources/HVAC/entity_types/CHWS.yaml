@@ -711,7 +711,7 @@ CHWS_SWTC_WDPC2X_WSEBYPVPM_WFRM:
 
 CHWS_SWTC_WDPC_SWPC_WFRM_FDPM3X_UVFDPM_PLWVERC:
   guid: "8cbfe4ba-7f6a-4d73-8719-32f2507ddee2"
-  description: ""
+  description: "Chilled water system wiuth supply water temperature control, differential pressure control, supply water pressure control, flowrate monitoring, 3x differential pressure monitoring, UV filter differential pressure monitoring, and water polishing system."
   is_canonical: true
   implements:
   - CHWS
@@ -725,7 +725,7 @@ CHWS_SWTC_WDPC_SWPC_WFRM_FDPM3X_UVFDPM_PLWVERC:
 
 CHWS_SWTC_WDPC_MINFC_MCBYPVM_WSEBYPVPM_CLPM:
   guid: "06a7f0e3-9c89-4da8-9a03-3b8f08d2dfb8"
-  description: ""
+  description: "Chilled water system with supply water temperature control, differential pressure control, minimum flowrate control, mechanical cooling and economizer bypass and cooling thermal power monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -738,7 +738,7 @@ CHWS_SWTC_WDPC_MINFC_MCBYPVM_WSEBYPVPM_CLPM:
 
 CHWS_SWTC_MINFC_SWPC:
   guid: "968bbf1c-e251-4c42-99c6-b690bb172c5f"
-  description: ""
+  description: "Chilled water system with supply water temperature control, minimum flowrate control, and supply water pressure control."
   is_canonical: true
   implements:
   - CHWS
@@ -818,13 +818,3 @@ CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM_NONCANONICAL_1:
   - return_water_isolation_valve_status
   - process_water_flowrate_setpoint
   - process_cooling_thermal_power_sensor
-
-CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
-  guid: "ba993791-6878-4e7b-91a1-d7c0aac04e6f"
-  description: "Non-standard type."
-  implements:
-  - CHWS_SWTC_WDPC_BYPVPM_WFRM
-  - INCOMPLETE
-  uses:
-  - production_differential_pressure_sensor
-  - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
