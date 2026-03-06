@@ -547,6 +547,15 @@ VAV_ED:
   - VAV
   - ED
 
+VAV_ED_EFSS:
+  guid: "9d946c96-da2a-4091-85de-2efb3fdfbcfb"
+  description: "Fan powered exhaust control VAV."
+  is_canonical: true
+  implements:
+  - VAV
+  - ED
+  - EFSS
+
 VAV_SD_DSP_CO2C2X:
   guid: "60aece88-09c0-4420-be6b-3c2ae6e36180"
   description: "Single duct VAV with two-zone CO2 control."

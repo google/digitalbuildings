@@ -451,3 +451,15 @@ HOOD:
   opt_uses:
   - failed_communication_alarm
   - fire_alarm
+
+CHGS:
+  description: "Tag for glycol systems. This tag represents the system itself but not other distinct equipment in the system; chillers and pumps should be modeled as their own standalone entities."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - thermal_power_capacity
+  - differential_pressure_specification
+  - flowrate_requirement
+  - cooling_request_count
+  - failed_communication_alarm

@@ -418,6 +418,9 @@ literals:
 - compressor_power_sensor:
     flexible_min: 0.0
     flexible_max: 10000000.0
+- compressor_rotationalvelocity_sensor:
+    fixed_min: 0.0
+    fixed_max: 4000
 - compressor_run_command:
   - ON
   - OFF
@@ -1311,8 +1314,8 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_leaving_air_preheating_coil_temperature_alarm:
-    - ACTIVE
-    - INACTIVE
+  - ACTIVE
+  - INACTIVE
 - failed_leaving_cooling_coil_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -1334,6 +1337,15 @@ literals:
 - failed_outside_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_polished_water_electricresistivity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_polished_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_polished_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_primary_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -1346,7 +1358,13 @@ literals:
 - failed_process_return_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
+- failed_process_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_process_supply_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_process_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - failed_process_water_diverting_valve_alarm:
@@ -1560,6 +1578,9 @@ literals:
 - glycol_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- glycol_valve_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
 - green_scene_dimmer_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1999,6 +2020,9 @@ literals:
 - high_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_return_glycol_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -2030,6 +2054,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_supply_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_supply_glycol_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - high_supply_water_temperature_alarm:
@@ -2379,6 +2406,9 @@ literals:
 - low_economizer_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- low_exhaust_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_exhaust_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
@@ -2499,6 +2529,9 @@ literals:
 - low_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- low_return_glycol_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -2533,6 +2566,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_supply_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_glycol_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - low_supply_water_temperature_alarm:
@@ -3005,6 +3041,27 @@ literals:
 - phase3_reactive_power_sensor:
     flexible_min: -30000.0
     flexible_max: 30000.0
+- polished_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- polished_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- polished_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- polished_water_electricresistivity_sensor:
+    flexible_min: 0.0
+    flexible_max: 180000 
+- polished_water_electricresistivity_setpoint:
+    flexible_min: 0.0
+    flexible_max: 180000 
+- polished_water_electricconductivity_sensor:
+    flexible_min: 0.0
+    flexible_max: 0.00055
+- polished_water_electricconductivity_setpoint:
+    flexible_min: 0.0
+    flexible_max: 0.00055
 - position_command:
   - OPEN
   - CLOSED
@@ -3131,12 +3188,18 @@ literals:
 - process_cooling_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
+- process_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
 - process_return_water_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - process_return_water_isolation_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- process_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - process_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
@@ -3410,7 +3473,16 @@ literals:
 - return_fan_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
+- return_glycol_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- return_glycol_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - return_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- return_glycol_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - return_water_changeover_valve_command:
@@ -4047,6 +4119,12 @@ literals:
 - transducer_failed_alarm:
   - ACTIVE
   - INACTIVE
+- ultraviolet_filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- ultraviolet_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0

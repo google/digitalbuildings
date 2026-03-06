@@ -569,6 +569,17 @@ HWS_SWTC_WDPC_MMHWDPC_WFRM:
   - MMHWDPC
   - WFRM
 
+HWS_SWTC_WDPC_WFRM_MINFC:
+  guid: "65b5e1b5-ee32-45f7-806f-c666cb27351a"
+  description: "Heating water system with supply temperature control, differential pressure control, flowrate monitoring and minimum flow control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - MINFC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
