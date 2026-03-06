@@ -438,7 +438,7 @@ literals:
 - compressor_speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- compressor_rotationalvelocity_sensor:
+- compressor_speed_rotationalvelocity_sensor:
     fixed_min: 0.0
     fixed_max: 4000
 - compressor_voltage_sensor:
@@ -1366,7 +1366,7 @@ literals:
   - INACTIVE
 - failed_process_water_differential_pressure_alarm:
   - ACTIVE
-  - INACTIVE 
+  - INACTIVE
 - failed_process_water_diverting_valve_alarm:
   - ACTIVE
   - INACTIVE

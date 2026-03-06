@@ -6379,8 +6379,8 @@ CHDX2SC:
   - compressor_speed_percentage_sensor_2
   - compressor_current_sensor_1
   - compressor_current_sensor_2
-  - compressor_rotationalvelocity_sensor_1
-  - compressor_rotationalvelocity_sensor_2
+  - compressor_speed_rotationalvelocity_sensor_1
+  - compressor_speed_rotationalvelocity_sensor_2
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint

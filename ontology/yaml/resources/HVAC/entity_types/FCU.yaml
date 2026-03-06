@@ -2224,7 +2224,7 @@ FCU_DFVSC_CHWRC_ZHC:
 
 FCU_DFVSC_DSP_CHWDC_HWDC_DSPZDHC2X:
   guid: "f7ab8b71-d5e8-4796-bdf7-337ca4026545"
-  description: "FCU with discharge fan variable speed control,"
+  description: "FCU with discharge fan variable speed control."
   is_canonical: true
   implements:
   - FCU
