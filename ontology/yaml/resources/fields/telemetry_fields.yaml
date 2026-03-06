@@ -418,6 +418,9 @@ literals:
 - compressor_power_sensor:
     flexible_min: 0.0
     flexible_max: 10000000.0
+- compressor_rotationalvelocity_sensor:
+    fixed_min: 0.0
+    fixed_max: 4000
 - compressor_run_command:
   - ON
   - OFF
@@ -438,9 +441,6 @@ literals:
 - compressor_speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- compressor_rotationalvelocity_sensor:
-    fixed_min: 0.0
-    fixed_max: 4000
 - compressor_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -1352,9 +1352,6 @@ literals:
 - failed_primary_supply_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
-- failed_process_supply_water_isolation_valve_alarm:
-  - ACTIVE
-  - INACTIVE
 - failed_primary_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -1362,6 +1359,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_process_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_process_supply_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - failed_process_water_differential_pressure_alarm:
@@ -3479,15 +3479,15 @@ literals:
 - return_glycol_isolation_valve_status:
   - OPEN
   - CLOSED
-- return_water_changeover_valve_command:
-  - OPEN
-  - CLOSED
 - return_glycol_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - return_glycol_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- return_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
 - return_water_changeover_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
