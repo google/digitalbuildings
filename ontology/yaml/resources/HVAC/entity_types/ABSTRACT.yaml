@@ -2327,6 +2327,7 @@ CREFM:
   - zone_air_temperature_sensor
 
 CREFC:
+  guid: "49a9076d-df9d-4ab9-9e38-9de7335f22ac"
   description: "Cold Room Refrigerator zone temperature control."
   is_abstract: true
   opt_uses:
