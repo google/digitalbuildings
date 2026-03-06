@@ -1105,15 +1105,6 @@ MAU_DFVSC_ECCDC_OA:
   - ECCDC
   - OA
 
-MAU_DFVSC_SFM:
-  guid: "afd1e19b-7928-4374-a7ef-41cf9420553a"
-  description: "Mau with discharge fan variable speed control and supply air flowrate monitoring ."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFVSC
-  - SFM
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################

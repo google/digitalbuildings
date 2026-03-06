@@ -432,6 +432,14 @@ FAN_SS_VSC_EFC:
   - VSC
   - EFC
 
+FAN_VSC_DFM:
+  description: "Fan with variable speed control and discharge flowrate monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - DFM
+
 FAN_SS_VSC_WDPC_STM_FDPSM4X:
   guid: "64f61c00-9987-4286-8df8-9155053ada33"
   description: "Fan with start/stop status, speed control with EC fan and filter status monitoring for purification"
@@ -834,7 +842,7 @@ FAN_SS_OACSP:
   - SS
   - OACSP
 
-FAN_VSC_EPC_EAIDC:
+FAN_VSC_EPC_EDM:
   guid: "97053704-c31a-4e0d-a137-d5725c86e929"
   description: "Fan with variable speed control, exhaust air static pressure control, and exhaust air isolation damper."
   is_canonical: true
@@ -842,7 +850,7 @@ FAN_VSC_EPC_EAIDC:
   - FAN
   - VSC
   - EPC
-  - EAIDC
+  - EDM
 
 ###################################
 ### Existing Non-standard Types ###

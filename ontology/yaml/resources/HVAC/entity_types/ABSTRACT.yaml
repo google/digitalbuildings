@@ -5172,20 +5172,20 @@ PWECVC:
 
 PLWVERC:
   guid: "1a9e90cc-f082-4dc9-8e80-09d20683fee9"
-  description: "Polishing water treatment system valve electricconductivity or electricresistivity control."
+  description: "Water polishing treatment system valve electricconductivity or electricresistivity control."
   is_abstract: true
   uses:
-  - polishing_water_isolation_valve_command
+  - polished_water_isolation_valve_command
   opt_uses:
-  - polishing_water_isolation_valve_status
-  - polishing_water_flowrate_sensor
-  - polishing_water_electricresistivity_sensor
-  - polishing_water_electricresistivity_setpoint
-  - polishing_water_electricconductivity_sensor
-  - polishing_water_electricconductivity_setpoint
-  - failed_polishing_water_electricresistivity_alarm
-  - failed_polishing_water_flowrate_alarm
-  - failed_polishing_water_isolation_valve_alarm
+  - polished_water_isolation_valve_status
+  - polished_water_flowrate_sensor
+  - polished_water_electricresistivity_sensor
+  - polished_water_electricresistivity_setpoint
+  - polished_water_electricconductivity_sensor
+  - polished_water_electricconductivity_setpoint
+  - failed_polished_water_electricresistivity_alarm
+  - failed_polished_water_flowrate_alarm
+  - failed_polished_water_isolation_valve_alarm
   implements:
   - OPERATIONAL
 
@@ -6380,8 +6380,8 @@ CHDX2SC:
   - compressor_speed_percentage_sensor_2
   - compressor_current_sensor_1
   - compressor_current_sensor_2
-  - compressor_speed_rotationalvelocity_sensor_1
-  - compressor_speed_rotationalvelocity_sensor_2
+  - compressor_rotationalvelocity_sensor_1
+  - compressor_rotationalvelocity_sensor_2
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
@@ -8587,16 +8587,6 @@ DAIDC2X:
   - discharge_air_isolation_damper_command_2
   - discharge_air_isolation_damper_status_1
   - discharge_air_isolation_damper_status_2
-  implements:
-  - MONITORING
-
-EAIDC:
-  guid: "58593512-7b15-49e8-bbcb-05cc628c392d"
-  description: "Exhaust air isolation damper control and monitoring."
-  is_abstract: true
-  uses:
-  - exhaust_air_isolation_damper_command
-  - exhaust_air_isolation_damper_status
   implements:
   - MONITORING
 
