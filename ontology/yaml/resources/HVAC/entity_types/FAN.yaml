@@ -845,7 +845,7 @@ FAN_SS_OACSP:
 
 FAN_VSC_EPC_EDM:
   guid: "97053704-c31a-4e0d-a137-d5725c86e929"
-  description: "Fan with variable speed control, exhaust air static pressure control, and exhaust air isolation damper."
+  description: "Fan with variable speed control, exhaust air static pressure control, and exhaust air damper."
   is_canonical: true
   implements:
   - FAN

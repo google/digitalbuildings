@@ -38,7 +38,7 @@ CRREF_CREFM:
 
 CRREF_CREFC:
   guid: "83f3a33a-1baf-4010-be3b-3daa086e8ee4"
-  description: "Coldroom refrigerator temperature control."
+  description: "Coldroom refrigerator with temperature control."
   is_canonical: true
   implements:
   - CRREF

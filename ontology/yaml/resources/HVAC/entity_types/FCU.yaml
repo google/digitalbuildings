@@ -575,7 +575,6 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC:
   - CHWZTC
   - HWZTC
 
-
 FCU_DFSS_DFVSC_DSP_CHWZC_CHWDT_RTM_DTM_ZHM:
   guid: "88fffcae-916a-44c2-b79f-e2b9c93002c5"
   description: "Hydronic variable speed fan coil with cooling (zone temp control), return and discharge temp monitoring, and zone relative humidity monitoring."
@@ -1316,7 +1315,6 @@ FCU_DFVDSFC_CHWBRC:
   - discharge_fan_lost_power_alarm
   - lost_power_alarm
 
-
 FCU_DFVSFC_CHWBRC:
   guid: "19bff6a7-c5bf-4087-ae31-77d8f904d1fd"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan frequency and return air temp control."
@@ -1782,7 +1780,6 @@ FCU_RTM_DXZTC_SRC:
   - filter_alarm
   - lost_power_alarm
 
-
 FCU_DFVSC_CHWZC_CSP_RTM_WDT:
   guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
   description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
@@ -1962,7 +1959,6 @@ FCU_DFVSC_RTM_HWZTC_CHWZTC:
   - RTM
   - HWZTC
   - CHWZTC
-
 
 FCU_DFMSC_CHWZTC:
   is_canonical: true
@@ -2210,7 +2206,6 @@ FCU_CHWDC_CSP_DFVSC6X:
   - CSP
   - DFVSC6X
 
-
 FCU_DFVSC_CHWRC_ZHC:
   guid: "430a0deb-6c05-42f8-8562-c35377be4b1b"
   description: "FCU with discharge fan variable speed control, chilled water coil return air temperature control, and zone humidity control."
@@ -2221,10 +2216,9 @@ FCU_DFVSC_CHWRC_ZHC:
   - CHWRC
   - ZHC
 
-
 FCU_DFVSC_DSP_CHWDC_HWDC_DSPZDHC2X:
   guid: "f7ab8b71-d5e8-4796-bdf7-337ca4026545"
-  description: "FCU with discharge fan variable speed control."
+  description: "FCU with discharge fan variable speed control, hydronic heating and cooling, and humidification/dehumidification control."
   is_canonical: true
   implements:
   - FCU
@@ -2237,7 +2231,7 @@ FCU_DFVSC_DSP_CHWDC_HWDC_DSPZDHC2X:
 
 FCU_DFVSC_DSP_GDC_HWDC_DSPZDHC:
   guid: "b009d8f5-9977-4585-bbfb-43531dbd2740"
-  description: "Cooling and heating FCU with discharge fan speed control, glycol and heating coil control on discharge side, and zone dual setpoint humidification/dehumidification control."
+  description: "FCU with discharge fan speed control, glycol cooling and water heating coil control on discharge side, and zone dual setpoint humidification/dehumidification control."
   is_canonical: true
   implements:
   - FCU
@@ -2554,7 +2548,6 @@ FCU_NON_CANONICAL_TYPE_2:
   - failed_supply_fan_alarm
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
-
 
 FCU_NON_CANONICAL_TYPE_3:
   guid: "6ac166a5-c734-4053-b8ba-a3149f0aee58"

@@ -725,7 +725,7 @@ CHWS_SWTC_WDPC_SWPC_WFRM_FDPM3X_UVFDPM_PLWVERC:
 
 CHWS_SWTC_WDPC_MINFC_MCBYPVM_WSEBYPVPM_CLPM:
   guid: "06a7f0e3-9c89-4da8-9a03-3b8f08d2dfb8"
-  description: "Chilled water system with supply water temperature control, differential pressure control, minimum flowrate control, mechanical cooling and economizer bypass and cooling thermal power monitoring."
+  description: "Chilled water system with supply water temperature control, differential pressure control, minimum flowrate control, mechanical cooling and economizer bypass, and cooling thermal power monitoring."
   is_canonical: true
   implements:
   - CHWS
