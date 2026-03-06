@@ -433,6 +433,7 @@ FAN_SS_VSC_EFC:
   - EFC
 
 FAN_VSC_DFM:
+  guid: "aa59058e-4fa0-48da-9efc-db5dce7e5dfe"
   description: "Fan with variable speed control and discharge flowrate monitoring."
   is_canonical: true
   implements:
