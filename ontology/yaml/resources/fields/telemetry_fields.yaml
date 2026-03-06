@@ -3052,10 +3052,10 @@ literals:
     flexible_max: 0.315451
 - polished_water_electricresistivity_sensor:
     flexible_min: 0.0
-    flexible_max: 180000 
+    flexible_max: 180000
 - polished_water_electricresistivity_setpoint:
     flexible_min: 0.0
-    flexible_max: 180000 
+    flexible_max: 180000
 - polished_water_electricconductivity_sensor:
     flexible_min: 0.0
     flexible_max: 0.00055
