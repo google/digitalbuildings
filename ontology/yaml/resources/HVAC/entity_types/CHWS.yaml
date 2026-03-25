@@ -709,6 +709,43 @@ CHWS_SWTC_WDPC2X_WSEBYPVPM_WFRM:
   - WSEBYPVPM
   - WFRM
 
+CHWS_SWTC_WDPC_SWPC_WFRM_FDPM3X_UVFDPM_PLWVERC:
+  guid: "8cbfe4ba-7f6a-4d73-8719-32f2507ddee2"
+  description: "Chilled water system with supply water temperature control, differential pressure control, supply water pressure control, flowrate monitoring, 3x filters with differential pressure monitoring, UV filter differential pressure monitoring, and water polishing system."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - SWPC
+  - WFRM
+  - FDPM3X
+  - UVFDPM
+  - PLWVERC
+
+CHWS_SWTC_WDPC_MINFC_MCBYPVM_WSEBYPVPM_CLPM:
+  guid: "06a7f0e3-9c89-4da8-9a03-3b8f08d2dfb8"
+  description: "Chilled water system with supply water temperature control, differential pressure control, minimum flowrate control, mechanical cooling and economizer bypass, and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - MINFC
+  - MCBYPVM
+  - WSEBYPVPM
+  - CLPM
+
+CHWS_SWTC_MINFC_SWPC:
+  guid: "968bbf1c-e251-4c42-99c6-b690bb172c5f"
+  description: "Chilled water system with supply water temperature control, minimum flowrate control, and supply water pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - MINFC
+  - SWPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

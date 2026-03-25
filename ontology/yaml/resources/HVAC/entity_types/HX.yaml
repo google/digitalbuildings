@@ -438,3 +438,26 @@ HX_SDHWTC_HWSWISOVPM:
   - HX
   - SDHWTC
   - HWSWISOVPM
+
+HX_CHWDT_PRWDT_CHWDPM_PWDPM_CHWRWISOVPM:
+  guid: "28184f5e-334d-4ad8-8f9f-30e77dde5135"
+  description: "Chilled/process water heat exchanger with water differential temperature/pressure monitoring and chilled water return isolation."
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - PRWDT
+  - CHWDPM
+  - PWDPM
+  - CHWRWISOVPM
+
+HX_CWDT_CHWDT_CHWDPM_CWSISOVM:
+  guid: "884b8b42-5646-4aae-acaa-5e0179e6852a"
+  description: "Condensing/chilled water heat exchanger with chilled water differential temperature/pressure monitoring, and condensing water supply isolation."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CHWDPM
+  - CWSISOVM

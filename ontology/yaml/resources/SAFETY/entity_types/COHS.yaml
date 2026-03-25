@@ -12,20 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+### ABSTRACT TYPES
 
-ADY_BS_SS:
-  guid: "397629f2-aa58-4c3f-9de1-2897227007b4"
-  description: "Basic air dryer."
+COHS_HSM:
+  guid: "30a1442d-4996-4f54-82d6-01d4894a233b"
+  description: "Standard carbon monoxide horn strobe."
   is_canonical: true
   implements:
-  - ADY
-  - SS
-  opt_uses:
-  - lost_power_alarm
-  - run_mode
-  - control_mode
-  - schedule_run_command
-  - control_status
+  - COHS
+  - HSM

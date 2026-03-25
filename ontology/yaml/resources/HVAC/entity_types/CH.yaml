@@ -332,7 +332,6 @@ CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   - CHWRWISOVM
   - IGM
 
-
 CH_SS_SCHWTC_CWDT_WDPM_REFSM_REFPM_CHDXSC_CHWRWISOVM_IGM:
   guid: "74bda35f-625f-4472-947e-b9d10a4d2d3f"
   description: "Water-cooled chiller with refrigerant pressure and temperature monitoring."
@@ -630,7 +629,6 @@ CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
   - SWISOVM
   - REFPM
 
-
 CH_SS_SWTC_REFSM2X_SWISOVM:
   guid: "9a0447b5-bbf6-4165-91f8-8ba9667ece90"
   description: "Air-cooled chiller with two-circuit refrigerant temperature monitoring."
@@ -793,7 +791,6 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   - REFPM
   - IGM
   - DXSWC
-
 
 CH_SS_SCHWTC_CHDXSC_CHWDPM_CHWFRM_CHWRWISOVM_CWDT_CDWFRM_CWRISOVM_REFPM_IGM:
   guid: "661834a3-a83f-4f31-94a6-08b0c82992f5"
@@ -1272,6 +1269,82 @@ CH_SS_SWTC_DXSWC_WFRM:
   - DXSWC
   - WFRM
 
+CH_VSC_CHWDT_CWDT_CHDXSC_CHWSWISOVPM_CWSWISOVPM_REFPM_REFSM_OTPM_IGM:
+  guid: "a901626b-ad50-4224-80f7-b2da84883e55"
+  description: "Water cooled chiller with variable speed control, chilled and condensing water temperature differential monitoring, chilled and condensing supply isolation, refrigerant temperature and pressure monitoring, and inlet guidevane monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - VSC
+  - CHWDT
+  - CWDT
+  - CHDXSC
+  - CHWSWISOVPM
+  - CWSWISOVPM
+  - REFPM
+  - REFSM
+  - OTPM
+  - IGM
+
+CH_SS_CSWTC_CHDX2SC_CHWRWISOVPM_CWSWISOVPM_RCKTM2X:
+  guid: "77f6e195-edb5-48ac-8605-b74653a16d3c"
+  description: "Water cooled chiller with condensing supply water temperature control, dual compressor variable speed control, chilled water return isolation, condenser water supply isolation, and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CSWTC
+  - CHDX2SC
+  - CHWRWISOVPM
+  - CWSWISOVPM
+  - RCKTM2X
+
+CH_SS_CWDT_CHDXSC_CHWRWISOVPM_CWSWISOVPM_REFPM_OTPM_IGM:
+  guid: "2ce93106-0d77-450d-b2d6-649f212b761f"
+  description: "Water cooled chiller with condensing water temperature differential monitoring,  supply water temperature compressor variable speed control, chilled return isolation, condensing supply isolation, refrigerant pressure monitoring, oil temperature and pressure monitoring, and inlet guidevane monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CWDT
+  - CHDXSC
+  - CHWRWISOVPM
+  - CWSWISOVPM
+  - REFPM
+  - OTPM
+  - IGM
+
+CH_SS_DX12SWC_WDT:
+  guid: "4775a12a-5d14-4566-b594-ccdb71b601cd"
+  description: "Air cooled chiller with supply water 12-stage compressor control and water temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX12SWC
+  - WDT
+
+CH_SS_PSWTC_PRWISOVM_CWSISOVM:
+  guid: "09fe62e9-5613-4b32-b2a6-5a5c12dc059b"
+  description: "Water cooled process chiller with supply water temperature control, proces return water isolation and condensing supply water isolation."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - PSWTC
+  - PRWISOVM
+  - CWSISOVM
+
+CH_SS_SGTC_GRISOVM_CWSISOVM:
+  guid: "1de50746-9156-4af4-99ad-26149ebbb1d7"
+  description: "Process glycol chiller with supply glycol temperature control, glycol return water isolation, and condensing supply water isolation."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SGTC
+  - GRISOVM
+  - CWSISOVM
 
 ###################################
 ### Existing Non-standard Types ###

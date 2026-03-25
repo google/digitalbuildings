@@ -42,9 +42,16 @@ FD:
   implements:
   - EQUIPMENT
 
-HS:
+FHS:
   guid: "a02c0de0-e626-4b5f-872f-87ba641b4375"
   description: "Fire system horn strobe."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+COHS:
+  guid: "e9fba3d0-a64a-413e-b225-e3b0b76c2cc7"
+  description: "Carbon monoxide horn strobe."
   is_abstract: true
   implements:
   - EQUIPMENT

@@ -114,3 +114,13 @@ TK_LHLM_RWISOVPM:
   - /TK # Inherits from global namespace
   - LHLM
   - RWISOVPM
+
+TK_LM_RWISOVM_MWFRM:
+  guid: "e5c6e61f-d183-4229-818f-a4ea15e52b26"
+  description: "Tank with level and flowrate monitoring, and return water isolation valve."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LM
+  - RWISOVM
+  - MWFRM
