@@ -4490,6 +4490,7 @@ ECON:
   - failed_return_air_damper_alarm
   - return_air_damper_percentage_command
   - return_air_damper_percentage_sensor
+  - return_air_relative_humidity_sensor
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
   - high_mixed_air_temperature_alarm
