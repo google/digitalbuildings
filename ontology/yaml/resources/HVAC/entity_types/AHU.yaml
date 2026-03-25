@@ -5867,6 +5867,46 @@ AHU_DFVSC_DX2ZC_ECONMD_HT2ZC:
   - ECONMD
   - HT2ZC
 
+AHU_DSP_DFVSC_CHWDC_ECONZ_FDPM2X:
+  guid: "3a24b55c-b01c-4f57-9544-7d252004a1e0"
+  description: "Single zone AHU with chilled water coil, discharge air/fan control, economizer control, and dual filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSP
+  - DFVSC
+  - CHWDC
+  - ECONZ
+  - FDPM2X
+
+AHU_SFVSC2X_EFVSC2X_CHWSC_ECON2X_BSPC2X_SSPC_FDPM:
+  guid: "9f22b14d-811a-4d44-a553-defe2aee1aad"
+  description: "Multi-zone AHU with supply and exhaust fan control, chilled water coil control, economizer control, building and supply static pressure control, and filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC2X
+  - CHWSC
+  - ECON2X
+  - BSPC2X
+  - SSPC
+  - FDPM
+
+AHU_SFVSC3X_EFVSC3X_CHWSC_BSPC3X_SSPC_ECON2X_FDPM2X:
+  guid: "1e039dda-73f3-49eb-9e02-ab6ed13c0f14"
+  description: "Multi-zone AHU with three supply and exhaust fan control, chilled water coil control, dual economizer control, building and supply static pressure control, and dual filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC3X
+  - EFVSC3X
+  - CHWSC
+  - BSPC3X
+  - SSPC
+  - ECON2X
+  - FDPM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

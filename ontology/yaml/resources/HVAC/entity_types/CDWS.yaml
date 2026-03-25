@@ -286,6 +286,41 @@ CDWS_SWTC_WFRM_MWFRM_BWFRM:
   - MWFRM
   - BWFRM
 
+CDWS_RWTC_BWFRM_BYPVPM_MWFRM:
+  guid: "0a7cc7b1-86b3-4b3c-a271-030013c26666"
+  description: "Condensing water system with return water temperature control, blowdown and makeup water flowrate monitoring, and bypass valve."
+  is_canonical: true
+  implements:
+  - CDWS
+  - RWTC
+  - BWFRM
+  - BYPVPM
+  - MWFRM
+
+CDWS_SWTC_BWFRM_MWFRM:
+  guid: "ba436668-4de6-4a52-9f34-9eb9c254d3eb"
+  description: "Condensing water system with supply water temperature control, blowdown and makeup water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - BWFRM
+  - MWFRM
+
+CDWS_SWTC_SWPC_MWDPC_WFRM_FDPM3X_UVFDPM_PLWVERC:
+  guid: "275304b8-5e6e-4c0f-96e4-fe7d68ea7984"
+  description: "Condensing water system with supply water temperature and pressure control, minimum water differential pressure control, flowrate monitoring, three filters with differential pressure monitoring, ultraviolet filter with differential pressure monitoring, and water polishing system."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - SWPC
+  - MWDPC
+  - WFRM
+  - FDPM3X
+  - UVFDPM
+  - PLWVERC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

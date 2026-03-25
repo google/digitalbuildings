@@ -294,6 +294,30 @@ CT_SS_SWTC_CWBYPVPM:
   - SWTC
   - CWBYPVPM
 
+CT_VSC_RWTC_SWISOVM_RWISOVM_DWVC:
+  guid: "bcee4102-1ca8-4188-bdd5-4b7bf936883f"
+  description: "Cooling tower with variable speed control, return water temperature control, supply and return isolation, and drain water valve control."
+  is_canonical: true
+  implements:
+  - CT
+  - VSC
+  - RWTC
+  - SWISOVM
+  - RWISOVM
+  - DWVC
+
+CT_VSC_SWTC_SWISOVM_RWISOVM_DWVC:
+  guid: "779124a9-d030-4dcc-933a-c730b36cd50a"
+  description: "Cooling tower with variable speed control, supply water temperature control, supply and return isolation, and drain water valve control."
+  is_canonical: true
+  implements:
+  - CT
+  - VSC
+  - SWTC
+  - SWISOVM
+  - RWISOVM
+  - DWVC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

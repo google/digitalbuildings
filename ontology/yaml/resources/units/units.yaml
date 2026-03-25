@@ -115,6 +115,9 @@ electricphasedifference:
   degrees_phase: STANDARD
 electricresistivity:
   ohm_meters: STANDARD
+  kiloohm_centimeters:
+    multiplier: 10
+    offset: 0
 energy:
   joules: STANDARD
   kilowatt_hours:
