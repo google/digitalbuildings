@@ -98,6 +98,7 @@ EM_PWM_AVCM_PLPM_PVCM:
   - PVCM
 
 EM_PWM_EPWM_AVCM_PLPM_PVCM:
+  guid: "baad5f2b-2d40-4ff4-855c-2b418f07c532"
   description: "The typical ION meter (Bay Area standard) with exported energy accumulation."
   is_canonical: true
   implements:
