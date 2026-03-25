@@ -31,7 +31,7 @@ PWM:
   uses:
   - energy_accumulator
 
-PWM:
+EPWM:
   description: "Exported energy monitoring."
   is_abstract: true
   uses:
