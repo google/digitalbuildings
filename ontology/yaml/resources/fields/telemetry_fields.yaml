@@ -1133,6 +1133,9 @@ literals:
 - expansion_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- exported_energy_accumulator:
+    fixed_min: 0.0
+    flexible_max: 36000000000000.0
 - fabric_protection_alarm:
   - ACTIVE
   - INACTIVE

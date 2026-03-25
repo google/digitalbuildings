@@ -97,6 +97,18 @@ EM_PWM_AVCM_PLPM_PVCM:
   - PLPM
   - PVCM
 
+EM_PWM_EPWM_AVCM_PLPM_PVCM:
+  guid: "baad5f2b-2d40-4ff4-855c-2b418f07c532"
+  description: "The typical ION meter (Bay Area standard) with exported energy accumulation."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - EPWM
+  - AVCM
+  - PLPM
+  - PVCM
+  
 EM_PWM_PWMRDM:
   guid: "5529f460-e69a-494d-927c-d516e6637b60"
   description: "Energy metering from Grid Electricity and Diesel Generator with power monitoring."
