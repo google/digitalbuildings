@@ -72,6 +72,9 @@ literals:
 - average_zone_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 322.037037
+- bag_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
 - battery_charge_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2969,6 +2972,9 @@ literals:
 - panel_alarm:
   - ACTIVE
   - INACTIVE
+- panel_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
 - particle_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
@@ -3179,6 +3185,9 @@ literals:
 - primary_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- primary_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - primary_water_heating_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 586142.14
@@ -3639,6 +3648,9 @@ literals:
 - secondary_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- secondary_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - secondary_water_heating_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 586142.14
