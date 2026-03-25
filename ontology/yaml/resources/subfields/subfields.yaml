@@ -122,6 +122,7 @@ descriptor:
   exercise: "Mode of running equipment to maintain functionality ('exercise mode')."
   exhaust: "Process or component used in the removal of air from a conditioned system to the outside atmosphere."
   expansion: "Process of increasing the volume of a liquid."
+  exported: "Data or resources sent from a system to another system, file, or format for external use."
   fabric: "Textile material."
   failed: "Indicates that a point is not operating as intended or is incapable of operating."
   filtration: "Process of filtering contaminating elements from equipment or a system."

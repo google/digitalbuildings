@@ -31,6 +31,12 @@ PWM:
   uses:
   - energy_accumulator
 
+PWM:
+  description: "Exported energy monitoring."
+  is_abstract: true
+  uses:
+  - exported_energy_accumulator
+
 AVCM:
   guid: "0329a2b4-d474-444e-82af-c6c0432a9f48"
   description: "Average phase (line) level voltage and current monitoring. "
