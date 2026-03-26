@@ -415,6 +415,12 @@ literals:
 - compressor_current_sensor:
     fixed_min: 0.0
     flexible_max: 100.0
+- local_override_compressor_alarm:
+  - ACTIVE
+  - INACTIVE
+- local_override_supply_fan_alarm:
+  - ACTIVE
+  - INACTIVE    
 - compressor_lost_power_alarm:
   - ACTIVE
   - INACTIVE
@@ -976,6 +982,9 @@ literals:
   - ON
   - OFF
 - emergency_alarm:
+  - ACTIVE
+  - INACTIVE
+- emergency_stop_alarm:
   - ACTIVE
   - INACTIVE
 - emergency_battery_status:
@@ -1942,6 +1951,9 @@ literals:
 - high_heating_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_gas_pressure_alarm: # For natural gas specifically
+  - ACTIVE
+  - INACTIVE
 - high_leaving_air_preheating_coil_temperature_alarm:
     - ACTIVE
     - INACTIVE
@@ -2346,6 +2358,9 @@ literals:
 - local_override_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
+- local_override_discharge_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
 - loop_chilled_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -2422,6 +2437,9 @@ literals:
   - ON
   - OFF
 - low_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_gas_pressure_alarm: # For natural gas specifically
   - ACTIVE
   - INACTIVE
 - low_heating_supply_water_temperature_alarm:
@@ -2762,6 +2780,9 @@ literals:
 - north_wind_linearvelocity_sensor:
     flexible_min: 0.0
     flexible_max: 44.704
+- occupancy_status:
+  - OCCUPIED
+  - UNOCCUPIED
 - oil_differential_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 1034214.0
@@ -4365,6 +4386,9 @@ literals:
 - zone_air_occupied_heating_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- zone_air_occupied_cooling_temperature_setpoint:
+    flexible_min: 290
+    flexible_max: 305
 - zone_air_offset_temperature_setpoint:
     flexible_min: 254.8148148
     flexible_max: 283.1481481
@@ -4459,6 +4483,9 @@ literals:
     flexible_min: 255.372
     flexible_max: 272.039
 - zone_air_unoccupied_heating_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481
+- zone_air_unoccupied_cooling_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - zone_air_voc_aqi_sensor:
