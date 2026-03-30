@@ -32,6 +32,7 @@ PWM:
   - energy_accumulator
 
 EPWM:
+  guid: "9b3f8ac8-4c4c-4b57-93d5-283615b695c9"
   description: "Exported energy monitoring."
   is_abstract: true
   uses:
