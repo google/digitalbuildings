@@ -5879,17 +5879,17 @@ AHU_DSP_DFVSC_CHWDC_ECONZ_FDPM2X:
   - ECONZ
   - FDPM2X
 
-AHU_SFVSC2X_EFVSC2X_CHWSC_ECON2X_BSPC2X_SSPC_FDPM:
+AHU_SFVSC2X_EFVSC_CHWSC_ECON2X_BSPC_SSPC_FDPM:
   guid: "9f22b14d-811a-4d44-a553-defe2aee1aad"
   description: "Multi-zone AHU with supply and exhaust fan control, chilled water coil control, economizer control, building and supply static pressure control, and filter differential pressure monitoring."
   is_canonical: true
   implements:
   - AHU
   - SFVSC2X
-  - EFVSC2X
+  - EFVSC
   - CHWSC
   - ECON2X
-  - BSPC2X
+  - BSPC
   - SSPC
   - FDPM
 
