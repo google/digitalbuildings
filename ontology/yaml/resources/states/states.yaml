@@ -29,8 +29,8 @@ CLOSED: "Closed position; typically for a valve, damper, or other pass-though."
 OCCUPIED: "Occupied sensor state or operation mode."
 UNOCCUPIED: "Unoccupied sensor state or operation mode."
 
-ACTIVE: "An action, activity, event, or operation is currently hapenning."
-INACTIVE: "An action, activity, event, or operation is not currently hapenning."
+ACTIVE: "An action, activity, event, or operation is currently happening."
+INACTIVE: "An action, activity, event, or operation is not currently happening."
 
 ENABLED: "Something is enabled."
 DISABLED: "Something is disabled."
