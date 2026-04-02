@@ -705,7 +705,7 @@ FCU_DFSS_RTC_RHC_DXRC:
 
 FCU_DFVSC_RTC_RHC_DXDC_CFVSC:
   guid: "9fb87744-8e5b-4783-94b0-352b1c91a0bc"
-  description: "DX fan coil with discharge temp, return temp and return humidity control, refrigerant temperature monitoring, and variable speed discharge and condensing fans."
+  description: "DX fan coil with discharge temp, return temp and return humidity control, and variable speed discharge and condensing fans."
   is_canonical: true
   implements:
   - FCU
