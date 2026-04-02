@@ -16,6 +16,18 @@
 ### Canonical Types  ###
 ########################
 
+HOOD_EFVSC_ETM_EFM_WDPM_ZTM:
+  guid: "adf0fd20-bc33-4a3f-a341-5e84be0a8b35"
+  description: "Hood with one variable speed exhaust fan, exhaust temperature and flowrate monitoring, zone temperature monitoring, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HOOD
+  - EFVSC
+  - ETM
+  - EFM
+  - WDPM
+  - ZTM
+
 HOOD_EFSS3X_EFVSC3X_ETM3X_EFM3X_EDPM3X:
   guid: "13dc65c9-67af-45ad-a7b5-2e412514374d"
   description: "Hood with three variable speed exhaust fans and variable position dampers. Temperature and flowrate monitoring for each"
