@@ -754,6 +754,18 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   - ECONZ
   - EFSS
 
+AHU_DFSS_DSP_DX2ZC_ECONZ_RADM:
+  guid: "5136c3f2-7c20-44fc-a7ae-4b487131e9af"
+  description: "Single zone AHU with binary controlled discharge fan, dx cooling to dual zone temperature setpoints, and a binary return air damper."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - RADM
+
 AHU_DFSS_DSP_DX2ZC_ECON_HTZC:
   guid: "cca6873d-457d-42a5-b161-79b8b8b88465"
   description: "Single zone AHU."
