@@ -725,6 +725,38 @@ VSC:
   implements:
   - OPERATIONAL
 
+MCOVSC:
+  guid: "6e841234-811a-48aa-9b62-3d4b3532ed2a"
+  description: "Variable speed control to a maximum zone CO concentration."
+  is_abstract: true
+  opt_uses:
+  - control_mode
+  - current_sensor
+  - energy_accumulator
+  - motor_temperature_sensor
+  - power_sensor
+  - run_mode
+  - run_time_accumulator
+  - speed_frequency_sensor
+  - speed_frequency_command
+  - speed_mode
+  - speed_percentage_sensor
+  - torque_sensor
+  - voltage_sensor
+  - failed_alarm
+  - local_override_alarm
+  - lost_power_alarm
+  - master_alarm
+  - failed_inverter_alarm
+  - powerfactor_sensor
+  uses:
+  - run_command
+  - run_status
+  - speed_percentage_command
+  - max_zone_air_co_concentration_sensor
+  implements:
+  - OPERATIONAL
+
 MRVC:
   guid: "5d4ec788-3c4a-47ca-a02b-c9e47ea3a782"
   description: "Rotational velocity control for motors."

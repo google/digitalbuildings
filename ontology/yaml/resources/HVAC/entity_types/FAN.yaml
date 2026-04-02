@@ -47,6 +47,15 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_MCOVSC:
+  guid: "ee57d8a2-7ba7-4213-8bab-5cbadb460930"
+  description: "Fan with start/stop status and open-loop speed control to a maximum zone CO concentration."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - MCOVSC
+
 FAN_SS_COC2X:
   guid: "2fd2e3b3-d87e-43d0-a915-f8b456d1f0a0"
   description: "Basic fan with start/stop and status, and carbon monxide control."

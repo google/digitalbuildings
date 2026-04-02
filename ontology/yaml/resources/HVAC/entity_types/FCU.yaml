@@ -238,6 +238,17 @@ FCU_DFSS_DSP_DX2ZC:
   - DSP
   - DX2ZC
 
+FCU_DFSS_DSP_DX2ZC_RADM:
+  guid: "0da1ad81-578d-4e2d-8156-1083eb41e04e"
+  description: "Typical 2-stage DX water FCU (zone control) with return air damper."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - RADM
+
 FCU_DFSS_DSP_HPZC:
   guid: "0973469d-92a5-44e5-8e35-bacda5691f49"
   description: "Typical heat pump FCU (zone control)."
@@ -691,6 +702,18 @@ FCU_DFSS_RTC_RHC_DXRC:
   - RTC
   - RHC
   - DXRC
+
+FCU_DFVSC_RTC_RHC_DXDC_CFVSC:
+  guid: "9fb87744-8e5b-4783-94b0-352b1c91a0bc"
+  description: "DX fan coil with discharge temp, return temp and return humidity control, refrigerant temperature monitoring, and variable speed discharge and condensing fans."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - RTC
+  - RHC
+  - DXDC
+  - CFVSC
 
 FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC:
   guid: "c36bb256-35b7-4abd-b9c0-a7491f432326"
