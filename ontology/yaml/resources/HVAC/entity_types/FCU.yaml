@@ -220,7 +220,7 @@ FCU_DFSS_DSP_CHWZC:
 
 FCU_DFSS_DSP_DXZC:
   guid: "eddff9da-507f-4350-8613-ffb61d39cba4"
-  description: "Typical DX water FCU (zone control)."
+  description: "Typical DX FCU (zone control)."
   is_canonical: true
   implements:
   - FCU
@@ -230,7 +230,7 @@ FCU_DFSS_DSP_DXZC:
 
 FCU_DFSS_DSP_DX2ZC:
   guid: "26cd04c7-c7b0-4e7b-b757-f59a12d5a1d7"
-  description: "Typical 2-stage DX water FCU (zone control)."
+  description: "Typical 2-stage DX FCU (zone control)."
   is_canonical: true
   implements:
   - FCU
@@ -240,7 +240,7 @@ FCU_DFSS_DSP_DX2ZC:
 
 FCU_DFSS_DSP_DX2ZC_RADM:
   guid: "0da1ad81-578d-4e2d-8156-1083eb41e04e"
-  description: "Typical 2-stage DX water FCU (zone control) with return air damper."
+  description: "Typical 2-stage DX FCU (zone control) with return air damper."
   is_canonical: true
   implements:
   - FCU
