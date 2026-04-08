@@ -112,6 +112,7 @@ DHWT_SS_HWTTC:
   - HWTTC
 
 DHWT_SS_RWTM:
+  guid: "ecc2ffef-314f-4f95-a79c-68f22a2cb34b"
   description: "Domestic hot water tank with run control and return water temperature monitoring."
   is_canonical: true
   implements:

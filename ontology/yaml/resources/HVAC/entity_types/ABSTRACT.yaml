@@ -1597,6 +1597,7 @@ CWDT:
   - condensing_supply_water_temperature_sensor
 
 BSWTC:
+  guid: "c37fdc7e-48c2-4f7d-ae6a-f6fe0389ae24"
   description: "Building side supply water temperature control."
   opt_uses:
   - cooling_request_count
@@ -1609,6 +1610,7 @@ BSWTC:
   - building_supply_water_temperature_setpoint
 
 SSWTC:
+  guid: "8523460b-4d52-49dc-a74d-59281277d2e5"
   description: "Plant side supply water temperature control."
   uses:
   - source_supply_water_temperature_sensor
@@ -6072,6 +6074,7 @@ SWDVPM:
   - MONITORING
 
 BRWISOVM:
+  guid: "76d28810-5898-45a2-8e83-4b2a4dcf2766"
   description: "Building side return water isolation valve binary control."
   is_abstract: true
   opt_uses:
@@ -6093,6 +6096,7 @@ SWISOVPM:
   - MONITORING
 
 SRWISOVM:
+  guid: "2e81a6c2-a6f6-45ea-b35b-bba952428f58"
   description: "Central plant side return water isolation valve binary control."
   opt_uses:
   - failed_source_return_water_isolation_valve_alarm
@@ -6101,6 +6105,7 @@ SRWISOVM:
   - source_return_water_isolation_valve_status
 
 SSWISOVPM:
+  guid: "b02f41fd-a0e6-45ed-9ca3-c42155a02eb9"
   description: "Central plant side supply water isolation valve percentage control."
   opt_uses:
   - failed_source_supply_water_isolation_valve_alarm
@@ -6348,6 +6353,7 @@ WDPM:
   - failed_differential_pressure_alarm
 
 WDPM2X:
+  guid: "93d8f839-1c11-4db8-83bf-faaa91e86191"
   description: "Dual sensor differential pressure monitoring."
   is_abstract: true
   uses:
