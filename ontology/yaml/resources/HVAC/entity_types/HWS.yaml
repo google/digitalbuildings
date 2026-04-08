@@ -581,6 +581,7 @@ HWS_SWTC_WDPC_WFRM_MINFC:
   - MINFC
 
 HWS_RWTC_SWTM_WDPM_WFRM_HLPM:
+  guid: "f4287768-59bf-4b2c-8b36-e6267aab57e7"
   description: "Chilled water system with return water temperature control, and supply water temperature, differential pressure and heating thermal power monitoring."
   is_canonical: true
   implements:

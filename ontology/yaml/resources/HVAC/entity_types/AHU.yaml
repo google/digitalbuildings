@@ -6496,6 +6496,7 @@ AHU_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
   - SSPC
 
 AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_OAFMC:
+  guid: "576afc32-e019-4dde-9b5f-79a72177666c"
   description: "Multi-zone AHU with dual supply and dual exhaust fan variable speed control, chilled water and heating water coil control, dual mixed air temperature economizer control, building and supply static pressure control, and minimum outside air flowrate control."
   is_canonical: true
   implements:
@@ -6511,6 +6512,7 @@ AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_OAFMC:
   - OAFMC
 
 AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_MOAFC:
+  guid: "d246ab62-95e7-4b42-af80-c454ae964281"
   description: "Multi-zone AHU with dual supply and dual exhaust fan variable speed control, chilled water and heating water coil control, economizer control, building and supply static pressure control, and minimum outside air flowrate control."
   is_canonical: true
   implements:
