@@ -299,7 +299,7 @@ DOAS_DSP_DFVSC_EFVSC_DXDC_HWDC_FDPM_HTRPLTM:
 
 DOAS_SFVSC2X_CHWSC_HWSC_SARC_SSPC_OA_OAFM:
   guid: "183d97f3-84a3-4ed8-b217-afd7081c0c7a"
-  description: "Multi-zone DOAS with dual supply fan variable speed control, chilled water and heating water coil control, building and supply static pressure control, outside air flowrate monitoring."
+  description: "Multi-zone DOAS with dual supply fan variable speed control, chilled water and heating water coil control, building and supply static pressure control, outside air temperature and flowrate monitoring."
   is_canonical: true
   implements:
   - DOAS

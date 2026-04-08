@@ -788,7 +788,7 @@ VAV_MDSDC:
 
 VAV_DSP_PDSCV_HWZC_CO2C:
   guid: "17eb0daf-97e8-41aa-9e36-e2467f2ef8bc"
-  description: "VAV reheat with pressure dependent supply valve control, heating water valve zone temp control and CO2 control."
+  description: "Reheat VAV with pressure dependent supply valve control, heating water valve zone temp control and CO2 control."
   is_canonical: true
   implements:
   - VAV
