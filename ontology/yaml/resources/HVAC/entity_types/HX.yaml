@@ -461,3 +461,14 @@ HX_CWDT_CHWDT_CHWDPM_CWSISOVM:
   - CHWDT
   - CHWDPM
   - CWSISOVM
+
+HX_BSWTC_SSWTC_BRWISOVM_SSWISOVPM_SRWISOVM:
+  description: "Heat exchanger with building and plant side supply water temperature control, building side return water isolation, plant supply temperature control valve, and return water isolation."
+  is_canonical: true
+  implements:
+  - HX
+  - BSWTC
+  - SSWTC
+  - BRWISOVM
+  - SSWISOVPM
+  - SRWISOVM

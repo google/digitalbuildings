@@ -5879,17 +5879,17 @@ AHU_DSP_DFVSC_CHWDC_ECONZ_FDPM2X:
   - ECONZ
   - FDPM2X
 
-AHU_SFVSC2X_EFVSC2X_CHWSC_ECON2X_BSPC2X_SSPC_FDPM:
+AHU_SFVSC2X_EFVSC_CHWSC_ECON2X_BSPC2X_SSPC_FDPM:
   guid: "9f22b14d-811a-4d44-a553-defe2aee1aad"
   description: "Multi-zone AHU with supply and exhaust fan control, chilled water coil control, economizer control, building and supply static pressure control, and filter differential pressure monitoring."
   is_canonical: true
   implements:
   - AHU
   - SFVSC2X
-  - EFVSC2X
+  - EFVSC
   - CHWSC
   - ECON2X
-  - BSPC2X
+  - BSPC
   - SSPC
   - FDPM
 
@@ -6494,6 +6494,40 @@ AHU_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
   - SDM
   - RDC
   - SSPC
+
+AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_OAFMC:
+  description: "Multi-zone AHU with dual supply and dual exhaust fan variable speed control, chilled water and heating water coil control, dual mixed air temperature economizer control, building and supply static pressure control, and minimum outside air flowrate control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - BSPC2X
+  - SARC
+  - SSPC
+  - OAFMC
+
+AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_MOAFC:
+  description: "Multi-zone AHU with dual supply and dual exhaust fan variable speed control, chilled water and heating water coil control, economizer control, building and supply static pressure control, and minimum outside air flowrate control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - BSPC2X
+  - SARC
+  - SSPC
+  - MOAFC
+
+###################################
+### Existing Non-standard Types ###
+###################################
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"

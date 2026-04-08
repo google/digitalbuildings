@@ -28,6 +28,23 @@ FAN_SS_VSC_WDPM:
   - VSC
   - WDPM
 
+FAN_VSC_WDPM2X:
+  description: "Fan with variable speed control and dual sensor differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - WDPM2X
+
+FAN_VSC_ZTM_WDPM:
+  description: "Fan with variable speed control, zone temperature monitoring and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - ZTM
+  - WDPM
+
 FAN_SS:
   guid: "ce4b17ab-afbb-4061-b506-085e4116ed9a"
   description: "Basic fan with start/stop and status."
@@ -253,6 +270,15 @@ FAN_SS_VSC_DRI:
   uses:
   - dryer_run_status
 
+
+FAN_VSC_EPC_DRI:
+  description: "Fan with variable speed control, exhaust static pressure control and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN_SS_VSC_EPC
+  uses:
+  - dryer_run_status
+
 FAN_SS_VSC_WDPC_DRSM5X:
   guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
@@ -351,6 +377,15 @@ FAN_SS_CSP_VSC:
   - SS
   - CSP
   - VSC
+
+FAN_VSC_DSP_CO2C:
+  description: "Fan with variable speed control, dual setpoint control and CO2 control."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
+  - DSP
+  - CO2C
 
 FAN_SS_VSC_ZTM:
   guid: "ffeecf58-f365-42f2-867a-ecf652189440"

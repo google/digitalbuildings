@@ -580,6 +580,17 @@ HWS_SWTC_WDPC_WFRM_MINFC:
   - WFRM
   - MINFC
 
+HWS_RWTC_SWTM_WDPM_WFRM_HLPM:
+  description: "Chilled water system with return water temperature control, and supply water temperature, differential pressure and heating thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTC
+  - SWTM
+  - WDPM
+  - WFRM
+  - HLPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
