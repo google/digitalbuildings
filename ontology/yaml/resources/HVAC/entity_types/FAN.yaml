@@ -273,7 +273,7 @@ FAN_SS_VSC_DRI:
   - dryer_run_status
 
 
-FAN_VSC_EPC_DRI:
+FAN_SS_VSC_EPC_DRI:
   guid: "57547165-5727-4e56-bf69-e0eb23bb00da"
   description: "Fan with variable speed control, exhaust static pressure control and dryer status monitoring."
   is_canonical: true
