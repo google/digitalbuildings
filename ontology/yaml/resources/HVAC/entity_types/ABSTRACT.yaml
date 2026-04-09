@@ -718,6 +718,7 @@ VSC:
   - master_alarm
   - failed_inverter_alarm
   - powerfactor_sensor
+  - max_zone_air_co_concentration_sensor
   uses:
   - run_command
   - run_status
