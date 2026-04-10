@@ -3816,9 +3816,6 @@ literals:
 - speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- speed_rotationalvelocity_sensor:
-    flexible_min: 0.0
-    flexible_max: 3600.0
 - spray_pump_run_command:
   - ON
   - OFF

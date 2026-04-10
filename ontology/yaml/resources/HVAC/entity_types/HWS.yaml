@@ -585,7 +585,7 @@ HWS_RWTC_SWTM_WDPM_WFRM_HLPM:
   description: "Heating water system with return water temperature control, and supply water temperature, differential pressure and heating thermal power monitoring."
   is_canonical: true
   implements:
-  - CHWS
+  - HWS
   - RWTC
   - SWTM
   - WDPM
