@@ -130,6 +130,18 @@ literals:
 - building_air_static_pressure_setpoint:
     flexible_min: -249.080024
     flexible_max: 249.080024
+- building_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- building_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- building_supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- building_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
 - bypass_air_damper_command:
   - OPEN
   - CLOSED
@@ -834,7 +846,7 @@ literals:
     flexible_max: 100000.0
 - discharge_fan_rotationalvelocity_sensor:
     fixed_min: 0.0
-    flexible_max: 3000
+    flexible_max: 4000
 - discharge_fan_run_command:
   - ON
   - OFF
@@ -1148,6 +1160,9 @@ literals:
 - failed_blowdown_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
+- failed_building_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -1331,6 +1346,9 @@ literals:
 - failed_mechanical_cooling_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
+- failed_mixed_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_mixed_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -1416,6 +1434,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_smoke_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_source_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_source_supply_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - failed_supply_air_damper_alarm:
@@ -3689,6 +3713,24 @@ literals:
 - soundpressurelevel_sensor:
     fixed_min: -60
     flexible_max: 200
+- source_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- source_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- source_supply_water_isolation_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- source_supply_water_isolation_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- source_supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- source_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
 - source1_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0

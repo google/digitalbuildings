@@ -1116,6 +1116,20 @@ MAU_DFVSC_ECCDC_OA:
   - ECCDC
   - OA
 
+MAU_SFVSC2X_CHWSC_HWSC_SARC_SSPC_OA_OAFM:
+  guid: "183d97f3-84a3-4ed8-b217-afd7081c0c7a"
+  description: "Multi-zone MAU with dual supply fan variable speed control, chilled water and heating water coil control, building and supply static pressure control, outside air temperature and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC2X
+  - CHWSC
+  - HWSC
+  - SARC
+  - SSPC
+  - OA
+  - OAFM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
