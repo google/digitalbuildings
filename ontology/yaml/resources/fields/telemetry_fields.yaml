@@ -4230,6 +4230,9 @@ literals:
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
+- vibration_alarm:
+  - ACTIVE
+  - INACTIVE
 - voltage_sensor:
     flexible_min: 0.0
     flexible_max: 1000.0
