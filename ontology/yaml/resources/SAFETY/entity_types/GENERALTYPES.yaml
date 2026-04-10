@@ -89,7 +89,7 @@ VBS:
   is_abstract: true
   implements:
   - EQUIPMENT
-  
+
 RDT:
   guid: "b2fc86a6-4220-40fc-b34e-6d2cf8396d3f"
   description: "Rodent Repellent System"

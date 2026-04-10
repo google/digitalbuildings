@@ -4875,7 +4875,7 @@ OAFM:
   - outside_air_damper_percentage_sensor
   - outside_air_temperature_sensor
   - failed_outside_air_flowrate_alarm
-  - ventilation_request_count 
+  - ventilation_request_count
   uses:
   - outside_air_flowrate_sensor
   implements:
