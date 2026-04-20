@@ -24,3 +24,17 @@ HM_INITIAL:
   implements:
   - HM
   allow_undefined_fields: true
+
+EM_INITIAL:
+  guid: "0f5b8abf-6e79-42de-ba37-9f2fee3f32c5"
+  description: "Initial type for EMs."
+  implements:
+  - EM
+  allow_undefined_fields: true
+
+WM_INITIAL:
+  guid: "9ff932e6-80ca-4abe-a553-22859261b063"
+  description: "Initial type for WMs."
+  implements:
+  - WM
+  allow_undefined_fields: true
