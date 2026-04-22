@@ -963,6 +963,7 @@ DFMSC:
   - discharge_fan_run_status
   - discharge_fan_speed_mode
   opt_uses:
+  - control_mode
   - discharge_fan_run_mode
   - schedule_run_command
   - failed_discharge_fan_alarm
