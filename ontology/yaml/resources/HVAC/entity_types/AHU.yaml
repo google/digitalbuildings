@@ -754,6 +754,18 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   - ECONZ
   - EFSS
 
+AHU_DFSS_DSP_DX2ZC_ECONZ_RADM:
+  guid: "5136c3f2-7c20-44fc-a7ae-4b487131e9af"
+  description: "Single zone AHU with binary controlled discharge fan, dx cooling to dual zone temperature setpoints, and a binary return air damper."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - RADM
+
 AHU_DFSS_DSP_DX2ZC_ECON_HTZC:
   guid: "cca6873d-457d-42a5-b161-79b8b8b88465"
   description: "Single zone AHU."
@@ -5879,17 +5891,17 @@ AHU_DSP_DFVSC_CHWDC_ECONZ_FDPM2X:
   - ECONZ
   - FDPM2X
 
-AHU_SFVSC2X_EFVSC2X_CHWSC_ECON2X_BSPC2X_SSPC_FDPM:
+AHU_SFVSC2X_EFVSC_CHWSC_ECON2X_BSPC_SSPC_FDPM:
   guid: "9f22b14d-811a-4d44-a553-defe2aee1aad"
   description: "Multi-zone AHU with supply and exhaust fan control, chilled water coil control, economizer control, building and supply static pressure control, and filter differential pressure monitoring."
   is_canonical: true
   implements:
   - AHU
   - SFVSC2X
-  - EFVSC2X
+  - EFVSC
   - CHWSC
   - ECON2X
-  - BSPC2X
+  - BSPC
   - SSPC
   - FDPM
 
@@ -6494,6 +6506,42 @@ AHU_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
   - SDM
   - RDC
   - SSPC
+
+AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_OAFMC:
+  guid: "576afc32-e019-4dde-9b5f-79a72177666c"
+  description: "Multi-zone AHU with dual supply and dual exhaust fan variable speed control, chilled water and heating water coil control, economizer control, building and supply static pressure control, and minimum outside air flowrate control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - BSPC2X
+  - SARC
+  - SSPC
+  - OAFMC
+
+AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_MOAFC:
+  guid: "d246ab62-95e7-4b42-af80-c454ae964281"
+  description: "Multi-zone AHU with dual supply and dual exhaust fan variable speed control, chilled water and heating water coil control, economizer control, building and supply static pressure control, and ventilation outside air flowrate control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC2X
+  - EFVSC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - BSPC2X
+  - SARC
+  - SSPC
+  - MOAFC
+
+###################################
+### Existing Non-standard Types ###
+###################################
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
