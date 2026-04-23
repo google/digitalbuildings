@@ -18,23 +18,9 @@
 # testing is needed. These are not to be permanently applied to entities;
 # they are placeholders for appropriate types to be applied later.
 
-HM_INITIAL:
-  guid: "4e6d3359-8528-4e5d-a8e1-9f23e29ee17e"
-  description: "Initial type for HMs."
+LDS_INITIAL:
+  guid: "2ce40b07-e4db-4702-b718-932c9255b55f"
+  description: "Initial type for LDS."
   implements:
-  - HM
-  allow_undefined_fields: true
-
-EM_INITIAL:
-  guid: "0f5b8abf-6e79-42de-ba37-9f2fee3f32c5"
-  description: "Initial type for EMs."
-  implements:
-  - EM
-  allow_undefined_fields: true
-
-WM_INITIAL:
-  guid: "9ff932e6-80ca-4abe-a553-22859261b063"
-  description: "Initial type for WMs."
-  implements:
-  - WM
+  - LDS
   allow_undefined_fields: true
