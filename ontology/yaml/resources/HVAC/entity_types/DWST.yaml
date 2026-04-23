@@ -77,6 +77,23 @@ DWST_SWTC2X:
   - DWST
   - SWTC2X
 
+DWST_RWTM:
+  guid: "b668d5bb-3fab-4316-8680-9569d9856e1f"
+  description: "Domestic water system with return water temperature monitoring."
+  implements:
+  - DWST
+  - RWTM
+
+DWST_RWTM_WFRM_HLPM:
+  guid: "6a1807e9-33e8-47d4-b7ed-8306de5e67b7"
+  description: "Domestic water system with return water temperature, flowrate and thermal power monitoring."
+  implements:
+  - DWST
+  - RWTM
+  - WFRM
+  - HLPM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

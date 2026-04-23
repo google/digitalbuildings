@@ -97,6 +97,18 @@ FA2X:
   - fire_alarm_1
   - fire_alarm_2
 
+VBA6X:
+  guid: "70c1d96c-57e3-4533-a2cc-7c2a04645752"
+  description: "Six vibration alarm monitoring."
+  is_abstract: true
+  uses:
+  - vibration_alarm_1
+  - vibration_alarm_2
+  - vibration_alarm_3
+  - vibration_alarm_4
+  - vibration_alarm_5
+  - vibration_alarm_6
+
 WLS:
   guid: "16a99ce4-3298-4f9a-9ba8-41edec6a48c8"
   description: "Water leak location monitoring."
