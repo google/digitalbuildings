@@ -3614,6 +3614,7 @@ literals:
   - ON
   - OFF
   - STANDBY
+  - UNKNOWN
 - run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
