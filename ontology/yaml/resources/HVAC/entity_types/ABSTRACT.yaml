@@ -2495,6 +2495,7 @@ ZSPC:
   - exhaust_air_damper_percentage_command
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
+  - pressurization_request_count
   uses:
   - zone_air_static_pressure_sensor
   - zone_air_static_pressure_setpoint
