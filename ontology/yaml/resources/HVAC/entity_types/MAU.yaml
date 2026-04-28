@@ -579,6 +579,17 @@ MAU_DFSS_DFVSC_HTDC:
   - DFVSC
   - HTDC
 
+MAU_DFVSC_HTDC_OA_VOADM:
+  guid: "30347ce2-702c-4097-8c55-b9b31f426891"
+  description: "Single zone heating make-up air unit with variable speed discharge fan and outside air damper."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFVSC
+  - HTDC
+  - OA
+  - VOADM
+
 MAU_DFSS_DFVSC_DXDC_HTDC:
   guid: "1e5de0a6-b057-4387-b4b4-908b07198740"
   description: "Single zone heating and cooling make-up air unit."
@@ -1104,6 +1115,20 @@ MAU_DFVSC_ECCDC_OA:
   - DFVSC
   - ECCDC
   - OA
+
+MAU_SFVSC2X_CHWSC_HWSC_SARC_SSPC_OA_OAFM:
+  guid: "183d97f3-84a3-4ed8-b217-afd7081c0c7a"
+  description: "Multi-zone MAU with dual supply fan variable speed control, chilled water and heating water coil control, building and supply static pressure control, outside air temperature and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC2X
+  - CHWSC
+  - HWSC
+  - SARC
+  - SSPC
+  - OA
+  - OAFM
 
 ###################################
 ### Existing Non-standard Types ###

@@ -362,6 +362,7 @@ DSP:
   - cooling_request_count
   - heating_request_count
   - warmup_request_count
+  - warmup_run_command
   - user_occupancy_override_status
   uses:
   - zone_air_cooling_temperature_setpoint
@@ -718,6 +719,9 @@ VSC:
   - master_alarm
   - failed_inverter_alarm
   - powerfactor_sensor
+  - max_zone_air_co_concentration_sensor
+  - schedule_run_command
+  - user_occupancy_override_status
   uses:
   - run_command
   - run_status
@@ -1592,6 +1596,26 @@ CWDT:
   - condensing_return_water_temperature_sensor
   - condensing_supply_water_temperature_sensor
 
+BSWTC:
+  guid: "c37fdc7e-48c2-4f7d-ae6a-f6fe0389ae24"
+  description: "Building side supply water temperature control."
+  opt_uses:
+  - cooling_request_count
+  - run_command
+  - run_status
+  - heating_thermal_power_sensor
+  - cooling_thermal_power_sensor
+  uses:
+  - building_supply_water_temperature_sensor
+  - building_supply_water_temperature_setpoint
+
+SSWTC:
+  guid: "8523460b-4d52-49dc-a74d-59281277d2e5"
+  description: "Plant side supply water temperature control."
+  uses:
+  - source_supply_water_temperature_sensor
+  - source_supply_water_temperature_setpoint
+
 # Rename SFN TOTAL_
 SWTC:
   guid: "7d72e2de-f1db-4be8-852c-210be33b00dd"
@@ -1617,6 +1641,7 @@ SWTC:
   - failed_return_water_temperature_alarm
   - failed_supply_water_temperature_alarm
   - heating_thermal_power_sensor
+  - schedule_run_command
   uses:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
@@ -1639,19 +1664,6 @@ SWTC2X:
   - supply_water_temperature_sensor_2
   - supply_water_temperature_setpoint
 
-SWCHVVM:
-  guid: "c2b7fef9-dd97-4a80-aa70-cdd1ca4bd269"
-  description: "Supply changeover water valve monitoring on supply side."
-  is_abstract: true
-  opt_uses:
-  - failed_supply_water_changeover_valve_alarm
-  - supply_water_changeover_valve_percentage_sensor
-  uses:
-  - supply_water_changeover_valve_command
-  - supply_water_changeover_valve_status
-  implements:
-  - MONITORING
-
 RWTC:
   guid: "e6ef58f6-fbda-421d-ac06-d573b093aecd"
   description: "Return water temperature control."
@@ -1669,6 +1681,19 @@ RWTC:
   uses:
   - return_water_temperature_sensor
   - return_water_temperature_setpoint
+
+SWCHVVM:
+  guid: "c2b7fef9-dd97-4a80-aa70-cdd1ca4bd269"
+  description: "Supply changeover water valve monitoring on supply side."
+  is_abstract: true
+  opt_uses:
+  - failed_supply_water_changeover_valve_alarm
+  - supply_water_changeover_valve_percentage_sensor
+  uses:
+  - supply_water_changeover_valve_command
+  - supply_water_changeover_valve_status
+  implements:
+  - MONITORING
 
 RWCHVVM:
   guid: "d17af339-3fbe-447e-9355-9c08a716de40"
@@ -2016,6 +2041,7 @@ ED:
   - schedule_run_command
   - low_exhaust_air_flowrate_alarm
   - pressurization_request_count
+  - user_occupancy_override_status
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_flowrate_sensor
@@ -2718,6 +2744,8 @@ CHWSC:
   - water_leak_alarm
   - frost_alarm
   - cooldown_run_command
+  - dehumidification_run_command
+  - return_air_relative_humidity_sensor
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -4505,6 +4533,8 @@ ECON:
   - failed_outside_air_temperature_alarm
   - ventilation_request_count
   - return_air_flowrate_sensor
+  - mixed_air_relative_humidity_sensor
+  - failed_mixed_air_relative_humidity_alarm
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -4654,6 +4684,7 @@ ECONM2X:
   - high_mixed_air_temperature_alarm_2
   - low_mixed_air_temperature_alarm_2
   - failed_outside_air_temperature_alarm
+  - mixed_air_relative_humidity_sensor
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor_1
@@ -4846,6 +4877,7 @@ OAFM:
   - outside_air_damper_percentage_sensor
   - outside_air_temperature_sensor
   - failed_outside_air_flowrate_alarm
+  - ventilation_request_count
   uses:
   - outside_air_flowrate_sensor
   implements:
@@ -5722,6 +5754,8 @@ EFVSC2X:
   - exhaust_fan_current_sensor_2
   - exhaust_fan_power_sensor_1
   - exhaust_fan_power_sensor_2
+  - exhaust_fan_energy_accumulator_1
+  - exhaust_fan_energy_accumulator_2
   - exhaust_fan_torque_sensor_1
   - exhaust_fan_torque_sensor_2
   - exhaust_fan_voltage_sensor_1
@@ -6041,6 +6075,16 @@ SWDVPM:
   implements:
   - MONITORING
 
+BRWISOVM:
+  guid: "76d28810-5898-45a2-8e83-4b2a4dcf2766"
+  description: "Building side return water isolation valve binary control."
+  is_abstract: true
+  opt_uses:
+  - failed_building_return_water_isolation_valve_alarm
+  uses:
+  - building_return_water_isolation_valve_command
+  - building_return_water_isolation_valve_status
+
 SWISOVPM:
   guid: "33856563-ebe5-42ee-a928-e8b46d81772d"
   description: "Supply side isolation valve percentage control."
@@ -6052,6 +6096,24 @@ SWISOVPM:
   - supply_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+SRWISOVM:
+  guid: "2e81a6c2-a6f6-45ea-b35b-bba952428f58"
+  description: "Central plant side return water isolation valve binary control."
+  opt_uses:
+  - failed_source_return_water_isolation_valve_alarm
+  uses:
+  - source_return_water_isolation_valve_command
+  - source_return_water_isolation_valve_status
+
+SSWISOVPM:
+  guid: "b02f41fd-a0e6-45ed-9ca3-c42155a02eb9"
+  description: "Central plant side supply water isolation valve percentage control."
+  opt_uses:
+  - failed_source_supply_water_isolation_valve_alarm
+  uses:
+  - source_supply_water_isolation_valve_percentage_command
+  - source_supply_water_isolation_valve_percentage_sensor
 
 RWISOVM:
   guid: "2d35bbb0-bcad-4f36-a8cb-0c9031d81886"
@@ -6291,6 +6353,17 @@ WDPM:
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
   - failed_differential_pressure_alarm
+
+WDPM2X:
+  guid: "93d8f839-1c11-4db8-83bf-faaa91e86191"
+  description: "Dual sensor differential pressure monitoring."
+  is_abstract: true
+  uses:
+  - differential_pressure_sensor_1
+  - differential_pressure_sensor_2
+  opt_uses:
+  - high_differential_pressure_alarm_1
+  - high_differential_pressure_alarm_2
 
 GDPM:
   guid: "5b7cc033-05fc-473c-832a-6164a82059dd"
@@ -7188,7 +7261,7 @@ CWDTC:
 
 DICM:
   guid: "0c42ee3c-eb6c-4624-a4ab-4f8f0f483778"
-  description: "Damper isolation control and monitoring. "
+  description: "Damper isolation control and monitoring."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_closed_status
