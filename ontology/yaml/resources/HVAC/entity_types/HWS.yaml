@@ -42,6 +42,7 @@ HWS_SWTC_WDPC:
   - WDPC
 
 HWS_SWTC_WDPC_MMHWDPC:
+  guid: "36b16b35-ddd9-4553-a98a-1370d4db5bcc"
   description: "Simple heating water system with supply temp, differential pressure control, and minimum differential pressure control."
   is_canonical: true
   implements:
