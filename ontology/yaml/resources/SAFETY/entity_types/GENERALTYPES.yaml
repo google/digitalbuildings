@@ -78,11 +78,18 @@ FAS:
 
 LDS:
   guid: "811f5020-7a8a-42b1-8acd-24dca39cafc2"
-  description: "Generic leak detection systems."
+  description: "Generic leak detection system."
   is_abstract: true
   implements:
   - EQUIPMENT
-  
+
+VBS:
+  guid: "a900c3d7-8398-4459-b6c0-754315ae4a02"
+  description: "Generic vibration detection system."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 RDT:
   guid: "b2fc86a6-4220-40fc-b34e-6d2cf8396d3f"
   description: "Rodent Repellent System"
