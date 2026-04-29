@@ -9938,6 +9938,25 @@ HWDTC:
   - heating_water_differential_temperature_sensor
   - heating_water_differential_temperature_setpoint
 
+HPSWC:
+  guid: "77c4b3a9-f320-4fee-b43d-01824d0ae743"
+  description: "Generic single-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - load_percentage_sensor
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - reversing_valve_command
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 HP4SWC:
   guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
   description: "Four-compressor heat pump control for two circuits on supply water side."
