@@ -2522,7 +2522,6 @@ ZSPC:
   - exhaust_air_damper_percentage_command
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
-  - pressurization_request_count
   uses:
   - zone_air_static_pressure_sensor
   - zone_air_static_pressure_setpoint
@@ -9938,6 +9937,24 @@ HWDTC:
   uses:
   - heating_water_differential_temperature_sensor
   - heating_water_differential_temperature_setpoint
+
+HPSWC:
+  description: "Generic single-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - load_percentage_sensor
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - reversing_valve_command
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
 
 HP4SWC:
   guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"

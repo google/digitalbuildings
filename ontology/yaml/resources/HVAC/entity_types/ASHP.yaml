@@ -25,14 +25,14 @@ ASHP_SS_HP6SWC:
   - SS
   - HP6SWC
 
-ASHP_SS_SWTC_WDPM_RWISOVM:
+ASHP_SS_HPSWC_WDPM_RWISOVM:
   guid: "59f964ee-b84a-42d3-8ade-b2cbb02691e0"
-  description: "Air source heat pump with supply water temperature control, differential pressure control, and isolation valve on return side."
+  description: "Single-stage air source heat pump with supply water temperature control, differential pressure control, and isolation valve on return side."
   is_canonical: true
   implements:
   - ASHP
   - SS
-  - SWTC
+  - HPSWC
   - WDPM
   - RWISOVM
 
