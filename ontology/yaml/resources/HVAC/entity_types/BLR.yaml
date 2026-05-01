@@ -375,3 +375,15 @@ BLR_SS_SWTC_HTSWC_RWISOVPM_NONCANONICAL_1:
   uses:
   - flue_gas_temperature_sensor
 
+BLR_SS_SWTC_NONCANONICAL_3:
+  description: "Non-standard type."
+  implements:
+  - BLR_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - circulation_pump_run_status
+  - heating_percentage_sensor
+  - high_gas_pressure_alarm
+  - low_flowrate_alarm
+  - low_gas_pressure_alarm
+  - master_alarm
