@@ -1159,7 +1159,6 @@ DFSS:
   - overload_discharge_fan_alarm
   - zone_occupancy_status
   - user_occupancy_override_status
-  - local_override_discharge_fan_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
