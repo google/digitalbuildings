@@ -892,6 +892,7 @@ FAN_VSC_EPC_EDM:
   - EDM
 
 FAN_SS_VSC_EPC_EHHRC_EDPM:
+  guid: "0bff8087-b1bd-4276-8818-0b6ac6e43177"
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
   is_canonical: true
   implements:
