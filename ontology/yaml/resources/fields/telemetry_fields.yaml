@@ -3595,6 +3595,9 @@ literals:
   - UNOCCUPIED
   - BYPASS
   - STANDBY
+- rotationalvelocity_sensor:
+    flexible_min: 0.0
+    flexible_max: 4000.0
 - run_command:
   - ON
   - OFF
