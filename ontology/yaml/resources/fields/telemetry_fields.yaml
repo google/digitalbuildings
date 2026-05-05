@@ -1268,6 +1268,9 @@ literals:
 - failed_exhaust_air_damper_alarm:
   - ACTIVE
   - INACTIVE
+- failed_exhaust_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_exhaust_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
