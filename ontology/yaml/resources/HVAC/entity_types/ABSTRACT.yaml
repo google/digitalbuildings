@@ -724,6 +724,7 @@ VSC:
   - max_zone_air_co_concentration_sensor
   - schedule_run_command
   - user_occupancy_override_status
+  - rotationalvelocity_sensor
   uses:
   - run_command
   - run_status
