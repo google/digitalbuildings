@@ -376,6 +376,7 @@ BLR_SS_SWTC_HTSWC_RWISOVPM_NONCANONICAL_1:
   - flue_gas_temperature_sensor
 
 BLR_SS_SWTC_NONCANONICAL_3:
+  guid: "6549af4c-b6dc-4847-aeee-0a6a3767b05f"
   description: "Non-standard type."
   implements:
   - BLR_SS_SWTC
