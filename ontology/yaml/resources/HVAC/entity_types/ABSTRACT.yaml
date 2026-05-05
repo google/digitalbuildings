@@ -2375,9 +2375,11 @@ EPC:
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
   opt_uses:
+  - pressurization_request_count
   - exhaust_air_flowrate_sensor
   - high_exhaust_air_static_pressure_alarm
   - low_exhaust_air_static_pressure_alarm
+  - failed_exhaust_air_static_pressure_alarm
   implements:
   - OPERATIONAL
 
@@ -7914,6 +7916,8 @@ EHHRC:
   - exhaust_air_flowrate_sensor
   - heat_recovery_water_isolation_valve_command
   - leaving_heat_recovery_coil_temperature_sensor
+  opt_uses:
+  - heat_recovery_water_flowrate_sensor
   implements:
   - MONITORING
 
