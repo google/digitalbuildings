@@ -4007,6 +4007,23 @@ AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   - FDPM
   - OA
 
+AHU_SS_SARC_BSPC_ECON_MTM_SFSS_SSPC_DX2SC_EFSS_EFVSC:
+  guid: "d0c9cefe-3461-4dbd-8353-14175bba60ab"
+  description: "AHU for preconditioning supply air"
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - SARC
+  - BSPC
+  - ECON
+  - MTM
+  - SFSS
+  - SSPC
+  - DX2SC
+  - EFSS
+  - EFVSC
+
 AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
   guid: "b69a79eb-7900-4f95-922d-edbe4c51b1ab"
   description: "AHU for preconditioning supply air"
