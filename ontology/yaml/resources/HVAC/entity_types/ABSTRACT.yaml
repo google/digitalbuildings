@@ -7909,7 +7909,7 @@ EHHRC:
   - heat_recovery_water_isolation_valve_command
   - leaving_heat_recovery_coil_temperature_sensor
   opt_uses:
-  - flowrate_sensor
+  - heat_recovery_water_flowrate_sensor
   implements:
   - MONITORING
 

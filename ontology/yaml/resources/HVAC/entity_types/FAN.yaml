@@ -891,12 +891,11 @@ FAN_VSC_EPC_EDM:
   - EPC
   - EDM
 
-FAN_SS_VSC_EPC_EHHRC_EDPM:
+FAN_VSC_EPC_EHHRC_EDPM:
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
   is_canonical: true
   implements:
   - FAN
-  - SS
   - VSC
   - EPC
   - EHHRC

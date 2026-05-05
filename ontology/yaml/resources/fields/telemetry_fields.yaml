@@ -1703,6 +1703,9 @@ literals:
 - heat_recovery_water_isolation_valve_command:
   - OPEN
   - CLOSED
+- heat_recovery_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - heat_wheel_run_command:
   - ON
   - OFF
