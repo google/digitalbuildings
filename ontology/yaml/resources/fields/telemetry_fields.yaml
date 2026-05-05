@@ -999,6 +999,9 @@ literals:
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
+- emergency_stop_alarm:
+  - ACTIVE
+  - INACTIVE
 - energy_accumulator:
     fixed_min: 0.0
     flexible_max: 36000000000000000000.0
@@ -1972,6 +1975,9 @@ literals:
 - high_flowrate_alarm:
   - ACTIVE
   - INACTIVE
+- high_gas_pressure_alarm: # For natural gas specifically
+  - ACTIVE
+  - INACTIVE
 - high_heating_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -2376,7 +2382,16 @@ literals:
 - local_override_alarm:
   - ACTIVE
   - INACTIVE
+- local_override_compressor_alarm:
+  - ACTIVE
+  - INACTIVE
+- local_override_discharge_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
 - local_override_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- local_override_supply_fan_alarm:
   - ACTIVE
   - INACTIVE
 - loop_chilled_water_differential_pressure_sensor:
@@ -2455,6 +2470,9 @@ literals:
   - ON
   - OFF
 - low_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_gas_pressure_alarm: # For natural gas specifically
   - ACTIVE
   - INACTIVE
 - low_heating_supply_water_temperature_alarm:
@@ -2795,6 +2813,9 @@ literals:
 - north_wind_linearvelocity_sensor:
     flexible_min: 0.0
     flexible_max: 44.704
+- occupancy_status:
+  - OCCUPIED
+  - UNOCCUPIED
 - oil_differential_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 1034214.0
@@ -3580,6 +3601,9 @@ literals:
   - UNOCCUPIED
   - BYPASS
   - STANDBY
+- rotationalvelocity_sensor:
+    flexible_min: 0.0
+    flexible_max: 4000.0
 - run_command:
   - ON
   - OFF
@@ -3599,6 +3623,7 @@ literals:
   - ON
   - OFF
   - STANDBY
+  - UNKNOWN
 - run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
@@ -4413,6 +4438,9 @@ literals:
 - zone_air_o2_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- zone_air_occupied_cooling_temperature_setpoint:
+    flexible_min: 290
+    flexible_max: 305
 - zone_air_occupied_deadband_temperature_setpoint:
     flexible_min: 255.372
     flexible_max: 272.039
@@ -4507,6 +4535,9 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 322.037037
 - zone_air_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481
+- zone_air_unoccupied_cooling_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - zone_air_unoccupied_deadband_temperature_setpoint:
