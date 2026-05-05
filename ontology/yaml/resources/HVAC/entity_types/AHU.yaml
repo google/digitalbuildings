@@ -3344,6 +3344,22 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_DX4SC_ECONM_SSPC_SARC_EDBPC_BSPC:
   - EDBPC
   - BSPC
 
+AHU_SFVSC_EFVSC_DX4SC_ECONM_SSPC_SARC_SAIDC_EDBPC_BSPC:
+  guid: "9f658314-c6cb-4d9a-873a-6cdd44dfb228"
+  description: "Multi-zone AHU with supply fan, exhaust fan, compressor, exhaust damper, economizer, and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - EFVSC
+  - DX4SC
+  - ECONM
+  - SSPC
+  - SARC
+  - SAIDC
+  - EDBPC
+  - BSPC
+
 AHU_DFSS_EFVSC_DXZC_ECONZ_ZSPC:
   guid: "5c8e0d6f-432b-4b41-bbc2-d7615c0369f9"
   description: "Single-zone AHU with discharge fan, exhaust fan, compressor, economizer, and zone static pressure control"
@@ -3990,6 +4006,23 @@ AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   - STM
   - FDPM
   - OA
+
+AHU_SS_SARC_BSPC_ECON_MTM_SFSS_SSPC_DX2SC_EFSS_EFVSC:
+  guid: "d0c9cefe-3461-4dbd-8353-14175bba60ab"
+  description: "AHU for preconditioning supply air"
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - SARC
+  - BSPC
+  - ECON
+  - MTM
+  - SFSS
+  - SSPC
+  - DX2SC
+  - EFSS
+  - EFVSC
 
 AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
   guid: "b69a79eb-7900-4f95-922d-edbe4c51b1ab"
