@@ -600,6 +600,7 @@ literals:
   - COOLING
   - DEHUMIDIFY
   - FAN_ONLY
+  - VENTILATION
 - control_status:
   - REMOTE
   - LOCAL
