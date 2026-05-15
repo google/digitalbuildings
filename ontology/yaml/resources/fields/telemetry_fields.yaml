@@ -3886,9 +3886,15 @@ literals:
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
+- supervisor_cooling_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - supervisor_differential_pressure_setpoint:
     flexible_min: -6894.75789
     flexible_max: 137895.1578
+- supervisor_heating_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - supervisor_outside_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
