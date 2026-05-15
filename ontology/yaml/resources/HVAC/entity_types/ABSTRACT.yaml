@@ -44,6 +44,8 @@ SD:
   - flowrate_requirement
   - unoccupied_flowrate_requirement
   - user_occupancy_override_status
+  - emergency_stop_alarm
+  - occupancy_status
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -722,6 +724,7 @@ VSC:
   - max_zone_air_co_concentration_sensor
   - schedule_run_command
   - user_occupancy_override_status
+  - rotationalvelocity_sensor
   uses:
   - run_command
   - run_status
@@ -963,6 +966,7 @@ DFMSC:
   - discharge_fan_run_status
   - discharge_fan_speed_mode
   opt_uses:
+  - control_mode
   - discharge_fan_run_mode
   - schedule_run_command
   - failed_discharge_fan_alarm
@@ -2041,6 +2045,7 @@ ED:
   - schedule_run_command
   - low_exhaust_air_flowrate_alarm
   - pressurization_request_count
+  - user_occupancy_override_status
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_flowrate_sensor
@@ -2370,9 +2375,11 @@ EPC:
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
   opt_uses:
+  - pressurization_request_count
   - exhaust_air_flowrate_sensor
   - high_exhaust_air_static_pressure_alarm
   - low_exhaust_air_static_pressure_alarm
+  - failed_exhaust_air_static_pressure_alarm
   implements:
   - OPERATIONAL
 
@@ -3030,6 +3037,7 @@ DXZC:
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
+  - local_override_compressor_alarm
   - leaving_cooling_coil_temperature_sensor
   - compressor_lost_power_alarm
   - failed_compressor_alarm
@@ -3217,6 +3225,9 @@ DX2SC:
   - compressor_speed_percentage_command
   - compressor_speed_percentage_command_1
   - compressor_speed_percentage_command_2
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
+  - failed_cooling_alarm
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
@@ -4875,7 +4886,7 @@ OAFM:
   - outside_air_damper_percentage_sensor
   - outside_air_temperature_sensor
   - failed_outside_air_flowrate_alarm
-  - ventilation_request_count 
+  - ventilation_request_count
   uses:
   - outside_air_flowrate_sensor
   implements:
@@ -7905,6 +7916,8 @@ EHHRC:
   - exhaust_air_flowrate_sensor
   - heat_recovery_water_isolation_valve_command
   - leaving_heat_recovery_coil_temperature_sensor
+  opt_uses:
+  - heat_recovery_water_flowrate_sensor
   implements:
   - MONITORING
 
@@ -8670,6 +8683,7 @@ DAIDC:
   uses:
   - discharge_air_isolation_damper_command
   - discharge_air_isolation_damper_status
+  - local_override_discharge_air_isolation_damper_alarm
   implements:
   - MONITORING
   opt_uses:
@@ -9935,6 +9949,25 @@ HWDTC:
   uses:
   - heating_water_differential_temperature_sensor
   - heating_water_differential_temperature_setpoint
+
+HPSWC:
+  guid: "77c4b3a9-f320-4fee-b43d-01824d0ae743"
+  description: "Generic single-compressor heat pump control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - load_percentage_sensor
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - reversing_valve_command
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
 
 HP4SWC:
   guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
