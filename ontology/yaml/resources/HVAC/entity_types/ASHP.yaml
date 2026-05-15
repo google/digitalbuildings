@@ -25,6 +25,17 @@ ASHP_SS_HP6SWC:
   - SS
   - HP6SWC
 
+ASHP_SS_HPSWC_WDPM_RWISOVM:
+  guid: "59f964ee-b84a-42d3-8ade-b2cbb02691e0"
+  description: "Single-stage air source heat pump with supply water temperature control, differential pressure control, and isolation valve on return side."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HPSWC
+  - WDPM
+  - RWISOVM
+
 ASHP_SS_HP8SWC:
   guid: "b9add02d-0330-493c-a5b6-6f7dc83ac2c2"
   description: "Eight-stage air source heat pump."
@@ -240,3 +251,19 @@ ASHP_SS_HP16SWC:
   - ASHP
   - SS
   - HP16SWC
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+
+ASHP_SS_HP6SWC_CFVSC3X_CPC2X_NONCANONICAL_1:
+  guid: "7e10026c-1352-4e57-96c4-578b059e721c"
+  description: "Six-stage air source heat pump with 2 circulation pumps and 3 condensing fan variable speed control. Non-standard additions."
+  is_canonical: false
+  implements:
+  - ASHP_SS_HP6SWC_CFVSC3X_CPC2X
+  uses:
+  - failed_circuitbreaker_alarm_1
+  - failed_circuitbreaker_alarm_2
+  - low_flowrate_alarm

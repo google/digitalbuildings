@@ -1001,3 +1001,79 @@ VAV_CO2C_NONCANONICAL_1:
   uses:
   - supply_air_damper_percentage_sensor
   - supply_air_flowrate_sensor
+
+VAV_SD_DSP_NONCANONICAL_1:
+  guid: "8b30b297-1259-4b55-bdcf-28994af1b986"
+  description: "Simple cooling only VAV. Non-standard additions."
+  is_canonical: false
+  implements:
+  - VAV_SD_DSP
+  uses:
+  - high_limit_supply_air_cooling_flowrate_setpoint
+  - high_limit_supply_air_heating_flowrate_setpoint
+  - low_limit_supply_air_ventilation_flowrate_setpoint
+  - supervisor_control_mode
+  - supervisor_cooling_percentage_command
+  - supervisor_heating_percentage_command
+  - supervisor_run_command
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
+
+VAV_SD_DSP_CO2C_NONCANONICAL_1:
+  guid: "2f1e1087-19b2-4996-8610-49c54a63e62e"
+  description: "CO2 control VAV. Non-standard additions."
+  is_canonical: false
+  implements:
+  - VAV_SD_DSP_CO2C
+  uses:
+  - high_limit_supply_air_cooling_flowrate_setpoint
+  - high_limit_supply_air_heating_flowrate_setpoint
+  - low_limit_supply_air_ventilation_flowrate_setpoint
+  - supervisor_control_mode
+  - supervisor_cooling_percentage_command
+  - supervisor_heating_percentage_command
+  - supervisor_run_command
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
+
+VAV_SD_DSP_HWDC_NONCANONICAL_1:
+  guid: "1f7ca67a-c816-4504-bd82-dd59686aacc3"
+  description: "Single duct reheat VAV with dual setpoint control. Non-standard additions."
+  is_canonical: false
+  implements:
+  - VAV_SD_DSP_HWDC
+  uses:
+  - high_limit_supply_air_cooling_flowrate_setpoint
+  - high_limit_supply_air_heating_flowrate_setpoint
+  - low_limit_supply_air_ventilation_flowrate_setpoint
+  - supervisor_control_mode
+  - supervisor_cooling_percentage_command
+  - supervisor_heating_percentage_command
+  - supervisor_run_command
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
+
+VAV_SD_DSP_HWDC_CO2C_NONCANONICAL_1:
+  guid: "818bc5b7-bd26-4570-aceb-1030f7cf5f0e"
+  description: "Single duct reheat VAV with CO2 and temp control. Non-standard additions."
+  is_canonical: false
+  implements:
+  - VAV_SD_DSP_HWDC_CO2C
+  uses:
+  - high_limit_supply_air_cooling_flowrate_setpoint
+  - high_limit_supply_air_heating_flowrate_setpoint
+  - low_limit_supply_air_ventilation_flowrate_setpoint
+  - supervisor_control_mode
+  - supervisor_cooling_percentage_command
+  - supervisor_heating_percentage_command
+  - supervisor_run_command
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint

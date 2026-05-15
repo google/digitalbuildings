@@ -605,3 +605,15 @@ HWS_SWTC_WDPC2X_NONCANONICAL_1:
   uses:
   - return_water_temperature_sensor_1
   - return_water_temperature_sensor_2
+
+HWS_SWTC_WDPC_NONCANONICAL_1:
+  guid: "26ff80f7-f921-477b-bf72-f7e6af163a35"
+  description: "Simple heating water system with supply temp and differential pressure control. Non-standard additions."
+  is_canonical: false
+  implements:
+  - HWS_SWTC_WDPC
+  uses:
+  - supervisor_control_mode
+  - supervisor_differential_pressure_setpoint
+  - supervisor_run_command
+  - supervisor_supply_water_temperature_setpoint
