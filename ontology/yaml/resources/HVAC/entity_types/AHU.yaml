@@ -6601,6 +6601,7 @@ AHU_DX2SC_HWSC_ECONM_EFVSC_SFVSC_SSPC_SARC_BSPC_NONCANONICAL_1:
   - local_override_supply_fan_alarm
   - failed_compressor_alarm_1
   - failed_compressor_alarm_2
+  - run_command
   - supervisor_control_mode_1
   - supervisor_control_mode_2
   - supervisor_run_command
