@@ -171,7 +171,7 @@ descriptor:
   makeup: "Process of adding (\"making-up\") water that has been lost due to blowdown or evaporation."
   manufacturer: "The company which produces the asset or device."
   matched: "A collection of things that are put together as being equal, similar, or complementary."
-  master: "Highest priority (or primary control) device, sensor, etc."
+  master: "Serving as the highest-level point of consolidation that unites individual devices, sensors, alarms, etc."
   mechanical: "A process driven by machinery; specifically applied to cooling processes (e. g. using a refrigeration cycle for cooling)."
   medium: "Level of control or measurement; between high and low."
   message: "A communication sent to or left for a recipient."
