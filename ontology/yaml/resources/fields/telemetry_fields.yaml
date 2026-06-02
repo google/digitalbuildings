@@ -78,7 +78,13 @@ literals:
 - average_zone_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 322.037037
+- bag_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - bag_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- bag_filter_differential_pressure_setpoint:
     flexible_min: -249.080024
     flexible_max: 2490.80024
 - battery_charge_percentage_sensor:
@@ -3068,7 +3074,13 @@ literals:
 - panel_alarm:
   - ACTIVE
   - INACTIVE
+- panel_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - panel_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- panel_filter_differential_pressure_setpoint:
     flexible_min: -249.080024
     flexible_max: 2490.80024
 - particle_concentration_sensor:
