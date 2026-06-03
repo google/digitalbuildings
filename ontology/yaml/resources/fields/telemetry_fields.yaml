@@ -899,10 +899,10 @@ literals:
 - discharge_fan_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
-- discharge_pressure_sensor::
+- discharge_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
-- discharge_pressure_setpoint::
+- discharge_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - dishwasher_run_status:
