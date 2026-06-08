@@ -8683,12 +8683,12 @@ DAIDC:
   uses:
   - discharge_air_isolation_damper_command
   - discharge_air_isolation_damper_status
-  - local_override_discharge_air_isolation_damper_alarm
   implements:
   - MONITORING
   opt_uses:
   - failed_discharge_air_isolation_damper_alarm
   - discharge_air_isolation_damper_percentage_sensor
+  - local_override_discharge_air_isolation_damper_alarm
 
 RAIDC4X:
   guid: "2a234621-dfb8-4aab-a825-49e3bfc107b6"
