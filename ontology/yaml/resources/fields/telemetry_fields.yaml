@@ -51,6 +51,9 @@ literals:
 - average_line_current_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+- average_line_neutral_discharge_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 20000.0
 - average_line_neutral_exhaust_fan_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 20000.0
@@ -480,6 +483,9 @@ literals:
 - condensing_fan_run_status:
   - ON
   - OFF
+- condensing_fan_speed_frequency_sensor:
+    flexible_min: -0.5
+    flexible_max: 65.0
 - condensing_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -893,6 +899,12 @@ literals:
 - discharge_fan_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
+- discharge_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- discharge_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - dishwasher_run_status:
   - ON
   - OFF
