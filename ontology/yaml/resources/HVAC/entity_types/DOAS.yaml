@@ -33,6 +33,18 @@ DOAS_HWSC_DXSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
   - FDPM2X
   - RTM
 
+DOAS_EFVSC_SFVSC_HWSC_CHWSC_SFM_SSPC:
+  description: "DOAS with supply and return fans, heating water and cooling water coils, supply static pressure controlled via supply fan speed and supply air flowrate monitoring"
+  is_canonical: true
+  implements:
+  - DOAS
+  - EFVSC
+  - SFVSC
+  - HWSC
+  - CHWSC
+  - SFM
+  - SSPC
+
 DOAS_HWSC_DXSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM_SSPC:
   guid: "17a42103-2777-4971-b8bb-c5c955771009"
   description: "DOAS with supply and return fans, supply static pressure controlled via supply fan speed, heating valve and cooling from DX Unit"
