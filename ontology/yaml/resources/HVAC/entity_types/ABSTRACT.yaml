@@ -711,6 +711,7 @@ VSC:
   opt_uses:
   - control_mode
   - current_sensor
+  - average_line_current_sensor
   - energy_accumulator
   - motor_temperature_sensor
   - power_sensor
@@ -722,6 +723,7 @@ VSC:
   - speed_percentage_sensor
   - torque_sensor
   - voltage_sensor
+  - average_line_neutral_voltage_sensor
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
@@ -732,6 +734,8 @@ VSC:
   - schedule_run_command
   - user_occupancy_override_status
   - rotationalvelocity_sensor
+  - high_limit_speed_percentage_setpoint
+  - low_limit_speed_percentage_setpoint
   uses:
   - run_command
   - run_status
@@ -780,6 +784,8 @@ VSFC:
   - current_sensor
   - power_sensor
   - voltage_sensor
+  - speed_percentage_command
+  - energy_accumulator
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
@@ -1332,6 +1338,7 @@ SFSS:
   - supply_fan_lost_power_alarm
   - schedule_run_command
   - optimal_stop_command
+  - run_mode
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -5749,6 +5756,7 @@ SFSS4X:
   - failed_supply_fan_alarm_2
   - failed_supply_fan_alarm_3
   - failed_supply_fan_alarm_4
+  - run_mode
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2

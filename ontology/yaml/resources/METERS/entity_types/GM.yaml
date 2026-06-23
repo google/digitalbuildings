@@ -44,3 +44,14 @@ GM_TPWM:
   - TPWM
   opt_uses:
   - gas_temperature_sensor
+
+GM_GFM_TPWM:
+  guid: "64993665-b8bf-4fbc-ad68-0bce0ec62e28"
+  description: "Gas meter with flow, thermal power and thermal energy monitoring."
+  is_canonical: true
+  implements:
+  - GM
+  - GFM
+  - TPWM
+  opt_uses:
+  - gas_temperature_sensor
