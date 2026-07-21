@@ -108,3 +108,11 @@ VCM:
   uses:
   - current_sensor
   - voltage_sensor
+
+GFM:
+  guid: "3e1e30e2-21e8-46fd-93a5-99a594cda841"
+  description: "Gas flow monitoring"
+  is_abstract: true
+  uses:
+  - gas_flowrate_sensor
+  - gas_volume_accumulator
