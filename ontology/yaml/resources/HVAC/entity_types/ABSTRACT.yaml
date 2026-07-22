@@ -237,6 +237,8 @@ CSP:
   - cooling_request_count
   - heating_request_count
   - warmup_request_count
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -3719,6 +3721,10 @@ HPZC:
   - low_zone_air_temperature_alarm
   - overload_compressor_alarm
   - warmup_run_command
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
   uses:
   - compressor_run_command
   - compressor_run_status
