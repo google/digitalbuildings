@@ -901,6 +901,8 @@ DFVSC2X:
   - discharge_fan_speed_frequency_sensor_2
   - discharge_fan_speed_percentage_sensor_1
   - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_rotationalvelocity_sensor_1
+  - discharge_fan_rotationalvelocity_sensor_2
   - discharge_fan_lost_power_alarm_1
   - discharge_fan_lost_power_alarm_2
   - failed_discharge_fan_alarm_1
@@ -3147,6 +3149,8 @@ DX3ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
   uses:
   - compressor_run_command_1
   - compressor_run_command_2

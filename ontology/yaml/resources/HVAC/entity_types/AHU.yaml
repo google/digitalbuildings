@@ -3864,6 +3864,19 @@ AHU_DFSS_DFVSC_CSP_DX3ZC_ECONZ:
   - DX3ZC
   - ECONZ
 
+AHU_DFSS_DFVSC_CSP_DX3ZC_ECONZ_DAIDC:
+  guid: "4ffcb373-edcc-4aa7-94b4-d5953f3b5127"
+  description: "Single-zone AHU with 3-stage cooling and discharge air isolation"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - CSP
+  - DX3ZC
+  - ECONZ
+  - DAIDC
+
 AHU_CSP_DFSS_DFVSC_EFSS_DX3ZC_ECONZ:
   guid: "93d902a9-9ab3-445a-b025-7368be97a4e5"
   description: "Single-zone AHU with 3-stage cooling"
