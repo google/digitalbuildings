@@ -237,6 +237,8 @@ CSP:
   - cooling_request_count
   - heating_request_count
   - warmup_request_count
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -899,6 +901,8 @@ DFVSC2X:
   - discharge_fan_speed_frequency_sensor_2
   - discharge_fan_speed_percentage_sensor_1
   - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_rotationalvelocity_sensor_1
+  - discharge_fan_rotationalvelocity_sensor_2
   - discharge_fan_lost_power_alarm_1
   - discharge_fan_lost_power_alarm_2
   - failed_discharge_fan_alarm_1
@@ -3145,6 +3149,8 @@ DX3ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -3719,6 +3725,10 @@ HPZC:
   - low_zone_air_temperature_alarm
   - overload_compressor_alarm
   - warmup_run_command
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
   uses:
   - compressor_run_command
   - compressor_run_status

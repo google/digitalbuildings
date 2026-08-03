@@ -2136,6 +2136,20 @@ FCU_CSP_DFSS_DXDDC_RMM:
   - DXDDC
   - RMM
 
+FCU_CSP_DFSS_DXDDC_RMM_FDPM_CWRISOVPM_CWDT:
+  guid: "7395158c-2e41-4baa-99eb-f1509a5adc8b"
+  description: "Single zone FCU with CDU and air filter."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - DXDDC
+  - RMM
+  - FDPM
+  - CWRISOVPM
+  - CWDT
+
 FCU_DFSS_CSP_DXZC_DAIDC_RTM:
   guid: "32735993-c15e-41ee-a6a2-b951e9e607c0"
   description: "FCU with compressor and discharge fan."
