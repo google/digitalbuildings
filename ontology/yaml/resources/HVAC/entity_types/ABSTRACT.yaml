@@ -10614,7 +10614,6 @@ CFSS6X:
   - condensing_heat_exchange_percentage_command
 
 CFSS3X:
-  guid: "f4906230-b84f-4610-b301-602936182614"
   description: "Start stop control for 3 condensing fans."
   is_abstract: true
   uses:
