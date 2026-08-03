@@ -1346,6 +1346,20 @@ CH_SS_SGTC_GRISOVM_CWSISOVM:
   - GRISOVM
   - CWSISOVM
 
+CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X_RCKTM2X:
+  guid: "1af77ebe-5e32-4ccd-9185-05108cbf6813"
+  description: "4 stage chiller with supply temp control and refrigerant circuit monitoring, supply isolation valve monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX4SWC
+  - SWISOVPM
+  - REFSM2X
+  - REFPM2X
+  - RCKTM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
