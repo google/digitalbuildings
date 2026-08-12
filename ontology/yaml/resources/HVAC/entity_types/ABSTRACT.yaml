@@ -9994,6 +9994,31 @@ HPSWC:
   implements:
   - CONTROL
 
+HP2SWDSC:
+  guid: "ffd2c909-5931-4daa-8272-501961943c05"
+  description: "Two-compressor heat pump control for dual circuits on supply water side, with separate heating and cooling water temperature setpoints."
+  is_abstract: true
+  opt_uses:
+  - load_percentage_sensor_1
+  - load_percentage_sensor_2
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - reversing_valve_command_1
+  - reversing_valve_command_2
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_4
+  - supply_water_temperature_sensor
+  - heating_supply_water_temperature_setpoint
+  - cooling_supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 HP4SWC:
   guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
   description: "Four-compressor heat pump control for two circuits on supply water side."
