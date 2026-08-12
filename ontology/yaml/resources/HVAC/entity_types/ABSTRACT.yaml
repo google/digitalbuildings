@@ -10012,10 +10012,9 @@ HP2SWDSC:
   - compressor_run_command_2
   - compressor_run_status_1
   - compressor_run_status_2
-  - compressor_run_status_4
   - supply_water_temperature_sensor
   - heating_supply_water_temperature_setpoint
-  - cooling_supply_water_temperature_setpoint
+  - chilled_supply_water_temperature_setpoint
   implements:
   - CONTROL
 
