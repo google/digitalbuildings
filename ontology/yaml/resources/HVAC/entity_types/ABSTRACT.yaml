@@ -10615,6 +10615,8 @@ CFSS2X:
   - condensing_fan_run_command_2
   - condensing_fan_run_status_1
   - condensing_fan_run_status_2
+  opt_uses:
+  - condensing_heat_exchange_percentage_command
 
 CFSS6X:
   guid: "f4906230-b84f-4610-b301-602936182614"
@@ -10633,6 +10635,22 @@ CFSS6X:
   - condensing_fan_run_status_4
   - condensing_fan_run_status_5
   - condensing_fan_run_status_6
+  opt_uses:
+  - condensing_heat_exchange_percentage_command
+
+CFSS3X:
+  guid: "e7c7eb7c-7d21-4e0f-aa7c-9689d1f5a505"
+  description: "Start stop control for 3 condensing fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command_1
+  - condensing_fan_run_command_2
+  - condensing_fan_run_command_3
+  - condensing_fan_run_status_1
+  - condensing_fan_run_status_2
+  - condensing_fan_run_status_3
+  opt_uses:
+  - condensing_heat_exchange_percentage_command
 
 RVINJM2X:
   guid: "4bcc49eb-6a3c-450a-8357-5dd1f5a8ce4d"
