@@ -1,9 +1,10 @@
 # Convenience targets. Everything here is also a plain python3 command.
 PYTHON ?= python3
 
-.PHONY: help demo validate export test lint ci pin clean
+.PHONY: help serve demo validate export test lint ci pin clean
 
 help:
+	@echo "make serve     - browser dashboard at http://127.0.0.1:8765/"
 	@echo "make demo      - run the whole walkthrough end to end"
 	@echo "make validate  - check the sample site's mappings offline"
 	@echo "make export    - write out/building_config.yaml"
@@ -11,6 +12,9 @@ help:
 	@echo "make ci        - run every gate the way CI does"
 	@echo "make pin       - print the current ontology digest for ontology_pin.yaml"
 	@echo "make clean     - remove generated output"
+
+serve:
+	$(PYTHON) -m bms_dbo serve
 
 demo:
 	$(PYTHON) -m bms_dbo demo

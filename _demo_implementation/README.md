@@ -23,10 +23,10 @@ _demo_implementation/
 │   ├── mapping_validator.py   offline checks, the fast inner loop
 │   ├── exporter.py            model → building_config.yaml
 │   ├── webui_render.py        HTML for the dashboard (pure functions)
-│   ├── webui.py                the dashboard's HTTP server
+│   ├── webui.py               the dashboard's HTTP server
 │   └── cli.py                 python -m bms_dbo <command>
 ├── sample_site/               four CSVs = four database tables
-├── tests/                     286 tests
+├── tests/                     299 tests
 ├── schema.sql                 the same model as SQL DDL
 ├── ontology_pin.yaml          which ontology revision we speak
 ├── ci/validate.sh             the four CI gates
@@ -80,6 +80,8 @@ data with `--site path/to/your/csvs`, or run headless with `--no-browser`.
 | `python -m bms_dbo serve` | the browser dashboard above |
 | `make test` | the test suite |
 | `make ci` | all four gates, the way CI runs them |
+
+Every command above has a `make` shortcut too — run `make help` to list them.
 
 Point any command at your own data with `--site path/to/your/csvs`.
 
@@ -258,7 +260,7 @@ Code: [`models.Connection`](bms_dbo/models.py),
 [`ci/validate.sh`](ci/validate.sh) — four gates, cheapest first:
 
 ```
-==> 1/4 unit tests                    210 passed
+==> 1/4 unit tests                    299 passed
 ==> 2/4 ontology pin                  digest matches
 ==> 3/4 offline mapping validation    0 errors, 1 warning
 ==> 4/4 DBO instance validator        All entities validated SUCCESSFULLY
