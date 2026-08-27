@@ -1,0 +1,4 @@
+# The Site tab of the ABEL spreadsheet, as a file.
+# A building configuration covers exactly one building.
+building_code: AU-MEL-DEMO
+display_name: Optergy Demo Building, Melbourne
