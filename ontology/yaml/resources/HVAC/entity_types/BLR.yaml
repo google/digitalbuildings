@@ -344,6 +344,14 @@ BLR_HT2SWC_RWTM:
   - HT2SWC
   - RWTM
 
+BLR_WDPC_WDT:
+  guid: "bbf4695d-e07d-4e48-b9dc-7e7dab27a49a"
+  description: "Boiler with temperature reading between return/supply water and differential pressure control"
+  is_canonical: true
+  implements:
+  - HWS
+  - WDPC
+  - WDT
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -592,6 +592,19 @@ HWS_RWTC_SWTM_WDPM_WFRM_HLPM:
   - WFRM
   - HLPM
 
+HWS_PWDT_PRWDPC_SESWTC_SEWDPC_SESWFRC_BYPVPM:
+  guid: "5aa9ca3d-f2a5-4a74-a7cc-fb85da56f87e"
+  description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and secondary supply flowrate monitoring with a bypass valve."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - PRWDPC
+  - SESWTC
+  - SEWDPC
+  - SESWFRC
+  - BYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
