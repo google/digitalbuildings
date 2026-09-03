@@ -2061,7 +2061,7 @@ literals:
   - INACTIVE
 - high_primary_water_differential_pressure_alarm:
   - ACTIVE
-  - INACTIVE  
+  - INACTIVE
 - high_process_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -2603,7 +2603,7 @@ literals:
   - INACTIVE
 - low_primary_water_differential_pressure_alarm:
   - ACTIVE
-  - INACTIVE  
+  - INACTIVE
 - low_process_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3783,7 +3783,7 @@ literals:
     flexible_max: 0.315451
 - secondary_supply_water_flowrate_setpoint:
     flexible_min: -0.000315451
-    flexible_max: 0.315451    
+    flexible_max: 0.315451
 - secondary_supply_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
