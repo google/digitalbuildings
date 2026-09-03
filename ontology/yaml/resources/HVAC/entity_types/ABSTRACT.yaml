@@ -7470,6 +7470,7 @@ SESWTC:
   - secondary_water_cooling_thermal_power_sensor
   - failed_secondary_return_water_temperature_alarm
   - failed_secondary_supply_water_temperature_alarm
+  - schedule_run_command
   uses:
   - secondary_supply_water_temperature_sensor
   - secondary_supply_water_temperature_setpoint
@@ -7480,6 +7481,9 @@ PRWDPC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - high_primary_water_differential_pressure_alarm
+  - low_primary_water_differential_pressure_alarm
   uses:
   - primary_water_differential_pressure_sensor
   - primary_water_differential_pressure_setpoint
@@ -9827,6 +9831,15 @@ PRSWFRC:
   uses:
   - primary_supply_water_flowrate_sensor
   - primary_supply_water_flowrate_setpoint
+  implements:
+  - MONITORING
+
+SESWFRC:
+  guid: "836fabd3-58d3-4909-ae4c-71b6ebcf6684"
+  description: "Secondary supply water flowrate control"
+  uses:
+  - secondary_supply_water_flowrate_sensor
+  - secondary_supply_water_flowrate_setpoint
   implements:
   - MONITORING
 

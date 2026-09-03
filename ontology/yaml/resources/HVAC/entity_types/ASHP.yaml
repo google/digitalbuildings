@@ -268,6 +268,18 @@ ASHP_SS_HP16SWC:
   - SS
   - HP16SWC
 
+ASHP_SS_SWTC_SWISOVM_WDPM_RMM:
+  guid: "610b85be-8b00-4303-81e1-2d568bdd7f53"
+  description: "Simple airside heat pump with supply control, binary supply isolation, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - SWTC
+  - SWISOVM
+  - WDPM
+  - RMM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
