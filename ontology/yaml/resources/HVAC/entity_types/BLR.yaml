@@ -349,7 +349,7 @@ BLR_WDPC_WDT:
   description: "Boiler with temperature reading between return/supply water and differential pressure control"
   is_canonical: true
   implements:
-  - HWS
+  - BLR
   - WDPC
   - WDT
 
