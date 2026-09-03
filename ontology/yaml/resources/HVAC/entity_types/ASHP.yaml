@@ -187,6 +187,22 @@ ASHP_SS_CHWRISOVPM_CHWDT_CHDX2SC_CFVSC_RVINJM2X_CPC2X_CHWDPC_HWDPM_SHWTC_HWRWISO
   - SHWTC
   - HWRWISOVPM
 
+ASHP_SS_HP2SWDSC_CHWRISOVPM_CFVSC_RVINJM2X_CPC2X_CHWDPC_HWDPM_HWRWISOVPM:
+  guid: "b639d28b-b800-44f5-8cff-32b500f526dc"
+  description: "Air source heat pump with return side isolation valve percentage control for chilled and heating water, refrigerant vapor injection monitoring, differential pressure monitoring for heating water, and supply water temperature control to heating and cooling water setpoints."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP2SWDSC
+  - CHWRISOVPM
+  - CFVSC
+  - RVINJM2X
+  - CPC2X
+  - CHWDPC
+  - HWDPM
+  - HWRWISOVPM
+
 ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_HWDPM_REFPM2X:
   guid: "99952149-9f05-4c79-a8d1-cfeabfe09134"
   description: "Air source heat pump for a hydronic system providing chilled and heating water, supply water temperature control."

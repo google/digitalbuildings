@@ -901,6 +901,8 @@ DFVSC2X:
   - discharge_fan_speed_frequency_sensor_2
   - discharge_fan_speed_percentage_sensor_1
   - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_rotationalvelocity_sensor_1
+  - discharge_fan_rotationalvelocity_sensor_2
   - discharge_fan_lost_power_alarm_1
   - discharge_fan_lost_power_alarm_2
   - failed_discharge_fan_alarm_1
@@ -3147,6 +3149,8 @@ DX3ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -10003,6 +10007,30 @@ HPSWC:
   implements:
   - CONTROL
 
+HP2SWDSC:
+  guid: "ffd2c909-5931-4daa-8272-501961943c05"
+  description: "Two-compressor heat pump control for dual circuits on supply water side, with separate heating and cooling water temperature setpoints."
+  is_abstract: true
+  opt_uses:
+  - load_percentage_sensor_1
+  - load_percentage_sensor_2
+  - heating_thermal_power_capacity
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
+  - reversing_valve_command_1
+  - reversing_valve_command_2
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - supply_water_temperature_sensor
+  - heating_supply_water_temperature_setpoint
+  - chilled_supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
 HP4SWC:
   guid: "b9667c9e-598e-4f7d-8eea-67ff5001e747"
   description: "Four-compressor heat pump control for two circuits on supply water side."
@@ -10599,6 +10627,8 @@ CFSS2X:
   - condensing_fan_run_command_2
   - condensing_fan_run_status_1
   - condensing_fan_run_status_2
+  opt_uses:
+  - condensing_heat_exchange_percentage_command
 
 CFSS6X:
   guid: "f4906230-b84f-4610-b301-602936182614"
@@ -10617,6 +10647,22 @@ CFSS6X:
   - condensing_fan_run_status_4
   - condensing_fan_run_status_5
   - condensing_fan_run_status_6
+  opt_uses:
+  - condensing_heat_exchange_percentage_command
+
+CFSS3X:
+  guid: "e7c7eb7c-7d21-4e0f-aa7c-9689d1f5a505"
+  description: "Start stop control for 3 condensing fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command_1
+  - condensing_fan_run_command_2
+  - condensing_fan_run_command_3
+  - condensing_fan_run_status_1
+  - condensing_fan_run_status_2
+  - condensing_fan_run_status_3
+  opt_uses:
+  - condensing_heat_exchange_percentage_command
 
 RVINJM2X:
   guid: "4bcc49eb-6a3c-450a-8357-5dd1f5a8ce4d"

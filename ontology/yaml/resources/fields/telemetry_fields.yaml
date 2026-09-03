@@ -489,6 +489,9 @@ literals:
 - condensing_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- condensing_heat_exchange_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - condensing_return_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451

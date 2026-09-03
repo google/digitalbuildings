@@ -352,6 +352,19 @@ BLR_WDPC_WDT:
   - HWS
   - WDPC
   - WDT
+
+BLR_SS_SWTC_HT2SWC_SWISOVM:
+  guid: "fcc98796-6729-4098-8fb9-7206279a38d5"
+  description: "Two-stage boiler with supply control, supply water isolation valve monitoring."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HT2SWC
+  - SWISOVM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
