@@ -42,10 +42,8 @@ AVCM:
   guid: "0329a2b4-d474-444e-82af-c6c0432a9f48"
   description: "Average phase (line) level voltage and current monitoring. "
   is_abstract: true
-  uses:
-  - average_inter_line_voltage_sensor # Line to line
-  - average_line_neutral_voltage_sensor
-  - average_line_current_sensor
+  implements:
+  - /AVCM
 
 PLPM:
   guid: "2007bb49-2824-4e76-8c8c-772d9204bcc2"
