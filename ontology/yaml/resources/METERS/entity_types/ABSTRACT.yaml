@@ -70,7 +70,7 @@ PVCM:
   is_abstract: true
   implements:
   - /PVCM
-  
+
 PWMRDM:
   guid: "4bfb27f6-0a27-48d9-8830-81c84d95c8ab"
   description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
