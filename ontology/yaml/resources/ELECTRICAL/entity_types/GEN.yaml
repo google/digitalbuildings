@@ -25,3 +25,17 @@ GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
   - PWM
   - RDM
   - BTEPM
+
+GEN_SS_OTPM_RDM_BTEPM_PVCM_AVCM_MRVM:
+  guid: "8869bf68-9455-44a4-9af9-f3385f7f6d72"
+  description: "Generator with oil temperature and pressure monitoring, motor rpm monitoring, battery and system electrical parameter monitoring, and run duration monitoring."
+  is_canonical: true
+  implements:
+  - GEN
+  - SS
+  - OTPM
+  - RDM
+  - BTEPM
+  - PVCM
+  - AVCM
+  - MRVM
