@@ -1499,6 +1499,9 @@ literals:
 - failed_zone_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- failed_zone_air_static_pressure_alarm: 
+    - ACTIVE
+    - INACTIVE
 - failed_zone_air_temperature_alarm:
   - ACTIVE
   - INACTIVE

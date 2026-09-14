@@ -879,6 +879,7 @@ DFVSC:
   - high_discharge_air_static_pressure_alarm
   - low_discharge_air_static_pressure_alarm
   - schedule_run_command
+  - local_override_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -1231,6 +1232,7 @@ HTZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - schedule_run_command
   uses:
   - heater_run_command
   - zone_air_temperature_sensor
@@ -2562,6 +2564,7 @@ ZSPM:
   opt_uses:
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
+  - failed_zone_air_static_pressure_alarm
 
 ZSPM2X:
   guid: "5422c0e2-a7d3-4837-b803-7c9bc8055f9c"
