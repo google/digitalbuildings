@@ -118,7 +118,7 @@ FAN_SS_VSC_ZSPM:
 
 FAN_SS_VSC_ZSPM_ZTM: 
   guid: "d02f772c-7c0a-4221-9ccd-02756c65b158"
-  description: "Fan with start/stop status, open-loop speed control, zone static pressure monitorinig, and zone temperature monitoring."
+  description: "Fan with start/stop status, open-loop speed control, zone static pressure monitoring, and zone temperature monitoring."
   is_canonical: true
   implements: 
     - FAN
