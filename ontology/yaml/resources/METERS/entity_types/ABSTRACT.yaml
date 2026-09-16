@@ -42,10 +42,8 @@ AVCM:
   guid: "0329a2b4-d474-444e-82af-c6c0432a9f48"
   description: "Average phase (line) level voltage and current monitoring. "
   is_abstract: true
-  uses:
-  - average_inter_line_voltage_sensor # Line to line
-  - average_line_neutral_voltage_sensor
-  - average_line_current_sensor
+  implements:
+  - /AVCM
 
 PLPM:
   guid: "2007bb49-2824-4e76-8c8c-772d9204bcc2"
@@ -70,19 +68,9 @@ PVCM:
   guid: "97b8b9c1-21dd-4201-9424-c776e28de758"
   description: "Phase-level current and voltage monitoring."
   is_abstract: true
-  opt_uses:
-  - neutral_line_current_sensor
-  uses:
-  - phase1_line_current_sensor
-  - phase2_line_current_sensor
-  - phase3_line_current_sensor
-  - phase1_phase2_line_voltage_sensor
-  - phase1_phase3_line_voltage_sensor
-  - phase2_phase3_line_voltage_sensor
-  - phase1_neutral_line_voltage_sensor
-  - phase2_neutral_line_voltage_sensor
-  - phase3_neutral_line_voltage_sensor
-  
+  implements:
+  - /PVCM
+
 PWMRDM:
   guid: "4bfb27f6-0a27-48d9-8830-81c84d95c8ab"
   description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
