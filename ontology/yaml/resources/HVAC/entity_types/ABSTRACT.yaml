@@ -1232,7 +1232,6 @@ HTZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
-  - schedule_run_command
   uses:
   - heater_run_command
   - zone_air_temperature_sensor
