@@ -1,0 +1,26 @@
+# Recommendation #2: pin the ontology your build speaks.
+#
+# The DBO gains types continuously -- the ASHP additions in this repository's
+# recent history are a live example. A build that validates against "whatever
+# is on master today" is not reproducible, and a customer's config that passed
+# last month may not pass now.
+#
+# We pin a *content digest* of ontology/yaml/resources rather than a git
+# revision. When the ontology is vendored inside the consuming repository, a
+# git pin drifts on every unrelated commit; the digest changes only when the
+# vocabulary itself changes, which is the thing we actually care about.
+#
+# Regenerate with:
+#   python -c "from bms_dbo.ontology import *; print(ontology_digest(default_resources_root()))"
+pinned_digest: 99340171defe834c7bde47824dd33aeccdc66e5f20faf2f96372e26885469ab9
+pinned_on: 2026-08-27
+source: https://github.com/google/digitalbuildings
+note: >
+  Update this file deliberately, together with a re-run of
+  `python -m bms_dbo validate` across every site export you maintain.
+
+# Optional. Where the vendored ontology lives, relative to this file. Omit it
+# and the loader anchors on the bms_dbo package instead, walking up for
+# ontology/yaml/resources. Set it when your BMS vendors the ontology somewhere
+# the package cannot reach by walking up -- a submodule, or a build artefact.
+# resources_root: ../ontology/yaml/resources

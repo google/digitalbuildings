@@ -1,0 +1,49 @@
+# Sample Bitbucket Pipelines definition for a BMS repository that speaks DBO.
+#
+# Copy the `dbo-validation` step into your own pipeline. The point of running
+# this in CI rather than on a laptop is that the ontology moves underneath you:
+# a config that validated when it was written can stop validating when the
+# vendored ontology is next updated, and you want to hear that from a build,
+# not from a customer.
+#
+# This file is a reference, not a live pipeline -- it lives inside
+# _demo_implementation/ so it does not run in this repository.
+
+image: python:3.11
+
+definitions:
+  steps:
+    - step: &dbo-validation
+        name: DBO mapping validation
+        caches:
+          - pip
+        script:
+          - pip install --no-cache-dir -r _demo_implementation/requirements.txt
+          # Install the upstream instance validator so gate 4 actually runs.
+          - pip install --no-cache-dir ./tools/validators/ontology_validator
+          - pip install --no-cache-dir ./tools/validators/instance_validator
+          - bash _demo_implementation/ci/validate.sh
+        artifacts:
+          - _demo_implementation/out/**
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *dbo-validation
+
+  branches:
+    develop:
+      - step: *dbo-validation
+    main:
+      - step: *dbo-validation
+
+  # The ontology is a moving target. A nightly run tells you the vocabulary
+  # changed before a customer's onboarding does.
+  custom:
+    nightly-ontology-drift:
+      - step:
+          name: Ontology drift check
+          script:
+            - pip install --no-cache-dir -r _demo_implementation/requirements.txt
+            - cd _demo_implementation
+            - python -m bms_dbo ontology-info
