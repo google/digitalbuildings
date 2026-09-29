@@ -738,6 +738,7 @@ VSC:
   - rotationalvelocity_sensor
   - high_limit_speed_percentage_setpoint
   - low_limit_speed_percentage_setpoint
+  - thermal_energy_accumulator
   uses:
   - run_command
   - run_status
