@@ -6636,6 +6636,18 @@ AHU_SFVSC2X_EFVSC2X_CHWSC_HWSC_ECON_BSPC2X_SARC_SSPC_MOAFC:
 ### Existing Non-standard Types ###
 ###################################
 
+AHU_THCWSC_ECON_EDBPC_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_NONCANONICAL_1:
+  guid: "dc681493-46ee-4c2d-a8b9-53c3fca3d2c7"
+  description: "Non-Standard multi-zone AHU with thermally conditioned water valve, supply air static pressure control, building static pressure control, and supervisory writeback."
+  is_canonical: false
+  implements:
+  - AHU_THCWSC_ECON_EDBPC_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC
+  uses:
+  - supervisor_differential_pressure_setpoint
+  - supervisor_supply_water_temperature_setpoint
+  - supervisor_run_command
+  - supervisor_control_mode
+
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
   description: "Non-Standard AHU with humidification and heating water coils on return duct."
