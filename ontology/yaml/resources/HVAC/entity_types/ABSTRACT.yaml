@@ -3057,6 +3057,7 @@ DXZC:
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - discharge_air_temperature_sensor
+  - return_air_temperature_sensor
   - local_override_compressor_alarm
   - leaving_cooling_coil_temperature_sensor
   - compressor_lost_power_alarm
@@ -7465,6 +7466,7 @@ SESWTC:
   - high_secondary_return_water_temperature_alarm
   - low_secondary_return_water_temperature_alarm
   - run_command
+  - run_time_accumulator
   - warmup_run_command
   - high_secondary_supply_water_temperature_alarm
   - low_secondary_supply_water_temperature_alarm
@@ -9822,6 +9824,8 @@ PRWFRM:
   description: "Primary supply water flowrate monitoring"
   uses:
   - primary_supply_water_flowrate_sensor
+  opt_uses:
+  - primary_water_flowrate_sensor
   implements:
   - MONITORING
 
@@ -9850,6 +9854,7 @@ SEWFRM:
   description: "Secondary supply water flowrate monitoring"
   opt_uses:
   - failed_secondary_supply_water_flowrate_alarm
+  - secondary_water_flowrate_sensor
   uses:
   - secondary_supply_water_flowrate_sensor
   implements:
