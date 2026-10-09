@@ -59,6 +59,14 @@ DFR_SFSS_SFVSC_BYPSSPC_HTSC:
   - BYPSSPC
   - HTSC
 
+DFR_SFVSC_BYPSSPC_HPHSC:
+  description: "Heat pump duct furnace with variable speed supply fan."
+  is_canonical: true
+  implements:
+  - DFR
+  - SFVSC
+  - BYPSSPC
+  - HPHSC
 
 ###################################
 ### Existing Non-standard Types ###
