@@ -3276,6 +3276,7 @@ DX3SC:
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
+  - failed_compressor_alarm
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -3738,6 +3739,27 @@ HPZC:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HPHSC:
+  guid: "fec2c207-432a-4cd6-ae96-6e053f7e5884"
+  description: "Heating only supply air heat pump control."
+  is_abstract: true
+  opt_uses:
+  - compressor_run_status
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - failed_compressor_alarm
+  - heating_request_count
+  - warmup_request_count
+  - warmup_run_command
+  - return_air_temperature_sensor
+  uses:
+  - compressor_run_command
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
   implements:
   - CONTROL
 
@@ -6043,6 +6065,7 @@ BYPSSPC:
   - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
+  - pressurization_request_count
   uses:
   - bypass_air_damper_percentage_command
   - supply_air_static_pressure_sensor
