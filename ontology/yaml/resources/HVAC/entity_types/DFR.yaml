@@ -60,6 +60,7 @@ DFR_SFSS_SFVSC_BYPSSPC_HTSC:
   - HTSC
 
 DFR_SFVSC_BYPSSPC_HPHSC:
+  guid: "684d2d6d-ac93-4fbb-8b0e-c2e1b115a8a7"
   description: "Heat pump duct furnace with variable speed supply fan."
   is_canonical: true
   implements:

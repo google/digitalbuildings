@@ -3743,6 +3743,7 @@ HPZC:
   - CONTROL
 
 HPHSC:
+  guid: "fec2c207-432a-4cd6-ae96-6e053f7e5884"
   description: "Heating only supply air heat pump control."
   is_abstract: true
   opt_uses:
