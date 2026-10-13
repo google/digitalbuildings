@@ -18,6 +18,9 @@ literals:
 - ac_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
+- accuracy_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - air_pressure_sensor:
     flexible_min: 500.0
     flexible_max: 200000.0
