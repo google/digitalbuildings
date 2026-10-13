@@ -20,7 +20,8 @@
 
 VAV:
   guid: "c724ab62-5f19-4f70-852e-28616ace5928"
-  description: "Tag for terminal units with variable volume control. A VAV is an air distribution terminal, which is not responsible for its own primary airflow (i.e. it is served by some upstream unit, such as an AHU)."
+  name: "Variable Air Volume"
+  description: "A VAV is an air distribution terminal, which is not responsible for its own primary airflow (i.e. it is served by some upstream unit, such as an AHU)."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -42,7 +43,8 @@ FAN:
 
 FCU:
   guid: "649fb29c-d8cc-49cd-a316-0e78259a8b76"
-  description: "Tag for fan-coil units. Fan coil units are distinguished from other air-side devices by the fact that they solely handle recirculated space air (they do not directly control their outside air, which separates them from AHUs)."
+  name: "Fan Coil Unit"
+  description: "Fan coil units are distinguished from other air-side devices by the fact that they solely handle recirculated space air (they do not directly control their outside air, which separates them from AHUs)."
   is_abstract: true
   opt_uses:
   - return_air_temperature_sensor
@@ -64,7 +66,8 @@ FCU:
 
 AHU:
   guid: "02160ac8-659b-489c-9ba4-3a6523cbd6a1"
-  description: "Tag for air-handling units. AHUs are devices which handle air distribution (either to a single space or to multiple via ductwork), and they have the capability of handling both return and outside air, in some combination (0% OA, 100% RA; 50% OA, 50% RA; 100% OA, 0% RA, etc.); that is, they can recirculate or ventilate. They are distinct from other devices in key ways: FCUs, which handle only recirculated air; MAUs, which handle only outside air; and DOAS devices, which handle outside and return air, but which do not recirculate air."
+  name: "Air Handling Unit"
+  description: "AHUs are devices which handle air distribution (either to a single space or to multiple via ductwork), and they have the capability of handling both return and outside air, in some combination (0% OA, 100% RA; 50% OA, 50% RA; 100% OA, 0% RA, etc.); that is, they can recirculate or ventilate. They are distinct from other devices in key ways: FCUs, which handle only recirculated air; MAUs, which handle only outside air; and DOAS devices, which handle outside and return air, but which do not recirculate air."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -77,7 +80,8 @@ AHU:
 
 HX:
   guid: "9aa0dd1a-851c-4d4e-90da-6804c4f8b9f9"
-  description: "Tag for heat exchangers. Heat exchangers facilitate heat transfer between two media (water, air, refrigerant, etc.)."
+  name: "Heat Exchanger"
+  description: "Heat exchangers facilitate heat transfer between two media (water, air, refrigerant, etc.)."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
