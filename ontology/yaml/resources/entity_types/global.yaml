@@ -40,6 +40,12 @@ INCOMPLETE:
   description: "A known incomplete type."
   is_abstract: true
 
+NOT_REQUIRED:
+  guid: "da9c0191-df1a-42a1-b395-1919b524e562"
+  description: "Used to flag a type (or field in certain tools) as not required for integration; systems implementing DBO can use this flag to identify things that have been previously determined to be unnecessary for modeling."
+  is_abstract: true
+
+
 ## Global namespace definition for certain general types ##
 ##############################################################
 #### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
