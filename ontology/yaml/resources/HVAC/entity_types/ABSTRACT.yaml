@@ -3276,7 +3276,6 @@ DX3SC:
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
-  - failed_compressor_alarm
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
