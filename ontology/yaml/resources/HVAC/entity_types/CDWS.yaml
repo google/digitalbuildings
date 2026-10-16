@@ -330,6 +330,15 @@ CDWS_SWTC_SWPC_MWDPC_WFRM_FDPM3X_UVFDPM_PLWVERC:
   - UVFDPM
   - PLWVERC
 
+CDWS_SWTM2X_RWTM2X_BYPVPM:
+  description: "Condensing water system with supply and return water temperature monitoring and bypass valve."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTM2X
+  - RWTM2X
+  - BYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
