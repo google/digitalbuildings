@@ -7252,6 +7252,7 @@ SWTM2X:
   - supply_water_temperature_sensor_2
 
 RWTM2X:
+  guid: "3cb95182-9759-4c43-98bc-c99f3c7f7fe2"
   description: "Dual return water temperature monitoring."
   is_abstract: true
   implements:
