@@ -41,6 +41,16 @@ HWS_SWTC_WDPC:
   - SWTC
   - WDPC
 
+HWS_SWTC_WDPC_BYPVPM:
+  guid: "580bcf43-d179-4ae1-960e-54c6bcc172c3"
+  description: "Simple heating water system with supply temp, differential pressure controland a bypass valve."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+
 HWS_SWTC_WDPC_WFRM:
   guid: "dd3f6f24-5533-4285-b29a-6fc84e60f65d"
   description: "Simple heating water system with supply temp and differential pressure control."
