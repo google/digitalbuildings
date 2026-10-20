@@ -6246,8 +6246,17 @@ AHU_NON_CANONICAL_TYPE_45:
   - exhaust_air_damper_command
   - outside_air_damper_percentage_sensor
 
-AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC_NONCANONICAL_1:
+AHU_NON_CANONICAL_TYPE_46:
   guid: "8d09d92e-5630-48cc-93fd-25079fdfc58c"
+  description: "Non-standard type 46"
+  implements:
+  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
+  uses:
+  - exhaust_air_damper_command
+
+AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC_NONCANONICAL_1:
+  guid: "fac7f525-7867-44e2-b53c-338c0174362f"
   description: "Multi-zone air handler with two stage compressor and heating water valve. Writeback point and exhaust damper point additions."
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
