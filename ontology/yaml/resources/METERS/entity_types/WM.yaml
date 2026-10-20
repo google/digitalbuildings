@@ -23,6 +23,7 @@ WM_STANDARD:
   opt_uses:
   - failed_alarm
   - flowrate_sensor
+  - water_temperature_sensor
 
 WM_WF:
   guid: "df942136-4b98-4da7-9e68-acc210d6cf03"

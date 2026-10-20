@@ -85,3 +85,29 @@ REFM:
   - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
+
+PVCM:
+  guid: "063dcf60-d3e6-41c0-8de7-cac052f336cb"
+  description: "Phase-level current and voltage monitoring."
+  is_abstract: true
+  opt_uses:
+  - neutral_line_current_sensor
+  uses:
+  - phase1_line_current_sensor
+  - phase2_line_current_sensor
+  - phase3_line_current_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase3_neutral_line_voltage_sensor
+
+AVCM:
+  guid: "f169eb11-5cbe-4c6a-8e09-3272926b52bb"
+  description: "Average phase (line) level voltage and current monitoring. "
+  is_abstract: true
+  uses:
+  - average_inter_line_voltage_sensor # Line to line
+  - average_line_neutral_voltage_sensor
+  - average_line_current_sensor

@@ -111,6 +111,20 @@ PPWM:
   - phase3_apparent_power_sensor
   - line_frequency_sensor
 
+PVCM:
+  guid: "3f5453f5-4b8f-4d62-bd40-ede73d15ccb1"
+  description: "Phase-level current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - /PVCM
+
+AVCM:
+  guid: "9404e6db-62e4-4dab-8540-28a94d1a8890"
+  description: "Average phase (line) level voltage and current monitoring. "
+  is_abstract: true
+  implements:
+  - /AVCM
+
 BATM:
   guid: "445a7a7f-9da2-4b56-99cd-9890cdf6fea1"
   description: "Battery charge and voltage monitoring, typically used with UPS"
@@ -191,3 +205,10 @@ SPM:
   - switch_position_status
   - line_power_status
   - emergency_power_status
+
+MRVM:
+  guid: "0e44f0f0-abf0-4ce5-817a-6fe5aa2c3b12"
+  description: "Rotational velocity monitoring for motors."
+  is_abstract: true
+  uses:
+  - motor_rotationalvelocity_sensor

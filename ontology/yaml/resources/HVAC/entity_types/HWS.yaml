@@ -592,9 +592,34 @@ HWS_RWTC_SWTM_WDPM_WFRM_HLPM:
   - WFRM
   - HLPM
 
+HWS_PWDT_PRWDPC_SESWTC_SEWDPC_SESWFRC_BYPVPM:
+  guid: "5aa9ca3d-f2a5-4a74-a7cc-fb85da56f87e"
+  description: "Heating water system with primary water temperature differential monitoring, secondary loop supply water temperature and differential pressure control, and secondary supply flowrate monitoring with a bypass valve."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - PRWDPC
+  - SESWTC
+  - SEWDPC
+  - SESWFRC
+  - BYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
+
+HWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM_SEWDPC_RWISOVM_SWISOVM_NONCANONICAL_1:
+  guid: "2d70c22d-c430-4960-aaf7-ba8a0bcaa3b0"
+  description: "Non-standard heating water system with thermally conditioned water valve, primary supply temperature and flowrate monitoring, boiler supply and return isolation valves, differential pressure monitoring, and supervisory writeback."
+  is_canonical: false
+  implements:
+  - HWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM_SEWDPC_RWISOVM_SWISOVM
+  uses:
+  - supervisor_differential_pressure_setpoint
+  - supervisor_supply_water_temperature_setpoint
+  - supervisor_run_command
+  - supervisor_control_mode
 
 HWS_SWTC_WDPC2X_NONCANONICAL_1:
   guid: "78ce6510-bc0e-49be-809e-b035ab1b79a0"
