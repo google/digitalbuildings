@@ -6255,6 +6255,20 @@ AHU_NON_CANONICAL_TYPE_46:
   uses:
   - exhaust_air_damper_command
 
+AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC_NONCANONICAL_1:
+  guid: "fac7f525-7867-44e2-b53c-338c0174362f"
+  description: "Multi-zone air handler with two stage compressor and heating water valve. Writeback point and exhaust damper point additions."
+  implements:
+  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
+  uses:
+  - exhaust_air_damper_command
+  - supervisor_control_mode
+  - supervisor_run_command
+  - supervisor_supply_air_static_pressure_setpoint
+  - supervisor_supply_air_temperature_setpoint
+  - supervisor_outside_air_damper_percentage_command
+
 AHU_NON_CANONICAL_TYPE_47:
   guid: "2b337ced-6542-48aa-8440-42f40dde61d5"
   description: "Non-standard type 47"
@@ -6681,3 +6695,18 @@ AHU_DX2SC_HWSC_ECONM_EFVSC_SFVSC_SSPC_SARC_BSPC_NONCANONICAL_1:
   - supervisor_supply_air_static_pressure_setpoint
   - supervisor_supply_air_temperature_setpoint
   - supervisor_outside_air_damper_percentage_command
+
+
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC_NONCANONICAL_1:
+  guid: "ed7482a8-1828-47a6-8f02-1f53ff40dcd5"
+  description: "Multi-zone AHU with four stage compressor cooling control and heating water valve control. Writeback point additions."
+  is_canonical: false
+  implements:
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
+  uses:
+  - supervisor_control_mode
+  - supervisor_run_command
+  - supervisor_supply_air_static_pressure_setpoint
+  - supervisor_supply_air_temperature_setpoint
+  - supervisor_outside_air_damper_percentage_command
+
