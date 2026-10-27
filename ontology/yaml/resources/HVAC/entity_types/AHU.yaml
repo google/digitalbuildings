@@ -6710,3 +6710,15 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC_NONCANONICAL_1:
   - supervisor_supply_air_temperature_setpoint
   - supervisor_outside_air_damper_percentage_command
 
+AHU_SS_SARC_BSPC_ECON_MTM_SFSS_SSPC_DX2SC_EFSS_EFVSC_NONCANONICAL_1:
+  guid: "a40420cf-38a3-4adc-b6fe-ce21ffcbe2f0"
+  description: "Multi-zone, cooling only AHU with two stage compressor and static pressure control. Writeback point additions."
+  is_canonical: false
+  implements:
+  - AHU_SS_SARC_BSPC_ECON_MTM_SFSS_SSPC_DX2SC_EFSS_EFVSC
+  uses:
+  - supervisor_control_mode
+  - supervisor_run_command
+  - supervisor_supply_air_static_pressure_setpoint
+  - supervisor_supply_air_temperature_setpoint
+  - supervisor_outside_air_damper_percentage_command
