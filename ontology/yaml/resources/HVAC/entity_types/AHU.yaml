@@ -6713,7 +6713,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC_NONCANONICAL_1:
 AHU_SS_SARC_BSPC_ECON_MTM_SFSS_SSPC_DX2SC_EFSS_EFVSC_NONCANONICAL_1:
   guid: "a40420cf-38a3-4adc-b6fe-ce21ffcbe2f0"
   description: "Multi-zone, cooling only AHU with two stage compressor and static pressure control. Writeback point additions."
-  is_canonical: true
+  is_canonical: false
   implements:
   - AHU_SS_SARC_BSPC_ECON_MTM_SFSS_SSPC_DX2SC_EFSS_EFVSC
   uses:
