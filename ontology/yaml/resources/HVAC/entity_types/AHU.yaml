@@ -6013,6 +6013,7 @@ AHU_SFVSC3X_EFVSC3X_CHWSC_BSPC3X_SSPC_ECON2X_FDPM2X:
   - FDPM2X
 
 AHU_SFVSC_EFVSC_DX6SC_HWSC_ECONM_BSPC_SSPC_SARC:
+  guid: "4199627a-8d85-472d-8eb4-dee5fcf98ce7"
   description: "Multi-zone AHU with supply and exhaust fan control, six stage compressor control, heating water coil control, economizer control, building and supply static pressure control, and supply air reset control."
   is_canonical: true
   implements:
@@ -6027,6 +6028,7 @@ AHU_SFVSC_EFVSC_DX6SC_HWSC_ECONM_BSPC_SSPC_SARC:
   - SARC
 
 AHU_SFVSC_EFVSC_DX4SC_ECONM_BSPC_SSPC_SARC:
+  guid: "e143e0c0-83ee-4dc8-bc2f-ff1ea3268158"
   description: "Multi-zone AHU with four stage compressor control, mixed temperature economizer control, variable speed supply and exhaust fans, and building and supply static pressure control."
   is_canonical: true
   implements:
