@@ -129,3 +129,12 @@ DHWT_SS_RWTM:
   - DHWT
   - SS
   - RWTM
+
+DHWT_SS_SWTM:
+  guid: "c96bb2f1-d9e4-4be3-9fab-5b0418c2291a"
+  description: "Domestic hot water tank with run control and supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - DHWT
+  - SS
+  - SWTM
