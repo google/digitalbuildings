@@ -8092,6 +8092,7 @@ HWTTC:
   opt_uses:
   - water_leak_alarm
   - high_water_temperature_alarm
+  - low_water_temperature_alarm
   - return_water_temperature_sensor
   uses:
   - hot_water_tank_temperature_sensor
