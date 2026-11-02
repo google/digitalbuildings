@@ -296,3 +296,15 @@ DOAS_DSP_DFVSC_EFVSC_DXDC_HWDC_FDPM_HTRPLTM:
   - HWDC
   - FDPM
   - HTRPLTM
+
+DOAS_HWSC_CHWSC_SFVSC_EFVSC_SSPC:
+  guid: "0ef9bb20-a9c5-4d85-86ef-59523de0944a"
+  description: "Multi zone DOAS with supply fan, exhaust fan, chilled water coil, hydronic heating coil, supply air temp control, and supply static pressure control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - HWSC
+  - CHWSC
+  - SFVSC
+  - EFVSC
+  - SSPC

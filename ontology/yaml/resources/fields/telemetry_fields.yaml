@@ -2688,6 +2688,9 @@ literals:
 - low_water_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- low_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_zone_air_o2_percentage_alarm:
   - ACTIVE
   - INACTIVE
