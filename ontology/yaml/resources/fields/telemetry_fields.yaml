@@ -2547,9 +2547,6 @@ literals:
 - low_limit_illuminance_setpoint:
     flexible_min: 0.0
     flexible_max: 5000.0
-- low_limit_mechanical_cooling_differential_pressure_sensor:
-    flexible_min: -34473.78945
-    flexible_max: 344737.8945
 - low_limit_mechanical_cooling_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
