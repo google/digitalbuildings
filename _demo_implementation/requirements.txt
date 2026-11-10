@@ -1,0 +1,6 @@
+# The demo needs one runtime dependency. Everything else is the standard
+# library, so this runs anywhere your BMS build already runs Python.
+PyYAML>=6.0
+
+# Development only.
+pytest>=7.0
