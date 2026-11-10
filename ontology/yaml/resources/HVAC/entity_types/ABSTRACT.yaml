@@ -1965,10 +1965,9 @@ MMCWDPC:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
-  - mechanical_cooling_differential_pressure_sensor
-  - low_limit_mechanical_cooling_differential_pressure_sensor
   uses:
   - bypass_valve_percentage_command
+  - mechanical_cooling_differential_pressure_sensor
   - low_limit_mechanical_cooling_differential_pressure_setpoint
   implements:
   - OPERATIONAL
