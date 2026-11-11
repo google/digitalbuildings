@@ -3205,7 +3205,21 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFSS4X_EFVSC_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSP
   - SFVSC2X
   - SSPC
 
-
+AHU_BSPC2X_CHWSC_HWSC_ECON_SAIDC_RAIDC_OAFMC_SFVSC2X_EFVSC2X_SSPC:
+  description: "Multi-zone AHU with multiple supply/exhaust fans."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - SAIDC
+  - RAIDC
+  - OAFMC
+  - SFVSC2X
+  - EFVSC2X
+  - SSPC
 
 AHU_BSPC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "700607e5-6200-4401-880e-ccb125ba0b89"
