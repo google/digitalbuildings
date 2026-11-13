@@ -543,6 +543,8 @@ EDM:
   guid: "e765d413-988e-4524-99b6-9869cff2f02e"
   description: "Exhaust air damper monitoring."
   is_abstract: true
+  opt_uses:
+  -  failed_exhaust_air_damper_alarm 
   uses:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
@@ -6497,6 +6499,31 @@ CHDX4SC:
   - compressor_run_status_2
   - compressor_run_status_3
   - compressor_run_status_4
+
+CHDX6SC:
+  description: "Chiller control on supply side with 6 compressors."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_temperature_sensor
+  - compressor_speed_frequency_sensor
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  - cooling_percentage_command
+  uses:
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_temperature_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_command_6
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - compressor_run_status_6
 
 CHDX2SC:
   guid: "7383de4b-4fcd-4504-b91a-3fd2576845fb"
