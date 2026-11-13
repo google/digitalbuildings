@@ -544,7 +544,7 @@ EDM:
   description: "Exhaust air damper monitoring."
   is_abstract: true
   opt_uses:
-  - failed_alarm 
+  -  failed_exhaust_air_damper_alarm 
   uses:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
