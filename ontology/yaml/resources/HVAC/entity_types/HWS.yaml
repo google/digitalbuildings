@@ -41,6 +41,15 @@ HWS_SWTC_WDPC:
   - SWTC
   - WDPC
 
+HWS_SWTC_WDPC_PWRFM:
+  description: "Simple heating water system with supply temp and differential pressure control and flow monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - PWRFM
+
 HWS_SWTC_WDPC_WFRM:
   guid: "dd3f6f24-5533-4285-b29a-6fc84e60f65d"
   description: "Simple heating water system with supply temp and differential pressure control."

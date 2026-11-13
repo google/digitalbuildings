@@ -543,6 +543,8 @@ EDM:
   guid: "e765d413-988e-4524-99b6-9869cff2f02e"
   description: "Exhaust air damper monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_alarm 
   uses:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
