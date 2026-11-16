@@ -287,6 +287,17 @@ CHWS_SWTC_WDPM_BYPVPM_WSEBYPVPM:
   - BYPVPM
   - WSEBYPVPM
 
+CHWS_SWTC_WDPM_BYPVPM_WFRM:
+  guid: "dd66359f-7705-4738-acbb-f7842ef9f997"
+  description: "Chilled water system with supply water temperatrue control, differential pressure control, bypass valve percentage control, and flowrate monitoring"
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPM
+  - BYPVPM
+  - WFRM
+
 CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
   guid: "7626e0e2-1e32-4101-b53b-5fa66af3cdc2"
   description: "Chilled water system with process water (typically used in lab applications)."

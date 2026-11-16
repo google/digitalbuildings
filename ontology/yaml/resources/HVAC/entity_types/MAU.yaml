@@ -532,6 +532,31 @@ MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM:
   - DXDDC
   - ZTM
 
+MAU_DFVSFC_CHWDC_HT3HMLDTC_UV:
+  guid: "694b3a35-cf5b-4de1-a66f-aff15994583c"
+  description: "MAU with variable speed discharge fan, chilled water valve, multi-level heater control, and UV lamp operation."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFVSFC
+  - CHWDC
+  - HT3HMLDTC
+  - UV
+
+MAU_DFSS_CHWDC_CHWDT_CLPM_UV_CO2C_DFM:
+  guid: "e2128d78-ff90-4a43-bdb8-9ede240108b5"
+  description: "MAU with single speed discharge fan, chilled water valve, CO2 control, and UV lamp operation."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - CHWDC
+  - CHWDT
+  - CLPM
+  - UV
+  - CO2C
+  - DFM
+
 MAU_SFSS_SFVSC_SFC_DXSC_HTSC_ZTM_ZSPM:
   guid: "06722146-8b95-44f5-bafa-257b518a8243"
   description: "Single zone with cooling, heating, and supply flow control."

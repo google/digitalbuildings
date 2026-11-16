@@ -86,6 +86,40 @@ REFM:
   uses:
   - zone_air_refrigerant_concentration_sensor
 
+CWDT:
+  guid: "0f830876-527c-4230-b957-a3d4917a8656"
+  description: "Temperature differential across condenser water."
+  is_abstract: true
+  opt_uses:
+  - high_condensing_return_water_temperature_alarm
+  - low_condensing_return_water_temperature_alarm
+  - high_condensing_supply_water_temperature_alarm
+  - low_condensing_supply_water_temperature_alarm
+  uses:
+  - condensing_return_water_temperature_sensor
+  - condensing_supply_water_temperature_sensor
+
+CDWFRM:
+  guid: "2de764c2-59b9-40ad-a411-61e59ef1ec69"
+  description: "Condenser water flowrate monitoring."
+  is_abstract: true
+  uses:
+  - condensing_water_flowrate_sensor
+  opt_uses:
+  - condensing_water_volume_accumulator
+
+CLPM:
+  guid: "41856703-b8c2-4dd5-a409-fa59ba859868"
+  description: "Cooling thermal monitoring."
+  is_abstract: true
+  uses:
+  - cooling_thermal_power_sensor
+  opt_uses:
+  - cooling_thermal_energy_accumulator
+  - cooling_thermal_power_capacity
+  - cooling_performanceratio_sensor
+  - power_sensor
+
 PVCM:
   guid: "063dcf60-d3e6-41c0-8de7-cac052f336cb"
   description: "Phase-level current and voltage monitoring."

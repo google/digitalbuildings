@@ -645,6 +645,18 @@ VAV_ZTM_PDSCV_SFM:
   opt_uses:
   - failed_alarm
 
+VAV_ZTC_PDSCV_SFM:
+  guid: "95ff74a0-d864-43cb-acb6-2866d5997ff8"
+  description: "VAV with supply air monitoring and zone air temperature control"
+  is_canonical: true
+  implements:
+  - VAV
+  - ZTC
+  - PDSCV
+  - SFM
+  opt_uses:
+  - failed_alarm
+
 VAV_SD_ZTC_HLSAFS:
   guid: "7f686037-a5eb-4542-9076-7134cc89f2d4"
   description: "VAV with flow rate control, supply air damper control and temperature control."

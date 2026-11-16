@@ -28,6 +28,7 @@ EM:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - master_alarm
 
 GM:
   guid: "919ece3f-2f6f-4c9d-adcf-2a77eed49185"
@@ -51,6 +52,7 @@ WM:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - master_alarm
 
 HM:
   guid: "9496631b-c154-4d86-857d-c2ffff88ffe4"

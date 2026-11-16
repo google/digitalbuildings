@@ -1059,6 +1059,42 @@ CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
   opt_uses:
   - compressor_run_time_accumulator
 
+CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM_CHPM_CHWRWISOVPM_CHWSWISOVPM_CWRISOVM_CWSISOVM:
+  guid: "48e4d4ca-ab2e-43e8-a461-dbfea5b02360"
+  description: "Water-cooled chiller with supply temperature control, refrigerant monitoring, pressure monitoring, chilled and condenser water flowrate status monitoring, and return and supply isolation valves on both the chilled and condenser water."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - REFSM
+  - CHWFRSM
+  - CDWFRSM
+  - CHDXSC
+  - IGM
+  - CHPM
+  - CHWRWISOVPM
+  - CHWSWISOVPM
+  - CWRISOVM
+  - CWSISOVM
+
+CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM_CHPM:
+  guid: "c8153bf9-ae83-4cc8-bfbf-841fcec9df40"
+  description: "Water-cooled chiller with supply temperature control, refrigerant monitoring, pressure monitoring, and chilled and condenser water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - REFSM
+  - CHWFRSM
+  - CDWFRSM
+  - CHDXSC
+  - IGM
+  - CHPM
+
 CH_SS_CHWDPC_CHWDT_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
   guid: "aa1f0cf1-759d-4645-8cda-18e2b2639e4f"
   description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilled water, and refrigerant pressure and temperature monitoring."
@@ -1141,6 +1177,19 @@ CH_SS_SCHWTC_CHDX2SC_CWRISOVPM_CHWRWISOVPM_REFSM_REFPM:
   - CHWRWISOVPM
   - REFSM
   - REFPM
+
+CH_SS_SCHWTC_CHDX2SC_CWDT_CDWFRSM_CHWFRSM:
+  guid: "eab13230-35a4-49c6-8e03-d71704bb96f4"
+  description: "Supply controlled water cooled chiller with chilled and condensing water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - CWDT
+  - CDWFRSM
+  - CHWFRSM
 
 CH_SS_SWTC_DX2SWC_WDPC_RWISOVM_REFSM_REFPM:
   guid: "216b01fc-afac-480f-8fc8-130629715587"
