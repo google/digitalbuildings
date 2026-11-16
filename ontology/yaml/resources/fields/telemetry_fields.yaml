@@ -791,6 +791,8 @@ literals:
     flexible_min: 0.0
     flexible_max: 94.38948864
 - discharge_air_flowrate_status:
+  - ON
+  - OFF
   - PRESENT
   - ABSENT
 - discharge_air_heating_percentage_command:
@@ -4073,6 +4075,8 @@ literals:
     flexible_min: 0.0
     flexible_max: 94.38948864
 - supply_air_flowrate_status:
+  - ON
+  - OFF
   - PRESENT
   - ABSENT
 - supply_air_heating_temperature_setpoint:
