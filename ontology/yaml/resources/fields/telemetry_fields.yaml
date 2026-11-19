@@ -229,6 +229,9 @@ literals:
 - carbon_filter_differential_pressure_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- charged_energy_accumulator:
+    fixed_min: 0.0
+    flexible_max: 36000000000000.0
 - chilled_return_water_diverting_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -916,6 +919,9 @@ literals:
 - discharge_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- discharged_energy_accumulator:
+    fixed_min: 0.0
+    flexible_max: 36000000000000.0
 - dishwasher_run_status:
   - ON
   - OFF
