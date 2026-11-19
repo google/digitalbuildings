@@ -39,6 +39,7 @@ EPWM:
   - exported_energy_accumulator
 
 CDCPWM:
+  guid: "d9a84b86-b888-44c7-9b92-bc9a6ed295ca"
   description: "Charged and discharged energy, and power monitoring in battery storage systems."
   is_abstract: true
   implements:

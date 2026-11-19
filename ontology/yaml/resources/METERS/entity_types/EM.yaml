@@ -129,6 +129,7 @@ EM_PWM_AVCM_PWMRDM:
   - PWMRDM
 
 EM_CDCPWM_PLPM_PVCM:
+  guid: "2fdadcdd-c4c0-46be-850a-e7eaf521b7ed"
   description: "Energy metering with phase level power, voltage, current monitoring and charged/discharged energy monitoring."
   is_canonical: true
   implements:
