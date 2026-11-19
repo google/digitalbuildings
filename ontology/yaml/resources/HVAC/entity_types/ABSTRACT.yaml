@@ -9354,6 +9354,8 @@ RFVSC2X:
   - return_fan_speed_frequency_sensor_2
   - return_fan_speed_percentage_sensor_1
   - return_fan_speed_percentage_sensor_2
+  - failed_return_fan_alarm_1
+  - failed_return_fan_alarm_2
   uses:
   - return_fan_run_command_1
   - return_fan_run_command_2
