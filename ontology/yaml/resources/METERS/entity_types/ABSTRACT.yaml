@@ -38,6 +38,18 @@ EPWM:
   uses:
   - exported_energy_accumulator
 
+CDCPWM:
+  guid: "d9a84b86-b888-44c7-9b92-bc9a6ed295ca"
+  description: "Charged and discharged energy, and power monitoring in battery storage systems."
+  is_abstract: true
+  implements:
+  - /PWM
+  opt_uses:
+  - line_frequency_sensor
+  uses:
+  - charged_energy_accumulator
+  - discharged_energy_accumulator
+
 AVCM:
   guid: "0329a2b4-d474-444e-82af-c6c0432a9f48"
   description: "Average phase (line) level voltage and current monitoring. "
