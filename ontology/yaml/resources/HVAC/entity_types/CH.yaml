@@ -59,6 +59,7 @@ CH_SS_SWTC_RWISOVPM:
   - RWISOVPM
 
 CH_SS_DX6SWC_WDPM_CLPM_RCKTM6X:
+  guid: "047f776c-7d68-4e3d-acdc-f17c43186b05"
   description: "Simple air-cooled chiller with six-stage compressor control, supply water temperature control, differential pressure monitoring, six-circuit refrigerant monitoring, and cooling thermal power monitoring."
   is_canonical: true
   implements:
