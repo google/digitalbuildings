@@ -1293,6 +1293,15 @@ FCU_HPZTC_CO2C:
   - HPZTC
   - CO2C
 
+FCU_DFSS_CHWBRC:
+  guid: "ad592498-d5a8-450b-9d49-abe6d3df4575"
+  description: "Chilled water FCU with binary chilled water valve, single speed discharge fan, and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWBRC
+
 FCU_DFVSMC_CHWBRC:
   guid: "2f6570ff-4ae6-4c9a-8963-bb3ee9fcd71b"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan mode and return air temp control."

@@ -82,6 +82,8 @@ LDS:
   is_abstract: true
   implements:
   - EQUIPMENT
+  opt_uses:
+  - failed_communication_alarm
 
 VBS:
   guid: "a900c3d7-8398-4459-b6c0-754315ae4a02"

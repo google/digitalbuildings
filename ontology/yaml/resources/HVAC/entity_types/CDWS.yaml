@@ -78,6 +78,16 @@ CDWS_SWTC_BYPVPM:
   - SWTC
   - BYPVPM
 
+CDWS_SWTC_BYPVPM_WDPM:
+  guid: "12f5a599-182d-4600-b398-e5a767efefe0"
+  description: "Condenser water system with supply temperature control, differential pressure monitoring, and a bypass valve."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - BYPVPM
+  - WDPM
+
 CDWS_SWTC_WSEBYPVM:
   guid: "ba9bfbcf-43b2-42ef-ac60-0fff9a4f4a13"
   description: "Condenser water system with supply temperature control and waterside economizing bypass."

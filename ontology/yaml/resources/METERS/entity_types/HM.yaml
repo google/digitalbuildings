@@ -44,6 +44,7 @@ HM_CHW:
   - failed_alarm
   - failed_chilled_return_water_temperature_alarm
   - failed_chilled_supply_water_temperature_alarm
+  - chilled_water_volume_accumulator
 
 HM_CHW_WAC:
   guid: "441029f3-1324-42c5-aca2-74138500917a"
@@ -79,3 +80,13 @@ HM_STEAM:
   opt_uses:
   - supply_steam_flowrate_sensor
   - steam_massflow_sensor
+
+HM_CWDT_CDWFRM_CLPM:
+  guid: "0c030a8f-1292-4c16-ac14-9798203af138"
+  description: "Cooling load heat meter with condensing water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HM
+  - /CWDT
+  - /CDWFRM
+  - /CLPM

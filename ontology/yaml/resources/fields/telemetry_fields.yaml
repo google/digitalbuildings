@@ -379,6 +379,9 @@ literals:
 - chilled_water_valve_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 120.0
+- chilled_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
 - circuitbreaker_status:
   - ON
   - OFF
@@ -600,6 +603,9 @@ literals:
 - condensing_water_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- condensing_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
 - conference_call_status:
   - ACTIVE
   - INACTIVE
@@ -787,6 +793,8 @@ literals:
 - discharge_air_flowrate_status:
   - ON
   - OFF
+  - PRESENT
+  - ABSENT
 - discharge_air_heating_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1987,6 +1995,12 @@ literals:
 - high_gas_pressure_alarm: # For natural gas specifically
   - ACTIVE
   - INACTIVE
+- high_heater_level_command:
+  - ON
+  - OFF
+- high_heater_level_status:
+  - ON
+  - OFF
 - high_heating_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
@@ -2511,6 +2525,12 @@ literals:
 - low_gas_pressure_alarm: # For natural gas specifically
   - ACTIVE
   - INACTIVE
+- low_heater_level_command:
+  - ON
+  - OFF
+- low_heater_level_status:
+  - ON
+  - OFF
 - low_heating_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
@@ -2767,6 +2787,12 @@ literals:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - medium_discharge_fan_speed_command:
+  - ON
+  - OFF
+- medium_heater_level_command:
+  - ON
+  - OFF
+- medium_heater_level_status:
   - ON
   - OFF
 - medium_smoke_intensity_alarm: # for aspirating type smoke detectors
@@ -4051,6 +4077,8 @@ literals:
 - supply_air_flowrate_status:
   - ON
   - OFF
+  - PRESENT
+  - ABSENT
 - supply_air_heating_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 338.7037037

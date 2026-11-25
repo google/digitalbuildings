@@ -185,6 +185,16 @@ CT_SS_VSFC:
   - run_mode
   - lost_power_alarm
 
+CT_SS_VSFC_RWISOVPM:
+  guid: "55735243-c4b8-4f31-b63d-ca313a4691eb"
+  description: "Cooling tower with speed frequency control and return water isolation valve."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSFC
+  - RWISOVPM
+
 CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   guid: "d5d988d7-fef0-413c-a363-39e925c01952"
   description: "Cooling tower with supply and return isolation valves and supply temp monitoring."

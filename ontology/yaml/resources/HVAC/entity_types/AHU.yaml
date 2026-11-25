@@ -1025,6 +1025,20 @@ AHU_DFSS_DSP_DX2DC_ECOND_EFSS_HT2DC:
   - EFSS
   - HT2DC
 
+AHU_DFSS_CHWDTC_CHWDT_CLPM_UV_CO2C_DFM:
+  guid: "f003111a-ace6-4fc0-9d9f-2e0765bd2abd"
+  description: "AHU with chilled water discharge temperature control, single speed discharge fan, CO2 control, and UV."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - CHWDTC
+  - CHWDT
+  - CLPM
+  - UV
+  - CO2C
+  - DFM
+
 AHU_CO2C_DFSS_DSP_ECONZ_HPZC:
   guid: "68517941-59ce-4166-8321-186727514003"
   description: "Single zone AHU."
@@ -1118,6 +1132,22 @@ AHU_BPC_CHWDC_DFSS_DSP_ECOND_HTDC_ZSPC:
   - ECOND
   - HTDC
   - ZSPC
+
+AHU_DFVSFC_CHWDC_HT3HMLDTC_ECOND_UV_CO2C2X_ZHM_ZTM_DAIDPC:
+  guid: "82fc710e-08ea-4e6c-bb34-44938afaf870"
+  description: "Single zone AHU with variable speed discharge fan, chilled water, multi-level heating, economizing, discharge air damper, and CO2 control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSFC
+  - CHWDC
+  - HT3HMLDTC
+  - ECOND
+  - UV
+  - CO2C2X
+  - ZHM
+  - ZTM
+  - DAIDPC
 
 AHU_CO2C_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "1ae90f4a-a5ef-4ea5-b0a3-94b1452d1ec6"
@@ -5208,6 +5238,22 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X:
   - SSPC
   - VOADM2X
   - SAIDC3X
+
+AHU_SFVSFC_CHWSC_CHWDT_CLPM_ECON_UV_RACO2C_RHM_RTC:
+  guid: "2854e7f4-151d-402c-a2d8-ac42cf8fe68e"
+  description: "AHUs with variable speed supply fan, chilled water temperature control, economizer, UV control, and return air condition monitoring and control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSFC
+  - CHWSC
+  - CLPM
+  - CHWDT
+  - ECON
+  - UV
+  - RACO2C
+  - RHM
+  - RTC
 
 AHU_DSP_DSPC_DFVSC_EFVSC_ECONZ_DXZC_HTZC_ZSPM:
   guid: "aa9b80a4-e4cc-4363-8796-741740469c75"
