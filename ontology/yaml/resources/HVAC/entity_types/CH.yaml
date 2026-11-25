@@ -58,6 +58,17 @@ CH_SS_SWTC_RWISOVPM:
   - SWTC
   - RWISOVPM
 
+CH_SS_DX6SWC_WDPM_CLPM_RCKTM6X:
+  description: "Simple air-cooled chiller with six-stage compressor control, supply water temperature control, differential pressure monitoring, six-circuit refrigerant monitoring, and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX6SWC
+  - WDPM
+  - CLPM
+  - RCKTM6X
+
 CH_SS_SCHWTC_CHWRWISOVPM_CWSISOVPM_REFPM_REFSM_CWDT:
   guid: "c3547a02-44fa-4a53-b1d7-62ce2f301c86"
   description: "Simple water-cooled chiller with condenser supply water isolation, chilled return water isolation, plus refrigerant and thermal power monitoring."
